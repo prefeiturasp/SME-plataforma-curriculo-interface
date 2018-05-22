@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import { Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
+import 'bootstrap/dist/css/bootstrap-reboot.css';
+import 'bootstrap/dist/css/bootstrap-grid.css';
 import './index.css';
+
 import Atividade from './views/Atividade';
 import Busca from './views/Busca';
 import Cabecalho from './views/Cabecalho';
