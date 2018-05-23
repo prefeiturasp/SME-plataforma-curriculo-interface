@@ -10,3 +10,13 @@ footer {
 footer > img {
   margin: 0 3.75rem;
 }
+
+@media only screen and (max-width: 768px) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer > img {
+    margin: 2rem 0;
+  }
+}
