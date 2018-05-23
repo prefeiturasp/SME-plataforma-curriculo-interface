@@ -20,6 +20,7 @@
 .SequenciaItem-componente {
   color: #01add2;
   font-size: 0.9375rem;
+  font-weight: 600;
   margin: 0.75rem 0.875rem 0.6875rem 0.875rem;
 }
 
@@ -33,21 +34,16 @@
 
 .SequenciaItem-infos {
   border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
   display: flex;
 }
 
 .SequenciaItem-info {
   padding: 0.875rem;
-  width: 50%;
-}
-
-.SequenciaItem-info:first-child {
-  border-right: 1px solid #e0e0e0;
 }
 
 .SequenciaItem-info-valor {
   font-size: 1.1875rem;
+  font-weight: 600;
 }
 
 .SequenciaItem-info-rotulo {
@@ -56,7 +52,19 @@
 }
 
 .SequenciaItem-expandir {
+  align-items: center; 
+  border-top: 1px solid #e0e0e0;
   cursor: pointer;
-  padding: 0.875rem;
+  display: flex;
+  height: 3rem;
+  justify-content: center;
+}
+
+.SequenciaItem-expandir > i {
+  border: 1px solid #e0e0e0;
+  border-radius: 2rem;
+  line-height: 1.8rem;
   text-align: center;
+  width: 2rem;
+  height: 2rem;
 }

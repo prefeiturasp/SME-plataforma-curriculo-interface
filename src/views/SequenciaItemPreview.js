@@ -3,6 +3,18 @@ import { NavLink } from 'react-router-dom';
 import './SequenciaItemPreview.css';
 
 export class SequenciaItemPreview extends Component {
+  onClickedAjudaMatriz() {
+
+  }
+
+  onClickedAjudaODA() {
+
+  }
+
+  onClickedAjudaODS() {
+
+  }
+
   render() {
     const mds = this.props.sequencia.mds.map((item, i) => {
       return (
@@ -36,12 +48,12 @@ export class SequenciaItemPreview extends Component {
     const link = `/sequencia/${this.props.sequencia.id}`;
 
     return (
-      <div className="SequenciaItemPreview">
-        <div className="">
+      <div className="SequenciaItemPreview" style={{height:`${this.props.height}px`}}>
+        <div className="SequenciaItemPreview-scroll">
           <div className="SequenciaItemPreview-titulo">
             Matriz de Saberes
-            <button>
-              <i className="fa fa-help" title="Ajuda"></i>
+            <button onClick={this.onClickedAjudaMatriz.bind(this)}>
+              <i className="fa fa-question-circle" title="Ajuda"></i>
             </button>
           </div>
           <ul>
@@ -49,8 +61,8 @@ export class SequenciaItemPreview extends Component {
           </ul>
           <div className="SequenciaItemPreview-titulo">
             Objetivos de Aprendizagem
-            <button>
-              <i className="fa fa-help" title="Ajuda"></i>
+            <button onClick={this.onClickedAjudaODA.bind(this)}>
+              <i className="fa fa-question-circle" title="Ajuda"></i>
             </button>
           </div>
           <ul>
@@ -58,8 +70,8 @@ export class SequenciaItemPreview extends Component {
           </ul>
           <div className="SequenciaItemPreview-titulo">
             Objetivos de Desenvolvimento Sustentável (ODS)
-            <button>
-              <i className="fa fa-help" title="Ajuda"></i>
+            <button onClick={this.onClickedAjudaODS.bind(this)}>
+              <i className="fa fa-question-circle" title="Ajuda"></i>
             </button>
           </div>
           <ul>

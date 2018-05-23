@@ -17,3 +17,9 @@ li {
   margin-left: 0;
   padding-left: 0;
 }
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}

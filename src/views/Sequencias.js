@@ -3,6 +3,10 @@ import SequenciaItem from './SequenciaItem.js';
 import './Sequencias.css';
 
 class Sequencias extends Component {
+  onClickedCarregar() {
+
+  }
+
   render() {
     const sequencia = {
       id: 1,
@@ -77,6 +81,9 @@ class Sequencias extends Component {
             <ul className="row">
               {itens}
             </ul>
+            <button className="Sequencias-carregar" onClick={this.onClickedCarregar.bind(this)}>
+              Carregar mais
+            </button>
           </div>
         </div>
       </section>

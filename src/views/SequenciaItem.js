@@ -5,6 +5,7 @@ import './SequenciaItem.css';
 class SequenciaItem extends Component {
   constructor(props) {
     super(props);
+    this.ref = React.createRef();
     this.state = {
       isAberto: false,
     };
@@ -19,11 +20,15 @@ class SequenciaItem extends Component {
   render() {
     const sequencia = this.props.sequencia;
     const icone = !this.state.isAberto ? <i className="fa fa-plus" title="Abrir"></i> : <i className="fa fa-minus" title="Fechar"></i>;
-    const preview = !this.state.isAberto ? null : <SequenciaItemPreview sequencia={sequencia} />;
+    const preview = !this.state.isAberto ? null : (
+      <SequenciaItemPreview
+        height={this.ref.current.clientHeight}
+        sequencia={sequencia} />
+    );
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
-        <article className="SequenciaItem">
+        <article className="SequenciaItem" ref={this.ref}>
           <div className="SequenciaItem-imagem">
             <img src="http://via.placeholder.com/256x160" alt="" />
           </div>

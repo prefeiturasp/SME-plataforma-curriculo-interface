@@ -21,3 +21,14 @@ h3 {
 .Sequencias-container li {
   position: relative;
 }
+
+.Sequencias-carregar {
+  border: 1px solid #6a6a6a;
+  border-radius: 0.25rem;
+  color: #000;
+  display: block;
+  font-weight: bold;
+  margin: 0 auto 1.5rem auto;
+  padding: 0.875rem 1.625rem;
+  text-transform: uppercase;
+}
