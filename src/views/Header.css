@@ -1,4 +1,4 @@
-header {
+.header {
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
   display: flex;
@@ -6,15 +6,28 @@ header {
   padding: 1.75rem;
 }
 
-header > h1 {
+.header > h1 {
   color: #252525;
   font-size: 1.125rem;
 }
 
-header > nav > a {
+.header > nav > a {
   color: #000;
   font-weight: bold;
   padding: 0 1rem;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1280px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .header > nav > a {
+    display: block;
+  }
 }

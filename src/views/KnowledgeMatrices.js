@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class MatrizDeSaberes extends Component {
+class KnowledgeMatrices extends Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class MatrizDeSaberes extends Component {
   }
 }
 
-export default MatrizDeSaberes;
+export default KnowledgeMatrices;
