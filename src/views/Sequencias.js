@@ -5,10 +5,55 @@ import './Sequencias.css';
 class Sequencias extends Component {
   render() {
     const sequencia = {
+      id: 1,
       componente: 'Ciências Naturais',
       titulo: 'Os Movimentos do nosso Planeta',
       aulas: 16,
       atividades: 10,
+      mds: [
+        {
+          numero: 1,
+          nome: 'Pensamento Científico, Crítico e Criatividade',
+        },
+        {
+          numero: 6,
+          nome: 'Abertura à Diversidade',
+        },
+      ],
+      oda: [
+        {
+          codigo1: 'EF03',
+          codigo2: 'C',
+          codigo3: '02',
+          cor: '#01add2',
+        },
+        {
+          codigo1: 'EF03',
+          codigo2: 'C',
+          codigo3: '12',
+          cor: '#01add2',
+        },
+        {
+          codigo1: 'EF03',
+          codigo2: 'C',
+          codigo3: '13',
+          cor: '#01add2',
+        },
+      ],
+      ods: [
+        {
+          image: 'http://via.placeholder.com/60x60',
+          nome: 'Erradicar a Pobreza',
+        },
+        {
+          image: 'http://via.placeholder.com/60x60',
+          nome: 'Acabar com a Fome',
+        },
+        {
+          image: 'http://via.placeholder.com/60x60',
+          nome: 'Vida Saudável',
+        },
+      ],
     };
 
     const sequencias = [sequencia, sequencia, sequencia, sequencia, sequencia, sequencia, sequencia];
