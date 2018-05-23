@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import estilos from './Rodape.css';
+import styles from './Footer.css';
 
-class Rodape extends Component {
+class Footer extends Component {
   render() {
     return (
-      <footer className={estilos.rodape}>
+      <footer className={styles.footer}>
         <img src="http://via.placeholder.com/218x129" alt="Unesco - Cooperação - Representação no Brasil" />
         <img src="http://via.placeholder.com/130x106" alt="Prefeitura de São Paulo - Educação" />
       </footer>
@@ -12,4 +12,4 @@ class Rodape extends Component {
   }
 }
 
-export default Rodape;
+export default Footer;

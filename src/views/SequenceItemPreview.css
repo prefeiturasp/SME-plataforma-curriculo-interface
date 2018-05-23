@@ -14,7 +14,7 @@
   z-index: 9;
 }
 
-.container.is-esquerda {
+.container.is-left-aligned {
   left: -100%;
   margin-left: 1rem;
 }
@@ -28,23 +28,23 @@
   padding: 0.875rem;
 }
 
-.titulo {
+.title {
   color: #252525;
   margin-bottom: 0.8125rem;
 }
 
-.titulo > button {
+.title > button {
   color: #e0e0e0;
 }
 
-.mds {
+.matrix {
   align-items: center;
   display: flex;
   line-height: 1.2;
   margin-bottom: 0.5rem;
 }
 
-.mds > div:first-child {
+.matrix > div:first-child {
   border-radius: 2rem;
   border: 1px solid #e0e0e0;
   line-height: 1.8rem;
@@ -54,7 +54,7 @@
   height: 2rem;
 }
 
-.oda {
+.learningObjective {
   border-radius: 20px;
   border: 1px solid #e0e0e0;
   display: inline-block;
@@ -62,11 +62,11 @@
   padding: 0.5rem 1rem;
 }
 
-.ods {
+.developmentGoal {
   margin: 0 0.5rem 0.5rem 0;
 }
 
-.acessar {
+.access {
   border-top: 1px solid #e0e0e0;
   color: #000;
   font-weight: bold;

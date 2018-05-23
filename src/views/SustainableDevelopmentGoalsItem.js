@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class OdsItem extends Component {
+class SustainableDevelopmentGoalsItem extends Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class OdsItem extends Component {
   }
 }
 
-export default OdsItem;
+export default SustainableDevelopmentGoalsItem;

@@ -1,4 +1,4 @@
-.rodape {
+.footer {
   align-items: center;
   background: #6a6a6a;
   color: white;
@@ -7,16 +7,16 @@
   padding: 3.75rem;
 }
 
-.rodape > img {
+.footer > img {
   margin: 0 3.75rem;
 }
 
 @media only screen and (max-width: 768px) {
-  .rodape {
+  .footer {
     flex-direction: column;
   }
 
-  .rodape > img {
+  .footer > img {
     margin: 2rem 0;
   }
 }

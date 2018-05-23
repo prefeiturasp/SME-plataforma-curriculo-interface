@@ -7,40 +7,40 @@ import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import './index.css';
 
-import Atividade from './views/Atividade';
-import Busca from './views/Busca';
-import Cabecalho from './views/Cabecalho';
-import Curriculo from './views/Curriculo';
-import Descobrir from './views/Descobrir';
-import Rodape from './views/Rodape';
+import Activity from './views/Activity';
+import Curriculum from './views/Curriculum';
+import Discover from './views/Discover';
+import Footer from './views/Footer';
+import Header from './views/Header';
 import Home from './views/Home';
-import MatrizDeSaberes from './views/MatrizDeSaberes';
-import MatrizDeSaberesItem from './views/MatrizDeSaberesItem';
-import ObjetivosDeAprendizagem from './views/ObjetivosDeAprendizagem';
-import Ods from './views/Ods';
-import OdsItem from './views/OdsItem';
-import Sequencia from './views/Sequencia';
-import Sequencias from './views/Sequencias';
+import LearningObjectives from './views/LearningObjectives';
+import KnowledgeMatrices from './views/KnowledgeMatrices';
+import KnowledgeMatricesItem from './views/KnowledgeMatricesItem';
+import Search from './views/Search';
+import Sequence from './views/Sequence';
+import Sequences from './views/Sequences';
+import SustainableDevelopmentGoals from './views/SustainableDevelopmentGoals';
+import SustainableDevelopmentGoalsItem from './views/SustainableDevelopmentGoalsItem';
 
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   <BrowserRouter>
     <div>
-      <Cabecalho />
+      <Header />
       <Route exact path='/' component={Home} />
-      <Route path='/busca' component={Busca} />
-      <Route path='/sequencias' component={Sequencias} />
-      <Route path='/sequencia/:id' component={Sequencia} />
-      <Route path='/atividade/:id' component={Atividade} />
-      <Route path='/curriculo' component={Curriculo} />
-      <Route path='/ods' component={Ods} />
-      <Route path='/ods/:id' component={OdsItem} />
-      <Route path='/matriz-de-saberes' component={MatrizDeSaberes} />
-      <Route path='/matriz-de-saberes/:id' component={MatrizDeSaberesItem} />
-      <Route path='/objetivos-de-aprendizagem' component={ObjetivosDeAprendizagem} />
-      <Route path='/descobrir' component={Descobrir} />
-      <Rodape />
+      <Route path='/busca' component={Search} />
+      <Route path='/sequencias' component={Sequences} />
+      <Route path='/sequencia/:id' component={Sequence} />
+      <Route path='/atividade/:id' component={Activity} />
+      <Route path='/curriculo' component={Curriculum} />
+      <Route path='/ods' component={SustainableDevelopmentGoals} />
+      <Route path='/ods/:id' component={SustainableDevelopmentGoalsItem} />
+      <Route path='/matriz-de-saberes' component={KnowledgeMatrices} />
+      <Route path='/matriz-de-saberes/:id' component={KnowledgeMatricesItem} />
+      <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
+      <Route path='/descobrir' component={Discover} />
+      <Footer />
     </div>
   </BrowserRouter>,
   document.getElementById('root')

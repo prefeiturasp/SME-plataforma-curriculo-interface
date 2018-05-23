@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import estilos from './Cabecalho.css';
+import styles from './Header.css';
 
-class Cabecalho extends Component {
+class Header extends Component {
   render() {
     return (
-      <header className={estilos.cabecalho}>
+      <header className={styles.header}>
         <h1>Currículo Digital da Cidade de São Paulo</h1>
         <nav>
           <NavLink to="/">Home</NavLink>
@@ -18,4 +18,4 @@ class Cabecalho extends Component {
   }
 }
 
-export default Cabecalho;
+export default Header;

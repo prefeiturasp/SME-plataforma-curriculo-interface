@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Curriculo extends Component {
+class Sequence extends Component {
   render() {
     return (
       <div>
-      	<h2>Currículo</h2>
+      	<h2>Sequência</h2>
       </div>
     );
   }
 }
 
-export default Curriculo;
+export default Sequence;

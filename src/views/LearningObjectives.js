@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ObjetivosDeAprendizagem extends Component {
+class LearningObjectives extends Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class ObjetivosDeAprendizagem extends Component {
   }
 }
 
-export default ObjetivosDeAprendizagem;
+export default LearningObjectives;
