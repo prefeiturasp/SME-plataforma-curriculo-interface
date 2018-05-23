@@ -14,10 +14,10 @@ h3 {
   padding: 1rem;
 }
 
-ul {
+.Sequencias-container ul {
   list-style: none;
 }
 
-li {
-  width: 25%;
+.Sequencias-container li {
+  position: relative;
 }
