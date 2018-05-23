@@ -1,4 +1,4 @@
-header {
+.cabecalho {
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
   display: flex;
@@ -6,12 +6,12 @@ header {
   padding: 1.75rem;
 }
 
-header > h1 {
+.cabecalho > h1 {
   color: #252525;
   font-size: 1.125rem;
 }
 
-header > nav > a {
+.cabecalho > nav > a {
   color: #000;
   font-weight: bold;
   padding: 0 1rem;
@@ -20,14 +20,14 @@ header > nav > a {
 }
 
 @media only screen and (max-width: 1280px) {
-  header {
+  .cabecalho {
     flex-direction: column;
     text-align: center;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  header > nav > a {
+  .cabecalho > nav > a {
     display: block;
   }
 }

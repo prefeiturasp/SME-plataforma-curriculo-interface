@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import './SequenciaItemPreview.css';
+import estilos from './SequenciaItemPreview.css';
 
 export class SequenciaItemPreview extends Component {
   onClickedAjudaMatriz() {
@@ -18,7 +18,7 @@ export class SequenciaItemPreview extends Component {
   render() {
     const mds = this.props.sequencia.mds.map((item, i) => {
       return (
-        <li key={i} className="SequenciaItemPreview-mds">
+        <li key={i} className={estilos.mds}>
           <div>{item.numero}</div>
           <div>{item.nome}</div>
         </li>
@@ -27,7 +27,7 @@ export class SequenciaItemPreview extends Component {
 
     const oda = this.props.sequencia.oda.map((item, i) => {
       return (
-        <li key={i} className="SequenciaItemPreview-oda">
+        <li key={i} className={estilos.oda}>
           {item.codigo1}
           <span style={{color:item.cor}}>{item.codigo2}</span>
           {item.codigo3}
@@ -41,16 +41,16 @@ export class SequenciaItemPreview extends Component {
           key={i}
           src={item.image}
           alt={item.nome}
-          className="SequenciaItemPreview-ods" />
+          className={estilos.ods} />
       );
     });
 
     const link = `/sequencia/${this.props.sequencia.id}`;
 
     return (
-      <div className="SequenciaItemPreview" style={{height:`${this.props.height}px`}}>
-        <div className="SequenciaItemPreview-scroll">
-          <div className="SequenciaItemPreview-titulo">
+      <div className={estilos.container} style={{height:`${this.props.height}px`}}>
+        <div className={estilos.scroll}>
+          <div className={estilos.titulo}>
             Matriz de Saberes
             <button onClick={this.onClickedAjudaMatriz.bind(this)}>
               <i className="fa fa-question-circle" title="Ajuda"></i>
@@ -59,7 +59,7 @@ export class SequenciaItemPreview extends Component {
           <ul>
             {mds}
           </ul>
-          <div className="SequenciaItemPreview-titulo">
+          <div className={estilos.titulo}>
             Objetivos de Aprendizagem
             <button onClick={this.onClickedAjudaODA.bind(this)}>
               <i className="fa fa-question-circle" title="Ajuda"></i>
@@ -68,7 +68,7 @@ export class SequenciaItemPreview extends Component {
           <ul>
             {oda}
           </ul>
-          <div className="SequenciaItemPreview-titulo">
+          <div className={estilos.titulo}>
             Objetivos de Desenvolvimento Sustentável (ODS)
             <button onClick={this.onClickedAjudaODS.bind(this)}>
               <i className="fa fa-question-circle" title="Ajuda"></i>
@@ -78,7 +78,7 @@ export class SequenciaItemPreview extends Component {
             {ods}
           </ul>
         </div>
-        <NavLink to={link} className="SequenciaItemPreview-acessar">
+        <NavLink to={link} className={estilos.acessar}>
           Acessar
         </NavLink>
       </div>

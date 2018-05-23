@@ -1,4 +1,4 @@
-.SequenciaItem {
+.container {
   background: #fff;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
@@ -6,25 +6,25 @@
   overflow: hidden;
 }
 
-.SequenciaItem-imagem {
+.imagem {
   width: 100%;
   height: 10rem;
 }
 
-.SequenciaItem-imagem > img {
+.imagem > img {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.SequenciaItem-componente {
+.componente {
   color: #01add2;
   font-size: 0.9375rem;
   font-weight: 600;
   margin: 0.75rem 0.875rem 0.6875rem 0.875rem;
 }
 
-.SequenciaItem-titulo {
+.titulo {
   color: #252525;
   font-size: 1.3125rem;
   font-weight: bold;
@@ -32,26 +32,26 @@
   margin: 0 0.875rem 0.875rem 0.875rem;
 }
 
-.SequenciaItem-infos {
+.infos {
   border-top: 1px solid #e0e0e0;
   display: flex;
 }
 
-.SequenciaItem-info {
+.info {
   padding: 0.875rem;
 }
 
-.SequenciaItem-info-valor {
+.numero {
   font-size: 1.1875rem;
   font-weight: 600;
 }
 
-.SequenciaItem-info-rotulo {
+.rotulo {
   color: #6a6a6a;
   font-size: 0.9375rem;
 }
 
-.SequenciaItem-expandir {
+.expandir {
   align-items: center; 
   border-top: 1px solid #e0e0e0;
   cursor: pointer;
@@ -60,7 +60,7 @@
   justify-content: center;
 }
 
-.SequenciaItem-expandir > i {
+.expandir > i {
   border: 1px solid #e0e0e0;
   border-radius: 2rem;
   line-height: 1.8rem;

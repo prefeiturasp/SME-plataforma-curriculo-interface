@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SequenciaItemPreview from './SequenciaItemPreview';
-import './SequenciaItem.css';
+import estilos from './SequenciaItem.css';
 
 class SequenciaItem extends Component {
   constructor(props) {
@@ -28,23 +28,23 @@ class SequenciaItem extends Component {
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
-        <article className="SequenciaItem" ref={this.ref}>
-          <div className="SequenciaItem-imagem">
+        <article className={estilos.container} ref={this.ref}>
+          <div className={estilos.imagem}>
             <img src="http://via.placeholder.com/256x160" alt="" />
           </div>
-          <div className="SequenciaItem-componente">{sequencia.componente}</div>
-          <div className="SequenciaItem-titulo">{sequencia.titulo}</div>
-          <div className="SequenciaItem-infos">
-            <div className="SequenciaItem-info">
-              <div className="SequenciaItem-info-valor">{sequencia.aulas} aulas</div>
-              <div className="SequenciaItem-info-rotulo">Tempo estimado</div>
+          <div className={estilos.componente}>{sequencia.componente}</div>
+          <div className={estilos.titulo}>{sequencia.titulo}</div>
+          <div className={estilos.infos}>
+            <div className={estilos.info}>
+              <div className={estilos.infoValor}>{sequencia.aulas} aulas</div>
+              <div className={estilos.infoRotulo}>Tempo estimado</div>
             </div>
-            <div className="SequenciaItem-info">
-              <div className="SequenciaItem-info-valor">{sequencia.atividades}</div>
-              <div className="SequenciaItem-info-rotulo">Atividades</div>
+            <div className={estilos.info}>
+              <div className={estilos.numero}>{sequencia.atividades}</div>
+              <div className={estilos.rotulo}>Atividades</div>
             </div>
           </div>
-          <div className="SequenciaItem-expandir" onClick={this.onClickedAbrirFechar.bind(this)}>
+          <div className={estilos.expandir} onClick={this.onClickedAbrirFechar.bind(this)}>
             {icone}
           </div>
         </article>

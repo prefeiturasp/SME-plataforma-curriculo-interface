@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SequenciaItem from './SequenciaItem.js';
-import './Sequencias.css';
+import estilos from'./Sequencias.css';
 
 class Sequencias extends Component {
   onClickedCarregar() {
@@ -73,15 +73,15 @@ class Sequencias extends Component {
     return (
       <section>
         <div className="container">
-        	<h2>Sequências de Atividades</h2>
-          <h3><strong>{sequencias.length}</strong> sequências foram encontradas</h3>
+        	<h2 className={estilos.h2}>Sequências de Atividades</h2>
+          <h3 className={estilos.h3}><strong>{sequencias.length}</strong> sequências foram encontradas</h3>
         </div>
-        <div className="Sequencias-container">
+        <div className={estilos.container}>
           <div className="container">
             <ul className="row">
               {itens}
             </ul>
-            <button className="Sequencias-carregar" onClick={this.onClickedCarregar.bind(this)}>
+            <button className={estilos.carregar} onClick={this.onClickedCarregar.bind(this)}>
               Carregar mais
             </button>
           </div>
