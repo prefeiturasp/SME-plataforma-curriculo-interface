@@ -1,0 +1,13 @@
+.wrapper {
+  overflow-y: auto;
+  height: 10rem;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.images > li {
+  margin: 0 0.375rem 0.375rem 0;
+}
