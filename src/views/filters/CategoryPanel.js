@@ -4,6 +4,10 @@ import CategoryItemImageButton from './CategoryItemImageButton';
 import styles from './CategoryPanel.css';
 
 class CategoryPanel extends Component {
+  onClickedClose() {
+    
+  }
+
   render() {
     const shouldUseImage = this.props.items.findIndex(item => {
       return item.image;
@@ -23,9 +27,15 @@ class CategoryPanel extends Component {
     });
 
     return (
-      <ul className={classes.join(' ')}>
-        {items}
-      </ul>
+      <div>
+        <ul className={classes.join(' ')}>
+          {items}
+        </ul>
+        <button className={styles.back} onClick={this.onClickedClose.bind(this)}>
+          <i className="fa fa-chevron-left"></i>
+          Voltar
+        </button>
+      </div>
     );
   }
 }
