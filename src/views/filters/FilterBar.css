@@ -1,0 +1,11 @@
+.wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.25rem;
+}
+
+.wrapper > ul {
+  display: flex;
+  margin-bottom: 0;
+}

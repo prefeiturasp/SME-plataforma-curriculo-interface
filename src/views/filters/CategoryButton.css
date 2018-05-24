@@ -1,0 +1,12 @@
+.wrapper {
+  color: #6a6a6a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5625rem;
+  padding: 0;
+  text-align: left;
+}
+
+.wrapper > i {
+  margin-left: 0.5rem;
+}

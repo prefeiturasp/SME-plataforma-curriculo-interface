@@ -1,0 +1,41 @@
+.wrapper {
+  align-items: end;
+  display: flex;
+  flex-direction: column;
+  padding: 1.6875rem 0 1.875rem 0;
+}
+
+.wrapper h4 {
+  color: #252525;
+  font-size: 1.3125rem;
+  margin-bottom: 0.8125rem;
+}
+
+.wrapper h5 {
+  color: #000;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.wrapper ul {
+  list-style: none;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.warning {
+  color: #6a6a6a;
+  display: flex;
+  font-size: 0.8125rem;
+  margin-top: 1.5rem;
+}
+
+.warning > i {
+  color: #e0e0e0;
+  font-size: 1rem;
+  margin-right: 0.3125rem;
+}
