@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './SequenceItemPreview.css';
+import styles from './Preview.css';
 
-export class SequenceItemPreview extends Component {
+export class Preview extends Component {
   onClickedHelpMatrices() {
 
   }
@@ -48,7 +48,7 @@ export class SequenceItemPreview extends Component {
     const link = `/sequencia/${this.props.sequence.id}`;
 
     return (
-      <div className={styles.container} style={{height:`${this.props.height}px`}}>
+      <div className={styles.wrapper} style={{height:`${this.props.height}px`}}>
         <div className={styles.scroll}>
           <div className={styles.title}>
             Matriz de Saberes
@@ -86,4 +86,4 @@ export class SequenceItemPreview extends Component {
   }
 }
 
-export default SequenceItemPreview;
+export default Preview;
