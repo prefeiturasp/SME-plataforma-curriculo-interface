@@ -23,3 +23,23 @@ button {
   border: 0;
   cursor: pointer;
 }
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0;
+}
+
+.btn {
+  border: 1px solid #6a6a6a;
+  border-radius: 0.25rem;
+  color: #000;
+  display: block;
+  font-weight: bold;
+  padding: 0.875rem 1.625rem;
+  text-transform: uppercase;
+}
+
+.btn > i {
+  margin-right: 0.5rem;
+}

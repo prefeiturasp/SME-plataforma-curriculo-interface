@@ -17,8 +17,8 @@ import LearningObjectives from './views/LearningObjectives';
 import KnowledgeMatrices from './views/KnowledgeMatrices';
 import KnowledgeMatricesItem from './views/KnowledgeMatricesItem';
 import Search from './views/Search';
-import Sequence from './views/Sequence';
-import Sequences from './views/Sequences';
+import Sequence from './views/sequences/Sequence';
+import Sequences from './views/sequences/Sequences';
 import SustainableDevelopmentGoals from './views/SustainableDevelopmentGoals';
 import SustainableDevelopmentGoalsItem from './views/SustainableDevelopmentGoalsItem';
 
