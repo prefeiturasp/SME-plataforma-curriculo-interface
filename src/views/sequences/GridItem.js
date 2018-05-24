@@ -13,7 +13,7 @@ class GridItem extends Component {
 
   onClickedExpand() {
     this.setState({
-      isExpanded: !this.state.isAberto,
+      isExpanded: !this.state.isExpanded,
     });
   }
 
