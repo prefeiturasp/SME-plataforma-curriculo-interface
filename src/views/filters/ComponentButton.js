@@ -5,7 +5,7 @@ class ComponentButton extends Component {
   render() {
     return (
       <li>
-        <button className={styles.wrapper}>
+        <button className={styles.wrapper} onClick={this.props.onClick}>
           {this.props.component.label}
         </button>
       </li>

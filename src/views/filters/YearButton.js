@@ -5,7 +5,7 @@ class YearButton extends Component {
   render() {
     return (
       <li>
-        <button className={styles.wrapper}>
+        <button className={styles.wrapper} onClick={this.props.onClick}>
           {this.props.year.label}
         </button>
       </li>

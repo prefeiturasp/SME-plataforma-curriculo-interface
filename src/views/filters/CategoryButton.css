@@ -7,6 +7,10 @@
   text-align: left;
 }
 
+.wrapper:hover {
+  text-decoration: underline;
+}
+
 .wrapper > i {
   margin-left: 0.5rem;
 }

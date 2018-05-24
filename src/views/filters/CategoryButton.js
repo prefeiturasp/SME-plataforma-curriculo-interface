@@ -5,7 +5,7 @@ class CategoryButton extends Component {
   render() {
     return (
       <li>
-        <button className={styles.wrapper}>
+        <button className={styles.wrapper} onClick={this.props.onClick}>
           {this.props.category.label}
           <i className="fa fa-chevron-right"></i>
         </button>

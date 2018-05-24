@@ -2,11 +2,29 @@ import React, { Component } from 'react';
 import YearButton from './YearButton';
 import ComponentButton from './ComponentButton';
 import CategoryButton from './CategoryButton';
+import CategoryPanel from './CategoryPanel';
 import styles from'./FilterPanel.css';
 
 class FilterPanel extends Component {
-  onClickedSearch() {
+  constructor(props) {
+    super(props);
+    this.onClickedCategory = this.onClickedCategory.bind(this);
+  }
 
+  onClickedYear(e) {
+    console.log('onClickedYear', e.currentTarget);
+  }
+
+  onClickedComponent(e) {
+    console.log('onClickedComponent', e.currentTarget);
+  }
+
+  onClickedCategory(e) {
+    console.log('onClickedCategory', e.currentTarget);
+  }
+
+  onClickedSearch() {
+    console.log('onClickedSearch');
   }
 
   render() {
@@ -34,25 +52,29 @@ class FilterPanel extends Component {
     ];
 
     const yearButtons = this.props.filters.filter(item => {
-      return item.type == 'year';
+      return item.type === 'year';
     }).map((item, i) => {
       return (
-        <YearButton key={i} year={item} />
+        <YearButton key={i} year={item} onClick={this.onClickedYear} />
       );
     });
 
     const componentButtons = this.props.filters.filter(item => {
-      return item.type =='component';
+      return item.type === 'component';
     }).map((item, i) => {
       return (
-        <ComponentButton key={i} component={item} />
+        <ComponentButton key={i} component={item} onClick={this.onClickedComponent} />
       );
     });
 
     const categoryButtons = categories.map((item, i) => {
       return (
-        <CategoryButton key={i} category={item} />
+        <CategoryButton key={i} category={item} onClick={this.onClickedCategory} />
       );
+    });
+
+    const categoryValues = this.props.filters.filter(item => {
+      return item.type === 'knowledgeMatrix';
     });
 
     return (
@@ -69,20 +91,21 @@ class FilterPanel extends Component {
               <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
             </p>
           </div>
-          <div class="col-sm-12 col-md-6 col-lg-4">
+          <div className="col-sm-12 col-md-6 col-lg-4">
             <h4>Componente Curricular</h4>
             <ul className={styles.buttons}>
               {componentButtons}
             </ul>
           </div>
-          <div class="col-sm-12 col-md-12 col-lg-5">
+          <div className="col-sm-12 col-md-12 col-lg-5">
             <h4>Filtros</h4>
             <ul>
               {categoryButtons}
             </ul>
+            <CategoryPanel items={categoryValues} />
           </div>
         </div>
-        <button class="btn" onClick={this.onClickedSearch.bind(this)}>
+        <button className="btn" onClick={this.onClickedSearch.bind(this)}>
           Buscar Sequência
         </button>
       </div>
