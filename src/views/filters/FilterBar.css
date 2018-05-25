@@ -9,5 +9,9 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 0;
-  max-width: 80%;
+}
+
+.button {
+  composes: btn from global;
+  min-width: 9rem;
 }

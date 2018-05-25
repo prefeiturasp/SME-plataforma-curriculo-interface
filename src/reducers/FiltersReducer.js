@@ -98,19 +98,19 @@ const initialState = {
     {
       type: 'developmentGoal',
       value: 1,
-      image: 'http://via.placeholder.com/60x60',
+      image: 'http://via.placeholder.com/60x60/993333/ffffff',
       label: '1. Erradicação da Pobreza',
     },
     {
       type: 'developmentGoal',
       value: 2,
-      image: 'http://via.placeholder.com/60x60',
+      image: 'http://via.placeholder.com/60x60/339933/ffffff',
       label: '2. Fome Zero e Agricultura Sustentável',
     },
     {
       type: 'developmentGoal',
       value: 3,
-      image: 'http://via.placeholder.com/60x60',
+      image: 'http://via.placeholder.com/60x60/333399/ffffff',
       label: '3. Saúde e Bem-Estar',
     },
     {

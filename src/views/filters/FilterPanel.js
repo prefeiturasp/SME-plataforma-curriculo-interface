@@ -9,12 +9,17 @@ import CategoryPanel from './CategoryPanel';
 import styles from'./FilterPanel.css';
 
 class FilterPanel extends Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+
   onClickedSearch() {
     this.props.search();
   }
 
   render() {
-    const classes = this.props.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
+    const style = this.props.isExpanded ? { height: this.ref.current.clientHeight } : {};
     
     const yearButtons = this.props.filters
       .filter(item => item.type === 'year')
@@ -39,38 +44,40 @@ class FilterPanel extends Component {
     });
 
     return (
-      <div className={classes.join(' ')}>
-        <div className="row">
-          <div className="col-sm-12 col-md-6 col-lg-3">
-            <h4>Ano</h4>
-            <h5>Ciclo de Alfabetização</h5>
-            <ul className={styles.buttons}>
-              {yearButtons}
-            </ul>
-            <p className={styles.warning}>
-              <i className="fa fa-exclamation-circle"></i>
-              <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
-            </p>
-          </div>
-          <div className="col-sm-12 col-md-6 col-lg-4">
-            <h4>Componente Curricular</h4>
-            <ul className={styles.buttons}>
-              {componentButtons}
-            </ul>
-          </div>
-          <div className="col-sm-12 col-md-12 col-lg-5">
-            <h4>Filtros</h4>
-            <div className={styles.categories}>
-              <ul>
-                {categoryButtons}
+      <div className={styles.wrapper} style={style}>
+        <div ref={this.ref}>
+          <div className="row">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <h4>Ano</h4>
+              <h5>Ciclo de Alfabetização</h5>
+              <ul className={styles.buttons}>
+                {yearButtons}
               </ul>
-              <CategoryPanel />
+              <p className={styles.warning}>
+                <i className="fa fa-exclamation-circle"></i>
+                <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
+              </p>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-4">
+              <h4>Componente Curricular</h4>
+              <ul className={styles.buttons}>
+                {componentButtons}
+              </ul>
+            </div>
+            <div className="col-sm-12 col-md-12 col-lg-5">
+              <h4>Filtros</h4>
+              <div className={styles.categories}>
+                <ul>
+                  {categoryButtons}
+                </ul>
+                <CategoryPanel />
+              </div>
             </div>
           </div>
+          <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
+            Buscar Sequência
+          </button>
         </div>
-        <button className="btn" onClick={this.onClickedSearch.bind(this)}>
-          Buscar Sequência
-        </button>
       </div>
     );
   }

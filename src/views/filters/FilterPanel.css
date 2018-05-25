@@ -1,10 +1,13 @@
 .wrapper {
-  align-items: end;
-  display: flex;
-  flex-direction: column;
   height: 0;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
+}
+
+.wrapper > div {
+  align-items: end;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper h4 {
@@ -47,6 +50,7 @@
   position: relative;
 }
 
-.isExpanded {
-  height: 24rem;
+.button {
+  composes: btn from global;
+  margin-bottom: 1.875rem;
 }

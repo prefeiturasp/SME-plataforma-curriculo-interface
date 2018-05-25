@@ -25,7 +25,11 @@
 }
 
 .checkMark {
-  background: #6a6a6a;
+  background: transparent;
   width: 0.875rem;
   height: 0.875rem;
+}
+
+.isActive .checkMark {
+  background: #6a6a6a;
 }
