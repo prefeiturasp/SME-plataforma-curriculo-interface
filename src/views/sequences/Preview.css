@@ -1,4 +1,4 @@
-.container {
+.wrapper {
   background: white;
   border-left: 1px solid #e0e0e0;
   color: #6a6a6a;
@@ -14,12 +14,12 @@
   z-index: 9;
 }
 
-.container.is-left-aligned {
+.wrapper.is-left-aligned {
   left: -100%;
   margin-left: 1rem;
 }
 
-.container ul {
+.wrapper ul {
   margin-bottom: 1rem;
 }
 

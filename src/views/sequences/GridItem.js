@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import SequenceItemPreview from './SequenceItemPreview';
-import styles from './SequenceItem.css';
+import Preview from './Preview';
+import styles from './GridItem.css';
 
-class SequenceItem extends Component {
+class GridItem extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
@@ -13,7 +13,7 @@ class SequenceItem extends Component {
 
   onClickedExpand() {
     this.setState({
-      isExpanded: !this.state.isAberto,
+      isExpanded: !this.state.isExpanded,
     });
   }
 
@@ -21,14 +21,14 @@ class SequenceItem extends Component {
     const sequence = this.props.sequence;
     const icon = !this.state.isExpanded ? <i className="fa fa-plus" title="Abrir"></i> : <i className="fa fa-minus" title="Fechar"></i>;
     const preview = !this.state.isExpanded ? null : (
-      <SequenceItemPreview
+      <Preview
         height={this.ref.current.clientHeight}
         sequence={sequence} />
     );
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
-        <article className={styles.container} ref={this.ref}>
+        <article className={styles.wrapper} ref={this.ref}>
           <div className={styles.image}>
             <img src="http://via.placeholder.com/256x160" alt="" />
           </div>
@@ -54,4 +54,4 @@ class SequenceItem extends Component {
   }
 }
 
-export default SequenceItem;
+export default GridItem;
