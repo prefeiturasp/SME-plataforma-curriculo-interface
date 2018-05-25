@@ -7,5 +7,7 @@
 
 .wrapper > ul {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 0;
+  max-width: 80%;
 }

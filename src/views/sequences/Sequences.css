@@ -23,5 +23,6 @@
 }
 
 .load {
+  composes: btn from global;
   margin: 0 auto 1.5rem auto;
 }
