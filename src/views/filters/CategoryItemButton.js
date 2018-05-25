@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './CategoryItemButton.css';
 
 class CategoryItemButton extends Component {
@@ -9,11 +10,16 @@ class CategoryItemButton extends Component {
           <div className={styles.check}>
             <div className={styles.checkMark}></div>
           </div>
-          {this.props.item.label}
+          {this.props.data.label}
         </button>
       </li>
     );
   }
 }
+
+CategoryItemButton.propTypes = {
+  onClick: PropTypes.func,
+  data: PropTypes.object.isRequired,
+};
 
 export default CategoryItemButton;
