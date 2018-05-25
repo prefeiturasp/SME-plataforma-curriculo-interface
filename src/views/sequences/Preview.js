@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styles from './Preview.css';
 
@@ -16,7 +17,7 @@ export class Preview extends Component {
   }
 
   render() {
-    const knowledgeMatrices = this.props.sequence.knowledgeMatrices.map((item, i) => {
+    const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
       return (
         <li key={i} className={styles.matrix}>
           <div>{item.number}</div>
@@ -25,7 +26,7 @@ export class Preview extends Component {
       );
     });
 
-    const learningObjectives = this.props.sequence.learningObjectives.map((item, i) => {
+    const learningObjectives = this.props.data.learningObjectives.map((item, i) => {
       return (
         <li key={i} className={styles.learningObjective}>
           {item.code1}
@@ -35,7 +36,7 @@ export class Preview extends Component {
       );
     });
 
-    const developmentGoals = this.props.sequence.developmentGoals.map((item, i) => {
+    const developmentGoals = this.props.data.developmentGoals.map((item, i) => {
       return (
         <img
           key={i}
@@ -45,7 +46,7 @@ export class Preview extends Component {
       );
     });
 
-    const link = `/sequencia/${this.props.sequence.id}`;
+    const link = `/sequencia/${this.props.data.id}`;
 
     return (
       <div className={styles.wrapper} style={{height:`${this.props.height}px`}}>
@@ -85,5 +86,10 @@ export class Preview extends Component {
     );
   }
 }
+
+Preview.propTypes = {
+  data: PropTypes.object.isRequired,
+  height: PropTypes.number.isRequired,
+};
 
 export default Preview;

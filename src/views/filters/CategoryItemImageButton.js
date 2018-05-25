@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
-import styles from './CategoryItemButton.css';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import FiltersActions from '../../actions/FiltersActions.js'
+import styles from './CategoryItemImageButton.css';
 
 class CategoryItemImageButton extends Component {
+  onClicked() {
+    this.props.toggleFilter(this.props.data);
+  }
+
   render() {
+    const classes = this.props.data.isActive ? [styles.wrapper, styles.isActive] : [styles.wrapper];
+
     return (
       <li>
-        <button className={styles.wrapper} onClick={this.props.onClick}>
-          <img src={this.props.item.image} alt={this.props.item.label} />
+        <button className={classes.join(' ')} onClick={this.onClicked.bind(this)}>
+          <img src={this.props.data.image} alt={this.props.data.label} />
         </button>
       </li>
     );
   }
 }
 
-export default CategoryItemImageButton;
+CategoryItemImageButton.propTypes = {
+  data: PropTypes.object.isRequired,
+  toggleFilter: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleFilter: data => {
+      dispatch(FiltersActions.toggleFilter(data));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CategoryItemImageButton);

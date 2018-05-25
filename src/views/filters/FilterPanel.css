@@ -1,13 +1,19 @@
 .wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+.wrapper > div {
   align-items: end;
   display: flex;
   flex-direction: column;
-  padding: 1.6875rem 0 1.875rem 0;
 }
 
 .wrapper h4 {
   color: #252525;
   font-size: 1.3125rem;
+  margin-top: 1.6875rem;
   margin-bottom: 0.8125rem;
 }
 
@@ -38,4 +44,13 @@
   color: #e0e0e0;
   font-size: 1rem;
   margin-right: 0.3125rem;
+}
+
+.categories {
+  position: relative;
+}
+
+.button {
+  composes: btn from global;
+  margin-bottom: 1.875rem;
 }

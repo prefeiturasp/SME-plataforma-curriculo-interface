@@ -7,5 +7,11 @@
 
 .wrapper > ul {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 0;
+}
+
+.button {
+  composes: btn from global;
+  min-width: 9rem;
 }
