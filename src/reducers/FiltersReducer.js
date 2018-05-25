@@ -4,22 +4,27 @@ const initialState = {
   categories: [
     {
       id: 1,
+      type: 'developmentGoal',
       label: 'Objetivos de Desenvolvimento Sustentável',
     },
     {
       id: 2,
+      type: 'knowledgeMatrix',
       label: 'Matriz de Saberes',
     },
     {
       id: 3,
+      type: 'learningObjective',
       label: 'Objetivos de Aprendizagem',
     },
     {
       id: 4,
+      type: 'axis',
       label: 'Eixo',
     },
     {
       id: 5,
+      type: 'activityType',
       label: 'Tipo de Atividade',
     },
   ],
@@ -155,10 +160,23 @@ const initialState = {
     },
   ],
   isExpanded: false,
+  isShowingCategory: false,
+  currCategory: null,
 };
 
 function FiltersReducer(state = initialState, action) {
   switch (action.type) {
+    case FiltersActions.SHOWED_CATEGORY:
+      return Object.assign({}, state, {
+        isShowingCategory: true,
+        currCategory: action.category,
+      });
+
+    case FiltersActions.CLOSED_CATEGORY:
+      return Object.assign({}, state, {
+        isShowingCategory: false,
+      });
+
     case FiltersActions.TOGGLED_FILTER:
       return Object.assign({}, state, {
         filters: state.filters.map(item => {

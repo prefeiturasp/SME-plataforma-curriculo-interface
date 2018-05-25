@@ -38,8 +38,6 @@ class FilterPanel extends Component {
       );
     });
 
-    const categoryValues = this.props.filters.filter(item => item.type === 'knowledgeMatrix');
-
     return (
       <div className={classes.join(' ')}>
         <div className="row">
@@ -62,10 +60,12 @@ class FilterPanel extends Component {
           </div>
           <div className="col-sm-12 col-md-12 col-lg-5">
             <h4>Filtros</h4>
-            <ul>
-              {categoryButtons}
-            </ul>
-            <CategoryPanel items={categoryValues} />
+            <div className={styles.categories}>
+              <ul>
+                {categoryButtons}
+              </ul>
+              <CategoryPanel />
+            </div>
           </div>
         </div>
         <button className="btn" onClick={this.onClickedSearch.bind(this)}>

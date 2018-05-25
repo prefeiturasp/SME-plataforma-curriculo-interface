@@ -1,4 +1,13 @@
 .wrapper {
+  background: white;
+  position: absolute;
+  width: 100%;
+  left: 100%;
+  top: 0;
+  transition: left 0.5s ease-in-out;
+}
+
+.wrapper > ul {
   overflow-y: auto;
   height: 10rem;
 }
@@ -21,4 +30,8 @@
 
 .back > i {
   margin-right: 0.5rem;
+}
+
+.isShowing {
+  left: 0;
 }

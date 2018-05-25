@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import FiltersActions from '../../actions/FiltersActions.js'
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
 import styles from './CategoryPanel.css';
 
 class CategoryPanel extends Component {
   onClickedClose() {
-    
+    this.props.closeCategory();
   }
 
   render() {
+    const classes = this.props.isShowingCategory ? [styles.wrapper, styles.isShowing] : [styles.wrapper];
+
     const hasImage = this.props.items.findIndex(item => item.image) >= 0;
-    const classes = hasImage ? [styles.wrapper, styles.images] : [styles.wrapper];
+    const listStyle = hasImage ? styles.images : null;
     
     const items = this.props.items.map((item, i) => {
       return hasImage ? (
@@ -22,8 +26,8 @@ class CategoryPanel extends Component {
     });
 
     return (
-      <div>
-        <ul className={classes.join(' ')}>
+      <div className={classes.join(' ')}>
+        <ul className={listStyle}>
           {items}
         </ul>
         <button className={styles.back} onClick={this.onClickedClose.bind(this)}>
@@ -36,7 +40,31 @@ class CategoryPanel extends Component {
 }
 
 CategoryPanel.propTypes = {
+  currCategory: PropTypes.object,
+  isShowingCategory: PropTypes.bool,
   items: PropTypes.array.isRequired,
+  closeCategory: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired,
 };
 
-export default CategoryPanel;
+const mapStateToProps = state => {
+  const currCategory = state.FiltersReducer.currCategory;
+  return {
+    currCategory,
+    isShowingCategory: state.FiltersReducer.isShowingCategory,
+    items: currCategory ? state.FiltersReducer.filters.filter(item => item.type === currCategory.type) : [],
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    closeCategory: () => {
+      dispatch(FiltersActions.closeCategory());
+    },
+    search: () => {
+      dispatch(FiltersActions.backToCategoryList());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPanel);
