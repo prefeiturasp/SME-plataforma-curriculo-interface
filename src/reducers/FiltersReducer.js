@@ -197,7 +197,18 @@ function FiltersReducer(state = initialState, action) {
       });
 
     case FiltersActions.SEARCHED:
-      return state;
+      if (state.filters.findIndex(item => item.isActive) >= 0) {
+        return state;
+      } else {
+        return Object.assign({}, state, {
+          showSearchWarning: true,
+        });
+      }
+
+    case FiltersActions.DISMISSED_SEARCH_WARNING:
+      return Object.assign({}, state, {
+        showSearchWarning: false,
+      });
       
     default:
       return state;
