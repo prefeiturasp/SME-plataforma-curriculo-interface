@@ -37,7 +37,7 @@ class GridItem extends Component {
               <div className={styles.label}>Tempo estimado</div>
             </div>
             <div className={styles.info}>
-              <div className={styles.number}>{data.activities}</div>
+              <div className={styles.number}>{data.activities.length}</div>
               <div className={styles.label}>Atividades</div>
             </div>
           </div>
