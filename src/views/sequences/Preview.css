@@ -35,6 +35,7 @@
 
 .title > button {
   color: #e0e0e0;
+  margin-left: 0.25rem;
 }
 
 .matrix {
@@ -70,7 +71,7 @@
 
 .access {
   border-top: 1px solid #e0e0e0;
-  color: #000;
+  color: black;
   font-weight: bold;
   height: 3rem;
   line-height: 3rem;

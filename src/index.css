@@ -9,6 +9,7 @@ input,
 select,
 textarea {
   font-family: 'Open Sans', sans-serif;
+  line-height: 1.2;
 }
 
 ul,
@@ -34,7 +35,7 @@ hr {
 .btn {
   border: 1px solid #6a6a6a;
   border-radius: 0.25rem;
-  color: #000;
+  color: black;
   display: block;
   font-weight: bold;
   padding: 0.875rem 1.625rem;
@@ -42,5 +43,61 @@ hr {
 }
 
 .btn > i {
+  margin-right: 0.5rem;
+}
+
+.tooltip {
+  font-size: 0.8125rem;
+  font-weight: normal;
+  line-height: 1.15;
+  max-width: 15rem;
+  padding: 0.8125rem 1.25rem;
+}
+
+.tooltip > strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+
+.overlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal {
+  background: white;
+  border-radius: 0.25rem;
+  color: black;
+  font-size: 1.125rem;
+  max-width: 22rem;
+  padding: 2.5rem 2rem;
+  position: fixed;
+}
+
+.modal > button {
+  color: black;
+  font-size: 1.125rem;
+  position: absolute;
+  right: 0.625rem;
+  top: 0.625rem;
+}
+
+.modal > p {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.modal > p > i {
+  color: #6a6a6a;
+  font-size: 1.5625rem;
   margin-right: 0.5rem;
 }

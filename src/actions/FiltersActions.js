@@ -4,6 +4,7 @@ const FiltersActions = {
   TOGGLED_FILTER: 'TOGGLED_FILTER',
   TOGGLED_PANEL: 'TOGGLED_PANEL',
   SEARCHED: 'SEARCHED',
+  DISMISSED_SEARCH_WARNING: 'DISMISSED_SEARCH_WARNING',
   
   showCategory(category) {
     return { type: FiltersActions.SHOWED_CATEGORY, category };
@@ -19,6 +20,9 @@ const FiltersActions = {
   },
   search() {
     return { type: FiltersActions.SEARCHED };
+  },
+  dismissSearchWarning() {
+    return { type: FiltersActions.DISMISSED_SEARCH_WARNING };
   },
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
+import ReactTooltip from 'react-tooltip';
 import FiltersActions from '../../actions/FiltersActions.js'
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
@@ -25,8 +26,16 @@ class CategoryPanel extends Component {
       );
     });
 
+    const categoryName = this.props.currCategory? this.props.currCategory.label : '';
+
     return (
       <div className={classes.join(' ')}>
+        <h5>
+          {categoryName}
+          <button data-tip data-for="tooltip">
+            <i className="fa fa-question-circle" title="Ajuda"></i>
+          </button>
+        </h5>
         <ul className={listStyle}>
           {items}
         </ul>
@@ -34,6 +43,15 @@ class CategoryPanel extends Component {
           <i className="fa fa-chevron-left"></i>
           Voltar
         </button>
+        <ReactTooltip
+          place="bottom"
+          type="dark"
+          effect="solid"
+          id="tooltip"
+          className="tooltip">
+          <strong>O que são as matrizes de saberes?</strong>
+          <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
+        </ReactTooltip>
       </div>
     );
   }
