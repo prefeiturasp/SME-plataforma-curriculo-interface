@@ -9,6 +9,7 @@ input,
 select,
 textarea {
   font-family: 'Open Sans', sans-serif;
+  line-height: 1.2;
 }
 
 ul,
@@ -34,7 +35,7 @@ hr {
 .btn {
   border: 1px solid #6a6a6a;
   border-radius: 0.25rem;
-  color: #000;
+  color: black;
   display: block;
   font-weight: bold;
   padding: 0.875rem 1.625rem;
