@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
 import ReactTooltip from 'react-tooltip';
+import { connect } from 'react-redux'
 import FiltersActions from '../../actions/FiltersActions.js'
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';

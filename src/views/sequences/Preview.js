@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
+import { NavLink } from 'react-router-dom';
 import styles from './Preview.css';
 
 export class Preview extends Component {
