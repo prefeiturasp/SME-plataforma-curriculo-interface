@@ -12,6 +12,7 @@
   left: 100%;
   top: 0;
   z-index: 9;
+  transition: visibility 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .wrapper.is-left-aligned {
@@ -77,4 +78,16 @@
   line-height: 3rem;
   text-align: center;
   text-transform: uppercase;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    height: auto;
+    margin: 0;
+    position: static;
+  }
+
+  .scroll {
+    overflow-y: auto;
+  }
 }

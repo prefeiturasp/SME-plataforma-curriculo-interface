@@ -18,6 +18,10 @@ class FilterPanel extends Component {
     this.props.search();
   }
 
+  onClickedClose() {
+    this.props.togglePanel();
+  }
+
   render() {
     const style = this.props.isExpanded ? { height: this.ref.current.clientHeight } : {};
     
@@ -77,6 +81,9 @@ class FilterPanel extends Component {
           <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
             Buscar Sequência
           </button>
+          <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+            <i className="fa fa-times" title="Fechar"></i>
+          </button>
         </div>
       </div>
     );
@@ -88,6 +95,7 @@ FilterPanel.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   search: PropTypes.func.isRequired,
+  togglePanel: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -102,6 +110,9 @@ const mapDispatchToProps = dispatch => {
   return {
     search: () => {
       dispatch(FiltersActions.search());
+    },
+    togglePanel: () => {
+      dispatch(FiltersActions.togglePanel());
     },
   };
 };

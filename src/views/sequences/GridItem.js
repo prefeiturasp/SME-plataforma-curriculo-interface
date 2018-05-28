@@ -17,11 +17,7 @@ class GridItem extends Component {
   render() {
     const data = this.props.data;
     const icon = !this.state.isExpanded ? <i className="fa fa-plus" title="Abrir"></i> : <i className="fa fa-minus" title="Fechar"></i>;
-    const preview = !this.state.isExpanded ? null : (
-      <Preview
-        data={data}
-        height={this.ref.current.clientHeight} />
-    );
+    const height = this.ref.current ? this.ref.current.clientHeight : 0
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
@@ -45,7 +41,10 @@ class GridItem extends Component {
             {icon}
           </div>
         </article>
-        {preview}
+        <Preview
+          data={data}
+          height={height}
+          isVisible={this.state.isExpanded} />
       </li>
     );
   }

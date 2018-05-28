@@ -54,3 +54,24 @@
   composes: btn from global;
   margin-bottom: 1.875rem;
 }
+
+.close {
+  font-size: 2rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    background-color: white;
+    height: auto !important;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+  }
+}
