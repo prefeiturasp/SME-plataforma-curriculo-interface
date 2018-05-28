@@ -5,18 +5,6 @@ import ReactTooltip from 'react-tooltip';
 import styles from './Preview.css';
 
 export class Preview extends Component {
-  onClickedHelpMatrices() {
-
-  }
-
-  onClickedHelpLearningObjectives() {
-
-  }
-
-  onClickedHelpDevelopmentGoals() {
-
-  }
-
   render() {
     const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
       return (
