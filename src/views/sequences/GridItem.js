@@ -30,7 +30,7 @@ class GridItem extends Component {
             <img src="http://via.placeholder.com/256x160" alt="" />
           </div>
           <div className={styles.component}>{data.component}</div>
-          <div className={styles.title}>{data.title}</div>
+          <div className={styles.title}>{data.name}</div>
           <div className={styles.infos}>
             <div className={styles.info}>
               <div className={styles.number}>{data.classes} aulas</div>
