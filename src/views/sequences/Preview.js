@@ -2,36 +2,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
+import DevelopmentGoalItem from '../common/DevelopmentGoalItem'
+import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
+import LearningObjectiveItem from '../common/LearningObjectiveItem'
 import styles from './Preview.css';
 
-export class Preview extends Component {
+class Preview extends Component {
   render() {
     const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
       return (
-        <li key={i} className={styles.matrix}>
-          <div>{item.number}</div>
-          <div>{item.name}</div>
-        </li>
+        <KnowledgeMatrixItem key={i} data={item} />
       );
     });
 
     const learningObjectives = this.props.data.learningObjectives.map((item, i) => {
       return (
-        <li key={i} className={styles.learningObjective}>
-          {item.code1}
-          <span style={{color:item.color}}>{item.code2}</span>
-          {item.code3}
-        </li>
+        <LearningObjectiveItem key={i} data={item} />
       );
     });
 
     const developmentGoals = this.props.data.developmentGoals.map((item, i) => {
       return (
-        <img
-          key={i}
-          src={item.image}
-          alt={item.name}
-          className={styles.developmentGoal} />
+        <DevelopmentGoalItem key={i} data={item} />
       );
     });
 
