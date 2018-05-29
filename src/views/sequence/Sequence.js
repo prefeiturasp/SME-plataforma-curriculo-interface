@@ -51,7 +51,7 @@ class Sequence extends Component {
     
     const activities = this.props.data.activities.map((item, i) => {
       return (
-        <ActivityItem key={i} data={item} />
+        <ActivityItem key={i} data={item} index={i + 1} />
       );
     });
 

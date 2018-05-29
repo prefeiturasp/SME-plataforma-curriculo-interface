@@ -14,6 +14,7 @@ class ActivityItem extends Component {
             <img
               src={this.props.data.image}
               alt={this.props.data.name} />
+            <span>{this.props.index}</span>
           </div>
           <div className={styles.title}>
             {this.props.data.name}
@@ -30,6 +31,7 @@ class ActivityItem extends Component {
 
 ActivityItem.propTypes = {
   data: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default ActivityItem;
