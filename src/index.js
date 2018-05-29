@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 
-import Activity from './views/Activity';
+import Activity from './views/activity/Activity';
 import AppModal from './views/AppModal';
 import Curriculum from './views/Curriculum';
 import Discover from './views/Discover';
