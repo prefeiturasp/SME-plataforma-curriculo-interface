@@ -15,12 +15,13 @@ class ExpandableLearningObjectiveItem extends Component {
 
   render() {
     const classes = this.state.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
+    const chevron = this.state.isExpanded ? "fa fa-chevron-up" : "fa fa-chevron-down";
 
     return (
       <li className={classes.join(' ')}>
         <button className={styles.toggler} onClick={this.onClickedToggle.bind(this)}>
           <LearningObjectiveItem data={this.props.data} />
-          <i className="fa fa-chevron-down" />
+          <i className={chevron} />
         </button>
         <div className={styles.description}>
           {this.props.data.description}

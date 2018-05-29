@@ -18,14 +18,12 @@
 }
 
 .description {
-  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .isExpanded .description {
-  width: auto;
   white-space: normal;
   overflow: visible;
   text-overflow: clip;
