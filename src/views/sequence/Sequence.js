@@ -130,11 +130,9 @@ class Sequence extends Component {
             {this.props.data.description}
           </div>
           <h4>Atividades</h4>
-          <div className="container">
-            <ul className="row">
-              {activities}
-            </ul>
-          </div>
+          <ul className="row">
+            {activities}
+          </ul>
         </div>
         <ReactTooltip
           place="bottom"

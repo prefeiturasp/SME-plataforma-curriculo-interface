@@ -8,7 +8,7 @@ class ActivityItem extends Component {
     const link = `/atividade/${this.props.data.id}`;
 
     return (
-      <li className="col-sm-12 col-md-6 col-lg-3">
+      <li className="col-6 col-sm-6 col-md-6 col-lg-3">
         <NavLink to={link} className={styles.wrapper}>
           <div className={styles.image}>
             <img
