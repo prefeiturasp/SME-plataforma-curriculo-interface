@@ -3,34 +3,75 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux'
 import SequencesActions from '../../actions/SequencesActions.js'
+import ActivityItem from './ActivityItem'
+import BookItem from '../common/BookItem'
+import ComponentItem from '../common/ComponentItem'
+import DevelopmentGoalItem from '../common/DevelopmentGoalItem'
+import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem'
+import GenericItem from '../common/GenericItem'
+import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
 import styles from'./Sequence.css';
 
 class Sequence extends Component {
   render() {
-    const filters = [];
-    const components = [];
-    const knowledgeMatrices = [];
-    const learningObjectives = [];
-    const developmentGoals = [];
-    const books = [];
-    const activities = [];
+    const filters = [
+      <GenericItem key={0} data={this.props.data.year} />,
+      <GenericItem key={1} data={this.props.data.component} />,
+    ];
+
+    const components = this.props.data.relatedComponents.map((item, i) => {
+      return (
+        <ComponentItem key={i} data={item} isColored={false} />
+      );
+    });
+
+    const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
+      return (
+        <KnowledgeMatrixItem key={i} data={item} />
+      );
+    });
+
+    const learningObjectives = this.props.data.learningObjectives.map((item, i) => {
+      return (
+        <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
+      );
+    });
+
+    const developmentGoals = this.props.data.developmentGoals.map((item, i) => {
+      return (
+        <DevelopmentGoalItem key={i} data={item} />
+      );
+    });
+    
+    const books = this.props.data.books.map((item, i) => {
+      return (
+        <BookItem key={i} data={item} />
+      );
+    });
+    
+    const activities = this.props.data.activities.map((item, i) => {
+      return (
+        <ActivityItem key={i} data={item} />
+      );
+    });
 
     return (
-      <div className="wrapper">
-        <div className="container">
-          <h3>Ciências Naturais</h3>
-          <h2>Vibrando com o som</h2>
-          <div className="">
-            {filters}
-            <div className="">
-              <i className="fa fa-clock"></i>
-              <span>16 aulas</span>
-              <span className="">(Tempo estimado)</span>
+      <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <h2>{this.props.data.name}</h2>
+          <div className={styles.infos}>
+            <ul>
+              {filters}
+            </ul>
+            <div className={styles.duration}>
+              <i className="fa fa-clock" />
+              <strong>{this.props.data.classes} aulas</strong>
+              (Tempo estimado)
             </div>
           </div>
         </div>
         <hr />
-        <div className="container">
+        <div className={styles.details}>
           <div className="row">
             <div className="col-sm-12 col-md-6 col-lg-4">
               <div className={styles.title}>
@@ -42,7 +83,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Matriz de saberes
                 <button data-tip data-for="tooltipKnowledgeMatrices">
-                  <i className="fa fa-question-circle" title="Ajuda"></i>
+                  <i className="fa fa-question-circle" title="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -53,7 +94,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Objetivos de aprendizagem
                 <button data-tip data-for="tooltipLearningObjectives">
-                  <i className="fa fa-question-circle" title="Ajuda"></i>
+                  <i className="fa fa-question-circle" title="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -64,7 +105,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Objetivos de Desenvolvimento Sustentável (ODS)
                 <button data-tip data-for="tooltipDevelopmentGoals">
-                  <i className="fa fa-question-circle" title="Ajuda"></i>
+                  <i className="fa fa-question-circle" title="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -81,10 +122,19 @@ class Sequence extends Component {
         </div>
         <hr />
         <div className="container">
-          <img src="" alt="" />
-          <p>Nesta unidade, as sequências de atividades oferecem diferentes oportunidades para que os estudantes possam ouvir, ler e escrever os textos literários. É importante que mesmo sem saber ler e escrever convencionalmente as crianças participem das situações de intercâmbio de leitores, para elaborar suas próprias interpretações sobre as obras lidas, confrontar ideias de outros colegas e construir significados cada vez mais elaborados sobre textos, preservando assim, o sentido das práticas de linguagem que exercem fora da escola.</p>
+          <img
+            className={styles.image}
+            src={this.props.data.image}
+            alt={this.props.data.title} />
+          <div className={styles.description}>
+            {this.props.data.description}
+          </div>
           <h4>Atividades</h4>
-          {activities}
+          <div className="container">
+            <ul className="row">
+              {activities}
+            </ul>
+          </div>
         </div>
         <ReactTooltip
           place="bottom"
