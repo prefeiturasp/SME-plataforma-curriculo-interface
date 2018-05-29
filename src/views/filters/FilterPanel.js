@@ -54,7 +54,7 @@ class FilterPanel extends Component {
                 {yearButtons}
               </ul>
               <p className={styles.warning}>
-                <i className="fa fa-exclamation-circle"></i>
+                <i className="fa fa-exclamation-circle" />
                 <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
               </p>
             </div>

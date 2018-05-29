@@ -14,7 +14,7 @@ class CategoryButton extends Component {
       <li>
         <button className={styles.wrapper} onClick={this.onClicked.bind(this)}>
           {this.props.data.label}
-          <i className="fa fa-chevron-right"></i>
+          <i className="fa fa-chevron-right" />
         </button>
       </li>
     );

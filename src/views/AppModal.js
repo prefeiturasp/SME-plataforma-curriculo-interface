@@ -21,10 +21,10 @@ class AppModal extends Component {
         onRequestClose={this.props.dismissSearchWarning}
         shouldCloseOnOverlayClick={true}>
         <button onClick={this.props.dismissSearchWarning}>
-          <i className="fa fa-times"></i>
+          <i className="fa fa-times" />
         </button>
         <p>
-          <i className="fa fa-exclamation-circle"></i>
+          <i className="fa fa-exclamation-circle" />
           <span>Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.</span>
         </p>
       </Modal>

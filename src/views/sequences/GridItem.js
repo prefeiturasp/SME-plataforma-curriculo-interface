@@ -16,7 +16,7 @@ class GridItem extends Component {
 
   render() {
     const data = this.props.data;
-    const icon = !this.state.isExpanded ? <i className="fa fa-plus" title="Abrir"></i> : <i className="fa fa-minus" title="Fechar"></i>;
+    const icon = !this.state.isExpanded ? <i className="fa fa-plus" title="Abrir" /> : <i className="fa fa-minus" title="Fechar" />;
     const preview = !this.state.isExpanded ? null : (
       <Preview
         data={data}

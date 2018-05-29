@@ -33,14 +33,14 @@ class CategoryPanel extends Component {
         <h5>
           {categoryName}
           <button data-tip data-for="tooltip">
-            <i className="fa fa-question-circle" title="Ajuda"></i>
+            <i className="fa fa-question-circle" title="Ajuda" />
           </button>
         </h5>
         <ul className={listStyle}>
           {items}
         </ul>
         <button className={styles.back} onClick={this.onClickedClose.bind(this)}>
-          <i className="fa fa-chevron-left"></i>
+          <i className="fa fa-chevron-left" />
           Voltar
         </button>
         <ReactTooltip

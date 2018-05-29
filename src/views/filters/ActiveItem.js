@@ -16,7 +16,7 @@ class ActiveItem extends Component {
     return (
       <button className={classes.join(' ')} style={style} onClick={this.onClicked.bind(this)}>
         {this.props.data.label}
-        <i className="fa fa-times" title="Remover"></i>
+        <i className="fa fa-times" title="Remover" />
       </button>
     );
   }
