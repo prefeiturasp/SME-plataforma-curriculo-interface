@@ -4,12 +4,12 @@ import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux'
 import SequencesActions from '../../actions/SequencesActions.js'
 import ActivityItem from './ActivityItem'
-import BookItem from '../common/BookItem'
 import ComponentItem from '../common/ComponentItem'
 import DevelopmentGoalItem from '../common/DevelopmentGoalItem'
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem'
 import GenericItem from '../common/GenericItem'
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
+import ListItem from '../common/ListItem'
 import styles from'./Sequence.css';
 
 class Sequence extends Component {
@@ -45,7 +45,7 @@ class Sequence extends Component {
     
     const books = this.props.data.books.map((item, i) => {
       return (
-        <BookItem key={i} data={item} />
+        <ListItem key={i} string={item} />
       );
     });
     
