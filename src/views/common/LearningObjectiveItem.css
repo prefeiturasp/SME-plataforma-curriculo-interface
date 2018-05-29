@@ -1,0 +1,8 @@
+.wrapper {
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+}

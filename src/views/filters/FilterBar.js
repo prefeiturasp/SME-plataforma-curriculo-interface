@@ -23,7 +23,7 @@ class FilterBar extends Component {
           {items}
         </ul>
         <button className={styles.button} onClick={this.onClickedToggle.bind(this)}>
-          <i className="fa fa-sliders-h"></i>
+          <i className="fa fa-sliders-h" />
           Filtros
         </button>
       </div>

@@ -38,37 +38,6 @@
   margin-left: 0.25rem;
 }
 
-.matrix {
-  align-items: center;
-  display: flex;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-}
-
-.matrix > div:first-child {
-  border-radius: 2rem;
-  border: 1px solid #e0e0e0;
-  line-height: 1.8rem;
-  margin-right: 0.5rem;
-  text-align: center;
-  min-width: 2rem;
-  height: 2rem;
-}
-
-.learningObjective {
-  border-radius: 20px;
-  border: 1px solid #e0e0e0;
-  display: inline-block;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
-}
-
-.developmentGoal {
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .access {
   border-top: 1px solid #e0e0e0;
   color: black;

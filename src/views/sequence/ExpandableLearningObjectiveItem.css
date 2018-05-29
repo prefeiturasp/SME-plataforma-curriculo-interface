@@ -1,0 +1,30 @@
+.wrapper {
+  border-bottom: 1px solid #e0e0e0;
+  color: #6a6a6a;
+  font-size: 0.9375rem;
+  margin-bottom: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
+.wrapper:last-child {
+  border-bottom: 0;
+}
+
+.toggler {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.isExpanded .description {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
