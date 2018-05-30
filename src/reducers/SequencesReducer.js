@@ -123,15 +123,9 @@ const sequence = {
     },
   ],
   books: [
-    {
-      name: 'Lorem ipsum dolor sit amet',
-    },
-    {
-      name: 'Lorem ipsum dolor sit amet',
-    },
-    {
-      name: 'Lorem ipsum dolor sit amet',
-    },
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor sit amet',
   ],
   relatedComponents: [
     {

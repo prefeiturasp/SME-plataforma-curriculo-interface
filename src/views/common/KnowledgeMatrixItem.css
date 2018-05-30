@@ -1,6 +1,8 @@
 .wrapper {
   align-items: center;
   display: flex;
+  color: #6a6a6a;
+  font-weight: 600;
   line-height: 1.2;
   margin-bottom: 0.5rem;
 }

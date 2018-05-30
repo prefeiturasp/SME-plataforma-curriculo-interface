@@ -41,13 +41,11 @@
 }
 
 .duration {
+  align-items: center;
   color: #6a6a6a;
+  display: flex;
   font-size: 1.125rem;
   font-weight: normal;
-}
-
-.duration > i {
-  font-size: 1.375rem;
 }
 
 .duration > strong {
@@ -59,6 +57,7 @@
 
 .details {
   composes: container from global;
+  font-size: 0.9375rem;
   padding-top: 1rem;
   padding-bottom: 1.3125rem;
 }
@@ -83,6 +82,8 @@
 
 .description {
   font-size: 1.125rem;
+  margin-left: 12rem;
+  margin-right: 12rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -109,6 +110,8 @@
 
   .description {
     font-size: 1rem;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .wrapper h4 {

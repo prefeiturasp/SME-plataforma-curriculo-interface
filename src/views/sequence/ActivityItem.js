@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import iconClock from '../../images/iconClock.svg';
 import styles from './ActivityItem.css';
 
 class ActivityItem extends Component {
@@ -20,7 +21,7 @@ class ActivityItem extends Component {
             {this.props.data.name}
           </div>
           <div className={styles.classes}>
-            <i className="fa fa-clock" />
+            <img src={iconClock} />
             {this.props.data.classes} aulas
           </div>
         </NavLink>
