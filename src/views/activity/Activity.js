@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import ActivityActions from '../../actions/ActivityActions.js'
 import GenericItem from '../common/GenericItem'
 import ListItem from '../common/ListItem'
+import iconGroup from'../../images/iconGroup.svg';
+import iconOutdoors from'../../images/iconOutdoors.svg';
 import styles from'./Activity.css';
 
 class Activity extends Component {
@@ -37,11 +39,13 @@ class Activity extends Component {
           </div>
           <ul className={styles.infos}>
             <li>
-              <i className="fa fa-users" />
+              <img src={iconGroup} />
+              <br />
               Grupo
             </li>
             <li>
-              <i className="fa fa-tree" />
+              <img src={iconOutdoors} />
+              <br />
               Ambiente Externo
             </li>
           </ul>

@@ -10,6 +10,8 @@ import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem'
 import GenericItem from '../common/GenericItem'
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
 import ListItem from '../common/ListItem'
+import iconClock from '../../images/iconClock.svg';
+import iconHelp from '../../images/iconHelp.svg';
 import styles from'./Sequence.css';
 
 class Sequence extends Component {
@@ -64,7 +66,7 @@ class Sequence extends Component {
               {filters}
             </ul>
             <div className={styles.duration}>
-              <i className="fa fa-clock" />
+              <img src={iconClock} />
               <strong>{this.props.data.classes} aulas</strong>
               (Tempo estimado)
             </div>
@@ -83,7 +85,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Matriz de saberes
                 <button data-tip data-for="tooltipKnowledgeMatrices">
-                  <i className="fa fa-question-circle" title="Ajuda" />
+                  <img src={iconHelp} title="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -94,7 +96,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Objetivos de aprendizagem
                 <button data-tip data-for="tooltipLearningObjectives">
-                  <i className="fa fa-question-circle" title="Ajuda" />
+                  <img src={iconHelp} title="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -105,7 +107,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Objetivos de Desenvolvimento Sustentável (ODS)
                 <button data-tip data-for="tooltipDevelopmentGoals">
-                  <i className="fa fa-question-circle" title="Ajuda" />
+                  <img src={iconHelp} title="Ajuda" />
                 </button>
               </div>
               <ul>

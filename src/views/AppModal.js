@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import Modal from 'react-modal';
-import FiltersActions from '../actions/FiltersActions.js'
+import FiltersActions from '../actions/FiltersActions.js';
+import iconClose from'../images/iconClose.svg';
+import iconWarning from'../images/iconWarning.svg';
 
 Modal.setAppElement('#root');
 
@@ -21,10 +23,10 @@ class AppModal extends Component {
         onRequestClose={this.props.dismissSearchWarning}
         shouldCloseOnOverlayClick={true}>
         <button onClick={this.props.dismissSearchWarning}>
-          <i className="fa fa-times" />
+          <img src={iconClose} title="Fechar" />
         </button>
         <p>
-          <i className="fa fa-exclamation-circle" />
+          <img src={iconWarning} />
           <span>Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.</span>
         </p>
       </Modal>

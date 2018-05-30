@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import FiltersActions from '../../actions/FiltersActions.js'
 import ActiveItem from'./ActiveItem';
+import iconFilters from'../../images/iconFilters.svg';
 import styles from'./FilterBar.css';
 
 class FilterBar extends Component {
@@ -23,7 +24,7 @@ class FilterBar extends Component {
           {items}
         </ul>
         <button className={styles.button} onClick={this.onClickedToggle.bind(this)}>
-          <i className="fa fa-sliders-h" />
+          <img src={iconFilters} />
           Filtros
         </button>
       </div>

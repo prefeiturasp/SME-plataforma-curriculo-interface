@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import FiltersActions from '../../actions/FiltersActions.js'
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
+import iconHelp from '../../images/iconHelp.svg';
 import styles from './CategoryPanel.css';
 
 class CategoryPanel extends Component {
@@ -33,7 +34,7 @@ class CategoryPanel extends Component {
         <h5>
           {categoryName}
           <button data-tip data-for="tooltip">
-            <i className="fa fa-question-circle" title="Ajuda" />
+            <img src={iconHelp} title="Ajuda" />
           </button>
         </h5>
         <ul className={listStyle}>

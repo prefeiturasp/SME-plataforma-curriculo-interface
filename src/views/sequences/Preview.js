@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import DevelopmentGoalItem from '../common/DevelopmentGoalItem'
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
 import LearningObjectiveItem from '../common/LearningObjectiveItem'
+import iconHelp from '../../images/iconHelp.svg';
 import styles from './Preview.css';
 
 class Preview extends Component {
@@ -35,7 +36,7 @@ class Preview extends Component {
           <div className={styles.title}>
             Matriz de Saberes
             <button data-tip data-for="tooltipKnowledgeMatrices">
-              <i className="fa fa-question-circle" title="Ajuda" />
+              <img src={iconHelp} title="Ajuda" />
             </button>
           </div>
           <ul>
@@ -44,7 +45,7 @@ class Preview extends Component {
           <div className={styles.title}>
             Objetivos de Aprendizagem
             <button data-tip data-for="tooltipLearningObjectives">
-              <i className="fa fa-question-circle" title="Ajuda" />
+              <img src={iconHelp} title="Ajuda" />
             </button>
           </div>
           <ul>
@@ -53,7 +54,7 @@ class Preview extends Component {
           <div className={styles.title}>
             Objetivos de Desenvolvimento Sustentável (ODS)
             <button data-tip data-for="tooltipDevelopmentGoals">
-              <i className="fa fa-question-circle" title="Ajuda" />
+              <img src={iconHelp} title="Ajuda" />
             </button>
           </div>
           <ul>
