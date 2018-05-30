@@ -48,14 +48,14 @@
 }
 
 .classes {
+  display: flex;
   font-size: 0.9375rem;
   font-weight: 600;
   padding: 0.9375rem;
 }
 
-.classes > i {
+.classes > img {
   color: #6a6a6a;
-  font-size: 1.375rem;
   margin-right: 0.5rem;
 }
 

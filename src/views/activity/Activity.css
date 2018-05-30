@@ -38,7 +38,7 @@
 .header h2 {
   color: #6a6a6a;
   font-size: 1.125rem;
-  font-weight: normal;
+  font-weight: 600;
   margin-bottom: 1.25rem;
 }
 
@@ -61,16 +61,17 @@
   border: 1px solid #e0e0e0;
   border-bottom: 0;
   color: #6a6a6a;
+  display: flex;
+  flex-direction: column;
   font-size: 0.9375rem;
+  justify-content: center;
   padding: 0.9375rem;
   text-align: center;
   width: 11rem;
 }
 
-.infos > li > i {
+.infos > li > img {
   color: black;
-  display: block;
-  font-size: 1.875rem;
   margin-bottom: 0.4375rem;
 }
 
@@ -151,6 +152,16 @@
   .infos {
     display: flex;
     margin-top: 1.125rem;
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .infos > li {
+    border-left: 0;
+  }
+
+  .infos > li:last-child {
+    border-right: 0;
   }
 
   .image {
@@ -168,6 +179,7 @@
     font-size: 1.75rem;
     margin-top: 0.75rem;
     margin-bottom: 0.8125rem;
+    text-align: left;
   }
 
   .wrapper h5 {
