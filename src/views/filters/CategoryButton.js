@@ -15,7 +15,9 @@ class CategoryButton extends Component {
       <li>
         <button className={styles.wrapper} onClick={this.onClicked.bind(this)}>
           {this.props.data.label}
-          <img src={iconChevronRight} />
+          <img
+            src={iconChevronRight}
+            alt={this.props.data.label} />
         </button>
       </li>
     );

@@ -55,7 +55,7 @@ class FilterPanel extends Component {
                 {yearButtons}
               </ul>
               <p className={styles.warning}>
-                <img src={iconWarning} />
+                <img src={iconWarning} alt="Observação" />
                 <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
               </p>
             </div>

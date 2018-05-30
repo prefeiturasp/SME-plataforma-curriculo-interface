@@ -39,12 +39,12 @@ class Activity extends Component {
           </div>
           <ul className={styles.infos}>
             <li>
-              <img src={iconGroup} />
+              <img src={iconGroup} alt="Grupo" />
               <br />
               Grupo
             </li>
             <li>
-              <img src={iconOutdoors} />
+              <img src={iconOutdoors} alt="Ambiente Externo" />
               <br />
               Ambiente Externo
             </li>

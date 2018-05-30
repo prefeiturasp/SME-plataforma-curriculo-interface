@@ -24,7 +24,7 @@ class FilterBar extends Component {
           {items}
         </ul>
         <button className={styles.button} onClick={this.onClickedToggle.bind(this)}>
-          <img src={iconFilters} />
+          <img src={iconFilters} alt="Filtros" />
           Filtros
         </button>
       </div>
