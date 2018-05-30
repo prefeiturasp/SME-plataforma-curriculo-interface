@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Preview from './Preview';
+import iconMinus from '../../images/iconMinus.png';
+import iconPlus from '../../images/iconPlus.png';
 import styles from './GridItem.css';
 
 class GridItem extends Component {
@@ -16,7 +18,8 @@ class GridItem extends Component {
 
   render() {
     const data = this.props.data;
-    const icon = !this.state.isExpanded ? <i className="fa fa-plus" title="Abrir" /> : <i className="fa fa-minus" title="Fechar" />;
+    const icon = this.state.isExpanded ? iconMinus : iconPlus;
+    const alt = this.state.isExpanded ? "Esconder" : "Expandir";
     const preview = !this.state.isExpanded ? null : (
       <Preview
         data={data}
@@ -42,7 +45,7 @@ class GridItem extends Component {
             </div>
           </div>
           <div className={styles.expand} onClick={this.onClickedExpand.bind(this)}>
-            {icon}
+            <img src={icon} alt={alt} />
           </div>
         </article>
         {preview}
