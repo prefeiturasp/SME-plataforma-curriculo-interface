@@ -21,7 +21,7 @@ class ActivityItem extends Component {
             {this.props.data.name}
           </div>
           <div className={styles.classes}>
-            <img src={iconClock} />
+            <img src={iconClock} alt="Número de aulas" />
             {this.props.data.classes} aulas
           </div>
         </NavLink>

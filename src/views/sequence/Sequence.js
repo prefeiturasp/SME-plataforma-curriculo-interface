@@ -66,7 +66,7 @@ class Sequence extends Component {
               {filters}
             </ul>
             <div className={styles.duration}>
-              <img src={iconClock} />
+              <img src={iconClock} alt="Número de aulas" />
               <strong>{this.props.data.classes} aulas</strong>
               (Tempo estimado)
             </div>
@@ -85,7 +85,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Matriz de saberes
                 <button data-tip data-for="tooltipKnowledgeMatrices">
-                  <img src={iconHelp} title="Ajuda" />
+                  <img src={iconHelp} alt="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -96,7 +96,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Objetivos de aprendizagem
                 <button data-tip data-for="tooltipLearningObjectives">
-                  <img src={iconHelp} title="Ajuda" />
+                  <img src={iconHelp} alt="Ajuda" />
                 </button>
               </div>
               <ul>
@@ -107,7 +107,7 @@ class Sequence extends Component {
               <div className={styles.title}>
                 Objetivos de Desenvolvimento Sustentável (ODS)
                 <button data-tip data-for="tooltipDevelopmentGoals">
-                  <img src={iconHelp} title="Ajuda" />
+                  <img src={iconHelp} alt="Ajuda" />
                 </button>
               </div>
               <ul>

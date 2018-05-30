@@ -36,7 +36,7 @@ class Preview extends Component {
           <div className={styles.title}>
             Matriz de Saberes
             <button data-tip data-for="tooltipKnowledgeMatrices">
-              <img src={iconHelp} title="Ajuda" />
+              <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
           <ul>
@@ -45,7 +45,7 @@ class Preview extends Component {
           <div className={styles.title}>
             Objetivos de Aprendizagem
             <button data-tip data-for="tooltipLearningObjectives">
-              <img src={iconHelp} title="Ajuda" />
+              <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
           <ul>
@@ -54,7 +54,7 @@ class Preview extends Component {
           <div className={styles.title}>
             Objetivos de Desenvolvimento Sustentável (ODS)
             <button data-tip data-for="tooltipDevelopmentGoals">
-              <img src={iconHelp} title="Ajuda" />
+              <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
           <ul>

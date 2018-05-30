@@ -23,10 +23,10 @@ class AppModal extends Component {
         onRequestClose={this.props.dismissSearchWarning}
         shouldCloseOnOverlayClick={true}>
         <button onClick={this.props.dismissSearchWarning}>
-          <img src={iconClose} title="Fechar" />
+          <img src={iconClose} alt="Fechar" />
         </button>
         <p>
-          <img src={iconWarning} />
+          <img src={iconWarning} alt="Atenção" />
           <span>Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.</span>
         </p>
       </Modal>

@@ -34,7 +34,7 @@ class CategoryPanel extends Component {
         <h5>
           {categoryName}
           <button data-tip data-for="tooltip">
-            <img src={iconHelp} title="Ajuda" />
+            <img src={iconHelp} alt="Ajuda" />
           </button>
         </h5>
         <ul className={listStyle}>

@@ -5,7 +5,7 @@
 }
 
 .wrapper > div {
-  align-items: end;
+  align-items: flex-end;
   display: flex;
   flex-direction: column;
 }
@@ -34,7 +34,7 @@
 }
 
 .warning {
-  align-items: start;
+  align-items: flex-start;
   color: #6a6a6a;
   display: flex;
   font-size: 0.8125rem;

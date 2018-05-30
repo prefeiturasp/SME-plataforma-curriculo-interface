@@ -26,6 +26,10 @@ button {
   padding: 0;
 }
 
+button:focus {
+  outline: 0;
+}
+
 hr {
   border: 0;
   border-bottom: 1px solid #e0e0e0;
@@ -37,7 +41,7 @@ a:hover {
 }
 
 .btn {
-  border: 1px solid #6a6a6a;
+  border: 1px solid #e0e0e0;
   border-radius: 0.25rem;
   color: black;
   display: flex;
@@ -97,7 +101,7 @@ a:hover {
 }
 
 .modal > p {
-  align-items: start;
+  align-items: flex-start;
   display: flex;
   margin-bottom: 0;
 }
