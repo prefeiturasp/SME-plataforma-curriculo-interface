@@ -41,7 +41,9 @@
 }
 
 .duration {
+  align-items: center;
   color: #6a6a6a;
+  display: flex;
   font-size: 1.125rem;
   font-weight: normal;
 }

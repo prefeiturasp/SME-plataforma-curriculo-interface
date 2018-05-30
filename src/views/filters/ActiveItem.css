@@ -10,11 +10,11 @@
 }
 
 .wrapper.isColored,
-.wrapper.isColored > i {
+.wrapper.isColored > img {
   color: white;
 }
 
-.wrapper > i {
+.wrapper > img {
   color: black;
   margin-left: 0.375rem;
 }

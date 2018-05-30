@@ -40,13 +40,14 @@ a:hover {
   border: 1px solid #6a6a6a;
   border-radius: 0.25rem;
   color: black;
-  display: block;
+  display: flex;
   font-weight: bold;
   padding: 0.875rem 1.625rem;
   text-transform: uppercase;
 }
 
-.btn > i {
+.btn > i,
+.btn > img {
   margin-right: 0.5rem;
 }
 
@@ -96,11 +97,12 @@ a:hover {
 }
 
 .modal > p {
+  align-items: start;
   display: flex;
   margin-bottom: 0;
 }
 
-.modal > p > i {
+.modal > p > img {
   color: #6a6a6a;
   font-size: 1.5625rem;
   margin-right: 0.5rem;
