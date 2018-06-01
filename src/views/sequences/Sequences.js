@@ -20,25 +20,23 @@ class Sequences extends Component {
     });
 
     return (
-      <section>
+      <section className={styles.wrapper}>
         <div className="container">
-        	<h2 className={styles.h2}>Sequências de Atividades</h2>
-          <h3 className={styles.h3}><strong>{this.props.data.length}</strong> sequências foram encontradas</h3>
+        	<h1>Sequências de Atividades</h1>
+          <h2><strong>{this.props.data.length}</strong> sequências foram encontradas</h2>
           <FilterBar />
         </div>
         <hr />
         <div className="container">
           <FilterPanel />
         </div>
-        <div className={styles.wrapper}>
-          <div className="container">
-            <ul className="row">
-              {items}
-            </ul>
-            <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
-              Carregar mais
-            </button>
-          </div>
+        <div className={styles.list}>
+          <ul className="row">
+            {items}
+          </ul>
+          <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
+            Carregar mais
+          </button>
         </div>
       </section>
     );

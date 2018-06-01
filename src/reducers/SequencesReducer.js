@@ -10,7 +10,7 @@ const sequence = {
     label: '1º ano',
   },
   component: {
-    label: 'Ciências Naturais',
+    name: 'Ciências Naturais',
     color: '#01add2',
   },
   activities: [
