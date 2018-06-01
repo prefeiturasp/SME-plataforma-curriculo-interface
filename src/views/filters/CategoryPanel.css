@@ -43,11 +43,21 @@
 
 @media only screen and (max-width: 768px) {
   .wrapper {
+    padding: 1rem;
     position: fixed;
     top: 0;
-    right: 0;
     bottom: 0;
     left: 100%;
-    z-index: 10;
+    width: 100%;
+    z-index: 80;
+  }
+
+  .wrapper > ul {
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .isShowing {
+    left: 0;
   }
 }
