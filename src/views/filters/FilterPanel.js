@@ -6,6 +6,7 @@ import YearButton from './YearButton';
 import ComponentButton from './ComponentButton';
 import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
+import iconWarning from'../../images/iconWarning.svg';
 import styles from'./FilterPanel.css';
 
 class FilterPanel extends Component {
@@ -58,7 +59,7 @@ class FilterPanel extends Component {
                 {yearButtons}
               </ul>
               <p className={styles.warning}>
-                <i className="fa fa-exclamation-circle"></i>
+                <img src={iconWarning} alt="Observação" />
                 <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
               </p>
             </div>

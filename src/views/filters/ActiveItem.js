@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-import FiltersActions from '../../actions/FiltersActions.js'
+import { connect } from 'react-redux';
+import FiltersActions from '../../actions/FiltersActions.js';
+import iconClose from'../../images/iconClose.svg';
 import styles from'./ActiveItem.css';
 
 class ActiveItem extends Component {
@@ -16,7 +17,7 @@ class ActiveItem extends Component {
     return (
       <button className={classes.join(' ')} style={style} onClick={this.onClicked.bind(this)}>
         {this.props.data.label}
-        <i className="fa fa-times" title="Remover"></i>
+        <img src={iconClose} alt="Remover" />
       </button>
     );
   }

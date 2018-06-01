@@ -1,0 +1,12 @@
+.wrapper {
+  color: #6a6a6a;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper:before {
+  content: '-';
+  display: inline-block;
+  margin-right: 0.25rem;
+}
