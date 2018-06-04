@@ -24,7 +24,7 @@ class Activity extends Component {
 
     const linkPrev = `/atividade/${this.props.data.prevId}`;
     const linkNext = `/atividade/${this.props.data.nextId}`;
-    const link = `/sequencias/${this.props.data.sequence.id}`;
+    const link = `/sequencia/${this.props.data.sequence.id}`;
 
     return (
       <section className={styles.wrapper}>
