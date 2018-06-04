@@ -15,7 +15,10 @@ class Sequences extends Component {
   render() {
     const items = this.props.data.map((item, i) => {
       return (
-        <GridItem key={i} data={item} />
+        <GridItem
+          key={i}
+          index={i}
+          data={item} />
       );
     });
 

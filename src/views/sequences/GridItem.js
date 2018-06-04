@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import SequencesActions from '../../actions/SequencesActions.js'
 import Preview from './Preview';
 import iconMinus from '../../images/iconMinus.svg';
 import iconPlus from '../../images/iconPlus.svg';
@@ -9,18 +11,18 @@ class GridItem extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
-    this.state = { isExpanded: false };
   }
 
   onClickedExpand() {
-    this.setState({ isExpanded: !this.state.isExpanded });
+    this.props.togglePreview(this.props.data.id);
   }
 
   render() {
     const data = this.props.data;
-    const height = this.ref.current ? this.ref.current.clientHeight : 0
-    const icon = this.state.isExpanded ? iconMinus : iconPlus;
-    const alt = this.state.isExpanded ? "Esconder" : "Expandir";
+    const height = this.ref.current ? this.ref.current.clientHeight : 0;
+    const icon = this.props.data.isExpanded ? iconMinus : iconPlus;
+    const alt = this.props.data.isExpanded ? "Esconder" : "Expandir";
+    const isLeftAligned = (this.props.index + 1) % 4 === 0;
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
@@ -47,7 +49,7 @@ class GridItem extends Component {
         <Preview
           data={data}
           height={height}
-          isVisible={this.state.isExpanded} />
+          isLeftAligned={isLeftAligned} />
       </li>
     );
   }
@@ -55,6 +57,16 @@ class GridItem extends Component {
 
 GridItem.propTypes = {
   data: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  togglePreview: PropTypes.func.isRequired,
 };
 
-export default GridItem;
+const mapDispatchToProps = dispatch => {
+  return {
+    togglePreview: (id) => {
+      dispatch(SequencesActions.togglePreview(id));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(GridItem);
