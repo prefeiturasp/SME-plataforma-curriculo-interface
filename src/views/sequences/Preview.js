@@ -29,14 +29,13 @@ class Preview extends Component {
     });
 
     const link = `/sequencia/${this.props.data.id}`;
-    const height = this.props.isVisible ? this.props.height : 0;
-    const style = {
-      visibility: this.props.isVisible ? 'visible' : 'hidden',
-      height: `${height}px`,
-    };
+    const style = { height: `${this.props.height}px` };
+    const classes = [styles.wrapper];
+    if (this.props.data.isExpanded) classes.push(styles.isExpanded)
+    if (this.props.isLeftAligned) classes.push(styles.isLeftAligned)
 
     return (
-      <div className={styles.wrapper} style={style}>
+      <div className={classes.join(' ')} style={style}>
         <div className={styles.scroll}>
           <div className={styles.title}>
             Matriz de Saberes
@@ -104,7 +103,7 @@ class Preview extends Component {
 Preview.propTypes = {
   data: PropTypes.object.isRequired,
   height: PropTypes.number.isRequired,
-  isVisible: PropTypes.bool.isRequired,
+  isLeftAligned: PropTypes.bool.isRequired,
 };
 
 export default Preview;

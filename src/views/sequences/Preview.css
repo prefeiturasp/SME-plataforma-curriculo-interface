@@ -1,23 +1,27 @@
 .wrapper {
   background: white;
-  border-left: 1px solid #e0e0e0;
+  border-radius: 0.25rem;
   color: #6a6a6a;
   font-size: 0.9375rem;
   display: flex;
   flex-direction: column;
   font-weight: 600;
   margin: 1rem 0 0 -15px;
+  overflow: hidden;
   position: absolute;
-  width: 100%;
+  width: 0;
   left: 100%;
   top: 0;
-  z-index: 100;
-  transition: visibility 0.3s ease-in-out, height 0.3s ease-in-out;
+  z-index: 90;
+  transition: left 0.3s ease-in-out,
+              width 0.3s ease-in-out,
+              z-index 0.3s ease-in-out;
 }
 
-.wrapper.is-left-aligned {
-  left: -100%;
-  margin-left: 1rem;
+.isLeftAligned {
+  left: 0;
+  margin-left: 15px;
+  z-index: 80;
 }
 
 .wrapper ul {
@@ -27,6 +31,7 @@
 .scroll {
   overflow-y: scroll;
   padding: 0.875rem;
+  width: 100%;
 }
 
 .title {
@@ -47,16 +52,44 @@
   line-height: 3rem;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
+}
+
+.isExpanded {
+  border-left: 1px solid #e0e0e0;
+  width: 100%;
+  z-index: 100;
+}
+
+.isExpanded.isLeftAligned {
+  border-left: 0;
+  border-right: 1px solid #e0e0e0;
+  left: -100%;
 }
 
 @media only screen and (max-width: 768px) {
   .wrapper {
-    height: auto;
-    margin: 0;
+    display: none;
+    width: auto;
+    height: 0;
+    margin: -1rem 0 0 0;
     position: static;
+  }
+
+  .isExpanded {
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid #e0e0e0;
+    display: block;
+    height: auto !important;
   }
 
   .scroll {
     overflow-y: auto;
+  }
+
+  .access {
+    display: block;
+    width: 100%;
   }
 }
