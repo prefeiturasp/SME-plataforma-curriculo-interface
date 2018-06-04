@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class Discover extends Component {
   render() {
     return (
-      <div>
-      	<h2>Descobrir</h2>
-      </div>
+      <section>
+        <h1>Descobrir</h1>
+      </section>
     );
   }
 }

@@ -15,22 +15,25 @@ class Sequences extends Component {
   render() {
     const items = this.props.data.map((item, i) => {
       return (
-        <GridItem key={i} data={item} />
+        <GridItem
+          key={i}
+          index={i}
+          data={item} />
       );
     });
 
     return (
-      <section>
+      <section className={styles.wrapper}>
         <div className="container">
-        	<h2 className={styles.h2}>Sequências de Atividades</h2>
-          <h3 className={styles.h3}><strong>{this.props.data.length}</strong> sequências foram encontradas</h3>
+          <h1>Sequências de Atividades</h1>
+          <h2><strong>{this.props.data.length}</strong> sequências foram encontradas</h2>
           <FilterBar />
         </div>
         <hr />
         <div className="container">
           <FilterPanel />
         </div>
-        <div className={styles.wrapper}>
+        <div className={styles.list}>
           <div className="container">
             <ul className="row">
               {items}

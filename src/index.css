@@ -40,13 +40,18 @@ a:hover {
   color: black;
 }
 
+body.hasPopup {
+  overflow-y: hidden;
+}
+
 .btn {
   border: 1px solid #e0e0e0;
   border-radius: 0.25rem;
   color: black;
   display: flex;
+  font-size: 0.9375rem;
   font-weight: bold;
-  padding: 0.875rem 1.625rem;
+  padding: 1.125rem 1.625rem;
   text-transform: uppercase;
 }
 
@@ -80,6 +85,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 90;
 }
 
 .modal {
@@ -88,6 +94,7 @@ a:hover {
   color: black;
   font-size: 1.125rem;
   max-width: 22rem;
+  margin: 2.5rem;
   padding: 2.5rem 2rem;
   position: fixed;
 }

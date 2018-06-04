@@ -1,24 +1,25 @@
-.h2 {
+.wrapper h1 {
   font-size: 2.5rem;
-  margin-bottom: 1.25rem;
-  margin-top: 2rem;
+  margin-bottom: 0.8125rem;
+  margin-top: 1.6875rem;
 }
 
-.h3 {
+.wrapper h2 {
   font-weight: normal;
-  margin-bottom: 2rem;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
 }
 
-.wrapper {
+.list {
   background-color: #efefef;
   padding: 1rem;
 }
 
-.wrapper ul {
+.list ul {
   list-style: none;
 }
 
-.wrapper li {
+.list ul > li {
   position: relative;
 }
 
@@ -26,4 +27,11 @@
   composes: btn from global;
   border-color: #6a6a6a !important;
   margin: 0 auto 1.5rem auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper h1 {
+    font-size: 2.125rem;
+    margin-bottom: 0.75rem;
+  }
 }

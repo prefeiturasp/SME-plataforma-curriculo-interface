@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import SequencesActions from '../../actions/SequencesActions.js'
 import Preview from './Preview';
+import iconMinus from '../../images/iconMinus.svg';
+import iconPlus from '../../images/iconPlus.svg';
 import styles from './GridItem.css';
 
 class GridItem extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
-    this.state = { isExpanded: false };
   }
 
   onClickedExpand() {
-    this.setState({ isExpanded: !this.state.isExpanded });
+    this.props.togglePreview(this.props.data.id);
   }
 
   render() {
     const data = this.props.data;
-    const icon = !this.state.isExpanded ? <i className="fa fa-plus" title="Abrir" /> : <i className="fa fa-minus" title="Fechar" />;
-    const preview = !this.state.isExpanded ? null : (
-      <Preview
-        data={data}
-        height={this.ref.current.clientHeight} />
-    );
+    const height = this.ref.current ? this.ref.current.clientHeight : 0;
+    const icon = this.props.data.isExpanded ? iconMinus : iconPlus;
+    const alt = this.props.data.isExpanded ? "Esconder" : "Expandir";
+    const isLeftAligned = (this.props.index + 1) % 4 === 0;
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
@@ -42,10 +43,13 @@ class GridItem extends Component {
             </div>
           </div>
           <div className={styles.expand} onClick={this.onClickedExpand.bind(this)}>
-            {icon}
+            <img src={icon} alt={alt} />
           </div>
         </article>
-        {preview}
+        <Preview
+          data={data}
+          height={height}
+          isLeftAligned={isLeftAligned} />
       </li>
     );
   }
@@ -53,6 +57,16 @@ class GridItem extends Component {
 
 GridItem.propTypes = {
   data: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  togglePreview: PropTypes.func.isRequired,
 };
 
-export default GridItem;
+const mapDispatchToProps = dispatch => {
+  return {
+    togglePreview: (id) => {
+      dispatch(SequencesActions.togglePreview(id));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(GridItem);

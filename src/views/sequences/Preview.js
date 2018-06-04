@@ -29,9 +29,13 @@ class Preview extends Component {
     });
 
     const link = `/sequencia/${this.props.data.id}`;
+    const style = { height: `${this.props.height}px` };
+    const classes = [styles.wrapper];
+    if (this.props.data.isExpanded) classes.push(styles.isExpanded)
+    if (this.props.isLeftAligned) classes.push(styles.isLeftAligned)
 
     return (
-      <div className={styles.wrapper} style={{height:`${this.props.height}px`}}>
+      <div className={classes.join(' ')} style={style}>
         <div className={styles.scroll}>
           <div className={styles.title}>
             Matriz de Saberes
@@ -99,6 +103,7 @@ class Preview extends Component {
 Preview.propTypes = {
   data: PropTypes.object.isRequired,
   height: PropTypes.number.isRequired,
+  isLeftAligned: PropTypes.bool.isRequired,
 };
 
 export default Preview;

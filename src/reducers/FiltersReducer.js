@@ -198,7 +198,9 @@ function FiltersReducer(state = initialState, action) {
 
     case FiltersActions.SEARCHED:
       if (state.filters.findIndex(item => item.isActive) >= 0) {
-        return state;
+        return Object.assign({}, state, {
+          isExpanded: false,
+        });
       } else {
         return Object.assign({}, state, {
           showSearchWarning: true,

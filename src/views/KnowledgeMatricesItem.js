@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class KnowledgeMatricesItem extends Component {
   render() {
     return (
-      <div>
-      	<h2>Matriz de Saberes (Item)</h2>
-      </div>
+      <section>
+        <h1>Matriz de Saberes (Item)</h1>
+      </section>
     );
   }
 }

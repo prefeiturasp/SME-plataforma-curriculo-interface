@@ -9,7 +9,7 @@ class GenericItem extends Component {
 
     return (
       <button className={classes.join(' ')} style={style}>
-        {this.props.data.label}
+        {this.props.data.label || this.props.data.name}
       </button>
     );
   }

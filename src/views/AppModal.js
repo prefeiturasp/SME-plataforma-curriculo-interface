@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import Modal from 'react-modal';
 import FiltersActions from '../actions/FiltersActions.js';
 import iconClose from'../images/iconClose.svg';
-import iconWarning from'../images/iconWarning.svg';
+import iconWarningBig from'../images/iconWarningBig.svg';
 
 Modal.setAppElement('#root');
 
@@ -26,7 +26,7 @@ class AppModal extends Component {
           <img src={iconClose} alt="Fechar" />
         </button>
         <p>
-          <img src={iconWarning} alt="Atenção" />
+          <img src={iconWarningBig} alt="Atenção" />
           <span>Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.</span>
         </p>
       </Modal>

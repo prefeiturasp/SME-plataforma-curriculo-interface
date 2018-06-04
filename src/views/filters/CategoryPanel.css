@@ -4,7 +4,7 @@
   width: 100%;
   left: 100%;
   top: 0;
-  transition: left 0.5s ease-in-out;
+  transition: left 0.3s ease-in-out;
 }
 
 .wrapper > h5 > button {
@@ -27,6 +27,33 @@
   margin-bottom: 0.375rem;
 }
 
+.header,
+.footer {
+  display: none;
+}
+
+.header {
+  margin-bottom: 1.5rem;
+}
+
+.header > h3 {
+  color: black;
+  display: none;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.backArrow {
+  position: absolute;
+  left: 1rem;
+  top: 1.4375rem;
+}
+
+.button {
+  composes: btn from global;
+  margin: 0.75rem auto;
+}
+
 .back {
   color: #6a6a6a;
   font-size: 1.125rem;
@@ -39,4 +66,50 @@
 
 .isShowing {
   left: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    z-index: 90;
+  }
+
+  .wrapper > ul {
+    height: auto;
+    overflow-y: visible;
+  }
+
+  .header {
+    display: block;
+  }
+
+  .footer {
+    display: block;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    position: fixed;
+    left: 100%;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .button {
+    margin: 0.75rem auto;
+  }
+
+  .back {
+    display: none;
+  }
+
+  .isShowing,
+  .isShowing .footer {
+    left: 0;
+  }
 }

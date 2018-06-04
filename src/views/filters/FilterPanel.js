@@ -6,6 +6,7 @@ import YearButton from './YearButton';
 import ComponentButton from './ComponentButton';
 import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
+import iconCloseBig from'../../images/iconCloseBig.svg';
 import iconWarning from'../../images/iconWarning.svg';
 import styles from'./FilterPanel.css';
 
@@ -17,6 +18,10 @@ class FilterPanel extends Component {
 
   onClickedSearch() {
     this.props.search();
+  }
+
+  onClickedClose() {
+    this.props.togglePanel();
   }
 
   render() {
@@ -44,9 +49,12 @@ class FilterPanel extends Component {
       );
     });
 
+    const classes = this.props.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
+
     return (
-      <div className={styles.wrapper} style={style}>
+      <div className={classes.join(' ')} style={style}>
         <div ref={this.ref}>
+          <h3>Filtros</h3>
           <div className="row">
             <div className="col-sm-12 col-md-6 col-lg-3">
               <h4>Ano</h4>
@@ -75,8 +83,13 @@ class FilterPanel extends Component {
               </div>
             </div>
           </div>
-          <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
-            Buscar Sequência
+          <footer className={styles.footer}>
+            <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
+              Buscar Sequência
+            </button>
+          </footer>
+          <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+            <img src={iconCloseBig} alt="Fechar" />
           </button>
         </div>
       </div>
@@ -89,6 +102,7 @@ FilterPanel.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   search: PropTypes.func.isRequired,
+  togglePanel: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -103,6 +117,9 @@ const mapDispatchToProps = dispatch => {
   return {
     search: () => {
       dispatch(FiltersActions.search());
+    },
+    togglePanel: () => {
+      dispatch(FiltersActions.togglePanel());
     },
   };
 };
