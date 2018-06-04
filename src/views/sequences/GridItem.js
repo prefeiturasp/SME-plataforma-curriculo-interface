@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Preview from './Preview';
-import iconMinus from '../../images/iconMinus.png';
-import iconPlus from '../../images/iconPlus.png';
+import iconMinus from '../../images/iconMinus.svg';
+import iconPlus from '../../images/iconPlus.svg';
 import styles from './GridItem.css';
 
 class GridItem extends Component {
