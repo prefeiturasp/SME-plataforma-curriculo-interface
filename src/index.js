@@ -7,6 +7,7 @@ import { Route } from 'react-router';
 
 import Activity from './views/activity/Activity';
 import AppModal from './views/AppModal';
+import BodyManager from './views/BodyManager';
 import Curriculum from './views/Curriculum';
 import Discover from './views/Discover';
 import Footer from './views/common/Footer';
@@ -49,6 +50,7 @@ ReactDOM.render(
         <Route path='/descobrir' component={Discover} />
         <Footer />
         <AppModal />
+        <BodyManager />
       </div>
     </BrowserRouter>
   </Provider>,
