@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import FiltersActions from '../../actions/FiltersActions.js'
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
+import iconArrowLeft from '../../images/iconArrowLeft.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from './CategoryPanel.css';
 
@@ -31,6 +32,12 @@ class CategoryPanel extends Component {
 
     return (
       <div className={classes.join(' ')}>
+        <header className={styles.header}>
+          <button className={styles.backArrow} onClick={this.onClickedClose.bind(this)}>
+            <img src={iconArrowLeft} alt="Voltar" />
+          </button>
+          <h3>Filtros</h3>
+        </header>
         <h5>
           {categoryName}
           <button data-tip data-for="tooltip">
@@ -40,6 +47,11 @@ class CategoryPanel extends Component {
         <ul className={listStyle}>
           {items}
         </ul>
+        <footer className={styles.footer}>
+          <button className={styles.button} onClick={this.onClickedClose.bind(this)}>
+            Selecionar
+          </button>
+        </footer>
         <button className={styles.back} onClick={this.onClickedClose.bind(this)}>
           <i className="fa fa-chevron-left" />
           Voltar

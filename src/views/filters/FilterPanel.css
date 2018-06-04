@@ -35,10 +35,6 @@
   list-style: none;
 }
 
-.wrapper > div > hr {
-  display: none;
-}
-
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -88,10 +84,6 @@
     transition: left 0.3s ease-in-out;
   }
 
-  .isExpanded {
-    left: 0%;
-  }
-
   .wrapper h3 {
     display: block;
   }
@@ -100,13 +92,27 @@
     align-items: center;
   }
 
-  .wrapper > div > hr {
-    display: block;
-    width: 120%;
+  .footer {
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    position: fixed;
+    left: 100%;
+    bottom: 0;
+    width: 100%;
+    z-index: 80;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .categories {
+    margin-bottom: 6rem;
   }
 
   .button {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
+    margin: 0.75rem auto;
+  }
+
+  .isExpanded,
+  .isExpanded .footer {
+    left: 0;
   }
 }

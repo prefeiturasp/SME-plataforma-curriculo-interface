@@ -83,10 +83,11 @@ class FilterPanel extends Component {
               </div>
             </div>
           </div>
-          <hr />
-          <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
-            Buscar Sequência
-          </button>
+          <footer className={styles.footer}>
+            <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
+              Buscar Sequência
+            </button>
+          </footer>
           <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
             <img src={iconCloseBig} alt="Fechar" />
           </button>
