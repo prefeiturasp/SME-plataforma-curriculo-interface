@@ -15,11 +15,11 @@
   padding: 1rem;
 }
 
-.list > ul {
+.list ul {
   list-style: none;
 }
 
-.list > ul > li {
+.list ul > li {
   position: relative;
 }
 

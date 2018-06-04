@@ -31,12 +31,14 @@ class Sequences extends Component {
           <FilterPanel />
         </div>
         <div className={styles.list}>
-          <ul className="row">
-            {items}
-          </ul>
-          <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
-            Carregar mais
-          </button>
+          <div className="container">
+            <ul className="row">
+              {items}
+            </ul>
+            <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
+              Carregar mais
+            </button>
+          </div>
         </div>
       </section>
     );
