@@ -58,9 +58,9 @@ class Sequence extends Component {
     });
 
     return (
-      <div className={styles.wrapper}>
+      <section className={styles.wrapper}>
         <div className={styles.header}>
-          <h2>{this.props.data.name}</h2>
+          <h1>{this.props.data.name}</h1>
           <div className={styles.infos}>
             <ul>
               {filters}
@@ -163,7 +163,7 @@ class Sequence extends Component {
           <strong>O que são os ODS?</strong>
           <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
         </ReactTooltip>
-      </div>
+      </section>
     );
   }
 }

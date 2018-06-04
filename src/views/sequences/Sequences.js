@@ -22,7 +22,7 @@ class Sequences extends Component {
     return (
       <section className={styles.wrapper}>
         <div className="container">
-        	<h1>Sequências de Atividades</h1>
+          <h1>Sequências de Atividades</h1>
           <h2><strong>{this.props.data.length}</strong> sequências foram encontradas</h2>
           <FilterBar />
         </div>

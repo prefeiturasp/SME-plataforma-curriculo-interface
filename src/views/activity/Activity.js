@@ -27,10 +27,10 @@ class Activity extends Component {
     const link = `/sequencias/${this.props.data.sequence.id}`;
 
     return (
-      <div className={styles.wrapper}>
+      <section className={styles.wrapper}>
         <div className={styles.header}>
           <div>
-          	<h3>Atividade 1</h3>
+            <h3>Atividade 1</h3>
             <h1>{this.props.data.name}</h1>
             <h2>Sequência didática: {this.props.data.sequence.name}</h2>
             <ul>
@@ -90,7 +90,7 @@ class Activity extends Component {
             Voltar para a sequência
           </NavLink>
         </div>
-      </div>
+      </section>
     );
   }
 }
