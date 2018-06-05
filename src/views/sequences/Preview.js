@@ -9,6 +9,11 @@ import iconHelp from '../../images/iconHelp.svg';
 import styles from './Preview.css';
 
 class Preview extends Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+
   render() {
     const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
       return (
@@ -28,14 +33,25 @@ class Preview extends Component {
       );
     });
 
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    let height = this.props.height;
+
+    if (totalWidth < 768) {
+      if (this.props.data.isExpanded) {
+        height = this.ref.current ? this.ref.current.scrollHeight : 0;
+      } else {
+        height = 0;
+      }
+    }
+
+    const style = { height: `${height}px` };
     const link = `/sequencia/${this.props.data.id}`;
-    const style = { height: `${this.props.height}px` };
     const classes = [styles.wrapper];
     if (this.props.data.isExpanded) classes.push(styles.isExpanded)
     if (this.props.isLeftAligned) classes.push(styles.isLeftAligned)
 
     return (
-      <div className={classes.join(' ')} style={style}>
+      <div className={classes.join(' ')} style={style} ref={this.ref}>
         <div className={styles.scroll}>
           <div className={styles.title}>
             Matriz de Saberes
