@@ -25,7 +25,7 @@ class FilterPanel extends Component {
   }
 
   render() {
-    const style = this.props.isExpanded ? { height: this.ref.current.clientHeight } : {};
+    const style = this.props.isExpanded ? { height: `${this.ref.current.clientHeight}px` } : {};
     
     const yearButtons = this.props.filters
       .filter(item => item.type === 'year')

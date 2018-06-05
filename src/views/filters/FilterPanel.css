@@ -58,12 +58,17 @@
   position: relative;
 }
 
+.footer {
+  display: none;
+}
+
 .button {
   composes: btn from global;
   margin-bottom: 1.875rem;
 }
 
 .close {
+  display: none;
   position: absolute;
   right: 1.25rem;
   top: 1.25rem;
@@ -95,6 +100,7 @@
   .footer {
     background: white;
     border-top: 1px solid #e0e0e0;
+    display: block;
     position: fixed;
     left: 100%;
     bottom: 0;
@@ -109,6 +115,10 @@
 
   .button {
     margin: 0.75rem auto;
+  }
+
+  .close {
+    display: block;
   }
 
   .isExpanded,
