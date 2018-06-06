@@ -1,27 +1,41 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import RoadmapActions from '../../actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
+import styles from './Roadmap.css';
 
 class Roadmap extends Component {
   render() {
     const items = this.props.data.map((item, i) => {
       return (
-        <RoadmapItem key={i} data={item} />
+        <RoadmapItem
+          key={i}
+          index={i}
+          data={item} />
       );
     });
 
     return (
-      <section>
-        <h1>O que vem por aí</h1>
-        <h2>O projeto do currículo digital da cidade está em constante evolução. Veja aqui o que já temos planejado para esta plataforma.</h2>
+      <section className={styles.wrapper}>
+        <header className={styles.header}>
+          <div className="col-md-8 offset-md-2">
+            <h1>O que vem por aí</h1>
+            <p>O projeto do currículo digital da cidade está em constante evolução. Veja aqui o que já temos planejado para esta plataforma.</p>
+          </div>
+        </header>
         <hr />
-        {items}
+        <div className="container">
+          <ul className={styles.list}>
+            {items}
+          </ul>
+        </div>
         <hr />
-        <NavLink to="/sequencias" class="btn">
-          Encontre sequências de atividades
-        </NavLink>
+        <footer className={styles.footer}>
+          <NavLink to="/sequencias" class={styles.button}>
+            Encontre sequências de atividades
+          </NavLink>
+        </footer>
       </section>
     );
   }
