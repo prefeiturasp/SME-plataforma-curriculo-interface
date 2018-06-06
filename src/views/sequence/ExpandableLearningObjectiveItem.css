@@ -21,10 +21,9 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: height 0.3s ease-in-out;
 }
 
 .isExpanded .description {
   white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
 }
