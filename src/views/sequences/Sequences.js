@@ -5,6 +5,7 @@ import SequencesActions from '../../actions/SequencesActions.js'
 import FilterBar from '../filters/FilterBar.js';
 import FilterPanel from '../filters/FilterPanel.js';
 import GridItem from './GridItem.js';
+import ResultsNotFound from './ResultsNotFound.js';
 import styles from'./Sequences.css';
 
 class Sequences extends Component {
@@ -22,6 +23,21 @@ class Sequences extends Component {
       );
     });
 
+    const content = this.props.data.length ? (
+        <div className="container">
+          <ul className="row">
+            {items}
+          </ul>
+          <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
+            Carregar mais
+          </button>
+        </div>
+      ) : (
+        <div className="container">
+          <ResultsNotFound />
+        </div>
+      );
+
     return (
       <section className={styles.wrapper}>
         <div className="container">
@@ -34,14 +50,7 @@ class Sequences extends Component {
           <FilterPanel />
         </div>
         <div className={styles.list}>
-          <div className="container">
-            <ul className="row">
-              {items}
-            </ul>
-            <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
-              Carregar mais
-            </button>
-          </div>
+          {content}
         </div>
       </section>
     );

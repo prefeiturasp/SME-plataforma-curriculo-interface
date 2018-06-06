@@ -1,0 +1,12 @@
+.wrapper {
+  padding-top: 6.5625rem;
+  text-align: center;
+}
+
+.wrapper > p {
+  margin-bottom: 1rem;
+}
+
+.wrapper > button {
+  margin: 0 auto 9.375rem auto;
+}
