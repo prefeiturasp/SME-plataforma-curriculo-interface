@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import ActivityActions from '../../actions/ActivityActions.js'
-import GenericItem from '../common/GenericItem'
-import ListItem from '../common/ListItem'
+import ActivityActions from '../../actions/ActivityActions';
+import GenericItem from '../common/GenericItem';
+import ListItem from '../common/ListItem';
 import iconGroup from'../../images/iconGroup.svg';
 import iconOutdoors from'../../images/iconOutdoors.svg';
 import styles from'./Activity.css';

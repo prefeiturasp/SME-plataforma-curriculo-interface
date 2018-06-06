@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-import FiltersActions from '../../actions/FiltersActions.js'
-import SequencesActions from '../../actions/SequencesActions.js'
+import { connect } from 'react-redux';
+import FiltersActions from '../../actions/FiltersActions';
+import SequencesActions from '../../actions/SequencesActions';
 import YearButton from './YearButton';
 import ComponentButton from './ComponentButton';
 import CategoryButton from './CategoryButton';

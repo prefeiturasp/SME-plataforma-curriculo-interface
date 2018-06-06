@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-import SequencesActions from '../../actions/SequencesActions.js'
+import { connect } from 'react-redux';
+import SequencesActions from '../../actions/SequencesActions';
 import Preview from './Preview';
 import iconMinus from '../../images/iconMinus.svg';
 import iconPlus from '../../images/iconPlus.svg';
