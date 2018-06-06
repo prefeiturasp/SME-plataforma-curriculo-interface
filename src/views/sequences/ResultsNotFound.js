@@ -13,11 +13,12 @@ class ResultsNotFound extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <p>A sequência que você procura não foi encontrada.<br/>
-        Mas você pode procurar por outras sequências usando filtros diferentes.</p>
-        <button className="btn" onClick={this.onClicked.bind(this)}>
-          Fazer nova busca
-        </button>
+        <div className="col-md-6 offset-md-3">
+          <p>A sequência que você procura não foi encontrada. Mas você pode procurar por outras sequências usando filtros diferentes.</p>
+          <button className="btn" onClick={this.onClicked.bind(this)}>
+            Fazer nova busca
+          </button>
+        </div>
       </div>
     );
   }
