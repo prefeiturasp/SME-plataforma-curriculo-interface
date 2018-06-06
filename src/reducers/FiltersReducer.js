@@ -196,6 +196,16 @@ function FiltersReducer(state = initialState, action) {
         isExpanded: !state.isExpanded,
       });
 
+    case FiltersActions.CLEARED_FILTERS:
+      return Object.assign({}, state, {
+        filters: state.filters.map(item => {
+          return {
+            ...item,
+            isActive: false,
+          };
+        })
+      });
+
     case FiltersActions.SEARCHED:
       if (state.filters.findIndex(item => item.isActive) >= 0) {
         return Object.assign({}, state, {
