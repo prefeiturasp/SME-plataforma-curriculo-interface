@@ -16,6 +16,7 @@
 
 .header p {
   font-size: 1.125rem;
+  margin-bottom: 0;
 }
 
 .list {
@@ -35,4 +36,15 @@
 .button {
   composes: btn from global;
   display: inline-block !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    padding-top: 1.75rem;
+    padding-bottom: 1.875rem;
+  }
+
+  .header h1 {
+    font-size: 2.125rem;
+  }
 }
