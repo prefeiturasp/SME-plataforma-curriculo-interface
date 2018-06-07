@@ -58,10 +58,6 @@
   position: relative;
 }
 
-.footer {
-  display: none;
-}
-
 .button {
   composes: btn from global;
   margin-bottom: 1.875rem;

@@ -147,12 +147,21 @@ const initialState = {
 
 function SequencesReducer(state = initialState, action) {
   switch (action.type) {
+    case SequencesActions.CLEARED_SEARCH:
+      return initialState;
+
+    case SequencesActions.SEARCHED:
+      return {
+        sequences: [],
+        currSequence: null,
+      };
+
     case SequencesActions.LOADED:
       return state;
       
     case SequencesActions.LOADED_MORE:
       return state;
-    
+
     case SequencesActions.TOGGLED_PREVIEW:
       return Object.assign({}, state, {
         sequences: state.sequences.map(item => {

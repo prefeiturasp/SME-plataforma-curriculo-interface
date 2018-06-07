@@ -3,6 +3,7 @@ const FiltersActions = {
   CLOSED_CATEGORY: 'CLOSED_CATEGORY',
   TOGGLED_FILTER: 'TOGGLED_FILTER',
   TOGGLED_PANEL: 'TOGGLED_PANEL',
+  CLEARED_FILTERS: 'CLEARED_FILTERS',
   SEARCHED: 'SEARCHED',
   DISMISSED_SEARCH_WARNING: 'DISMISSED_SEARCH_WARNING',
   
@@ -17,6 +18,9 @@ const FiltersActions = {
   },
   togglePanel() {
     return { type: FiltersActions.TOGGLED_PANEL };
+  },
+  clearFilters() {
+    return { type: FiltersActions.CLEARED_FILTERS };
   },
   search() {
     return { type: FiltersActions.SEARCHED };

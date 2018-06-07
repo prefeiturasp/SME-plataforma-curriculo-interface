@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import FiltersActions from '../../actions/FiltersActions.js'
+import SequencesActions from '../../actions/SequencesActions.js'
 import YearButton from './YearButton';
 import ComponentButton from './ComponentButton';
 import CategoryButton from './CategoryButton';
@@ -117,6 +118,7 @@ const mapDispatchToProps = dispatch => {
   return {
     search: () => {
       dispatch(FiltersActions.search());
+      dispatch(SequencesActions.search());
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());
