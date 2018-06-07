@@ -1,17 +1,51 @@
 .wrapper {
+  color: #6a6a6a;
   display: flex;
+  font-size: 0.9375rem;
+}
+
+.wrapper h2 {
+  color: black;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.left,
+.right {
+  padding-top: 3.75rem;
+  width: 43%;
 }
 
 .left {
-  width: 43%;
+  text-align: right;
 }
 
 .middle {
-  border-left: 1px solid #e0e0e0;
   padding-top: 2.5rem;
+  position: relative;
+  text-align: center;
   width: 14%;
 }
 
-.right {
-  width: 43%;
+.middle > .line {
+  border-left: 1px solid #e0e0e0;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  z-index: -10;
+}
+
+.wrapper:last-child > .left,
+.wrapper:last-child > .right {
+  padding-bottom: 2.875rem;
+}
+
+.soon {
+  background: #e0e0e0;
+  border-radius: 3rem;
+  color: white;
+  display: inline-block;
+  margin-bottom: 0.625rem;
+  padding: 0.3125rem 0.875rem;
 }

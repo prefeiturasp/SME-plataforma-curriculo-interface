@@ -6,32 +6,37 @@ import styles from './RoadmapItem.css';
 
 class RoadmapItem extends Component {
   render() {
+    const soon = this.props.data.isPublished ? null : (
+      <div className={styles.soon}>
+        Em breve
+      </div>
+    );
+
     const isToRight = this.props.index % 2 === 0;
+    
+    const contentClass = isToRight ? styles.right : styles.left;
+    const content = (
+      <div className={contentClass}>
+        {soon}
+        <h2>{this.props.data.title}</h2>
+        <p>{this.props.data.text}</p>
+      </div>
+    );
+
+    const emptyClass = isToRight ? styles.left : styles.right;
+    const empty = <div className={emptyClass} />
+
+    const contentLeft = isToRight ? empty : content;
+    const contentRight = isToRight ? content : empty;
+
     const icon = this.props.data.isPublished ? iconPublished : iconClockBig;
     const alt = this.props.data.isPublished ? 'Publicado' : 'Em breve';
-
-    const contentLeft = isToRight ? (
-        <div className={styles.left} />
-      ) : (
-        <div className={styles.left}>
-          <h2>{this.props.data.title}</h2>
-          <p>{this.props.data.text}</p>
-        </div>
-      );
-
-    const contentRight = isToRight ? (
-        <div className={styles.right}>
-          <h2>{this.props.data.title}</h2>
-          <p>{this.props.data.text}</p>
-        </div>
-      )  :(
-        <div className={styles.right} />
-      );
 
     return (
       <li className={styles.wrapper}>
         {contentLeft}
         <div className={styles.middle}>
+          <div className={styles.line} />
           <img src={icon} alt={alt} />
         </div>
         {contentRight}
