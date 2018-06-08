@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './ComponentItem.css';
+import styles from './CurricularComponentItem.css';
 
-class ComponentItem extends Component {
+class CurricularComponentItem extends Component {
   render() {
     const classes = this.props.isColored ? [styles.wrapper, styles.isColored] : [styles.wrapper];
     const style = this.props.isColored ? { backgroundColor: this.props.data.color } : {};
@@ -15,13 +15,13 @@ class ComponentItem extends Component {
   }
 }
 
-ComponentItem.defaultProps = {
+CurricularComponentItem.defaultProps = {
   isColored: true,
 };
 
-ComponentItem.propTypes = {
+CurricularComponentItem.propTypes = {
   data: PropTypes.object.isRequired,
   isColored: PropTypes.bool,
 };
 
-export default ComponentItem;
+export default CurricularComponentItem;

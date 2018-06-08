@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SustainableDevelopmentGoalsItem extends Component {
+class SustainableDevelopmentGoal extends Component {
   render() {
     return (
       <section>
@@ -10,4 +10,4 @@ class SustainableDevelopmentGoalsItem extends Component {
   }
 }
 
-export default SustainableDevelopmentGoalsItem;
+export default SustainableDevelopmentGoal;
