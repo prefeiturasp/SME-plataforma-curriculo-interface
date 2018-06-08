@@ -4,6 +4,7 @@
 
 .header {
   composes: container from global;
+  font-size: 1.125rem;
   padding-top: 2.25rem;
   padding-bottom: 2.4375rem;
   text-align: center;
@@ -16,7 +17,6 @@
 }
 
 .header p {
-  font-size: 1.125rem;
   margin-bottom: 0;
 }
 
