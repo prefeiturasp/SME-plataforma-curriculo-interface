@@ -6,12 +6,12 @@ import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 
 import Activity from './views/activity/Activity';
-import AppModal from './views/AppModal';
-import BodyManager from './views/BodyManager';
+import AppModal from './views/util/AppModal';
+import BodyManager from './views/util/BodyManager';
 import Curriculum from './views/curriculum/Curriculum';
 import Footer from './views/common/Footer';
 import Header from './views/common/Header';
-import Home from './views/Home';
+import Home from './views/home/Home';
 import LearningObjectives from './views/learningObjectives/LearningObjectives';
 import KnowledgeMatrices from './views/knowledgeMatrices/KnowledgeMatrices';
 import KnowledgeMatrix from './views/knowledgeMatrices/KnowledgeMatrix';
@@ -42,8 +42,8 @@ ReactDOM.render(
         <Route path='/curriculo' component={Curriculum} />
         <Route path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />
-        <Route path='/matriz-de-saberes' component={KnowledgeMatrices} />
-        <Route path='/matriz-de-saberes/:id' component={KnowledgeMatrix} />
+        <Route path='/matrizes-de-saberes' component={KnowledgeMatrices} />
+        <Route path='/matrizes-de-saberes/:id' component={KnowledgeMatrix} />
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
         <Route path='/descobrir' component={Roadmap} />
         <Footer />
