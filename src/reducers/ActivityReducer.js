@@ -17,7 +17,7 @@ const initialState = {
       year: {
         label: '1º ano',
       },
-      component: {
+      curricularComponent: {
         label: 'Ciências Naturais',
         color: '#01add2',
       },
