@@ -6,20 +6,23 @@ import styles from './SustainableDevGoalButton.css';
 class SustainableDevGoalButton extends Component {
   render() {
     const link = `/ods/${this.props.data.id}`;
+    const style = { backgroundColor: this.props.data.color };
 
     return (
-      <NavLink className={styles.wrapper} to={link}>
-        <div className={styles.number}>
-          {this.props.data.index}
-        </div>
-        <div className={styles.label}>
-          {this.props.data.name}
-        </div>
-        <img
-          src={this.props.data.icon}
-          alt={this.props.data.name}
-          className={styles.icon} />
-      </NavLink>
+      <li className="col-md-4">
+        <NavLink to={link} className={styles.wrapper} style={style}>
+          <div className={styles.number}>
+            {this.props.data.index}
+          </div>
+          <div className={styles.label}>
+            {this.props.data.name}
+          </div>
+          <img
+            src={this.props.data.icon}
+            alt={this.props.data.name}
+            className={styles.icon} />
+        </NavLink>
+      </li>
     );
   }
 }

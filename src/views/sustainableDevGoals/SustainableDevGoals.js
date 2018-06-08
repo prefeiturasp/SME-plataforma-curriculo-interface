@@ -24,10 +24,11 @@ class SustainableDevGoals extends Component {
         <hr />
         <div className="container">
           <div className="row">
-            <ul className={styles.list}>
-              {items}
-            </ul>
+            <h2 className="col-md-8 offset-md-2">Conheça os Objetivos de Desenvolvimento Sustentável</h2>
           </div>
+          <ul className={styles.list}>
+            {items}
+          </ul>
         </div>
       </section>
     );
