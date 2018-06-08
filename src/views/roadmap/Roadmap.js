@@ -44,7 +44,7 @@ class Roadmap extends Component {
 }
 
 Roadmap.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => {
