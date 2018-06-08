@@ -8,7 +8,7 @@ const sequence = {
   year: {
     label: '1º ano',
   },
-  component: {
+  curricularComponent: {
     name: 'Ciências Naturais',
     color: '#01add2',
   },
@@ -107,7 +107,7 @@ const sequence = {
       description: 'Identificar transformações de energia e identificar variáveis que influem nesse fenômeno (por exemplo, ao bater na mesa, transformamos energia mecânica em energia sonora).',
     },
   ],
-  developmentGoals: [
+  sustainableDevGoals: [
     {
       image: 'http://via.placeholder.com/60x60',
       name: 'Erradicar a Pobreza',

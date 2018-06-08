@@ -1,0 +1,40 @@
+.wrapper {
+  border-radius: 0.25rem;
+  color: white;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 1.875rem;
+  position: relative;
+  height: 10rem;
+}
+
+.wrapper:hover {
+  color: white;
+}
+
+.number {
+  font-size: 5rem;
+  position: absolute;
+  left: 2.125rem;
+  top: 0.4375rem;
+}
+
+.label {
+  font-size: 1.125rem;
+  position: absolute;
+  left: 5.75rem;
+  right: 2.5rem;
+  top: 2rem;
+}
+
+.icon {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    margin-bottom: 1rem;
+  }
+}

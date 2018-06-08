@@ -4,7 +4,7 @@ const initialState = {
   categories: [
     {
       id: 1,
-      type: 'developmentGoal',
+      type: 'sustainableDevGoal',
       label: 'Objetivos de Desenvolvimento Sustentável',
     },
     {
@@ -96,19 +96,19 @@ const initialState = {
       label: '3. Comunicação',
     },
     {
-      type: 'developmentGoal',
+      type: 'sustainableDevGoal',
       value: 1,
       image: 'http://via.placeholder.com/60x60/993333/ffffff',
       label: '1. Erradicação da Pobreza',
     },
     {
-      type: 'developmentGoal',
+      type: 'sustainableDevGoal',
       value: 2,
       image: 'http://via.placeholder.com/60x60/339933/ffffff',
       label: '2. Fome Zero e Agricultura Sustentável',
     },
     {
-      type: 'developmentGoal',
+      type: 'sustainableDevGoal',
       value: 3,
       image: 'http://via.placeholder.com/60x60/333399/ffffff',
       label: '3. Saúde e Bem-Estar',

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import FiltersActions from '../actions/FiltersActions';
-import iconClose from'../images/iconClose.svg';
-import iconWarningBig from'../images/iconWarningBig.svg';
+import FiltersActions from '../../actions/FiltersActions';
+import iconClose from'../../images/iconClose.svg';
+import iconWarningBig from'../../images/iconWarningBig.svg';
 
 Modal.setAppElement('#root');
 

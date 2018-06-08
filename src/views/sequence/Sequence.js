@@ -4,11 +4,11 @@ import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityItem from './ActivityItem';
-import ComponentItem from '../common/ComponentItem';
-import DevelopmentGoalItem from '../common/DevelopmentGoalItem';
+import CurricularComponentItem from '../common/CurricularComponentItem';
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
+import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import ListItem from '../common/ListItem';
 import iconClock from '../../images/iconClock.svg';
 import iconHelp from '../../images/iconHelp.svg';
@@ -18,12 +18,12 @@ class Sequence extends Component {
   render() {
     const filters = [
       <GenericItem key={0} data={this.props.data.year} />,
-      <GenericItem key={1} data={this.props.data.component} />,
+      <GenericItem key={1} data={this.props.data.curricularComponent} />,
     ];
 
-    const components = this.props.data.relatedComponents.map((item, i) => {
+    const relatedComponents = this.props.data.relatedComponents.map((item, i) => {
       return (
-        <ComponentItem key={i} data={item} isColored={false} />
+        <CurricularComponentItem key={i} data={item} isColored={false} />
       );
     });
 
@@ -39,9 +39,9 @@ class Sequence extends Component {
       );
     });
 
-    const developmentGoals = this.props.data.developmentGoals.map((item, i) => {
+    const sustainableDevGoals = this.props.data.sustainableDevGoals.map((item, i) => {
       return (
-        <DevelopmentGoalItem key={i} data={item} />
+        <SustainableDevGoalItem key={i} data={item} />
       );
     });
     
@@ -80,7 +80,7 @@ class Sequence extends Component {
                 Componentes relacionados
               </div>
               <ul>
-                {components}
+                {relatedComponents}
               </ul>
               <div className={styles.title}>
                 Matriz de saberes
@@ -111,7 +111,7 @@ class Sequence extends Component {
                 </button>
               </div>
               <ul>
-                {developmentGoals}
+                {sustainableDevGoals}
               </ul>
               <div className={styles.title}>
                 Livros para o professor:

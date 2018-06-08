@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Curriculum extends Component {
+class KnowledgeMatrix extends Component {
   render() {
     return (
       <section>
-        <h1>Currículo</h1>
+        <h1>Matriz de Saberes (Item)</h1>
       </section>
     );
   }
 }
 
-export default Curriculum;
+export default KnowledgeMatrix;

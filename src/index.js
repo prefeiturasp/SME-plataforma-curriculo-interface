@@ -6,21 +6,20 @@ import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 
 import Activity from './views/activity/Activity';
-import AppModal from './views/AppModal';
-import BodyManager from './views/BodyManager';
-import Curriculum from './views/Curriculum';
-import Footer from './views/common/Footer';
-import Header from './views/common/Header';
-import Home from './views/Home';
-import LearningObjectives from './views/LearningObjectives';
-import KnowledgeMatrices from './views/KnowledgeMatrices';
-import KnowledgeMatricesItem from './views/KnowledgeMatricesItem';
+import AppModal from './views/util/AppModal';
+import BodyManager from './views/util/BodyManager';
+import Curriculum from './views/curriculum/Curriculum';
+import Footer from './views/footer/Footer';
+import Header from './views/header/Header';
+import Home from './views/home/Home';
+import LearningObjectives from './views/learningObjectives/LearningObjectives';
+import KnowledgeMatrices from './views/knowledgeMatrices/KnowledgeMatrices';
+import KnowledgeMatrix from './views/knowledgeMatrices/KnowledgeMatrix';
 import Roadmap from './views/roadmap/Roadmap';
-import Search from './views/Search';
 import Sequence from './views/sequence/Sequence';
 import Sequences from './views/sequences/Sequences';
-import SustainableDevelopmentGoals from './views/SustainableDevelopmentGoals';
-import SustainableDevelopmentGoalsItem from './views/SustainableDevelopmentGoalsItem';
+import SustainableDevGoal from './views/sustainableDevGoals/SustainableDevGoal';
+import SustainableDevGoals from './views/sustainableDevGoals/SustainableDevGoals';
 
 import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
@@ -37,15 +36,14 @@ ReactDOM.render(
       <div>
         <Header />
         <Route exact path='/' component={Home} />
-        <Route path='/busca' component={Search} />
         <Route path='/sequencias' component={Sequences} />
         <Route path='/sequencia/:id' component={Sequence} />
         <Route path='/atividade/:id' component={Activity} />
         <Route path='/curriculo' component={Curriculum} />
-        <Route path='/ods' component={SustainableDevelopmentGoals} />
-        <Route path='/ods/:id' component={SustainableDevelopmentGoalsItem} />
-        <Route path='/matriz-de-saberes' component={KnowledgeMatrices} />
-        <Route path='/matriz-de-saberes/:id' component={KnowledgeMatricesItem} />
+        <Route path='/ods' component={SustainableDevGoals} />
+        <Route path='/ods/:id' component={SustainableDevGoal} />
+        <Route path='/matrizes-de-saberes' component={KnowledgeMatrices} />
+        <Route path='/matrizes-de-saberes/:id' component={KnowledgeMatrix} />
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
         <Route path='/descobrir' component={Roadmap} />
         <Footer />

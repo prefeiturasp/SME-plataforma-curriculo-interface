@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './DevelopmentGoalItem.css';
+import styles from './SustainableDevGoalItem.css';
 
-class DevelopmentGoalItem extends Component {
+class SustainableDevGoalItem extends Component {
   render() {
     return (
       <img
@@ -13,8 +13,8 @@ class DevelopmentGoalItem extends Component {
   }
 }
 
-DevelopmentGoalItem.propTypes = {
+SustainableDevGoalItem.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default DevelopmentGoalItem;
+export default SustainableDevGoalItem;

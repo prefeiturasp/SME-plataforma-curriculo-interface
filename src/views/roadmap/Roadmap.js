@@ -19,9 +19,11 @@ class Roadmap extends Component {
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
-          <div className="col-md-8 offset-md-2">
-            <h1>O que vem por aí</h1>
-            <p>O projeto do currículo digital da cidade está em constante evolução. Veja aqui o que já temos planejado para esta plataforma.</p>
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <h1>O que vem por aí</h1>
+              <p>O projeto do currículo digital da cidade está em constante evolução. Veja aqui o que já temos planejado para esta plataforma.</p>
+            </div>
           </div>
         </header>
         <hr />
@@ -44,7 +46,7 @@ class Roadmap extends Component {
 }
 
 Roadmap.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => {
