@@ -4,7 +4,7 @@ class KnowledgeMatrix extends Component {
   render() {
     return (
       <section>
-        <h1>Matriz de Saberes (Item)</h1>
+        <h1>Matriz de Saberes</h1>
       </section>
     );
   }
