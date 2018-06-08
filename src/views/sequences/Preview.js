@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
-import DevelopmentGoalItem from '../common/DevelopmentGoalItem'
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
-import LearningObjectiveItem from '../common/LearningObjectiveItem'
+import DevelopmentGoalItem from '../common/DevelopmentGoalItem';
+import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
+import LearningObjectiveItem from '../common/LearningObjectiveItem';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from './Preview.css';
 

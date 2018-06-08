@@ -9,13 +9,13 @@ import Activity from './views/activity/Activity';
 import AppModal from './views/AppModal';
 import BodyManager from './views/BodyManager';
 import Curriculum from './views/Curriculum';
-import Discover from './views/Discover';
 import Footer from './views/common/Footer';
 import Header from './views/common/Header';
 import Home from './views/Home';
 import LearningObjectives from './views/LearningObjectives';
 import KnowledgeMatrices from './views/KnowledgeMatrices';
 import KnowledgeMatricesItem from './views/KnowledgeMatricesItem';
+import Roadmap from './views/roadmap/Roadmap';
 import Search from './views/Search';
 import Sequence from './views/sequence/Sequence';
 import Sequences from './views/sequences/Sequences';
@@ -47,7 +47,7 @@ ReactDOM.render(
         <Route path='/matriz-de-saberes' component={KnowledgeMatrices} />
         <Route path='/matriz-de-saberes/:id' component={KnowledgeMatricesItem} />
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
-        <Route path='/descobrir' component={Discover} />
+        <Route path='/descobrir' component={Roadmap} />
         <Footer />
         <AppModal />
         <BodyManager />

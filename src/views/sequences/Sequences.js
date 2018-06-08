@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-import SequencesActions from '../../actions/SequencesActions.js'
-import FilterBar from '../filters/FilterBar.js';
-import FilterPanel from '../filters/FilterPanel.js';
-import GridItem from './GridItem.js';
-import ResultsNotFound from './ResultsNotFound.js';
+import { connect } from 'react-redux';
+import SequencesActions from '../../actions/SequencesActions';
+import FilterBar from '../filters/FilterBar';
+import FilterPanel from '../filters/FilterPanel';
+import GridItem from './GridItem';
+import ResultsNotFound from './ResultsNotFound';
 import styles from'./Sequences.css';
 
 class Sequences extends Component {

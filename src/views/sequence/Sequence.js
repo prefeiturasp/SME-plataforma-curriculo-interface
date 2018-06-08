@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
-import { connect } from 'react-redux'
-import SequencesActions from '../../actions/SequencesActions.js'
-import ActivityItem from './ActivityItem'
-import ComponentItem from '../common/ComponentItem'
-import DevelopmentGoalItem from '../common/DevelopmentGoalItem'
-import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem'
-import GenericItem from '../common/GenericItem'
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem'
-import ListItem from '../common/ListItem'
+import { connect } from 'react-redux';
+import SequencesActions from '../../actions/SequencesActions';
+import ActivityItem from './ActivityItem';
+import ComponentItem from '../common/ComponentItem';
+import DevelopmentGoalItem from '../common/DevelopmentGoalItem';
+import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
+import GenericItem from '../common/GenericItem';
+import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
+import ListItem from '../common/ListItem';
 import iconClock from '../../images/iconClock.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from'./Sequence.css';

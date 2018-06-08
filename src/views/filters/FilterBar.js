@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-import FiltersActions from '../../actions/FiltersActions.js'
+import { connect } from 'react-redux';
+import FiltersActions from '../../actions/FiltersActions';
 import ActiveItem from'./ActiveItem';
 import iconFilters from'../../images/iconFilters.svg';
 import styles from'./FilterBar.css';

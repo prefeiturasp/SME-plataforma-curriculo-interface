@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FiltersActions from '../../actions/FiltersActions.js';
+import FiltersActions from '../../actions/FiltersActions';
 import iconCloseSmall from'../../images/iconCloseSmall.svg';
 import iconCloseSmallWhite from'../../images/iconCloseSmallWhite.svg';
 import styles from'./ActiveItem.css';
