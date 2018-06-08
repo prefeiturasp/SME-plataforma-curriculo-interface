@@ -9,7 +9,7 @@ class SustainableDevGoalButton extends Component {
     const style = { backgroundColor: this.props.data.color };
 
     return (
-      <li className="col-md-4">
+      <li className="col-md-6 col-lg-4">
         <NavLink to={link} className={styles.wrapper} style={style}>
           <div className={styles.number}>
             {this.props.data.index}

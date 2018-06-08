@@ -15,10 +15,12 @@ class SustainableDevGoals extends Component {
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
-          <div className="col-md-8 offset-md-2">
-            <h1>Objetivos de Desenvolvimento Sustentável (ODS)</h1>
-            <p>Temas prementes, como direitos humanos, meio ambiente, desigualdades sociais e regionais, intolerâncias culturais e religiosas, abusos de poder, populações excluídas, avanços tecnológicos e seus impactos, política, economia, educação financeira, consumo e sustentabilidade, entre outros, precisam ser debatidos e enfrentados, a fim de que façam a humanidade avançar.</p>
-            <p>O desafio que se apresenta é entender como essas temáticas atuais podem ser integradas a uma proposta inovadora e emancipatória de currículo, bem como ao cotidiano de escolas e salar de aula. Foi com essa intenção que o Currículo da Cidade incorporou os Objetivos de Desenvolvimento Sustentável (ODS).</p>
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <h1>Objetivos de Desenvolvimento Sustentável (ODS)</h1>
+              <p>Temas prementes, como direitos humanos, meio ambiente, desigualdades sociais e regionais, intolerâncias culturais e religiosas, abusos de poder, populações excluídas, avanços tecnológicos e seus impactos, política, economia, educação financeira, consumo e sustentabilidade, entre outros, precisam ser debatidos e enfrentados, a fim de que façam a humanidade avançar.</p>
+              <p>O desafio que se apresenta é entender como essas temáticas atuais podem ser integradas a uma proposta inovadora e emancipatória de currículo, bem como ao cotidiano de escolas e salar de aula. Foi com essa intenção que o Currículo da Cidade incorporou os Objetivos de Desenvolvimento Sustentável (ODS).</p>
+            </div>
           </div>
         </header>
         <hr />
