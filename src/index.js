@@ -40,9 +40,9 @@ ReactDOM.render(
         <Route path='/sequencia/:id' component={Sequence} />
         <Route path='/atividade/:id' component={Activity} />
         <Route path='/curriculo' component={Curriculum} />
-        <Route path='/ods' component={SustainableDevGoals} />
+        <Route exact path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />
-        <Route path='/matriz-de-saberes' component={KnowledgeMatrix} />
+        <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
         <Route path='/matriz-de-saberes/:id' component={KnowledgeMatrixItem} />
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
         <Route path='/descobrir' component={Roadmap} />
