@@ -11,7 +11,7 @@ class Curriculum extends Component {
             <NavLink to='/ods'>ODS</NavLink>
           </li>
           <li>
-            <NavLink to='/matrizes-de-saberes'>Matrizes de Saberes</NavLink>
+            <NavLink to='/matriz-de-saberes'>Matriz de Saberes</NavLink>
           </li>
           <li>
             <NavLink to='/objetivos-de-aprendizagem'>Objetivos de Aprendizagem</NavLink>
