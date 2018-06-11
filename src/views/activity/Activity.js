@@ -7,13 +7,18 @@ import GenericItem from '../common/GenericItem';
 import ListItem from '../common/ListItem';
 import iconGroup from'../../images/iconGroup.svg';
 import iconOutdoors from'../../images/iconOutdoors.svg';
+import iconPrint from '../../images/iconPrint.svg';
 import styles from'./Activity.css';
 
 class Activity extends Component {
+  onClickedPrint() {
+    window.print();
+  }
+
   render() {
     const filters = [
       <GenericItem key={0} data={this.props.data.sequence.year} />,
-      <GenericItem key={1} data={this.props.data.sequence.component} />,
+      <GenericItem key={1} data={this.props.data.sequence.curricularComponent} />,
     ];
 
     const materials = this.props.data.materials.map((item, i) => {
@@ -37,18 +42,24 @@ class Activity extends Component {
               {filters}
             </ul>
           </div>
-          <ul className={styles.infos}>
-            <li>
-              <img src={iconGroup} alt="Grupo" />
-              <br />
-              Grupo
-            </li>
-            <li>
-              <img src={iconOutdoors} alt="Ambiente Externo" />
-              <br />
-              Ambiente Externo
-            </li>
-          </ul>
+          <div className={styles.infos}>
+            <button className="btn" onClick={this.onClickedPrint.bind(this)}>
+              <img src={iconPrint} alt="Imprimir" />
+              Imprimir
+            </button>
+            <ul>
+              <li>
+                <img src={iconGroup} alt="Grupo" />
+                <br />
+                Grupo
+              </li>
+              <li>
+                <img src={iconOutdoors} alt="Ambiente Externo" />
+                <br />
+                Ambiente Externo
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="container">
           <img

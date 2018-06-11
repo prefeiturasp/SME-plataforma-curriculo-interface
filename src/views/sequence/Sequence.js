@@ -12,9 +12,14 @@ import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import ListItem from '../common/ListItem';
 import iconClock from '../../images/iconClock.svg';
 import iconHelp from '../../images/iconHelp.svg';
+import iconPrint from '../../images/iconPrint.svg';
 import styles from'./Sequence.css';
 
 class Sequence extends Component {
+  onClickedPrint() {
+    window.print();
+  }
+
   render() {
     const filters = [
       <GenericItem key={0} data={this.props.data.year} />,
@@ -59,9 +64,9 @@ class Sequence extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className={styles.header}>
-          <h1>{this.props.data.name}</h1>
-          <div className={styles.infos}>
+        <header className={styles.header}>
+          <div>
+            <h1>{this.props.data.name}</h1>
             <ul>
               {filters}
             </ul>
@@ -71,7 +76,11 @@ class Sequence extends Component {
               (Tempo estimado)
             </div>
           </div>
-        </div>
+          <button className="btn" onClick={this.onClickedPrint.bind(this)}>
+            <img src={iconPrint} alt="Imprimir" />
+            Imprimir
+          </button>
+        </header>
         <hr />
         <div className={styles.details}>
           <div className="row">
