@@ -1,0 +1,59 @@
+.wrapper {
+  background: #e0e0e0;
+  font-size: 1.125rem;
+  position: fixed;
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.wrapper h1 {
+  font-size: 2.125rem;
+  margin-bottom: 1.9375rem;
+}
+
+.wrapper h2 {
+  font-size: 1.3125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper p {
+  margin: 0 auto 1.75rem auto;
+}
+
+.number {
+  border: 3px solid black;
+  border-radius: 5rem;
+  font-size: 2.125rem;
+  font-weight: 600;
+  line-height: 4.5rem;
+  margin: 5rem auto 1.75rem auto;
+  width: 5rem;
+  height: 5rem;
+}
+
+.button {
+  composes: btn from global;
+  display: inline-block !important;
+  margin: 2.625rem auto;
+}
+
+.close {
+  position: absolute;
+  right: 1.75rem;
+  top: 1.75rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .number {
+    margin-top: 2.8125rem;
+  }
+
+  .close {
+    right: 1rem;
+    top: 1rem;
+  }
+}
