@@ -15,3 +15,9 @@
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    padding: 1rem 1.25rem 1.125rem 1.25rem;
+  }
+}
