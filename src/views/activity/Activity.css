@@ -14,6 +14,7 @@
   font-size: 1.3125rem;
   margin-top: 1.1875rem;
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .wrapper ul {
@@ -60,12 +61,12 @@
   flex-direction: column;
 }
 
-.infos > ul {
+.icons {
   display: flex;
   margin-top: 1.25rem;
 }
 
-.infos > ul > li {
+.icons > li {
   border: 1px solid #e0e0e0;
   border-right: 0;
   color: #6a6a6a;
@@ -78,11 +79,11 @@
   width: 11rem;
 }
 
-.infos > ul > li:last-child {
+.icons > li:last-child {
   border-right: 1px solid #e0e0e0;
 }
 
-.infos > ul > li > img {
+.icons > li > img {
   color: black;
   margin-bottom: 0.4375rem;
 }
@@ -94,8 +95,11 @@
 }
 
 .description {
+  composes: col-md-8 from global;
+  composes: offset-md-2 from global;
   font-size: 1.125rem;
-  margin: 2.1875rem 12rem 1.6875rem 12rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .arrows {
@@ -172,24 +176,26 @@
     display: none;
   }
 
-  .infos > ul {
+  .icons {
+    margin: 0;
     width: 100%;
   }
 
-  .infos > ul > li {
+  .icons > li {
+    border-bottom: 0;
     flex-grow: 1;
   }
 
-  .infos > ul > li:first-child {
+  .icons > li:first-child {
     border-left: 0;
   }
 
-  .infos > ul > li:last-child {
+  .icons > li:last-child {
     border-right: 0;
   }
 
   .image {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
   }
 
   .description {
@@ -207,7 +213,6 @@
 
   .wrapper h5 {
     margin-top: 0.8125rem;
-    text-align: center;
   }
 
   .next,
