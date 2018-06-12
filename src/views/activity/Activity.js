@@ -7,13 +7,35 @@ import GenericItem from '../common/GenericItem';
 import ListItem from '../common/ListItem';
 import iconGroup from'../../images/iconGroup.svg';
 import iconOutdoors from'../../images/iconOutdoors.svg';
+import iconPrint from '../../images/iconPrint.svg';
 import styles from'./Activity.css';
 
 class Activity extends Component {
+  onClickedPrint() {
+    window.print();
+  }
+
+  onResized() {
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    this.setState({ totalWidth });
+  }
+
+  componentWillMount() {
+    this.onResized();
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.onResized.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResized.bind(this));
+  }
+
   render() {
     const filters = [
       <GenericItem key={0} data={this.props.data.sequence.year} />,
-      <GenericItem key={1} data={this.props.data.sequence.component} />,
+      <GenericItem key={1} data={this.props.data.sequence.curricularComponent} />,
     ];
 
     const materials = this.props.data.materials.map((item, i) => {
@@ -26,6 +48,23 @@ class Activity extends Component {
     const linkNext = `/atividade/${this.props.data.nextId}`;
     const link = `/sequencia/${this.props.data.sequence.id}`;
 
+    const icons = (
+      <ul className={styles.icons}>
+        <li>
+          <img src={iconGroup} alt="Grupo" />
+          <br />
+          Grupo
+        </li>
+        <li>
+          <img src={iconOutdoors} alt="Ambiente Externo" />
+          <br />
+          Ambiente Externo
+        </li>
+      </ul>
+    );
+    const icons1 = this.state.totalWidth < 768 ? null : icons;
+    const icons2 = this.state.totalWidth < 768 ? icons : null;
+
     return (
       <section className={styles.wrapper}>
         <div className={styles.header}>
@@ -37,18 +76,13 @@ class Activity extends Component {
               {filters}
             </ul>
           </div>
-          <ul className={styles.infos}>
-            <li>
-              <img src={iconGroup} alt="Grupo" />
-              <br />
-              Grupo
-            </li>
-            <li>
-              <img src={iconOutdoors} alt="Ambiente Externo" />
-              <br />
-              Ambiente Externo
-            </li>
-          </ul>
+          <div className={styles.infos}>
+            <button className="btn" onClick={this.onClickedPrint.bind(this)}>
+              <img src={iconPrint} alt="Imprimir" />
+              Imprimir
+            </button>
+            {icons1}
+          </div>
         </div>
         <div className="container">
           <img
@@ -56,12 +90,17 @@ class Activity extends Component {
             src={this.props.data.image1}
             alt={this.props.data.name} />
         </div>
+        {icons2}
         <hr />
         <div className="container">
-          <h5>Materiais:</h5>
-          <ul>
-            {materials}
-          </ul>
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <h5>Materiais:</h5>
+              <ul>
+                {materials}
+              </ul>
+            </div>
+          </div>
         </div>
         <hr />
         <div className="container">
@@ -70,8 +109,10 @@ class Activity extends Component {
             className={styles.image}
             src={this.props.data.image2}
             alt={this.props.data.name} />
-          <div className={styles.description}>
-            {this.props.data.description}
+          <div className="row">
+            <div className={styles.description}>
+              {this.props.data.description}
+            </div>
           </div>
         </div>
         <hr />
