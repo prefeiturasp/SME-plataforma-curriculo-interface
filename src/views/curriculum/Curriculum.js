@@ -35,19 +35,19 @@ class Curriculum extends Component {
             <img src={iconSustainableDevGoals} alt="Objetivos de Desenvolvimento Sustentável (ODS)" />
             <h2>Objetivos de Desenvolvimento Sustentável (ODS)</h2>
             <p>Os 17 objetivos de Desenvolvimento Sustável e 169 metas que estamos anunciando hoje demonstram a escala e a ambição desta nova agenda universal. Eles buscam concretizar os direitos humano de todos e alcançar a igualdade de gênero e o empoderamento das mulheres e meninas.</p>
-            <NavLink className={styles.button} to="/ods">Saiba mais</NavLink>
+            <NavLink className={styles.button} to="/ods">Explore e encontre sequências</NavLink>
           </li>
           <li className={styles.knowledgeMatrix}>
             <img src={iconKnowledgeMatrix} alt="Matriz de Saberes" />
             <h2>Matriz de Saberes</h2>
             <p>A Matriz de Saberes tem como próposito:<br />Formar cidadãos éticos, responsáveis e solidários que fortaleçam uma sociedade mais inclusiva, democrática, próspera e sustentável.</p>
-            <NavLink className={styles.button} to="/matriz-de-saberes">Saiba mais</NavLink>
+            <NavLink className={styles.button} to="/matriz-de-saberes">Explore e encontre sequências</NavLink>
           </li>
           <li className={styles.learningGoals}>
             <img src={iconLearningGoals} alt="Objetivos de Aprendizagem" />
             <h2>Objetivos de Aprendizagem</h2>
             <p>No Currículo da Cidade, os objetivos de aprendizagem e desenvolvimento orientam-se pela Educação Integral a partir da matriz de saberes e indicam o que os estudantes devem alcançar a cada ano como resultado das experiências de ensino e de aprendizagem intencionalmente previstas para esse fim.</p>
-            <NavLink className={styles.button} to="/objetivos-de-aprendizagem">Saiba mais</NavLink>
+            <NavLink className={styles.button} to="/objetivos-de-aprendizagem">Explore e encontre sequências</NavLink>
           </li>
         </ul>
       </section>
