@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconMenu from '../../images/iconMenu.svg';
 import styles from './Header.css';
@@ -14,10 +17,12 @@ class Header extends Component {
 
   onClickedMenu() {
     this.setState({ isMenuExpanded: true });
+    this.props.showPopup();
   }
 
   onClickedClose() {
     this.setState({ isMenuExpanded: false });
+    this.props.hidePopup();
   }
   
   render() {
@@ -91,4 +96,20 @@ class Header extends Component {
   }
 }
 
-export default Header;
+Header.propTypes = {
+  hidePopup: PropTypes.func.isRequired,
+  showPopup: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    hidePopup: () => {
+      dispatch(BodyActions.hidePopup());
+    },
+    showPopup: () => {
+      dispatch(BodyActions.showPopup());
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Header);
