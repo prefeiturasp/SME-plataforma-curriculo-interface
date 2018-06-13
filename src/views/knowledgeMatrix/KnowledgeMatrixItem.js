@@ -29,11 +29,11 @@ class KnowledgeMatrixItem extends Component {
               <p>{this.props.data.know}</p>
               <h2>Para</h2>
               <p>{this.props.data.to}</p>
-              <NavLink to='/sequencias' className={styles.button}>
+              <NavLink to="/sequencias" className={styles.button}>
                 Ver Sequências de Atividades Relacionadas
               </NavLink>
-              <NavLink to='/matriz-de-saberes' className={styles.close}>
-                <img src={iconCloseBig} alt='Fechar' />
+              <NavLink to="/matriz-de-saberes" className={styles.close}>
+                <img src={iconCloseBig} alt="Fechar" />
               </NavLink>
             </div>
           </div>
