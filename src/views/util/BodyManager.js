@@ -21,16 +21,12 @@ class BodyManager extends React.Component {
 }
 
 BodyManager.propTypes = {
-  hasPopup: PropTypes.bool,
-};
-
-BodyManager.defaultProps = {
-  hasPopup: false,
+  hasPopup: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    hasPopup: state.FiltersReducer.isExpanded,
+    hasPopup: state.BodyReducer.hasPopup,
   };
 };
 
