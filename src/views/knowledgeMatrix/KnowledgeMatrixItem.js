@@ -2,10 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
+  componentDidMount() {
+    this.props.showPopup();
+  }
+
+  componentWillUnmount() {
+    this.props.hidePopup();
+  }
+
   render() {
     return (
       <section className={styles.wrapper}>
@@ -36,6 +45,8 @@ class KnowledgeMatrixItem extends Component {
 
 KnowledgeMatrixItem.propTypes = {
   data: PropTypes.object.isRequired,
+  hidePopup: PropTypes.func.isRequired,
+  showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -44,4 +55,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(KnowledgeMatrixItem);
+const mapDispatchToProps = dispatch => {
+  return {
+    hidePopup: () => {
+      dispatch(BodyActions.hidePopup());
+    },
+    showPopup: () => {
+      dispatch(BodyActions.showPopup());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(KnowledgeMatrixItem);

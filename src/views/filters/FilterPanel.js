@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
 import SequencesActions from '../../actions/SequencesActions';
 import YearButton from './YearButton';
@@ -22,6 +23,7 @@ class FilterPanel extends Component {
   }
 
   onClickedClose() {
+    this.props.hidePopup();
     this.props.togglePanel();
   }
 
@@ -102,6 +104,7 @@ FilterPanel.propTypes = {
   categories: PropTypes.array.isRequired,
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
+  hidePopup: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
@@ -116,6 +119,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    hidePopup: () => {
+      dispatch(BodyActions.hidePopup());
+    },
     search: () => {
       dispatch(FiltersActions.search());
       dispatch(SequencesActions.search());

@@ -2,11 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import GoalItem from './GoalItem';
 import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
 import styles from './SustainableDevGoal.css';
 
 class SustainableDevGoal extends Component {
+  componentDidMount() {
+    this.props.showPopup();
+  }
+
+  componentWillUnmount() {
+    this.props.hidePopup();
+  }
+
   render() {
     const goals = this.props.data.goals.map((item, i) => {
       return (
@@ -56,6 +65,8 @@ class SustainableDevGoal extends Component {
 
 SustainableDevGoal.propTypes = {
   data: PropTypes.object.isRequired,
+  hidePopup: PropTypes.func.isRequired,
+  showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -64,4 +75,15 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SustainableDevGoal);
+const mapDispatchToProps = dispatch => {
+  return {
+    hidePopup: () => {
+      dispatch(BodyActions.hidePopup());
+    },
+    showPopup: () => {
+      dispatch(BodyActions.showPopup());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SustainableDevGoal);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
 import ActiveItem from'./ActiveItem';
 import iconFilters from'../../images/iconFilters.svg';
@@ -8,6 +9,7 @@ import styles from'./FilterBar.css';
 
 class FilterBar extends Component {
   onClickedToggle() {
+    this.props.showPopup();
     this.props.togglePanel();
   }
 
@@ -34,6 +36,7 @@ class FilterBar extends Component {
 
 FilterBar.propTypes = {
   filters: PropTypes.array.isRequired,
+  showPopup: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -45,6 +48,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    showPopup: () => {
+      dispatch(BodyActions.showPopup());
+    },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());
     },
