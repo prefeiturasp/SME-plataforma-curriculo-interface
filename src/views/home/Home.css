@@ -11,6 +11,7 @@
 
 .header {
   align-items: center;
+  background-position: 50% 50%;
   background-size: cover;
   color: white;
   display: flex;
@@ -93,7 +94,7 @@
   margin-bottom: 3.25rem;
 }
 
-.curriculum li img {
+.curriculum img {
   margin-bottom: 1.25rem;
 }
 
@@ -120,5 +121,66 @@
 }
 
 @media only screen and (max-width: 768px) {
-  
+  .header {
+    height: 28.75rem;
+  }
+
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .intro,
+  .sequences,
+  .curriculum
+  .discover {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .intro p {
+    margin-bottom: 3rem;
+  }
+
+  .intro ul {
+    margin-bottom: 2.25rem;
+  }
+
+  .intro li,
+  .curriculum li {
+    margin-bottom: 3.5rem;
+  }
+
+  .intro li:last-child,
+  .curriculum li:last-child {
+    margin-bottom: 0;
+  }
+
+  .intro img {
+    margin-bottom: 1rem;
+  }
+
+  .sequences h2,
+  .curriculum h2 {
+    font-size: 1.75rem;
+  }
+
+  .sequences h2 {
+    margin-bottom: 1rem;
+  }
+
+  .curriculum img {
+    margin-bottom: 1.25rem;
+  }
+
+  .discover {
+    text-align: center;
+  }
+
+  .discover > div > div > div {
+    flex-direction: column;
+  }
+
+  .discover p {
+    margin-bottom: 1.875rem;
+  }
 }
