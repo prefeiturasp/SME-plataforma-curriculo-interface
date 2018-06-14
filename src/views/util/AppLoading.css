@@ -1,0 +1,32 @@
+.wrapper {
+  align-items: center;
+  background: white;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  visibility: hidden;
+  z-index: 100;
+}
+
+.wrapper > img {
+  transform-origin: 50% 50%;
+  animation: loading 1s linear infinite;
+}
+
+.isVisible {
+  visibility: visible;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
