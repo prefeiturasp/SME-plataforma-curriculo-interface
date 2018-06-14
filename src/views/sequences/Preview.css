@@ -9,6 +9,7 @@
   margin: 1rem 0 0 -15px;
   overflow: hidden;
   position: absolute;
+  text-align: left; 
   width: 0;
   left: 100%;
   top: 0;
