@@ -22,8 +22,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log('location', this.props.location);
-    
     const style = { backgroundImage: 'url(http://via.placeholder.com/1110x420)' };
     const sequences = this.props.sequences.map((item, i) => {
       return (
