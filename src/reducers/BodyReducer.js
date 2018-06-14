@@ -3,6 +3,7 @@ import BodyActions from '../actions/BodyActions';
 const initialState = {
   hasPopup: false,
   isHome: false,
+  isLoading: false,
 };
 
 function BodyReducer(state = initialState, action) {
@@ -12,6 +13,12 @@ function BodyReducer(state = initialState, action) {
 
     case BodyActions.EXIT_HOME:
       return Object.assign({}, state, { isHome: false });
+
+    case BodyActions.HIDE_LOADING:
+      return Object.assign({}, state, { isLoading: false });
+
+    case BodyActions.SHOW_LOADING:
+      return Object.assign({}, state, { isLoading: true });
 
     case BodyActions.HIDE_POPUP:
       return Object.assign({}, state, { hasPopup: false });
