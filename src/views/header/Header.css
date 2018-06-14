@@ -35,6 +35,14 @@
   top: 1.125rem;
 }
 
+:global(.isHome) .wrapper {
+  border-bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
 :global(.isHome) .wrapper,
 :global(.isHome) .menu > a {
   color: white;
