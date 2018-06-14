@@ -9,7 +9,7 @@
   top: 0;
   bottom: 0;
   visibility: hidden;
-  z-index: 100;
+  z-index: 50;
 }
 
 .wrapper > img {
