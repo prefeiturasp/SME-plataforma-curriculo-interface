@@ -16,6 +16,7 @@ const initialState = {
       type: 'year',
       value: 3,
       label: '3º',
+      isActive: true,
     },
     {
       type: 'component',
@@ -28,6 +29,7 @@ const initialState = {
       value: 2,
       label: 'Ciências Naturais',
       color: '#add201',
+      isActive: true,
     },
     {
       type: 'component',

@@ -11,6 +11,11 @@ import iconWarning from'../../images/iconWarning.svg';
 import styles from'./LearningObjectives.css';
 
 class LearningObjectives extends Component {
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
+  }
+
   onClickedBack() {
     this.props.closeResults();
   }
@@ -36,7 +41,8 @@ class LearningObjectives extends Component {
         );
       });
 
-    const selectedFiltersButtons = this.props.selectedFilters
+    const selectedFiltersButtons = this.props.filters
+      .filter(item => item.isActive)
       .map((item, i) => {
         return (
           <GenericItem key={i} data={item} />
@@ -51,6 +57,9 @@ class LearningObjectives extends Component {
       });
 
     const classes = this.props.isShowingResults ? [styles.results, styles.isVisible] : [styles.results];
+    const height = this.ref.current ? this.ref.current.offsetHeight : 0;
+    const marginBottom = this.props.isShowingResults ? 0 : height;
+    const style = { marginTop: `-${height}px`, marginBottom: `${marginBottom}px` };
 
     return (
       <section className={styles.wrapper}>
@@ -91,50 +100,53 @@ class LearningObjectives extends Component {
               <h2>Conheça os objetivos</h2>
             </div>
           </div>
-          
-          <div className="row">
-            <div className="col-md-4 offset-md-2">
-              <div className={styles.pickYear}>
-                <h3>Escolha o ano</h3>
-                <h4>Ciclo de alfabetização</h4>
-                <ul className={styles.buttons}>
-                  {yearButtons}
-                </ul>
-                <p className={styles.warning}>
-                  <img src={iconWarning} alt="Observação" />
-                  <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
-                </p>
+          <div ref={this.ref}>
+            <div className="row">
+              <div className="col-md-4 offset-md-2">
+                <div className={styles.pickYear}>
+                  <h3>Escolha o ano</h3>
+                  <h4>Ciclo de alfabetização</h4>
+                  <ul className={styles.buttons}>
+                    {yearButtons}
+                  </ul>
+                  <p className={styles.warning}>
+                    <img src={iconWarning} alt="Observação" />
+                    <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className={styles.pickCurricularComponent}>
+                  <h3>Escolha o Componente Curricular</h3>
+                  <ul className={styles.buttons}>
+                    {componentButtons}
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="col-md-4">
-              <div className={styles.pickCurricularComponent}>
-                <h3>Escolha o Componente Curricular</h3>
-                <ul className={styles.buttons}>
-                  {componentButtons}
-                </ul>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
+                  Avançar
+                </button>
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
-                Avançar
-              </button>
-            </div>
-          </div>
-        <div className={classes.join(' ')}>
-            <div className="col-md-8 offset-md-2">
-              <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
-                <img src={iconChevronLeft} alt="Voltar" />
-                Voltar
-              </button>
-              <p>Ano e componente(s) selecionado(s):</p>
-              <ul>
-                {selectedFiltersButtons}
-              </ul>
-              <ul>
-                {learningObjectivesItems}
-              </ul>
+          <div className={classes.join(' ')} style={style}>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
+                  <img src={iconChevronLeft} alt="Voltar" />
+                  Voltar
+                </button>
+                <p>Ano e componente(s) selecionado(s):</p>
+                <ul>
+                  {selectedFiltersButtons}
+                </ul>
+                <ul>
+                  {learningObjectivesItems}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -146,7 +158,6 @@ class LearningObjectives extends Component {
 LearningObjectives.propTypes = {
   filters: PropTypes.array.isRequired,
   results: PropTypes.array.isRequired,
-  selectedFilters: PropTypes.array.isRequired,
   isShowingResults: PropTypes.bool.isRequired,
   closeResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
@@ -154,9 +165,8 @@ LearningObjectives.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    filters: state.FiltersReducer.filters,
+    filters: state.LearningObjectivesReducer.filters,
     results: state.LearningObjectivesReducer.results,
-    selectedFilters: state.LearningObjectivesReducer.filters,
     isShowingResults: state.LearningObjectivesReducer.isShowingResults,
   };
 };
