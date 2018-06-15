@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LearningObjectiveItem from '../common/LearningObjectiveItem';
+import iconChevronDown from '../../images/iconChevronDown.svg';
+import iconChevronUp from '../../images/iconChevronUp.svg';
 import styles from './ExpandableLearningObjectiveItem.css';
 
 class ExpandableLearningObjectiveItem extends Component {
@@ -26,7 +28,7 @@ class ExpandableLearningObjectiveItem extends Component {
 
   render() {
     const classes = this.state.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
-    const chevron = this.state.isExpanded ? "fa fa-chevron-up" : "fa fa-chevron-down";
+    const chevron = this.state.isExpanded ? iconChevronUp : iconChevronDown;
     const height1 = this.ref.current ? this.ref.current.scrollHeight : 20;
     const height2 = this.state.isExpanded ? height1 : 20;
     const style = { height: `${height2}px` };
@@ -35,7 +37,7 @@ class ExpandableLearningObjectiveItem extends Component {
       <li className={classes.join(' ')}>
         <button className={styles.toggler} onClick={this.onClickedToggle.bind(this)}>
           <LearningObjectiveItem data={this.props.data} />
-          <i className={chevron} />
+          <img src={chevron} alt="Seta" />
         </button>
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}
