@@ -120,6 +120,33 @@
   display: inline-block !important;
 }
 
+.results {
+  display: none;
+  font-size: 1.125rem;
+  position: relative;
+}
+
+.results ul {
+  list-style: none;
+}
+
+.results.isVisible {
+  display: block;
+}
+
+.back {
+  color: #6a6a6a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.back > img {
+  margin-right: 0.5rem;
+}
+
 @media only screen and (max-width: 768px) {
   
 }

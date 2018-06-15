@@ -1,14 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import ComponentButton from '../filters/ComponentButton';
+import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
+import GenericItem from '../common/GenericItem';
 import YearButton from '../filters/YearButton';
+import iconChevronLeft from'../../images/iconChevronLeft.svg';
 import iconWarning from'../../images/iconWarning.svg';
 import styles from'./LearningObjectives.css';
 
 class LearningObjectives extends Component {
-  onClickedNext() {
+  onClickedBack() {
+    this.props.closeResults();
+  }
 
+  onClickedNext() {
+    this.props.search();
   }
 
   render() {
@@ -27,6 +35,22 @@ class LearningObjectives extends Component {
           <ComponentButton key={i} data={item} />
         );
       });
+
+    const selectedFiltersButtons = this.props.selectedFilters
+      .map((item, i) => {
+        return (
+          <GenericItem key={i} data={item} />
+        );
+      });
+
+    const learningObjectivesItems = this.props.results
+      .map((item, i) => {
+        return (
+          <ExpandableLearningObjectiveItem key={i} data={item} />
+        );
+      });
+
+    const classes = this.props.isShowingResults ? [styles.results, styles.isVisible] : [styles.results];
 
     return (
       <section className={styles.wrapper}>
@@ -67,6 +91,7 @@ class LearningObjectives extends Component {
               <h2>Conheça os objetivos</h2>
             </div>
           </div>
+          
           <div className="row">
             <div className="col-md-4 offset-md-2">
               <div className={styles.pickYear}>
@@ -97,6 +122,21 @@ class LearningObjectives extends Component {
               </button>
             </div>
           </div>
+        <div className={classes.join(' ')}>
+            <div className="col-md-8 offset-md-2">
+              <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
+                <img src={iconChevronLeft} alt="Voltar" />
+                Voltar
+              </button>
+              <p>Ano e componente(s) selecionado(s):</p>
+              <ul>
+                {selectedFiltersButtons}
+              </ul>
+              <ul>
+                {learningObjectivesItems}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     );
@@ -105,12 +145,31 @@ class LearningObjectives extends Component {
 
 LearningObjectives.propTypes = {
   filters: PropTypes.array.isRequired,
+  results: PropTypes.array.isRequired,
+  selectedFilters: PropTypes.array.isRequired,
+  isShowingResults: PropTypes.bool.isRequired,
+  closeResults: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters,
+    results: state.LearningObjectivesReducer.results,
+    selectedFilters: state.LearningObjectivesReducer.filters,
+    isShowingResults: state.LearningObjectivesReducer.isShowingResults,
   };
 };
 
-export default connect(mapStateToProps)(LearningObjectives);
+const mapDispatchToProps = dispatch => {
+  return {
+    closeResults: () => {
+      dispatch(LearningObjectivesActions.closeResults());
+    },
+    search: () => {
+      dispatch(LearningObjectivesActions.search());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LearningObjectives);
