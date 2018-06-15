@@ -6,7 +6,7 @@ import styles from './Footer.css';
 class Footer extends Component {
   render() {
     return (
-      <footer className={styles.footer}>
+      <footer className={styles.wrapper}>
         <img src={logoUnesco} alt="Unesco - Cooperação - Representação no Brasil" />
         <img src={logoPrefecture} alt="Prefeitura de São Paulo - Educação" />
       </footer>
