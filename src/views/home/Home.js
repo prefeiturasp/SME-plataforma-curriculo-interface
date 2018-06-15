@@ -7,7 +7,7 @@ import GridItem from '../sequences/GridItem';
 import iconActivities from '../../images/iconActivities.svg';
 import iconCurriculum from '../../images/iconCurriculum.svg';
 import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
-import iconLearningGoals from '../../images/iconLearningGoals.svg';
+import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
 import iconSequences from '../../images/iconSequences.svg';
 import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
 import styles from './Home.css';
@@ -92,7 +92,7 @@ class Home extends Component {
               <div>Matriz de Saberes</div>
             </li>
             <li className="col-md-4">
-              <img src={iconLearningGoals} alt="Objetivos de Aprendizagem" />
+              <img src={iconLearningObjectives} alt="Objetivos de Aprendizagem" />
               <div>Objetivos de Aprendizagem</div>
             </li>
           </ul>

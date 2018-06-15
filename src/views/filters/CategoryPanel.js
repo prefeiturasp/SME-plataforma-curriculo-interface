@@ -6,6 +6,7 @@ import FiltersActions from '../../actions/FiltersActions';
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
+import iconChevronLeft from '../../images/iconChevronLeft.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from './CategoryPanel.css';
 
@@ -53,7 +54,7 @@ class CategoryPanel extends Component {
           </button>
         </footer>
         <button className={styles.back} onClick={this.onClickedClose.bind(this)}>
-          <i className="fa fa-chevron-left" />
+          <img src={iconChevronLeft} alt="Voltar" />
           Voltar
         </button>
         <ReactTooltip

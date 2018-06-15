@@ -1,0 +1,43 @@
+.wrapper {
+  border-top: 1px solid #e0e0e0;
+  color: #6a6a6a;
+  font-size: 0.9375rem;
+  margin-bottom: 0.875rem;
+  padding-top: 0.8125rem;
+  padding-bottom: 0.875rem;
+  text-align: left;
+}
+
+.wrapper:last-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.toggler {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: height 0.3s ease-in-out;
+}
+
+.isExpanded .description {
+  white-space: normal;
+}
+
+.related {
+  color: #6a6a6a;
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 0.8125rem;
+}
+
+.related > img {
+  margin-left: 0.5rem;
+}

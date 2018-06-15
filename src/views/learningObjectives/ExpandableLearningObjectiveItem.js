@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import LearningObjectiveItem from '../common/LearningObjectiveItem';
 import iconChevronDown from '../../images/iconChevronDown.svg';
+import iconChevronRight from '../../images/iconChevronRight.svg';
 import iconChevronUp from '../../images/iconChevronUp.svg';
 import styles from './ExpandableLearningObjectiveItem.css';
 
@@ -41,6 +43,10 @@ class ExpandableLearningObjectiveItem extends Component {
         </button>
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}
+          <NavLink to='/sequencias' className={styles.related}>
+            Ver Sequências de Atividades Relacionadas
+            <img src={iconChevronRight} alt="Seta" />
+          </NavLink>
         </div>
       </li>
     );

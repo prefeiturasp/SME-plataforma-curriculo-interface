@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
 import ListItem from '../common/ListItem';
+import iconArrowLeft from'../../images/iconArrowLeft.svg';
+import iconArrowRight from'../../images/iconArrowRight.svg';
 import iconGroup from'../../images/iconGroup.svg';
 import iconOutdoors from'../../images/iconOutdoors.svg';
 import iconPrint from '../../images/iconPrint.svg';
@@ -52,13 +54,11 @@ class Activity extends Component {
       <ul className={styles.icons}>
         <li>
           <img src={iconGroup} alt="Grupo" />
-          <br />
-          Grupo
+          <div>Grupo</div>
         </li>
         <li>
           <img src={iconOutdoors} alt="Ambiente Externo" />
-          <br />
-          Ambiente Externo
+          <div>Ambiente Externo</div>
         </li>
       </ul>
     );
@@ -118,12 +118,12 @@ class Activity extends Component {
         <hr />
         <div className={styles.arrows}>
           <NavLink className={styles.prev} to={linkPrev}>
-            <i className="fa fa-arrow-left" />
+            <img src={iconArrowLeft} alt="Seta" />
             Atividade 1
           </NavLink>
           <NavLink className={styles.next} to={linkNext}>
             Atividade 2
-            <i className="fa fa-arrow-right" />
+            <img src={iconArrowRight} alt="Seta" />
           </NavLink>
         </div>
         <div className={styles.footer}>

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
 import SequencesActions from '../../actions/SequencesActions';
-import YearButton from './YearButton';
-import ComponentButton from './ComponentButton';
 import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
+import CurricularComponentButton from './CurricularComponentButton';
+import YearButton from './YearButton';
 import iconCloseBig from'../../images/iconCloseBig.svg';
 import iconWarning from'../../images/iconWarning.svg';
 import styles from'./FilterPanel.css';
@@ -42,7 +42,7 @@ class FilterPanel extends Component {
       .filter(item => item.type === 'component')
       .map((item, i) => {
         return (
-          <ComponentButton key={i} data={item} />
+          <CurricularComponentButton key={i} data={item} />
         );
       });
 
