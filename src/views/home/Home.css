@@ -1,0 +1,185 @@
+.wrapper {
+  
+}
+
+.header,
+.intro,
+.sequences,
+.curriculum {
+  text-align: center;
+}
+
+.header {
+  align-items: center;
+  background-position: 50% 50%;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  height: 32.5rem;
+  justify-content: center;
+}
+
+.header p {
+  font-size: 1.3125rem;
+  margin-bottom: 1rem;
+}
+
+.header h1 {
+  font-size: 3.75rem;
+  line-height: 3.75rem;
+}
+
+.intro,
+.curriculum {
+  composes: container from global;
+}
+
+.intro {
+  font-weight: 600;
+  padding-top: 3.5rem;
+  padding-bottom: 3.75rem;
+}
+
+.intro p {
+  font-size: 1.3125rem;
+  margin-bottom: 3.75rem;
+}
+
+.intro ul,
+.sequences ul,
+.curriculum ul {
+  list-style: none;
+}
+
+.intro ul {
+  font-size: 1.125rem;
+  margin-bottom: 2.375rem;
+}
+
+.intro img {
+  margin-bottom: 1.125rem;
+}
+
+.sequences {
+  background: #efefef;
+  padding-top: 3.125rem;
+  padding-bottom: 3.75rem;
+}
+
+.sequences h2,
+.curriculum h2 {
+  font-size: 1.875rem;
+}
+
+.sequences h2 {
+  margin-bottom: 2.5rem;
+}
+
+.curriculum {
+  padding-top: 4rem;
+  padding-bottom: 3.75rem;
+}
+
+.curriculum h2 {
+  margin-bottom: 3.75rem;
+}
+
+.curriculum ul {
+  color: #252525;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 3.25rem;
+}
+
+.curriculum img {
+  margin-bottom: 1.25rem;
+}
+
+.discover {
+  background: #d8eb59;
+  padding-top: 3.375rem;
+  padding-bottom: 3.375rem;
+}
+
+.discover > div > div > div {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discover p {
+  font-size: 1.3125rem;
+  font-weight: 600;
+}
+
+.button {
+  composes: btn from global;
+  display: inline-block !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    height: 28.75rem;
+  }
+
+  .header h1 {
+    font-size: 2.5rem;
+  }
+
+  .intro,
+  .sequences,
+  .curriculum
+  .discover {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .intro p {
+    margin-bottom: 3rem;
+  }
+
+  .intro ul {
+    margin-bottom: 2.25rem;
+  }
+
+  .intro li,
+  .curriculum li {
+    margin-bottom: 3.5rem;
+  }
+
+  .intro li:last-child,
+  .curriculum li:last-child {
+    margin-bottom: 0;
+  }
+
+  .intro img {
+    margin-bottom: 1rem;
+  }
+
+  .sequences h2,
+  .curriculum h2 {
+    font-size: 1.75rem;
+  }
+
+  .sequences h2 {
+    margin-bottom: 1rem;
+  }
+
+  .curriculum img {
+    margin-bottom: 1.25rem;
+  }
+
+  .discover {
+    text-align: center;
+  }
+
+  .discover > div > div > div {
+    flex-direction: column;
+  }
+
+  .discover p {
+    margin-bottom: 1.875rem;
+  }
+}

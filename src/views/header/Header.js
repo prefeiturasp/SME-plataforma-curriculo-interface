@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconMenu from '../../images/iconMenu.svg';
+import iconMenuWhite from '../../images/iconMenuWhite.svg';
 import styles from './Header.css';
 
 class Header extends Component {
@@ -27,6 +28,7 @@ class Header extends Component {
   
   render() {
     const classes = this.state.isMenuExpanded ? [styles.menu, styles.isMenuExpanded] : [styles.menu];
+    const icon = this.props.isHome ? iconMenuWhite : iconMenu;
 
     const data = [
       {
@@ -89,7 +91,7 @@ class Header extends Component {
           </button>
         </nav>
         <button className={styles.toggler} onClick={this.onClickedMenu.bind(this)}>
-          <img src={iconMenu} alt="Menu" />
+          <img src={icon} alt="Menu" />
         </button>
       </header>
     );
@@ -97,8 +99,15 @@ class Header extends Component {
 }
 
 Header.propTypes = {
+  isHome: PropTypes.bool.isRequired,
   hidePopup: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    isHome: state.BodyReducer.isHome,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -112,4 +121,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

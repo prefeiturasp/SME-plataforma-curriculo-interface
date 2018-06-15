@@ -1,13 +1,15 @@
 .wrapper {
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
+  color: #252525;
   display: flex;
   justify-content: space-between;
   padding: 1.75rem 0.9375rem 1.75rem 1.75rem;
+  position: relative;
+  z-index: 60;
 }
 
 .wrapper > h1 {
-  color: #252525;
   font-size: 1.125rem;
   margin-bottom: 0;
 }
@@ -31,6 +33,19 @@
   position: absolute;
   right: 1.125rem;
   top: 1.125rem;
+}
+
+:global(.isHome) .wrapper {
+  border-bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+:global(.isHome) .wrapper,
+:global(.isHome) .menu > a {
+  color: white;
 }
 
 @media only screen and (max-width: 1120px) {

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 
 import Activity from './views/activity/Activity';
+import AppLoading from './views/util/AppLoading';
 import AppModal from './views/util/AppModal';
 import BodyManager from './views/util/BodyManager';
 import Curriculum from './views/curriculum/Curriculum';
@@ -47,6 +48,7 @@ ReactDOM.render(
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
         <Route path='/descobrir' component={Roadmap} />
         <Footer />
+        <AppLoading />
         <AppModal />
         <BodyManager />
       </div>
