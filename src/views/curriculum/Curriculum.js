@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
-import iconLearningGoals from '../../images/iconLearningGoals.svg';
+import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
 import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
 import styles from './Curriculum.css';
 
@@ -43,8 +43,8 @@ class Curriculum extends Component {
             <p>A Matriz de Saberes tem como próposito:<br />Formar cidadãos éticos, responsáveis e solidários que fortaleçam uma sociedade mais inclusiva, democrática, próspera e sustentável.</p>
             <NavLink className={styles.button} to="/matriz-de-saberes">Explore e encontre sequências</NavLink>
           </li>
-          <li className={styles.learningGoals}>
-            <img src={iconLearningGoals} alt="Objetivos de Aprendizagem" />
+          <li className={styles.learningObjectives}>
+            <img src={iconLearningObjectives} alt="Objetivos de Aprendizagem" />
             <h2>Objetivos de Aprendizagem</h2>
             <p>No Currículo da Cidade, os objetivos de aprendizagem e desenvolvimento orientam-se pela Educação Integral a partir da matriz de saberes e indicam o que os estudantes devem alcançar a cada ano como resultado das experiências de ensino e de aprendizagem intencionalmente previstas para esse fim.</p>
             <NavLink className={styles.button} to="/objetivos-de-aprendizagem">Explore e encontre sequências</NavLink>
