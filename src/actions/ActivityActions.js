@@ -1,5 +1,5 @@
 const ActivityActions = {
-  LOADED: 'LOADED',
+  LOADED: 'AA_LOADED',
   
   load() {
     return { type: ActivityActions.LOADED };
