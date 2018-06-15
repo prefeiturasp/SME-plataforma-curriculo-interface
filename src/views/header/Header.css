@@ -94,3 +94,15 @@
     left: 0;
   }
 }
+
+@media only print {
+  .wrapper {
+    border-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .menu {
+    display: none;
+  }
+}
