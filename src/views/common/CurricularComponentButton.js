@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import FiltersActions from '../../actions/FiltersActions';
-import styles from './ComponentButton.css';
+import styles from './CurricularComponentButton.css';
 
-class ComponentButton extends Component {
+class CurricularComponentButton extends Component {
   onClicked() {
     this.props.toggleFilter(this.props.data);
   }
@@ -23,17 +21,9 @@ class ComponentButton extends Component {
   }
 }
 
-ComponentButton.propTypes = {
+CurricularComponentButton.propTypes = {
   data: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleFilter: data => {
-      dispatch(FiltersActions.toggleFilter(data));
-    },
-  };
-};
-
-export default connect(null, mapDispatchToProps)(ComponentButton);
+export default CurricularComponentButton;

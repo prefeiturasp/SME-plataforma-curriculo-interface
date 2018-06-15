@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import YearButton from '../common/YearButton';
-import FiltersActions from '../../actions/FiltersActions';
+import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 
 const mapDispatchToProps = dispatch => {
   return {
     toggleFilter: data => {
-      dispatch(FiltersActions.toggleFilter(data));
+      dispatch(LearningObjectivesActions.toggleFilter(data));
     },
   };
 };

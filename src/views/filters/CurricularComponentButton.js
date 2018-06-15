@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import YearButton from '../common/YearButton';
+import CurricularComponentButton from '../common/CurricularComponentButton';
 import FiltersActions from '../../actions/FiltersActions';
 
 const mapDispatchToProps = dispatch => {
@@ -10,4 +10,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(YearButton);
+export default connect(null, mapDispatchToProps)(CurricularComponentButton);

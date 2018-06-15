@@ -6,7 +6,7 @@ import FiltersActions from '../../actions/FiltersActions';
 import SequencesActions from '../../actions/SequencesActions';
 import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
-import ComponentButton from './ComponentButton';
+import CurricularComponentButton from './CurricularComponentButton';
 import YearButton from './YearButton';
 import iconCloseBig from'../../images/iconCloseBig.svg';
 import iconWarning from'../../images/iconWarning.svg';
@@ -42,7 +42,7 @@ class FilterPanel extends Component {
       .filter(item => item.type === 'component')
       .map((item, i) => {
         return (
-          <ComponentButton key={i} data={item} />
+          <CurricularComponentButton key={i} data={item} />
         );
       });
 

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
-import ComponentButton from '../filters/ComponentButton';
+import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
-import YearButton from '../filters/YearButton';
+import YearButton from './YearButton';
 import iconChevronLeft from'../../images/iconChevronLeft.svg';
 import iconWarning from'../../images/iconWarning.svg';
 import styles from'./LearningObjectives.css';
@@ -37,7 +37,7 @@ class LearningObjectives extends Component {
       .filter(item => item.type === 'component')
       .map((item, i) => {
         return (
-          <ComponentButton key={i} data={item} />
+          <CurricularComponentButton key={i} data={item} />
         );
       });
 
