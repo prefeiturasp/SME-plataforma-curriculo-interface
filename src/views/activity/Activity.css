@@ -227,3 +227,30 @@
     height: 2rem;
   }
 }
+
+@media only print {
+  .infos > button,
+  .arrows,
+  .footer {
+    display: none;
+  }
+
+  .icons {
+    flex-direction: column;
+  }
+
+  .icons > li {
+    border-bottom: 0;
+    border-right: 1px solid #e0e0e0;
+    width: auto;
+  }
+
+  .icons > li:last-child {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .image {
+    max-height: 16rem;
+    object-fit: cover;
+  }
+}
