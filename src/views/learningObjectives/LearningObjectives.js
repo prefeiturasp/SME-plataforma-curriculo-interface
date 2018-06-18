@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import YearButton from './YearButton';
 import iconChevronLeft from'../../images/iconChevronLeft.svg';
+import iconCloseBig from'../../images/iconCloseBig.svg';
 import iconWarning from'../../images/iconWarning.svg';
 import styles from'./LearningObjectives.css';
 
@@ -17,11 +19,22 @@ class LearningObjectives extends Component {
   }
 
   onClickedBack() {
-    this.props.closeResults();
+    this.props.hideResults();
+  }
+
+  onClickedClose() {
+    this.props.hideObjectives();
+    this.props.hidePopup();
   }
 
   onClickedNext() {
+    this.props.showPopup();
     this.props.search();
+  }
+
+  onClickedSee() {
+    this.props.showObjectives();
+    this.props.showPopup();
   }
 
   render() {
@@ -56,10 +69,17 @@ class LearningObjectives extends Component {
         );
       });
 
-    const classes = this.props.isShowingResults ? [styles.results, styles.isVisible] : [styles.results];
-    const height = this.ref.current ? this.ref.current.offsetHeight : 0;
-    const marginBottom = this.props.isShowingResults ? 0 : height;
-    const style = { marginTop: `-${height}px`, marginBottom: `${marginBottom}px` };
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
+    const classes2 = this.props.isShowingResults ? [styles.results, styles.isVisible] : [styles.results];
+    const style = {};
+
+    if (totalWidth >= 768) {
+      const height = this.ref.current ? this.ref.current.offsetHeight : 0;
+      const marginBottom = this.props.isShowingResults ? 0 : height;
+      style.marginTop = `-${height}px`;
+      style.marginBottom = `${marginBottom}px`;
+    }
 
     return (
       <section className={styles.wrapper}>
@@ -90,17 +110,21 @@ class LearningObjectives extends Component {
                 <strong>0X</strong> Ano de Escolaridade;<br />
                 <strong>CXX</strong> Componente curricular Ciências Naturais seguido da sequência de objetivos de aprendizagem e desenvolvimento desse componente.
               </p>
+              <button className={styles.seeObjectives} onClick={this.onClickedSee.bind(this)}>
+                Ver os objetivos relacionados
+              </button>
             </div>
           </div>
         </div>
         <hr />
-        <div className={styles.objectives}>
-          <div className="row">
+        <div className={classes1.join(' ')}>
+          <div className={styles.objectivesTitle1}>
             <div className="col-md-8 offset-md-2">
               <h2>Conheça os objetivos</h2>
             </div>
           </div>
           <div ref={this.ref}>
+            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-4 offset-md-2">
                 <div className={styles.pickYear}>
@@ -131,8 +155,12 @@ class LearningObjectives extends Component {
                 </button>
               </div>
             </div>
+            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
           </div>
-          <div className={classes.join(' ')} style={style}>
+          <div className={classes2.join(' ')} style={style}>
+            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-8 offset-md-2">
                 <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
@@ -148,6 +176,9 @@ class LearningObjectives extends Component {
                 </ul>
               </div>
             </div>
+            <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
           </div>
         </div>
       </section>
@@ -158,26 +189,44 @@ class LearningObjectives extends Component {
 LearningObjectives.propTypes = {
   filters: PropTypes.array.isRequired,
   results: PropTypes.array.isRequired,
+  isShowingObjectives: PropTypes.bool.isRequired,
   isShowingResults: PropTypes.bool.isRequired,
-  closeResults: PropTypes.func.isRequired,
+  hideObjectives: PropTypes.func.isRequired,
+  hidePopup: PropTypes.func.isRequired,
+  hideResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
+  showObjectives: PropTypes.func.isRequired,
+  showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     filters: state.LearningObjectivesReducer.filters,
     results: state.LearningObjectivesReducer.results,
+    isShowingObjectives: state.LearningObjectivesReducer.isShowingObjectives,
     isShowingResults: state.LearningObjectivesReducer.isShowingResults,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeResults: () => {
-      dispatch(LearningObjectivesActions.closeResults());
+    hideObjectives: () => {
+      dispatch(LearningObjectivesActions.hideObjectives());
+    },
+    hidePopup: () => {
+      dispatch(BodyActions.hidePopup());
+    },
+    hideResults: () => {
+      dispatch(LearningObjectivesActions.hideResults());
     },
     search: () => {
       dispatch(LearningObjectivesActions.search());
+    },
+    showObjectives: () => {
+      dispatch(LearningObjectivesActions.showObjectives());
+    },
+    showPopup: () => {
+      dispatch(BodyActions.showPopup());
     },
   };
 };
