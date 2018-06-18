@@ -34,7 +34,7 @@ const initialState = {
 
 function ActivityReducer(state = initialState, action) {
   switch (action.type) {
-    case ActivityActions.LOADED:
+    case ActivityActions.LOAD:
       return state;
 
     default:

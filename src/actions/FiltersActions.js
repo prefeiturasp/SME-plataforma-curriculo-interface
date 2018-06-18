@@ -1,32 +1,32 @@
 const FiltersActions = {
-  SHOWED_CATEGORY: 'FA_SHOWED_CATEGORY',
-  CLOSED_CATEGORY: 'FA_CLOSED_CATEGORY',
-  TOGGLED_FILTER: 'FA_TOGGLED_FILTER',
-  TOGGLED_PANEL: 'FA_TOGGLED_PANEL',
-  CLEARED_FILTERS: 'FA_CLEARED_FILTERS',
-  SEARCHED: 'FA_SEARCHED',
-  DISMISSED_SEARCH_WARNING: 'FA_DISMISSED_SEARCH_WARNING',
+  HIDE_CATEGORY: 'FA_HIDE_CATEGORY',
+  SHOW_CATEGORY: 'FA_SHOW_CATEGORY',
+  TOGGLE_FILTER: 'FA_TOGGLE_FILTER',
+  TOGGLE_PANEL: 'FA_TOGGLE_PANEL',
+  CLEAR_FILTERS: 'FA_CLEAR_FILTERS',
+  SEARCH: 'FA_SEARCH',
+  DISMISS_SEARCH_WARNING: 'FA_DISMISS_SEARCH_WARNING',
   
-  showCategory(category) {
-    return { type: FiltersActions.SHOWED_CATEGORY, category };
+  hideCategory() {
+    return { type: FiltersActions.HIDE_CATEGORY };
   },
-  closeCategory() {
-    return { type: FiltersActions.CLOSED_CATEGORY };
+  showCategory(category) {
+    return { type: FiltersActions.SHOW_CATEGORY, category };
   },
   toggleFilter(filter) {
-    return { type: FiltersActions.TOGGLED_FILTER, filter };
+    return { type: FiltersActions.TOGGLE_FILTER, filter };
   },
   togglePanel() {
-    return { type: FiltersActions.TOGGLED_PANEL };
+    return { type: FiltersActions.TOGGLE_PANEL };
   },
   clearFilters() {
-    return { type: FiltersActions.CLEARED_FILTERS };
+    return { type: FiltersActions.CLEAR_FILTERS };
   },
   search() {
-    return { type: FiltersActions.SEARCHED };
+    return { type: FiltersActions.SEARCH };
   },
   dismissSearchWarning() {
-    return { type: FiltersActions.DISMISSED_SEARCH_WARNING };
+    return { type: FiltersActions.DISMISS_SEARCH_WARNING };
   },
 };
 
