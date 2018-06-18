@@ -79,22 +79,33 @@ const initialState = {
       description: 'Identificar transformações de energia e identificar variáveis que influem nesse fenômeno (por exemplo, ao bater na mesa, transformamos energia mecânica em energia sonora).',
     },
   ],
+  isShowingObjectives: false,
   isShowingResults: false,
 };
 
 function LearningObjectivesReducer(state = initialState, action) {
   switch(action.type) {
-    case LearningObjectivesActions.CLOSED_RESULTS:
+    case LearningObjectivesActions.HIDE_OBJECTIVES:
+      return Object.assign({}, state, {
+        isShowingObjectives: false,
+      });
+
+    case LearningObjectivesActions.SHOW_OBJECTIVES:
+      return Object.assign({}, state, {
+        isShowingObjectives: true,
+      });
+
+    case LearningObjectivesActions.HIDE_RESULTS:
       return Object.assign({}, state, {
         isShowingResults: false,
       });
 
-    case LearningObjectivesActions.SEARCHED:
+    case LearningObjectivesActions.SEARCH:
       return Object.assign({}, state, {
         isShowingResults: true,
       });
 
-    case LearningObjectivesActions.TOGGLED_FILTER:
+    case LearningObjectivesActions.TOGGLE_FILTER:
       return Object.assign({}, state, {
         filters: state.filters.map(item => {
           if (item.type === action.filter.type && item.value === action.filter.value) {
