@@ -1,24 +1,24 @@
 const SequencesActions = {
-  CLEARED_SEARCH: 'SA_CLEARED_SEARCH',
-  SEARCHED: 'SA_SEARCHED',
-  LOADED: 'SA_LOADED',
-  LOADED_MORE: 'SA_LOADED_MORE',
-  TOGGLED_PREVIEW: 'SA_TOGGLED_PREVIEW',
+  CLEAR_SEARCH: 'SA_CLEAR_SEARCH',
+  SEARCH: 'SA_SEARCH',
+  LOAD: 'SA_LOAD',
+  LOAD_MORE: 'SA_LOADE_MORE',
+  TOGGLE_PREVIEW: 'SA_TOGGLE_PREVIEW',
   
   clearSearch() {
-    return { type: SequencesActions.CLEARED_SEARCH };
+    return { type: SequencesActions.CLEAR_SEARCH };
   },
   search() {
-    return { type: SequencesActions.SEARCHED };
+    return { type: SequencesActions.SEARCH };
   },
   load() {
-    return { type: SequencesActions.LOADED };
+    return { type: SequencesActions.LOAD };
   },
   loadMore() {
-    return { type: SequencesActions.LOADED_MORE };
+    return { type: SequencesActions.LOAD_MORE };
   },
   togglePreview(id) {
-    return { type: SequencesActions.TOGGLED_PREVIEW, id };
+    return { type: SequencesActions.TOGGLE_PREVIEW, id };
   },
 };
 

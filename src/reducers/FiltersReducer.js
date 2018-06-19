@@ -166,18 +166,18 @@ const initialState = {
 
 function FiltersReducer(state = initialState, action) {
   switch (action.type) {
-    case FiltersActions.SHOWED_CATEGORY:
+    case FiltersActions.HIDE_CATEGORY:
+      return Object.assign({}, state, {
+        isShowingCategory: false,
+      });
+
+    case FiltersActions.SHOW_CATEGORY:
       return Object.assign({}, state, {
         isShowingCategory: true,
         currCategory: action.category,
       });
 
-    case FiltersActions.CLOSED_CATEGORY:
-      return Object.assign({}, state, {
-        isShowingCategory: false,
-      });
-
-    case FiltersActions.TOGGLED_FILTER:
+    case FiltersActions.TOGGLE_FILTER:
       return Object.assign({}, state, {
         filters: state.filters.map(item => {
           if (item.type === action.filter.type && item.value === action.filter.value) {
@@ -191,12 +191,12 @@ function FiltersReducer(state = initialState, action) {
         })
       });
 
-    case FiltersActions.TOGGLED_PANEL:
+    case FiltersActions.TOGGLE_PANEL:
       return Object.assign({}, state, {
         isExpanded: !state.isExpanded,
       });
 
-    case FiltersActions.CLEARED_FILTERS:
+    case FiltersActions.CLEAR_FILTERS:
       return Object.assign({}, state, {
         filters: state.filters.map(item => {
           return {
@@ -206,7 +206,7 @@ function FiltersReducer(state = initialState, action) {
         })
       });
 
-    case FiltersActions.SEARCHED:
+    case FiltersActions.SEARCH:
       if (state.filters.findIndex(item => item.isActive) >= 0) {
         return Object.assign({}, state, {
           isExpanded: false,
@@ -217,7 +217,7 @@ function FiltersReducer(state = initialState, action) {
         });
       }
 
-    case FiltersActions.DISMISSED_SEARCH_WARNING:
+    case FiltersActions.DISMISS_SEARCH_WARNING:
       return Object.assign({}, state, {
         showSearchWarning: false,
       });

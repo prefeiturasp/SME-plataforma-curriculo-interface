@@ -12,7 +12,7 @@ import styles from './CategoryPanel.css';
 
 class CategoryPanel extends Component {
   onClickedClose() {
-    this.props.closeCategory();
+    this.props.hideCategory();
   }
 
   render() {
@@ -75,7 +75,7 @@ CategoryPanel.propTypes = {
   currCategory: PropTypes.object,
   isShowingCategory: PropTypes.bool,
   items: PropTypes.array.isRequired,
-  closeCategory: PropTypes.func.isRequired,
+  hideCategory: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
 };
 
@@ -90,8 +90,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeCategory: () => {
-      dispatch(FiltersActions.closeCategory());
+    hideCategory: () => {
+      dispatch(FiltersActions.hideCategory());
     },
     search: () => {
       dispatch(FiltersActions.backToCategoryList());

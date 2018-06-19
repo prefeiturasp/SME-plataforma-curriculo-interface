@@ -1,16 +1,24 @@
 const LearningObjectivesActions = {
-  CLOSED_RESULTS: 'LOA_CLOSED_RESULTS',
-  TOGGLED_FILTER: 'LOA_TOGGLED_FILTER',
-  SEARCHED: 'LOA_SEARCHED',
+  HIDE_OBJECTIVES: 'LOA_HIDE_OBJECTIVES',
+  SHOW_OBJECTIVES: 'LOA_SHOW_OBJECTIVES',
+  HIDE_RESULTS: 'LOA_CLOSE_RESULTS',
+  SEARCH: 'LOA_SEARCH',
+  TOGGLED_FILTER: 'LOA_TOGGLE_FILTER',
   
-  closeResults() {
-    return { type: LearningObjectivesActions.CLOSED_RESULTS };
+  hideObjectives() {
+    return { type: LearningObjectivesActions.HIDE_OBJECTIVES };
   },
-  toggleFilter(filter) {
-    return { type: LearningObjectivesActions.TOGGLED_FILTER, filter };
+  showObjectives() {
+    return { type: LearningObjectivesActions.SHOW_OBJECTIVES };
+  },
+  hideResults() {
+    return { type: LearningObjectivesActions.HIDE_RESULTS };
   },
   search() {
-    return { type: LearningObjectivesActions.SEARCHED };
+    return { type: LearningObjectivesActions.SEARCH };
+  },
+  toggleFilter(filter) {
+    return { type: LearningObjectivesActions.TOGGLE_FILTER, filter };
   },
 };
 

@@ -24,6 +24,7 @@
   font-size: 1.125rem;
   padding-top: 2.5rem;
   padding-bottom: 1.5rem;
+  text-align: center;
 }
 
 .example h2 {
@@ -31,6 +32,10 @@
   font-weight: 600;
   margin-bottom: 1.625rem;
   text-align: center;
+}
+
+.example p {
+  text-align: left;
 }
 
 .code {
@@ -68,11 +73,20 @@
   color: #01add2;
 }
 
+.seeObjectives {
+  composes: btn from global;
+  display: none;
+}
+
 .objectives {
   padding-top: 1.875rem;
   padding-bottom: 2.5rem;
   position: relative;
   text-align: center;
+}
+
+.objectivesTitle2 {
+  display: none;
 }
 
 .objectives h2 {
@@ -87,6 +101,7 @@
 
 .objectives h4 {
   font-size: 1.125rem;
+  font-weight: 600;
 }
 
 .pickYear,
@@ -155,6 +170,65 @@
   margin-right: 0.5rem;
 }
 
+.close {
+  display: none;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
 @media only screen and (max-width: 768px) {
-  
+  .seeObjectives {
+    display: inline-block !important;
+  }
+
+  .objectives,
+  .results {
+    background: white;
+    max-width: none !important;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    left: 100%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s ease-in-out !important;
+  }
+
+  .objectives {
+    z-index: 80;
+  }
+
+  .objectivesTitle1 {
+    display: none;
+  }
+
+  .objectivesTitle2 {
+    display: block;
+  }
+
+  .objectives h2,
+  .results h2 {
+    font-size: 1.75rem;
+  }
+
+  .results {
+    height: auto;
+    opacity: 1;
+    padding: 1rem;
+    z-index: 90;
+  }
+
+  .isVisible {
+    left: 0;
+  }
+
+  .back {
+    display: none;
+  }
+
+  .close {
+    display: block;
+  }
 }
