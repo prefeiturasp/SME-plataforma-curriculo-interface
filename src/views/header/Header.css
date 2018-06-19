@@ -75,6 +75,7 @@
   }
 
   .menu > a {
+    color: black !important;
     display: block;
     font-size: 1.75rem;
     margin-top: 2.25rem;
