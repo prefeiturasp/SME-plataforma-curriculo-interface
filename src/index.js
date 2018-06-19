@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 
 import Activity from './views/activity/Activity';
+import ActivityPrint from './views/activity/ActivityPrint';
 import AppLoading from './views/util/AppLoading';
 import AppModal from './views/util/AppModal';
 import BodyManager from './views/util/BodyManager';
@@ -42,6 +43,7 @@ ReactDOM.render(
         <Route path='/sequencia/:id' component={Sequence} />
         <Route path='/imprimir-sequencia/:id' component={SequencePrint} />
         <Route path='/atividade/:id' component={Activity} />
+        <Route path='/imprimir-atividade/:id' component={ActivityPrint} />
         <Route path='/curriculo' component={Curriculum} />
         <Route exact path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />
