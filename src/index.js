@@ -18,6 +18,7 @@ import KnowledgeMatrix from './views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixItem from './views/knowledgeMatrix/KnowledgeMatrixItem';
 import Roadmap from './views/roadmap/Roadmap';
 import Sequence from './views/sequence/Sequence';
+import SequencePrint from './views/sequence/SequencePrint';
 import Sequences from './views/sequences/Sequences';
 import SustainableDevGoal from './views/sustainableDevGoals/SustainableDevGoal';
 import SustainableDevGoals from './views/sustainableDevGoals/SustainableDevGoals';
@@ -39,6 +40,7 @@ ReactDOM.render(
         <Route exact path='/' component={Home} />
         <Route path='/sequencias' component={Sequences} />
         <Route path='/sequencia/:id' component={Sequence} />
+        <Route path='/imprimir-sequencia/:id' component={SequencePrint} />
         <Route path='/atividade/:id' component={Activity} />
         <Route path='/curriculo' component={Curriculum} />
         <Route exact path='/ods' component={SustainableDevGoals} />
