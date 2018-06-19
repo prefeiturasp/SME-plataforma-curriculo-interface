@@ -1,6 +1,7 @@
 .wrapper {
   background: #e0e0e0;
   font-size: 1.125rem;
+  overflow-y: scroll;
   position: fixed;
   text-align: center;
   left: 0;
