@@ -65,6 +65,34 @@ class Activity extends Component {
     const icons1 = this.state.totalWidth < 768 ? null : icons;
     const icons2 = this.state.totalWidth < 768 ? icons : null;
 
+    const printButton = this.props.isSimplified ? null : (
+        <button className="btn" onClick={this.onClickedPrint.bind(this)}>
+          <img src={iconPrint} alt="Imprimir" />
+          Imprimir
+        </button>
+      );
+    
+    const arrows = this.props.isSimplified ? null : (
+        <div className={styles.arrows}>
+          <NavLink className={styles.prev} to={linkPrev}>
+            <img src={iconArrowLeft} alt="Seta" />
+            Atividade 1
+          </NavLink>
+          <NavLink className={styles.next} to={linkNext}>
+            Atividade 2
+            <img src={iconArrowRight} alt="Seta" />
+          </NavLink>
+        </div>
+      );
+
+    const footer = this.props.isSimplified ? null : (
+        <div className={styles.footer}>
+          <NavLink className={styles.back} to={link}>
+            Voltar para a sequência
+          </NavLink>
+        </div>
+      );
+
     return (
       <section className={styles.wrapper}>
         <div className={styles.header}>
@@ -77,10 +105,7 @@ class Activity extends Component {
             </ul>
           </div>
           <div className={styles.infos}>
-            <button className="btn" onClick={this.onClickedPrint.bind(this)}>
-              <img src={iconPrint} alt="Imprimir" />
-              Imprimir
-            </button>
+            {printButton}
             {icons1}
           </div>
         </div>
@@ -116,27 +141,15 @@ class Activity extends Component {
           </div>
         </div>
         <hr />
-        <div className={styles.arrows}>
-          <NavLink className={styles.prev} to={linkPrev}>
-            <img src={iconArrowLeft} alt="Seta" />
-            Atividade 1
-          </NavLink>
-          <NavLink className={styles.next} to={linkNext}>
-            Atividade 2
-            <img src={iconArrowRight} alt="Seta" />
-          </NavLink>
-        </div>
-        <div className={styles.footer}>
-          <NavLink className={styles.back} to={link}>
-            Voltar para a sequência
-          </NavLink>
-        </div>
+        {arrows}
+        {footer}
       </section>
     );
   }
 }
 
 Activity.propTypes = {
+  isSimplified: PropTypes.bool,
   data: PropTypes.object,
   load: PropTypes.func.isRequired,
 };
