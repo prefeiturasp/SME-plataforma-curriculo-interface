@@ -62,6 +62,13 @@ class Sequence extends Component {
       );
     });
 
+    const image = this.props.data.image ? (
+        <img
+          className={styles.image}
+          src={this.props.data.image}
+          alt={this.props.data.title} />
+      ) : null;
+
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
@@ -133,10 +140,7 @@ class Sequence extends Component {
         </div>
         <hr />
         <div className="container">
-          <img
-            className={styles.image}
-            src={this.props.data.image}
-            alt={this.props.data.title} />
+          {image}
           <div className={styles.description}>
             {this.props.data.description}
           </div>
