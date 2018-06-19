@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SequencesActions from '../../actions/SequencesActions';
-import Activity from '../activity/Activity';
+import ActivityPrint from '../activity/ActivityPrint';
 import CurricularComponentItem from '../common/CurricularComponentItem';
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
@@ -51,7 +51,7 @@ class SequencePrint extends Component {
     
     const activities = this.props.data.activities.map((item, i) => {
       return (
-        <Activity key={i} data={item} index={i + 1} isSimplified={true} />
+        <ActivityPrint key={i} data={item} index={i + 1} />
       );
     });
 
@@ -73,7 +73,7 @@ class SequencePrint extends Component {
         <hr />
         <div className={styles.details}>
           <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-4">
+            <div className="col-4">
               <div className={styles.title}>
                 Componentes relacionados
               </div>
@@ -87,7 +87,7 @@ class SequencePrint extends Component {
                 {knowledgeMatrices}
               </ul>
             </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
+            <div className="col-4">
               <div className={styles.title}>
                 Objetivos de aprendizagem
               </div>
@@ -95,7 +95,7 @@ class SequencePrint extends Component {
                 {learningObjectives}
               </ul>
             </div>
-            <div className="col-sm-12 col-md-12 col-lg-4">
+            <div className="col-4">
               <div className={styles.title}>
                 Objetivos de Desenvolvimento Sustentável (ODS)
               </div>
