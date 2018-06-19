@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
 import ListItem from '../common/ListItem';
-import iconArrowLeft from'../../images/iconArrowLeft.svg';
-import iconArrowRight from'../../images/iconArrowRight.svg';
 import iconGroup from'../../images/iconGroup.svg';
 import iconOutdoors from'../../images/iconOutdoors.svg';
-import iconPrint from '../../images/iconPrint.svg';
 import styles from'./Activity.css';
 
-class Activity extends Component {
-  onClickedPrint() {
-    
-  }
-
+class ActivityPrint extends Component {
   onResized() {
     const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
     this.setState({ totalWidth });
@@ -46,10 +38,6 @@ class Activity extends Component {
       );
     });
 
-    const linkPrev = `/atividade/${this.props.data.prevId}`;
-    const linkNext = `/atividade/${this.props.data.nextId}`;
-    const link = `/sequencia/${this.props.data.sequence.id}`;
-
     const icons = (
       <ul className={styles.icons}>
         <li>
@@ -77,10 +65,6 @@ class Activity extends Component {
             </ul>
           </div>
           <div className={styles.infos}>
-            <button className="btn" onClick={this.onClickedPrint.bind(this)}>
-              <img src={iconPrint} alt="Imprimir" />
-              Imprimir
-            </button>
             {icons1}
           </div>
         </div>
@@ -116,27 +100,12 @@ class Activity extends Component {
           </div>
         </div>
         <hr />
-        <div className={styles.arrows}>
-          <NavLink className={styles.prev} to={linkPrev}>
-            <img src={iconArrowLeft} alt="Seta" />
-            Atividade 1
-          </NavLink>
-          <NavLink className={styles.next} to={linkNext}>
-            Atividade 2
-            <img src={iconArrowRight} alt="Seta" />
-          </NavLink>
-        </div>
-        <div className={styles.footer}>
-          <NavLink className={styles.back} to={link}>
-            Voltar para a sequência
-          </NavLink>
-        </div>
       </section>
     );
   }
 }
 
-Activity.propTypes = {
+ActivityPrint.propTypes = {
   data: PropTypes.object,
   load: PropTypes.func.isRequired,
 };
@@ -155,4 +124,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Activity);
+export default connect(mapStateToProps, mapDispatchToProps)(ActivityPrint);
