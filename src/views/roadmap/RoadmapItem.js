@@ -10,12 +10,12 @@ class RoadmapItem extends Component {
 
     const classes = isToRight ? [styles.wrapper, styles.isToRight] : [styles.wrapper];
 
-    const icon = this.props.data.isPublished ? iconPublished : iconClockBig;
-    const alt = this.props.data.isPublished ? 'Publicado' : 'Em breve';
-
-    const soon = this.props.data.isPublished ? null : (
+    const isPublished = this.props.data.status == 'Executado';
+    const icon = isPublished ? iconPublished : iconClockBig;
+    const alt = isPublished ? 'Publicado' : 'Em breve';
+    const soon = !isPublished ? null : (
       <div className={styles.soon}>
-        Em breve
+        {this.props.data.status}
       </div>
     );
 
@@ -28,7 +28,7 @@ class RoadmapItem extends Component {
         <div className={styles.content}>
           {soon}
           <h2>{this.props.data.title}</h2>
-          <p>{this.props.data.text}</p>
+          <p>{this.props.data.description}</p>
         </div>
       </li>
     );

@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router';
+import { applyMiddleware, createStore } from 'redux';
 
 import Activity from './views/activity/Activity';
 import ActivityPrint from './views/activity/ActivityPrint';
@@ -31,7 +32,10 @@ import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import './index.css';
 
-const store = createStore(reducers);
+const store = createStore(
+  reducers,
+  applyMiddleware(thunk),
+);
 
 ReactDOM.render(
   <Provider store={store}>

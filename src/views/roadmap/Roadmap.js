@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import RoadmapActions from '../../actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
 import styles from './Roadmap.css';
 
 class Roadmap extends Component {
+  componentDidMount() {
+    this.props.load();
+  }
+
   render() {
     const items = this.props.data.map((item, i) => {
       return (
@@ -36,7 +41,7 @@ class Roadmap extends Component {
         </div>
         <hr />
         <footer className={styles.footer}>
-          <NavLink to="/sequencias" class={styles.button}>
+          <NavLink to="/sequencias" className={styles.button}>
             Encontre sequências de atividades
           </NavLink>
         </footer>
@@ -47,6 +52,7 @@ class Roadmap extends Component {
 
 Roadmap.propTypes = {
   data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -55,4 +61,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Roadmap);
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => {
+      dispatch(RoadmapActions.load());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Roadmap);
