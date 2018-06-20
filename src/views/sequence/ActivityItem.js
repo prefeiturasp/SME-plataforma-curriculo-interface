@@ -13,7 +13,7 @@ class ActivityItem extends Component {
         <NavLink to={link} className={styles.wrapper}>
           <div className={styles.image}>
             <img
-              src={this.props.data.image}
+              src={this.props.data.thumbnail}
               alt={this.props.data.name} />
             <span>{this.props.index}</span>
           </div>

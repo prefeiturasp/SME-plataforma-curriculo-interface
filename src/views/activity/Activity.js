@@ -65,6 +65,22 @@ class Activity extends Component {
     const icons1 = this.state.totalWidth < 768 ? null : icons;
     const icons2 = this.state.totalWidth < 768 ? icons : null;
 
+    const cover = this.props.data.cover ? (
+      <div className="container">
+        <img
+          className={styles.cover}
+          src={this.props.data.cover}
+          alt={this.props.data.name} />
+      </div>
+    ) : null;
+
+    const image = this.props.data.image ? (
+      <img
+        className={styles.image}
+        src={this.props.data.image}
+        alt={this.props.data.name} />
+    ) : null;
+
     return (
       <section className={styles.wrapper}>
         <div className={styles.header}>
@@ -84,12 +100,7 @@ class Activity extends Component {
             {icons1}
           </div>
         </div>
-        <div className="container">
-          <img
-            className={styles.image}
-            src={this.props.data.image1}
-            alt={this.props.data.name} />
-        </div>
+        {cover}
         {icons2}
         <hr />
         <div className="container">
@@ -105,10 +116,7 @@ class Activity extends Component {
         <hr />
         <div className="container">
           <h4>Orientações</h4>
-          <img
-            className={styles.image}
-            src={this.props.data.image2}
-            alt={this.props.data.name} />
+          {image}
           <div className="row">
             <div className={styles.description}>
               {this.props.data.description}
