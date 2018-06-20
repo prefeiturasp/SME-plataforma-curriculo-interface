@@ -88,6 +88,7 @@
   margin-bottom: 0.4375rem;
 }
 
+.cover,
 .image {
   margin-bottom: 1.25rem;
   width: 100%;
@@ -194,6 +195,7 @@
     border-right: 0;
   }
 
+  .cover,
   .image {
     margin-bottom: 1rem;
   }
@@ -249,8 +251,12 @@
     border-bottom: 1px solid #e0e0e0;
   }
 
+  .cover {
+    max-height: 10rem;
+  }
+
+  .cover,
   .image {
-    max-height: 16rem;
     object-fit: cover;
   }
 }

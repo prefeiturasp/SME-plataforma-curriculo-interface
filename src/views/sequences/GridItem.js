@@ -20,17 +20,29 @@ class GridItem extends Component {
   render() {
     const data = this.props.data;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
-    const icon = this.props.data.isExpanded ? iconMinus : iconPlus;
-    const alt = this.props.data.isExpanded ? "Esconder" : "Expandir";
+    const icon = data.isExpanded ? iconMinus : iconPlus;
+    const alt = data.isExpanded ? "Esconder" : "Expandir";
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
+    const style = { color: data.curricularComponent.color };
+
+    const thumbnail = data.thumbnail ? (
+        <div className={styles.image}>
+          <img src={data.thumbnail} alt="" />
+        </div>
+      ) : (
+        <div className={styles.initials}>
+          {data.curricularComponent.name.split(' ').map(s => s.charAt(0)).join('')}
+        </div>
+      );
 
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
         <article className={styles.wrapper} ref={this.ref}>
-          <div className={styles.image}>
-            <img src="http://via.placeholder.com/256x160" alt="" />
+          {thumbnail}
+          <div className={styles.component}>
+            <em style={style}>{data.curricularComponent.name}</em>
+            <span>{data.year.label}</span>
           </div>
-          <div className={styles.component}>{data.curricularComponent.name}</div>
           <div className={styles.title}>{data.name}</div>
           <div className={styles.infos}>
             <div className={styles.info}>

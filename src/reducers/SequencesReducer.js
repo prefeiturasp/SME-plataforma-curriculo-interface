@@ -4,6 +4,7 @@ const sequence = {
   name: 'Os Movimentos do nosso Planeta',
   description: 'Nesta unidade, as sequências de atividades oferecem diferentes oportunidades para que os estudantes possam ouvir, ler e escrever os textos literários. É importante que mesmo sem saber ler e escrever convencionalmente as crianças participem das situações de intercâmbio de leitores, para elaborar suas próprias interpretações sobre as obras lidas, confrontar ideias de outros colegas e construir significados cada vez mais elaborados sobre textos, preservando assim, o sentido das práticas de linguagem que exercem fora da escola.',
   image: 'http://via.placeholder.com/1110x568',
+  thumbnail: 'http://via.placeholder.com/256x160',
   classes: 16,
   year: {
     label: '1º ano',
@@ -133,16 +134,16 @@ const sequence = {
   ],
 };
 
-const sequence1 = Object.assign({}, sequence, { id: 1, ...sequence });
-const sequence2 = Object.assign({}, sequence, { id: 2, ...sequence });
-const sequence3 = Object.assign({}, sequence, { id: 3, ...sequence });
-const sequence4 = Object.assign({}, sequence, { id: 4, ...sequence });
-const sequence5 = Object.assign({}, sequence, { id: 5, ...sequence });
-const sequence6 = Object.assign({}, sequence, { id: 6, ...sequence });
+const sequence1 = Object.assign({}, sequence, { id: 1 });
+const sequence2 = Object.assign({}, sequence, { id: 2, image: null, thumbnail: null });
+const sequence3 = Object.assign({}, sequence, { id: 3 });
+const sequence4 = Object.assign({}, sequence, { id: 4 });
+const sequence5 = Object.assign({}, sequence, { id: 5 });
+const sequence6 = Object.assign({}, sequence, { id: 6 });
 
 const initialState = {
   sequences: [sequence1, sequence2, sequence3, sequence4, sequence5, sequence6],
-  currSequence: sequence,
+  currSequence: sequence2,
 };
 
 function SequencesReducer(state = initialState, action) {
