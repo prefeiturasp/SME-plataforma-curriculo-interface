@@ -16,8 +16,8 @@ class KnowledgeMatrixItem extends Component {
   }
 
   render() {
-    const id = parseInt(this.props.match.params.id, 10);
-    const data = this.props.data.filter(item => item.sequence === id)[0];
+    const index = parseInt(this.props.match.params.index, 10);
+    const data = this.props.data[index - 1];
     
     return (
       <section className={styles.wrapper}>
@@ -25,7 +25,7 @@ class KnowledgeMatrixItem extends Component {
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className={styles.number}>
-                {data.sequence}
+                {index}
               </div>
               <h1>{data.title}</h1>
               <h2>Saber</h2>
