@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
+import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
 import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
 import styles from './SustainableDevGoal.css';
@@ -10,6 +11,7 @@ import styles from './SustainableDevGoal.css';
 class SustainableDevGoal extends Component {
   componentDidMount() {
     this.props.showPopup();
+    this.props.loadItem(this.props.match.params.id);
   }
 
   componentWillUnmount() {
@@ -17,13 +19,23 @@ class SustainableDevGoal extends Component {
   }
 
   render() {
-    const goals = this.props.data.goals.map((item, i) => {
+    const data = this.props.data ? this.props.data : {
+      goals: [],
+      name: '',
+      description: '',
+      icon: '',
+    };
+
+    const goals = data.goals.map((item, i) => {
       return (
-        <GoalItem key={i} data={item} />
+        <GoalItem
+          key={i}
+          data={item}
+          index={i + 1} />
       );
     });
 
-    const style = { backgroundColor: this.props.data.color };
+    const style = { backgroundColor: '#c30' };//data.color };
 
     return (
       <section className={styles.wrapper}>
@@ -32,12 +44,12 @@ class SustainableDevGoal extends Component {
             <div className="row">
               <div className="col-md-8 offset-md-2">
                 <div className={styles.number}>
-                  {this.props.data.index}
+                  {data.index}
                 </div>
-                <h1>{this.props.data.name}</h1>
-                <h2>{this.props.data.description}</h2>
-                <img src={this.props.data.iconBig} alt={this.props.data.name} />
-                <p>{this.props.data.text}</p>
+                <h1>{data.name}</h1>
+                <h2>{data.description}</h2>
+                <img src={data.icon} alt={data.name} />
+                <p>{data.text}</p>
               </div>
             </div>
           </div>
@@ -65,6 +77,7 @@ class SustainableDevGoal extends Component {
 
 SustainableDevGoal.propTypes = {
   data: PropTypes.object.isRequired,
+  loadItem: PropTypes.func.isRequired,
   hidePopup: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
 };
@@ -77,6 +90,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadItem: (id) => {
+      dispatch(SustainableDevGoalsActions.loadItem(id));
+    },
     hidePopup: () => {
       dispatch(BodyActions.hidePopup());
     },
