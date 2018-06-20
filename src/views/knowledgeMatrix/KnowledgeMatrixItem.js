@@ -16,19 +16,22 @@ class KnowledgeMatrixItem extends Component {
   }
 
   render() {
+    const id = parseInt(this.props.match.params.id, 10);
+    const data = this.props.data.filter(item => item.sequence === id)[0];
+    
     return (
       <section className={styles.wrapper}>
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className={styles.number}>
-                {this.props.data.index}
+                {data.sequence}
               </div>
-              <h1>{this.props.data.name}</h1>
+              <h1>{data.title}</h1>
               <h2>Saber</h2>
-              <p>{this.props.data.know}</p>
+              <p>{data.know_description}</p>
               <h2>Para</h2>
-              <p>{this.props.data.to}</p>
+              <p>{data.for_description}</p>
               <NavLink to="/sequencias" className={styles.button}>
                 Ver Sequências de Atividades Relacionadas
               </NavLink>
@@ -44,14 +47,14 @@ class KnowledgeMatrixItem extends Component {
 }
 
 KnowledgeMatrixItem.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   hidePopup: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.KnowledgeMatrixReducer.currItem,
+    data: state.KnowledgeMatrixReducer.items,
   };
 };
 

@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
 import KnowledgeMatrixButton from './KnowledgeMatrixButton';
 import styles from './KnowledgeMatrix.css';
 
 class KnowledgeMatrix extends Component {
+  componentDidMount() {
+    this.props.load();
+  }
+
   render() {
     const items = this.props.data.map((item, i) => {
       return (
@@ -40,6 +45,7 @@ class KnowledgeMatrix extends Component {
 
 KnowledgeMatrix.propTypes = {
   data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -48,4 +54,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(KnowledgeMatrix);
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => {
+      dispatch(KnowledgeMatrixActions.load());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(KnowledgeMatrix);
