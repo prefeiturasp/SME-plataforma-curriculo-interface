@@ -52,7 +52,7 @@ ReactDOM.render(
         <Route exact path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />
         <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
-        <Route path='/matriz-de-saberes/:id' component={KnowledgeMatrixItem} />
+        <Route path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} />
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
         <Route path='/descobrir' component={Roadmap} />
         <Footer />

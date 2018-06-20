@@ -10,7 +10,7 @@ class RoadmapItem extends Component {
 
     const classes = isToRight ? [styles.wrapper, styles.isToRight] : [styles.wrapper];
 
-    const isPublished = this.props.data.status == 'Executado';
+    const isPublished = this.props.data.status === 'Executado';
     const icon = isPublished ? iconPublished : iconClockBig;
     const alt = isPublished ? 'Publicado' : 'Em breve';
     const soon = !isPublished ? null : (
