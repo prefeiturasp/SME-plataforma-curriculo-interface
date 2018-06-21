@@ -1,4 +1,16 @@
+import { API_URL } from '../constants';
+
+function onLoad() {
+  return { type: FiltersActions.LOAD };
+}
+
+function onLoaded(data) {
+  return { data, type: FiltersActions.LOADED };
+}
+
 const FiltersActions = {
+  LOAD: 'FA_LOAD',
+  LOADED: 'FA_LOADED',
   HIDE_CATEGORY: 'FA_HIDE_CATEGORY',
   SHOW_CATEGORY: 'FA_SHOW_CATEGORY',
   TOGGLE_FILTER: 'FA_TOGGLE_FILTER',
@@ -7,6 +19,16 @@ const FiltersActions = {
   SEARCH: 'FA_SEARCH',
   DISMISS_SEARCH_WARNING: 'FA_DISMISS_SEARCH_WARNING',
   
+  load() {
+    return dispatch => {
+      dispatch(onLoad());
+      fetch(`${API_URL}/api/filtros`)
+        .then(response => response.json())
+        .then(data => {
+          dispatch(onLoaded(data));
+        });
+    };
+  },
   hideCategory() {
     return { type: FiltersActions.HIDE_CATEGORY };
   },
