@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { API_URL } from '../../constants';
 import FiltersActions from '../../actions/FiltersActions';
 import styles from './CategoryItemImageButton.css';
 
@@ -15,7 +16,7 @@ class CategoryItemImageButton extends Component {
     return (
       <li>
         <button className={classes.join(' ')} onClick={this.onClicked.bind(this)}>
-          <img src={this.props.data.image} alt={this.props.data.label} />
+          <img src={API_URL + this.props.data.url} alt={this.props.data.name} />
         </button>
       </li>
     );

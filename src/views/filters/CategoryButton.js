@@ -14,10 +14,10 @@ class CategoryButton extends Component {
     return (
       <li>
         <button className={styles.wrapper} onClick={this.onClicked.bind(this)}>
-          {this.props.data.label}
+          {this.props.data.name}
           <img
             src={iconChevronRight}
-            alt={this.props.data.label} />
+            alt={this.props.data.name} />
         </button>
       </li>
     );

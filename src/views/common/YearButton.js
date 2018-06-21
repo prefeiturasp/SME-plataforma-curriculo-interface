@@ -13,7 +13,7 @@ class YearButton extends Component {
     return (
       <li>
         <button className={[classes.join(' ')]} onClick={this.onClicked.bind(this)}>
-          {this.props.data.label}
+          {this.props.data.description}
         </button>
       </li>
     );

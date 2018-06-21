@@ -18,7 +18,7 @@ class CategoryPanel extends Component {
   render() {
     const classes = this.props.isShowingCategory ? [styles.wrapper, styles.isShowing] : [styles.wrapper];
 
-    const hasImage = this.props.items.findIndex(item => item.image) >= 0;
+    const hasImage = this.props.items.findIndex(item => item.url) >= 0;
     const listStyle = hasImage ? styles.images : null;
     
     const items = this.props.items.map((item, i) => {
@@ -29,7 +29,7 @@ class CategoryPanel extends Component {
       );
     });
 
-    const categoryName = this.props.currCategory? this.props.currCategory.label : '';
+    const categoryName = this.props.currCategory ? this.props.currCategory.name : '';
 
     return (
       <div className={classes.join(' ')}>
@@ -84,7 +84,7 @@ const mapStateToProps = state => {
   return {
     currCategory,
     isShowingCategory: state.FiltersReducer.isShowingCategory,
-    items: currCategory ? state.FiltersReducer.filters.filter(item => item.type === currCategory.type) : [],
+    items: currCategory ? state.FiltersReducer[currCategory.slug] : [],
   };
 };
 
