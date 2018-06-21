@@ -10,7 +10,11 @@ import styles from'./Sequences.css';
 
 class Sequences extends Component {
   onClickedLoad() {
-    this.props.loadMore();
+    
+  }
+
+  componentDidMount() {
+    this.props.load();
   }
 
   render() {
@@ -59,19 +63,19 @@ class Sequences extends Component {
 
 Sequences.propTypes = {
   data: PropTypes.array.isRequired,
-  loadMore: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.SequencesReducer.sequences,
+    data: state.SequencesReducer.items,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadMore: () => {
-      dispatch(SequencesActions.loadMore());
+    load: () => {
+      dispatch(SequencesActions.load());
     },
   };
 };

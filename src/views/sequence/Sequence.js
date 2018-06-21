@@ -20,6 +20,10 @@ class Sequence extends Component {
     window.print();
   }
 
+  componentDidMount() {
+    this.props.loadItem(this.props.match.params.slug);
+  }
+
   render() {
     const filters = [
       <GenericItem key={0} data={this.props.data.year} />,
@@ -183,19 +187,19 @@ class Sequence extends Component {
 
 Sequence.propTypes = {
   data: PropTypes.object,
-  load: PropTypes.func.isRequired,
+  loadItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.SequencesReducer.currSequence,
+    data: state.SequencesReducer.currItem,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => {
-      dispatch(SequencesActions.load());
+    loadItem: (slug) => {
+      dispatch(SequencesActions.loadItem(slug));
     },
   };
 };
