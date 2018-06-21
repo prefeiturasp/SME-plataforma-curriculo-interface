@@ -6,8 +6,8 @@ class KnowledgeMatrixItem extends Component {
   render() {
     return (
       <li className={styles.wrapper}>
-        <div>{this.props.data.number}</div>
-        <div>{this.props.data.name}</div>
+        <div>{this.props.data.sequence}</div>
+        <div>{this.props.data.title}</div>
       </li>
     );
   }

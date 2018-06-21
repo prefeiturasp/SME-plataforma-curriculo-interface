@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { API_URL } from '../../constants';
 import styles from './SustainableDevGoalItem.css';
 
 class SustainableDevGoalItem extends Component {
   render() {
     return (
       <img
-        src={this.props.data.image}
-        alt={this.props.data.name}
+        src={API_URL + this.props.data.icon_url}
+        alt={this.props.data.title}
         className={styles.wrapper} />
     );
   }

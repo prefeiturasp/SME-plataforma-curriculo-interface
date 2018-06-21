@@ -4,13 +4,18 @@ import styles from './LearningObjectiveItem.css';
 
 class LearningObjectiveItem extends Component {
   render() {
+    const color = '#c30';
+    const code1 = this.props.data.code.substr(0, 4);
+    const code2 = this.props.data.code.substr(4, 1);
+    const code3 = this.props.data.code.substr(5);
+
     return (
       <li className={styles.wrapper}>
-        {this.props.data.code1}
-        <span style={{color:this.props.data.color}}>
-          {this.props.data.code2}
+        {code1}
+        <span style={{color}}>
+          {code2}
         </span>
-        {this.props.data.code3}
+        {code3}
       </li>
     );
   }
