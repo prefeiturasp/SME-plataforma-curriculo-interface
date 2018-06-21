@@ -13,10 +13,7 @@ class SustainableDevGoals extends Component {
   render() {
     const items = this.props.data.map((item, i) => {
       return (
-        <SustainableDevGoalButton
-          key={i}
-          data={item}
-          index={i + 1} />
+        <SustainableDevGoalButton key={i} data={item} />
       );
     });
 

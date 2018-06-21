@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { API_URL } from '../../constants';
 import BodyActions from '../../actions/BodyActions';
 import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
@@ -44,11 +45,11 @@ class SustainableDevGoal extends Component {
             <div className="row">
               <div className="col-md-8 offset-md-2">
                 <div className={styles.number}>
-                  {data.index}
+                  {data.sequence}
                 </div>
                 <h1>{data.name}</h1>
                 <h2>{data.description}</h2>
-                <img src={data.icon} alt={data.name} />
+                <img src={API_URL + data.icon} alt={data.name} />
                 <p>{data.text}</p>
               </div>
             </div>
