@@ -13,10 +13,7 @@ class KnowledgeMatrix extends Component {
   render() {
     const items = this.props.data.map((item, i) => {
       return (
-        <KnowledgeMatrixButton
-          key={i}
-          data={item}
-          index={i + 1} />
+        <KnowledgeMatrixButton key={i} data={item} />
       );
     });
 

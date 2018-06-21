@@ -15,19 +15,19 @@ class Preview extends Component {
   }
 
   render() {
-    const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
+    const knowledgeMatrices = this.props.data.knowledge_matrices.map((item, i) => {
       return (
         <KnowledgeMatrixItem key={i} data={item} />
       );
     });
 
-    const learningObjectives = this.props.data.learningObjectives.map((item, i) => {
+    const learningObjectives = this.props.data.learning_objectives.map((item, i) => {
       return (
         <LearningObjectiveItem key={i} data={item} />
       );
     });
 
-    const sustainableDevGoals = this.props.data.sustainableDevGoals.map((item, i) => {
+    const sustainableDevGoals = this.props.data.sustainable_development_goals.map((item, i) => {
       return (
         <SustainableDevGoalItem key={i} data={item} />
       );
@@ -45,7 +45,7 @@ class Preview extends Component {
     }
 
     const style = { height: `${height}px` };
-    const link = `/sequencia/${this.props.data.id}`;
+    const link = `/sequencia/${this.props.data.slug}`;
     const classes = [styles.wrapper];
     if (this.props.data.isExpanded) classes.push(styles.isExpanded)
     if (this.props.isLeftAligned) classes.push(styles.isLeftAligned)

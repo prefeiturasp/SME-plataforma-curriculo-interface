@@ -19,19 +19,22 @@ class GridItem extends Component {
 
   render() {
     const data = this.props.data;
+    data.color = '#c30';
+    data.year = '1o ano';
+
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
     const icon = data.isExpanded ? iconMinus : iconPlus;
     const alt = data.isExpanded ? "Esconder" : "Expandir";
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
-    const style = { color: data.curricularComponent.color };
+    const style = { color: '#c30' };//data.curricularComponent.color };
 
-    const thumbnail = data.thumbnail ? (
+    const thumbnail = data.image ? (
         <div className={styles.image}>
-          <img src={data.thumbnail} alt="" />
+          <img src={data.image} alt="" />
         </div>
       ) : (
         <div className={styles.initials}>
-          {data.curricularComponent.name.split(' ').map(s => s.charAt(0)).join('')}
+          {data.main_curricular_component.split(' ').map(s => s.charAt(0)).join('')}
         </div>
       );
 
@@ -40,17 +43,17 @@ class GridItem extends Component {
         <article className={styles.wrapper} ref={this.ref}>
           {thumbnail}
           <div className={styles.component}>
-            <em style={style}>{data.curricularComponent.name}</em>
-            <span>{data.year.label}</span>
+            <em style={style}>{data.main_curricular_component}</em>
+            <span>{data.year}</span>
           </div>
           <div className={styles.title}>{data.name}</div>
           <div className={styles.infos}>
             <div className={styles.info}>
-              <div className={styles.number}>{data.classes} aulas</div>
+              <div className={styles.number}>{data.estimated_time} aulas</div>
               <div className={styles.label}>Tempo estimado</div>
             </div>
             <div className={styles.info}>
-              <div className={styles.number}>{data.activities.length}</div>
+              <div className={styles.number}>{data.number_of_activities}</div>
               <div className={styles.label}>Atividades</div>
             </div>
           </div>

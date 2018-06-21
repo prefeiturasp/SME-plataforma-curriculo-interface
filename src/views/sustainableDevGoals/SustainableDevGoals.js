@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
 import SustainableDevGoalButton from './SustainableDevGoalButton';
 import styles from './SustainableDevGoals.css';
 
 class SustainableDevGoals extends Component {
+  componentDidMount() {
+    this.props.load();
+  }
+
   render() {
     const items = this.props.data.map((item, i) => {
       return (
@@ -39,6 +44,7 @@ class SustainableDevGoals extends Component {
 
 SustainableDevGoals.propTypes = {
   data: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -47,4 +53,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SustainableDevGoals);
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => {
+      dispatch(SustainableDevGoalsActions.load());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SustainableDevGoals);

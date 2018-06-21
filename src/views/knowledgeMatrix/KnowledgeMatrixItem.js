@@ -21,7 +21,7 @@ class KnowledgeMatrixItem extends Component {
 
   render() {
     const index = parseInt(this.props.match.params.index, 10);
-    const data = this.props.data[index - 1];
+    const data = this.props.data.filter(item => item.sequence === index)[0];
     const title = data ? data.title : '';
     const knowDescription = data ? data.know_description : '';
     const forDescription = data ? data.for_description : '';

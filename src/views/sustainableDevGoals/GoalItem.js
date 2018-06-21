@@ -6,7 +6,7 @@ class GoalItem extends Component {
   render() {
     return (
       <li className={styles.wrapper}>
-        <strong>{this.props.data.number}</strong> {this.props.data.text}
+        <strong>{this.props.index}</strong> {this.props.data.description}
       </li>
     );
   }
@@ -14,6 +14,7 @@ class GoalItem extends Component {
 
 GoalItem.propTypes = {
   data: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default GoalItem;

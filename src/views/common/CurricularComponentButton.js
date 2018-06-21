@@ -9,12 +9,13 @@ class CurricularComponentButton extends Component {
 
   render() {
     const classes = this.props.data.isActive ? [styles.wrapper, styles.isActive] : [styles.wrapper];
-    const style = this.props.data.isActive ? { backgroundColor: this.props.data.color } : {};
+    // const style = this.props.data.isActive ? { backgroundColor: this.props.data.color } : {};
+    const style = this.props.data.isActive ? { backgroundColor: '#c30' } : {};
 
     return (
       <li>
         <button className={classes.join(' ')} style={style} onClick={this.onClicked.bind(this)}>
-          {this.props.data.label}
+          {this.props.data.name}
         </button>
       </li>
     );

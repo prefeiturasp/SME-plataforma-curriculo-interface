@@ -15,7 +15,7 @@ const KnowledgeMatrixActions = {
   load() {
     return dispatch => {
       dispatch(onLoad());
-      fetch(`${API_URL}saberes`)
+      fetch(`${API_URL}/api/saberes`)
         .then(response => response.json())
         .then(data => {
           dispatch(onLoaded(data));

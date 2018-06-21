@@ -15,7 +15,7 @@ const RoadmapActions = {
   load() {
     return dispatch => {
       dispatch(onLoad());
-      fetch(`${API_URL}roteiros`)
+      fetch(`${API_URL}/api/roteiros`)
         .then(response => response.json())
         .then(data => {
           dispatch(onLoaded(data));

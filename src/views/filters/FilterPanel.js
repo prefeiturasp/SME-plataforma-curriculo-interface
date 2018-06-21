@@ -27,26 +27,49 @@ class FilterPanel extends Component {
     this.props.togglePanel();
   }
 
+  componentDidMount() {
+    this.props.load();
+  }
+
   render() {
     const style = this.props.isExpanded ? { height: `${this.ref.current.clientHeight}px` } : {};
     
-    const yearButtons = this.props.filters
-      .filter(item => item.type === 'year')
-      .map((item, i) => {
-        return (
-          <YearButton key={i} data={item} />
-        );
-      });
+    const yearButtons = this.props.years.map((item, i) => {
+      return (
+        <YearButton key={i} data={item} />
+      );
+    });
 
-    const componentButtons = this.props.filters
-      .filter(item => item.type === 'component')
-      .map((item, i) => {
-        return (
-          <CurricularComponentButton key={i} data={item} />
-        );
-      });
+    const componentButtons = this.props.curricularComponents.map((item, i) => {
+      return (
+        <CurricularComponentButton key={i} data={item} />
+      );
+    });
 
-    const categoryButtons = this.props.categories.map((item, i) => {
+    const categories = [
+      {
+        name: 'Objetivos de Desenvolvimento Sustentável',
+        slug: 'sustainable_development_goals',
+      },
+      {
+        name: 'Matriz de Saberes',
+        slug: 'knowledge_matrices',
+      },
+      {
+        name: 'Objetivos de Aprendizado',
+        slug: 'learning_objectives',
+      },
+      {
+        name: 'Eixo',
+        slug: 'axes',
+      },
+      {
+        name: 'Tipo de Atividade',
+        slug: 'activity_types',
+      },
+    ];
+
+    const categoryButtons = categories.map((item, i) => {
       return (
         <CategoryButton key={i} data={item} />
       );
@@ -102,9 +125,11 @@ class FilterPanel extends Component {
 
 FilterPanel.propTypes = {
   categories: PropTypes.array.isRequired,
-  filters: PropTypes.array.isRequired,
+  curricularComponents: PropTypes.array.isRequired,
+  years: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   hidePopup: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
@@ -112,7 +137,8 @@ FilterPanel.propTypes = {
 const mapStateToProps = state => {
   return {
     categories: state.FiltersReducer.categories,
-    filters: state.FiltersReducer.filters,
+    curricularComponents: state.FiltersReducer.curricular_components,
+    years: state.FiltersReducer.years,
     isExpanded: state.FiltersReducer.isExpanded,
   };
 };
@@ -121,6 +147,9 @@ const mapDispatchToProps = dispatch => {
   return {
     hidePopup: () => {
       dispatch(BodyActions.hidePopup());
+    },
+    load: () => {
+      dispatch(FiltersActions.load());
     },
     search: () => {
       dispatch(FiltersActions.search());
