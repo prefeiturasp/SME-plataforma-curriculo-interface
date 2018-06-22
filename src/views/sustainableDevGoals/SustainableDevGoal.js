@@ -20,12 +20,7 @@ class SustainableDevGoal extends Component {
   }
 
   render() {
-    const data = this.props.data ? this.props.data : {
-      goals: [],
-      name: '',
-      description: '',
-      icon: '',
-    };
+    const data = this.props.data;
 
     const goals = data.goals.map((item, i) => {
       return (
