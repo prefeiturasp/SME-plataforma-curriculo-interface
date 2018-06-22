@@ -25,65 +25,72 @@ class Sequence extends Component {
   }
 
   render() {
+    const data = this.props.data;
+
     const filters = [
-      <GenericItem key={0} data={this.props.data.year} />,
-      <GenericItem key={1} data={this.props.data.curricularComponent} />,
+      <GenericItem key={0} data={{name: data.year}} />,
+      <GenericItem key={1} data={{name: data.main_curricular_component}} />,
     ];
 
-    const relatedComponents = this.props.data.relatedComponents.map((item, i) => {
+    const relatedComponents = data.curricular_components.map((item, i) => {
       return (
         <CurricularComponentItem key={i} data={item} isColored={false} />
       );
     });
 
-    const knowledgeMatrices = this.props.data.knowledgeMatrices.map((item, i) => {
+    const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {
       return (
         <KnowledgeMatrixItem key={i} data={item} />
       );
     });
 
-    const learningObjectives = this.props.data.learningObjectives.map((item, i) => {
+    const learningObjectives = data.learning_objectives.map((item, i) => {
       return (
         <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
       );
     });
 
-    const sustainableDevGoals = this.props.data.sustainableDevGoals.map((item, i) => {
+    const sustainableDevGoals = data.sustainable_development_goals.map((item, i) => {
       return (
         <SustainableDevGoalItem key={i} data={item} />
       );
     });
     
-    const books = this.props.data.books.map((item, i) => {
-      return (
-        <ListItem key={i} string={item} />
-      );
-    });
+    const books = data.books;
+    // .map((item, i) => {
+    //   return (
+    //     <ListItem key={i} string={item} />
+    //   );
+    // });
     
-    const activities = this.props.data.activities.map((item, i) => {
+    const activities = data.activities.map((item, i) => {
       return (
-        <ActivityItem key={i} data={item} index={i + 1} />
+        <ActivityItem
+          key={i}
+          data={item}
+          index={i + 1}
+          sequenceSlug={data.slug} />
       );
     });
 
-    const image = this.props.data.image ? (
+    const image = data.image ? (
         <img
           className={styles.image}
-          src={this.props.data.image}
-          alt={this.props.data.title} />
+          src={data.image}
+          alt={data.title} />
       ) : null;
 
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div>
-            <h1>{this.props.data.name}</h1>
+            <h1>{data.title}</h1>
             <ul>
               {filters}
             </ul>
             <div className={styles.duration}>
               <img src={iconClock} alt="Número de aulas" />
-              <strong>{this.props.data.classes} aulas</strong>
+              <strong>{data.estimated_time} aulas</strong>
               (Tempo estimado)
             </div>
           </div>
@@ -146,7 +153,7 @@ class Sequence extends Component {
         <div className="container">
           {image}
           <div className={styles.description}>
-            {this.props.data.description}
+            {data.presentation_text}
           </div>
           <h4>Atividades</h4>
           <ul className="row">

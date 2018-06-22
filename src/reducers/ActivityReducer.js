@@ -29,13 +29,24 @@ const initialState = {
       'Lorem ipsum dolor sit amet.',
       'Lorem ipsum dolor sit amet.',
     ],
+    activity_types: [],
   },
 };
 
 function ActivityReducer(state = initialState, action) {
   switch (action.type) {
     case ActivityActions.LOAD:
-      return state;
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case ActivityActions.LOADED:
+      return {
+        ...state,
+        isLoading: false,
+        currActivity: action.data,
+      };
 
     default:
       return state;

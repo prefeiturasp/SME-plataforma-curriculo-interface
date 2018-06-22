@@ -28,6 +28,8 @@ class Activity extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.onResized.bind(this));
+    const params = this.props.match.params;
+    this.props.load(params.slug1, params.slug2);
   }
 
   componentWillUnmount() {
@@ -36,57 +38,59 @@ class Activity extends Component {
 
   render() {
     const filters = [
-      <GenericItem key={0} data={this.props.data.sequence.year} />,
-      <GenericItem key={1} data={this.props.data.sequence.curricularComponent} />,
+      <GenericItem key={0} data={{name: '3o ano'}} />,
+      <GenericItem key={1} data={{name: 'Ciências Naturais'}} />,
     ];
 
-    const materials = this.props.data.materials.map((item, i) => {
-      return (
-        <ListItem key={i} string={item} />
-      );
-    });
+    const materials = [];
+    // this.props.data.materials.map((item, i) => {
+    //   return (
+    //     <ListItem key={i} string={item} />
+    //   );
+    // });
 
     const linkPrev = `/atividade/${this.props.data.prevId}`;
     const linkNext = `/atividade/${this.props.data.nextId}`;
     const link = `/sequencia/${this.props.data.sequence.id}`;
 
+    const iconsItems = this.props.data.activity_types.map((item, i) => {
+      return (
+        <li>
+          <img src={item.icon} alt={item.name} />
+          <div>{item.name}</div>
+        </li>
+      );
+    });
     const icons = (
       <ul className={styles.icons}>
-        <li>
-          <img src={iconGroup} alt="Grupo" />
-          <div>Grupo</div>
-        </li>
-        <li>
-          <img src={iconOutdoors} alt="Ambiente Externo" />
-          <div>Ambiente Externo</div>
-        </li>
+        {iconsItems}
       </ul>
     );
     const icons1 = this.state.totalWidth < 768 ? null : icons;
     const icons2 = this.state.totalWidth < 768 ? icons : null;
 
-    const cover = this.props.data.cover ? (
+    const cover = this.props.data.image ? (
       <div className="container">
         <img
           className={styles.cover}
-          src={this.props.data.cover}
-          alt={this.props.data.name} />
+          src={this.props.data.image}
+          alt={this.props.data.title} />
       </div>
     ) : null;
 
-    const image = this.props.data.image ? (
-      <img
-        className={styles.image}
-        src={this.props.data.image}
-        alt={this.props.data.name} />
-    ) : null;
+    // const image = this.props.data.image ? (
+    //   <img
+    //     className={styles.image}
+    //     src={this.props.data.image}
+    //     alt={this.props.data.title} />
+    // ) : null;
 
     return (
       <section className={styles.wrapper}>
         <div className={styles.header}>
           <div>
             <h3>Atividade 1</h3>
-            <h1>{this.props.data.name}</h1>
+            <h1>{this.props.data.title}</h1>
             <h2>Sequência didática: {this.props.data.sequence.name}</h2>
             <ul>
               {filters}
@@ -116,7 +120,6 @@ class Activity extends Component {
         <hr />
         <div className="container">
           <h4>Orientações</h4>
-          {image}
           <div className="row">
             <div className={styles.description}>
               {this.props.data.description}
@@ -157,8 +160,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => {
-      dispatch(ActivityActions.load());
+    load: (slug1, slug2) => {
+      dispatch(ActivityActions.load(slug1, slug2));
     },
   };
 };
