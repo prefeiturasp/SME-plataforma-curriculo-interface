@@ -2,6 +2,9 @@ FROM node:9.11.2
 
 ENV NPM_CONFIG_LOGLEVEL warn
 
+RUN mkdir -p /app 
+WORKDIR /app
+
 # Install all dependencies of the current project.
 COPY package.json package.json
 COPY npm-shrinkwrap.json npm-shrinkwrap.json
