@@ -44,10 +44,10 @@ ReactDOM.render(
         <Header />
         <Route exact path='/' component={Home} />
         <Route path='/sequencias' component={Sequences} />
-        <Route path='/sequencia/:slug' component={Sequence} />
-        <Route path='/imprimir-sequencia/:id' component={SequencePrint} />
-        <Route path='/atividade/:slug' component={Activity} />
-        <Route path='/imprimir-atividade/:id' component={ActivityPrint} />
+        <Route exact path='/sequencia/:slug' component={Sequence} />
+        <Route path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
+        <Route path='/imprimir-sequencia/:slug' component={SequencePrint} />
+        <Route path='/imprimir-atividade/:slug1/:slug2' component={ActivityPrint} />
         <Route path='/curriculo' component={Curriculum} />
         <Route exact path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />
