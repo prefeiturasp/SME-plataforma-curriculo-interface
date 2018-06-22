@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
+import HomeActions from '../../actions/HomeActions';
 import GridItem from '../sequences/GridItem';
 import iconActivities from '../../images/iconActivities.svg';
 import iconCurriculum from '../../images/iconCurriculum.svg';
@@ -15,6 +16,7 @@ import styles from './Home.css';
 class Home extends Component {
   componentDidMount() {
     this.props.enterHome();
+    this.props.load();
   }
 
   componentWillUnmount() {
@@ -121,11 +123,13 @@ Home.propTypes = {
   sequences: PropTypes.array.isRequired,
   enterHome: PropTypes.func.isRequired,
   exitHome: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
+  const items = state.HomeReducer.items;
   return {
-    sequences: state.SequencesReducer.sequences.slice(0, 4),
+    sequences: items.length < 4 ? items : items.slice(0, 4),
   };
 };
 
@@ -136,6 +140,9 @@ const mapDispatchToProps = dispatch => {
     },
     exitHome: () => {
       dispatch(BodyActions.exitHome());
+    },
+    load: () => {
+      dispatch(HomeActions.load());
     },
   };
 };
