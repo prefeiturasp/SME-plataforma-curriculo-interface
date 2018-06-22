@@ -65,7 +65,11 @@ class Sequence extends Component {
     
     const activities = data.activities.map((item, i) => {
       return (
-        <ActivityItem key={i} data={item} index={i + 1} />
+        <ActivityItem
+          key={i}
+          data={item}
+          index={i + 1}
+          sequenceSlug={data.slug} />
       );
     });
 

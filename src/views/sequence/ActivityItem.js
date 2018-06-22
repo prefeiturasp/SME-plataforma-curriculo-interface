@@ -6,7 +6,7 @@ import styles from './ActivityItem.css';
 
 class ActivityItem extends Component {
   render() {
-    const link = `/atividade/${this.props.data.id}`;
+    const link = `/sequencia/${this.props.sequenceSlug}/atividade/${this.props.data.slug}`;
 
     return (
       <li className="col-6 col-sm-6 col-md-6 col-lg-3">
@@ -33,6 +33,7 @@ class ActivityItem extends Component {
 ActivityItem.propTypes = {
   data: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
+  sequenceSlug: PropTypes.string.isRequired,
 };
 
 export default ActivityItem;
