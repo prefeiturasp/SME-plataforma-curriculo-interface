@@ -2,7 +2,12 @@ import SustainableDevGoalsActions from '../actions/SustainableDevGoalsActions';
 
 const initialState = {
   items: [],
-  currItem: null,
+  currItem: {
+    goals: [],
+    name: '',
+    description: '',
+    icon: '',
+  },
 };
 
 function SustainableDevGoalsReducer(state = initialState, action) {

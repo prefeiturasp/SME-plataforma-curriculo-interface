@@ -1,8 +1,20 @@
 import SequencesActions from '../actions/SequencesActions';
 
+const emptyItem = {
+  title: '',
+  year: '',
+  main_curricular_component: '',
+  curricular_components: [],
+  knowledge_matrices: [],
+  learning_objectives: [],
+  sustainable_development_goals: [],
+  books: '',
+  activities: [],
+};
+
 const initialState = {
   items: [],
-  currItem: null,
+  currItem: emptyItem,
 };
 
 function SequencesReducer(state = initialState, action) {
@@ -13,7 +25,7 @@ function SequencesReducer(state = initialState, action) {
     case SequencesActions.SEARCH:
       return {
         items: [],
-        currItem: null,
+        currItem: emptyItem,
       };
 
     case SequencesActions.LOAD:
