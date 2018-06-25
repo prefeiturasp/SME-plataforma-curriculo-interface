@@ -22,6 +22,7 @@ class GridItem extends Component {
     data.color = '#c30';
     data.year = '1o ano';
 
+    const width = this.ref.current ? this.ref.current.clientWidth : 0;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
     const icon = data.isExpanded ? iconMinus : iconPlus;
     const alt = data.isExpanded ? "Esconder" : "Expandir";
@@ -63,6 +64,7 @@ class GridItem extends Component {
         </article>
         <Preview
           data={data}
+          width={width}
           height={height}
           isLeftAligned={isLeftAligned} />
       </li>

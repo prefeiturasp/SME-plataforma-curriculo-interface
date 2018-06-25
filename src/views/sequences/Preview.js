@@ -44,46 +44,51 @@ class Preview extends Component {
       }
     }
 
-    const style = { height: `${height}px` };
+    const width = this.props.width + 30;
+    const style1 = { height: `${height}px` };
+    const style2 = { width: `${width}px`, ...style1 };
+
     const link = `/sequencia/${this.props.data.slug}`;
-    const classes = [styles.wrapper];
+    const classes = [styles.mask];
     if (this.props.data.isExpanded) classes.push(styles.isExpanded)
     if (this.props.isLeftAligned) classes.push(styles.isLeftAligned)
 
     return (
-      <div className={classes.join(' ')} style={style} ref={this.ref}>
-        <div className={styles.scroll}>
-          <div className={styles.title}>
-            Matriz de Saberes
-            <button data-tip data-for="tooltipKnowledgeMatrices">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
+      <div className={classes.join(' ')} style={style1}>
+        <div className={styles.wrapper} style={style2} ref={this.ref}>
+          <div className={styles.scroll}>
+            <div className={styles.title}>
+              Matriz de Saberes
+              <button data-tip data-for="tooltipKnowledgeMatrices">
+                <img src={iconHelp} alt="Ajuda" />
+              </button>
+            </div>
+            <ul>
+              {knowledgeMatrices}
+            </ul>
+            <div className={styles.title}>
+              Objetivos de Aprendizagem
+              <button data-tip data-for="tooltipLearningObjectives">
+                <img src={iconHelp} alt="Ajuda" />
+              </button>
+            </div>
+            <ul>
+              {learningObjectives}
+            </ul>
+            <div className={styles.title}>
+              Objetivos de Desenvolvimento Sustentável (ODS)
+              <button data-tip data-for="tooltipDevelopmentGoals">
+                <img src={iconHelp} alt="Ajuda" />
+              </button>
+            </div>
+            <ul>
+              {sustainableDevGoals}
+            </ul>
           </div>
-          <ul>
-            {knowledgeMatrices}
-          </ul>
-          <div className={styles.title}>
-            Objetivos de Aprendizagem
-            <button data-tip data-for="tooltipLearningObjectives">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {learningObjectives}
-          </ul>
-          <div className={styles.title}>
-            Objetivos de Desenvolvimento Sustentável (ODS)
-            <button data-tip data-for="tooltipDevelopmentGoals">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {sustainableDevGoals}
-          </ul>
+          <NavLink to={link} className={styles.access}>
+            Acessar
+          </NavLink>
         </div>
-        <NavLink to={link} className={styles.access}>
-          Acessar
-        </NavLink>
         <ReactTooltip
           place="bottom"
           type="dark"
@@ -118,6 +123,7 @@ class Preview extends Component {
 
 Preview.propTypes = {
   data: PropTypes.object.isRequired,
+  width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   isLeftAligned: PropTypes.bool.isRequired,
 };
