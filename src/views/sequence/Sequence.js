@@ -75,6 +75,9 @@ class Sequence extends Component {
           alt={data.title} />
       ) : null;
 
+    const word = data.estimated_time > 1 ? 'aulas' : 'aula';
+    const duration = `${data.estimated_time} ${word}`;
+
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
@@ -85,7 +88,7 @@ class Sequence extends Component {
             </ul>
             <div className={styles.duration}>
               <img src={iconClock} alt="Número de aulas" />
-              <strong>{data.estimated_time} aulas</strong>
+              <strong>{duration}</strong>
               (Tempo estimado)
             </div>
           </div>

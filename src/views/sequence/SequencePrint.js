@@ -55,6 +55,9 @@ class SequencePrint extends Component {
       );
     });
 
+    const word = this.props.data.estimated_time > 1 ? 'aulas' : 'aula';
+    const duration = `${this.props.data.estimated_time} ${word}`;
+    
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
@@ -65,7 +68,7 @@ class SequencePrint extends Component {
             </ul>
             <div className={styles.duration}>
               <img src={iconClock} alt="Número de aulas" />
-              <strong>{this.props.data.classes} aulas</strong>
+              <strong>{duration}</strong>
               (Tempo estimado)
             </div>
           </div>
