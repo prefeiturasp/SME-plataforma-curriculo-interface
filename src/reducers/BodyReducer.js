@@ -45,7 +45,7 @@ function BodyReducer(state = initialState, action) {
       };
 
     default:
-      return initialState;
+      return state;
   }
 }
 
