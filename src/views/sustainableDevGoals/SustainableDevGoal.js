@@ -31,7 +31,7 @@ class SustainableDevGoal extends Component {
       );
     });
 
-    const style = { backgroundColor: '#c30' };//data.color };
+    const style = { backgroundColor: data.color };
 
     return (
       <section className={styles.wrapper}>

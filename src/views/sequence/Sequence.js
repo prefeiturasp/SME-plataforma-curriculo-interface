@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
+import { API_URL } from '../../constants';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityItem from './ActivityItem';
 import CurricularComponentItem from '../common/CurricularComponentItem';
@@ -9,7 +10,6 @@ import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
-import ListItem from '../common/ListItem';
 import iconClock from '../../images/iconClock.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
@@ -29,7 +29,7 @@ class Sequence extends Component {
 
     const filters = [
       <GenericItem key={0} data={{name: data.year}} />,
-      <GenericItem key={1} data={{name: data.main_curricular_component}} />,
+      <GenericItem key={1} data={data.main_curricular_component} />,
     ];
 
     const relatedComponents = data.curricular_components.map((item, i) => {
@@ -57,11 +57,6 @@ class Sequence extends Component {
     });
     
     const books = data.books;
-    // .map((item, i) => {
-    //   return (
-    //     <ListItem key={i} string={item} />
-    //   );
-    // });
     
     const activities = data.activities.map((item, i) => {
       return (
@@ -76,7 +71,7 @@ class Sequence extends Component {
     const image = data.image ? (
         <img
           className={styles.image}
-          src={data.image}
+          src={API_URL + data.image}
           alt={data.title} />
       ) : null;
 

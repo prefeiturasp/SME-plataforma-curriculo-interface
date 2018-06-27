@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import QuillDeltaToHtmlConverter from 'quill-delta-to-html';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
-import ListItem from '../common/ListItem';
 import iconArrowLeft from'../../images/iconArrowLeft.svg';
 import iconArrowRight from'../../images/iconArrowRight.svg';
 import iconGroup from'../../images/iconGroup.svg';
 import iconOutdoors from'../../images/iconOutdoors.svg';
 import iconPrint from '../../images/iconPrint.svg';
 import styles from'./Activity.css';
+
+function getActivityTypeIcon(activityType) {
+  switch (activityType) {
+    case 'Grupo':
+      return iconGroup;
+
+    default:
+      return iconOutdoors;
+  }
+}
 
 class Activity extends Component {
   onClickedPrint() {
@@ -32,31 +43,35 @@ class Activity extends Component {
     this.props.load(params.slug1, params.slug2);
   }
 
+  componentDidUpdate(prevProps) {
+    const params = this.props.match.params;
+    const prevParams = prevProps.match.params;
+    if (params.slug2 !== prevParams.slug2) {
+      this.props.load(params.slug1, params.slug2);
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResized.bind(this));
   }
 
   render() {
+    if (this.props.data == null) {
+      return <span />;
+    }
+
+    const sequence = this.props.data.activity_sequence;
+
     const filters = [
-      <GenericItem key={0} data={{name: '3o ano'}} />,
-      <GenericItem key={1} data={{name: 'Ciências Naturais'}} />,
+      <GenericItem key={0} data={{name: sequence.year}} />,
+      <GenericItem key={1} data={sequence.main_curricular_component} />,
     ];
 
-    const materials = [];
-    // this.props.data.materials.map((item, i) => {
-    //   return (
-    //     <ListItem key={i} string={item} />
-    //   );
-    // });
-
-    const linkPrev = `/atividade/${this.props.data.prevId}`;
-    const linkNext = `/atividade/${this.props.data.nextId}`;
-    const link = `/sequencia/${this.props.data.sequence.id}`;
-
     const iconsItems = this.props.data.activity_types.map((item, i) => {
+      const icon = getActivityTypeIcon(item.name);
       return (
-        <li>
-          <img src={item.icon} alt={item.name} />
+        <li key={i}>
+          <img src={icon} alt={item.name} />
           <div>{item.name}</div>
         </li>
       );
@@ -73,25 +88,40 @@ class Activity extends Component {
       <div className="container">
         <img
           className={styles.cover}
-          src={this.props.data.image}
+          src={API_URL + this.props.data.image}
           alt={this.props.data.title} />
       </div>
     ) : null;
 
-    // const image = this.props.data.image ? (
-    //   <img
-    //     className={styles.image}
-    //     src={this.props.data.image}
-    //     alt={this.props.data.title} />
-    // ) : null;
+    const ops = JSON.parse(this.props.data.content).ops;
+    const converter = new QuillDeltaToHtmlConverter(ops);
+    const content = converter.convert();
+    
+    const linkPrev = `/sequencia/${sequence.slug}/atividade/${this.props.data.last_activity}`;
+    const linkNext = `/sequencia/${sequence.slug}/atividade/${this.props.data.next_activity}`;
+    const link = `/sequencia/${sequence.slug}`;
+
+    const arrowPrev = this.props.data.last_activity ? (
+      <NavLink className={styles.prev} to={linkPrev}>
+        <img src={iconArrowLeft} alt="Seta" />
+        Atividade {this.props.data.sequence - 1}
+      </NavLink>
+    ) : <span />;
+
+    const arrowNext = this.props.data.next_activity ? (
+      <NavLink className={styles.next} to={linkNext}>
+        Atividade {this.props.data.sequence + 1}
+        <img src={iconArrowRight} alt="Seta" />
+      </NavLink>
+    ) : null;
 
     return (
       <section className={styles.wrapper}>
         <div className={styles.header}>
           <div>
-            <h3>Atividade 1</h3>
+            <h3>Atividade {this.props.data.sequence}</h3>
             <h1>{this.props.data.title}</h1>
-            <h2>Sequência didática: {this.props.data.sequence.name}</h2>
+            <h2>Sequência didática: {sequence.title}</h2>
             <ul>
               {filters}
             </ul>
@@ -109,33 +139,12 @@ class Activity extends Component {
         <hr />
         <div className="container">
           <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <h5>Materiais:</h5>
-              <ul>
-                {materials}
-              </ul>
-            </div>
+            <div className="col-md-8 offset-md-2" dangerouslySetInnerHTML={{__html: content}} />
           </div>
         </div>
-        <hr />
-        <div className="container">
-          <h4>Orientações</h4>
-          <div className="row">
-            <div className={styles.description}>
-              {this.props.data.description}
-            </div>
-          </div>
-        </div>
-        <hr />
         <div className={styles.arrows}>
-          <NavLink className={styles.prev} to={linkPrev}>
-            <img src={iconArrowLeft} alt="Seta" />
-            Atividade 1
-          </NavLink>
-          <NavLink className={styles.next} to={linkNext}>
-            Atividade 2
-            <img src={iconArrowRight} alt="Seta" />
-          </NavLink>
+          {arrowPrev}
+          {arrowNext}
         </div>
         <div className={styles.footer}>
           <NavLink className={styles.back} to={link}>

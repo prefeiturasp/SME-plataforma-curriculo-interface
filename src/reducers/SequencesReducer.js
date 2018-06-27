@@ -3,7 +3,10 @@ import SequencesActions from '../actions/SequencesActions';
 const emptyItem = {
   title: '',
   year: '',
-  main_curricular_component: '',
+  main_curricular_component: {
+    name: '',
+    color: '',
+  },
   curricular_components: [],
   knowledge_matrices: [],
   learning_objectives: [],
