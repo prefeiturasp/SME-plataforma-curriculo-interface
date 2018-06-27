@@ -6,6 +6,8 @@ import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconMenu from '../../images/iconMenu.svg';
 import iconMenuWhite from '../../images/iconMenuWhite.svg';
+import logoColor from '../../images/logo.svg';
+import logoWhite from '../../images/logoWhite.svg';
 import styles from './Header.css';
 
 class Header extends Component {
@@ -29,6 +31,7 @@ class Header extends Component {
   render() {
     const classes = this.state.isMenuExpanded ? [styles.menu, styles.isMenuExpanded] : [styles.menu];
     const icon = this.props.isHome ? iconMenuWhite : iconMenu;
+    const logo = this.props.isHome ? logoWhite : logoColor;
 
     const data = [
       {
@@ -83,7 +86,10 @@ class Header extends Component {
 
     return (
       <header className={styles.wrapper}>
-        <h1>Currículo Digital da Cidade de São Paulo</h1>
+        <div>
+          <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
+          <h1>Currículo Digital da Cidade de São Paulo</h1>
+        </div>
         <nav className={classes.join(' ')}>
           {links}
           <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
