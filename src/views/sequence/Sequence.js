@@ -17,7 +17,7 @@ import styles from'./Sequence.css';
 
 class Sequence extends Component {
   onClickedPrint() {
-    window.print();
+    
   }
 
   componentDidMount() {
