@@ -118,21 +118,22 @@
   margin-bottom: 1rem;
 }
 
-.next > i,
-.prev > i {
+.next > img,
+.prev > img {
   border: 1px solid #e0e0e0;
   border-radius: 3rem;
   line-height: 3rem;
+  padding: 0.9375rem;
   width: 3rem;
   height: 3rem;
   text-align: center;
 }
 
-.next > i {
+.next > img {
   margin-left: 0.4375rem;
 }
 
-.prev > i {
+.prev > img {
   margin-right: 0.4375rem;
 }
 
@@ -220,13 +221,6 @@
   .next,
   .prev {
     font-size: 0.9375rem;
-  }
-
-  .next > i,
-  .prev > i {
-    line-height: 2rem;
-    width: 2rem;
-    height: 2rem;
   }
 }
 
