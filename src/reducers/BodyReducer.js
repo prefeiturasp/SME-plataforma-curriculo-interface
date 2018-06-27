@@ -9,22 +9,40 @@ const initialState = {
 function BodyReducer(state = initialState, action) {
   switch (action.type) {
     case BodyActions.ENTER_HOME:
-      return Object.assign({}, state, { isHome: true });
+      return {
+        ...state,
+        isHome: true,
+      };
 
     case BodyActions.EXIT_HOME:
-      return Object.assign({}, state, { isHome: false });
+      return {
+        ...state,
+        isHome: false,
+      };
 
     case BodyActions.HIDE_LOADING:
-      return Object.assign({}, state, { isLoading: false });
+      return {
+        ...state,
+        isLoading: false,
+      };
 
     case BodyActions.SHOW_LOADING:
-      return Object.assign({}, state, { isLoading: true });
+      return {
+        ...state,
+        isLoading: true,
+      };
 
     case BodyActions.HIDE_POPUP:
-      return Object.assign({}, state, { hasPopup: false });
+      return {
+        ...state,
+        hasPopup: false,
+      };
 
     case BodyActions.SHOW_POPUP:
-      return Object.assign({}, state, { hasPopup: true });
+      return {
+        ...state,
+        hasPopup: true,
+      };
 
     default:
       return initialState;
