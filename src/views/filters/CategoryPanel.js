@@ -84,7 +84,7 @@ const mapStateToProps = state => {
   return {
     currCategory,
     isShowingCategory: state.FiltersReducer.isShowingCategory,
-    items: currCategory ? state.FiltersReducer[currCategory.slug] : [],
+    items: currCategory ? state.FiltersReducer.filters.filter(item => item.type === currCategory.slug) : [],
   };
 };
 

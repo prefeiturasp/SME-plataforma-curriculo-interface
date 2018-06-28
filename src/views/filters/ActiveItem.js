@@ -18,7 +18,7 @@ class ActiveItem extends Component {
 
     return (
       <button className={classes.join(' ')} style={style} onClick={this.onClicked.bind(this)}>
-        {this.props.data.label}
+        {this.props.data.name || this.props.data.title || this.props.data.description}
         <img src={icon} alt="Remover" />
       </button>
     );

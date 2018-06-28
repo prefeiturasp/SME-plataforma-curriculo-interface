@@ -14,7 +14,7 @@ class FilterBar extends Component {
   }
 
   render() {
-    const items = this.props.years.map((item, i) => {
+    const items = this.props.filters.map((item, i) => {
       return (
         <ActiveItem key={i} data={item} />
       );
@@ -35,16 +35,14 @@ class FilterBar extends Component {
 }
 
 FilterBar.propTypes = {
-  curricularComponents: PropTypes.array.isRequired,
-  years: PropTypes.array.isRequired,
+  filters: PropTypes.array.isRequired,
   showPopup: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    curricularComponents: state.FiltersReducer.curricular_components.filter(item => item.isActive),
-    years: state.FiltersReducer.years.filter(item => item.isActive),
+    filters: state.FiltersReducer.filters.filter(item => item.isActive),
   };
 };
 

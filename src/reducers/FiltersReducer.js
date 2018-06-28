@@ -1,13 +1,7 @@
 import FiltersActions from '../actions/FiltersActions';
 
 const initialState = {
-  years: [],
-  curricular_components: [],
-  sustainable_development_goals: [],
-  knowledge_matrices: [],
-  learning_objectives: [],
-  activity_types: [],
-  axes: [],
+  filters: [],
   isExpanded: false,
   isShowingCategory: false,
   currCategory: null,
@@ -22,9 +16,29 @@ function FiltersReducer(state = initialState, action) {
       };
 
     case FiltersActions.LOADED:
+      const filters = [];
+      const keys = [
+        'years',
+        'curricular_components',
+        'sustainable_development_goals',
+        'knowledge_matrices',
+        'learning_objectives',
+        'activity_types',
+        'axes',
+      ];
+
+      keys.forEach(key => {
+        const list = action.data[key];
+        if (list) {
+          list.forEach(item => {
+            filters.push({ ...item, type: key });
+          });
+        }
+      });
+
       return {
         ...state,
-        ...action.data,
+        filters,
         isLoading: false,
       };
 
@@ -45,7 +59,9 @@ function FiltersReducer(state = initialState, action) {
       return {
         ...state,
         filters: state.filters.map(item => {
-          if (item.type === action.filter.type && item.value === action.filter.value) {
+          const name1 = item.name || item.title || item.description;
+          const name2 = action.filter.name || action.filter.title || action.filter.description;
+          if (item.type === action.filter.type && name1 === name2) {
             return {
               ...item,
               isActive: !item.isActive,

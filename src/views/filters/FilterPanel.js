@@ -34,17 +34,21 @@ class FilterPanel extends Component {
   render() {
     const style = this.props.isExpanded ? { height: `${this.ref.current.clientHeight}px` } : {};
     
-    const yearButtons = this.props.years.map((item, i) => {
-      return (
-        <YearButton key={i} data={item} />
-      );
-    });
+    const yearButtons = this.props.filters
+      .filter(item => item.type === 'years')
+      .map((item, i) => {
+        return (
+          <YearButton key={i} data={item} />
+        );
+      });
 
-    const componentButtons = this.props.curricularComponents.map((item, i) => {
-      return (
-        <CurricularComponentButton key={i} data={item} />
-      );
-    });
+    const componentButtons = this.props.filters
+      .filter(item => item.type === 'curricular_components')
+      .map((item, i) => {
+        return (
+          <CurricularComponentButton key={i} data={item} />
+        );
+      });
 
     const categories = [
       {
@@ -124,9 +128,7 @@ class FilterPanel extends Component {
 }
 
 FilterPanel.propTypes = {
-  categories: PropTypes.array.isRequired,
-  curricularComponents: PropTypes.array.isRequired,
-  years: PropTypes.array.isRequired,
+  filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   hidePopup: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
@@ -136,9 +138,7 @@ FilterPanel.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    categories: state.FiltersReducer.categories,
-    curricularComponents: state.FiltersReducer.curricular_components,
-    years: state.FiltersReducer.years,
+    filters: state.FiltersReducer.filters,
     isExpanded: state.FiltersReducer.isExpanded,
   };
 };
