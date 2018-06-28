@@ -5,19 +5,8 @@ import { connect } from 'react-redux';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
-import iconGroup from'../../images/iconGroup.svg';
-import iconOutdoors from'../../images/iconOutdoors.svg';
-import styles from'./Activity.css';
-
-function getActivityTypeIcon(activityType) {
-  switch (activityType) {
-    case 'Grupo':
-      return iconGroup;
-
-    default:
-      return iconOutdoors;
-  }
-}
+import getActivityTypeIcon from './getActivityTypeIcon';
+import styles from './Activity.css';
 
 class ActivityPrint extends Component {
   onClickedPrint() {
