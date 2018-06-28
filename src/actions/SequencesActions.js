@@ -6,7 +6,7 @@ function getParameterName(type) {
       return 'years';
 
     case 'curricular_components':
-      return 'curricular_components_friendly_slugs';
+      return 'curricular_components_slugs';
 
     case 'sustainable_development_goals':
       return 'sustainable_development_goal_ids';
@@ -55,7 +55,7 @@ const SequencesActions = {
     });
     const paramsString = params.join('&');
     
-    return loadData(`/api/sequencias?${paramsString}`, SequencesActions.LOAD, SequencesActions.LOADED);
+    return loadData(`/api/sequencias?${paramsString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
   },
   load() {
     return loadData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
