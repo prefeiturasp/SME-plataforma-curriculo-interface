@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
-import ActiveItem from'./ActiveItem';
-import iconFilters from'../../images/iconFilters.svg';
-import styles from'./FilterBar.css';
+import ActiveItem from './ActiveItem';
+import iconFilters from '../../images/iconFilters.svg';
+import styles from './FilterBar.css';
 
 class FilterBar extends Component {
   onClickedToggle() {

@@ -7,10 +7,10 @@ import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import YearButton from './YearButton';
-import iconChevronLeft from'../../images/iconChevronLeft.svg';
-import iconCloseBig from'../../images/iconCloseBig.svg';
-import iconWarning from'../../images/iconWarning.svg';
-import styles from'./LearningObjectives.css';
+import iconChevronLeft from '../../images/iconChevronLeft.svg';
+import iconCloseBig from '../../images/iconCloseBig.svg';
+import iconWarning from '../../images/iconWarning.svg';
+import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {
   constructor(props) {
