@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { API_URL } from '../../constants';
 import SequencesActions from '../../actions/SequencesActions';
 import Preview from './Preview';
 import iconMinus from '../../images/iconMinus.svg';
@@ -19,7 +20,6 @@ class GridItem extends Component {
 
   render() {
     const data = this.props.data;
-    data.color = '#c30';
     data.year = '1o ano';
 
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
@@ -27,11 +27,11 @@ class GridItem extends Component {
     const icon = data.isExpanded ? iconMinus : iconPlus;
     const alt = data.isExpanded ? "Esconder" : "Expandir";
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
-    const style = { color: '#c30' };//data.curricularComponent.color };
+    const style = { color: data.main_curricular_component.color };
 
     const thumbnail = data.image ? (
         <div className={styles.image}>
-          <img src={data.image} alt="" />
+          <img src={API_URL + data.image} alt="" />
         </div>
       ) : (
         <div className={styles.initials}>
@@ -39,23 +39,28 @@ class GridItem extends Component {
         </div>
       );
 
+    const word1 = data.estimated_time > 1 ? 'aulas' : 'aula';
+    const duration = `${data.estimated_time} ${word1}`;
+
+    const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
+
     return (
       <li className="col-sm-12 col-md-6 col-lg-3">
         <article className={styles.wrapper} ref={this.ref}>
           {thumbnail}
           <div className={styles.component}>
-            <em style={style}>{data.main_curricular_component}</em>
+            <em style={style}>{data.main_curricular_component.name}</em>
             <span>{data.year}</span>
           </div>
           <div className={styles.title}>{data.name}</div>
           <div className={styles.infos}>
             <div className={styles.info}>
-              <div className={styles.number}>{data.estimated_time} aulas</div>
+              <div className={styles.number}>{duration}</div>
               <div className={styles.label}>Tempo estimado</div>
             </div>
             <div className={styles.info}>
               <div className={styles.number}>{data.number_of_activities}</div>
-              <div className={styles.label}>Atividades</div>
+              <div className={styles.label}>{word2}</div>
             </div>
           </div>
           <div className={styles.expand} onClick={this.onClickedExpand.bind(this)}>

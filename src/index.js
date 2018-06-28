@@ -46,8 +46,8 @@ ReactDOM.render(
         <Route path='/sequencias' component={Sequences} />
         <Route exact path='/sequencia/:slug' component={Sequence} />
         <Route path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
-        <Route path='/imprimir-sequencia/:slug' component={SequencePrint} />
-        <Route path='/imprimir-atividade/:slug1/:slug2' component={ActivityPrint} />
+        <Route exact path='/imprimir/sequencia/:slug' component={SequencePrint} />
+        <Route path='/imprimir/sequencia/:slug1/atividade/:slug2' component={ActivityPrint} />
         <Route path='/curriculo' component={Curriculum} />
         <Route exact path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />

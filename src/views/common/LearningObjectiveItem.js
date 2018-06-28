@@ -4,7 +4,6 @@ import styles from './LearningObjectiveItem.css';
 
 class LearningObjectiveItem extends Component {
   render() {
-    const color = '#c30';
     const code1 = this.props.data.code.substr(0, 4);
     const code2 = this.props.data.code.substr(4, 1);
     const code3 = this.props.data.code.substr(5);
@@ -12,7 +11,7 @@ class LearningObjectiveItem extends Component {
     return (
       <li className={styles.wrapper}>
         {code1}
-        <span style={{color}}>
+        <span style={{color: this.props.data.color}}>
           {code2}
         </span>
         {code3}

@@ -8,7 +8,7 @@ class SustainableDevGoalItem extends Component {
     return (
       <img
         src={API_URL + this.props.data.icon_url}
-        alt={this.props.data.title}
+        alt={this.props.data.name}
         className={styles.wrapper} />
     );
   }

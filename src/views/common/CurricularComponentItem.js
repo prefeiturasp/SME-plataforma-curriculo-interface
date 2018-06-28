@@ -5,9 +5,8 @@ import styles from './CurricularComponentItem.css';
 class CurricularComponentItem extends Component {
   render() {
     const classes = this.props.isColored ? [styles.wrapper, styles.isColored] : [styles.wrapper];
-    // const style = this.props.isColored ? { backgroundColor: this.props.data.color } : {};
-    const style = this.props.isColored ? { backgroundColor: '#c30' } : {};
-
+    const style = this.props.isColored ? { backgroundColor: this.props.data.color } : {};
+    
     return (
       <li className={classes.join(' ')} style={style}>
         {this.props.data.name}

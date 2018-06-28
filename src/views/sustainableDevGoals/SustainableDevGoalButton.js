@@ -6,8 +6,8 @@ import styles from './SustainableDevGoalButton.css';
 
 class SustainableDevGoalButton extends Component {
   render() {
-    const link = `/ods/${this.props.data.sequence}`;
-    const style = { backgroundColor: '#c30' };//this.props.data.color };
+    const link = `/ods/${this.props.data.id}`;
+    const style = { backgroundColor: this.props.data.color };
 
     return (
       <li className="col-md-6 col-lg-4">
