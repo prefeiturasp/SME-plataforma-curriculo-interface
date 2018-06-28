@@ -1,28 +1,4 @@
-import { API_URL } from '../constants';
-
-function onLoad() {
-  return { type: SequencesActions.LOAD };
-}
-
-function onLoaded(data) {
-  return { data, type: SequencesActions.LOADED };
-}
-
-function onLoadItem() {
-  return { type: SequencesActions.LOAD_ITEM };
-}
-
-function onLoadedItem(data) {
-  return { data, type: SequencesActions.LOADED_ITEM };
-}
-
-function onSearch() {
-  return { type: SequencesActions.LOAD };
-}
-
-function onSearched(data) {
-  return { data, type: SequencesActions.LOADED };
-}
+import loadData from './loadData';
 
 function getParameterName(type) {
   switch (type) {
@@ -77,37 +53,15 @@ const SequencesActions = {
       const value = getParameterValue(filter);
       return `${name}[]=${value}`;
     });
-
     const paramsString = params.join('&');
-
-    return dispatch => {
-      dispatch(onSearch());
-      fetch(`${API_URL}/api/sequencias?${paramsString}`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onSearched(data));
-        });
-    };
+    
+    return loadData(`/api/sequencias?${paramsString}`, SequencesActions.LOAD, SequencesActions.LOADED);
   },
   load() {
-    return dispatch => {
-      dispatch(onLoad());
-      fetch(`${API_URL}/api/sequencias`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onLoaded(data));
-        });
-    };
+    return loadData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
   },
   loadItem(slug) {
-    return dispatch => {
-      dispatch(onLoadItem());
-      fetch(`${API_URL}/api/sequencias/${slug}`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onLoadedItem(data));
-        });
-    };
+    return loadData(`/api/sequencias?${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };

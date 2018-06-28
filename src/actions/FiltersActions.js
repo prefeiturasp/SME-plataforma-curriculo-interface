@@ -1,12 +1,4 @@
-import { API_URL } from '../constants';
-
-function onLoad() {
-  return { type: FiltersActions.LOAD };
-}
-
-function onLoaded(data) {
-  return { data, type: FiltersActions.LOADED };
-}
+import loadData from './loadData';
 
 const FiltersActions = {
   LOAD: 'FA_LOAD',
@@ -20,14 +12,7 @@ const FiltersActions = {
   DISMISS_SEARCH_WARNING: 'FA_DISMISS_SEARCH_WARNING',
   
   load() {
-    return dispatch => {
-      dispatch(onLoad());
-      fetch(`${API_URL}/api/filtros`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onLoaded(data));
-        });
-    };
+    return loadData('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
   },
   hideCategory() {
     return { type: FiltersActions.HIDE_CATEGORY };
