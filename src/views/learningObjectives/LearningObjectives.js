@@ -28,8 +28,9 @@ class LearningObjectives extends Component {
   }
 
   onClickedNext() {
+    const activeFilters = this.props.filters.filter(item => item.isActive);
     this.props.showPopup();
-    this.props.search();
+    this.props.search(activeFilters);
   }
 
   onClickedSee() {
@@ -37,9 +38,13 @@ class LearningObjectives extends Component {
     this.props.showPopup();
   }
 
+  componentDidMount() {
+    this.props.load();
+  }
+
   render() {
     const yearButtons = this.props.filters
-      .filter(item => item.type === 'year')
+      .filter(item => item.type === 'years')
       .map((item, i) => {
         return (
           <YearButton key={i} data={item} />
@@ -47,7 +52,7 @@ class LearningObjectives extends Component {
       });
 
     const componentButtons = this.props.filters
-      .filter(item => item.type === 'component')
+      .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
         return (
           <CurricularComponentButton key={i} data={item} />
@@ -191,6 +196,7 @@ LearningObjectives.propTypes = {
   results: PropTypes.array.isRequired,
   isShowingObjectives: PropTypes.bool.isRequired,
   isShowingResults: PropTypes.bool.isRequired,
+  load: PropTypes.func.isRequired,
   hideObjectives: PropTypes.func.isRequired,
   hidePopup: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
@@ -210,6 +216,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    load: () => {
+      dispatch(LearningObjectivesActions.load());
+    },
     hideObjectives: () => {
       dispatch(LearningObjectivesActions.hideObjectives());
     },
@@ -219,8 +228,8 @@ const mapDispatchToProps = dispatch => {
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
     },
-    search: () => {
-      dispatch(LearningObjectivesActions.search());
+    search: (filters) => {
+      dispatch(LearningObjectivesActions.search(filters));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());
