@@ -19,7 +19,8 @@ class FilterPanel extends Component {
   }
 
   onClickedSearch() {
-    this.props.search();
+    const activeFilters = this.props.filters.filter(item => item.isActive);
+    this.props.search(activeFilters);
   }
 
   onClickedClose() {
@@ -151,9 +152,9 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(FiltersActions.load());
     },
-    search: () => {
+    search: (filters) => {
       dispatch(FiltersActions.search());
-      dispatch(SequencesActions.search());
+      dispatch(SequencesActions.search(filters));
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());
