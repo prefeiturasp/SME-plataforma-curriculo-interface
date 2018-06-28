@@ -1,10 +1,11 @@
 import FiltersActions from '../actions/FiltersActions';
 
 const initialState = {
+  currCategory: null,
   filters: [],
   isExpanded: false,
   isShowingCategory: false,
-  currCategory: null,
+  isShowingWarning: false,
 };
 
 function FiltersReducer(state = initialState, action) {
@@ -55,6 +56,17 @@ function FiltersReducer(state = initialState, action) {
         currCategory: action.category,
       };
 
+    case FiltersActions.CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: state.filters.map(item => {
+          return {
+            ...item,
+            isActive: false,
+          };
+        })
+      };
+
     case FiltersActions.TOGGLE_FILTER:
       return {
         ...state,
@@ -78,17 +90,6 @@ function FiltersReducer(state = initialState, action) {
         isExpanded: !state.isExpanded,
       };
 
-    case FiltersActions.CLEAR_FILTERS:
-      return {
-        ...state,
-        filters: state.filters.map(item => {
-          return {
-            ...item,
-            isActive: false,
-          };
-        })
-      };
-
     case FiltersActions.SEARCH:
       if (state.filters.findIndex(item => item.isActive) >= 0) {
         return {
@@ -98,14 +99,14 @@ function FiltersReducer(state = initialState, action) {
       } else {
         return {
           ...state,
-          showSearchWarning: true,
+          isShowingWarning: true,
         };
       }
 
-    case FiltersActions.DISMISS_SEARCH_WARNING:
+    case FiltersActions.HIDE_WARNING:
       return {
         ...state,
-        showSearchWarning: false,
+        isShowingWarning: false,
       };
       
     default:

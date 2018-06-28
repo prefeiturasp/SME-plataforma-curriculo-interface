@@ -49,19 +49,14 @@ function LearningObjectivesReducer(state = initialState, action) {
         isShowingObjectives: true,
       };
 
-    case LearningObjectivesActions.HIDE_RESULTS:
-      return {
-        ...state,
-        isShowingResults: false,
-      };
-
     case LearningObjectivesActions.SEARCH:
       return {
         ...state,
+        results: [],
         isLoading: true,
       };
 
-    case LearningObjectivesActions.LOADED_SEARCH:
+    case LearningObjectivesActions.LOADED_RESULTS:
       return {
         ...state,
         results: action.data.learning_objectives || [],
@@ -69,6 +64,12 @@ function LearningObjectivesReducer(state = initialState, action) {
         isShowingResults: true,
       };
 
+    case LearningObjectivesActions.HIDE_RESULTS:
+      return {
+        ...state,
+        isShowingResults: false,
+      };
+      
     case LearningObjectivesActions.TOGGLE_FILTER:
       return {
         ...state,

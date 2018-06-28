@@ -21,14 +21,14 @@ function getParameterValue(filter) {
 }
 
 const LearningObjectivesActions = {
-  LOAD: 'LOA_LOAD',
-  LOADED: 'LOA_LOADED',
-  HIDE_OBJECTIVES: 'LOA_HIDE_OBJECTIVES',
-  SHOW_OBJECTIVES: 'LOA_SHOW_OBJECTIVES',
-  HIDE_RESULTS: 'LOA_CLOSE_RESULTS',
-  SEARCH: 'LOA_SEARCH',
-  LOADED_SEARCH: 'LOA_LOADED_SEARCH',
-  TOGGLE_FILTER: 'LOA_TOGGLE_FILTER',
+  LOAD: 'LearningObjectivesActions.LOAD',
+  LOADED: 'LearningObjectivesActions.LOADED',
+  HIDE_OBJECTIVES: 'LearningObjectivesActions.HIDE_OBJECTIVES',
+  SHOW_OBJECTIVES: 'LearningObjectivesActions.SHOW_OBJECTIVES',
+  SEARCH: 'LearningObjectivesActions.SEARCH',
+  LOADED_RESULTS: 'LearningObjectivesActions.LOADED_RESULTS',
+  HIDE_RESULTS: 'LearningObjectivesActions.HIDE_RESULTS',
+  TOGGLE_FILTER: 'LearningObjectivesActions.TOGGLE_FILTER',
   
   load() {
     return loadData('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
@@ -39,9 +39,6 @@ const LearningObjectivesActions = {
   showObjectives() {
     return { type: LearningObjectivesActions.SHOW_OBJECTIVES };
   },
-  hideResults() {
-    return { type: LearningObjectivesActions.HIDE_RESULTS };
-  },
   search(filters) {
     const params = filters.map(filter => {
       const name = getParameterName(filter.type);
@@ -50,7 +47,10 @@ const LearningObjectivesActions = {
     });
     const paramsString = params.join('&');
 
-    return loadData(`/api/filtros?${paramsString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_SEARCH);
+    return loadData(`/api/filtros?${paramsString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
+  },
+  hideResults() {
+    return { type: LearningObjectivesActions.HIDE_RESULTS };
   },
   toggleFilter(filter) {
     return { type: LearningObjectivesActions.TOGGLE_FILTER, filter };

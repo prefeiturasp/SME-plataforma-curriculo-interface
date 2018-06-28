@@ -1,8 +1,8 @@
 import loadData from './loadData';
 
 const RoadmapActions = {
-  LOAD: 'RA_LOAD',
-  LOADED: 'RA_LOADED',
+  LOAD: 'RoadmapActions.LOAD',
+  LOADED: 'RoadmapActions.LOADED',
   
   load() {
     return loadData('/api/roteiros', RoadmapActions.LOAD, RoadmapActions.LOADED);

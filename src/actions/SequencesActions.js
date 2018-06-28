@@ -36,16 +36,14 @@ function getParameterValue(filter) {
 }
 
 const SequencesActions = {
-  CLEAR_SEARCH: 'SA_CLEAR_SEARCH',
-  SEARCH: 'SA_SEARCH',
-  LOAD: 'SA_LOAD',
-  LOADED: 'SA_LOADED',
-  LOAD_ITEM: 'SA_LOAD_ITEM',
-  LOADED_ITEM: 'SA_LOADED_ITEM',
-  TOGGLE_PREVIEW: 'SA_TOGGLE_PREVIEW',
+  CLEAR: 'SequencesActions.CLEAR',
+  LOAD: 'SequencesActions.LOAD',
+  LOADED: 'SequencesActions.LOADED',
+  LOADED_ITEM: 'SequencesActions.LOADED_ITEM',
+  TOGGLE_PREVIEW: 'SequencesActions.TOGGLE_PREVIEW',
   
   clearSearch() {
-    return { type: SequencesActions.CLEAR_SEARCH };
+    return { type: SequencesActions.CLEAR };
   },
   search(filters) {
     const params = filters.map(filter => {
@@ -55,13 +53,13 @@ const SequencesActions = {
     });
     const paramsString = params.join('&');
     
-    return loadData(`/api/sequencias?${paramsString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
+    return loadData(`/api/sequencias?${paramsString}`, SequencesActions.CLEAR, SequencesActions.LOADED);
   },
   load() {
     return loadData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
   },
   loadItem(slug) {
-    return loadData(`/api/sequencias?${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
+    return loadData(`/api/sequencias?${slug}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };

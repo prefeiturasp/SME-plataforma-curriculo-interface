@@ -1,8 +1,8 @@
 import loadData from './loadData';
 
 const KnowledgeMatrixActions = {
-  LOAD: 'KA_LOAD',
-  LOADED: 'KA_LOADED',
+  LOAD: 'KnowledgeMatrixActions.LOAD',
+  LOADED: 'KnowledgeMatrixActions.LOADED',
   
   load() {
     return loadData('/api/saberes', KnowledgeMatrixActions.LOAD, KnowledgeMatrixActions.LOADED);
