@@ -75,7 +75,7 @@
 
 .seeObjectives {
   composes: btn from global;
-  display: none;
+  display: none !important;
 }
 
 .objectives {
@@ -152,6 +152,7 @@
 
 .results.isVisible {
   height: auto;
+  min-height: 20rem;
   opacity: 1;
   z-index: 10;
   transition: opacity 0.3s ease-in-out;
