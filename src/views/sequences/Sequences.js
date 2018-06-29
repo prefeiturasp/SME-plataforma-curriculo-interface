@@ -6,7 +6,7 @@ import FilterBar from '../filters/FilterBar';
 import FilterPanel from '../filters/FilterPanel';
 import GridItem from './GridItem';
 import ResultsNotFound from './ResultsNotFound';
-import styles from'./Sequences.css';
+import styles from './Sequences.css';
 
 class Sequences extends Component {
   onClickedLoad() {

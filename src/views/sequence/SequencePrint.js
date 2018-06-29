@@ -10,7 +10,7 @@ import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import iconClock from '../../images/iconClock.svg';
-import styles from'./Sequence.css';
+import styles from './Sequence.css';
 
 class SequencePrint extends Component {
   onClickedPrint() {

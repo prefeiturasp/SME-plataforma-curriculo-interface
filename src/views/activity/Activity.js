@@ -6,22 +6,11 @@ import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
-import iconArrowLeft from'../../images/iconArrowLeft.svg';
-import iconArrowRight from'../../images/iconArrowRight.svg';
-import iconGroup from'../../images/iconGroup.svg';
-import iconOutdoors from'../../images/iconOutdoors.svg';
+import getActivityTypeIcon from './getActivityTypeIcon';
+import iconArrowLeft from '../../images/iconArrowLeft.svg';
+import iconArrowRight from '../../images/iconArrowRight.svg';
 import iconPrint from '../../images/iconPrint.svg';
-import styles from'./Activity.css';
-
-function getActivityTypeIcon(activityType) {
-  switch (activityType) {
-    case 'Grupo':
-      return iconGroup;
-
-    default:
-      return iconOutdoors;
-  }
-}
+import styles from './Activity.css';
 
 class Activity extends Component {
   onClickedPrint() {

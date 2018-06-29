@@ -13,7 +13,7 @@ import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import iconClock from '../../images/iconClock.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
-import styles from'./Sequence.css';
+import styles from './Sequence.css';
 
 class Sequence extends Component {
   onClickedPrint() {

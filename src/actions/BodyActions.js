@@ -1,10 +1,10 @@
 const BodyActions = {
-  ENTER_HOME: 'BA_ENTER_HOME',
-  EXIT_HOME: 'BA_EXIT_HOME',
-  HIDE_LOADING: 'BA_HIDE_LOADING',
-  SHOW_LOADING: 'BA_SHOW_LOADING',
-  HIDE_POPUP: 'BA_HIDE_POPUP',
-  SHOW_POPUP: 'BA_SHOW_POPUP',
+  ENTER_HOME: 'BodyActions.ENTER_HOME',
+  EXIT_HOME: 'BodyActions.EXIT_HOME',
+  HIDE_LOADING: 'BodyActions.HIDE_LOADING',
+  SHOW_LOADING: 'BodyActions.SHOW_LOADING',
+  HIDE_POPUP: 'BodyActions.HIDE_POPUP',
+  SHOW_POPUP: 'BodyActions.SHOW_POPUP',
   
   enterHome() {
     return { type: BodyActions.ENTER_HOME };

@@ -1,16 +1,11 @@
 import FiltersActions from '../actions/FiltersActions';
 
 const initialState = {
-  years: [],
-  curricular_components: [],
-  sustainable_development_goals: [],
-  knowledge_matrices: [],
-  learning_objectives: [],
-  activity_types: [],
-  axes: [],
+  currCategory: null,
+  filters: [],
   isExpanded: false,
   isShowingCategory: false,
-  currCategory: null,
+  isShowingWarning: false,
 };
 
 function FiltersReducer(state = initialState, action) {
@@ -22,9 +17,29 @@ function FiltersReducer(state = initialState, action) {
       };
 
     case FiltersActions.LOADED:
+      const filters = [];
+      const keys = [
+        'years',
+        'curricular_components',
+        'sustainable_development_goals',
+        'knowledge_matrices',
+        'learning_objectives',
+        'activity_types',
+        'axes',
+      ];
+
+      keys.forEach(key => {
+        const list = action.data[key];
+        if (list) {
+          list.forEach(item => {
+            filters.push({ ...item, type: key });
+          });
+        }
+      });
+
       return {
         ...state,
-        ...action.data,
+        filters,
         isLoading: false,
       };
 
@@ -41,11 +56,24 @@ function FiltersReducer(state = initialState, action) {
         currCategory: action.category,
       };
 
+    case FiltersActions.CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: state.filters.map(item => {
+          return {
+            ...item,
+            isActive: false,
+          };
+        })
+      };
+
     case FiltersActions.TOGGLE_FILTER:
       return {
         ...state,
         filters: state.filters.map(item => {
-          if (item.type === action.filter.type && item.value === action.filter.value) {
+          const name1 = item.name || item.title || item.description;
+          const name2 = action.filter.name || action.filter.title || action.filter.description;
+          if (item.type === action.filter.type && name1 === name2) {
             return {
               ...item,
               isActive: !item.isActive,
@@ -62,17 +90,6 @@ function FiltersReducer(state = initialState, action) {
         isExpanded: !state.isExpanded,
       };
 
-    case FiltersActions.CLEAR_FILTERS:
-      return {
-        ...state,
-        filters: state.filters.map(item => {
-          return {
-            ...item,
-            isActive: false,
-          };
-        })
-      };
-
     case FiltersActions.SEARCH:
       if (state.filters.findIndex(item => item.isActive) >= 0) {
         return {
@@ -82,14 +99,14 @@ function FiltersReducer(state = initialState, action) {
       } else {
         return {
           ...state,
-          showSearchWarning: true,
+          isShowingWarning: true,
         };
       }
 
-    case FiltersActions.DISMISS_SEARCH_WARNING:
+    case FiltersActions.HIDE_WARNING:
       return {
         ...state,
-        showSearchWarning: false,
+        isShowingWarning: false,
       };
       
     default:

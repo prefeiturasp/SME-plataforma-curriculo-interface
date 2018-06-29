@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import iconLoading from'../../images/iconLoading.png';
-import styles from'./AppLoading.css';
+import iconLoading from '../../images/iconLoading.png';
+import styles from './AppLoading.css';
 
 class AppLoading extends Component {
   render() {

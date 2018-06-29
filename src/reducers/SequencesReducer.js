@@ -22,14 +22,8 @@ const initialState = {
 
 function SequencesReducer(state = initialState, action) {
   switch (action.type) {
-    case SequencesActions.CLEAR_SEARCH:
+    case SequencesActions.CLEAR:
       return initialState;
-
-    case SequencesActions.SEARCH:
-      return {
-        items: [],
-        currItem: emptyItem,
-      };
 
     case SequencesActions.LOAD:
       return {
@@ -42,12 +36,6 @@ function SequencesReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         items: action.data,
-      };
-
-    case SequencesActions.LOAD_ITEM:
-      return {
-        ...state,
-        isLoading: true,
       };
       
     case SequencesActions.LOADED_ITEM:

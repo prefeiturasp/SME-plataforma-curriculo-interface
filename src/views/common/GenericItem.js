@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from'./GenericItem.css';
+import styles from './GenericItem.css';
 
 class GenericItem extends Component {
   render() {
@@ -9,7 +9,7 @@ class GenericItem extends Component {
 
     return (
       <button className={classes.join(' ')} style={style}>
-        {this.props.data.label || this.props.data.name || this.props.data.description}
+        {this.props.data.name || this.props.data.description}
       </button>
     );
   }

@@ -1,46 +1,15 @@
-import { API_URL } from '../constants';
-
-function onLoad() {
-  return { type: SustainableDevGoalsActions.LOAD };
-}
-
-function onLoaded(data) {
-  return { data, type: SustainableDevGoalsActions.LOADED };
-}
-
-function onLoadItem() {
-  return { type: SustainableDevGoalsActions.LOAD_ITEM };
-}
-
-function onLoadedItem(data) {
-  return { data, type: SustainableDevGoalsActions.LOADED_ITEM };
-}
+import loadData from './loadData';
 
 const SustainableDevGoalsActions = {
-  LOAD: 'SDGA_LOAD',
-  LOADED: 'SDGA_LOADED',
-  LOAD_ITEM: 'SDGA_LOAD_ITEM',
-  LOADED_ITEM: 'SDGA_LOADED_ITEM',
+  LOAD: 'SustainableDevGoalsActions.LOAD',
+  LOADED: 'SustainableDevGoalsActions.LOADED',
+  LOADED_ITEM: 'SustainableDevGoalsActions.LOADED_ITEM',
   
   load() {
-    return dispatch => {
-      dispatch(onLoad());
-      fetch(`${API_URL}/api/ods`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onLoaded(data));
-        });
-    };
+    return loadData('/api/ods', SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED);
   },
   loadItem(id) {
-    return dispatch => {
-      dispatch(onLoadItem());
-      fetch(`${API_URL}/api/ods/${id}`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onLoadedItem(data));
-        });
-    };
+    return loadData(`/api/ods/${id}`, SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED_ITEM);
   },
 };
 

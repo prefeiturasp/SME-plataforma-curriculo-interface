@@ -1,26 +1,11 @@
-import { API_URL } from '../constants';
-
-function onLoad() {
-  return { type: KnowledgeMatrixActions.LOAD };
-}
-
-function onLoaded(data) {
-  return { data, type: KnowledgeMatrixActions.LOADED };
-}
+import loadData from './loadData';
 
 const KnowledgeMatrixActions = {
-  LOAD: 'KA_LOAD',
-  LOADED: 'KA_LOADED',
+  LOAD: 'KnowledgeMatrixActions.LOAD',
+  LOADED: 'KnowledgeMatrixActions.LOADED',
   
   load() {
-    return dispatch => {
-      dispatch(onLoad());
-      fetch(`${API_URL}/api/saberes`)
-        .then(response => response.json())
-        .then(data => {
-          dispatch(onLoaded(data));
-        });
-    };
+    return loadData('/api/saberes', KnowledgeMatrixActions.LOAD, KnowledgeMatrixActions.LOADED);
   },
 };
 
