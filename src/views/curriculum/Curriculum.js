@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
 import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
 import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
+import imgCurriculum from '../../images/imgCurriculum.jpg';
 import styles from './Curriculum.css';
 
 class Curriculum extends Component {
   render() {
-    const style = { backgroundImage: 'url(http://via.placeholder.com/1110x420)' };
+    const style = { backgroundImage: `url(${imgCurriculum})` };
 
     return (
       <section className={styles.wrapper}>

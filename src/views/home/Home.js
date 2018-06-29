@@ -11,6 +11,7 @@ import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
 import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
 import iconSequences from '../../images/iconSequences.svg';
 import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
+import imgHome from '../../images/imgHome.jpg';
 import styles from './Home.css';
 
 class Home extends Component {
@@ -24,7 +25,7 @@ class Home extends Component {
   }
 
   render() {
-    const style = { backgroundImage: 'url(http://via.placeholder.com/1110x420)' };
+    const style = { backgroundImage: `url(${imgHome})` };
     const sequences = this.props.sequences.map((item, i) => {
       return (
         <GridItem key={i} index={i} data={item} />
