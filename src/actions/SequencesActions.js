@@ -59,7 +59,7 @@ const SequencesActions = {
     return loadData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
   },
   loadItem(slug) {
-    return loadData(`/api/sequencias?${slug}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
+    return loadData(`/api/sequencias/${slug}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };
