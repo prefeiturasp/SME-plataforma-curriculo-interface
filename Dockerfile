@@ -11,7 +11,7 @@ RUN npm install -g serve
 
 COPY . ./
 
-CMD if [ ${APP_ENV} = production ]; \
+CMD if [ ${INTERFACE_ENV} = production ]; \
 	then \
 	npm run build --production && \
 	serve -s build; \
