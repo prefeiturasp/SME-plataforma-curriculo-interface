@@ -20,8 +20,6 @@ class GridItem extends Component {
 
   render() {
     const data = this.props.data;
-    data.year = '1o ano';
-
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
     const icon = data.isExpanded ? iconMinus : iconPlus;
