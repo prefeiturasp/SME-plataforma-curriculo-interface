@@ -40,7 +40,7 @@ class Sequence extends Component {
 
     const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {
       return (
-        <KnowledgeMatrixItem key={i} data={item} />
+        <KnowledgeMatrixItem key={i} data={item} isLink={true} />
       );
     });
 
@@ -52,11 +52,21 @@ class Sequence extends Component {
 
     const sustainableDevGoals = data.sustainable_development_goals.map((item, i) => {
       return (
-        <SustainableDevGoalItem key={i} data={item} />
+        <SustainableDevGoalItem key={i} data={item} isLink={true} />
       );
     });
     
-    const books = data.books;
+    const books = data.books.trim();
+
+    const booksTitle = books ? (
+      <div className={styles.title}>
+        Livros para o professor:
+      </div>
+    ) : null;
+    
+    const booksContents = books ? (
+      <p>{data.books}</p>
+    ) : null;
     
     const activities = data.activities.map((item, i) => {
       return (
@@ -77,6 +87,8 @@ class Sequence extends Component {
 
     const word = data.estimated_time > 1 ? 'aulas' : 'aula';
     const duration = `${data.estimated_time} ${word}`;
+
+    const description = data.presentation_text.replace(/\r\n/g, '<br>');
 
     return (
       <section className={styles.wrapper}>
@@ -138,21 +150,17 @@ class Sequence extends Component {
               <ul>
                 {sustainableDevGoals}
               </ul>
-              <div className={styles.title}>
-                Livros para o professor:
-              </div>
-              <ul>
-                {books}
-              </ul>
+              {booksTitle}
+              {booksContents}
             </div>
           </div>
         </div>
         <hr />
         <div className="container">
           {image}
-          <div className={styles.description}>
-            {data.presentation_text}
-          </div>
+          <div
+            className={styles.description}
+            dangerouslySetInnerHTML={{__html: description}} />
           <h4>Atividades</h4>
           <ul className="row">
             {activities}
