@@ -50,7 +50,7 @@ class GridItem extends Component {
             <em style={style}>{data.main_curricular_component.name}</em>
             <span>{data.year} ano</span>
           </div>
-          <div className={styles.title}>{data.name}</div>
+          <div className={styles.title}>{data.title}</div>
           <div className={styles.infos}>
             <div className={styles.info}>
               <div className={styles.number}>{duration}</div>
