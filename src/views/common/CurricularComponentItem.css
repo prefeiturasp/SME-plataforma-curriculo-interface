@@ -10,6 +10,6 @@
 }
 
 .wrapper.isColored {
-  border: 0; 
+  border-color: transparent; 
   color: white;
 }
