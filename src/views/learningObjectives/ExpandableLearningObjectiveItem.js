@@ -43,7 +43,7 @@ class ExpandableLearningObjectiveItem extends Component {
         </button>
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}
-          <NavLink to='/sequencias' className={styles.related}>
+          <NavLink to="/sequencias" className={styles.related}>
             Ver Sequências de Atividades Relacionadas
             <img src={iconChevronRight} alt="Seta" />
           </NavLink>
