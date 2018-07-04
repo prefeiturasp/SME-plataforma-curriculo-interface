@@ -10,6 +10,10 @@ import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
 import styles from './SustainableDevGoal.css';
 
 class SustainableDevGoal extends Component {
+  onClickedClose() {
+    this.context.router.history.goBack();
+  }
+  
   componentDidMount() {
     this.props.showPopup();
     this.props.loadItem(this.props.match.params.id);
@@ -63,13 +67,17 @@ class SustainableDevGoal extends Component {
             </div>
           </div>
         </div>
-        <NavLink to="/ods" className={styles.close}>
+        <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
           <img src={iconCloseBigWhite} alt="Fechar" />
-        </NavLink>
+        </button>
       </section>
     );
   }
 }
+
+SustainableDevGoal.contextTypes = {
+  router: () => true,
+};
 
 SustainableDevGoal.propTypes = {
   data: PropTypes.object.isRequired,

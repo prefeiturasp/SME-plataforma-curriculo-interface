@@ -8,6 +8,10 @@ import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
+  onClickedClose() {
+    this.context.router.history.goBack();
+  }
+
   componentDidMount() {
     this.props.showPopup();
     if (this.props.data.length <= 0) {
@@ -42,9 +46,9 @@ class KnowledgeMatrixItem extends Component {
               <NavLink to="/sequencias" className={styles.button}>
                 Ver Sequências de Atividades Relacionadas
               </NavLink>
-              <NavLink to="/matriz-de-saberes" className={styles.close}>
+              <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
                 <img src={iconCloseBig} alt="Fechar" />
-              </NavLink>
+              </button>
             </div>
           </div>
         </div>
@@ -52,6 +56,10 @@ class KnowledgeMatrixItem extends Component {
     );
   }
 }
+
+KnowledgeMatrixItem.contextTypes = {
+  router: () => true,
+};
 
 KnowledgeMatrixItem.propTypes = {
   data: PropTypes.array.isRequired,
