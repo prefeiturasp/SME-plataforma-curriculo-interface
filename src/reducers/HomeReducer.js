@@ -9,13 +9,11 @@ function HomeReducer(state = initialState, action) {
     case HomeActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
       
     case HomeActions.LOADED:
       return {
         ...state,
-        isLoading: false,
         items: action.data,
       };
   

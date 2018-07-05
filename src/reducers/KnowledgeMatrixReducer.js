@@ -9,13 +9,11 @@ function KnowledgeMatrixReducer(state = initialState, action) {
     case KnowledgeMatrixActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
 
     case KnowledgeMatrixActions.LOADED:
       return {
         ...state,
-        isLoading: false,
         items: action.data,
       };
 

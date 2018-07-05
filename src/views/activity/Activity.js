@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
+import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
@@ -159,6 +160,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: (slug1, slug2) => {
+      dispatch(BodyActions.showLoading());
       dispatch(ActivityActions.load(slug1, slug2));
     },
   };

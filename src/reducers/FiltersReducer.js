@@ -13,7 +13,6 @@ function FiltersReducer(state = initialState, action) {
     case FiltersActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
 
     case FiltersActions.LOADED:
@@ -40,7 +39,6 @@ function FiltersReducer(state = initialState, action) {
       return {
         ...state,
         filters,
-        isLoading: false,
       };
 
     case FiltersActions.HIDE_CATEGORY:

@@ -77,6 +77,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(KnowledgeMatrixActions.load());
     },
     hidePopup: () => {

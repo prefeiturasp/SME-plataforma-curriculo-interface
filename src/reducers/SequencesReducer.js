@@ -29,20 +29,17 @@ function SequencesReducer(state = initialState, action) {
     case SequencesActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
       
     case SequencesActions.LOADED:
       return {
         ...state,
-        isLoading: false,
         items: action.data,
       };
       
     case SequencesActions.LOADED_ITEM:
       return {
         ...state,
-        isLoading: false,
         currItem: action.data,
       };
 

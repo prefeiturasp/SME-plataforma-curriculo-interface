@@ -225,6 +225,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(LearningObjectivesActions.load());
     },
     hideObjectives: () => {

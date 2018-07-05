@@ -1,3 +1,4 @@
+import BodyActions from './BodyActions';
 import { API_URL } from '../constants';
 
 export default function loadData(url, action1, action2) {
@@ -6,6 +7,7 @@ export default function loadData(url, action1, action2) {
     fetch(API_URL + url)
       .then(response => response.json())
       .then(data => {
+        dispatch({ type: BodyActions.HIDE_LOADING });
         dispatch({ data, type: action2 });
       });
   };

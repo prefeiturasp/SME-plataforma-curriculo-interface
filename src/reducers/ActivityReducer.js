@@ -9,13 +9,11 @@ function ActivityReducer(state = initialState, action) {
     case ActivityActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
 
     case ActivityActions.LOADED:
       return {
         ...state,
-        isLoading: false,
         currActivity: action.data,
       };
 
