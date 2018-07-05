@@ -25,7 +25,7 @@ class SequencePrint extends Component {
     const data = this.props.data;
 
     const filters = [
-      <GenericItem key={0} data={{name: data.year}} />,
+      <GenericItem key={0} data={{name: `${data.year} ano`}} />,
       <GenericItem key={1} data={data.main_curricular_component} />,
     ];
 

@@ -6,7 +6,7 @@ function getParameterName(type) {
       return 'years';
 
     case 'curricular_components':
-      return 'curricular_components_slugs';
+      return 'curricular_component_slugs';
 
     case 'sustainable_development_goals':
       return 'sustainable_development_goal_ids';
