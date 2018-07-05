@@ -12,7 +12,6 @@ function LearningObjectivesReducer(state = initialState, action) {
     case LearningObjectivesActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
 
     case LearningObjectivesActions.LOADED:
@@ -34,7 +33,6 @@ function LearningObjectivesReducer(state = initialState, action) {
       return {
         ...state,
         filters,
-        isLoading: false,
       };
 
     case LearningObjectivesActions.HIDE_OBJECTIVES:
@@ -50,17 +48,22 @@ function LearningObjectivesReducer(state = initialState, action) {
       };
 
     case LearningObjectivesActions.SEARCH:
-      return {
-        ...state,
-        results: [],
-        isLoading: true,
-      };
+      if (state.filters.findIndex(item => item.isActive) >= 0) {
+        return {
+          ...state,
+          results: [],
+        };
+      } else {
+        return {
+          ...state,
+          isShowingWarning: true,
+        };
+      }
 
     case LearningObjectivesActions.LOADED_RESULTS:
       return {
         ...state,
         results: action.data.learning_objectives || [],
-        isLoading: false,
         isShowingResults: true,
       };
 
@@ -85,6 +88,12 @@ function LearningObjectivesReducer(state = initialState, action) {
             return item;
           }
         })
+      };
+
+    case LearningObjectivesActions.HIDE_WARNING:
+      return {
+        ...state,
+        isShowingWarning: false,
       };
 
     default:

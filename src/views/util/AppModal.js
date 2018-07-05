@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import FiltersActions from '../../actions/FiltersActions';
+import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import iconClose from '../../images/iconClose.svg';
 import iconWarningBig from '../../images/iconWarningBig.svg';
 
@@ -10,7 +11,7 @@ Modal.setAppElement('#root');
 
 class AppModal extends Component {
   onClickedClose() {
-    this.props.dismissSearchWarning();
+    this.props.hideWarning();
   }
 
   render() {
@@ -19,10 +20,10 @@ class AppModal extends Component {
         className="modal"
         overlayClassName="overlay"
         contentLabel="Example Modal"
-        isOpen={this.props.showSearchWarning}
-        onRequestClose={this.props.dismissSearchWarning}
+        isOpen={this.props.isShowingWarning}
+        onRequestClose={this.props.hideWarning}
         shouldCloseOnOverlayClick={true}>
-        <button onClick={this.props.dismissSearchWarning}>
+        <button onClick={this.props.hideWarning}>
           <img src={iconClose} alt="Fechar" />
         </button>
         <p>
@@ -35,20 +36,21 @@ class AppModal extends Component {
 }
 
 AppModal.propTypes = {
-  showSearchWarning: PropTypes.bool,
-  dismissSearchWarning: PropTypes.func.isRequired,
+  isShowingWarning: PropTypes.bool,
+  hideWarning: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    showSearchWarning: state.FiltersReducer.showSearchWarning,
+    isShowingWarning: state.FiltersReducer.isShowingWarning || state.LearningObjectivesReducer.isShowingWarning,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    dismissSearchWarning: () => {
-      dispatch(FiltersActions.dismissSearchWarning());
+    hideWarning: () => {
+      dispatch(FiltersActions.hideWarning());
+      dispatch(LearningObjectivesActions.hideWarning());
     },
   };
 };

@@ -29,6 +29,7 @@ const LearningObjectivesActions = {
   LOADED_RESULTS: 'LearningObjectivesActions.LOADED_RESULTS',
   HIDE_RESULTS: 'LearningObjectivesActions.HIDE_RESULTS',
   TOGGLE_FILTER: 'LearningObjectivesActions.TOGGLE_FILTER',
+  HIDE_WARNING: 'LearningObjectivesActions.HIDE_WARNING',
   
   load() {
     return loadData('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
@@ -54,6 +55,9 @@ const LearningObjectivesActions = {
   },
   toggleFilter(filter) {
     return { type: LearningObjectivesActions.TOGGLE_FILTER, filter };
+  },
+  hideWarning() {
+    return { type: LearningObjectivesActions.HIDE_WARNING };
   },
 };
 
