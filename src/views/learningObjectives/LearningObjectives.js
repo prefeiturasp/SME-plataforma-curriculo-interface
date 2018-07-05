@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
+import Loading from '../util/Loading';
 import YearButton from './YearButton';
 import iconChevronLeft from '../../images/iconChevronLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
@@ -16,6 +18,9 @@ class LearningObjectives extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
+    this.state = {
+      isLoading: false,
+    };
   }
 
   onClickedBack() {
@@ -30,6 +35,7 @@ class LearningObjectives extends Component {
   onClickedNext() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     this.props.search(activeFilters);
+    this.setState({ isLoading: true });
 
     const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
     if (totalWidth < 768) {
@@ -48,6 +54,15 @@ class LearningObjectives extends Component {
 
   componentDidMount() {
     this.props.load();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isShowingWarning) {
+      this.setState({ isLoading: false });
+    }
+    if (nextProps.isShowingResults && !this.props.isShowingResults) {
+      this.setState({ isLoading: false });
+    }
   }
 
   render() {
@@ -84,15 +99,75 @@ class LearningObjectives extends Component {
 
     const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
     const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
-    const classes2 = this.props.isShowingResults ? [styles.results, styles.isVisible] : [styles.results];
-    const style = {};
+    
+    const filters = !this.props.isShowingResults && !this.state.isLoading ? (
+      <div ref={this.ref}>
+        <h2 className={styles.objectivesTitle2}>Objetivos</h2>
+        <div className="row">
+          <div className="col-md-4 offset-md-2">
+            <div className={styles.pickYear}>
+              <h3>Escolha o ano</h3>
+              <h4>Ciclo de alfabetização</h4>
+              <ul className={styles.buttons}>
+                {yearButtons}
+              </ul>
+              <p className={styles.warning}>
+                <img src={iconWarning} alt="Observação" />
+                <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
+              </p>
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className={styles.pickCurricularComponent}>
+              <h3>Escolha o Componente Curricular</h3>
+              <ul className={styles.buttons}>
+                {componentButtons}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-8 offset-md-2">
+            <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
+              Avançar
+            </button>
+          </div>
+        </div>
+        <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+          <img src={iconCloseBig} alt="Fechar" />
+        </button>
+      </div>
+    ) : null;
 
-    if (totalWidth >= 768) {
-      const height = this.ref.current ? this.ref.current.offsetHeight : 0;
-      const marginBottom = this.props.isShowingResults ? 0 : height;
-      style.marginTop = `-${height}px`;
-      style.marginBottom = `${marginBottom}px`;
-    }
+    const loading = this.state.isLoading && !filters ? (
+      <div className={styles.loading}>
+        <Loading />
+      </div>
+    ) : null;
+
+    const results = this.props.isShowingResults && !loading ? (
+      <div className={styles.results}>
+        <h2 className={styles.objectivesTitle2}>Objetivos</h2>
+        <div className="row">
+          <div className="col-md-8 offset-md-2">
+            <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
+              <img src={iconChevronLeft} alt="Voltar" />
+              Voltar
+            </button>
+            <p>Ano e componente(s) selecionado(s):</p>
+            <ul>
+              {selectedFiltersButtons}
+            </ul>
+            <ul>
+              {learningObjectivesItems}
+            </ul>
+          </div>
+        </div>
+        <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
+          <img src={iconCloseBig} alt="Fechar" />
+        </button>
+      </div>
+    ) : null;
 
     return (
       <section className={styles.wrapper}>
@@ -136,63 +211,17 @@ class LearningObjectives extends Component {
               <h2>Conheça os objetivos</h2>
             </div>
           </div>
-          <div ref={this.ref}>
-            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
-            <div className="row">
-              <div className="col-md-4 offset-md-2">
-                <div className={styles.pickYear}>
-                  <h3>Escolha o ano</h3>
-                  <h4>Ciclo de alfabetização</h4>
-                  <ul className={styles.buttons}>
-                    {yearButtons}
-                  </ul>
-                  <p className={styles.warning}>
-                    <img src={iconWarning} alt="Observação" />
-                    <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
-                  </p>
-                </div>
-              </div>
-              <div className="col-md-4">
-                <div className={styles.pickCurricularComponent}>
-                  <h3>Escolha o Componente Curricular</h3>
-                  <ul className={styles.buttons}>
-                    {componentButtons}
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-8 offset-md-2">
-                <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
-                  Avançar
-                </button>
-              </div>
-            </div>
-            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
-              <img src={iconCloseBig} alt="Fechar" />
-            </button>
-          </div>
-          <div className={classes2.join(' ')} style={style}>
-            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
-            <div className="row">
-              <div className="col-md-8 offset-md-2">
-                <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
-                  <img src={iconChevronLeft} alt="Voltar" />
-                  Voltar
-                </button>
-                <p>Ano e componente(s) selecionado(s):</p>
-                <ul>
-                  {selectedFiltersButtons}
-                </ul>
-                <ul>
-                  {learningObjectivesItems}
-                </ul>
-              </div>
-            </div>
-            <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
-              <img src={iconCloseBig} alt="Fechar" />
-            </button>
-          </div>
+          <ReactCSSTransitionGroup
+            transitionName={{
+              enter: styles.transitionEnter,
+              enterActive: styles.transitionEnterActive,
+              leave: styles.transitionLeave,
+              leaveActive: styles.transitionLeaveActive,
+            }}>
+            {filters}
+            {loading}
+            {results}
+          </ReactCSSTransitionGroup>
         </div>
       </section>
     );

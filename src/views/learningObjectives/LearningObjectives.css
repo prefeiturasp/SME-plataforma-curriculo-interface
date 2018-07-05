@@ -79,6 +79,7 @@
 }
 
 .objectives {
+  min-height: 30rem;
   padding-top: 1.875rem;
   padding-bottom: 2.5rem;
   position: relative;
@@ -136,26 +137,20 @@
   display: inline-block !important;
 }
 
+.loading {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 20rem;
+}
+
 .results {
-  background: white;
   font-size: 1.125rem;
-  height: 0;
-  opacity: 0;
   position: relative;
-  transition: z-index 0s 0.3s, opacity 0.3s ease-in-out;
-  z-index: -10;
 }
 
 .results ul {
   list-style: none;
-}
-
-.results.isVisible {
-  height: auto;
-  min-height: 20rem;
-  opacity: 1;
-  z-index: 10;
-  transition: opacity 0.3s ease-in-out;
 }
 
 .back {
@@ -176,6 +171,24 @@
   position: absolute;
   right: 1.25rem;
   top: 1.25rem;
+}
+
+.transitionEnter {
+  opacity: 0.01;
+}
+
+.transitionEnterActive {
+  opacity: 1;
+  transition: opacity 1.3s ease-in-out;
+}
+
+.transitionLeave {
+  opacity: 1;
+}
+
+.transitionLeaveActive {
+  opacity: 0.01;
+  transition: opacity 1.3s ease-in-out;
 }
 
 @media only screen and (max-width: 768px) {
