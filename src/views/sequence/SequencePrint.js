@@ -134,7 +134,7 @@ class SequencePrint extends Component {
             {data.presentation_text}
           </div>
           <h4>Atividades</h4>
-          <ul className="row">
+          <ul>
             {activities}
           </ul>
         </div>
