@@ -33,7 +33,7 @@ class GridItem extends Component {
         </div>
       ) : (
         <div className={styles.initials}>
-          {data.main_curricular_component.split(' ').map(s => s.charAt(0)).join('')}
+          {data.main_curricular_component.name.split(' ').map(s => s.charAt(0)).join('')}
         </div>
       );
 
