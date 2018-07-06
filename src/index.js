@@ -19,6 +19,7 @@ import LearningObjectives from './views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from './views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixItem from './views/knowledgeMatrix/KnowledgeMatrixItem';
 import Roadmap from './views/roadmap/Roadmap';
+import ScrollToTop from './views/util/ScrollToTop';
 import Sequence from './views/sequence/Sequence';
 import SequencePrint from './views/sequence/SequencePrint';
 import Sequences from './views/sequences/Sequences';
@@ -40,7 +41,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <div>
+      <ScrollToTop>
         <Header />
         <Route exact path='/' component={Home} />
         <Route path='/sequencias' component={Sequences} />
@@ -59,7 +60,7 @@ ReactDOM.render(
         <AppLoading />
         <AppModal />
         <BodyManager />
-      </div>
+      </ScrollToTop>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

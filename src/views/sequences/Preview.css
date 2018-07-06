@@ -1,4 +1,5 @@
 .mask {
+  border-left: 1px solid transparent;
   margin: 1rem 0 0 -15px;
   overflow: hidden;
   position: absolute;
@@ -27,6 +28,8 @@
 }
 
 .isLeftAligned {
+  border-left: 0;
+  border-right: 1px solid transparent;
   left: 0;
   margin-left: 15px;
   z-index: 80;
@@ -64,14 +67,14 @@
 }
 
 .isExpanded {
-  border-left: 1px solid #e0e0e0;
+  border-left-color: #e0e0e0;
   width: 100%;
   z-index: 100;
 }
 
 .isExpanded.isLeftAligned {
-  border-left: 0;
-  border-right: 1px solid #e0e0e0;
+  border-left-color: transparent;
+  border-right-color: #e0e0e0;
   left: -100%;
 }
 

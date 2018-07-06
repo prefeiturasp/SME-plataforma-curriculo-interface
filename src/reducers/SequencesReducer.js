@@ -13,6 +13,7 @@ const emptyItem = {
   sustainable_development_goals: [],
   books: '',
   activities: [],
+  presentation_text: '',
 };
 
 const initialState = {

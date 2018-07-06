@@ -1,4 +1,5 @@
-.wrapper {
+.wrapper,
+.wrapper a {
   align-items: center;
   display: flex;
   color: #6a6a6a;
@@ -7,7 +8,15 @@
   margin-bottom: 0.5rem;
 }
 
-.wrapper > div:first-child {
+.wrapper a:hover {
+  text-decoration: none;
+}
+
+.wrapper a:hover div:last-child {
+  text-decoration: underline;
+}
+
+.wrapper div:first-child {
   border-radius: 2rem;
   border: 1px solid #e0e0e0;
   line-height: 1.8rem;

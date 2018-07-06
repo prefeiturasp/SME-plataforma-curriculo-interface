@@ -13,6 +13,11 @@
 .wrapper:hover {
   border-color: #6a6a6a;
   color: #6a6a6a;
+  text-decoration: none;
+}
+
+.wrapper:hover .label {
+  text-decoration: underline;
 }
 
 .number {

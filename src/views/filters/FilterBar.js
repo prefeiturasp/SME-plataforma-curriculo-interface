@@ -9,8 +9,12 @@ import styles from './FilterBar.css';
 
 class FilterBar extends Component {
   onClickedToggle() {
-    this.props.showPopup();
     this.props.togglePanel();
+
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    if (totalWidth < 768) {
+      this.props.showPopup();
+    }
   }
 
   render() {

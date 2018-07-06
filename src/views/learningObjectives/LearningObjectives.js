@@ -29,13 +29,21 @@ class LearningObjectives extends Component {
 
   onClickedNext() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
-    this.props.showPopup();
     this.props.search(activeFilters);
+
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    if (totalWidth < 768) {
+      this.props.showPopup();
+    }
   }
 
   onClickedSee() {
     this.props.showObjectives();
-    this.props.showPopup();
+    
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    if (totalWidth < 768) {
+      this.props.showPopup();
+    }
   }
 
   componentDidMount() {

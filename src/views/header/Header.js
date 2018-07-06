@@ -20,7 +20,11 @@ class Header extends Component {
 
   onClickedMenu() {
     this.setState({ isMenuExpanded: true });
-    this.props.showPopup();
+
+    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    if (totalWidth < 768) {
+      this.props.showPopup();
+    }
   }
 
   onClickedClose() {
