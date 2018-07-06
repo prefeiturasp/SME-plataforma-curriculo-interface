@@ -24,7 +24,9 @@ class Preview extends Component {
 
     const learningObjectives = this.props.data.learning_objectives.map((item, i) => {
       return (
-        <LearningObjectiveItem key={i} data={item} />
+        <li>
+          <LearningObjectiveItem key={i} data={item} />
+        </li>
       );
     });
 
