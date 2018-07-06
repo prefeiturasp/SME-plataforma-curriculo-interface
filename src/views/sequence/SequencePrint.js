@@ -5,7 +5,7 @@ import { API_URL } from '../../constants';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityPrint from '../activity/ActivityPrint';
 import CurricularComponentItem from '../common/CurricularComponentItem';
-import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
+import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';

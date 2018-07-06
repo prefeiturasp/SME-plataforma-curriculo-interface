@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
-import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
+import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import Loading from '../util/Loading';
 import YearButton from './YearButton';
@@ -102,7 +102,7 @@ class LearningObjectives extends Component {
     const learningObjectivesItems = this.props.results
       .map((item, i) => {
         return (
-          <ExpandableLearningObjectiveItem key={i} data={item} />
+          <ExpandableLearningObjectiveItem key={i} data={item} hasLink={true} />
         );
       });
 
