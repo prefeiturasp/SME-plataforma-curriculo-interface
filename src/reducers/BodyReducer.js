@@ -1,9 +1,11 @@
 import BodyActions from '../actions/BodyActions';
 
 const initialState = {
+  hasModal: false,
   hasPopup: false,
   isHome: false,
   isLoading: false,
+  message: '',
 };
 
 function BodyReducer(state = initialState, action) {
@@ -30,6 +32,19 @@ function BodyReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: true,
+      };
+
+    case BodyActions.HIDE_MODAL:
+      return {
+        ...state,
+        hasModal: false,
+      };
+
+    case BodyActions.SHOW_MODAL:
+      return {
+        ...state,
+        hasModal: true,
+        message: action.message,
       };
 
     case BodyActions.HIDE_POPUP:

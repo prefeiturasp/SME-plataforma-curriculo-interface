@@ -19,9 +19,7 @@ class LearningObjectives extends Component {
   constructor(props) {
     super(props);
     this.ref = React.createRef();
-    this.state = {
-      isLoading: false,
-    };
+    this.state = { isLoading: false };
   }
 
   onClickedBack() {
@@ -35,12 +33,15 @@ class LearningObjectives extends Component {
 
   onClickedNext() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
-    this.props.search(activeFilters);
-    this.setState({ isLoading: true });
+    if (activeFilters.length > 0) {
+      this.props.search(activeFilters);
+      this.setState({ isLoading: true });
 
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    if (totalWidth < 768) {
-      this.props.showPopup();
+      if (getWindowWidth() < 768) {
+        this.props.showPopup();
+      }
+    } else {
+      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
     }
   }
 
@@ -57,9 +58,6 @@ class LearningObjectives extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isShowingWarning) {
-      this.setState({ isLoading: false });
-    }
     if (nextProps.isShowingResults && !this.props.isShowingResults) {
       this.setState({ isLoading: false });
     }
@@ -238,6 +236,7 @@ LearningObjectives.propTypes = {
   hidePopup: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
 };
@@ -268,6 +267,9 @@ const mapDispatchToProps = dispatch => {
     },
     search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
+    },
+    showModal: (message) => {
+      dispatch(BodyActions.showModal(message));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());

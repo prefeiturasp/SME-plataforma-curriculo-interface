@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import FiltersActions from '../../actions/FiltersActions';
-import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
+import BodyActions from '../../actions/BodyActions';
 import iconClose from '../../images/iconClose.svg';
 import iconWarningBig from '../../images/iconWarningBig.svg';
 
@@ -11,7 +10,7 @@ Modal.setAppElement('#root');
 
 class AppModal extends Component {
   onClickedClose() {
-    this.props.hideWarning();
+    this.props.hideModal();
   }
 
   render() {
@@ -20,15 +19,15 @@ class AppModal extends Component {
         className="modal"
         overlayClassName="overlay"
         contentLabel="Example Modal"
-        isOpen={this.props.isShowingWarning}
-        onRequestClose={this.props.hideWarning}
+        isOpen={this.props.hasModal}
+        onRequestClose={this.props.hideModal}
         shouldCloseOnOverlayClick={true}>
-        <button onClick={this.props.hideWarning}>
+        <button onClick={this.props.hideModal}>
           <img src={iconClose} alt="Fechar" />
         </button>
         <p>
           <img src={iconWarningBig} alt="Atenção" />
-          <span>Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.</span>
+          <span>{this.props.message}</span>
         </p>
       </Modal>
     );
@@ -36,21 +35,21 @@ class AppModal extends Component {
 }
 
 AppModal.propTypes = {
-  isShowingWarning: PropTypes.bool,
-  hideWarning: PropTypes.func.isRequired,
+  hasModal: PropTypes.bool,
+  hideModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    isShowingWarning: state.FiltersReducer.isShowingWarning || state.LearningObjectivesReducer.isShowingWarning,
+    hasModal: state.BodyReducer.hasModal,
+    message: state.BodyReducer.message,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    hideWarning: () => {
-      dispatch(FiltersActions.hideWarning());
-      dispatch(LearningObjectivesActions.hideWarning());
+    hideModal: () => {
+      dispatch(BodyActions.hideModal());
     },
   };
 };

@@ -48,18 +48,11 @@ function LearningObjectivesReducer(state = initialState, action) {
       };
 
     case LearningObjectivesActions.SEARCH:
-      if (state.filters.findIndex(item => item.isActive) >= 0) {
-        return {
-          ...state,
-          results: [],
-        };
-      } else {
-        return {
-          ...state,
-          isShowingWarning: true,
-        };
-      }
-
+      return {
+        ...state,
+        results: [],
+      };
+    
     case LearningObjectivesActions.LOADED_RESULTS:
       return {
         ...state,
@@ -88,12 +81,6 @@ function LearningObjectivesReducer(state = initialState, action) {
             return item;
           }
         })
-      };
-
-    case LearningObjectivesActions.HIDE_WARNING:
-      return {
-        ...state,
-        isShowingWarning: false,
       };
 
     default:

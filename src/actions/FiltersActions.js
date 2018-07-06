@@ -9,7 +9,6 @@ const FiltersActions = {
   TOGGLE_FILTER: 'FiltersActions.TOGGLE_FILTER',
   TOGGLE_PANEL: 'FiltersActions.TOGGLE_PANEL',
   SEARCH: 'FiltersActions.SEARCH',
-  HIDE_WARNING: 'FiltersActions.HIDE_WARNING',
   
   load() {
     return loadData('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
@@ -31,9 +30,6 @@ const FiltersActions = {
   },
   search() {
     return { type: FiltersActions.SEARCH };
-  },
-  hideWarning() {
-    return { type: FiltersActions.HIDE_WARNING };
   },
 };
 
