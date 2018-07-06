@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import LearningObjectiveItem from '../common/LearningObjectiveItem';
 import iconChevronDown from '../../images/iconChevronDown.svg';
+import iconChevronRight from '../../images/iconChevronRight.svg';
 import iconChevronUp from '../../images/iconChevronUp.svg';
 import styles from './ExpandableLearningObjectiveItem.css';
 
@@ -33,15 +35,27 @@ class ExpandableLearningObjectiveItem extends Component {
     const height2 = this.state.isExpanded ? height1 : 20;
     const style = { height: `${height2}px` };
 
+    if (this.props.hasLink) {
+      classes.push(styles.hasBorder);
+    }
+
+    const link = this.props.hasLink ? (
+      <NavLink to="/sequencias" className={styles.related}>
+        Ver Sequências de Atividades Relacionadas
+        <img src={iconChevronRight} alt="Seta" />
+      </NavLink>
+    ): null;
+
     return (
       <li className={classes.join(' ')}>
-        <button className={styles.toggler} onClick={this.onClickedToggle.bind(this)}>
-          <LearningObjectiveItem data={this.props.data} />
-          <img src={chevron} alt="Seta" />
-        </button>
+        <LearningObjectiveItem data={this.props.data} />
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}
+          {link}
         </div>
+        <button className={styles.toggler} onClick={this.onClickedToggle.bind(this)}>
+          <img src={chevron} alt="Seta" />
+        </button>
       </li>
     );
   }
@@ -49,6 +63,7 @@ class ExpandableLearningObjectiveItem extends Component {
 
 ExpandableLearningObjectiveItem.propTypes = {
   data: PropTypes.object.isRequired,
+  hasLink: PropTypes.bool,
 };
 
 export default ExpandableLearningObjectiveItem;
