@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import LearningObjectiveItem from '../common/LearningObjectiveItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
+import getWindowWidth from '../util/getWindowWidth';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from './Preview.css';
 
@@ -33,10 +34,9 @@ class Preview extends Component {
       );
     });
 
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
     let height = this.props.height;
 
-    if (totalWidth < 768) {
+    if (getWindowWidth() < 768) {
       if (this.props.data.isExpanded) {
         height = this.ref.current ? this.ref.current.scrollHeight : 0;
       } else {

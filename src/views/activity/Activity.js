@@ -8,6 +8,7 @@ import ActivityActions from '../../actions/ActivityActions';
 import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
 import getActivityTypeIcon from './getActivityTypeIcon';
+import getWindowWidth from '../util/getWindowWidth';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
 import iconArrowRight from '../../images/iconArrowRight.svg';
 import iconPrint from '../../images/iconPrint.svg';
@@ -19,7 +20,7 @@ class Activity extends Component {
   }
 
   onResized() {
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
 

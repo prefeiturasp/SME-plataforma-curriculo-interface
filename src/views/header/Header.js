@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
+import getWindowWidth from '../util/getWindowWidth';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconMenu from '../../images/iconMenu.svg';
 import iconMenuWhite from '../../images/iconMenuWhite.svg';
@@ -21,8 +22,7 @@ class Header extends Component {
   onClickedMenu() {
     this.setState({ isMenuExpanded: true });
 
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    if (totalWidth < 768) {
+    if (getWindowWidth() < 768) {
       this.props.showPopup();
     }
   }

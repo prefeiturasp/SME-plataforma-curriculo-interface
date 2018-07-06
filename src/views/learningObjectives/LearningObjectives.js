@@ -9,6 +9,7 @@ import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import Loading from '../util/Loading';
 import YearButton from './YearButton';
+import getWindowWidth from '../util/getWindowWidth';
 import iconChevronLeft from '../../images/iconChevronLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconWarning from '../../images/iconWarning.svg';
@@ -46,8 +47,7 @@ class LearningObjectives extends Component {
   onClickedSee() {
     this.props.showObjectives();
     
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    if (totalWidth < 768) {
+    if (getWindowWidth() < 768) {
       this.props.showPopup();
     }
   }
@@ -97,7 +97,7 @@ class LearningObjectives extends Component {
         );
       });
 
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const totalWidth = getWindowWidth();
     const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
     
     const filters = !this.props.isShowingResults && !this.state.isLoading ? (
