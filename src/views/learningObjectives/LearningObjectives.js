@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import TweenLite from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
@@ -18,12 +18,17 @@ import styles from './LearningObjectives.css';
 class LearningObjectives extends Component {
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
+    this.refFilters = React.createRef();
+    this.refLoading = React.createRef();
+    this.refResults = React.createRef();
     this.state = { isLoading: false };
   }
 
   onClickedBack() {
     this.props.hideResults();
+
+    TweenLite.to(this.refResults.current, 0.3, { opacity: 0, display: 'none' });
+    TweenLite.to(this.refFilters.current, 0.3, { opacity: 1, display: 'block', delay: 0.3 });
   }
 
   onClickedClose() {
@@ -37,6 +42,9 @@ class LearningObjectives extends Component {
       this.props.search(activeFilters);
       this.setState({ isLoading: true });
 
+      TweenLite.to(this.refFilters.current, 0.3, { opacity: 0, display: 'none' });
+      TweenLite.to(this.refLoading.current, 0.3, { opacity: 1, display: 'flex', delay: 0.3 });
+      
       if (getWindowWidth() < 768) {
         this.props.showPopup();
       }
@@ -60,6 +68,9 @@ class LearningObjectives extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isShowingResults && !this.props.isShowingResults) {
       this.setState({ isLoading: false });
+
+      TweenLite.to(this.refLoading.current, 0.3, { opacity: 0, display: 'none' });
+      TweenLite.to(this.refResults.current, 0.3, { opacity: 1, display: 'block', delay: 0.3 });
     }
   }
 
@@ -98,75 +109,6 @@ class LearningObjectives extends Component {
     const totalWidth = getWindowWidth();
     const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
     
-    const filters = !this.props.isShowingResults && !this.state.isLoading ? (
-      <div ref={this.ref}>
-        <h2 className={styles.objectivesTitle2}>Objetivos</h2>
-        <div className="row">
-          <div className="col-md-4 offset-md-2">
-            <div className={styles.pickYear}>
-              <h3>Escolha o ano</h3>
-              <h4>Ciclo de alfabetização</h4>
-              <ul className={styles.buttons}>
-                {yearButtons}
-              </ul>
-              <p className={styles.warning}>
-                <img src={iconWarning} alt="Observação" />
-                <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
-              </p>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className={styles.pickCurricularComponent}>
-              <h3>Escolha o Componente Curricular</h3>
-              <ul className={styles.buttons}>
-                {componentButtons}
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-8 offset-md-2">
-            <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
-              Avançar
-            </button>
-          </div>
-        </div>
-        <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
-          <img src={iconCloseBig} alt="Fechar" />
-        </button>
-      </div>
-    ) : null;
-
-    const loading = this.state.isLoading && !filters ? (
-      <div className={styles.loading}>
-        <Loading />
-      </div>
-    ) : null;
-
-    const results = this.props.isShowingResults && !loading ? (
-      <div className={styles.results}>
-        <h2 className={styles.objectivesTitle2}>Objetivos</h2>
-        <div className="row">
-          <div className="col-md-8 offset-md-2">
-            <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
-              <img src={iconChevronLeft} alt="Voltar" />
-              Voltar
-            </button>
-            <p>Ano e componente(s) selecionado(s):</p>
-            <ul>
-              {selectedFiltersButtons}
-            </ul>
-            <ul>
-              {learningObjectivesItems}
-            </ul>
-          </div>
-        </div>
-        <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
-          <img src={iconCloseBig} alt="Fechar" />
-        </button>
-      </div>
-    ) : null;
-
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
@@ -209,17 +151,66 @@ class LearningObjectives extends Component {
               <h2>Conheça os objetivos</h2>
             </div>
           </div>
-          <ReactCSSTransitionGroup
-            transitionName={{
-              enter: styles.transitionEnter,
-              enterActive: styles.transitionEnterActive,
-              leave: styles.transitionLeave,
-              leaveActive: styles.transitionLeaveActive,
-            }}>
-            {filters}
-            {loading}
-            {results}
-          </ReactCSSTransitionGroup>
+          <div ref={this.refFilters}>
+            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
+            <div className="row">
+              <div className="col-md-4 offset-md-2">
+                <div className={styles.pickYear}>
+                  <h3>Escolha o ano</h3>
+                  <h4>Ciclo de alfabetização</h4>
+                  <ul className={styles.buttons}>
+                    {yearButtons}
+                  </ul>
+                  <p className={styles.warning}>
+                    <img src={iconWarning} alt="Observação" />
+                    <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className={styles.pickCurricularComponent}>
+                  <h3>Escolha o Componente Curricular</h3>
+                  <ul className={styles.buttons}>
+                    {componentButtons}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
+                  Avançar
+                </button>
+              </div>
+            </div>
+            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
+          </div>
+          <div ref={this.refLoading} className={styles.loading}>
+            <Loading />
+          </div>
+          <div ref={this.refResults} className={styles.results}>
+            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
+                  <img src={iconChevronLeft} alt="Voltar" />
+                  Voltar
+                </button>
+                <p>Ano e componente(s) selecionado(s):</p>
+                <ul>
+                  {selectedFiltersButtons}
+                </ul>
+                <ul>
+                  {learningObjectivesItems}
+                </ul>
+              </div>
+            </div>
+            <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
+          </div>
         </div>
       </section>
     );

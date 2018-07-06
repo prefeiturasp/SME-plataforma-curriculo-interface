@@ -139,12 +139,13 @@
 
 .loading {
   align-items: center;
-  display: flex;
+  display: none;
   justify-content: center;
   min-height: 20rem;
 }
 
 .results {
+  display: none;
   font-size: 1.125rem;
   position: relative;
 }
@@ -171,24 +172,6 @@
   position: absolute;
   right: 1.25rem;
   top: 1.25rem;
-}
-
-.transitionEnter {
-  opacity: 0.01;
-}
-
-.transitionEnterActive {
-  opacity: 1;
-  transition: opacity 1.3s ease-in-out;
-}
-
-.transitionLeave {
-  opacity: 1;
-}
-
-.transitionLeaveActive {
-  opacity: 0.01;
-  transition: opacity 1.3s ease-in-out;
 }
 
 @media only screen and (max-width: 768px) {
