@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import TweenLite from 'gsap/TweenMax';
+import { TimelineLite, TweenLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
@@ -21,14 +21,16 @@ class LearningObjectives extends Component {
     this.refFilters = React.createRef();
     this.refLoading = React.createRef();
     this.refResults = React.createRef();
-    this.state = { isLoading: false };
+    this.tl = new TimelineLite();
   }
 
   onClickedBack() {
     this.props.hideResults();
 
-    TweenLite.to(this.refResults.current, 0.3, { opacity: 0, display: 'none' });
-    TweenLite.to(this.refFilters.current, 0.3, { opacity: 1, display: 'block', delay: 0.3 });
+    this.tl.kill();
+    this.tl.clear();
+    this.tl.to(this.refResults.current, 0.2, { opacity: 0, display: 'none' });
+    this.tl.to(this.refFilters.current, 0.2, { opacity: 1, display: 'block' });
   }
 
   onClickedClose() {
@@ -40,10 +42,11 @@ class LearningObjectives extends Component {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
-      this.setState({ isLoading: true });
-
-      TweenLite.to(this.refFilters.current, 0.3, { opacity: 0, display: 'none' });
-      TweenLite.to(this.refLoading.current, 0.3, { opacity: 1, display: 'flex', delay: 0.3 });
+      
+      this.tl.kill();
+      this.tl.clear();
+      this.tl.to(this.refFilters.current, 0.2, { opacity: 0, display: 'none' });
+      this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
       
       if (getWindowWidth() < 768) {
         this.props.showPopup();
@@ -67,10 +70,11 @@ class LearningObjectives extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.isShowingResults && !this.props.isShowingResults) {
-      this.setState({ isLoading: false });
-
-      TweenLite.to(this.refLoading.current, 0.3, { opacity: 0, display: 'none' });
-      TweenLite.to(this.refResults.current, 0.3, { opacity: 1, display: 'block', delay: 0.3 });
+      this.tl.kill();
+      this.tl.clear();
+      this.tl.to(this.refFilters.current, 0.1, { opacity: 0, display: 'none' });
+      this.tl.to(this.refLoading.current, 0.2, { opacity: 0, display: 'none' });
+      this.tl.to(this.refResults.current, 0.2, { opacity: 1, display: 'block' });
     }
   }
 
@@ -108,6 +112,7 @@ class LearningObjectives extends Component {
 
     const totalWidth = getWindowWidth();
     const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
+    const classes2 = this.props.isShowingResults || totalWidth >= 768 ? [styles.results, styles.isVisible] : [styles.results];
     
     return (
       <section className={styles.wrapper}>
@@ -190,7 +195,7 @@ class LearningObjectives extends Component {
           <div ref={this.refLoading} className={styles.loading}>
             <Loading />
           </div>
-          <div ref={this.refResults} className={styles.results}>
+          <div ref={this.refResults} className={classes2.join(' ')}>
             <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-8 offset-md-2">

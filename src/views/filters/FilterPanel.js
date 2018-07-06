@@ -22,6 +22,7 @@ class FilterPanel extends Component {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
+      this.props.hidePopup();
     } else {
       this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
     }
