@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import HomeActions from '../../actions/HomeActions';
-import GridItem from '../sequences/GridItem';
+import GridItem from './GridItem';
 import iconActivities from '../../images/iconActivities.svg';
 import iconCurriculum from '../../images/iconCurriculum.svg';
 import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
