@@ -16,6 +16,17 @@ function HomeReducer(state = initialState, action) {
         ...state,
         items: action.data,
       };
+
+    case HomeActions.TOGGLE_PREVIEW:
+      return {
+        ...state,
+        items: state.items.map(item => {
+          return {
+            ...item,
+            isExpanded: !item.isExpanded && item.id === action.id,
+          };
+        }),
+      };
   
     default:
       return state;
