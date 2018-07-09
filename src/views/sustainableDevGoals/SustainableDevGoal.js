@@ -48,7 +48,7 @@ class SustainableDevGoal extends Component {
                 </div>
                 <h1>{data.name}</h1>
                 <h2>{data.description}</h2>
-                <img src={API_URL + data.icon} alt={data.name} />
+                <img src={API_URL + data.sub_icon} alt={data.name} />
                 <p>{data.text}</p>
               </div>
             </div>

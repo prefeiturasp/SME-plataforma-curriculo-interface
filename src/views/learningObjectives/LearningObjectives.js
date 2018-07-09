@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TimelineLite, TweenLite } from 'gsap/TweenMax';
+import { TimelineLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';

@@ -21,6 +21,7 @@ function getParameterName(type) {
       return 'axis_ids';
 
     case 'activity_types':
+    default:
       return 'activity_type_ids';
   }
 }
