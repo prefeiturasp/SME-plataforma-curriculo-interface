@@ -12,7 +12,6 @@ function LearningObjectivesReducer(state = initialState, action) {
     case LearningObjectivesActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
 
     case LearningObjectivesActions.LOADED:
@@ -34,7 +33,6 @@ function LearningObjectivesReducer(state = initialState, action) {
       return {
         ...state,
         filters,
-        isLoading: false,
       };
 
     case LearningObjectivesActions.HIDE_OBJECTIVES:
@@ -53,14 +51,12 @@ function LearningObjectivesReducer(state = initialState, action) {
       return {
         ...state,
         results: [],
-        isLoading: true,
       };
-
+    
     case LearningObjectivesActions.LOADED_RESULTS:
       return {
         ...state,
         results: action.data.learning_objectives || [],
-        isLoading: false,
         isShowingResults: true,
       };
 

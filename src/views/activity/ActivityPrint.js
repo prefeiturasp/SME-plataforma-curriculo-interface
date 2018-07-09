@@ -6,6 +6,7 @@ import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
 import getActivityTypeIcon from './getActivityTypeIcon';
+import getWindowWidth from '../util/getWindowWidth';
 import styles from './Activity.css';
 
 class ActivityPrint extends Component {
@@ -14,7 +15,7 @@ class ActivityPrint extends Component {
   }
 
   onResized() {
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import iconLoading from '../../images/iconLoading.png';
+import Loading from './Loading';
 import styles from './AppLoading.css';
 
 class AppLoading extends Component {
@@ -10,7 +10,7 @@ class AppLoading extends Component {
 
     return (
       <div className={classes.join(' ')}>
-        <img src={iconLoading} alt="Carregando" />
+        <Loading />
       </div>
     );
   }

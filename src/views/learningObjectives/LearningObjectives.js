@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { TimelineLite, TweenLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
-import ExpandableLearningObjectiveItem from './ExpandableLearningObjectiveItem';
+import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
+import Loading from '../util/Loading';
 import YearButton from './YearButton';
+import getWindowWidth from '../util/getWindowWidth';
 import iconChevronLeft from '../../images/iconChevronLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconWarning from '../../images/iconWarning.svg';
@@ -15,11 +18,19 @@ import styles from './LearningObjectives.css';
 class LearningObjectives extends Component {
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
+    this.refFilters = React.createRef();
+    this.refLoading = React.createRef();
+    this.refResults = React.createRef();
+    this.tl = new TimelineLite();
   }
 
   onClickedBack() {
     this.props.hideResults();
+
+    this.tl.kill();
+    this.tl.clear();
+    this.tl.to(this.refResults.current, 0.2, { opacity: 0, display: 'none' });
+    this.tl.to(this.refFilters.current, 0.2, { opacity: 1, display: 'block' });
   }
 
   onClickedClose() {
@@ -29,25 +40,42 @@ class LearningObjectives extends Component {
 
   onClickedNext() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
-    this.props.search(activeFilters);
-
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    if (totalWidth < 768) {
-      this.props.showPopup();
+    if (activeFilters.length > 0) {
+      this.props.search(activeFilters);
+      
+      this.tl.kill();
+      this.tl.clear();
+      this.tl.to(this.refFilters.current, 0.2, { opacity: 0, display: 'none' });
+      this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
+      
+      if (getWindowWidth() < 768) {
+        this.props.showPopup();
+      }
+    } else {
+      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
     }
   }
 
   onClickedSee() {
     this.props.showObjectives();
     
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    if (totalWidth < 768) {
+    if (getWindowWidth() < 768) {
       this.props.showPopup();
     }
   }
 
   componentDidMount() {
     this.props.load();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isShowingResults && !this.props.isShowingResults) {
+      this.tl.kill();
+      this.tl.clear();
+      this.tl.to(this.refFilters.current, 0.1, { opacity: 0, display: 'none' });
+      this.tl.to(this.refLoading.current, 0.2, { opacity: 0, display: 'none' });
+      this.tl.to(this.refResults.current, 0.2, { opacity: 1, display: 'block' });
+    }
   }
 
   render() {
@@ -78,22 +106,14 @@ class LearningObjectives extends Component {
     const learningObjectivesItems = this.props.results
       .map((item, i) => {
         return (
-          <ExpandableLearningObjectiveItem key={i} data={item} />
+          <ExpandableLearningObjectiveItem key={i} data={item} hasLink={true} />
         );
       });
 
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const totalWidth = getWindowWidth();
     const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
-    const classes2 = this.props.isShowingResults ? [styles.results, styles.isVisible] : [styles.results];
-    const style = {};
-
-    if (totalWidth >= 768) {
-      const height = this.ref.current ? this.ref.current.offsetHeight : 0;
-      const marginBottom = this.props.isShowingResults ? 0 : height;
-      style.marginTop = `-${height}px`;
-      style.marginBottom = `${marginBottom}px`;
-    }
-
+    const classes2 = this.props.isShowingResults || totalWidth >= 768 ? [styles.results, styles.isVisible] : [styles.results];
+    
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
@@ -136,7 +156,7 @@ class LearningObjectives extends Component {
               <h2>Conheça os objetivos</h2>
             </div>
           </div>
-          <div ref={this.ref}>
+          <div ref={this.refFilters}>
             <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-4 offset-md-2">
@@ -172,7 +192,10 @@ class LearningObjectives extends Component {
               <img src={iconCloseBig} alt="Fechar" />
             </button>
           </div>
-          <div className={classes2.join(' ')} style={style}>
+          <div ref={this.refLoading} className={styles.loading}>
+            <Loading />
+          </div>
+          <div ref={this.refResults} className={classes2.join(' ')}>
             <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-8 offset-md-2">
@@ -209,6 +232,7 @@ LearningObjectives.propTypes = {
   hidePopup: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
 };
@@ -225,6 +249,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(LearningObjectivesActions.load());
     },
     hideObjectives: () => {
@@ -238,6 +263,9 @@ const mapDispatchToProps = dispatch => {
     },
     search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
+    },
+    showModal: (message) => {
+      dispatch(BodyActions.showModal(message));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());

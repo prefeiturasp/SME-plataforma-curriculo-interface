@@ -29,6 +29,7 @@
 
 .header ul {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 2.375rem;
 }
 
@@ -89,7 +90,6 @@
   }
 
   .header ul {
-    flex-direction: column;
     margin-bottom: 1.875rem;
   }
 

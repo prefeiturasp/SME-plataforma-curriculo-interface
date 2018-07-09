@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
 import KnowledgeMatrixButton from './KnowledgeMatrixButton';
 import styles from './KnowledgeMatrix.css';
@@ -57,6 +58,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(KnowledgeMatrixActions.load());
     },
   };

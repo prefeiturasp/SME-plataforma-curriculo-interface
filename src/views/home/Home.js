@@ -143,6 +143,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(BodyActions.exitHome());
     },
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(HomeActions.load());
     },
   };

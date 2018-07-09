@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
 import FilterBar from '../filters/FilterBar';
 import FilterPanel from '../filters/FilterPanel';
@@ -75,6 +76,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.load());
     },
   };

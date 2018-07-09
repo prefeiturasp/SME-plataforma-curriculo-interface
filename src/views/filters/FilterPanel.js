@@ -20,7 +20,12 @@ class FilterPanel extends Component {
 
   onClickedSearch() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
-    this.props.search(activeFilters);
+    if (activeFilters.length > 0) {
+      this.props.search(activeFilters);
+      this.props.hidePopup();
+    } else {
+      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
+    }
   }
 
   onClickedClose() {
@@ -134,6 +139,7 @@ FilterPanel.propTypes = {
   hidePopup: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -155,6 +161,9 @@ const mapDispatchToProps = dispatch => {
     search: (filters) => {
       dispatch(FiltersActions.search());
       dispatch(SequencesActions.search(filters));
+    },
+    showModal: (message) => {
+      dispatch(BodyActions.showModal(message));
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());
