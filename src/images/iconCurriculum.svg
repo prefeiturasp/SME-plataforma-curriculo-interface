@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="82px" height="82px" viewBox="0 0 82 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>7FFDC2F3-A003-4778-85CA-1F6196BBC4AB</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Telas" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SME-Home" transform="translate(-219.000000, -710.000000)">
+            <g id="explore-icon" transform="translate(219.000000, 710.000000)">
+                <rect id="Rectangle-11" fill="#17FFA6" x="0" y="0" width="82" height="82" rx="4"></rect>
+                <path d="M23,59 L23,62 L17,62 L17,59 L14,59 L14,55 L17,55 L17,52 L23,52 L23,55 L68,55 L68,59 L23,59 Z M56,43 L56,46 L50,46 L50,43 L14,43 L14,39 L50,39 L50,36 L56,36 L56,39 L68,39 L68,43 L56,43 Z M36,27 L36,30 L30,30 L30,27 L14,27 L14,23 L30,23 L30,20 L36,20 L36,23 L68,23 L68,27 L36,27 Z" id="filtros-icon" fill="#000000"></path>
+            </g>
+        </g>
+    </g>
+</svg>

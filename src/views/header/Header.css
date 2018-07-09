@@ -1,0 +1,116 @@
+.wrapper {
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  color: #252525;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.9375rem 0.5rem 1.75rem;
+  position: relative;
+  z-index: 60;
+}
+
+.wrapper > div {
+  align-items: center;
+  display: flex;
+}
+
+.wrapper h1 {
+  font-size: 1.125rem;
+  margin-bottom: 0;
+  margin-left: 0.5rem;
+  max-width: 12rem;
+}
+
+.menu > a {
+  color: black;
+  font-size: 0.9375rem;
+  font-weight: bold;
+  padding: 0 0.9375rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.menu > a.sub,
+.toggler,
+.close {
+  display: none;
+}
+
+.close {
+  position: absolute;
+  right: 1.125rem;
+  top: 1.125rem;
+}
+
+:global(.isHome) .wrapper {
+  border-bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+:global(.isHome) .wrapper,
+:global(.isHome) .menu > a {
+  color: white;
+}
+
+@media only screen and (max-width: 1120px) {
+  .wrapper {
+    padding: 0.875rem 0.9375rem;
+  }
+
+  .wrapper > h1 {
+    width: 70%;
+  }
+
+  .toggler,
+  .close {
+    display: block;
+  }
+
+  .menu {
+    background: white;
+    padding: 3.875rem 1rem 1rem 1rem;
+    position: fixed;
+    width: 100%;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    transition: left 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  .menu > a {
+    color: black !important;
+    display: block;
+    font-size: 1.75rem;
+    margin-top: 2.25rem;
+    text-transform: none;
+  }
+
+  .menu > a.sub {
+    color: #6a6a6a;
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-left: 1.25rem;
+    margin-top: 0.875rem;
+  }
+
+  .isMenuExpanded {
+    left: 0;
+  }
+}
+
+@media only print {
+  .wrapper {
+    border-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .menu {
+    display: none;
+  }
+}

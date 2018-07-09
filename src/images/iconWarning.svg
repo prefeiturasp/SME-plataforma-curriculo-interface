@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
+    <title>B9354C50-49A7-4709-93C3-168CD5FE7C62</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Telas" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SME-Sequências-Filtros" transform="translate(-16.000000, -231.000000)">
+            <g id="aviso" transform="translate(16.000000, 231.000000)">
+                <g id="exclamacao-icon">
+                    <circle id="Oval" fill="#E0E0E0" cx="8.5" cy="8.5" r="8.5"></circle>
+                    <text id="!" font-family="MaisonNeue-Demi, Maison Neue" font-size="13" font-weight="500" letter-spacing="-0.342105329" fill="#FFFFFF">
+                        <tspan x="6" y="13">!</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

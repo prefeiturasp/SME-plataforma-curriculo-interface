@@ -1,0 +1,28 @@
+.wrapper {
+  align-items: center;
+  background: #6a6a6a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 3.75rem;
+}
+
+.wrapper > img {
+  margin: 0 3.75rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .wrapper > img {
+    margin: 2rem 0;
+  }
+}
+
+@media only print {
+  .wrapper {
+    display: none;
+  }
+}

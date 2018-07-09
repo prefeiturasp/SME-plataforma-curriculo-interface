@@ -1,0 +1,36 @@
+.wrapper h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.8125rem;
+  margin-top: 1.6875rem;
+}
+
+.wrapper h2 {
+  font-weight: normal;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.list {
+  background-color: #efefef;
+  padding: 1rem;
+}
+
+.list ul {
+  list-style: none;
+}
+
+.list ul > li {
+  position: relative;
+}
+
+.load {
+  composes: btn from global;
+  margin: 0 auto 1.5rem auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper h1 {
+    font-size: 2.125rem;
+    margin-bottom: 0.75rem;
+  }
+}

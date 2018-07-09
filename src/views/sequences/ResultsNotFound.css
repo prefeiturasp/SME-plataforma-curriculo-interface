@@ -1,0 +1,22 @@
+.wrapper {
+  composes: row from global;
+  padding-top: 6.5625rem;
+  padding-bottom: 9.375rem;
+  text-align: center;
+}
+
+.wrapper p {
+  margin-bottom: 1rem;
+}
+
+.wrapper button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    padding-top: 5.3125rem;
+    padding-bottom: 6.25rem;
+  }
+}
