@@ -52,14 +52,15 @@ class ActivityPrint extends Component {
       return <span />;
     }
 
-    const sequence = this.props.data.activity_sequence;
+    const data = this.props.data;
+    const sequence = data.activity_sequence;
 
     const filters = [
       <GenericItem key={0} data={{name: sequence.year}} />,
       <GenericItem key={1} data={sequence.main_curricular_component} />,
     ];
 
-    const iconsItems = this.props.data.activity_types.map((item, i) => {
+    const iconsItems = data.activity_types.map((item, i) => {
       const icon = getActivityTypeIcon(item.name);
       return (
         <li key={i}>
@@ -76,16 +77,17 @@ class ActivityPrint extends Component {
     const icons1 = this.state.totalWidth < 768 ? null : icons;
     const icons2 = this.state.totalWidth < 768 ? icons : null;
 
-    const cover = this.props.data.image ? (
+    const cover = data.image_attributes ? (
       <div className="container">
         <img
           className={styles.cover}
-          src={API_URL + this.props.data.image}
-          alt={this.props.data.title} />
+          src={API_URL + data.image_attributes.default_url}
+          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
+          alt={data.title} />
       </div>
     ) : null;
 
-    const ops = JSON.parse(this.props.data.content).ops;
+    const ops = JSON.parse(data.content).ops;
     const converter = new QuillDeltaToHtmlConverter(ops);
     const content = converter.convert();
 
@@ -93,8 +95,8 @@ class ActivityPrint extends Component {
       <section className={styles.wrapper}>
         <div className={styles.header}>
           <div>
-            <h3>Atividade {this.props.data.sequence}</h3>
-            <h1>{this.props.data.title}</h1>
+            <h3>Atividade {data.sequence}</h3>
+            <h1>{data.title}</h1>
             <h2>Sequência didática: {sequence.title}</h2>
             <ul>
               {filters}
