@@ -9,6 +9,7 @@ function ActivityReducer(state = initialState, action) {
     case ActivityActions.LOAD:
       return {
         ...state,
+        currActivity: null,
       };
 
     case ActivityActions.LOADED:
