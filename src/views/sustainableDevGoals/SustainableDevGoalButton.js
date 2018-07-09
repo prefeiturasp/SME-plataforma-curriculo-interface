@@ -19,7 +19,7 @@ class SustainableDevGoalButton extends Component {
             {this.props.data.name}
           </div>
           <img
-            src={API_URL + this.props.data.icon}
+            src={API_URL + this.props.data.sub_icon}
             alt={this.props.data.name}
             className={styles.icon} />
         </NavLink>
