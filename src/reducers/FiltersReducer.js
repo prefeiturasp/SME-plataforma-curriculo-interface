@@ -67,7 +67,6 @@ function FiltersReducer(state = initialState, action) {
       };
 
     case FiltersActions.CACHE_FILTER:
-      console.log('CACHE_FILTER', action.filter);
       return {
         ...state,
         cachedFilter: action.filter,
