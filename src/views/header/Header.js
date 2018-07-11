@@ -91,7 +91,7 @@ class Header extends Component {
     return (
       <header className={styles.wrapper}>
         <div className="container">
-          <div>
+          <div className={styles.logo}>
             <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
             <h1>Currículo Digital da Cidade de São Paulo</h1>
           </div>

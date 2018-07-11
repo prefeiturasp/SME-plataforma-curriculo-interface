@@ -1,10 +1,10 @@
 .wrapper {
   border-bottom: 1px solid #e0e0e0;
+  color: #252525;
 }
 
 .wrapper > div {
   align-items: center;
-  color: #252525;
   display: flex;
   justify-content: space-between;
   padding: 0.5rem 0;
@@ -12,13 +12,13 @@
   z-index: 60;
 }
 
-.wrapper > div > div {
+.logo {
   align-items: center;
   display: flex;
   margin-left: -2rem;
 }
 
-.wrapper h1 {
+.logo h1 {
   font-size: 1.125rem;
   margin-bottom: 0;
   margin-left: 0.5rem;
@@ -64,10 +64,6 @@
     padding: 0.875rem 0.9375rem;
   }
 
-  .wrapper > h1 {
-    width: 70%;
-  }
-
   .toggler,
   .close {
     display: block;
@@ -108,13 +104,13 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .wrapper > div > div {
+  .logo {
     margin-left: 1rem;
   }
 }
 
 @media only screen and (max-width: 540px) {
-  .wrapper > div > div {
+  .logo {
     margin-left: 0;
   }
 }
