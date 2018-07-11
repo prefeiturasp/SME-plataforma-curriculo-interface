@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { API_URL } from '../../constants';
+import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityItem from './ActivityItem';
 import CurricularComponentItem from '../common/CurricularComponentItem';
@@ -213,6 +214,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadItem: (slug) => {
+      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.loadItem(slug));
     },
   };
