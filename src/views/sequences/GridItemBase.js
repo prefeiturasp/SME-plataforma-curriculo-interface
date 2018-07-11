@@ -41,6 +41,18 @@ class GridItemBase extends Component {
     const word1 = data.estimated_time > 1 ? 'aulas' : 'aula';
     const duration = `${data.estimated_time} ${word1}`;
 
+    let duration = null;
+    if (data.estimated_time) {
+      const word1 = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word1}`;
+      duration = (
+        <div className={styles.info}>
+          <div className={styles.number}>{durationText}</div>
+          <div className={styles.label}>Tempo estimado</div>
+        </div>
+      );
+    }
+    
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
     return (
@@ -53,10 +65,7 @@ class GridItemBase extends Component {
           </div>
           <div className={styles.title}>{data.title}</div>
           <div className={styles.infos}>
-            <div className={styles.info}>
-              <div className={styles.number}>{duration}</div>
-              <div className={styles.label}>Tempo estimado</div>
-            </div>
+            {duration}
             <div className={styles.info}>
               <div className={styles.number}>{data.number_of_activities}</div>
               <div className={styles.label}>{word2}</div>

@@ -87,8 +87,18 @@ class Sequence extends Component {
           alt={data.title} />
       ) : null;
 
-    const word = data.estimated_time > 1 ? 'aulas' : 'aula';
-    const duration = `${data.estimated_time} ${word}`;
+    let duration = null;
+    if (data.estimated_time) {
+      const word = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word}`;
+      duration = (
+        <div className={styles.duration}>
+          <img src={iconClock} alt="Número de aulas" />
+          <strong>{durationText}</strong>
+          (Tempo estimado)
+        </div>
+      )
+    }
 
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
 
@@ -100,11 +110,7 @@ class Sequence extends Component {
             <ul>
               {filters}
             </ul>
-            <div className={styles.duration}>
-              <img src={iconClock} alt="Número de aulas" />
-              <strong>{duration}</strong>
-              (Tempo estimado)
-            </div>
+            {duration}
           </div>
           <button className="btn" onClick={this.onClickedPrint.bind(this)}>
             <img src={iconPrint} alt="Imprimir" />
