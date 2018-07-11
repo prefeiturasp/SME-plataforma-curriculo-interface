@@ -28,6 +28,10 @@ class Sequence extends Component {
   render() {
     const data = this.props.data;
 
+    if (!data) {
+      return <span />;
+    }
+
     const filters = [
       <GenericItem key={0} data={{name: `${data.year} ano`}} />,
       <GenericItem key={1} data={data.main_curricular_component} />,
@@ -61,7 +65,7 @@ class Sequence extends Component {
 
     const booksTitle = books ? (
       <div className={styles.title}>
-        Livros para o professor:
+        Para saber mais:
       </div>
     ) : null;
     
