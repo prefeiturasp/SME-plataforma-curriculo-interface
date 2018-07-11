@@ -58,7 +58,7 @@ class KnowledgeMatrixItem extends Component {
 }
 
 KnowledgeMatrixItem.contextTypes = {
-  router: () => true,
+  router: PropTypes.object.isRequired,
 };
 
 KnowledgeMatrixItem.propTypes = {

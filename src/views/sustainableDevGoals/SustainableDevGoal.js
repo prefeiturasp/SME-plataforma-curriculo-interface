@@ -76,7 +76,7 @@ class SustainableDevGoal extends Component {
 }
 
 SustainableDevGoal.contextTypes = {
-  router: () => true,
+  router: PropTypes.object.isRequired,
 };
 
 SustainableDevGoal.propTypes = {
