@@ -1,7 +1,7 @@
 node('master') {
     dir("${env.APP_ROOT}") {
         stage('Git checkout interface'){
-            sh 'cd interface && && git reset --hard && git checkout staging && git pull'
+            sh 'cd interface && git reset --hard && git checkout staging && git pull'
         }
         stage('Set API URL'){
             sh 'echo "export const API_URL = \'$API_URL\'" > interface/src/constants.js'
