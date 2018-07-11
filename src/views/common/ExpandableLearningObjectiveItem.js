@@ -40,7 +40,7 @@ class ExpandableLearningObjectiveItem extends Component {
     }
 
     const link = this.props.hasLink ? (
-      <NavLink to="/sequencias" className={styles.related}>
+      <NavLink to={`/sequencias/objetivos-de-aprendizagem/${this.props.data.id}`} className={styles.related}>
         Ver Sequências de Atividades Relacionadas
         <img src={iconChevronRight} alt="Seta" />
       </NavLink>

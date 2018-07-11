@@ -44,7 +44,10 @@ ReactDOM.render(
       <ScrollToTop>
         <Header />
         <Route exact path='/' component={Home} />
-        <Route path='/sequencias' component={Sequences} />
+        <Route exact path='/sequencias' component={Sequences} />
+        <Route path='/sequencias/ods/:ods' component={Sequences} />
+        <Route path='/sequencias/matriz-de-saberes/:mds' component={Sequences} />
+        <Route path='/sequencias/objetivos-de-aprendizagem/:oda' component={Sequences} />
         <Route exact path='/sequencia/:slug' component={Sequence} />
         <Route path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
         <Route exact path='/imprimir/sequencia/:slug' component={SequencePrint} />

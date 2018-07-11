@@ -61,7 +61,7 @@ class SustainableDevGoal extends Component {
               <ul className={styles.list}>
                 {goals}
               </ul>
-              <NavLink to="/sequencias" className={styles.button}>
+              <NavLink to={`/sequencias/ods/${this.props.match.params.id}`} className={styles.button}>
                 Ver Sequências de Atividades Relacionadas
               </NavLink>
             </div>
