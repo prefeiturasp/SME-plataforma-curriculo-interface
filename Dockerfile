@@ -13,9 +13,11 @@ COPY . ./
 
 CMD if [ ${INTERFACE_ENV} = production ]; \
 	then \
+	npm install && \
 	npm run build --production && \
 	serve -s build; \
 	else \
+	npm install && \
 	npm run start; \
 	fi
 
