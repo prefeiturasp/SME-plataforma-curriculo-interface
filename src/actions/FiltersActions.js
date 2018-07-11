@@ -9,6 +9,7 @@ const FiltersActions = {
   HIDE_CATEGORY: 'FiltersActions.HIDE_CATEGORY',
   SHOW_CATEGORY: 'FiltersActions.SHOW_CATEGORY',
   CLEAR_FILTERS: 'FiltersActions.CLEAR_FILTERS',
+  CACHE_FILTER: 'FiltersActions.CACHE_FILTER',
   TOGGLE_FILTER: 'FiltersActions.TOGGLE_FILTER',
   TOGGLE_PANEL: 'FiltersActions.TOGGLE_PANEL',
   SEARCH: 'FiltersActions.SEARCH',
@@ -35,6 +36,9 @@ const FiltersActions = {
         });
     }
   },
+  cacheFilter(filter) {
+    return { type: FiltersActions.CACHE_FILTER, filter };
+  },
   toggleFilter(filter) {
     return { type: FiltersActions.TOGGLE_FILTER, filter };
   },
@@ -50,7 +54,7 @@ const FiltersActions = {
       fetch(API_URL + url)
         .then(response => response.json())
         .then(data => {
-          // dispatch({ data, type: SequencesActions.LOADED });
+          dispatch({ data, type: SequencesActions.LOADED });
         });
     }
   },

@@ -22,6 +22,10 @@ const SequencesActions = {
   loadItem(slug) {
     return loadData(`/api/sequencias/${slug}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
   },
+  loadWithFilter(filter) {
+    const queryString = getFiltersQueryString([filter]);
+    return loadData(`/api/sequencias?${queryString}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
+  },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };
   },
