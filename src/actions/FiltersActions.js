@@ -1,4 +1,8 @@
+import getFiltersQueryString from './getFiltersQueryString';
 import loadData from './loadData';
+import BodyActions from './BodyActions';
+import SequencesActions from './SequencesActions';
+import { API_URL } from '../constants';
 
 const FiltersActions = {
   LOAD: 'FiltersActions.LOAD',
@@ -24,6 +28,23 @@ const FiltersActions = {
   },
   toggleFilter(filter) {
     return { type: FiltersActions.TOGGLE_FILTER, filter };
+  },
+  toggleFilterAndSearch(filter) {
+    return (dispatch, getState) => {
+      dispatch({ type: BodyActions.SHOW_LOADING })
+      dispatch({ type: FiltersActions.TOGGLE_FILTER, filter })
+
+      const filters = getState().FiltersReducer.filters.filter(item => item.isActive);
+      const queryString = getFiltersQueryString(filters);
+      const url = `/api/sequencias?${queryString}`;
+
+      fetch(API_URL + url)
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: BodyActions.HIDE_LOADING });
+          dispatch({ data, type: SequencesActions.LOADED });
+        });
+    }
   },
   togglePanel() {
     return { type: FiltersActions.TOGGLE_PANEL };
