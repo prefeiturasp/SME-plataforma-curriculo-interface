@@ -17,21 +17,18 @@ function SustainableDevGoalsReducer(state = initialState, action) {
     case SustainableDevGoalsActions.LOAD:
       return {
         ...state,
-        isLoading: true,
         currItem: emptyItem,
       };
 
     case SustainableDevGoalsActions.LOADED:
       return {
         ...state,
-        isLoading: false,
         items: action.data,
       };
 
     case SustainableDevGoalsActions.LOADED_ITEM:
       return {
         ...state,
-        isLoading: false,
         currItem: action.data,
       };
 

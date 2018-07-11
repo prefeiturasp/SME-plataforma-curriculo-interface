@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import RoadmapActions from '../../actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
 import styles from './Roadmap.css';
@@ -64,6 +65,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(RoadmapActions.load());
     },
   };

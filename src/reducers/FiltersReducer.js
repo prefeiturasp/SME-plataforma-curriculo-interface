@@ -5,7 +5,6 @@ const initialState = {
   filters: [],
   isExpanded: false,
   isShowingCategory: false,
-  isShowingWarning: false,
 };
 
 function FiltersReducer(state = initialState, action) {
@@ -13,7 +12,6 @@ function FiltersReducer(state = initialState, action) {
     case FiltersActions.LOAD:
       return {
         ...state,
-        isLoading: true,
       };
 
     case FiltersActions.LOADED:
@@ -40,7 +38,6 @@ function FiltersReducer(state = initialState, action) {
       return {
         ...state,
         filters,
-        isLoading: false,
       };
 
     case FiltersActions.HIDE_CATEGORY:
@@ -91,22 +88,9 @@ function FiltersReducer(state = initialState, action) {
       };
 
     case FiltersActions.SEARCH:
-      if (state.filters.findIndex(item => item.isActive) >= 0) {
-        return {
-          ...state,
-          isExpanded: false,
-        };
-      } else {
-        return {
-          ...state,
-          isShowingWarning: true,
-        };
-      }
-
-    case FiltersActions.HIDE_WARNING:
       return {
         ...state,
-        isShowingWarning: false,
+        isExpanded: false,
       };
       
     default:

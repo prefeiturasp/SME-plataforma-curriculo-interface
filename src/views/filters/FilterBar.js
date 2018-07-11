@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
 import ActiveItem from './ActiveItem';
+import getWindowWidth from '../util/getWindowWidth';
 import iconFilters from '../../images/iconFilters.svg';
 import styles from './FilterBar.css';
 
@@ -11,8 +12,7 @@ class FilterBar extends Component {
   onClickedToggle() {
     this.props.togglePanel();
 
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    if (totalWidth < 768) {
+    if (getWindowWidth() < 768) {
       this.props.showPopup();
     }
   }

@@ -6,6 +6,7 @@ function getParameterName(type) {
       return 'years';
 
     case 'curricular_components':
+    default:
       return 'curricular_components_slugs';
   }
 }

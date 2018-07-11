@@ -9,13 +9,11 @@ function RoadmapReducer(state = initialState, action) {
     case RoadpmapActions.LOAD:
       return {
         ...state,
-        isLoading: true
       };
 
     case RoadpmapActions.LOADED:
       return {
         ...state,
-        isLoading: false,
         items: action.data
       };
 

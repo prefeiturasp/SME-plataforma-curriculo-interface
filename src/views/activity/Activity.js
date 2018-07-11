@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
+import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
 import getActivityTypeIcon from './getActivityTypeIcon';
+import getWindowWidth from '../util/getWindowWidth';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
 import iconArrowRight from '../../images/iconArrowRight.svg';
 import iconPrint from '../../images/iconPrint.svg';
@@ -18,7 +20,7 @@ class Activity extends Component {
   }
 
   onResized() {
-    const totalWidth = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
 
@@ -49,14 +51,15 @@ class Activity extends Component {
       return <span />;
     }
 
-    const sequence = this.props.data.activity_sequence;
+    const data = this.props.data;
+    const sequence = data.activity_sequence;
 
     const filters = [
       <GenericItem key={0} data={{name: sequence.year}} />,
       <GenericItem key={1} data={sequence.main_curricular_component} />,
     ];
 
-    const iconsItems = this.props.data.activity_types.map((item, i) => {
+    const iconsItems = data.activity_types.map((item, i) => {
       const icon = getActivityTypeIcon(item.name);
       return (
         <li key={i}>
@@ -73,33 +76,34 @@ class Activity extends Component {
     const icons1 = this.state.totalWidth < 768 ? null : icons;
     const icons2 = this.state.totalWidth < 768 ? icons : null;
 
-    const cover = this.props.data.image ? (
+    const cover = data.image_attributes ? (
       <div className="container">
         <img
           className={styles.cover}
-          src={API_URL + this.props.data.image}
-          alt={this.props.data.title} />
+          src={API_URL + data.image_attributes.default_url}
+          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
+          alt={data.title} />
       </div>
     ) : null;
 
-    const ops = JSON.parse(this.props.data.content).ops;
+    const ops = JSON.parse(data.content).ops;
     const converter = new QuillDeltaToHtmlConverter(ops);
     const content = converter.convert();
     
-    const linkPrev = `/sequencia/${sequence.slug}/atividade/${this.props.data.last_activity}`;
-    const linkNext = `/sequencia/${sequence.slug}/atividade/${this.props.data.next_activity}`;
+    const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
+    const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
     const link = `/sequencia/${sequence.slug}`;
 
-    const arrowPrev = this.props.data.last_activity ? (
+    const arrowPrev = data.last_activity ? (
       <NavLink className={styles.prev} to={linkPrev}>
         <img src={iconArrowLeft} alt="Seta" />
-        Atividade {this.props.data.sequence - 1}
+        Atividade {data.sequence - 1}
       </NavLink>
     ) : <span />;
 
-    const arrowNext = this.props.data.next_activity ? (
+    const arrowNext = data.next_activity ? (
       <NavLink className={styles.next} to={linkNext}>
-        Atividade {this.props.data.sequence + 1}
+        Atividade {data.sequence + 1}
         <img src={iconArrowRight} alt="Seta" />
       </NavLink>
     ) : null;
@@ -108,8 +112,8 @@ class Activity extends Component {
       <section className={styles.wrapper}>
         <div className={styles.header}>
           <div>
-            <h3>Atividade {this.props.data.sequence}</h3>
-            <h1>{this.props.data.title}</h1>
+            <h3>Atividade {data.sequence}</h3>
+            <h1>{data.title}</h1>
             <h2>Sequência didática: {sequence.title}</h2>
             <ul>
               {filters}
@@ -159,6 +163,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: (slug1, slug2) => {
+      dispatch(BodyActions.showLoading());
       dispatch(ActivityActions.load(slug1, slug2));
     },
   };

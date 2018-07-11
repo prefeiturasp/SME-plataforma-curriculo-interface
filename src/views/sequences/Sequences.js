@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
 import FilterBar from '../filters/FilterBar';
 import FilterPanel from '../filters/FilterPanel';
@@ -28,19 +29,19 @@ class Sequences extends Component {
     });
 
     const content = this.props.data.length ? (
-        <div className="container">
-          <ul className="row">
-            {items}
-          </ul>
-          <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
-            Carregar mais
-          </button>
-        </div>
-      ) : (
-        <div className="container">
-          <ResultsNotFound />
-        </div>
-      );
+      <div className="container">
+        <ul className="row">
+          {items}
+        </ul>
+        <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
+          Carregar mais
+        </button>
+      </div>
+    ) : (
+      <div className="container">
+        <ResultsNotFound />
+      </div>
+    );
 
     return (
       <section className={styles.wrapper}>
@@ -75,6 +76,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.load());
     },
   };
