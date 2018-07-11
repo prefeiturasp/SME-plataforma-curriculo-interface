@@ -1,25 +1,5 @@
+import getFiltersQueryString from './getFiltersQueryString';
 import loadData from './loadData';
-
-function getParameterName(type) {
-  switch (type) {
-    case 'years':
-      return 'years';
-
-    case 'curricular_components':
-    default:
-      return 'curricular_components_slugs';
-  }
-}
-
-function getParameterValue(filter) {
-  switch (filter.type) {
-    case 'curricular_components':
-      return filter.slug;
-
-    default:
-      return filter.id;
-  }
-}
 
 const LearningObjectivesActions = {
   LOAD: 'LearningObjectivesActions.LOAD',
@@ -41,14 +21,8 @@ const LearningObjectivesActions = {
     return { type: LearningObjectivesActions.SHOW_OBJECTIVES };
   },
   search(filters) {
-    const params = filters.map(filter => {
-      const name = getParameterName(filter.type);
-      const value = getParameterValue(filter);
-      return `${name}[]=${value}`;
-    });
-    const paramsString = params.join('&');
-
-    return loadData(`/api/filtros?${paramsString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
+    const queryString = getFiltersQueryString(filters);
+    return loadData(`/api/filtros?${queryString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
   },
   hideResults() {
     return { type: LearningObjectivesActions.HIDE_RESULTS };
