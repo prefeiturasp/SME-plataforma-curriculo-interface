@@ -1,6 +1,5 @@
 import getFiltersQueryString from './getFiltersQueryString';
 import loadData from './loadData';
-import BodyActions from './BodyActions';
 import SequencesActions from './SequencesActions';
 import { API_URL } from '../constants';
 
@@ -24,16 +23,26 @@ const FiltersActions = {
     return { type: FiltersActions.SHOW_CATEGORY, category };
   },
   clearFilters() {
-    return { type: FiltersActions.CLEAR_FILTERS };
+    return (dispatch) => {
+      dispatch({ type: FiltersActions.CLEAR_FILTERS });
+      dispatch({ type: SequencesActions.SEARCH })
+      const url = '/api/sequencias';
+
+      fetch(API_URL + url)
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ data, type: SequencesActions.LOADED });
+        });
+    }
   },
   toggleFilter(filter) {
     return { type: FiltersActions.TOGGLE_FILTER, filter };
   },
   toggleFilterAndSearch(filter) {
     return (dispatch, getState) => {
-      dispatch({ type: BodyActions.SHOW_LOADING })
       dispatch({ type: FiltersActions.TOGGLE_FILTER, filter })
-
+      dispatch({ type: SequencesActions.SEARCH })
+      
       const filters = getState().FiltersReducer.filters.filter(item => item.isActive);
       const queryString = getFiltersQueryString(filters);
       const url = `/api/sequencias?${queryString}`;
@@ -41,8 +50,7 @@ const FiltersActions = {
       fetch(API_URL + url)
         .then(response => response.json())
         .then(data => {
-          dispatch({ type: BodyActions.HIDE_LOADING });
-          dispatch({ data, type: SequencesActions.LOADED });
+          // dispatch({ data, type: SequencesActions.LOADED });
         });
     }
   },

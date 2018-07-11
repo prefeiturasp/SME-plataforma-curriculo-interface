@@ -6,6 +6,7 @@ const SequencesActions = {
   LOAD: 'SequencesActions.LOAD',
   LOADED: 'SequencesActions.LOADED',
   LOADED_ITEM: 'SequencesActions.LOADED_ITEM',
+  SEARCH: 'SequencesActions.SEARCH',
   TOGGLE_PREVIEW: 'SequencesActions.TOGGLE_PREVIEW',
   
   clearSearch() {
@@ -13,7 +14,7 @@ const SequencesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return loadData(`/api/sequencias?${queryString}`, SequencesActions.LOAD, SequencesActions.LOADED);
+    return loadData(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
   },
   load() {
     return loadData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
