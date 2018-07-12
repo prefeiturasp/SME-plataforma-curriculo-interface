@@ -90,21 +90,19 @@ class Header extends Component {
 
     return (
       <header className={styles.wrapper}>
-        <div className="container">
-          <div className={styles.logo}>
-            <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
-            <h1>Currículo Digital da Cidade de São Paulo</h1>
-          </div>
-          <nav className={classes.join(' ')}>
-            {links}
-            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
-              <img src={iconCloseBig} alt="Fechar" />
-            </button>
-          </nav>
-          <button className={styles.toggler} onClick={this.onClickedMenu.bind(this)}>
-            <img src={icon} alt="Menu" />
-          </button>
+        <div className={styles.logo}>
+          <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
+          <h1>Currículo Digital da Cidade de São Paulo</h1>
         </div>
+        <nav className={classes.join(' ')}>
+          {links}
+          <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+            <img src={iconCloseBig} alt="Fechar" />
+          </button>
+        </nav>
+        <button className={styles.toggler} onClick={this.onClickedMenu.bind(this)}>
+          <img src={icon} alt="Menu" />
+        </button>
       </header>
     );
   }
