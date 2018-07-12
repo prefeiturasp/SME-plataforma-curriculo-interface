@@ -119,8 +119,16 @@ body.hasPopup {
   margin-right: 0.5rem;
 }
 
-.ql-align-right { text-align: right; }
 .ql-image { width: 100%; }
+
+.quill-text h2,
+.quill-text h3,
+.quill-text h4,
+.quill-text h5,
+.quill-text h6 {
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
 
 .quill-text h1 { font-size: 1.875rem; margin-bottom: 2rem; }
 .quill-text h2 { font-size: 1.3125rem; }
@@ -141,7 +149,6 @@ body.hasPopup {
 .quill-text ol,
 .quill-text ul {
   color: #6a6a6a;
-  font-size: 0.9375rem;
   font-weight: 600;
   list-style-position: inside;
 }
@@ -151,7 +158,7 @@ body.hasPopup {
 }
 
 .quill-text ul li:before {
-  content: '-';
+  content: '\2013';
   display: inline-block;
   margin-right: 0.25rem;
 }
