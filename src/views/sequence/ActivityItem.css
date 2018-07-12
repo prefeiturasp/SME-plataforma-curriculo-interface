@@ -5,6 +5,7 @@
   display: block;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  overflow: hidden;
 }
 
 .wrapper:hover {
@@ -24,8 +25,9 @@
   height: 100%;
 }
 
-.image > span {
+.image > div {
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
   color: white;
   display: flex;
   font-size: 5rem;

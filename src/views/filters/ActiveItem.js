@@ -34,7 +34,7 @@ ActiveItem.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     toggleFilter: data => {
-      dispatch(FiltersActions.toggleFilter(data));
+      dispatch(FiltersActions.toggleFilterAndSearch(data));
     },
   };
 };

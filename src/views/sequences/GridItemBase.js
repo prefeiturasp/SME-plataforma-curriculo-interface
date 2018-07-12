@@ -38,9 +38,21 @@ class GridItemBase extends Component {
       </div>
     );
 
-    const word1 = data.estimated_time > 1 ? 'aulas' : 'aula';
-    const duration = `${data.estimated_time} ${word1}`;
+    const maxChars = 32
+    const title = data.title.length > maxChars ? data.title.substr(0, maxChars).trim() + '...' : data.title
 
+    let duration = null;
+    if (data.estimated_time) {
+      const word1 = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word1}`;
+      duration = (
+        <div className={styles.info}>
+          <div className={styles.number}>{durationText}</div>
+          <div className={styles.label}>Tempo estimado</div>
+        </div>
+      );
+    }
+    
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
     return (
@@ -51,12 +63,9 @@ class GridItemBase extends Component {
             <em style={style}>{data.main_curricular_component.name}</em>
             <span>{data.year} ano</span>
           </div>
-          <div className={styles.title}>{data.title}</div>
+          <div className={styles.title}>{title}</div>
           <div className={styles.infos}>
-            <div className={styles.info}>
-              <div className={styles.number}>{duration}</div>
-              <div className={styles.label}>Tempo estimado</div>
-            </div>
+            {duration}
             <div className={styles.info}>
               <div className={styles.number}>{data.number_of_activities}</div>
               <div className={styles.label}>{word2}</div>

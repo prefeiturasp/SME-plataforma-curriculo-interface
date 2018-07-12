@@ -43,7 +43,7 @@ class KnowledgeMatrixItem extends Component {
               <p>{knowDescription}</p>
               <h2>Para</h2>
               <p>{forDescription}</p>
-              <NavLink to="/sequencias" className={styles.button}>
+              <NavLink to={`/sequencias/matriz-de-saberes/${index}`} className={styles.button}>
                 Ver Sequências de Atividades Relacionadas
               </NavLink>
               <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
@@ -58,7 +58,7 @@ class KnowledgeMatrixItem extends Component {
 }
 
 KnowledgeMatrixItem.contextTypes = {
-  router: () => true,
+  router: PropTypes.object.isRequired,
 };
 
 KnowledgeMatrixItem.propTypes = {

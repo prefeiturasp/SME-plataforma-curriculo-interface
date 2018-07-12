@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { API_URL } from '../../constants';
+import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityItem from './ActivityItem';
 import CurricularComponentItem from '../common/CurricularComponentItem';
@@ -26,6 +27,10 @@ class Sequence extends Component {
 
   render() {
     const data = this.props.data;
+
+    if (!data) {
+      return <span />;
+    }
 
     const filters = [
       <GenericItem key={0} data={{name: `${data.year} ano`}} />,
@@ -60,7 +65,7 @@ class Sequence extends Component {
 
     const booksTitle = books ? (
       <div className={styles.title}>
-        Livros para o professor:
+        Para saber mais:
       </div>
     ) : null;
     
@@ -86,8 +91,18 @@ class Sequence extends Component {
           alt={data.title} />
       ) : null;
 
-    const word = data.estimated_time > 1 ? 'aulas' : 'aula';
-    const duration = `${data.estimated_time} ${word}`;
+    let duration = null;
+    if (data.estimated_time) {
+      const word = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word}`;
+      duration = (
+        <div className={styles.duration}>
+          <img src={iconClock} alt="Número de aulas" />
+          <strong>{durationText}</strong>
+          (Tempo estimado)
+        </div>
+      )
+    }
 
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
 
@@ -99,11 +114,7 @@ class Sequence extends Component {
             <ul>
               {filters}
             </ul>
-            <div className={styles.duration}>
-              <img src={iconClock} alt="Número de aulas" />
-              <strong>{duration}</strong>
-              (Tempo estimado)
-            </div>
+            {duration}
           </div>
           <button className="btn" onClick={this.onClickedPrint.bind(this)}>
             <img src={iconPrint} alt="Imprimir" />
@@ -213,6 +224,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadItem: (slug) => {
+      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.loadItem(slug));
     },
   };

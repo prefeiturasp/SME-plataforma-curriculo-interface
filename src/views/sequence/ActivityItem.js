@@ -20,7 +20,7 @@ class ActivityItem extends Component {
               src={API_URL + data.image_attributes.default_url}
               srcSet={`${API_URL}${data.image_attributes.small.url}, ${API_URL}${data.image_attributes.extra_small.url} 2x`}
               alt={data.name} />
-            <span>{this.props.index}</span>
+            <div>{this.props.index}</div>
           </div>
           <div className={styles.title}>
             {data.title}

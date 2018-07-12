@@ -98,8 +98,10 @@
 .description {
   composes: col-md-8 from global;
   composes: offset-md-2 from global;
+  composes: quill-text from global;
   font-size: 1.125rem;
-  margin-top: 1rem;
+  line-height: 1.5rem;
+  margin-top: 1.75rem;
   margin-bottom: 2rem;
 }
 

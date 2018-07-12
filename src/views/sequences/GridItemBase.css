@@ -47,8 +47,10 @@
   color: #252525;
   font-size: 1.3125rem;
   font-weight: bold;
+  height: 3.15rem;
   line-height: 1.2;
   margin: 0 1.5625rem 1rem 1.5625rem;
+  overflow: hidden;
 }
 
 .infos {

@@ -2,6 +2,7 @@ import FiltersActions from '../actions/FiltersActions';
 
 const initialState = {
   currCategory: null,
+  cachedFilter: null,
   filters: [],
   isExpanded: false,
   isShowingCategory: false,
@@ -30,7 +31,8 @@ function FiltersReducer(state = initialState, action) {
         const list = action.data[key];
         if (list) {
           list.forEach(item => {
-            filters.push({ ...item, type: key });
+            const isActive = state.cachedFilter ? key === state.cachedFilter.type && item.id === state.cachedFilter.id : false;
+            filters.push({ ...item, isActive, type: key });
           });
         }
       });
@@ -62,6 +64,12 @@ function FiltersReducer(state = initialState, action) {
             isActive: false,
           };
         })
+      };
+
+    case FiltersActions.CACHE_FILTER:
+      return {
+        ...state,
+        cachedFilter: action.filter,
       };
 
     case FiltersActions.TOGGLE_FILTER:

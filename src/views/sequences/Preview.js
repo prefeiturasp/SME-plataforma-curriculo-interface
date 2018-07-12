@@ -74,7 +74,7 @@ class Preview extends Component {
                 <img src={iconHelp} alt="Ajuda" />
               </button>
             </div>
-            <ul>
+            <ul className={styles.objectives}>
               {learningObjectives}
             </ul>
             <div className={styles.title}>
