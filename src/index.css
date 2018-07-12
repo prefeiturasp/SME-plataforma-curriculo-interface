@@ -121,25 +121,30 @@ body.hasPopup {
 
 .ql-image { width: 100%; }
 
+.quill-text h1,
 .quill-text h2,
 .quill-text h3,
-.quill-text h4,
-.quill-text h5,
-.quill-text h6 {
+.quill-text h4 {
   margin-bottom: 1rem;
   margin-top: 2rem;
+}
+
+.quill-text h1:first-child,
+.quill-text h2:first-child,
+.quill-text h3:first-child,
+.quill-text h4:first-child {
+  margin-top: 0;
 }
 
 .quill-text h1 { font-size: 1.875rem; margin-bottom: 2rem; }
 .quill-text h2 { font-size: 1.3125rem; }
 .quill-text h3 { font-size: 1.125rem; }
 .quill-text h4 { font-size: 1rem; }
-.quill-text h5 { font-size: 0.9375rem; }
-.quill-text h6 { font-size: 0.875rem; }
 .quill-text hr { margin: 2rem 0; }
 
 .quill-text blockquote {
   background-color: #e0e0e0;
+  border-radius: 0;
   font-style: italic;
   margin-top: 2.1875rem; 
   margin-bottom: 2.1875rem; 
@@ -161,4 +166,8 @@ body.hasPopup {
   content: '\2013';
   display: inline-block;
   margin-right: 0.25rem;
+}
+
+.quill-text br {
+  margin-bottom: 1.5rem;
 }
