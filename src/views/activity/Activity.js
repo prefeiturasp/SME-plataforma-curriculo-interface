@@ -88,6 +88,25 @@ class Activity extends Component {
 
     const ops = JSON.parse(data.content).ops;
     const converter = new QuillDeltaToHtmlConverter(ops);
+
+    converter.beforeRender(function(groupType, data) {
+      if (data.ops) {
+        data.ops.forEach(item  => {
+          if (item.insert.type === 'image') {
+            item.insert.value = API_URL + item.insert.value;
+          }
+        })
+      }
+    });
+
+    converter.renderCustomWith(function(customOp, contextOp) {
+      if (customOp.insert.type === 'divider') {
+        return '<hr />';
+      } else {
+        return null;
+      }
+    });
+
     const content = converter.convert();
     
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
@@ -132,9 +151,10 @@ class Activity extends Component {
         <hr />
         <div className="container">
           <div className="row">
-            <div className="col-md-8 offset-md-2" dangerouslySetInnerHTML={{__html: content}} />
+            <div className={styles.description} dangerouslySetInnerHTML={{__html: content}} />
           </div>
         </div>
+        <hr />
         <div className={styles.arrows}>
           {arrowPrev}
           {arrowNext}
