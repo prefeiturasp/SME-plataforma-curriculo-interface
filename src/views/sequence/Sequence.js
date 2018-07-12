@@ -61,7 +61,7 @@ class Sequence extends Component {
       );
     });
     
-    const books = data.books.trim();
+    const books = data.books.trim().replace(/\r\n/g, '<br>');
 
     const booksTitle = books ? (
       <div className={styles.title}>
@@ -70,7 +70,7 @@ class Sequence extends Component {
     ) : null;
     
     const booksContents = books ? (
-      <p>{data.books}</p>
+      <p dangerouslySetInnerHTML={{__html: books}} />
     ) : null;
     
     const activities = data.activities.map((item, i) => {
