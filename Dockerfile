@@ -3,6 +3,8 @@ FROM node:9.11.2
 RUN mkdir -p /app 
 WORKDIR /app
 
+ARG APP_ENV
+
 COPY package.json package.json
 COPY npm-shrinkwrap.json npm-shrinkwrap.json
 
@@ -11,7 +13,7 @@ RUN npm install -g serve
 
 COPY . ./
 
-CMD if [ ${INTERFACE_ENV} = production ]; \
+CMD if [ ${APP_ENV} = production ]; \
 	then \
 	npm install && \
 	npm run build --production && \
