@@ -25,7 +25,7 @@ class GridItemBase extends Component {
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
     const style = { color: data.main_curricular_component.color };
 
-    const thumbnail = data.image_attributes ? (
+    const thumbnail = data.image_attributes.default_url ? (
       <div className={styles.image}>
         <img
           src={API_URL + data.image_attributes.default_url}

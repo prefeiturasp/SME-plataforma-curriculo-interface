@@ -76,7 +76,7 @@ class Activity extends Component {
     const icons1 = this.state.totalWidth < 768 ? null : icons;
     const icons2 = this.state.totalWidth < 768 ? icons : null;
 
-    const cover = data.image_attributes ? (
+    const cover = data.image_attributes.default_url ? (
       <div className="container">
         <img
           className={styles.cover}
