@@ -144,7 +144,7 @@ body.hasPopup {
 
 .quill-text blockquote {
   background-color: #e0e0e0;
-  border-radius: 0;
+  border-radius: 0.25rem;
   font-style: italic;
   margin-top: 2.1875rem; 
   margin-bottom: 2.1875rem; 
