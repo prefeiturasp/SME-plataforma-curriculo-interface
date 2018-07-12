@@ -1,13 +1,10 @@
 .wrapper {
+  align-items: center;
   border-bottom: 1px solid #e0e0e0;
   color: #252525;
-}
-
-.wrapper > div {
-  align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
+  padding: 0.5rem 2.5rem;
   position: relative;
   z-index: 60;
 }
@@ -15,14 +12,20 @@
 .logo {
   align-items: center;
   display: flex;
-  margin-left: -1.625rem;
+}
+
+.logo img {
+  margin-right: 0.8125rem;
 }
 
 .logo h1 {
   font-size: 1.125rem;
   margin-bottom: 0;
-  margin-left: 0.5rem;
   max-width: 12rem;
+}
+
+.menu {
+  margin-right: -0.9375rem;
 }
 
 .menu > a {
@@ -61,7 +64,8 @@
 
 @media only screen and (max-width: 1120px) {
   .wrapper {
-    padding: 0.875rem 0.9375rem;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
   }
 
   .toggler,
@@ -100,18 +104,6 @@
 
   .isMenuExpanded {
     left: 0;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .logo {
-    margin-left: 1rem;
-  }
-}
-
-@media only screen and (max-width: 540px) {
-  .logo {
-    margin-left: 0;
   }
 }
 

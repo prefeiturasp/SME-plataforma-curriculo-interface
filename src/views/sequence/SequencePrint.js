@@ -61,7 +61,7 @@ class SequencePrint extends Component {
       );
     });
 
-    const image = data.image_attributes ? (
+    const image = data.image_attributes.default_url ? (
         <img
           className={styles.image}
           src={API_URL + data.image_attributes.default_url}

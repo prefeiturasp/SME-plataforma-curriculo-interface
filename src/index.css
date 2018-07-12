@@ -169,5 +169,7 @@ body.hasPopup {
 }
 
 .quill-text br {
+  content: '';
+  display: block;
   margin-bottom: 1.5rem;
 }
