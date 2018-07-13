@@ -153,8 +153,6 @@ body.hasPopup {
 
 .quill-text ol,
 .quill-text ul {
-  color: #6a6a6a;
-  font-weight: 600;
   list-style-position: inside;
 }
 
