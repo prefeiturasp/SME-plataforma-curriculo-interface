@@ -47,13 +47,13 @@ class ExpandableLearningObjectiveItem extends Component {
     ): null;
 
     return (
-      <li className={classes.join(' ')}>
+      <li className={classes.join(' ')} onClick={this.onClickedToggle.bind(this)}>
         <LearningObjectiveItem data={this.props.data} />
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}
           {link}
         </div>
-        <button className={styles.toggler} onClick={this.onClickedToggle.bind(this)}>
+        <button className={styles.toggler}>
           <img src={chevron} alt="Seta" />
         </button>
       </li>
