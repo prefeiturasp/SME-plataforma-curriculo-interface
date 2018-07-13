@@ -72,7 +72,7 @@ class Sequences extends Component {
     else if (this.props.data.length) {
       content = (
         <div className="container">
-          <ul className="row">
+          <ul className={styles.results}>
             {items}
           </ul>
           {loadMore}
