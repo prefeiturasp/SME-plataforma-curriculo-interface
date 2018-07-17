@@ -75,9 +75,11 @@
 
 .cover,
 .image {
+  display: inline-block;
   margin-bottom: 1.25rem;
   width: 100%;
   height: auto;
+  min-height: 35.5rem;
 }
 
 .description {

@@ -2,6 +2,7 @@
   align-items: flex-start;
   border-top: 1px solid #e0e0e0;
   color: #6a6a6a;
+  cursor: pointer;
   display: flex;
   font-size: 0.9375rem;
   padding-top: 0.8125rem;
@@ -51,6 +52,5 @@
 }
 
 .toggler {
-  cursor: pointer;
   margin-top: 0.5rem;
 }
