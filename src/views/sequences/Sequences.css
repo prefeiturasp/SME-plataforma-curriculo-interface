@@ -15,13 +15,13 @@
 }
 
 .results {
-  composes: row from global;
+  composes: container from global;
   list-style: none;
   margin: 0;
   padding: 1rem 0;
 }
 
-.results > li {
+.results > ul > li {
   position: relative;
 }
 

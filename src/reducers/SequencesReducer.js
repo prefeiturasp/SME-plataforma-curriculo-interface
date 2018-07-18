@@ -2,8 +2,9 @@ import SequencesActions from '../actions/SequencesActions';
 
 const initialState = {
   items: [],
-  currItem: null,
   isSearching: false,
+  currItem: null,
+  nextPage: null,
 };
 
 function SequencesReducer(state = initialState, action) {
@@ -16,18 +17,34 @@ function SequencesReducer(state = initialState, action) {
         ...state,
         currItem: null,
       };
+
+    case SequencesActions.LOAD:
+      return {
+        ...state,
+        currItem: null,
+        isSearching: true,
+      };
       
     case SequencesActions.LOADED:
       return {
         ...state,
         items: action.data,
         isSearching: false,
+        nextPage: action.nextPage,
       };
       
     case SequencesActions.LOADED_ITEM:
       return {
         ...state,
         currItem: action.data,
+      };
+
+    case SequencesActions.LOADED_MORE:
+      return {
+        ...state,
+        items: state.items.concat(action.data),
+        isSearching: false,
+        nextPage: action.nextPage,
       };
 
     case SequencesActions.SEARCH:

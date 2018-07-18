@@ -4,8 +4,10 @@ import loadData from './loadData';
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
   LOAD: 'SequencesActions.LOAD',
+  LOAD_MORE: 'SequencesActions.LOAD_MORE',
   LOADED: 'SequencesActions.LOADED',
   LOADED_ITEM: 'SequencesActions.LOADED_ITEM',
+  LOADED_MORE: 'SequencesActions.LOADED_MORE',
   SEARCH: 'SequencesActions.SEARCH',
   TOGGLE_PREVIEW: 'SequencesActions.TOGGLE_PREVIEW',
   
@@ -21,6 +23,9 @@ const SequencesActions = {
   },
   loadItem(slug) {
     return loadData(`/api/sequencias/${slug}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
+  },
+  loadMore(page) {
+    return loadData(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
   },
   loadWithFilter(filter) {
     const queryString = getFiltersQueryString([filter]);
