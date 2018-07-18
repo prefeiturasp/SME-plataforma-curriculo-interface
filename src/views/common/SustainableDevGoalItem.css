@@ -3,3 +3,8 @@
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
 }
+
+.wrapper img {
+  width: 3.375rem;
+  height: 3.375rem;
+}
