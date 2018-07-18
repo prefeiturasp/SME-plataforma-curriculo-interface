@@ -16,9 +16,12 @@
 
 .results {
   composes: container from global;
-  list-style: none;
   margin: 0;
   padding: 1rem 0;
+}
+
+.results > ul {
+  list-style: none;
 }
 
 .results > ul > li {
