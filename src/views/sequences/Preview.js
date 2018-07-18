@@ -12,7 +12,8 @@ import styles from './Preview.css';
 class Preview extends Component {
   constructor(props) {
     super(props);
-    this.ref = React.createRef();
+    this.refWrapper = React.createRef();
+    this.refAccess = React.createRef();
   }
 
   render() {
@@ -40,7 +41,7 @@ class Preview extends Component {
 
     if (getWindowWidth() < 768) {
       if (this.props.data.isExpanded) {
-        height = this.ref.current ? this.ref.current.scrollHeight : 0;
+        height = this.refWrapper.current ? this.refWrapper.current.scrollHeight : 0;
       } else {
         height = 0;
       }
@@ -50,6 +51,9 @@ class Preview extends Component {
     const style1 = { height: `${height}px` };
     const style2 = { width: `${width}px`, ...style1 };
 
+    const heightAccess = this.refAccess.current ? this.refAccess.current.offsetHeight : 53;
+    const style3 = { minHeight: `${height - heightAccess}px` };
+
     const link = `/sequencia/${this.props.data.slug}`;
     const classes = [styles.mask];
     if (this.props.data.isExpanded) classes.push(styles.isExpanded)
@@ -57,8 +61,8 @@ class Preview extends Component {
 
     return (
       <div className={classes.join(' ')} style={style1}>
-        <div className={styles.wrapper} style={style2} ref={this.ref}>
-          <div className={styles.scroll}>
+        <div className={styles.wrapper} style={style2} ref={this.refWrapper}>
+          <div className={styles.scroll} style={style3}>
             <div className={styles.title}>
               Matriz de Saberes
               <button data-tip data-for="tooltipKnowledgeMatrices">
@@ -87,7 +91,7 @@ class Preview extends Component {
               {sustainableDevGoals}
             </ul>
           </div>
-          <NavLink to={link} className={styles.access}>
+          <NavLink to={link} className={styles.access} ref={this.refAccess}>
             Acessar
           </NavLink>
         </div>

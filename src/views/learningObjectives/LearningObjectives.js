@@ -69,7 +69,7 @@ class LearningObjectives extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.isShowingResults && !this.props.isShowingResults) {
+    if (nextProps.isShowingResults) {
       this.tl.kill();
       this.tl.clear();
       this.tl.to(this.refFilters.current, 0.1, { opacity: 0, display: 'none' });

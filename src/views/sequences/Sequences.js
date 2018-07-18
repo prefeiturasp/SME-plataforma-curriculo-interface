@@ -17,8 +17,8 @@ class Sequences extends Component {
     this.ref = React.createRef();
   }
 
-  onClickedLoad() {
-    
+  onClickedLoadMore() {
+    this.props.loadMore(this.props.nextPage);
   }
 
   componentDidMount() {
@@ -56,9 +56,8 @@ class Sequences extends Component {
       );
     });
 
-    const hasPagination = false;
-    const loadMore = hasPagination ? (
-      <button className={styles.load} onClick={this.onClickedLoad.bind(this)}>
+    const loadMore = this.props.nextPage ? (
+      <button className={styles.load} onClick={this.onClickedLoadMore.bind(this)}>
         Carregar mais
       </button>
     ) : null;
@@ -71,8 +70,8 @@ class Sequences extends Component {
     }
     else if (this.props.data.length) {
       content = (
-        <div className="container">
-          <ul className={styles.results}>
+        <div className={styles.results}>
+          <ul className="row">
             {items}
           </ul>
           {loadMore}
@@ -109,6 +108,7 @@ Sequences.propTypes = {
 const mapStateToProps = state => {
   return {
     data: state.SequencesReducer.items,
+    nextPage: state.SequencesReducer.nextPage,
     isSearching: state.SequencesReducer.isSearching,
   };
 };
@@ -118,6 +118,9 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.load());
+    },
+    loadMore: (page) => {
+      dispatch(SequencesActions.loadMore(page));
     },
     loadWithFilter: (data) => {
       dispatch(FiltersActions.cacheFilter(data));

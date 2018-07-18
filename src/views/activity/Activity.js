@@ -15,10 +15,6 @@ import iconPrint from '../../images/iconPrint.svg';
 import styles from './Activity.css';
 
 class Activity extends Component {
-  onClickedPrint() {
-    
-  }
-
   onResized() {
     const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
@@ -88,6 +84,7 @@ class Activity extends Component {
 
     const content = convertQuillToHtml(data.content);
     
+    const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
     const link = `/sequencia/${sequence.slug}`;
@@ -118,10 +115,10 @@ class Activity extends Component {
             </ul>
           </div>
           <div className={styles.infos}>
-            <button className="btn" onClick={this.onClickedPrint.bind(this)}>
+            <NavLink className="btn" to={linkPrint}>
               <img src={iconPrint} alt="Imprimir" />
               Imprimir
-            </button>
+            </NavLink>
             {icons1}
           </div>
         </div>
