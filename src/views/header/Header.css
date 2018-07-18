@@ -11,6 +11,7 @@
 
 .logo {
   align-items: center;
+  color: #252525;
   display: flex;
 }
 
@@ -58,8 +59,30 @@
 }
 
 :global(.isHome) .wrapper,
-:global(.isHome) .menu > a {
+:global(.isHome) .menu > a,
+:global(.isHome) .logo {
   color: white;
+}
+
+:global(.hasScrolled) .wrapper {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  animation: animScrolled 0.5s ease-in-out;
+}
+
+:global(.hasScrolled) .wrapper,
+:global(.hasScrolled) .menu > a,
+:global(.hasScrolled) .logo {
+  color: #252525;
+}
+
+@keyframes animScrolled {
+  from { top: -5rem; }
+  to { top: 0; }
 }
 
 @media only screen and (max-width: 1120px) {

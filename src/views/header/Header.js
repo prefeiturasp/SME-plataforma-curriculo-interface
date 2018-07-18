@@ -90,10 +90,12 @@ class Header extends Component {
 
     return (
       <header className={styles.wrapper}>
-        <div className={styles.logo}>
-          <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
-          <h1>Currículo Digital da Cidade de São Paulo</h1>
-        </div>
+        <NavLink to="/">
+          <div className={styles.logo}>
+            <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
+            <h1>Currículo Digital da Cidade de São Paulo</h1>
+          </div>
+        </NavLink>
         <nav className={classes.join(' ')}>
           {links}
           <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
