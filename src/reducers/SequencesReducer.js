@@ -18,7 +18,7 @@ function SequencesReducer(state = initialState, action) {
         currItem: null,
       };
 
-    case SequencesActions.LOAD:
+    case SequencesActions.LOAD_MORE:
       return {
         ...state,
         currItem: null,
