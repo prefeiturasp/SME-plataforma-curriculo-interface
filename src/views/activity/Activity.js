@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import QuillDeltaToHtmlConverter from 'quill-delta-to-html';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
+import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
@@ -86,28 +86,7 @@ class Activity extends Component {
       </div>
     ) : null;
 
-    const ops = JSON.parse(data.content).ops;
-    const converter = new QuillDeltaToHtmlConverter(ops);
-
-    converter.beforeRender(function(groupType, data) {
-      if (data.ops) {
-        data.ops.forEach(item  => {
-          if (item.insert.type === 'image') {
-            item.insert.value = API_URL + item.insert.value;
-          }
-        })
-      }
-    });
-
-    converter.renderCustomWith(function(customOp, contextOp) {
-      if (customOp.insert.type === 'divider') {
-        return '<hr />';
-      } else {
-        return null;
-      }
-    });
-
-    const content = converter.convert();
+    const content = convertQuillToHtml(data.content);
     
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
