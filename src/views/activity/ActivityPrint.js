@@ -9,9 +9,12 @@ import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
 import styles from './Activity.css';
 
+let hasPrinted = false;
+
 class ActivityPrint extends Component {
-  onClickedPrint() {
-    
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
   onResized() {
@@ -40,6 +43,11 @@ class ActivityPrint extends Component {
       if (params.slug2 !== prevParams.slug2) {
         this.props.load(params.slug1, params.slug2);
       }
+    }
+
+    if (!prevProps.data && this.props.data && !hasPrinted) {
+      hasPrinted = true;
+      setTimeout(window.print, 2000);
     }
   }
 

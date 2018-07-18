@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { API_URL } from '../../constants';
+import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityPrint from '../activity/ActivityPrint';
 import CurricularComponentItem from '../common/CurricularComponentItem';
@@ -13,17 +14,26 @@ import convertQuillToHtml from '../util/convertQuillToHtml';
 import iconClock from '../../images/iconClock.svg';
 import styles from './Sequence.css';
 
-class SequencePrint extends Component {
-  onClickedPrint() {
-    
-  }
+let hasPrinted = false;
 
+class SequencePrint extends Component {
   componentDidMount() {
     this.props.loadItem(this.props.match.params.slug);
   }
 
+  componentDidUpdate(prevProps) {
+    if (!prevProps.data && this.props.data && !hasPrinted) {
+      hasPrinted = true;
+      setTimeout(window.print, 2000);
+    }
+  }
+
   render() {
     const data = this.props.data;
+
+    if (!data) {
+      return <span />;
+    }
 
     const filters = [
       <GenericItem key={0} data={{name: `${data.year} ano`}} />,
@@ -161,6 +171,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadItem: (slug) => {
+      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.loadItem(slug));
     },
   };

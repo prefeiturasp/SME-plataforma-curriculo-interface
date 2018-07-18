@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
@@ -18,10 +19,6 @@ import iconPrint from '../../images/iconPrint.svg';
 import styles from './Sequence.css';
 
 class Sequence extends Component {
-  onClickedPrint() {
-    
-  }
-
   componentDidMount() {
     this.props.loadItem(this.props.match.params.slug);
   }
@@ -32,6 +29,8 @@ class Sequence extends Component {
     if (!data) {
       return <span />;
     }
+
+    const linkPrint = `/imprimir/sequencia/${this.props.match.params.slug}`;
 
     const filters = [
       <GenericItem key={0} data={{name: `${data.year} ano`}} />,
@@ -113,10 +112,10 @@ class Sequence extends Component {
             </ul>
             {duration}
           </div>
-          <button className="btn" onClick={this.onClickedPrint.bind(this)}>
+          <NavLink className="btn" to={linkPrint}>
             <img src={iconPrint} alt="Imprimir" />
             Imprimir
-          </button>
+          </NavLink>
         </header>
         <hr />
         <div className={styles.details}>
