@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import QuillDeltaToHtmlConverter from 'quill-delta-to-html';
 import { connect } from 'react-redux';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import GenericItem from '../common/GenericItem';
+import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
 import styles from './Activity.css';
@@ -87,28 +87,7 @@ class ActivityPrint extends Component {
       </div>
     ) : null;
 
-    const ops = JSON.parse(data.content).ops;
-    const converter = new QuillDeltaToHtmlConverter(ops);
-
-    converter.beforeRender(function(groupType, data) {
-      if (data.ops) {
-        data.ops.forEach(item  => {
-          if (item.insert.type === 'image') {
-            item.insert.value = API_URL + item.insert.value;
-          }
-        })
-      }
-    });
-
-    converter.renderCustomWith(function(customOp, contextOp) {
-      if (customOp.insert.type === 'divider') {
-        return '<hr />';
-      } else {
-        return null;
-      }
-    });
-
-    const content = converter.convert();
+    const content = convertQuillToHtml(data.content);
 
     return (
       <section className={styles.wrapper}>

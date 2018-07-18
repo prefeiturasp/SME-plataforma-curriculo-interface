@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class BodyManager extends React.Component {
+  onScrolled() {
+    const scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    document.body.classList.toggle('hasScrolled', scroll > 150);
+  }
+
   componentDidMount() {
+    window.addEventListener('scroll', this.onScrolled.bind(this));
     document.body.classList.toggle('hasPopup', this.props.hasPopup);
     document.body.classList.toggle('isHome', this.props.isHome);
   }
@@ -14,7 +20,9 @@ class BodyManager extends React.Component {
   }
 
   componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScrolled.bind(this));
     document.body.classList.remove('hasPopup');
+    document.body.classList.remove('hasScrolled');
     document.body.classList.remove('isHome');
   }
 
