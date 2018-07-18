@@ -9,6 +9,7 @@ import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjecti
 import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
+import convertQuillToHtml from '../util/convertQuillToHtml';
 import iconClock from '../../images/iconClock.svg';
 import styles from './Sequence.css';
 
@@ -53,8 +54,14 @@ class SequencePrint extends Component {
       );
     });
     
-    const books = data.books;
-    
+    const booksTitle = data.books ? (
+      <div className={styles.title}>Para saber mais:</div>
+    ) : null;
+
+    const booksContents = data.books ? (
+      <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(data.books)}} />
+    ) : null;
+
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityPrint key={i} slug1={this.props.match.params.slug} slug2={item.slug} />
@@ -119,12 +126,8 @@ class SequencePrint extends Component {
               <ul>
                 {sustainableDevGoals}
               </ul>
-              <div className={styles.title}>
-                Livros para o professor:
-              </div>
-              <ul>
-                {books}
-              </ul>
+              {booksTitle}
+              {booksContents}
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjecti
 import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
+import convertQuillToHtml from '../util/convertQuillToHtml';
 import iconClock from '../../images/iconClock.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
@@ -61,16 +62,12 @@ class Sequence extends Component {
       );
     });
     
-    const books = data.books.trim().replace(/\r\n/g, '<br>');
-
-    const booksTitle = books ? (
-      <div className={styles.title}>
-        Para saber mais:
-      </div>
+    const booksTitle = data.books ? (
+      <div className={styles.title}>Para saber mais:</div>
     ) : null;
-    
-    const booksContents = books ? (
-      <p dangerouslySetInnerHTML={{__html: books}} />
+
+    const booksContents = data.books ? (
+      <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(data.books)}} />
     ) : null;
     
     const activities = data.activities.map((item, i) => {
