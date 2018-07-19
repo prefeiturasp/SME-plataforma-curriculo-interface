@@ -60,15 +60,18 @@ class Sequence extends Component {
         <SustainableDevGoalItem key={i} data={item} isLink={true} />
       );
     });
-    
-    const booksTitle = data.books ? (
-      <div className={styles.title}>Para saber mais:</div>
-    ) : null;
 
-    const booksContents = data.books ? (
-      <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(data.books)}} />
-    ) : null;
-    
+    let booksTitle = null; 
+    let booksContents = null;
+
+    if (data.books) {
+      const booksHtml = convertQuillToHtml(data.books);
+      if (booksHtml !== '<p><br/></p>') {
+        booksTitle = <div className={styles.title}>Para saber mais:</div>;
+        booksContents = <div dangerouslySetInnerHTML={{__html: booksHtml}} />;
+      }
+    }
+
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityItem
