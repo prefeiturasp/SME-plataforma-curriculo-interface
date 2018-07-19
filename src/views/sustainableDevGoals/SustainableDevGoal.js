@@ -106,7 +106,7 @@ SustainableDevGoal.contextTypes = {
 };
 
 SustainableDevGoal.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   loadItem: PropTypes.func.isRequired,
   hidePopup: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
