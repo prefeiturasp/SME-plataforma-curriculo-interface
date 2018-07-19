@@ -4,6 +4,7 @@ import loadData from './loadData';
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
   LOAD: 'SequencesActions.LOAD',
+  LOAD_ITEM: 'SequencesActions.LOAD_ITEM',
   LOAD_MORE: 'SequencesActions.LOAD_MORE',
   LOADED: 'SequencesActions.LOADED',
   LOADED_ITEM: 'SequencesActions.LOADED_ITEM',
@@ -22,7 +23,7 @@ const SequencesActions = {
     return loadData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
   },
   loadItem(slug) {
-    return loadData(`/api/sequencias/${slug}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
+    return loadData(`/api/sequencias/${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
   },
   loadMore(page) {
     return loadData(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
