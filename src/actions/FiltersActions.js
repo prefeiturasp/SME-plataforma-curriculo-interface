@@ -24,17 +24,7 @@ const FiltersActions = {
     return { type: FiltersActions.SHOW_CATEGORY, category };
   },
   clearFilters() {
-    return (dispatch) => {
-      dispatch({ type: FiltersActions.CLEAR_FILTERS });
-      dispatch({ type: SequencesActions.SEARCH })
-      const url = '/api/sequencias';
-
-      fetch(API_URL + url)
-        .then(response => response.json())
-        .then(data => {
-          dispatch({ data, type: SequencesActions.LOADED });
-        });
-    }
+    return { type: FiltersActions.CLEAR_FILTERS };
   },
   cacheFilter(filter) {
     return { type: FiltersActions.CACHE_FILTER, filter };
