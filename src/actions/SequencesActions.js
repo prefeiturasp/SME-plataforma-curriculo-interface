@@ -29,7 +29,7 @@ const SequencesActions = {
   },
   loadWithFilter(filter) {
     const queryString = getFiltersQueryString([filter]);
-    return loadData(`/api/sequencias?${queryString}`, SequencesActions.LOAD, SequencesActions.LOADED_ITEM);
+    return loadData(`/api/sequencias?${queryString}`, SequencesActions.LOAD, SequencesActions.LOADED);
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };

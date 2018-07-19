@@ -19,6 +19,15 @@ import iconPrint from '../../images/iconPrint.svg';
 import styles from './Sequence.css';
 
 class Sequence extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowingAllLearningObjectives: false };
+  }
+
+  onClickedAllLearningObjectives() {
+    this.setState({ isShowingAllLearningObjectives: true });
+  }
+
   componentDidMount() {
     this.props.loadItem(this.props.match.params.slug);
   }
@@ -49,26 +58,37 @@ class Sequence extends Component {
       );
     });
 
-    const learningObjectives = data.learning_objectives.map((item, i) => {
+    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
+
+    const learningObjectives = learningObjectivesList.map((item, i) => {
       return (
         <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
       );
     });
+
+    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
+      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
+        Ver Todos os Objetivos
+      </button>
+    );
 
     const sustainableDevGoals = data.sustainable_development_goals.map((item, i) => {
       return (
         <SustainableDevGoalItem key={i} data={item} isLink={true} />
       );
     });
-    
-    const booksTitle = data.books ? (
-      <div className={styles.title}>Para saber mais:</div>
-    ) : null;
 
-    const booksContents = data.books ? (
-      <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(data.books)}} />
-    ) : null;
-    
+    let booksTitle = null; 
+    let booksContents = null;
+
+    if (data.books) {
+      const booksHtml = convertQuillToHtml(data.books);
+      if (booksHtml !== '<p><br/></p>') {
+        booksTitle = <div className={styles.title}>Para saber mais:</div>;
+        booksContents = <div dangerouslySetInnerHTML={{__html: booksHtml}} />;
+      }
+    }
+
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityItem
@@ -147,6 +167,7 @@ class Sequence extends Component {
               <ul>
                 {learningObjectives}
               </ul>
+              {btnAllLearningObjectives}
             </div>
             <div className="col-sm-12 col-md-12 col-lg-4">
               <div className={styles.title}>

@@ -73,7 +73,7 @@
   color: #01add2;
 }
 
-.seeObjectives {
+.btnObjectives {
   composes: btn from global;
   display: none !important;
 }
@@ -175,7 +175,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .seeObjectives {
+  .btnObjectives {
     display: inline-block !important;
   }
 

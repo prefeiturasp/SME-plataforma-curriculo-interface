@@ -64,13 +64,16 @@ class SequencePrint extends Component {
       );
     });
     
-    const booksTitle = data.books ? (
-      <div className={styles.title}>Para saber mais:</div>
-    ) : null;
+    let booksTitle = null; 
+    let booksContents = null;
 
-    const booksContents = data.books ? (
-      <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(data.books)}} />
-    ) : null;
+    if (data.books) {
+      const booksHtml = convertQuillToHtml(data.books);
+      if (booksHtml !== '<p><br/></p>') {
+        booksTitle = <div className={styles.title}>Para saber mais:</div>;
+        booksContents = <div dangerouslySetInnerHTML={{__html: booksHtml}} />;
+      }
+    }
 
     const activities = data.activities.map((item, i) => {
       return (

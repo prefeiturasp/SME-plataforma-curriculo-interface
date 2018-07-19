@@ -66,9 +66,21 @@
   margin-left: 0.25rem;
 }
 
+.btnAllLearningObjectives {
+  color: #6a6a6a;
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-decoration: underline;
+}
+
 .image {
   display: inline-block;
   margin-top: 1.25rem;
+  object-fit: cover;
   width: 100%;
   height: auto;
   min-height: 35.5rem;
@@ -82,7 +94,19 @@
   margin-right: 12rem;
 }
 
+@media only screen and (max-width: 992px) {
+  .btnAllLearningObjectives {
+    margin-bottom: 2rem;
+  }
+}
+
 @media only screen and (max-width: 768px) {
+  .wrapper h4 {
+    font-size: 1.75rem;
+    margin-top: 1.9375rem;
+    margin-bottom: 0.5rem;
+  }
+
   .header {
     padding-top: 1.6875rem;
   }
@@ -105,11 +129,5 @@
     margin-top: 1.25rem;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .wrapper h4 {
-    font-size: 1.75rem;
-    margin-top: 1.9375rem;
-    margin-bottom: 0.5rem;
   }
 }

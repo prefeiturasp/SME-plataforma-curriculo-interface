@@ -11,15 +11,19 @@ class ActivityItem extends Component {
     const link = `/sequencia/${this.props.sequenceSlug}/atividade/${data.slug}`;
     const word = data.estimated_time > 1 ? 'aulas' : 'aula';
     const duration = `${data.estimated_time} ${word}`;
+
+    const image = data.image_attributes.default_url ? (
+      <img
+        src={API_URL + data.image_attributes.default_url}
+        srcSet={`${API_URL}${data.image_attributes.small.url}, ${API_URL}${data.image_attributes.extra_small.url} 2x`}
+        alt={data.name} />
+    ) : null;
     
     return (
       <li className="col-6 col-sm-6 col-md-6 col-lg-3">
         <NavLink to={link} className={styles.wrapper}>
           <div className={styles.image}>
-            <img
-              src={API_URL + data.image_attributes.default_url}
-              srcSet={`${API_URL}${data.image_attributes.small.url}, ${API_URL}${data.image_attributes.extra_small.url} 2x`}
-              alt={data.name} />
+            {image}
             <div>{this.props.index}</div>
           </div>
           <div className={styles.title}>
