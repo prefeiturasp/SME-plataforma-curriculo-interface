@@ -143,7 +143,7 @@ class LearningObjectives extends Component {
                 <strong>0X</strong> Ano de Escolaridade;<br />
                 <strong>CXX</strong> Componente curricular Ciências Naturais seguido da sequência de objetivos de aprendizagem e desenvolvimento desse componente.
               </p>
-              <button className={styles.seeObjectives} onClick={this.onClickedSee.bind(this)}>
+              <button className={styles.btnObjectives} onClick={this.onClickedSee.bind(this)}>
                 Ver os objetivos relacionados
               </button>
             </div>
