@@ -18,6 +18,7 @@
   display: block;
   font-size: 0.9375rem;
   font-weight: 600;
+  margin: 0 auto 2rem auto;
   text-align: center;
   text-decoration: underline;
 }
@@ -121,9 +122,5 @@
     margin-top: 1.25rem;
     margin-left: 0;
     margin-right: 0;
-  }
-
-  .btnAllLearningObjectives {
-    margin-bottom: 2rem;
   }
 }

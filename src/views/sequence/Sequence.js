@@ -19,6 +19,15 @@ import iconPrint from '../../images/iconPrint.svg';
 import styles from './Sequence.css';
 
 class Sequence extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowingAllLearningObjectives: false };
+  }
+
+  onClickedAllLearningObjectives() {
+    this.setState({ isShowingAllLearningObjectives: true });
+  }
+
   componentDidMount() {
     this.props.loadItem(this.props.match.params.slug);
   }
@@ -49,11 +58,19 @@ class Sequence extends Component {
       );
     });
 
-    const learningObjectives = data.learning_objectives.map((item, i) => {
+    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
+
+    const learningObjectives = learningObjectivesList.map((item, i) => {
       return (
         <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
       );
     });
+
+    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
+      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
+        Ver Todos os Objetivos
+      </button>
+    );
 
     const sustainableDevGoals = data.sustainable_development_goals.map((item, i) => {
       return (
@@ -150,9 +167,7 @@ class Sequence extends Component {
               <ul>
                 {learningObjectives}
               </ul>
-              <NavLink to="/objetivos-de-aprendizagem" className={styles.btnAllLearningObjectives}>
-                Ver Todos os Objetivos
-              </NavLink>
+              {btnAllLearningObjectives}
             </div>
             <div className="col-sm-12 col-md-12 col-lg-4">
               <div className={styles.title}>
