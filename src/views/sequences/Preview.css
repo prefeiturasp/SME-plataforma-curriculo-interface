@@ -58,13 +58,16 @@
 
 .access {
   border-top: 1px solid #e0e0e0;
-  color: black;
   font-weight: bold;
   height: 3.2875rem;
   line-height: 3.2875rem;
   text-align: center;
   text-transform: uppercase;
   width: 100%;
+}
+
+.access a {
+  color: black;
 }
 
 .isExpanded {

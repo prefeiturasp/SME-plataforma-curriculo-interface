@@ -95,9 +95,11 @@ class Preview extends Component {
               {sustainableDevGoals}
             </ul>
           </div>
-          <NavLink to={link} className={styles.access} ref={this.refAccess}>
-            Acessar
-          </NavLink>
+          <div className={styles.access} ref={this.refAccess}>
+            <NavLink to={link}>
+              Acessar
+            </NavLink>
+          </div>
         </div>
         <ReactTooltip
           place="bottom"
