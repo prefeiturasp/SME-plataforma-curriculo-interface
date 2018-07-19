@@ -150,6 +150,9 @@ class Sequence extends Component {
               <ul>
                 {learningObjectives}
               </ul>
+              <NavLink to="/objetivos-de-aprendizagem" className={styles.btnAllLearningObjectives}>
+                Ver Todos os Objetivos
+              </NavLink>
             </div>
             <div className="col-sm-12 col-md-12 col-lg-4">
               <div className={styles.title}>
