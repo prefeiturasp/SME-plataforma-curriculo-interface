@@ -6,7 +6,12 @@ import styles from './SustainableDevGoalButton.css';
 
 class SustainableDevGoalButton extends Component {
   render() {
-    const link = `/ods/${this.props.data.id}`;
+    const link = {
+      pathname: `/ods/${this.props.data.id}`,
+      state: {
+        isModalSustainableDevGoal: true,
+      },
+    };
     const style = { backgroundColor: this.props.data.color };
 
     return (

@@ -12,7 +12,12 @@ class SustainableDevGoalItem extends Component {
         alt={this.props.data.name} />
     );
 
-    const link = `/ods/${this.props.data.id}`;
+    const link = {
+      pathname: `/ods/${this.props.data.id}`,
+      state: {
+        isModalSustainableDevGoal: true,
+      },
+    };
 
     return this.props.isLink ? (
       <li className={styles.wrapper}>
