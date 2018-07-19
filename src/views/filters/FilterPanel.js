@@ -66,7 +66,7 @@ class FilterPanel extends Component {
         slug: 'knowledge_matrices',
       },
       {
-        name: 'Objetivos de Aprendizado',
+        name: 'Objetivos de Aprendizagem',
         slug: 'learning_objectives',
       },
       {
