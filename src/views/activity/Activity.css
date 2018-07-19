@@ -70,6 +70,17 @@
   margin-left: 0.25rem;
 }
 
+.btnAllLearningObjectives {
+  color: #6a6a6a;
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-decoration: underline;
+}
+
 .icons {
   display: flex;
   margin-bottom: 0;
@@ -161,6 +172,26 @@
   margin: 1.875rem auto;
 }
 
+@media only screen and (max-width: 992px) {
+  .icons {
+    margin: 0;
+    width: 100%;
+  }
+
+  .icons > li {
+    border-bottom: 0;
+    flex-grow: 1;
+  }
+
+  .icons > li:first-child {
+    border-left: 0;
+  }
+
+  .icons > li:last-child {
+    border-right: 0;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -182,8 +213,6 @@
 
   .infos {
     margin-top: 1.125rem;
-    /*margin-left: -15px;
-    margin-right: -15px;*/
     width: 100%;
   }
 
@@ -191,22 +220,8 @@
     display: none;
   }
 
-  .icons {
-    margin: 0;
-    width: 100%;
-  }
-
-  .icons > li {
-    border-bottom: 0;
-    flex-grow: 1;
-  }
-
-  .icons > li:first-child {
-    border-left: 0;
-  }
-
-  .icons > li:last-child {
-    border-right: 0;
+  .duration {
+    margin-bottom: 2rem;
   }
 
   .cover,

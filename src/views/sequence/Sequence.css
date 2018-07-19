@@ -13,17 +13,6 @@
   list-style: none;
 }
 
-.btnAllLearningObjectives {
-  color: #6a6a6a;
-  display: block;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  text-decoration: underline;
-}
-
 .header {
   align-items: flex-end;
   composes: container from global;
@@ -75,6 +64,17 @@
 .title > button {
   color: #e0e0e0;
   margin-left: 0.25rem;
+}
+
+.btnAllLearningObjectives {
+  color: #6a6a6a;
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .image {

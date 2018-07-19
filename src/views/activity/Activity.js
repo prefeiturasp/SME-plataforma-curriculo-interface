@@ -118,8 +118,8 @@ class Activity extends Component {
         {iconsItems}
       </ul>
     );
-    const icons1 = this.state.totalWidth < 768 ? null : icons;
-    const icons2 = this.state.totalWidth < 768 ? icons : null;
+    const icons1 = this.state.totalWidth < 992 ? null : icons;
+    const icons2 = this.state.totalWidth < 992 ? icons : null;
 
     const cover = data.image_attributes.default_url ? (
       <div className="container">
@@ -167,7 +167,7 @@ class Activity extends Component {
         </div>
         <div className={styles.infos}>
           <div className="row">   
-            <div className="col-sm-12 col-md-6 col-lg-4">
+            <div className="col-sm-12 col-md-6 col-lg-3">
               <ul>
                 {filters}
               </ul>
@@ -180,7 +180,7 @@ class Activity extends Component {
               </ul>
               {btnAllLearningObjectives}
             </div>
-            <div className="col-sm-12 col-md-6 col-lg-2">
+            <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
               {icons1}
             </div>
           </div>
