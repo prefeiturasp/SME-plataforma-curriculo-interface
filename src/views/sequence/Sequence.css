@@ -78,6 +78,7 @@
 .image {
   display: inline-block;
   margin-top: 1.25rem;
+  object-fit: cover;
   width: 100%;
   height: auto;
   min-height: 35.5rem;
