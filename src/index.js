@@ -64,21 +64,21 @@ class ModalSwitch extends Component {
         <Switch location={isModalSustainableDevGoal || isModalKnowledgeMatrix ? this.previousLocation : location}>
           <Route exact path='/' component={Home} />
           <Route exact path='/sequencias' component={Sequences} />
-          <Route path='/sequencias/ods/:ods' component={Sequences} />
-          <Route path='/sequencias/matriz-de-saberes/:mds' component={Sequences} />
-          <Route path='/sequencias/objetivos-de-aprendizagem/:oda' component={Sequences} />
+          <Route exact path='/sequencias/ods/:ods' component={Sequences} />
+          <Route exact path='/sequencias/matriz-de-saberes/:mds' component={Sequences} />
+          <Route exact path='/sequencias/objetivos-de-aprendizagem/:oda' component={Sequences} />
           <Route exact path='/sequencia/:slug' component={Sequence} />
-          <Route path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
+          <Route exact path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
           <Route exact path='/imprimir/sequencia/:slug' component={SequencePrint} />
           <Route exact path='/imprimir/sequencia/:slug1/atividade/:slug2' component={ActivityPrint} />
-          <Route path='/curriculo' component={Curriculum} />
+          <Route exact path='/curriculo' component={Curriculum} />
           <Route exact path='/ods' component={SustainableDevGoals} />
           <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
-          <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
-          <Route path='/descobrir' component={Roadmap} />
+          <Route exact path='/objetivos-de-aprendizagem' component={LearningObjectives} />
+          <Route exact path='/descobrir' component={Roadmap} />
         </Switch>
-        {isModalSustainableDevGoal ? <Route path='/ods/:id' component={SustainableDevGoal} /> : null}
-        {isModalKnowledgeMatrix ? <Route path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
+        {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
+        {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
       </div>
     );
   }
