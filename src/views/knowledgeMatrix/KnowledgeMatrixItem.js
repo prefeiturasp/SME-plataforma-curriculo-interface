@@ -8,14 +8,38 @@ import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { animationStatus: null };
+  }
+
   onClickedClose() {
     this.context.router.history.goBack();
+  }
+
+  onEntered() {
+    this.setState({ animationStatus: 'entered' });
   }
 
   componentDidMount() {
     this.props.showPopup();
     if (this.props.data.length <= 0) {
       this.props.load();
+      this.setState({ animationStatus: 'appeared' });
+    }
+    else {
+      this.setState({ animationStatus: 'enter' });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.state.animationStatus === 'appeared') {
+      const index = parseInt(this.props.match.params.index, 10);
+      const data = this.props.data.filter(item => item.sequence === index)[0];
+      if (data) {
+        this.setState({ animationStatus: 'enter' });
+        setTimeout(this.onEntered.bind(this), 1000);
+      }
     }
   }
 
@@ -30,22 +54,31 @@ class KnowledgeMatrixItem extends Component {
     const knowDescription = data ? data.know_description : '';
     const forDescription = data ? data.for_description : '';
 
+    const classes = [styles.wrapper];
+    if (this.state.animationStatus) {
+      classes.push(styles[this.state.animationStatus]);
+    }
+
     return (
-      <section className={styles.wrapper}>
+      <section className={classes.join(' ')}>
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <div className={styles.number}>
-                {index}
+              <div className={styles.header}>
+                <div className={styles.number}>
+                  {index}
+                </div>
+                <h1>{title}</h1>
               </div>
-              <h1>{title}</h1>
-              <h2>Saber</h2>
-              <p>{knowDescription}</p>
-              <h2>Para</h2>
-              <p>{forDescription}</p>
-              <NavLink to={`/sequencias/matriz-de-saberes/${index}`} className={styles.button}>
-                Ver Sequências de Atividades Relacionadas
-              </NavLink>
+              <div className={styles.contents}>
+                <h2>Saber</h2>
+                <p>{knowDescription}</p>
+                <h2>Para</h2>
+                <p>{forDescription}</p>
+                <NavLink to={`/sequencias/matriz-de-saberes/${index}`} className={styles.button}>
+                  Ver Sequências de Atividades Relacionadas
+                </NavLink>
+              </div>
               <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
                 <img src={iconCloseBig} alt="Fechar" />
               </button>

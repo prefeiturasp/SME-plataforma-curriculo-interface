@@ -10,13 +10,30 @@ import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
 import styles from './SustainableDevGoal.css';
 
 class SustainableDevGoal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { animationStatus: null };
+  }
+
   onClickedClose() {
     this.context.router.history.goBack();
+  }
+
+  onEntered() {
+    this.setState({ animationStatus: 'entered' });
   }
   
   componentDidMount() {
     this.props.showPopup();
     this.props.loadItem(this.props.match.params.id);
+    this.setState({ animationStatus: 'appeared' });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.state.animationStatus === 'appeared' && this.props.data) {
+      this.setState({ animationStatus: 'enter' });
+      setTimeout(this.onEntered.bind(this), 1000);
+    }
   }
 
   componentWillUnmount() {
@@ -25,6 +42,10 @@ class SustainableDevGoal extends Component {
 
   render() {
     const data = this.props.data;
+
+    if (!data) {
+      return <span />;
+    }
 
     const goals = data.goals.map((item, i) => {
       return (
@@ -35,10 +56,15 @@ class SustainableDevGoal extends Component {
       );
     });
 
+    const classes = [styles.wrapper];
+    if (this.state.animationStatus) {
+      classes.push(styles[this.state.animationStatus]);
+    }
+
     const style = { backgroundColor: data.color };
 
     return (
-      <section className={styles.wrapper}>
+      <section className={classes.join(' ')}>
         <header className={styles.header} style={style}>
           <div className="container">
             <div className="row">
@@ -54,7 +80,7 @@ class SustainableDevGoal extends Component {
             </div>
           </div>
         </header>
-        <div className={styles.content}>
+        <div className={styles.contents}>
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <h2>Conheça as metas</h2>
