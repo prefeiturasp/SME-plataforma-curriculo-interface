@@ -1,15 +1,8 @@
 import SustainableDevGoalsActions from '../actions/SustainableDevGoalsActions';
 
-const emptyItem = {
-  goals: [],
-  name: '',
-  description: '',
-  icon: '',
-};
-
 const initialState = {
   items: [],
-  currItem: emptyItem,
+  currItem: null,
 };
 
 function SustainableDevGoalsReducer(state = initialState, action) {
@@ -17,7 +10,7 @@ function SustainableDevGoalsReducer(state = initialState, action) {
     case SustainableDevGoalsActions.LOAD:
       return {
         ...state,
-        currItem: emptyItem,
+        currItem: null,
       };
 
     case SustainableDevGoalsActions.LOADED:
