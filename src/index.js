@@ -53,9 +53,9 @@ ReactDOM.render(
         <Route exact path='/imprimir/sequencia/:slug' component={SequencePrint} />
         <Route exact path='/imprimir/sequencia/:slug1/atividade/:slug2' component={ActivityPrint} />
         <Route path='/curriculo' component={Curriculum} />
-        <Route exact path='/ods' component={SustainableDevGoals} />
+        <Route path='/ods' component={SustainableDevGoals} />
         <Route path='/ods/:id' component={SustainableDevGoal} />
-        <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
+        <Route path='/matriz-de-saberes' component={KnowledgeMatrix} />
         <Route path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} />
         <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
         <Route path='/descobrir' component={Roadmap} />
