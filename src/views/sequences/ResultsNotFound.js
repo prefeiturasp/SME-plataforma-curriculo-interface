@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from '../../actions/FiltersActions';
+import SequencesActions from '../../actions/SequencesActions';
 import styles from './ResultsNotFound.css';
 
 class ResultsNotFound extends Component {
@@ -33,6 +34,7 @@ const mapDispatchToProps = dispatch => {
   return {
     clearSearch: () => {
       dispatch(FiltersActions.clearFilters());
+      dispatch(SequencesActions.load());
     },
   };
 };

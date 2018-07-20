@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 
 import Activity from './views/activity/Activity';
@@ -33,6 +33,57 @@ import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import './index.css';
 
+class ModalSwitch extends Component {
+  componentWillUpdate(nextProps) {
+    const location = this.props.location;
+    if (
+      nextProps.history.action !== "POP" &&
+      (!location.state || !location.state.modal)
+    ) {
+      this.previousLocation = this.props.location;
+    }
+  }
+
+  render() {
+    const location = this.props.location;
+
+    const isModalSustainableDevGoal = !!(
+      location.state &&
+      location.state.isModalSustainableDevGoal &&
+      this.previousLocation !== location
+    );
+
+    const isModalKnowledgeMatrix = !!(
+      location.state &&
+      location.state.isModalKnowledgeMatrix &&
+      this.previousLocation !== location
+    );
+
+    return (
+      <div>
+        <Switch location={isModalSustainableDevGoal || isModalKnowledgeMatrix ? this.previousLocation : location}>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/sequencias' component={Sequences} />
+          <Route exact path='/sequencias/ods/:ods' component={Sequences} />
+          <Route exact path='/sequencias/matriz-de-saberes/:mds' component={Sequences} />
+          <Route exact path='/sequencias/objetivos-de-aprendizagem/:oda' component={Sequences} />
+          <Route exact path='/sequencia/:slug' component={Sequence} />
+          <Route exact path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
+          <Route exact path='/imprimir/sequencia/:slug' component={SequencePrint} />
+          <Route exact path='/imprimir/sequencia/:slug1/atividade/:slug2' component={ActivityPrint} />
+          <Route exact path='/curriculo' component={Curriculum} />
+          <Route exact path='/ods' component={SustainableDevGoals} />
+          <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
+          <Route exact path='/objetivos-de-aprendizagem' component={LearningObjectives} />
+          <Route exact path='/descobrir' component={Roadmap} />
+        </Switch>
+        {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
+        {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
+      </div>
+    );
+  }
+}
+
 const store = createStore(
   reducers,
   applyMiddleware(thunk),
@@ -43,22 +94,7 @@ ReactDOM.render(
     <BrowserRouter>
       <ScrollToTop>
         <Header />
-        <Route exact path='/' component={Home} />
-        <Route exact path='/sequencias' component={Sequences} />
-        <Route path='/sequencias/ods/:ods' component={Sequences} />
-        <Route path='/sequencias/matriz-de-saberes/:mds' component={Sequences} />
-        <Route path='/sequencias/objetivos-de-aprendizagem/:oda' component={Sequences} />
-        <Route exact path='/sequencia/:slug' component={Sequence} />
-        <Route path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
-        <Route exact path='/imprimir/sequencia/:slug' component={SequencePrint} />
-        <Route exact path='/imprimir/sequencia/:slug1/atividade/:slug2' component={ActivityPrint} />
-        <Route path='/curriculo' component={Curriculum} />
-        <Route exact path='/ods' component={SustainableDevGoals} />
-        <Route path='/ods/:id' component={SustainableDevGoal} />
-        <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
-        <Route path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} />
-        <Route path='/objetivos-de-aprendizagem' component={LearningObjectives} />
-        <Route path='/descobrir' component={Roadmap} />
+          <Route component={ModalSwitch} />
         <Footer />
         <AppLoading />
         <AppModal />

@@ -49,12 +49,12 @@
   height: 5rem;
 }
 
-.content {
+.contents {
   composes: container from global;
   text-align: center;
 }
 
-.content h2 {
+.contents h2 {
   color: #6a6a6a;
   font-size: 1.875rem;
   margin-top: 2.125rem;
@@ -78,6 +78,37 @@
   position: absolute;
   right: 1.75rem;
   top: 1.75rem;
+}
+
+.enter {
+  bottom: 100%;
+  animation: animMask 0.5s ease-in-out forwards;
+}
+
+.enter .header > div {
+  opacity: 0;
+  animation: animOpacity 0.5s 0.25s ease-in-out forwards;
+}
+
+.enter .contents > div {
+  opacity: 0;
+  animation: animOpacity 0.5s 0.5s ease-in-out forwards;
+}
+
+@keyframes animMask {
+  from {
+    top: 25%;
+    bottom: 100%;
+  }
+  to {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@keyframes animOpacity {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @media only screen and (max-width: 768px) {

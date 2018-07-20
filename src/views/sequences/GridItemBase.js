@@ -56,7 +56,7 @@ class GridItemBase extends Component {
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
     return (
-      <li className="col-sm-12 col-md-6 col-lg-3">
+      <li className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <article className={styles.wrapper} ref={this.ref}>
           {thumbnail}
           <div className={styles.component}>

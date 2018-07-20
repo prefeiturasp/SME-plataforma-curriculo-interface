@@ -117,12 +117,14 @@ const mapDispatchToProps = dispatch => {
   return {
     load: () => {
       dispatch(BodyActions.showLoading());
+      dispatch(FiltersActions.clearFilters());
       dispatch(SequencesActions.load());
     },
     loadMore: (page) => {
       dispatch(SequencesActions.loadMore(page));
     },
     loadWithFilter: (data) => {
+      dispatch(FiltersActions.clearFilters());
       dispatch(FiltersActions.cacheFilter(data));
       dispatch(SequencesActions.loadWithFilter(data));
     }

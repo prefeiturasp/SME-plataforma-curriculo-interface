@@ -37,6 +37,15 @@ class Preview extends Component {
       );
     });
 
+    const sustainableDevGoalsTitle = sustainableDevGoals.length > 0 ? (
+      <div className={styles.title}>
+        Objetivos de Desenvolvimento Sustentável (ODS)
+        <button data-tip data-for="tooltipDevelopmentGoals">
+          <img src={iconHelp} alt="Ajuda" />
+        </button>
+      </div>
+    ) : null;
+
     let height = this.props.height;
 
     if (getWindowWidth() < 768) {
@@ -81,19 +90,16 @@ class Preview extends Component {
             <ul className={styles.objectives}>
               {learningObjectives}
             </ul>
-            <div className={styles.title}>
-              Objetivos de Desenvolvimento Sustentável (ODS)
-              <button data-tip data-for="tooltipDevelopmentGoals">
-                <img src={iconHelp} alt="Ajuda" />
-              </button>
-            </div>
+            {sustainableDevGoalsTitle}
             <ul>
               {sustainableDevGoals}
             </ul>
           </div>
-          <NavLink to={link} className={styles.access} ref={this.refAccess}>
-            Acessar
-          </NavLink>
+          <div className={styles.access} ref={this.refAccess}>
+            <NavLink to={link}>
+              Acessar
+            </NavLink>
+          </div>
         </div>
         <ReactTooltip
           place="bottom"

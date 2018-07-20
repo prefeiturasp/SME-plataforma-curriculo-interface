@@ -15,6 +15,13 @@ function SequencesReducer(state = initialState, action) {
     case SequencesActions.LOAD:
       return {
         ...state,
+        items: [],
+        currItem: null,
+      };
+
+    case SequencesActions.LOAD_ITEM:
+      return {
+        ...state,
         currItem: null,
       };
 

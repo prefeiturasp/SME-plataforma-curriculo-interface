@@ -5,7 +5,12 @@ import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
   render() {
-    const link = `/matriz-de-saberes/${this.props.data.sequence}`;
+    const link = {
+      pathname: `/matriz-de-saberes/${this.props.data.sequence}`,
+      state: {
+        isModalKnowledgeMatrix: true,
+      },
+    };
 
     return this.props.isLink ? (
       <li className={styles.wrapper}>

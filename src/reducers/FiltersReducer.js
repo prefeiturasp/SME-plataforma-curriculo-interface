@@ -58,6 +58,8 @@ function FiltersReducer(state = initialState, action) {
     case FiltersActions.CLEAR_FILTERS:
       return {
         ...state,
+        isExpanded: false,
+        cachedFilter: null,
         filters: state.filters.map(item => {
           return {
             ...item,
