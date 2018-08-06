@@ -1,0 +1,123 @@
+.wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+.wrapper > div {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper h3 {
+  color: black;
+  display: none;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.wrapper h4 {
+  color: #252525;
+  font-size: 1.3125rem;
+  margin-top: 1.6875rem;
+  margin-bottom: 0.8125rem;
+}
+
+.wrapper h5 {
+  color: black;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.wrapper ul {
+  list-style: none;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.warning {
+  align-items: flex-start;
+  color: #6a6a6a;
+  display: flex;
+  font-size: 0.8125rem;
+  margin-top: 1.5rem;
+}
+
+.warning > img {
+  color: #e0e0e0;
+  margin-right: 0.3125rem;
+}
+
+.categories {
+  position: relative;
+}
+
+.button {
+  composes: btn from global;
+  margin-bottom: 1.875rem;
+}
+
+.close {
+  display: none;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    background-color: white;
+    height: auto !important;
+    overflow-y: auto;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    z-index: 70;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .wrapper h3 {
+    display: block;
+  }
+
+  .wrapper > div {
+    align-items: center;
+  }
+
+  .footer {
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    display: block;
+    position: fixed;
+    left: 100%;
+    bottom: 0;
+    width: 100%;
+    z-index: 80;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .categories {
+    margin-bottom: 6rem;
+  }
+
+  .button {
+    margin: 0.75rem auto;
+  }
+
+  .close {
+    display: block;
+  }
+
+  .isExpanded,
+  .isExpanded .footer {
+    left: 0;
+  }
+}
