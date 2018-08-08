@@ -2,7 +2,7 @@ import parse from 'parse-link-header';
 import BodyActions from './BodyActions';
 import { API_URL } from '../constants';
 
-function getFullUrl(url) {
+export function getFullUrl(url) {
   return url.match(/http/) ? url : API_URL + url;
 }
 

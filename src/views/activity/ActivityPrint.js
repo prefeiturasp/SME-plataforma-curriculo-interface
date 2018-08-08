@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
+import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
+import iconClock from '../../images/iconClock.svg';
 import styles from './Activity.css';
 
 let hasPrinted = false;
@@ -68,6 +70,39 @@ class ActivityPrint extends Component {
       <GenericItem key={1} data={sequence.main_curricular_component} />,
     ];
 
+    let duration = null;
+    if (data.estimated_time) {
+      const word = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word}`;
+      duration = (
+        <div className={styles.duration}>
+          <img src={iconClock} alt="Número de aulas" />
+          <strong>{durationText}</strong>
+          (Tempo estimado)
+        </div>
+      )
+    }
+
+    const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
+      <div className={styles.title}>
+        Objetivos de aprendizagem
+      </div>
+    ) : null;
+
+    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
+
+    const learningObjectives = learningObjectivesList.map((item, i) => {
+      return (
+        <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={true} />
+      );
+    });
+
+    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
+      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
+        Ver Todos os Objetivos
+      </button>
+    );
+
     const iconsItems = data.activity_types.map((item, i) => {
       const icon = getActivityTypeIcon(item.name);
       return (
@@ -104,12 +139,26 @@ class ActivityPrint extends Component {
             <h3>Atividade {data.sequence}</h3>
             <h1>{data.title}</h1>
             <h2>Sequência didática: {sequence.title}</h2>
-            <ul>
-              {filters}
-            </ul>
           </div>
-          <div className={styles.infos}>
-            {icons1}
+        </div>
+        <div className={styles.infos}>
+          <div className="row">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <ul>
+                {filters}
+              </ul>
+              {duration}
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-6">
+              {learningObjectivesTitle}
+              <ul>
+                {learningObjectives}
+              </ul>
+              {btnAllLearningObjectives}
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
+              {icons1}
+            </div>
           </div>
         </div>
         {cover}
@@ -132,9 +181,17 @@ ActivityPrint.propTypes = {
   load: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  let slug = '';
+  if (ownProps.match) {
+    const params = ownProps.match.params;
+    slug = `${params.slug1}_${params.slug2}`;
+  } else {
+    slug = `${ownProps.slug1}_${ownProps.slug2}`;
+  }
+
   return {
-    data: state.ActivityReducer.currActivity,
+    data: state.ActivityReducer[slug],
   };
 };
 
