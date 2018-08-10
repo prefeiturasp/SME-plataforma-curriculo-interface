@@ -172,7 +172,7 @@
   margin: 1.875rem auto;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 768px) {
   .icons {
     margin: 0;
     width: 100%;
@@ -190,9 +190,7 @@
   .icons > li:last-child {
     border-right: 0;
   }
-}
 
-@media only screen and (max-width: 768px) {
   .header {
     flex-direction: column;
     padding-top: 1rem;
@@ -256,6 +254,10 @@
   .arrows,
   .footer {
     display: none;
+  }
+
+  .duration {
+    margin-bottom: 1rem;
   }
 
   .icons {

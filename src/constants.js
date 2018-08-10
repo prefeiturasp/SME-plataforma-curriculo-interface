@@ -1,1 +1,1 @@
-export const API_URL = 'http://186.239.235.37/'
+export const API_URL = 'http://curriculo.prefeitura.sp.gov.br/'

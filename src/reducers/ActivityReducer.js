@@ -1,22 +1,21 @@
 import ActivityActions from '../actions/ActivityActions';
 
-const initialState = {
-  currActivity: null,
-};
+const initialState = {};
 
 function ActivityReducer(state = initialState, action) {
+  let newState;
+  const slug = `${action.slug1}_${action.slug2}`;
+
   switch (action.type) {
     case ActivityActions.LOAD:
-      return {
-        ...state,
-        currActivity: null,
-      };
+      newState = { ...state };
+      newState[slug] = null;
+      return newState;
 
     case ActivityActions.LOADED:
-      return {
-        ...state,
-        currActivity: action.data,
-      };
+      newState = { ...state };
+      newState[slug] = action.data;
+      return newState;
 
     default:
       return state;

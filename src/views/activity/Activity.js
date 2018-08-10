@@ -166,7 +166,7 @@ class Activity extends Component {
           </NavLink>
         </div>
         <div className={styles.infos}>
-          <div className="row">   
+          <div className="row">
             <div className="col-sm-12 col-md-6 col-lg-3">
               <ul>
                 {filters}
@@ -222,9 +222,17 @@ Activity.propTypes = {
   load: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  let slug = '';
+  if (ownProps.match) {
+    const params = ownProps.match.params;
+    slug = `${params.slug1}_${params.slug2}`;
+  } else {
+    slug = `${ownProps.slug1}_${ownProps.slug2}`;
+  }
+
   return {
-    data: state.ActivityReducer.currActivity,
+    data: state.ActivityReducer[slug],
   };
 };
 
