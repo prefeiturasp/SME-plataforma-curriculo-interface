@@ -175,6 +175,14 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .code {
+    font-size: 1.25rem;
+  }
+
+  .code > span {
+    padding: 0.25rem 0.5rem;
+  }
+
   .btnObjectives {
     display: inline-block !important;
   }
@@ -220,6 +228,10 @@
 
   .isVisible {
     left: 0;
+  }
+
+  .next {
+    margin-bottom: 1rem;
   }
 
   .back {
