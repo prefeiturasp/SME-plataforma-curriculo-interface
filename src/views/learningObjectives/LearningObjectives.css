@@ -183,6 +183,7 @@
   .results {
     background: white;
     max-width: none !important;
+    overflow-y: auto;
     padding: 1rem;
     position: fixed;
     width: 100%;
@@ -194,7 +195,7 @@
   }
 
   .objectives {
-    z-index: 80;
+    z-index: 110;
   }
 
   .objectivesTitle1 {
