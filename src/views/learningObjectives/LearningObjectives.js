@@ -78,6 +78,10 @@ class LearningObjectives extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.hidePopup();
+  }
+
   render() {
     const yearButtons = this.props.filters
       .filter(item => item.type === 'years')

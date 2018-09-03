@@ -175,6 +175,14 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .code {
+    font-size: 1.25rem;
+  }
+
+  .code > span {
+    padding: 0.25rem 0.5rem;
+  }
+
   .btnObjectives {
     display: inline-block !important;
   }
@@ -183,6 +191,7 @@
   .results {
     background: white;
     max-width: none !important;
+    overflow-y: auto;
     padding: 1rem;
     position: fixed;
     width: 100%;
@@ -194,7 +203,7 @@
   }
 
   .objectives {
-    z-index: 80;
+    z-index: 110;
   }
 
   .objectivesTitle1 {
@@ -219,6 +228,10 @@
 
   .isVisible {
     left: 0;
+  }
+
+  .next {
+    margin-bottom: 1rem;
   }
 
   .back {
