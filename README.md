@@ -17,7 +17,7 @@ Nós somos o **pátio digital**, uma iniciativa da Secretaria Municipal de Educa
 4. [Instalação](#instalação)
 
 ## Sobre o Curriculo Digital
-Para que os docentes e a comunidade tenham acesso a orientações didáticas e materiais de apoio propostos e realizados nas escolas Municipais da Cidade de São Paulo atraves de uma platafoma informatizada, a Secretária Municipal de educação, por meio da iniciativa de governo aberto [Pátio Digital](http://patiodigital.prefeitura.sp.gov.br/), está em processo de implantação digital do curriculo da cidade.
+Para que docentes e comunidade tenham acesso as orientações didáticas e materiais de apoio propostos nas escolas Municipais da Cidade de São Paulo atraves de uma platafoma informatizada, a Secretária Municipal de educação, por meio da iniciativa de governo aberto [Pátio Digital](http://patiodigital.prefeitura.sp.gov.br/), está em processo de implantação digital do curriculo da cidade.
 
 ### Nossos outros repositórios
 1. [Plataforma curriculo](https://github.com/prefeiturasp/SME-plataforma-curriculo)
