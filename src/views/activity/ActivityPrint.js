@@ -89,19 +89,13 @@ class ActivityPrint extends Component {
       </div>
     ) : null;
 
-    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
+    const learningObjectivesList = data.learning_objectives;
 
     const learningObjectives = learningObjectivesList.map((item, i) => {
       return (
         <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={true} />
       );
     });
-
-    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
-      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
-        Ver Todos os Objetivos
-      </button>
-    );
 
     const iconsItems = data.activity_types.map((item, i) => {
       const icon = getActivityTypeIcon(item.name);
@@ -154,7 +148,6 @@ class ActivityPrint extends Component {
               <ul>
                 {learningObjectives}
               </ul>
-              {btnAllLearningObjectives}
             </div>
             <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
               {icons1}
