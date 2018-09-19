@@ -52,6 +52,9 @@
   margin: 0 1.5625rem 1rem 1.5625rem;
   overflow: hidden;
 }
+.title a {
+  color: #252525;
+}
 
 .infos {
   border-top: 1px solid #e0e0e0;
@@ -61,7 +64,7 @@
 }
 
 .info {
-  
+
 }
 
 .number {
@@ -75,7 +78,7 @@
 }
 
 .expand {
-  align-items: center; 
+  align-items: center;
   border-top: 1px solid #e0e0e0;
   cursor: pointer;
   display: flex;

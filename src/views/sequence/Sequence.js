@@ -84,14 +84,14 @@ class Sequence extends Component {
       );
     });
 
-    let booksTitle = null; 
+    let booksTitle = null;
     let booksContents = null;
 
     if (data.books) {
       const booksHtml = convertQuillToHtml(data.books);
       if (booksHtml !== '<p><br/></p>') {
         booksTitle = <div className={styles.title}>Para saber mais:</div>;
-        booksContents = <div dangerouslySetInnerHTML={{__html: booksHtml}} />;
+        booksContents = <div className={styles.books} dangerouslySetInnerHTML={{__html: booksHtml}} />;
       }
     }
 
