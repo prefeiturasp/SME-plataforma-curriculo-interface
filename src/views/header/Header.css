@@ -99,6 +99,7 @@
 
   .menu {
     background: white;
+    overflow-y: auto;
     padding: 3.875rem 1rem 1rem 1rem;
     position: fixed;
     width: 100%;

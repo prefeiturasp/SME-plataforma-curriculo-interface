@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import Preview from './Preview';
 import iconMinus from '../../images/iconMinus.svg';
@@ -25,6 +26,7 @@ class GridItemBase extends Component {
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
     const style = { color: data.main_curricular_component.color };
 
+    const link = `/sequencia/${data.slug}`;
     const thumbnail = data.image_attributes.default_url ? (
       <div className={styles.image}>
         <img
@@ -58,7 +60,9 @@ class GridItemBase extends Component {
     return (
       <li className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <article className={styles.wrapper} ref={this.ref}>
-          {thumbnail}
+          <NavLink to={link}>
+            {thumbnail}
+          </NavLink>
           <div className={styles.component}>
             <em style={style}>{data.main_curricular_component.name}</em>
             <span>{data.year} ano</span>

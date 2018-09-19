@@ -17,6 +17,7 @@ function SequencesReducer(state = initialState, action) {
         ...state,
         items: [],
         currItem: null,
+        isSearching: true,
       };
 
     case SequencesActions.LOAD_ITEM:
