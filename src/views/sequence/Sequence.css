@@ -1,5 +1,5 @@
 .wrapper {
-  
+
 }
 
 .wrapper h4 {
@@ -78,20 +78,25 @@
 }
 
 .image {
-  display: inline-block;
-  margin-top: 1.25rem;
+  display: block;
+  margin: 1.25rem auto 0;
   object-fit: cover;
-  width: 100%;
+  width: auto;
   height: auto;
   min-height: 35.5rem;
+  max-height: 80vh;
 }
 
 .description {
   font-size: 1.125rem;
-  line-height: 1.5rem;
+  line-height: 2rem;
   margin-top: 2.1875rem;
   margin-left: 12rem;
   margin-right: 12rem;
+}
+
+.books br {
+  line-height: 200%;
 }
 
 @media only screen and (max-width: 992px) {

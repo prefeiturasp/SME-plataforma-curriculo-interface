@@ -46,7 +46,13 @@ class Sequence extends Component {
       <GenericItem key={1} data={data.main_curricular_component} />,
     ];
 
-    const relatedComponents = data.curricular_components.map((item, i) => {
+    // HACK: filter repeated curricular components, should fix data coming from API
+    const uniqueCurricularComponents = data.curricular_components.filter((component, index, self) =>
+      index === self.findIndex((t) => (
+        t.name === component.name
+      ))
+    )
+    const relatedComponents = uniqueCurricularComponents.map((item, i) => {
       return (
         <CurricularComponentItem key={i} data={item} isColored={false} />
       );
@@ -78,14 +84,14 @@ class Sequence extends Component {
       );
     });
 
-    let booksTitle = null; 
+    let booksTitle = null;
     let booksContents = null;
 
     if (data.books) {
       const booksHtml = convertQuillToHtml(data.books);
       if (booksHtml !== '<p><br/></p>') {
         booksTitle = <div className={styles.title}>Para saber mais:</div>;
-        booksContents = <div dangerouslySetInnerHTML={{__html: booksHtml}} />;
+        booksContents = <div className={styles.books} dangerouslySetInnerHTML={{__html: booksHtml}} />;
       }
     }
 

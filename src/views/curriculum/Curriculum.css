@@ -1,5 +1,5 @@
 .wrapper {
-  
+
 }
 
 .header {
@@ -92,6 +92,10 @@ li.learningObjectives {
   padding-left: 17rem;
   padding-right: 17rem;
   width: 100%;
+}
+
+.doubleLineHeight {
+  line-height: 2rem;
 }
 
 @media only screen and (max-width: 768px) {

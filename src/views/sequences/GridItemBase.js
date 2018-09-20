@@ -54,7 +54,7 @@ class GridItemBase extends Component {
         </div>
       );
     }
-    
+
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
     return (
@@ -67,7 +67,9 @@ class GridItemBase extends Component {
             <em style={style}>{data.main_curricular_component.name}</em>
             <span>{data.year} ano</span>
           </div>
-          <div className={styles.title}>{title}</div>
+          <div className={styles.title}>
+            <NavLink to={link}>{title}</NavLink>
+          </div>
           <div className={styles.infos}>
             {duration}
             <div className={styles.info}>
