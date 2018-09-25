@@ -83,8 +83,8 @@
   object-fit: cover;
   width: auto;
   height: auto;
-  min-height: 35.5rem;
   max-height: 80vh;
+  max-width: 100%;
 }
 
 .description {
