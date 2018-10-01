@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import ReadMore from '../util/ReadMore';
 import { API_URL } from '../../constants';
 import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
@@ -193,9 +194,9 @@ class Sequence extends Component {
         <hr />
         <div className="container">
           {image}
-          <div
-            className={styles.description}
-            dangerouslySetInnerHTML={{__html: description}} />
+          <div className={styles.description}>
+            <ReadMore lines={15} children={description} />
+          </div>
           <h4>Atividades</h4>
           <ul className="row">
             {activities}
