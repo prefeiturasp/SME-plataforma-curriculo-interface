@@ -97,6 +97,10 @@
   margin-bottom: 1.25rem;
 }
 
+.curriculum a {
+  color: black
+}
+
 .discover {
   background: #d8eb59;
   padding-top: 3.375rem;
