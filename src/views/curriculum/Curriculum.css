@@ -90,6 +90,11 @@ li.knowledgeMatrix > .button {
   color: white;
 }
 
+li.knowledgeMatrix > a,
+li.knowledgeMatrix > a > h2 {
+  color:white;
+}
+
 li.learningObjectives {
   background: #0bdb9f;
 }
