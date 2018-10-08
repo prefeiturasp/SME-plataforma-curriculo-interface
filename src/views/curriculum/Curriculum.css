@@ -57,13 +57,14 @@
   flex-basis: 33%;
 }
 
-.list > li > img {
+.list > li > a > img {
   margin-bottom: 1.3125rem;
 }
 
-.list > li > h2 {
+.list > li > a > h2 {
   font-size: 1.3125rem;
   margin-bottom: 0.75rem;
+  color: black;
 }
 
 .list > li > p {
@@ -87,6 +88,11 @@ li.knowledgeMatrix {
 li.knowledgeMatrix > .button {
   border-color: rgba(255, 255, 255, 0.2);
   color: white;
+}
+
+li.knowledgeMatrix > a,
+li.knowledgeMatrix > a > h2 {
+  color:white;
 }
 
 li.learningObjectives {
