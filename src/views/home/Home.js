@@ -87,7 +87,7 @@ class Home extends Component {
           <h2>O que é o novo Currículo da Cidade</h2>
           <ul className="row">
             <li className="col-md-4">
-              <NavLink to='ods'>
+              <NavLink to='/ods'>
                 <img src={iconSustainableDevGoals} alt="Objetivos de Desenvolvimento Sustentável (ODS)" />
                 <div>Objetivos de Desenvolvimento Sustentável (ODS)</div>
               </NavLink>
