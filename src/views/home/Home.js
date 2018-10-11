@@ -47,26 +47,23 @@ class Home extends Component {
         <div className={styles.intro}>
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <p>Olá, encontre atividades do currículo da cidade para a sala de aula. As atividades estão organizadas em sequências relacionadas a temas específicos do currículo.</p>
+              <p>Nesta plataforma, o currículo da cidade se torna um material vivo e dinâmico, para consulta, inspiração e aplicação em sala de  aula. Veja o que já é possível fazer:</p>
             </div>
           </div>
           <ul className="row">
             <li className="col-md-4">
-              <img src={iconCurriculum} alt="Conheça e explore o Currículo da Cidade" />
-              <div>Conheça e explore o Currículo da Cidade</div>
+              <img src={iconCurriculum} alt="Conhecer e explorar o Currículo da Cidade" />
+              <div>Conhecer e explorar o Currículo da Cidade</div>
             </li>
             <li className="col-md-4">
-              <img src={iconSequences} alt="Veja as sequências de atividades" />
-              <div>Veja as sequências de atividades</div>
+              <img src={iconSequences} alt="Buscar sequências do Ciclo de Alfabetização" />
+              <div>Buscar sequências do Ciclo de Alfabetização</div>
             </li>
             <li className="col-md-4">
-              <img src={iconActivities} alt="Tenha acesso às atividades" />
-              <div>Tenha acesso às atividades</div>
+              <img src={iconActivities} alt="Encontrar conexões entre objetivos e práticas" />
+              <div>Encontrar conexões entre objetivos e práticas</div>
             </li>
           </ul>
-          <NavLink to="/sequencias" className={styles.button}>
-            Encontre as sequências de atividades
-          </NavLink>
         </div>
         <div className={styles.sequences}>
           <div className="container">

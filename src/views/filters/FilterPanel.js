@@ -100,7 +100,7 @@ class FilterPanel extends Component {
               </ul>
               <p className={styles.warning}>
                 <img src={iconWarning} alt="Observação" />
-                <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
+                <span>Em breve, estarão disponíveis sequências para todos os componentes e os ciclos do Ensino Fundamental.</span>
               </p>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">

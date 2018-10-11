@@ -18,7 +18,7 @@ class Curriculum extends Component {
           </div>
           <div className="row">
             <div className="col-md-8 offset-md-2">
-              <p>O Currículo da Cidade busca alinhar as orientações curriculares do Munícipio de São Paulo ao processo de construção da Base Nacional Comum Curricular (BNCC), documento que define as aprendizagens essenciais a que todos os estudantes brasileiros têm direito ao longo da Educação Básica. A BNCC estrutura-se com foco em conhecimentos, habilidades, atitudes e valores para promover o desenvolvimento integral dos estudantes e a sua atuação na sociedade. Sua implementação acontece por meio da construção de currículos locais, de responsabilidade das redes de ensino e escolas, que têm como autonomia para organizar seus percursos formativos a partir da sua própria realidade, incorporando as diversidades regionais e subdisiando a forma como as aprendizagens serão desenvolvidas em cada contexto escolar.</p>
+              <p>O Currículo da Cidade de São Paulo foi criado a muitas mãos a partir dos conhecimentos produzidos e das práticas realizadas pelas professoras e professores da Rede Municipal de Ensino ao longo dos últimos anos. O movimento de atualização do currículo envolveu mais de 43 mil estudantes e 16 mil professores ao longo de 2017, em paralelo às discussões sobre a Base Nacional Comum Curricular (BNCC) que se faziam nacionalmente, de forma a ser a primeira cidade a lançar o documento em sua versão já alinhada às diretrizes nacionais. Conheça abaixo sua estrutura e navegue pela versão interativa.</p>
             </div>
           </div>
         </header>
@@ -35,13 +35,13 @@ class Curriculum extends Component {
           <li className={styles.sustainableDevGoals}>
             <img src={iconSustainableDevGoals} alt="Objetivos de Desenvolvimento Sustentável (ODS)" />
             <h2>Objetivos de Desenvolvimento Sustentável (ODS)</h2>
-            <p>Os 17 objetivos de Desenvolvimento Sustável e 169 metas que estamos anunciando hoje demonstram a escala e a ambição desta nova agenda universal. Eles buscam concretizar os direitos humano de todos e alcançar a igualdade de gênero e o empoderamento das mulheres e meninas.</p>
+            <p>O Currículo da Cidade foi um dos primeiros do mundo a se alinhar aos ODS da Organização das Nações Unidas. Os 17 objetivos e 169 metas buscam concretizar os direitos humanos de todos e alcançar a igualdade de gênero. Aqui você pode conhecê-los em detalhe, além de encontrar as sequências didáticas relacionadas.</p>
             <NavLink className={styles.button} to="/ods">Explore e encontre sequências</NavLink>
           </li>
           <li className={styles.knowledgeMatrix}>
             <img src={iconKnowledgeMatrix} alt="Matriz de Saberes" />
             <h2>Matriz de Saberes</h2>
-            <p>A Matriz de Saberes tem como próposito:<br />Formar cidadãos éticos, responsáveis e solidários que fortaleçam uma sociedade mais inclusiva, democrática, próspera e sustentável.</p>
+            <p>A Matriz de Saberes tem como propósito formar cidadãos éticos, responsáveis e solidários que fortaleçam uma sociedade mais inclusiva, democrática, próspera e sustentável. Aqui você pode conhecer as dimensões da matriz e encontrar as sequências relacionadas.</p>
             <NavLink className={styles.button} to="/matriz-de-saberes">Explore e encontre sequências</NavLink>
           </li>
           <li className={styles.learningObjectives}>
