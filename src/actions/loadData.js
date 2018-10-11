@@ -21,9 +21,17 @@ export default function loadData(url, action1, action2) {
     fetch(getFullUrl(url))
       .then(response => {
         response.json().then(data => {
-          const nextPage = getNextPage(response.headers);
+          const headers = response.headers;
+          const nextPage = getNextPage(headers);
+          const totalItems = headers.has('total') ? headers.get('total') : 0;
+          
           dispatch({ type: BodyActions.HIDE_LOADING });
-          dispatch({ data, nextPage, type: action2 });
+          dispatch({
+            data,
+            nextPage,
+            totalItems,
+            type: action2,
+          });
         })
       });
   };
