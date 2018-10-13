@@ -10,18 +10,21 @@
   display: flex;
   justify-content: center;
   padding: 3.75rem;
+  max-height: 9rem;
 }
 
 .logos > img {
   margin: 0 3.75rem;
+  height: 6rem;
+  width: auto;
 }
 
 .license {
   composes: container from global;
   font-size: 0.75rem;
   line-height: 1.125rem;
-  padding-top: 1.625rem;
-  padding-bottom: 2.5rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.5rem;
 }
 
 .license > a {
