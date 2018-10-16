@@ -7,14 +7,17 @@ import SequencesActions from '../../actions/SequencesActions';
 import FilterBar from '../filters/FilterBar';
 import FilterPanel from '../filters/FilterPanel';
 import GridItem from './GridItem';
+import Loading from '../util/Loading';
 import ResultsLoading from './ResultsLoading';
 import ResultsNotFound from './ResultsNotFound';
 import styles from './Sequences.css';
 
 class Sequences extends Component {
   constructor(props) {
-    super(props)
-    this.ref = React.createRef();
+    super(props);
+    this.state = {
+      windowHeight: 1000,
+    };
   }
 
   onClickedLoadMore() {
@@ -22,6 +25,10 @@ class Sequences extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      windowHeight: window.innerHeight,
+    });
+
     const params = this.props.match.params;
     if (params.ods) {
       this.props.loadWithFilter({
@@ -56,44 +63,47 @@ class Sequences extends Component {
       );
     });
 
-    const loadMore = this.props.nextPage ? (
-      <button className={styles.load} onClick={this.onClickedLoadMore.bind(this)}>
-        Carregar mais
-      </button>
-    ) : null;
+    if (this.props.data.length) {
+      const button = this.props.nextPage ? (
+        <button className={styles.load} onClick={this.onClickedLoadMore.bind(this)}>
+          Carregar mais
+        </button>
+      ) : null;
 
-    let content = <ResultsNotFound />;
-    
-    if (this.props.isSearching) {
-      const height = this.ref.current ? this.ref.current.offsetHeight : 420;
-      content = <ResultsLoading height={height} />;
+      const loadingOrButton = this.props.isSearching ? <Loading /> : button;
+
+      return (
+        <section className={styles.wrapper}>
+          <div className="container">
+            <h1>Sequências de Atividades</h1>
+            <h2><strong>{this.props.totalItems}</strong> sequências foram encontradas</h2>
+            <FilterBar />
+          </div>
+          <hr />
+          <div className="container">
+            <FilterPanel />
+          </div>
+          <div className={styles.list}>
+            <div className={styles.results}>
+              <ul className="row">
+                {items}
+              </ul>
+              <div className={styles.center}>
+                {loadingOrButton}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
     }
-    else if (this.props.data.length) {
-      content = (
-        <div className={styles.results}>
-          <ul className="row">
-            {items}
-          </ul>
-          {loadMore}
-        </div>
+    else if (this.props.isSearching) {
+      return (
+        <ResultsLoading height={this.state.windowHeight} />
       );
     }
     
     return (
-      <section className={styles.wrapper}>
-        <div className="container">
-          <h1>Sequências de Atividades</h1>
-          <h2><strong>{this.props.totalItems}</strong> sequências foram encontradas</h2>
-          <FilterBar />
-        </div>
-        <hr />
-        <div className="container">
-          <FilterPanel />
-        </div>
-        <div className={styles.list} ref={this.ref}>
-          {content}
-        </div>
-      </section>
+      <ResultsNotFound />
     );
   }
 }
