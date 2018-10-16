@@ -84,16 +84,22 @@ class Home extends Component {
           <h2>O que é o novo Currículo da Cidade</h2>
           <ul className="row">
             <li className="col-md-4">
-              <img src={iconSustainableDevGoals} alt="Objetivos de Desenvolvimento Sustentável (ODS)" />
-              <div>Objetivos de Desenvolvimento Sustentável (ODS)</div>
+              <NavLink to='/ods'>
+                <img src={iconSustainableDevGoals} alt="Objetivos de Desenvolvimento Sustentável (ODS)" />
+                <div>Objetivos de Desenvolvimento Sustentável (ODS)</div>
+              </NavLink>
             </li>
             <li className="col-md-4">
-              <img src={iconKnowledgeMatrix} alt="Matriz de Saberes" />
-              <div>Matriz de Saberes</div>
+              <NavLink to='/matriz-de-saberes'>
+                <img src={iconKnowledgeMatrix} alt="Matriz de Saberes" />
+                <div>Matriz de Saberes</div>
+              </NavLink>
             </li>
             <li className="col-md-4">
-              <img src={iconLearningObjectives} alt="Objetivos de Aprendizagem" />
-              <div>Objetivos de Aprendizagem</div>
+              <NavLink to='/objetivos-de-aprendizagem'>
+                <img src={iconLearningObjectives} alt="Objetivos de Aprendizagem" />
+                <div>Objetivos de Aprendizagem</div>
+              </NavLink>
             </li>
           </ul>
           <NavLink to="/curriculo" className={styles.button}>

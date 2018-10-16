@@ -23,5 +23,12 @@ export default function convertQuillToHtml(json) {
     }
   });
 
+  converter.afterRender(function(groupType, html) {
+    if (groupType === 'video') {
+      html = `<div class="ql-video-wrapper">${html}</div>`
+    }
+    return html
+  })
+
   return converter.convert();
 }
