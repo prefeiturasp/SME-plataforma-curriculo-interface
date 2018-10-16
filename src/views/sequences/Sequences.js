@@ -83,7 +83,7 @@ class Sequences extends Component {
       <section className={styles.wrapper}>
         <div className="container">
           <h1>Sequências de Atividades</h1>
-          <h2><strong>{this.props.data.length}</strong> sequências foram encontradas</h2>
+          <h2><strong>{this.props.totalItems}</strong> sequências foram encontradas</h2>
           <FilterBar />
         </div>
         <hr />
@@ -101,6 +101,8 @@ class Sequences extends Component {
 Sequences.propTypes = {
   data: PropTypes.array.isRequired,
   isSearching: PropTypes.bool.isRequired,
+  nextPage: PropTypes.string,
+  totalItems: PropTypes.number.isRequired,
   load: PropTypes.func.isRequired,
   loadWithFilter: PropTypes.func.isRequired,
 };
@@ -108,8 +110,9 @@ Sequences.propTypes = {
 const mapStateToProps = state => {
   return {
     data: state.SequencesReducer.items,
-    nextPage: state.SequencesReducer.nextPage,
     isSearching: state.SequencesReducer.isSearching,
+    nextPage: state.SequencesReducer.nextPage,
+    totalItems: state.SequencesReducer.totalItems,
   };
 };
 
