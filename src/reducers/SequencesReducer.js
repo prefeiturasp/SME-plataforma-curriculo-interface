@@ -5,6 +5,7 @@ const initialState = {
   isSearching: false,
   currItem: null,
   nextPage: null,
+  totalItems: 0,
 };
 
 function SequencesReducer(state = initialState, action) {
@@ -39,6 +40,7 @@ function SequencesReducer(state = initialState, action) {
         items: action.data,
         isSearching: false,
         nextPage: action.nextPage,
+        totalItems: action.totalItems,
       };
       
     case SequencesActions.LOADED_ITEM:
