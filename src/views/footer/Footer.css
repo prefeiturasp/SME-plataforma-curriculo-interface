@@ -40,9 +40,9 @@
 .license a:hover {
   color: white;
 }
-  .logos > img {
-    margin: 2rem 0;
-  }
+
+.logos > img {
+  margin: 2rem 0;
 }
 
 @media only print {
