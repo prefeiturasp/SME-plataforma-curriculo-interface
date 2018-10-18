@@ -40,12 +40,6 @@
 .license a:hover {
   color: white;
 }
-
-@media only screen and (max-width: 768px) {
-  .logos {
-    flex-direction: column;
-  }
-
   .logos > img {
     margin: 2rem 0;
   }
