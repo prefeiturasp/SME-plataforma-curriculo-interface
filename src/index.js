@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Analytics from 'react-router-ga';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -89,17 +90,20 @@ const store = createStore(
   applyMiddleware(thunk),
 );
 
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <ScrollToTop>
-        <Header />
-          <Route component={ModalSwitch} />
-        <Footer />
-        <AppLoading />
-        <AppModal />
-        <BodyManager />
-      </ScrollToTop>
+      <Analytics id="UA-85250794-5">
+        <ScrollToTop>
+          <Header />
+            <Route component={ModalSwitch} />
+          <Footer />
+          <AppLoading />
+          <AppModal />
+          <BodyManager />
+        </ScrollToTop>
+      </Analytics>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
