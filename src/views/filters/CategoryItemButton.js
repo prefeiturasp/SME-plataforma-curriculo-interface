@@ -18,7 +18,7 @@ class CategoryItemButton extends Component {
           <div className={styles.check}>
             <div className={styles.checkMark}></div>
           </div>
-          {this.props.data.name || this.props.data.title}
+          {this.props.data.name || this.props.data.title || this.props.data.code || this.props.data.description}
         </button>
       </li>
     );
