@@ -1,9 +1,50 @@
 import FiltersActions from '../actions/FiltersActions';
 
+function clearFilter(item) {
+  return {
+    ...item,
+    isActive: false,
+  };
+}
+
+function processFilters(data, state, keys) {
+  const result = [];
+
+  keys.forEach(key => {
+    const list = data[key];
+    if (list) {
+      list.forEach(item => {
+        const isActive = state.cachedFilter
+          ? key === state.cachedFilter.type && item.id === state.cachedFilter.id
+          : false;
+        result.push({ ...item, isActive, type: key });
+      });
+    }
+  });
+
+  return result;
+}
+
+function toggleFilter(data) {
+  return function(item) {
+    const name1 = item.name || item.title || item.description;
+    const name2 = data.name || data.title || data.description;
+    if (item.type === data.type && name1 === name2) {
+      return {
+        ...item,
+        isActive: !item.isActive,
+      };
+    } else {
+      return item;
+    }
+  };
+}
+
 const initialState = {
   currCategory: null,
   cachedFilter: null,
   filters: [],
+  filtersExtra: [],
   isExpanded: false,
   isShowingCategory: false,
 };
@@ -16,30 +57,24 @@ function FiltersReducer(state = initialState, action) {
       };
 
     case FiltersActions.LOADED:
-      const filters = [];
-      const keys = [
-        'years',
-        'curricular_components',
-        'sustainable_development_goals',
-        'knowledge_matrices',
-        'learning_objectives',
-        'activity_types',
-        'axes',
-      ];
-
-      keys.forEach(key => {
-        const list = action.data[key];
-        if (list) {
-          list.forEach(item => {
-            const isActive = state.cachedFilter ? key === state.cachedFilter.type && item.id === state.cachedFilter.id : false;
-            filters.push({ ...item, isActive, type: key });
-          });
-        }
-      });
-
       return {
         ...state,
-        filters,
+        filters: processFilters(action.data, state, [
+          'years',
+          'curricular_components',
+          'sustainable_development_goals',
+          'knowledge_matrices',
+          'activity_types',
+        ]),
+      };
+
+    case FiltersActions.LOADED_EXTRA:
+      return {
+        ...state,
+        filtersExtra: processFilters(action.data, state, [
+          'learning_objectives',
+          'axes',
+        ]),
       };
 
     case FiltersActions.HIDE_CATEGORY:
@@ -60,12 +95,8 @@ function FiltersReducer(state = initialState, action) {
         ...state,
         isExpanded: false,
         cachedFilter: null,
-        filters: state.filters.map(item => {
-          return {
-            ...item,
-            isActive: false,
-          };
-        })
+        filters: state.filters.map(clearFilter),
+        filtersExtra: state.filtersExtra.map(clearFilter),
       };
 
     case FiltersActions.CACHE_FILTER:
@@ -77,18 +108,8 @@ function FiltersReducer(state = initialState, action) {
     case FiltersActions.TOGGLE_FILTER:
       return {
         ...state,
-        filters: state.filters.map(item => {
-          const name1 = item.name || item.title || item.description;
-          const name2 = action.filter.name || action.filter.title || action.filter.description;
-          if (item.type === action.filter.type && name1 === name2) {
-            return {
-              ...item,
-              isActive: !item.isActive,
-            };
-          } else {
-            return item;
-          }
-        })
+        filters: state.filters.map(toggleFilter(action.filter)),
+        filtersExtra: state.filtersExtra.map(toggleFilter(action.filter)),
       };
 
     case FiltersActions.TOGGLE_PANEL:

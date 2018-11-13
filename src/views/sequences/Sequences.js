@@ -112,7 +112,7 @@ Sequences.propTypes = {
   data: PropTypes.array.isRequired,
   isSearching: PropTypes.bool.isRequired,
   nextPage: PropTypes.string,
-  totalItems: PropTypes.number.isRequired,
+  totalItems: PropTypes.number,
   load: PropTypes.func.isRequired,
   loadWithFilter: PropTypes.func.isRequired,
 };

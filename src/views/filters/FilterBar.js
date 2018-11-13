@@ -18,7 +18,8 @@ class FilterBar extends Component {
   }
 
   render() {
-    const items = this.props.filters.map((item, i) => {
+    const filters = this.props.filters.concat(this.props.filtersExtra);
+    const items = filters.map((item, i) => {
       return (
         <ActiveItem key={i} data={item} />
       );
@@ -47,6 +48,7 @@ FilterBar.propTypes = {
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters.filter(item => item.isActive),
+    filtersExtra: state.FiltersReducer.filtersExtra.filter(item => item.isActive),
   };
 };
 

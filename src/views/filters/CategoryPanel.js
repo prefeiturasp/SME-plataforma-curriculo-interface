@@ -21,7 +21,17 @@ class CategoryPanel extends Component {
     const hasImage = this.props.items.findIndex(item => item.url) >= 0;
     const listStyle = hasImage ? styles.images : null;
     
-    const items = this.props.items.map((item, i) => {
+    const list = (
+      this.props.currCategory &&
+      (
+        this.props.currCategory.slug === 'axes' ||
+        this.props.currCategory.slug === 'learning_objectives'
+      )
+    )
+      ? this.props.itemsExtra
+      : this.props.items;
+    
+    const items = list.map((item, i) => {
       return hasImage ? (
         <CategoryItemImageButton key={i} data={item} />
       ) : (
@@ -75,6 +85,7 @@ CategoryPanel.propTypes = {
   currCategory: PropTypes.object,
   isShowingCategory: PropTypes.bool,
   items: PropTypes.array.isRequired,
+  items1: PropTypes.array.isRequired,
   hideCategory: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
 };
@@ -85,6 +96,7 @@ const mapStateToProps = state => {
     currCategory,
     isShowingCategory: state.FiltersReducer.isShowingCategory,
     items: currCategory ? state.FiltersReducer.filters.filter(item => item.type === currCategory.slug) : [],
+    itemsExtra: currCategory ? state.FiltersReducer.filtersExtra.filter(item => item.type === currCategory.slug) : [],
   };
 };
 
