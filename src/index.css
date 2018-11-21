@@ -42,6 +42,7 @@ a:hover {
 
 body.hasPopup {
   overflow-y: hidden;
+  position: fixed;
 }
 
 .btn {
