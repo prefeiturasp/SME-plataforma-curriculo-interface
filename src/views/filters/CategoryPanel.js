@@ -116,7 +116,7 @@ CategoryPanel.propTypes = {
   currCategory: PropTypes.object,
   isShowingCategory: PropTypes.bool,
   items: PropTypes.array.isRequired,
-  items1: PropTypes.array.isRequired,
+  itemsExtra: PropTypes.array.isRequired,
   hideCategory: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
 };
