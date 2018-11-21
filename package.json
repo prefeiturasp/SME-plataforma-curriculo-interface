@@ -28,6 +28,7 @@
     "fs-extra": "3.0.1",
     "gsap": "^2.0.1",
     "html-webpack-plugin": "2.29.0",
+    "j-toker": "0.0.10-beta3",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
