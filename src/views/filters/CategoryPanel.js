@@ -61,6 +61,9 @@ class CategoryPanel extends Component {
           tooltipTitle = 'O que são os ODS?';
           tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
           break;
+
+        default:
+          break;
       }
 
       btnTooltip = (
