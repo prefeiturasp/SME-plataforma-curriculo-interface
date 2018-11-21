@@ -1,11 +1,27 @@
 import getFiltersQueryString from './getFiltersQueryString';
 import loadData from './loadData';
+import BodyActions from './BodyActions';
 import SequencesActions from './SequencesActions';
 import { API_URL } from '../constants';
+
+function fetchData(dispatch, url, filters, action) {
+  const queryString = getFiltersQueryString(filters);
+      
+  fetch(`${API_URL}${url}?${queryString}`)
+    .then(response => response.json())
+    .then(data => {
+      dispatch({ data, type: action });
+    });
+}
+
+function isYearOrComponent(s) {
+  return s === 'years' || s === 'curricular_components';
+}
 
 const FiltersActions = {
   LOAD: 'FiltersActions.LOAD',
   LOADED: 'FiltersActions.LOADED',
+  LOADED_EXTRA: 'FiltersActions.LOADED_EXTRA',
   HIDE_CATEGORY: 'FiltersActions.HIDE_CATEGORY',
   SHOW_CATEGORY: 'FiltersActions.SHOW_CATEGORY',
   CLEAR_FILTERS: 'FiltersActions.CLEAR_FILTERS',
@@ -21,7 +37,21 @@ const FiltersActions = {
     return { type: FiltersActions.HIDE_CATEGORY };
   },
   showCategory(category) {
-    return { type: FiltersActions.SHOW_CATEGORY, category };
+    return (dispatch, getState) => {
+      const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
+
+      if (
+        (
+          category.slug === 'axes' ||
+          category.slug === 'learning_objectives'
+        ) &&
+        filters.length <= 0
+      ) {
+        dispatch({ type: BodyActions.SHOW_MODAL, message: 'Selecione um ano ou componente curricular.'});
+      } else {
+        dispatch({ type: FiltersActions.SHOW_CATEGORY, category });
+      }
+    }
   },
   clearFilters() {
     return { type: FiltersActions.CLEAR_FILTERS };
@@ -30,22 +60,25 @@ const FiltersActions = {
     return { type: FiltersActions.CACHE_FILTER, filter };
   },
   toggleFilter(filter) {
-    return { type: FiltersActions.TOGGLE_FILTER, filter };
+    return (dispatch, getState) => {
+      dispatch({ type: FiltersActions.TOGGLE_FILTER, filter });
+
+      if (isYearOrComponent(filter.type)) {
+        const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
+        fetchData(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+      }
+    }
   },
   toggleFilterAndSearch(filter) {
     return (dispatch, getState) => {
       dispatch({ type: FiltersActions.TOGGLE_FILTER, filter })
       dispatch({ type: SequencesActions.SEARCH })
       
-      const filters = getState().FiltersReducer.filters.filter(item => item.isActive);
-      const queryString = getFiltersQueryString(filters);
-      const url = `/api/sequencias?${queryString}`;
+      let filters = getState().FiltersReducer.filters.filter(item => item.isActive);
+      fetchData(dispatch, '/api/sequencias', filters, SequencesActions.LOADED);
 
-      fetch(API_URL + url)
-        .then(response => response.json())
-        .then(data => {
-          dispatch({ data, type: SequencesActions.LOADED });
-        });
+      filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
+      fetchData(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
     }
   },
   togglePanel() {
