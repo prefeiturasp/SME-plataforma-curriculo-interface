@@ -13,10 +13,10 @@ import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
 import iconArrowRight from '../../images/iconArrowRight.svg';
-import iconClock from '../../images/iconClock.svg';
+import iconClock from '../../images/iconClockWhite.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
-import styles from './Activity.css';
+import styles from './Activity.scss';
 
 class Activity extends Component {
   constructor(props) {
@@ -71,14 +71,15 @@ class Activity extends Component {
     let duration = null;
     if (data.estimated_time) {
       const word = data.estimated_time > 1 ? 'aulas' : 'aula';
-      const durationText = `${data.estimated_time} ${word}`;
       duration = (
         <div className={styles.duration}>
           <img src={iconClock} alt="Número de aulas" />
-          <strong>{durationText}</strong>
-          (Tempo estimado)
+          <div>
+            <em>{data.estimated_time}</em>
+            {word}
+          </div>
         </div>
-      )
+      );
     }
 
     const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
@@ -118,17 +119,21 @@ class Activity extends Component {
         {iconsItems}
       </ul>
     );
-    const icons1 = this.state.totalWidth < 992 ? null : icons;
-    const icons2 = this.state.totalWidth < 992 ? icons : null;
+    
+    const sequenceImage = data.image_attributes.default_url ? (
+      <img
+        className={styles.sequenceImage}
+        src={API_URL + data.image_attributes.default_url}
+        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
+        alt={sequence.title} />
+    ) : null;
 
-    const cover = data.image_attributes.default_url ? (
-      <div className="container">
-        <img
-          className={styles.cover}
-          src={API_URL + data.image_attributes.default_url}
-          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-          alt={data.title} />
-      </div>
+    const image = data.image_attributes.default_url ? (
+      <img
+        className={styles.image}
+        src={API_URL + data.image_attributes.default_url}
+        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
+        alt={data.title} />
     ) : null;
 
     const content = convertQuillToHtml(data.content);
@@ -154,40 +159,39 @@ class Activity extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className={styles.header}>
+        <div className={styles.sequence}>
+          {sequenceImage}
           <div>
-            <h3>Atividade {data.sequence}</h3>
-            <h1>{data.title}</h1>
-            <h2>Sequência didática: {sequence.title}</h2>
+            <p>Sequência de atividades</p>
+            <h1>{sequence.title}</h1>
           </div>
-          <NavLink className="btn" to={linkPrint}>
+          <button className={styles.btnSave}>
+            <img src={iconPrint} alt="Salvar" />
+            Salvar
+          </button>
+        </div>
+        <header className={styles.header}>
+          <div className={styles.banner}>
+            {image}
+            <ul>
+              {filters}
+            </ul>
+            {duration}
+          </div>
+          <div className={styles.info}>
+            <div>
+              <p>Atividade {data.sequence}</p>
+              <h1>{data.title}</h1>
+            </div>
+          </div>
+          <NavLink className={styles.btnInfo} to="#">
+            Ver características
+          </NavLink>
+          <NavLink className={styles.btnPrint} to={linkPrint}>
             <img src={iconPrint} alt="Imprimir" />
             Imprimir
           </NavLink>
-        </div>
-        <div className={styles.infos}>
-          <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-3">
-              <ul>
-                {filters}
-              </ul>
-              {duration}
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-6">
-              {learningObjectivesTitle}
-              <ul>
-                {learningObjectives}
-              </ul>
-              {btnAllLearningObjectives}
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
-              {icons1}
-            </div>
-          </div>
-        </div>
-        {cover}
-        {icons2}
-        <hr />
+        </header>
         <div className="container">
           <div className="row">
             <div className={styles.description} dangerouslySetInnerHTML={{__html: content}} />

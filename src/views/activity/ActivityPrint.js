@@ -9,7 +9,7 @@ import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
 import iconClock from '../../images/iconClock.svg';
-import styles from './Activity.css';
+import styles from './Activity.scss';
 
 let hasPrinted = false;
 
