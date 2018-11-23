@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Truncate from 'react-truncate';
+import styles from './ReadMore.scss';
 
 class ReadMore extends Component {
     constructor(...args) {
@@ -49,7 +50,7 @@ class ReadMore extends Component {
                 <Truncate
                     lines={!expanded && lines}
                     ellipsis={(
-                        <span>... <a href='#' onClick={this.toggleLines}>{more}</a></span>
+                        <span>...<br/><a href='#' className={styles.toggler} onClick={this.toggleLines}>{more}</a></span>
                     )}
                     onTruncate={this.handleTruncate}
                 >
@@ -57,7 +58,7 @@ class ReadMore extends Component {
                   dangerouslySetInnerHTML={{__html: children}} />
                 </Truncate>
                 {!truncated && expanded && (
-                    <span><a href='#' onClick={this.toggleLines}>{less}</a></span>
+                    <span><a href='#' className={styles.toggler} onClick={this.toggleLines}>{less}</a></span>
                 )}
             </div>
         );
@@ -66,8 +67,8 @@ class ReadMore extends Component {
 
 ReadMore.defaultProps = {
     lines: 3,
-    more: 'Leia mais',
-    less: 'Ver menos'
+    more: 'Mostrar mais',
+    less: 'Mostrar menos'
 };
 
 ReadMore.propTypes = {

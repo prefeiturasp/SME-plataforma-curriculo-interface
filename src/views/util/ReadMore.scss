@@ -1,0 +1,11 @@
+@import '../../variables';
+@import '../../tools';
+
+.toggler {
+  color: $grey-600;
+  display: inline-block;
+  font-size: rem(12);
+  font-weight: 600;
+  margin-top: rem(13);
+  text-transform: uppercase;
+}
