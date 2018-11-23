@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import BodyActions from '../../actions/BodyActions';
 
 class BodyManager extends React.Component {
   onScrolled() {
     const scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
-    document.body.classList.toggle('hasScrolled', scroll > 150);
+    const hasScrolled = scroll > 150;
+    document.body.classList.toggle('hasScrolled', hasScrolled);
+    this.props.setHasScrolled(hasScrolled);
   }
 
   componentDidMount() {
@@ -34,6 +37,7 @@ class BodyManager extends React.Component {
 BodyManager.propTypes = {
   hasPopup: PropTypes.bool.isRequired,
   isHome: PropTypes.bool.isRequired,
+  setHasScrolled: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -43,4 +47,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(BodyManager);
+const mapDispatchToProps = dispatch => {
+  return {
+    setHasScrolled: (value) => {
+      dispatch(BodyActions.setHasScrolled(value));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(BodyManager);

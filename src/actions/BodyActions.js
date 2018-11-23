@@ -7,6 +7,7 @@ const BodyActions = {
   SHOW_MODAL: 'BodyActions.SHOW_MODAL',
   HIDE_POPUP: 'BodyActions.HIDE_POPUP',
   SHOW_POPUP: 'BodyActions.SHOW_POPUP',
+  SET_HAS_SCROLLED: 'BodyActions.SET_HAS_SCROLLED',
   
   enterHome() {
     return { type: BodyActions.ENTER_HOME };
@@ -31,6 +32,9 @@ const BodyActions = {
   },
   showPopup() {
     return { type: BodyActions.SHOW_POPUP };
+  },
+  setHasScrolled(value) {
+    return { value, type: BodyActions.SET_HAS_SCROLLED };
   },
 };
 

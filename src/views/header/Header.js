@@ -34,8 +34,9 @@ class Header extends Component {
   
   render() {
     const classes = this.state.isMenuExpanded ? [styles.menu, styles.isMenuExpanded] : [styles.menu];
-    const icon = this.props.isHome ? iconMenuWhite : iconMenu;
-    const logo = this.props.isHome ? logoWhite : logoColor;
+
+    const icon = this.props.isHome && !this.props.hasScrolled ? iconMenuWhite : iconMenu;
+    const logo = this.props.isHome && !this.props.hasScrolled ? logoWhite : logoColor;
 
     const data = [
       {
@@ -111,6 +112,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
+  hasScrolled: PropTypes.bool.isRequired,
   isHome: PropTypes.bool.isRequired,
   hidePopup: PropTypes.func.isRequired,
   showPopup: PropTypes.func.isRequired,
@@ -118,6 +120,7 @@ Header.propTypes = {
 
 const mapStateToProps = state => {
   return {
+    hasScrolled: state.BodyReducer.hasScrolled,
     isHome: state.BodyReducer.isHome,
   };
 };
