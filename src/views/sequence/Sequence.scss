@@ -17,7 +17,7 @@
 
 .header {
   p {
-    color: #808080;
+    color: $grey-500;
     font-size: rem(15);
     margin-bottom: rem(4);
   }
@@ -114,7 +114,7 @@
 }
 
 .title {
-  color: #252525;
+  color: $grey-200;
   font-weight: 600;
   margin-bottom: 0.8125rem;
 
@@ -125,7 +125,7 @@
 }
 
 .btnAllLearningObjectives {
-  color: #6a6a6a;
+  color: $grey-600;
   display: block;
   font-size: 0.9375rem;
   font-weight: 600;

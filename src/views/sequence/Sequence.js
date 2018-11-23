@@ -128,7 +128,7 @@ class Sequence extends Component {
             {word}
           </div>
         </div>
-      )
+      );
     }
 
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
