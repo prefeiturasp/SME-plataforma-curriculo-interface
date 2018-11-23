@@ -38,6 +38,10 @@
   text-transform: uppercase;
 }
 
+.menu > hr {
+  margin: 24px -16px 0 -16px;
+}
+
 .menu > a.sub,
 .toggler,
 .close {

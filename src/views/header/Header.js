@@ -74,19 +74,36 @@ class Header extends Component {
         label: 'O que vem por aí',
         isSub: false,
       },
+      {
+        div: true,
+      },
+      {
+        to: '/meu-perfil',
+        label: 'Meu perfil',
+        isSub: false,
+      },
+      {
+        to: '/sair',
+        label: 'Sair',
+        isSub: false,
+      },
     ];
 
     const links = data.map((item, i) => {
-      const klass = item.isSub ? styles.sub : null;
-      return (
-        <NavLink
-          key={i}
-          to={item.to}
-          className={klass}
-          onClick={this.onClickedClose}>
-          {item.label}
-        </NavLink>
-      );
+      if (item.div) {
+        return <hr />;
+      } else {
+        const klass = item.isSub ? styles.sub : null;
+        return (
+          <NavLink
+            key={i}
+            to={item.to}
+            className={klass}
+            onClick={this.onClickedClose}>
+            {item.label}
+          </NavLink>
+        );
+      }
     })
 
     return (
