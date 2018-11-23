@@ -32,7 +32,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
-import './index.css';
+import './index.scss';
 
 class ModalSwitch extends Component {
   componentWillUpdate(nextProps) {
