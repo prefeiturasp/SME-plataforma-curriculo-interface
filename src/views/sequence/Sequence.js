@@ -14,10 +14,10 @@ import GenericItem from '../common/GenericItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import convertQuillToHtml from '../util/convertQuillToHtml';
-import iconClock from '../../images/iconClock.svg';
+import iconClock from '../../images/iconClockWhite.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
-import styles from './Sequence.css';
+import styles from './Sequence.scss';
 
 class Sequence extends Component {
   constructor(props) {
@@ -96,6 +96,9 @@ class Sequence extends Component {
       }
     }
 
+    const word = data.activities.length > 1 ? 'Atividades' : 'Atividade';
+    const activitiesTitle = `${data.activities.length} ${word}`;
+
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityItem
@@ -117,12 +120,13 @@ class Sequence extends Component {
     let duration = null;
     if (data.estimated_time) {
       const word = data.estimated_time > 1 ? 'aulas' : 'aula';
-      const durationText = `${data.estimated_time} ${word}`;
       duration = (
         <div className={styles.duration}>
           <img src={iconClock} alt="Número de aulas" />
-          <strong>{durationText}</strong>
-          (Tempo estimado)
+          <div>
+            <em>{data.estimated_time}</em>
+            {word}
+          </div>
         </div>
       )
     }
@@ -132,72 +136,36 @@ class Sequence extends Component {
     return (
       <section className={styles.wrapper}>
         <header className={styles.header}>
-          <div>
-            <h1>{data.title}</h1>
+          <div className={styles.banner}>
+            {image}
             <ul>
               {filters}
             </ul>
             {duration}
           </div>
-          <NavLink className="btn" to={linkPrint}>
+          <div className={styles.info}>
+            <div>
+              <p>Sequência de atividades</p>
+              <h1>{data.title}</h1>
+            </div>
+            <button className={styles.btnSave}>
+              <img src={iconPrint} alt="Salvar" />
+              Salvar
+            </button>
+          </div>
+          <NavLink className={styles.btnInfo} to="#">
+            Ver características
+          </NavLink>
+          <NavLink className={styles.btnPrint} to={linkPrint}>
             <img src={iconPrint} alt="Imprimir" />
             Imprimir
           </NavLink>
         </header>
-        <hr />
-        <div className={styles.details}>
-          <div className="row">
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className={styles.title}>
-                Componentes relacionados
-              </div>
-              <ul>
-                {relatedComponents}
-              </ul>
-              <div className={styles.title}>
-                Matriz de saberes
-                <button data-tip data-for="tooltipKnowledgeMatrices">
-                  <img src={iconHelp} alt="Ajuda" />
-                </button>
-              </div>
-              <ul>
-                {knowledgeMatrices}
-              </ul>
-            </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
-              <div className={styles.title}>
-                Objetivos de aprendizagem
-                <button data-tip data-for="tooltipLearningObjectives">
-                  <img src={iconHelp} alt="Ajuda" />
-                </button>
-              </div>
-              <ul>
-                {learningObjectives}
-              </ul>
-              {btnAllLearningObjectives}
-            </div>
-            <div className="col-sm-12 col-md-12 col-lg-4">
-              <div className={styles.title}>
-                Objetivos de Desenvolvimento Sustentável (ODS)
-                <button data-tip data-for="tooltipDevelopmentGoals">
-                  <img src={iconHelp} alt="Ajuda" />
-                </button>
-              </div>
-              <ul>
-                {sustainableDevGoals}
-              </ul>
-              {booksTitle}
-              {booksContents}
-            </div>
-          </div>
-        </div>
-        <hr />
         <div className="container">
-          {image}
           <div className={styles.description}>
             <ReadMore lines={15} children={description} />
           </div>
-          <h4>Atividades</h4>
+          <h4>{activitiesTitle}</h4>
           <ul className="row">
             {activities}
           </ul>
