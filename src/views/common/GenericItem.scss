@@ -1,0 +1,16 @@
+@import '../../variables';
+@import '../../tools';
+
+.wrapper {
+  background-color: $grey-200;
+  border-radius: 3rem;
+  color: $grey-600;
+  font-size: rem(12);
+  font-weight: 600;
+  margin: rem(3);
+  padding: 0.375rem 1rem;
+}
+
+.isColored {
+  color: white;
+}
