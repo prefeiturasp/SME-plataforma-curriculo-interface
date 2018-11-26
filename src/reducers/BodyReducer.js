@@ -3,6 +3,7 @@ import BodyActions from '../actions/BodyActions';
 const initialState = {
   hasModal: false,
   hasPopup: false,
+  hasScrolled: false,
   isHome: false,
   isLoading: false,
   message: '',
@@ -57,6 +58,12 @@ function BodyReducer(state = initialState, action) {
       return {
         ...state,
         hasPopup: true,
+      };
+
+    case BodyActions.SET_HAS_SCROLLED:
+      return {
+        ...state,
+        hasScrolled: action.value,
       };
 
     default:
