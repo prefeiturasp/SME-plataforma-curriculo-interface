@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Headroom from 'react-headroom';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
@@ -9,7 +10,7 @@ import iconMenu from '../../images/iconMenu.svg';
 import iconMenuWhite from '../../images/iconMenuWhite.svg';
 import logoColor from '../../images/logo.svg';
 import logoWhite from '../../images/logoWhite.svg';
-import styles from './Header.css';
+import styles from './Header.scss';
 
 class Header extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Header extends Component {
   }
   
   render() {
-    const classes = this.state.isMenuExpanded ? [styles.menu, styles.isMenuExpanded] : [styles.menu];
+    const classes = this.state.isMenuExpanded ? [styles.wrapper, styles.isMenuExpanded] : [styles.wrapper];
 
     const icon = this.props.isHome && !this.props.hasScrolled ? iconMenuWhite : iconMenu;
     const logo = this.props.isHome && !this.props.hasScrolled ? logoWhite : logoColor;
@@ -91,7 +92,7 @@ class Header extends Component {
 
     const links = data.map((item, i) => {
       if (item.div) {
-        return <hr />;
+        return <hr key={i} />;
       } else {
         const klass = item.isSub ? styles.sub : null;
         return (
@@ -107,23 +108,25 @@ class Header extends Component {
     })
 
     return (
-      <header className={styles.wrapper}>
-        <NavLink to="/">
-          <div className={styles.logo}>
-            <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
-            <h1>Currículo Digital da Cidade de São Paulo</h1>
-          </div>
-        </NavLink>
-        <nav className={classes.join(' ')}>
-          {links}
-          <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
-            <img src={iconCloseBig} alt="Fechar" />
+      <Headroom disableInlineStyles>
+        <header className={classes.join(' ')}>
+          <NavLink to="/">
+            <div className={styles.logo}>
+              <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
+              <h1>Currículo Digital da Cidade de São Paulo</h1>
+            </div>
+          </NavLink>
+          <nav className={styles.menu}>
+            {links}
+            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
+          </nav>
+          <button className={styles.toggler} onClick={this.onClickedMenu.bind(this)}>
+            <img src={icon} alt="Menu" />
           </button>
-        </nav>
-        <button className={styles.toggler} onClick={this.onClickedMenu.bind(this)}>
-          <img src={icon} alt="Menu" />
-        </button>
-      </header>
+        </header>
+      </Headroom>
     );
   }
 }

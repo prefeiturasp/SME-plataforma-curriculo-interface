@@ -1,0 +1,174 @@
+@import '../../variables';
+@import '../../tools';
+
+.wrapper {
+  align-items: center;
+  border-bottom: 1px solid $grey-200;
+  color: $grey-800;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.9375rem;
+  position: relative;
+  z-index: 60;
+
+  :global(.headroom) & {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  :global(.headroom--unfixed) & {
+    position: relative;
+    transform: translateY(0);
+  }
+
+  :global(.headroom--scrolled) & {
+    background-color: white;
+    border-bottom: 1px solid $grey-200;
+    z-index: 120;
+    transition: transform 200ms ease-in-out;
+  }
+
+  :global(.headroom--unpinned) & {
+    position: fixed;
+    transform: translateY(-100%);
+  }
+
+  :global(.headroom--pinned) & {
+    position: fixed !important;
+    transform: translateY(0%);
+  }
+
+  :global(.isHome) & {
+    border-bottom: 0;
+    position: absolute;
+  }
+}
+
+.logo {
+  align-items: center;
+  color: $grey-800;
+  display: flex;
+
+  img {
+    margin-right: 0.8125rem;
+  }
+
+  h1 {
+    font-size: 1.125rem;
+    margin-bottom: 0;
+    max-width: 12rem;
+  }
+}
+
+.menu {
+  background: white;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  transition: left 0.3s ease-in-out;
+  z-index: 110;
+  
+  > a {
+    color: black !important;
+    display: block;
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-top: 2.25rem;
+    text-decoration: none;
+    
+    &.sub {
+      color: $grey-600;
+      display: block;
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-left: 1.25rem;
+      margin-top: 0.875rem;
+    }
+  }
+
+  > hr {
+    margin: 24px -16px 0 -16px;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 1.125rem;
+  top: 1.125rem;
+}
+
+.isMenuExpanded {
+  position: fixed !important;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  .menu {
+    left: 0;
+  }
+}
+
+:global(.isHome) {
+  .wrapper,
+  .menu > a,
+  .logo {
+    color: white;
+  }
+}
+
+:global(.headroom--scrolled) {
+  .wrapper,
+  .menu > a,
+  .logo {
+    color: $grey-800;
+  }
+}
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    padding: 0.5rem 2.5rem;
+  }
+
+  .menu {
+    margin-right: 0;
+    position: static;
+    width: auto;
+    height: auto;
+
+    > a {
+      display: inline;
+      font-size: 0.9375rem;
+      padding: 0 0.9375rem;
+      text-transform: uppercase;
+    }
+
+    > hr {
+      display: none;
+    }
+  }
+
+  .menu > a.sub,
+  .toggler,
+  .close {
+    display: none;
+  }
+}
+
+@media only print {
+  .wrapper {
+    border-bottom: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .menu {
+    display: none;
+  }
+}

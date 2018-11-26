@@ -16,7 +16,7 @@
 }
 
 :global(.sticky-inner-wrapper) {
-  z-index: 120;
+  z-index: 100;
 
   :global(.active) & {
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
