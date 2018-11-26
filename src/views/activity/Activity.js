@@ -165,7 +165,9 @@ class Activity extends Component {
             {sequenceImage}
             <div>
               <p>Sequência de atividades</p>
-              <h1>{sequence.title}</h1>
+              <NavLink to={link}>
+                <h1>{sequence.title}</h1>
+              </NavLink>
             </div>
             <button className={styles.btnSave}>
               <img src={iconPrint} alt="Salvar" />
