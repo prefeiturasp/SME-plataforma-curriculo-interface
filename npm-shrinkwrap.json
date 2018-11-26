@@ -6608,6 +6608,11 @@
       "resolved": "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.10.tgz",
       "integrity": "sha512-iesFYPmxYYGTcmQK0sL8bX3TGHyM6b2qREaB4kamHfQyfPJP0xgoGxp19nsH16nsfquLdiyKyX3mQkfiSGV8Rg=="
     },
+    "lodash._getnative": {
+      "version": "3.9.1",
+      "resolved": "https://registry.npmjs.org/lodash._getnative/-/lodash._getnative-3.9.1.tgz",
+      "integrity": "sha1-VwvH3t5G1hzc3mh9ZdPuy6o6r/U="
+    },
     "lodash._reinterpolate": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz",
@@ -6639,6 +6644,26 @@
       "version": "4.2.0",
       "resolved": "https://registry.npmjs.org/lodash.defaults/-/lodash.defaults-4.2.0.tgz",
       "integrity": "sha1-0JF4cW/+pN3p5ft7N/bwgCJ0WAw="
+    },
+    "lodash.isarguments": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/lodash.isarguments/-/lodash.isarguments-3.1.0.tgz",
+      "integrity": "sha1-L1c9hcaiQon/AGY7SRwdM4/zRYo="
+    },
+    "lodash.isarray": {
+      "version": "3.0.4",
+      "resolved": "https://registry.npmjs.org/lodash.isarray/-/lodash.isarray-3.0.4.tgz",
+      "integrity": "sha1-eeTriMNqgSKvhvhEqpvNhRtfu1U="
+    },
+    "lodash.keys": {
+      "version": "3.1.2",
+      "resolved": "https://registry.npmjs.org/lodash.keys/-/lodash.keys-3.1.2.tgz",
+      "integrity": "sha1-TbwEcrFWvlCgsoaFXRvQsMZWCYo=",
+      "requires": {
+        "lodash._getnative": "^3.0.0",
+        "lodash.isarguments": "^3.0.0",
+        "lodash.isarray": "^3.0.0"
+      }
     },
     "lodash.memoize": {
       "version": "4.1.2",
@@ -9244,6 +9269,15 @@
         "react-transition-group": "^1.2.0"
       }
     },
+    "react-addons-shallow-compare": {
+      "version": "15.6.2",
+      "resolved": "https://registry.npmjs.org/react-addons-shallow-compare/-/react-addons-shallow-compare-15.6.2.tgz",
+      "integrity": "sha1-GYoAuR/DdiPbZKKP0XtZa6NicC8=",
+      "requires": {
+        "fbjs": "^0.8.4",
+        "object-assign": "^4.1.0"
+      }
+    },
     "react-dev-utils": {
       "version": "5.0.1",
       "resolved": "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-5.0.1.tgz",
@@ -9284,6 +9318,16 @@
       "version": "4.0.0",
       "resolved": "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-4.0.0.tgz",
       "integrity": "sha512-FlsPxavEyMuR6TjVbSSywovXSEyOg6ZDj5+Z8nbsRl9EkOzAhEIcS+GLoQDC5fz/t9suhUXWmUrOBrgeUvrMxw=="
+    },
+    "react-headroom": {
+      "version": "2.2.2",
+      "resolved": "https://registry.npmjs.org/react-headroom/-/react-headroom-2.2.2.tgz",
+      "integrity": "sha512-RqisNR8rZkS/MKeQum8xj4EQp26IQ813qEsg51a7wF0K5bMIwYplh6ZDQR7wBVVrrf+PnQ2JzTYQpG/8QCeoww==",
+      "requires": {
+        "prop-types": "^15.5.8",
+        "raf": "^3.3.0",
+        "shallowequal": "^0.2.2"
+      }
     },
     "react-lifecycles-compat": {
       "version": "3.0.4",
@@ -9345,6 +9389,17 @@
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/react-router-ga/-/react-router-ga-1.0.0.tgz",
       "integrity": "sha512-UFUIc9LVivQUCqpdTxETR7Kjg6z9rqWuVP5HvMvVhHPbzwEAuQCPCEINRA5y+g6meebg0ktadk8QUVu8Ik8c5g=="
+    },
+    "react-stickynode": {
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/react-stickynode/-/react-stickynode-2.1.0.tgz",
+      "integrity": "sha512-K7OiqEYPNRZ/2ZvU58X0sLVocLCbN+TO/nVFlBD4YMep2a/OzorQdiXtCh8O0qjW4XNv8jHOk+hg4Nd3g6Wd6A==",
+      "requires": {
+        "classnames": "^2.0.0",
+        "prop-types": "^15.6.0",
+        "react-addons-shallow-compare": "^0.14.2 || ^15.0.0",
+        "subscribe-ui-event": "^2.0.0"
+      }
     },
     "react-tooltip": {
       "version": "3.6.0",
@@ -10077,6 +10132,14 @@
         }
       }
     },
+    "shallowequal": {
+      "version": "0.2.2",
+      "resolved": "https://registry.npmjs.org/shallowequal/-/shallowequal-0.2.2.tgz",
+      "integrity": "sha1-HjL9W8q2rWiKSBLLDMBO/HXHAU4=",
+      "requires": {
+        "lodash.keys": "^3.1.2"
+      }
+    },
     "shebang-command": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-1.2.0.tgz",
@@ -10536,6 +10599,16 @@
       "requires": {
         "loader-utils": "^1.0.2",
         "schema-utils": "^0.3.0"
+      }
+    },
+    "subscribe-ui-event": {
+      "version": "2.0.5",
+      "resolved": "https://registry.npmjs.org/subscribe-ui-event/-/subscribe-ui-event-2.0.5.tgz",
+      "integrity": "sha512-1DasqBzDgTbkj2Yu0F8atPB6ouvvM5EdUm6zPONO8IZXVr97ommJFTp1yX/HMW5qYw/nc0huJ7r6VkeqixAdgA==",
+      "requires": {
+        "eventemitter3": "^3.0.0",
+        "lodash": "^4.17.10",
+        "raf": "^3.0.0"
       }
     },
     "supports-color": {
