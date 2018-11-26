@@ -78,7 +78,7 @@ class Header extends Component {
         div: true,
       },
       {
-        to: '/meu-perfil',
+        to: '/perfil',
         label: 'Meu perfil',
         isSub: false,
       },
