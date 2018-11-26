@@ -15,17 +15,20 @@
   }
 }
 
+:global(.sticky-inner-wrapper) {
+  z-index: 120;
+
+  :global(.active) & {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
 .sequence {
   align-items: center;
   background: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: flex-start;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  z-index: 120;
+  padding: rem(15);
 
   div {
     padding: rem(10);
@@ -46,8 +49,8 @@
 
 .sequenceImage {
   object-fit: cover;
-  width: rem(80);
-  height: 100%;
+  width: rem(60);
+  height: rem(42);
 }
 
 .header {
@@ -132,7 +135,7 @@
   font-size: rem(12);
   justify-content: center;
   position: absolute;
-  right: rem(12);
+  right: rem(15);
   
   > img {
     margin-bottom: rem(4);

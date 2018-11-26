@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import Sticky from 'react-stickynode';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
@@ -159,17 +160,19 @@ class Activity extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className={styles.sequence}>
-          {sequenceImage}
-          <div>
-            <p>Sequência de atividades</p>
-            <h1>{sequence.title}</h1>
+        <Sticky>
+          <div className={styles.sequence}>
+            {sequenceImage}
+            <div>
+              <p>Sequência de atividades</p>
+              <h1>{sequence.title}</h1>
+            </div>
+            <button className={styles.btnSave}>
+              <img src={iconPrint} alt="Salvar" />
+              Salvar
+            </button>
           </div>
-          <button className={styles.btnSave}>
-            <img src={iconPrint} alt="Salvar" />
-            Salvar
-          </button>
-        </div>
+        </Sticky>
         <header className={styles.header}>
           <div className={styles.banner}>
             {image}
