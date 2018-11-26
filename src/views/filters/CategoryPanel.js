@@ -10,6 +10,10 @@ import iconChevronLeft from '../../images/iconChevronLeft.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from './CategoryPanel.css';
 
+function isCategoryOneOf(category, list) {
+  return category && list.indexOf(category.slug) >= 0;
+}
+
 class CategoryPanel extends Component {
   onClickedClose() {
     this.props.hideCategory();
@@ -21,15 +25,8 @@ class CategoryPanel extends Component {
     const hasImage = this.props.items.findIndex(item => item.url) >= 0;
     const listStyle = hasImage ? styles.images : null;
     
-    const list = (
-      this.props.currCategory &&
-      (
-        this.props.currCategory.slug === 'axes' ||
-        this.props.currCategory.slug === 'learning_objectives'
-      )
-    )
-      ? this.props.itemsExtra
-      : this.props.items;
+    const isAxesOrLearningObjectives = isCategoryOneOf(this.props.currCategory, ['axes', 'learning_objectives']);
+    const list = isAxesOrLearningObjectives ? this.props.itemsExtra : this.props.items;
     
     const items = list.map((item, i) => {
       return hasImage ? (
@@ -41,6 +38,53 @@ class CategoryPanel extends Component {
 
     const categoryName = this.props.currCategory ? this.props.currCategory.name : '';
 
+    const hasTooltip = isCategoryOneOf(this.props.currCategory, ['knowledge_matrices', 'learning_objectives', 'sustainable_development_goals']);
+    let btnTooltip = null;
+    let tooltip = null;
+    
+    if (hasTooltip) {
+      let tooltipTitle = '';
+      let tooltipText = '';
+
+      switch (this.props.currCategory.slug) {
+        case 'knowledge_matrices':
+          tooltipTitle = 'O que são as matrizes de saberes?';
+          tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
+          break;
+
+        case 'learning_objectives':
+          tooltipTitle = 'O que são os objetivos de aprendizagem?';
+          tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
+          break;
+
+        case 'sustainable_development_goals':
+          tooltipTitle = 'O que são os ODS?';
+          tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
+          break;
+
+        default:
+          break;
+      }
+
+      btnTooltip = (
+        <button data-tip data-for="tooltip">
+          <img src={iconHelp} alt="Ajuda" />
+        </button>
+      );
+
+      tooltip = (
+        <ReactTooltip
+          place="bottom"
+          type="dark"
+          effect="solid"
+          id="tooltip"
+          className="tooltip">
+          <strong>{tooltipTitle}</strong>
+          <p>{tooltipText}</p>
+        </ReactTooltip>
+      )
+    }
+    
     return (
       <div className={classes.join(' ')}>
         <header className={styles.header}>
@@ -51,9 +95,7 @@ class CategoryPanel extends Component {
         </header>
         <h5>
           {categoryName}
-          <button data-tip data-for="tooltip">
-            <img src={iconHelp} alt="Ajuda" />
-          </button>
+          {btnTooltip}
         </h5>
         <ul className={listStyle}>
           {items}
@@ -67,15 +109,7 @@ class CategoryPanel extends Component {
           <img src={iconChevronLeft} alt="Voltar" />
           Voltar
         </button>
-        <ReactTooltip
-          place="bottom"
-          type="dark"
-          effect="solid"
-          id="tooltip"
-          className="tooltip">
-          <strong>O que são as matrizes de saberes?</strong>
-          <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
-        </ReactTooltip>
+        {tooltip}
       </div>
     );
   }
@@ -85,7 +119,7 @@ CategoryPanel.propTypes = {
   currCategory: PropTypes.object,
   isShowingCategory: PropTypes.bool,
   items: PropTypes.array.isRequired,
-  items1: PropTypes.array.isRequired,
+  itemsExtra: PropTypes.array.isRequired,
   hideCategory: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
 };
