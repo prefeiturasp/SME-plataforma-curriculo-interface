@@ -43,11 +43,6 @@ a:hover {
   color: black;
 }
 
-:global(body.hasModal) {
-  overflow-y: hidden;
-  position: fixed;
-}
-
 :global(.btn) {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.25rem;

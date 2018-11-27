@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { API_URL } from '../../constants';
-import BodyActions from '../../actions/BodyActions';
 import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
 import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
@@ -24,7 +24,7 @@ class SustainableDevGoal extends Component {
   }
   
   componentDidMount() {
-    this.props.showModal();
+    disableBodyScroll(document.querySelector('#sustainableDevGoal'));
     this.props.loadItem(this.props.match.params.id);
     this.setState({ animationStatus: 'appeared' });
   }
@@ -37,7 +37,7 @@ class SustainableDevGoal extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hideModal();
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -64,7 +64,7 @@ class SustainableDevGoal extends Component {
     const style = { backgroundColor: data.color };
 
     return (
-      <section className={classes.join(' ')}>
+      <section className={classes.join(' ')} id="sustainableDevGoal">
         <header className={styles.header} style={style}>
           <div className="container">
             <div className="row">
@@ -108,8 +108,6 @@ SustainableDevGoal.contextTypes = {
 SustainableDevGoal.propTypes = {
   data: PropTypes.object,
   loadItem: PropTypes.func.isRequired,
-  hideModal: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -122,12 +120,6 @@ const mapDispatchToProps = dispatch => {
   return {
     loadItem: (id) => {
       dispatch(SustainableDevGoalsActions.loadItem(id));
-    },
-    hideModal: () => {
-      dispatch(BodyActions.hideModal());
-    },
-    showModal: () => {
-      dispatch(BodyActions.showModal());
     },
   };
 };

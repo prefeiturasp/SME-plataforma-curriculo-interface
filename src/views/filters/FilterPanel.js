@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
 import SequencesActions from '../../actions/SequencesActions';
@@ -22,14 +23,14 @@ class FilterPanel extends Component {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
-      this.props.hideModal();
+      clearAllBodyScrollLocks();
     } else {
       this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
     }
   }
 
   onClickedClose() {
-    this.props.hideModal();
+    clearAllBodyScrollLocks();
     this.props.togglePanel();
   }
 
@@ -136,7 +137,6 @@ class FilterPanel extends Component {
 FilterPanel.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
-  hideModal: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
   showAlert: PropTypes.func.isRequired,
@@ -152,9 +152,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    hideModal: () => {
-      dispatch(BodyActions.hideModal());
-    },
     load: () => {
       dispatch(FiltersActions.load());
     },

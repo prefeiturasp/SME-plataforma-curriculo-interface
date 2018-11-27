@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TimelineLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
@@ -23,6 +24,7 @@ class LearningObjectives extends Component {
     this.refLoading = React.createRef();
     this.refResults = React.createRef();
     this.tl = new TimelineLite();
+    this.target= null;
   }
 
   onClickedBack() {
@@ -35,8 +37,8 @@ class LearningObjectives extends Component {
   }
 
   onClickedClose() {
+    clearAllBodyScrollLocks();
     this.props.hideObjectives();
-    this.props.hideModal();
   }
 
   onClickedNext() {
@@ -50,7 +52,7 @@ class LearningObjectives extends Component {
       this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
       
       if (getWindowWidth() < 768) {
-        this.props.showModal();
+        disableBodyScroll(this.target);
       }
     } else {
       this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
@@ -61,12 +63,13 @@ class LearningObjectives extends Component {
     this.props.showObjectives();
     
     if (getWindowWidth() < 768) {
-      this.props.showModal();
+      disableBodyScroll(this.target);
     }
   }
 
   componentDidMount() {
     this.props.load();
+    this.target = document.querySelector('#learningObjectives');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -80,7 +83,7 @@ class LearningObjectives extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hideModal();
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -121,7 +124,7 @@ class LearningObjectives extends Component {
     
     return (
       <Page>
-      <section className={styles.wrapper}>
+      <section className={styles.wrapper} id="learningObjectives">
         <header className={styles.header}>
           <div className="row">
             <div className="col-md-8 offset-md-2">
@@ -241,7 +244,6 @@ LearningObjectives.propTypes = {
   search: PropTypes.func.isRequired,
   showAlert: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -262,9 +264,6 @@ const mapDispatchToProps = dispatch => {
     hideObjectives: () => {
       dispatch(LearningObjectivesActions.hideObjectives());
     },
-    hideModal: () => {
-      dispatch(BodyActions.hideModal());
-    },
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
     },
@@ -276,9 +275,6 @@ const mapDispatchToProps = dispatch => {
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());
-    },
-    showModal: () => {
-      dispatch(BodyActions.showModal());
     },
   };
 };

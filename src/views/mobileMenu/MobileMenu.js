@@ -2,15 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './MobileMenu.scss';
 
 class MobileMenu extends Component {
+  target = null;
+
+  componentDidMount() {
+    this.target = document.querySelector('#mobileMenu');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.hasMobileMenu && !prevProps.hasMobileMenu) {
+      disableBodyScroll(this.target);
+    }
+  }
+
+  componentWillUnmount() {
+    clearAllBodyScrollLocks();
+  }
+
   onClickedClose = () => {
+    enableBodyScroll(this.target);
     this.props.hideMobileMenu();
   }
-  
+
   render() {
     const classes = this.props.hasMobileMenu ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
 
@@ -83,7 +101,7 @@ class MobileMenu extends Component {
     })
 
     return (
-      <nav className={classes.join(' ')}>
+      <nav className={classes.join(' ')} id="mobileMenu">
         {links}
         <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
           <img src={iconCloseBig} alt="Fechar" />

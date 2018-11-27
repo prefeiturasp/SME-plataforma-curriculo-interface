@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
@@ -22,7 +23,7 @@ class KnowledgeMatrixItem extends Component {
   }
 
   componentDidMount() {
-    this.props.showModal();
+    disableBodyScroll(document.querySelector('#knowledgeMatrixItem'));
     if (this.props.data.length <= 0) {
       this.props.load();
       this.setState({ animationStatus: 'appeared' });
@@ -44,7 +45,7 @@ class KnowledgeMatrixItem extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hideModal();
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -60,7 +61,7 @@ class KnowledgeMatrixItem extends Component {
     }
 
     return (
-      <section className={classes.join(' ')}>
+      <section className={classes.join(' ')} id="knowledgeMatrixItem">
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
@@ -97,8 +98,6 @@ KnowledgeMatrixItem.contextTypes = {
 KnowledgeMatrixItem.propTypes = {
   data: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
-  hideModal: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -112,12 +111,6 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(BodyActions.showLoading());
       dispatch(KnowledgeMatrixActions.load());
-    },
-    hideModal: () => {
-      dispatch(BodyActions.hideModal());
-    },
-    showModal: () => {
-      dispatch(BodyActions.showModal());
     },
   };
 };

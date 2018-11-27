@@ -3,7 +3,6 @@ import BodyActions from '../actions/BodyActions';
 const initialState = {
   hasMobileMenu: false,
   hasAlert: false,
-  hasModal: false,
   isHome: false,
   isLoading: false,
   message: '',
@@ -60,18 +59,6 @@ function BodyReducer(state = initialState, action) {
         ...state,
         hasAlert: true,
         message: action.message,
-      };
-
-    case BodyActions.HIDE_MODAL:
-      return {
-        ...state,
-        hasModal: false,
-      };
-
-    case BodyActions.SHOW_MODAL:
-      return {
-        ...state,
-        hasModal: true,
       };
 
     default:

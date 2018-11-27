@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import FiltersActions from '../../actions/FiltersActions';
 import ActiveItem from './ActiveItem';
 import getWindowWidth from '../util/getWindowWidth';
@@ -9,11 +9,19 @@ import iconFilters from '../../images/iconFilters.svg';
 import styles from './FilterBar.css';
 
 class FilterBar extends Component {
+  componentDidMount() {
+    this.target = document.querySelector('#sustainableDevGoal');
+  }
+
+  componentWillUnmount() {
+    clearAllBodyScrollLocks();
+  }
+
   onClickedToggle() {
     this.props.togglePanel();
 
     if (getWindowWidth() < 768) {
-      this.props.showModal();
+      disableBodyScroll(this.target);
     }
   }
 
@@ -41,7 +49,6 @@ class FilterBar extends Component {
 
 FilterBar.propTypes = {
   filters: PropTypes.array.isRequired,
-  showModal: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -54,9 +61,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showModal: () => {
-      dispatch(BodyActions.showModal());
-    },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());
     },

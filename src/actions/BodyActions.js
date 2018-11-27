@@ -7,8 +7,6 @@ const BodyActions = {
   SHOW_MOBILE_MENU: 'BodyActions.SHOW_MOBILE_MENU',
   HIDE_ALERT: 'BodyActions.HIDE_ALERT',
   SHOW_ALERT: 'BodyActions.SHOW_ALERT',
-  HIDE_MODAL: 'BodyActions.HIDE_MODAL',
-  SHOW_MODAL: 'BodyActions.SHOW_MODAL',
   
   enterHome() {
     return { type: BodyActions.ENTER_HOME };
@@ -33,12 +31,6 @@ const BodyActions = {
   },
   showAlert(message) {
     return { message, type: BodyActions.SHOW_ALERT };
-  },
-  hideModal() {
-    return { type: BodyActions.HIDE_MODAL };
-  },
-  showModal() {
-    return { type: BodyActions.SHOW_MODAL };
   },
 };
 
