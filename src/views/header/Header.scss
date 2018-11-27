@@ -25,7 +25,7 @@
   :global(.headroom--scrolled) & {
     background-color: white;
     border-bottom: 1px solid $grey-200;
-    z-index: 120;
+    z-index: 110;
     transition: transform 200ms ease-in-out;
   }
 
