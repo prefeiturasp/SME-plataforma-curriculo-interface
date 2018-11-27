@@ -1,9 +1,9 @@
 import BodyActions from '../actions/BodyActions';
 
 const initialState = {
+  hasMobileMenu: false,
+  hasAlert: false,
   hasModal: false,
-  hasPopup: false,
-  hasScrolled: false,
   isHome: false,
   isLoading: false,
   message: '',
@@ -35,6 +35,33 @@ function BodyReducer(state = initialState, action) {
         isLoading: true,
       };
 
+    case BodyActions.HIDE_MOBILE_MENU:
+      return {
+        ...state,
+        hasMobileMenu: false,
+        hasModal: false,
+      };
+
+    case BodyActions.SHOW_MOBILE_MENU:
+      return {
+        ...state,
+        hasMobileMenu: true,
+        hasModal: true,
+      };
+
+    case BodyActions.HIDE_ALERT:
+      return {
+        ...state,
+        hasAlert: false,
+      };
+
+    case BodyActions.SHOW_ALERT:
+      return {
+        ...state,
+        hasAlert: true,
+        message: action.message,
+      };
+
     case BodyActions.HIDE_MODAL:
       return {
         ...state,
@@ -45,25 +72,6 @@ function BodyReducer(state = initialState, action) {
       return {
         ...state,
         hasModal: true,
-        message: action.message,
-      };
-
-    case BodyActions.HIDE_POPUP:
-      return {
-        ...state,
-        hasPopup: false,
-      };
-
-    case BodyActions.SHOW_POPUP:
-      return {
-        ...state,
-        hasPopup: true,
-      };
-
-    case BodyActions.SET_HAS_SCROLLED:
-      return {
-        ...state,
-        hasScrolled: action.value,
       };
 
     default:

@@ -13,7 +13,7 @@ class FilterBar extends Component {
     this.props.togglePanel();
 
     if (getWindowWidth() < 768) {
-      this.props.showPopup();
+      this.props.showModal();
     }
   }
 
@@ -41,7 +41,7 @@ class FilterBar extends Component {
 
 FilterBar.propTypes = {
   filters: PropTypes.array.isRequired,
-  showPopup: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -54,8 +54,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
+    showModal: () => {
+      dispatch(BodyActions.showModal());
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());

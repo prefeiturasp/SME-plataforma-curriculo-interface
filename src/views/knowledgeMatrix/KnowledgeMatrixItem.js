@@ -22,7 +22,7 @@ class KnowledgeMatrixItem extends Component {
   }
 
   componentDidMount() {
-    this.props.showPopup();
+    this.props.showModal();
     if (this.props.data.length <= 0) {
       this.props.load();
       this.setState({ animationStatus: 'appeared' });
@@ -44,7 +44,7 @@ class KnowledgeMatrixItem extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hidePopup();
+    this.props.hideModal();
   }
 
   render() {
@@ -97,8 +97,8 @@ KnowledgeMatrixItem.contextTypes = {
 KnowledgeMatrixItem.propTypes = {
   data: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -113,11 +113,11 @@ const mapDispatchToProps = dispatch => {
       dispatch(BodyActions.showLoading());
       dispatch(KnowledgeMatrixActions.load());
     },
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
+    hideModal: () => {
+      dispatch(BodyActions.hideModal());
     },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
+    showModal: () => {
+      dispatch(BodyActions.showModal());
     },
   };
 };

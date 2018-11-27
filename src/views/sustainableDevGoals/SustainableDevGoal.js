@@ -24,7 +24,7 @@ class SustainableDevGoal extends Component {
   }
   
   componentDidMount() {
-    this.props.showPopup();
+    this.props.showModal();
     this.props.loadItem(this.props.match.params.id);
     this.setState({ animationStatus: 'appeared' });
   }
@@ -37,7 +37,7 @@ class SustainableDevGoal extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hidePopup();
+    this.props.hideModal();
   }
 
   render() {
@@ -108,8 +108,8 @@ SustainableDevGoal.contextTypes = {
 SustainableDevGoal.propTypes = {
   data: PropTypes.object,
   loadItem: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -123,11 +123,11 @@ const mapDispatchToProps = dispatch => {
     loadItem: (id) => {
       dispatch(SustainableDevGoalsActions.loadItem(id));
     },
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
+    hideModal: () => {
+      dispatch(BodyActions.hideModal());
     },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
+    showModal: () => {
+      dispatch(BodyActions.showModal());
     },
   };
 };

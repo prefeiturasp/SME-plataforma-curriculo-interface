@@ -35,7 +35,7 @@ class LearningObjectives extends Component {
 
   onClickedClose() {
     this.props.hideObjectives();
-    this.props.hidePopup();
+    this.props.hideModal();
   }
 
   onClickedNext() {
@@ -49,10 +49,10 @@ class LearningObjectives extends Component {
       this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
       
       if (getWindowWidth() < 768) {
-        this.props.showPopup();
+        this.props.showModal();
       }
     } else {
-      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
+      this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
     }
   }
 
@@ -60,7 +60,7 @@ class LearningObjectives extends Component {
     this.props.showObjectives();
     
     if (getWindowWidth() < 768) {
-      this.props.showPopup();
+      this.props.showModal();
     }
   }
 
@@ -79,7 +79,7 @@ class LearningObjectives extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hidePopup();
+    this.props.hideModal();
   }
 
   render() {
@@ -233,12 +233,12 @@ LearningObjectives.propTypes = {
   isShowingResults: PropTypes.bool.isRequired,
   load: PropTypes.func.isRequired,
   hideObjectives: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -259,8 +259,8 @@ const mapDispatchToProps = dispatch => {
     hideObjectives: () => {
       dispatch(LearningObjectivesActions.hideObjectives());
     },
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
+    hideModal: () => {
+      dispatch(BodyActions.hideModal());
     },
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
@@ -268,14 +268,14 @@ const mapDispatchToProps = dispatch => {
     search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
     },
-    showModal: (message) => {
-      dispatch(BodyActions.showModal(message));
+    showAlert: (message) => {
+      dispatch(BodyActions.showAlert(message));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());
     },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
+    showModal: () => {
+      dispatch(BodyActions.showModal());
     },
   };
 };

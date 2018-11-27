@@ -3,11 +3,12 @@ const BodyActions = {
   EXIT_HOME: 'BodyActions.EXIT_HOME',
   HIDE_LOADING: 'BodyActions.HIDE_LOADING',
   SHOW_LOADING: 'BodyActions.SHOW_LOADING',
+  HIDE_MOBILE_MENU: 'BodyActions.HIDE_MOBILE_MENU',
+  SHOW_MOBILE_MENU: 'BodyActions.SHOW_MOBILE_MENU',
+  HIDE_ALERT: 'BodyActions.HIDE_ALERT',
+  SHOW_ALERT: 'BodyActions.SHOW_ALERT',
   HIDE_MODAL: 'BodyActions.HIDE_MODAL',
   SHOW_MODAL: 'BodyActions.SHOW_MODAL',
-  HIDE_POPUP: 'BodyActions.HIDE_POPUP',
-  SHOW_POPUP: 'BodyActions.SHOW_POPUP',
-  SET_HAS_SCROLLED: 'BodyActions.SET_HAS_SCROLLED',
   
   enterHome() {
     return { type: BodyActions.ENTER_HOME };
@@ -21,20 +22,23 @@ const BodyActions = {
   showLoading() {
     return { type: BodyActions.SHOW_LOADING };
   },
+  hideMobileMenu() {
+    return { type: BodyActions.HIDE_MOBILE_MENU };
+  },
+  showMobileMenu() {
+    return { type: BodyActions.SHOW_MOBILE_MENU };
+  },
+  hideAlert() {
+    return { type: BodyActions.HIDE_ALERT };
+  },
+  showAlert(message) {
+    return { message, type: BodyActions.SHOW_ALERT };
+  },
   hideModal() {
     return { type: BodyActions.HIDE_MODAL };
   },
-  showModal(message) {
-    return { message, type: BodyActions.SHOW_MODAL };
-  },
-  hidePopup() {
-    return { type: BodyActions.HIDE_POPUP };
-  },
-  showPopup() {
-    return { type: BodyActions.SHOW_POPUP };
-  },
-  setHasScrolled(value) {
-    return { value, type: BodyActions.SET_HAS_SCROLLED };
+  showModal() {
+    return { type: BodyActions.SHOW_MODAL };
   },
 };
 

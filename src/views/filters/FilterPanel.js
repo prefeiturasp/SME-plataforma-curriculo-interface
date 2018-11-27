@@ -22,14 +22,14 @@ class FilterPanel extends Component {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
-      this.props.hidePopup();
+      this.props.hideModal();
     } else {
-      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
+      this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
     }
   }
 
   onClickedClose() {
-    this.props.hidePopup();
+    this.props.hideModal();
     this.props.togglePanel();
   }
 
@@ -136,10 +136,10 @@ class FilterPanel extends Component {
 FilterPanel.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
-  hidePopup: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -152,8 +152,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
+    hideModal: () => {
+      dispatch(BodyActions.hideModal());
     },
     load: () => {
       dispatch(FiltersActions.load());
@@ -162,8 +162,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(FiltersActions.search());
       dispatch(SequencesActions.search(filters));
     },
-    showModal: (message) => {
-      dispatch(BodyActions.showModal(message));
+    showAlert: (message) => {
+      dispatch(BodyActions.showAlert(message));
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());

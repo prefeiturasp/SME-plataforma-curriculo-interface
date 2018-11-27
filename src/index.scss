@@ -43,7 +43,7 @@ a:hover {
   color: black;
 }
 
-:global(body.hasPopup) {
+:global(body.hasModal) {
   overflow-y: hidden;
   position: fixed;
 }
@@ -92,7 +92,7 @@ a:hover {
   z-index: 90;
 }
 
-:global(.modal) {
+:global(.alert) {
   background: white;
   border-radius: 0.25rem;
   color: black;

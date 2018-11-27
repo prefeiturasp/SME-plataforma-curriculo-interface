@@ -47,7 +47,7 @@ const FiltersActions = {
         ) &&
         filters.length <= 0
       ) {
-        dispatch({ type: BodyActions.SHOW_MODAL, message: 'Selecione um ano ou componente curricular.'});
+        dispatch({ type: BodyActions.SHOW_ALERT, message: 'Selecione um ano ou componente curricular.'});
       } else {
         dispatch({ type: FiltersActions.SHOW_CATEGORY, category });
       }

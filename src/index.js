@@ -10,12 +10,10 @@ import { applyMiddleware, createStore } from 'redux';
 import Activity from './views/activity/Activity';
 import ActivityChars from './views/activity/ActivityChars';
 import ActivityPrint from './views/activity/ActivityPrint';
+import AppAlert from './views/util/AppAlert';
 import AppLoading from './views/util/AppLoading';
-import AppModal from './views/util/AppModal';
 import BodyManager from './views/util/BodyManager';
 import Curriculum from './views/curriculum/Curriculum';
-import Footer from './views/footer/Footer';
-import Header from './views/header/Header';
 import Home from './views/home/Home';
 import LearningObjectives from './views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from './views/knowledgeMatrix/KnowledgeMatrix';
@@ -102,11 +100,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Analytics id="UA-85250794-5">
         <ScrollToTop>
-          <Header />
-            <Route component={ModalSwitch} />
-          <Footer />
+          <Route component={ModalSwitch} />
           <AppLoading />
-          <AppModal />
+          <AppAlert />
           <BodyManager />
         </ScrollToTop>
       </Analytics>
