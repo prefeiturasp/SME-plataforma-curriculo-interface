@@ -4,19 +4,12 @@ import Truncate from 'react-truncate';
 import styles from './ReadMore.scss';
 
 class ReadMore extends Component {
-  constructor(...args) {
-    super(...args);
+  state = {
+    expanded: false,
+    truncated: false,
+  };
 
-    this.state = {
-      expanded: false,
-      truncated: false,
-    };
-
-    this.handleTruncate = this.handleTruncate.bind(this);
-    this.toggleLines = this.toggleLines.bind(this);
-  }
-
-  handleTruncate(truncated) {
+  handleTruncate = truncated => {
     if (this.state.truncated !== truncated) {
       this.setState({
         truncated,
@@ -24,7 +17,7 @@ class ReadMore extends Component {
     }
   }
 
-  toggleLines(e) {
+  toggleLines = e => {
     e.preventDefault();
 
     this.setState({

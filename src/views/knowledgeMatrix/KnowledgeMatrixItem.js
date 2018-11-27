@@ -9,16 +9,13 @@ import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { animationStatus: null };
-  }
-
-  onClickedClose() {
+  state = { animationStatus: null };
+  
+  onClickedClose = () => {
     this.context.router.history.goBack();
   }
 
-  onEntered() {
+  onEntered = () => {
     this.setState({ animationStatus: 'entered' });
   }
 
@@ -39,7 +36,7 @@ class KnowledgeMatrixItem extends Component {
       const data = this.props.data.filter(item => item.sequence === index)[0];
       if (data) {
         this.setState({ animationStatus: 'enter' });
-        setTimeout(this.onEntered.bind(this), 1000);
+        setTimeout(this.onEntered, 1000);
       }
     }
   }
@@ -80,7 +77,7 @@ class KnowledgeMatrixItem extends Component {
                   Ver Sequências de Atividades Relacionadas
                 </NavLink>
               </div>
-              <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+              <button className={styles.close} onClick={this.onClickedClose}>
                 <img src={iconCloseBig} alt="Fechar" />
               </button>
             </div>

@@ -14,11 +14,8 @@ import iconWarning from '../../images/iconWarning.svg';
 import styles from './FilterPanel.css';
 
 class FilterPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = React.createRef();
-  }
-
+  ref = React.createRef();
+  
   onClickedSearch() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {

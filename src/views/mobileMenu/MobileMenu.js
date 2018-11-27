@@ -103,7 +103,7 @@ class MobileMenu extends Component {
     return (
       <nav className={classes.join(' ')} id="mobileMenu">
         {links}
-        <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+        <button className={styles.close} onClick={this.onClickedClose}>
           <img src={iconCloseBig} alt="Fechar" />
         </button>
       </nav>

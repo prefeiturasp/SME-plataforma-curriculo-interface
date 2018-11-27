@@ -18,16 +18,13 @@ import iconWarning from '../../images/iconWarning.svg';
 import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {
-  constructor(props) {
-    super(props);
-    this.refFilters = React.createRef();
-    this.refLoading = React.createRef();
-    this.refResults = React.createRef();
-    this.tl = new TimelineLite();
-    this.target= null;
-  }
+  refFilters = React.createRef();
+  refLoading = React.createRef();
+  refResults = React.createRef();
+  tl = new TimelineLite();
+  target= null;
 
-  onClickedBack() {
+  onClickedBack = () => {
     this.props.hideResults();
 
     this.tl.kill();
@@ -36,12 +33,12 @@ class LearningObjectives extends Component {
     this.tl.to(this.refFilters.current, 0.2, { opacity: 1, display: 'block' });
   }
 
-  onClickedClose() {
+  onClickedClose = () => {
     clearAllBodyScrollLocks();
     this.props.hideObjectives();
   }
 
-  onClickedNext() {
+  onClickedNext = () => {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
@@ -59,7 +56,7 @@ class LearningObjectives extends Component {
     }
   }
 
-  onClickedSee() {
+  onClickedSee = () => {
     this.props.showObjectives();
     
     if (getWindowWidth() < 768) {
@@ -152,7 +149,7 @@ class LearningObjectives extends Component {
                 <strong>0X</strong> Ano de Escolaridade;<br />
                 <strong>CXX</strong> Componente curricular Ciências Naturais seguido da sequência de objetivos de aprendizagem e desenvolvimento desse componente.
               </p>
-              <button className={styles.btnObjectives} onClick={this.onClickedSee.bind(this)}>
+              <button className={styles.btnObjectives} onClick={this.onClickedSee}>
                 Ver os objetivos relacionados
               </button>
             </div>
@@ -192,12 +189,12 @@ class LearningObjectives extends Component {
             </div>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
+                <button className={styles.next} onClick={this.onClickedNext}>
                   Avançar
                 </button>
               </div>
             </div>
-            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+            <button className={styles.close} onClick={this.onClickedClose}>
               <img src={iconCloseBig} alt="Fechar" />
             </button>
           </div>
@@ -208,7 +205,7 @@ class LearningObjectives extends Component {
             <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
+                <button className={styles.back} onClick={this.onClickedBack}>
                   <img src={iconChevronLeft} alt="Voltar" />
                   Voltar
                 </button>
@@ -221,7 +218,7 @@ class LearningObjectives extends Component {
                 </ul>
               </div>
             </div>
-            <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
+            <button className={styles.close} onClick={this.onClickedBack}>
               <img src={iconCloseBig} alt="Fechar" />
             </button>
           </div>

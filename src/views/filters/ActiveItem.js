@@ -7,7 +7,7 @@ import iconCloseSmallWhite from '../../images/iconCloseSmallWhite.svg';
 import styles from './ActiveItem.css';
 
 class ActiveItem extends Component {
-  onClicked() {
+  onClicked = () => {
     this.props.toggleFilter(this.props.data);
   }
 
@@ -18,7 +18,7 @@ class ActiveItem extends Component {
     const word = this.props.data.type === 'years' ? ' ano' : '';
     
     return (
-      <button className={classes.join(' ')} style={style} onClick={this.onClicked.bind(this)}>
+      <button className={classes.join(' ')} style={style} onClick={this.onClicked}>
         {this.props.data.name || this.props.data.title || this.props.data.code || this.props.data.description}
         {word}
         <img src={icon} alt="Remover" />

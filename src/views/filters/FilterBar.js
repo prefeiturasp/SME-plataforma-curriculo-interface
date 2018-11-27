@@ -17,7 +17,7 @@ class FilterBar extends Component {
     clearAllBodyScrollLocks();
   }
 
-  onClickedToggle() {
+  onClickedToggle = () => {
     this.props.togglePanel();
 
     if (getWindowWidth() < 768) {
@@ -38,7 +38,7 @@ class FilterBar extends Component {
         <ul>
           {items}
         </ul>
-        <button className={styles.button} onClick={this.onClickedToggle.bind(this)}>
+        <button className={styles.button} onClick={this.onClickedToggle}>
           <img src={iconFilters} alt="Filtros" />
           Filtros
         </button>

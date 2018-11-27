@@ -12,12 +12,9 @@ import iconHelp from '../../images/iconHelp.svg';
 import styles from './Sequence.scss';
 
 class SequenceChars extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isShowingAllLearningObjectives: false };
-  }
-
-  onClickedAllLearningObjectives() {
+  state = { isShowingAllLearningObjectives: false };
+  
+  onClickedAllLearningObjectives = () => {
     this.setState({ isShowingAllLearningObjectives: true });
   }
 
@@ -60,7 +57,7 @@ class SequenceChars extends Component {
     });
 
     const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
-      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
+      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives}>
         Ver Todos os Objetivos
       </button>
     );

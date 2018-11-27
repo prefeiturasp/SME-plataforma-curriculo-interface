@@ -10,16 +10,13 @@ import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
 import styles from './SustainableDevGoal.css';
 
 class SustainableDevGoal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { animationStatus: null };
-  }
-
-  onClickedClose() {
+  state = { animationStatus: null };
+  
+  onClickedClose = () => {
     this.context.router.history.goBack();
   }
 
-  onEntered() {
+  onEntered = () => {
     this.setState({ animationStatus: 'entered' });
   }
   
@@ -32,7 +29,7 @@ class SustainableDevGoal extends Component {
   componentDidUpdate(prevProps) {
     if (this.state.animationStatus === 'appeared' && this.props.data) {
       this.setState({ animationStatus: 'enter' });
-      setTimeout(this.onEntered.bind(this), 1000);
+      setTimeout(this.onEntered, 1000);
     }
   }
 
@@ -93,7 +90,7 @@ class SustainableDevGoal extends Component {
             </div>
           </div>
         </div>
-        <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+        <button className={styles.close} onClick={this.onClickedClose}>
           <img src={iconCloseBigWhite} alt="Fechar" />
         </button>
       </section>

@@ -10,11 +10,8 @@ import iconHelp from '../../images/iconHelp.svg';
 import styles from './Preview.css';
 
 class Preview extends Component {
-  constructor(props) {
-    super(props);
-    this.refWrapper = React.createRef();
-    this.refAccess = React.createRef();
-  }
+  refWrapper = React.createRef();
+  refAccess = React.createRef();
 
   render() {
     const knowledgeMatrices = this.props.data.knowledge_matrices.map((item, i) => {

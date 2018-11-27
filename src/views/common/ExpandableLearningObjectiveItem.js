@@ -8,13 +8,10 @@ import iconChevronUp from '../../images/iconChevronUp.svg';
 import styles from './ExpandableLearningObjectiveItem.css';
 
 class ExpandableLearningObjectiveItem extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = React.createRef();
-    this.state = { isExpanded: props.isExpanded };
-  }
+  ref = React.createRef();
+  state = { isExpanded: this.props.isExpanded };
 
-  onClickedToggle() {
+  onClickedToggle = () => {
     this.setState({ isExpanded: !this.state.isExpanded });
   }
 
@@ -47,7 +44,7 @@ class ExpandableLearningObjectiveItem extends Component {
     ): null;
 
     return (
-      <li className={classes.join(' ')} onClick={this.onClickedToggle.bind(this)}>
+      <li className={classes.join(' ')} onClick={this.onClickedToggle}>
         <LearningObjectiveItem data={this.props.data} />
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}

@@ -15,15 +15,6 @@ import iconPrint from '../../images/iconPrint.svg';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isShowingAllLearningObjectives: false };
-  }
-
-  onClickedAllLearningObjectives() {
-    this.setState({ isShowingAllLearningObjectives: true });
-  }
-
   componentDidMount() {
     this.props.loadItem(this.props.match.params.slug);
   }

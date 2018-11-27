@@ -6,7 +6,7 @@ import FiltersActions from '../../actions/FiltersActions';
 import styles from './CategoryItemImageButton.css';
 
 class CategoryItemImageButton extends Component {
-  onClicked() {
+  onClicked = () => {
     this.props.toggleFilter(this.props.data);
   }
 
@@ -15,7 +15,7 @@ class CategoryItemImageButton extends Component {
 
     return (
       <li>
-        <button className={classes.join(' ')} onClick={this.onClicked.bind(this)}>
+        <button className={classes.join(' ')} onClick={this.onClicked}>
           <img src={API_URL + this.props.data.url} alt={this.props.data.name} />
         </button>
       </li>

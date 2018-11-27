@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './YearButton.css';
 
 class YearButton extends Component {
-  onClicked() {
+  onClicked = () => {
     this.props.toggleFilter(this.props.data);
   }
 
@@ -12,7 +12,7 @@ class YearButton extends Component {
     
     return (
       <li>
-        <button className={[classes.join(' ')]} onClick={this.onClicked.bind(this)}>
+        <button className={[classes.join(' ')]} onClick={this.onClicked}>
           {this.props.data.description}
         </button>
       </li>

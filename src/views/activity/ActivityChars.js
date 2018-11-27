@@ -11,7 +11,7 @@ import iconHelp from '../../images/iconHelp.svg';
 import styles from './Activity.scss';
 
 class ActivityChars extends Component {
-  onResized() {
+  onResized = () => {
     const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
@@ -21,7 +21,7 @@ class ActivityChars extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResized.bind(this));
+    window.addEventListener('resize', this.onResized);
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
   }
@@ -35,7 +35,7 @@ class ActivityChars extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized.bind(this));
+    window.removeEventListener('resize', this.onResized);
   }
 
   render() {

@@ -19,16 +19,7 @@ import iconPrint from '../../images/iconPrint.svg';
 import styles from './Activity.scss';
 
 class Activity extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isShowingAllLearningObjectives: false };
-  }
-
-  onClickedAllLearningObjectives() {
-    this.setState({ isShowingAllLearningObjectives: true });
-  }
-
-  onResized() {
+  onResized = () => {
     const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
@@ -38,7 +29,7 @@ class Activity extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResized.bind(this));
+    window.addEventListener('resize', this.onResized);
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
   }
@@ -52,7 +43,7 @@ class Activity extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized.bind(this));
+    window.removeEventListener('resize', this.onResized);
   }
 
   render() {

@@ -14,14 +14,9 @@ import ResultsNotFound from './ResultsNotFound';
 import styles from './Sequences.css';
 
 class Sequences extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      windowHeight: 1000,
-    };
-  }
+  state = { windowHeight: 1000 };
 
-  onClickedLoadMore() {
+  onClickedLoadMore = () => {
     this.props.loadMore(this.props.nextPage);
   }
 
@@ -66,7 +61,7 @@ class Sequences extends Component {
 
     if (this.props.data.length) {
       const button = this.props.nextPage ? (
-        <button className={styles.load} onClick={this.onClickedLoadMore.bind(this)}>
+        <button className={styles.load} onClick={this.onClickedLoadMore}>
           Carregar mais
         </button>
       ) : null;
