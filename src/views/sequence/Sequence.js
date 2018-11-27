@@ -8,14 +8,8 @@ import { API_URL } from '../../constants';
 import BodyActions from '../../actions/BodyActions';
 import SequencesActions from '../../actions/SequencesActions';
 import ActivityItem from './ActivityItem';
-import CurricularComponentItem from '../common/CurricularComponentItem';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
-import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
-import convertQuillToHtml from '../util/convertQuillToHtml';
 import iconClock from '../../images/iconClockWhite.svg';
-import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
 import styles from './Sequence.scss';
 
@@ -40,61 +34,13 @@ class Sequence extends Component {
       return <span />;
     }
 
+    const linkChars = `/sequencia/${this.props.match.params.slug}/caracteristicas`;
     const linkPrint = `/imprimir/sequencia/${this.props.match.params.slug}`;
 
     const filters = [
       <GenericItem key={0} data={{name: `${data.year} ano`}} />,
       <GenericItem key={1} data={data.main_curricular_component} />,
     ];
-
-    // HACK: filter repeated curricular components, should fix data coming from API
-    const uniqueCurricularComponents = data.curricular_components.filter((component, index, self) =>
-      index === self.findIndex((t) => (
-        t.name === component.name
-      ))
-    )
-    const relatedComponents = uniqueCurricularComponents.map((item, i) => {
-      return (
-        <CurricularComponentItem key={i} data={item} isColored={false} />
-      );
-    });
-
-    const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {
-      return (
-        <KnowledgeMatrixItem key={i} data={item} isLink={true} />
-      );
-    });
-
-    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
-
-    const learningObjectives = learningObjectivesList.map((item, i) => {
-      return (
-        <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
-      );
-    });
-
-    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
-      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
-        Ver Todos os Objetivos
-      </button>
-    );
-
-    const sustainableDevGoals = data.sustainable_development_goals.map((item, i) => {
-      return (
-        <SustainableDevGoalItem key={i} data={item} isLink={true} />
-      );
-    });
-
-    let booksTitle = null;
-    let booksContents = null;
-
-    if (data.books) {
-      const booksHtml = convertQuillToHtml(data.books);
-      if (booksHtml !== '<p><br/></p>') {
-        booksTitle = <div className={styles.title}>Para saber mais:</div>;
-        booksContents = <div className={styles.books} dangerouslySetInnerHTML={{__html: booksHtml}} />;
-      }
-    }
 
     const word = data.activities.length > 1 ? 'Atividades' : 'Atividade';
     const activitiesTitle = `${data.activities.length} ${word}`;
@@ -153,7 +99,7 @@ class Sequence extends Component {
               Salvar
             </button>
           </div>
-          <NavLink className={styles.btnInfo} to="#">
+          <NavLink className={styles.btnInfo} to={linkChars}>
             Ver características
           </NavLink>
           <NavLink className={styles.btnPrint} to={linkPrint}>

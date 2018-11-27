@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import BodyActions from '../../actions/BodyActions';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
@@ -15,7 +14,6 @@ import getWindowWidth from '../util/getWindowWidth';
 import iconArrowLeft from '../../images/iconArrowLeft.svg';
 import iconArrowRight from '../../images/iconArrowRight.svg';
 import iconClock from '../../images/iconClockWhite.svg';
-import iconHelp from '../../images/iconHelp.svg';
 import iconPrint from '../../images/iconPrint.svg';
 import styles from './Activity.scss';
 
@@ -83,29 +81,6 @@ class Activity extends Component {
       );
     }
 
-    const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
-      <div className={styles.title}>
-        Objetivos de aprendizagem
-        <button data-tip data-for="tooltipLearningObjectives">
-          <img src={iconHelp} alt="Ajuda" />
-        </button>
-      </div>
-    ) : null;
-
-    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
-
-    const learningObjectives = learningObjectivesList.map((item, i) => {
-      return (
-        <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
-      );
-    });
-
-    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
-      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
-        Ver Todos os Objetivos
-      </button>
-    );
-
     const iconsItems = data.activity_types.map((item, i) => {
       const icon = getActivityTypeIcon(item.name);
       return (
@@ -115,6 +90,7 @@ class Activity extends Component {
         </li>
       );
     });
+
     const icons = (
       <ul className={styles.icons}>
         {iconsItems}
@@ -139,6 +115,7 @@ class Activity extends Component {
 
     const content = convertQuillToHtml(data.content);
     
+    const linkChars = `/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}/caracteristicas`;
     const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
@@ -189,7 +166,7 @@ class Activity extends Component {
               <h1>{data.title}</h1>
             </div>
           </div>
-          <NavLink className={styles.btnInfo} to="#">
+          <NavLink className={styles.btnInfo} to={linkChars}>
             Ver características
           </NavLink>
           <NavLink className={styles.btnPrint} to={linkPrint}>
