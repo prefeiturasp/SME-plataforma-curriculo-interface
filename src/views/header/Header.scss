@@ -50,10 +50,6 @@
   color: $grey-800;
   display: flex;
 
-  img {
-    margin-right: 0.8125rem;
-  }
-
   h1 {
     font-size: 1.125rem;
     margin-bottom: 0;
@@ -61,57 +57,36 @@
   }
 }
 
+.logoImage {
+  background-image: url(../../images/logo.svg);
+  margin-right: 0.8125rem;
+  width: rem(33);
+  height: rem(55);
+
+  :global(.isHome) & {
+    background-image: url(../../images/logoWhite.svg);
+  }
+
+  :global(.headroom--pinned) & {
+    background-image: url(../../images/logo.svg);
+  }
+}
+
 .menu {
-  background: white;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 100%;
-  top: 0;
-  bottom: 0;
-  transition: left 0.3s ease-in-out;
-  z-index: 110;
-  
-  > a {
-    color: black !important;
-    display: block;
-    font-size: 1.75rem;
-    font-weight: bold;
-    margin-top: 2.25rem;
-    text-decoration: none;
-    
-    &.sub {
-      color: $grey-600;
-      display: block;
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-left: 1.25rem;
-      margin-top: 0.875rem;
-    }
-  }
-
-  > hr {
-    margin: 24px -16px 0 -16px;
-  }
+  display: none;
 }
 
-.close {
-  position: absolute;
-  right: 1.125rem;
-  top: 1.125rem;
-}
+.toggler {
+  background-image: url(../../images/iconMenu.svg);
+  width: rem(40);
+  height: rem(21);
 
-.isMenuExpanded {
-  position: fixed !important;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  :global(.isHome) & {
+    background-image: url(../../images/iconMenuWhite.svg);
+  }
 
-  .menu {
-    left: 0;
+  :global(.headroom--pinned) & {
+    background-image: url(../../images/iconMenu.svg);
   }
 }
 
@@ -121,9 +96,13 @@
   .logo {
     color: white;
   }
+
+  :global(.headroom-wrapper) {
+    height: 0 !important;
+  }
 }
 
-:global(.headroom--scrolled) {
+:global(.headroom--pinned) {
   .wrapper,
   .menu > a,
   .logo {
@@ -131,32 +110,24 @@
   }
 }
 
-@include mq("tablet-portrait") {
+@include mq("tablet-landscape") {
   .wrapper {
     padding: 0.5rem 2.5rem;
   }
 
   .menu {
-    margin-right: 0;
-    position: static;
-    width: auto;
-    height: auto;
+    display: block;
 
     > a {
-      display: inline;
+      color: black;
       font-size: 0.9375rem;
+      font-weight: bold;
       padding: 0 0.9375rem;
       text-transform: uppercase;
     }
-
-    > hr {
-      display: none;
-    }
   }
 
-  .menu > a.sub,
-  .toggler,
-  .close {
+  .toggler {
     display: none;
   }
 }
@@ -168,7 +139,8 @@
     padding-right: 1rem;
   }
 
-  .menu {
+  .menu,
+  .toggler {
     display: none;
   }
 }
