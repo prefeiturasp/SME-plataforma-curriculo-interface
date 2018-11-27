@@ -8,6 +8,7 @@ import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import Loading from '../util/Loading';
+import Page from '../common/Page';
 import YearButton from './YearButton';
 import getWindowWidth from '../util/getWindowWidth';
 import iconChevronLeft from '../../images/iconChevronLeft.svg';
@@ -119,6 +120,7 @@ class LearningObjectives extends Component {
     const classes2 = this.props.isShowingResults || totalWidth >= 768 ? [styles.results, styles.isVisible] : [styles.results];
     
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className="row">
@@ -222,6 +224,7 @@ class LearningObjectives extends Component {
           </div>
         </div>
       </section>
+      </Page>
     );
   }
 }

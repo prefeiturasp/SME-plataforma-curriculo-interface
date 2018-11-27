@@ -8,6 +8,7 @@ import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
+import Page from '../common/Page';
 import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
@@ -136,6 +137,7 @@ class Activity extends Component {
     ) : null;
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <Sticky>
           <div className={styles.sequence}>
@@ -199,6 +201,7 @@ class Activity extends Component {
           <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
         </ReactTooltip>
       </section>
+      </Page>
     );
   }
 }

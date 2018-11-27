@@ -8,6 +8,7 @@ import FilterBar from '../filters/FilterBar';
 import FilterPanel from '../filters/FilterPanel';
 import GridItem from './GridItem';
 import Loading from '../util/Loading';
+import Page from '../common/Page';
 import ResultsLoading from './ResultsLoading';
 import ResultsNotFound from './ResultsNotFound';
 import styles from './Sequences.css';
@@ -73,6 +74,7 @@ class Sequences extends Component {
       const loadingOrButton = this.props.isSearching ? <Loading /> : button;
 
       return (
+        <Page>
         <section className={styles.wrapper}>
           <div className="container">
             <h1>Sequências de Atividades</h1>
@@ -94,6 +96,7 @@ class Sequences extends Component {
             </div>
           </div>
         </section>
+        </Page>
       );
     }
     else if (this.props.isSearching) {

@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import ReadMore from '../util/ReadMore';
 import { API_URL } from '../../constants';
-import BodyActions from '../../actions/BodyActions';
-import SequencesActions from '../../actions/SequencesActions';
 import ActivityItem from './ActivityItem';
+import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
+import Page from '../common/Page';
+import ReadMore from '../util/ReadMore';
+import SequencesActions from '../../actions/SequencesActions';
 import iconClock from '../../images/iconClockWhite.svg';
 import iconPrint from '../../images/iconPrint.svg';
 import styles from './Sequence.scss';
@@ -80,6 +81,7 @@ class Sequence extends Component {
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className={styles.banner}>
@@ -144,6 +146,7 @@ class Sequence extends Component {
           <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
         </ReactTooltip>
       </section>
+      </Page>
     );
   }
 }
