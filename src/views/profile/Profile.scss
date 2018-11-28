@@ -13,19 +13,26 @@
   margin-bottom: rem(40);
 }
 
-.initial,
-.photo {
-  border-radius: 50%;
+.imageWrapper {
   margin-bottom: rem(8);
-  width: rem(100);
-  height: rem(100);
+  position: relative;
 }
 
-.photo {
+.letter,
+.image {
+  border-radius: 50%;
+  margin: rem(4);
+  position: relative;
+  width: rem(100);
+  height: rem(100);
+  z-index: 2;
+}
+
+.image {
   object-fit: cover;
 }
 
-.initial {
+.letter {
   align-items: center;
   background-color: #3bd2da;
   color: white;
@@ -35,17 +42,30 @@
   justify-content: center;
 }
 
+.progress {
+  background-color: $grey-200;
+  border-radius: 50%;
+  position: absolute;
+  width: rem(108);
+  height: rem(108);
+  z-index: 1;
+}
+
 .actions {
   color: $grey-600;
   font-size: rem(15);
   font-weight: bold;
+  text-transform: lowercase;
   
   > button {
+    background: none;
+    border: 0;
     color: inherit;
     font-size: inherit;
     font-weight: inherit;
+    padding: 0;
     text-decoration: underline;
-    text-transform: lowercase;
+    text-transform: inherit;
   }
 
   > span {

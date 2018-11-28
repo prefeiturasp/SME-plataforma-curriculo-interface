@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import SimpleFooter from '../common/SimpleFooter';
 import SimpleHeader from '../common/SimpleHeader';
@@ -6,18 +7,42 @@ import imgHome from '../../images/imgHome.jpg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
-  state = { nickname: 'Marília' };
+  state = {
+    isUploading: false,
+    nickname: 'Marília',
+    progress: 0,
+  };
+
+  startUpload = () => {
+    setTimeout(this.finishUpload, 2000);
+
+    this.setState({
+      ...this.state,
+      isUploading: true,
+      progress: 0,
+    });
+  }
+
+  finishUpload = () => {
+    this.setState({
+      ...this.state,
+      isUploading: false,
+    })
+  }
 
   onChangedNickname = (e) => {
-    this.setState({ nickname: e.target.value });
+    this.setState({
+      ...this.state,
+      nickname: e.target.value,
+    });
   }
 
   onClickedAddPhoto = () => {
-
+    this.startUpload();
   }
 
   onClickedChangePhoto = () => {
-
+    this.startUpload();
   }
 
   onClickedDeletePhoto = () => {
@@ -31,37 +56,71 @@ class Profile extends Component {
   render() {
     const nickname = 'Marília';
     const name = 'Marília Silva';
-
     const hasImage = false;
-    const image = hasImage
-      ? <div className={styles.center}>
+
+    const progress = this.state.isUploading
+      ? <div className={styles.progress}>
+          <CircularProgress
+            size={108}
+            thickness={2}
+            value={this.state.progress}
+          />
+        </div>
+      : null;
+
+    let actions = null;
+    if (this.state.isUploading) {
+      actions = (
+        <div className={styles.actions}>
+          Atualizando...
+        </div>
+      );
+    } else if (hasImage) {
+      actions = (
+        <div className={styles.actions}>
+          <button onClick={this.onClickedChangePhoto}>
+            Alterar
+          </button>
+          <span>&middot;</span>
+          <button onClick={this.onClickedDeletePhoto}>
+            Deletar
+          </button>
+        </div>
+      );
+    } else {
+      actions = (
+        <div className={styles.actions}>
+          <button onClick={this.onClickedAddPhoto}>
+            Adicionar foto
+          </button>
+        </div>
+      );
+    }
+
+    let imageOrLetter = null;
+    if (hasImage) {
+      imageOrLetter = (
+        <div className={styles.imageWrapper}>
+          {progress}
           <img
-            className={styles.photo}
+            className={styles.image}
             src={imgHome}
             alt={name}
           />
-          <div className={styles.actions}>
-            <button onClick={this.onClickedChangePhoto}>
-              Alterar
-            </button>
-            <span>&middot;</span>
-            <button onClick={this.onClickedDeletePhoto}>
-              Deletar
-            </button>
+        </div>
+      );
+    } else {
+      const letter = nickname.charAt(0).toUpperCase();
+
+      imageOrLetter = (
+        <div className={styles.imageWrapper}>
+          {progress}
+          <div className={styles.letter}>
+            {letter}
           </div>
         </div>
-      : <div className={styles.center}>
-          <div
-            className={styles.initial}
-          >
-            {nickname.charAt(0).toUpperCase()}
-          </div>
-          <div className={styles.actions}>
-            <button onClick={this.onClickedAddPhoto}>
-              Adicionar foto
-            </button>
-          </div>
-        </div>;
+      );
+    }
 
     const isInvalidNickname = this.state.nickname.length <= 0;
     const nicknameMessage = isInvalidNickname ? 'Campo obrigatório' : '';
@@ -71,7 +130,10 @@ class Profile extends Component {
         <SimpleHeader
           title="Editar Perfil"
         />
-        {image}
+        <div className={styles.center}>
+          {imageOrLetter}
+          {actions}
+        </div>
         <div className={styles.fields}>
           <div className={styles.field}>
             <TextField
