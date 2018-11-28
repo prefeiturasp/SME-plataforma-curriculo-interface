@@ -6,7 +6,7 @@ import imgHome from '../../images/imgHome.jpg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
-  state = {};
+  state = { nickname: 'Marília' };
 
   onChangedNickname = (e) => {
     this.setState({ nickname: e.target.value });
@@ -63,6 +63,9 @@ class Profile extends Component {
           </div>
         </div>;
 
+    const isInvalidNickname = this.state.nickname.length <= 0;
+    const nicknameMessage = isInvalidNickname ? 'Campo obrigatório' : '';
+
     return (
       <section className={styles.wrapper}>
         <SimpleHeader
@@ -74,7 +77,9 @@ class Profile extends Component {
             <TextField
               id="nickname"
               defaultValue={nickname}
+              error={isInvalidNickname}
               fullWidth={true}
+              helperText={nicknameMessage}
               label="Apelido"
               onChange={this.onChangedNickname}
             />
@@ -89,7 +94,7 @@ class Profile extends Component {
             />
           </div>
         </div>
-        <p className={styles.obs}>Caso deseje alterar sua senha, acesse sua conta na <a href="https://sme.prefeitura.sp.gov.br/">Secretaria Municipal de Educação</a>.</p>
+        <p className={styles.obs}>Caso deseje alterar sua senha, acesse sua conta na <a href="https://sme.prefeitura.sp.gov.br/" target="_blank">Secretaria Municipal de Educação</a>.</p>
         <SimpleFooter
           label="Salvar"
           onClick={this.onClickedSave}

@@ -15,55 +15,55 @@
 
 .initial,
 .photo {
-	border-radius: 50%;
-	margin-bottom: rem(8);
-	width: rem(100);
+  border-radius: 50%;
+  margin-bottom: rem(8);
+  width: rem(100);
   height: rem(100);
 }
 
 .photo {
-	object-fit: cover;
+  object-fit: cover;
 }
 
 .initial {
-	align-items: center;
-	background-color: #3bd2da;
-	color: white;
-	display: flex;
-	font-size: rem(34);
-	font-weight: 600;
-	justify-content: center;
+  align-items: center;
+  background-color: #3bd2da;
+  color: white;
+  display: flex;
+  font-size: rem(34);
+  font-weight: 600;
+  justify-content: center;
 }
 
 .actions {
-	color: $grey-600;
-	font-size: rem(15);
-	font-weight: bold;
-	
-	> button {
-		color: inherit;
-		font-size: inherit;
-		font-weight: inherit;
-		text-decoration: underline;
-		text-transform: lowercase;
-	}
+  color: $grey-600;
+  font-size: rem(15);
+  font-weight: bold;
+  
+  > button {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-decoration: underline;
+    text-transform: lowercase;
+  }
 
-	> span {
-		margin: 0 rem(8);
-	}
+  > span {
+    margin: 0 rem(8);
+  }
 }
 
 .field {
-	margin-bottom: rem(30);
+  margin-bottom: rem(40);
 }
 
 .obs {
-	color: $grey-600;
-	font-size: rem(13);
-	line-height: rem(24);
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(24);
 
-	> a {
-		color: inherit;
-		text-decoration: underline;
-	}
+  > a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
