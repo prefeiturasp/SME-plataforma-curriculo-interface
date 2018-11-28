@@ -94,7 +94,7 @@ class Profile extends Component {
             />
           </div>
         </div>
-        <p className={styles.obs}>Caso deseje alterar sua senha, acesse sua conta na <a href="https://sme.prefeitura.sp.gov.br/" target="_blank">Secretaria Municipal de Educação</a>.</p>
+        <p className={styles.obs}>Caso deseje alterar sua senha, acesse sua conta na <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a>.</p>
         <SimpleFooter
           label="Salvar"
           onClick={this.onClickedSave}
