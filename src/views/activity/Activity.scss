@@ -173,18 +173,6 @@
   }
 }
 
-.btnAllLearningObjectives {
-  color: $grey-600;
-  display: block;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
-  text-align: center;
-  text-decoration: underline;
-}
-
 .description {
   composes: col-md-8 from global;
   composes: offset-md-2 from global;
@@ -262,12 +250,6 @@
   .next,
   .prev {
     font-size: 1.125rem;
-  }
-}
-
-@include mq("tablet-landscape") {
-  .btnAllLearningObjectives {
-    margin-bottom: 0;
   }
 }
 

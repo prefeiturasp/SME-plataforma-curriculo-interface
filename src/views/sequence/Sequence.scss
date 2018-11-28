@@ -114,7 +114,7 @@
 }
 
 .title {
-  color: $grey-200;
+  color: $grey-800;
   font-weight: 600;
   margin-bottom: 0.8125rem;
 
@@ -122,18 +122,6 @@
     color: $grey-200;
     margin-left: 0.25rem;
   }
-}
-
-.btnAllLearningObjectives {
-  color: $grey-600;
-  display: block;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2rem;
-  text-align: center;
-  text-decoration: underline;
 }
 
 .description {
@@ -163,11 +151,5 @@
     margin-top: 2.1875rem;
     margin-left: 12rem;
     margin-right: 12rem;
-  }
-}
-
-@include mq("tablet-landscape") {
-  .btnAllLearningObjectives {
-    margin-bottom: 0;
   }
 }

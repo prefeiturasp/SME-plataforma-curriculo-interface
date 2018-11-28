@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import ActivityActions from '../../actions/ActivityActions';
 import BodyActions from '../../actions/BodyActions';
 import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
+import SimpleHeader from '../common/SimpleHeader';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
 import iconHelp from '../../images/iconHelp.svg';
-import styles from './Activity.scss';
+import styles from '../sequence/SequenceChars.scss';
 
 class ActivityChars extends Component {
   onResized = () => {
@@ -45,6 +46,9 @@ class ActivityChars extends Component {
 
     const data = this.props.data;
     
+    const sequence = data.activity_sequence;
+    const linkBack = `/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
+    
     const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
       <div className={styles.title}>
         Objetivos de aprendizagem
@@ -78,12 +82,16 @@ class ActivityChars extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className={styles.infos}>
-          {learningObjectivesTitle}
-          <ul>
-            {learningObjectives}
-          </ul>
-        </div>
+        <SimpleHeader
+          back={{ url: linkBack }}
+          title="Características"
+        />
+        
+        {learningObjectivesTitle}
+        <ul>
+          {learningObjectives}
+        </ul>
+
         <ReactTooltip
           place="bottom"
           type="dark"

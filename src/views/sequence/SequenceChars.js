@@ -7,9 +7,10 @@ import SequencesActions from '../../actions/SequencesActions';
 import CurricularComponentItem from '../common/CurricularComponentItem';
 import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
+import SimpleHeader from '../common/SimpleHeader';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import iconHelp from '../../images/iconHelp.svg';
-import styles from './Sequence.scss';
+import styles from './SequenceChars.scss';
 
 class SequenceChars extends Component {
   state = { isShowingAllLearningObjectives: false };
@@ -29,6 +30,8 @@ class SequenceChars extends Component {
       return <span />;
     }
 
+    const linkBack = `/sequencia/${this.props.match.params.slug}`;
+    
     // HACK: filter repeated curricular components, should fix data coming from API
     const uniqueCurricularComponents = data.curricular_components.filter((component, index, self) =>
       index === self.findIndex((t) => (
@@ -70,45 +73,49 @@ class SequenceChars extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className={styles.details}>
-          <div className={styles.title}>
-            Componentes relacionados
-          </div>
-          <ul>
-            {relatedComponents}
-          </ul>
-        
-          <div className={styles.title}>
-            Objetivos de aprendizagem
-            <button data-tip data-for="tooltipLearningObjectives">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {learningObjectives}
-          </ul>
-          {btnAllLearningObjectives}
-        
-          <div className={styles.title}>
-            Objetivos de Desenvolvimento Sustentável (ODS)
-            <button data-tip data-for="tooltipDevelopmentGoals">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {sustainableDevGoals}
-          </ul>
-            
-          <div className={styles.title}>
-            Matriz de saberes
-            <button data-tip data-for="tooltipKnowledgeMatrices">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {knowledgeMatrices}
-          </ul>
+        <SimpleHeader
+          back={{ url: linkBack }}
+          title="Características"
+        />
+
+        <div className={styles.title}>
+          Componentes relacionados
         </div>
+        <ul>
+          {relatedComponents}
+        </ul>
+      
+        <div className={styles.title}>
+          Objetivos de aprendizagem
+          <button data-tip data-for="tooltipLearningObjectives">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+        <ul>
+          {learningObjectives}
+        </ul>
+        {btnAllLearningObjectives}
+      
+        <div className={styles.title}>
+          Objetivos de Desenvolvimento Sustentável (ODS)
+          <button data-tip data-for="tooltipDevelopmentGoals">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+        <ul>
+          {sustainableDevGoals}
+        </ul>
+          
+        <div className={styles.title}>
+          Matriz de saberes
+          <button data-tip data-for="tooltipKnowledgeMatrices">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+        <ul>
+          {knowledgeMatrices}
+        </ul>
+        
         <ReactTooltip
           place="bottom"
           type="dark"
