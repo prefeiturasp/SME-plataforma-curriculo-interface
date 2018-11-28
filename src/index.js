@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
-import { createMuiTheme } from '@material-ui/core/styles';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
 import Activity from './views/activity/Activity';
@@ -30,6 +29,7 @@ import Sequences from './views/sequences/Sequences';
 import SustainableDevGoal from './views/sustainableDevGoals/SustainableDevGoal';
 import SustainableDevGoals from './views/sustainableDevGoals/SustainableDevGoals';
 
+import appTheme from './appTheme';
 import reducers from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -97,26 +97,12 @@ const store = createStore(
   applyMiddleware(thunk),
 );
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiInput: {
-      input: {
-        fontWeight: 'bold',
-      }
-    },
-  },
-  typography: {
-    fontFamily: 'Open Sans',
-    fontSize: 16,
-  },
-});
-
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Analytics id="UA-85250794-5">
         <ScrollToTop>
-          <MuiThemeProvider theme={theme}>
+          <MuiThemeProvider theme={appTheme}>
             <Route component={ModalSwitch} />
             <AppLoading />
             <AppAlert />
