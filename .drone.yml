@@ -9,7 +9,9 @@ steps:
 - name: interface
   image: plugins/docker
   build_args:
-      - APP_ENV=production
+      APP_ENV: production
+      API_URL: 
+          from_secret: api_url
   settings:
     repo: 
       from_secret: docker_repo
