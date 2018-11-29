@@ -4,6 +4,7 @@ name: default
 clone:
   depth: 50
 
+
 steps:
 - name: interface
   image: plugins/docker
@@ -14,7 +15,7 @@ steps:
     username:
       from_secret: docker_username
     password:
-      from_secret: docker_password
+      from_secret: docker_password 
     registry: registry.curriculo.jurema.la
   branches:
   - devops
