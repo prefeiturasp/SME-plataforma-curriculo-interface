@@ -8,10 +8,7 @@ clone:
 steps:
 - name: interface
   image: plugins/docker
-  environment:
-      APP_ENV: production
-      API_URL: 
-          from_secret: api_url
+
   settings:
     repo: 
       from_secret: docker_repo
@@ -21,6 +18,10 @@ steps:
       from_secret: docker_password 
     registry: 
       from_secret: docker_registry
+    build_args:
+      APP_ENV: production
+      API_URL: 
+          from_secret: api_url
   branches:
   - devops
 
