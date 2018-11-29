@@ -19,8 +19,8 @@ steps:
       from_secret: docker_registry
     build_args:
       APP_ENV: production
-    build_args_from_env:
-    - API_URL 
+      API_URL: http://curriculo.jurema.la
+ 
   branches:
   - devops
 
