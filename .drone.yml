@@ -20,7 +20,7 @@ steps:
     build_args:
       APP_ENV: production
       API_URL: http://curriculo.jurema.la
- 
+    
   branches:
   - devops
 
