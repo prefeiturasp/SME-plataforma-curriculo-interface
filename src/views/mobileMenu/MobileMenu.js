@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Auth from 'j-toker';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { API_URL } from '../../constants';
 import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './MobileMenu.scss';
@@ -10,6 +12,152 @@ import styles from './MobileMenu.scss';
 class MobileMenu extends Component {
   target = null;
 
+  handleLogoutClick = () => {
+    Auth.configure({
+      apiUrl:                API_URL + '/api',
+      signOutPath:           '/auth/sign_out',
+      emailSignInPath:       '/auth/sign_in',
+      emailRegistrationPath: '/auth',
+      accountUpdatePath:     '/auth',
+      accountDeletePath:     '/auth',
+      passwordResetPath:     '/auth/password',
+      passwordUpdatePath:    '/auth/password',
+      tokenValidationPath:   '/auth/validate_token',
+      proxyIf:               function() { return false; },
+      proxyUrl:              '/proxy',
+      validateOnPageLoad:    false,
+      forceHardRedirect:     false,
+      storage:               'cookies',
+      cookieExpiry:          14,
+      cookiePath:            '/',
+
+      passwordResetSuccessUrl: function() {
+        return window.location.href;
+      },
+
+      confirmationSuccessUrl:  function() {
+        return window.location.href;
+      },
+
+      tokenFormat: {
+        "access-token": "{{ access-token }}",
+        "token-type":   "Bearer",
+        client:         "{{ client }}",
+        expiry:         "{{ expiry }}",
+        uid:            "{{ uid }}",
+      },
+
+      parseExpiry: function(headers){
+        // convert from ruby time (seconds) to js time (millis)
+        return (parseInt(headers['expiry'], 10) * 1000) || null;
+      },
+
+      handleLoginResponse: function(resp) {
+        return resp.data;
+      },
+
+      handleAccountUpdateResponse: function(resp) {
+        return resp.data;
+      },
+
+      handleTokenValidationResponse: function(resp) {
+        return resp.data;
+      },
+
+      authProviderPaths: {
+        saml:    '/auth/saml',
+      }
+    });
+
+    Auth.signOut();
+  }
+
+  handleAuthClick = () => {
+    Auth.configure({
+      apiUrl:                API_URL + '/api',
+      signOutPath:           '/auth/sign_out',
+      emailSignInPath:       '/auth/sign_in',
+      emailRegistrationPath: '/auth',
+      accountUpdatePath:     '/auth',
+      accountDeletePath:     '/auth',
+      passwordResetPath:     '/auth/password',
+      passwordUpdatePath:    '/auth/password',
+      tokenValidationPath:   '/auth/validate_token',
+      proxyIf:               function() { return false; },
+      proxyUrl:              '/proxy',
+      validateOnPageLoad:    false,
+      forceHardRedirect:     false,
+      storage:               'cookies',
+      cookieExpiry:          14,
+      cookiePath:            '/',
+
+      passwordResetSuccessUrl: function() {
+        return window.location.href;
+      },
+
+      confirmationSuccessUrl:  function() {
+        return window.location.href;
+      },
+
+      tokenFormat: {
+        "access-token": "{{ access-token }}",
+        "token-type":   "Bearer",
+        client:         "{{ client }}",
+        expiry:         "{{ expiry }}",
+        uid:            "{{ uid }}",
+      },
+
+      parseExpiry: function(headers){
+        // convert from ruby time (seconds) to js time (millis)
+        return (parseInt(headers['expiry'], 10) * 1000) || null;
+      },
+
+      handleLoginResponse: function(resp) {
+        return resp.data;
+      },
+
+      handleAccountUpdateResponse: function(resp) {
+        return resp.data;
+      },
+
+      handleTokenValidationResponse: function(resp) {
+        return resp.data;
+      },
+
+      authProviderPaths: {
+        saml:    '/auth/saml',
+      }
+    });
+
+    var provider = 'saml';
+    Auth.oAuthSignIn({
+      provider: provider,
+      config: this.props.config,
+      params: {
+        namespace_name: 'api',
+        resource_class: 'User',
+      }
+    })
+    .then(function(user) {
+      console.log("The user is logged in");
+      console.log(user);
+      sessionStorage.setItem('user',
+        JSON.stringify({
+          'access-token': user['access-token'],
+          'client': user.client,
+          'uid': user.uid,
+          'expiry': user.expiry,
+          'token-type': 'Bearer',
+        })
+      );
+
+      console.log(sessionStorage.user);
+      })
+    .fail(function(resp) {
+      alert('Authentication failure: ' + resp.errors.join(' '));
+    });
+  }
+  
   componentDidMount() {
     this.target = document.querySelector('#mobileMenu');
   }
@@ -68,41 +216,41 @@ class MobileMenu extends Component {
         label: 'O que vem por aí',
         isSub: false,
       },
-      {
-        div: true,
-      },
-      {
-        to: '/perfil',
-        label: 'Meu perfil',
-        isSub: false,
-      },
-      {
-        to: '/sair',
-        label: 'Sair',
-        isSub: false,
-      },
     ];
 
     const links = data.map((item, i) => {
-      if (item.div) {
-        return <hr key={i} />;
-      } else {
-        const klass = item.isSub ? styles.sub : null;
-        return (
-          <NavLink
-            key={i}
-            to={item.to}
-            className={klass}
-            onClick={this.onClickedClose}>
-            {item.label}
-          </NavLink>
-        );
-      }
-    })
+      const klass = item.isSub ? styles.sub : null;
+      return (
+        <NavLink
+          key={i}
+          to={item.to}
+          className={klass}
+          onClick={this.onClickedClose}>
+          {item.label}
+        </NavLink>
+      );
+    });
+
+    const buttonLoginOrProfile = true
+      ? <button onClick={this.handleAuthClick}
+                bsStyle='default'
+                data-provider='saml'>
+          Login
+        </button>
+      : <NavLink
+          to="perfil"
+          onClick={this.onClickedClose}>
+          Meu perfil
+        </NavLink>;
 
     return (
       <nav className={classes.join(' ')} id="mobileMenu">
         {links}
+        <hr/>
+        {buttonLoginOrProfile}
+        <button onClick={this.handleLogoutClick}>
+          Sair
+        </button>
         <button className={styles.close} onClick={this.onClickedClose}>
           <img src={iconCloseBig} alt="Fechar" />
         </button>

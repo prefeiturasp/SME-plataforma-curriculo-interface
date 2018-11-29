@@ -18,7 +18,15 @@ function getNextPage(headers) {
 export default function loadData(url, action1, action2) {
   return dispatch => {
     dispatch({ type: action1 });
-    fetch(getFullUrl(url))
+
+    const requestContent = sessionStorage.getItem('user')
+      ? { 
+          method: 'GET',
+          headers: JSON.parse(sessionStorage.getItem('user') ),
+        }
+      : {};
+
+    fetch(getFullUrl(url), requestContent)
       .then(response => {
         response.json().then(data => {
           const headers = response.headers;
@@ -32,7 +40,7 @@ export default function loadData(url, action1, action2) {
             totalItems,
             type: action2,
           });
-        })
+        });
       });
   };
 }
