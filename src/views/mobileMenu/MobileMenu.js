@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Auth from 'j-toker';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import { API_URL } from '../../constants';
+import AuthActions from '../../actions/AuthActions';
 import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './MobileMenu.scss';
@@ -12,157 +11,26 @@ import styles from './MobileMenu.scss';
 class MobileMenu extends Component {
   target = null;
 
-  handleLogoutClick = () => {
-    Auth.configure({
-      apiUrl:                API_URL + '/api',
-      signOutPath:           '/auth/sign_out',
-      emailSignInPath:       '/auth/sign_in',
-      emailRegistrationPath: '/auth',
-      accountUpdatePath:     '/auth',
-      accountDeletePath:     '/auth',
-      passwordResetPath:     '/auth/password',
-      passwordUpdatePath:    '/auth/password',
-      tokenValidationPath:   '/auth/validate_token',
-      proxyIf:               function() { return false; },
-      proxyUrl:              '/proxy',
-      validateOnPageLoad:    false,
-      forceHardRedirect:     false,
-      storage:               'cookies',
-      cookieExpiry:          14,
-      cookiePath:            '/',
-
-      passwordResetSuccessUrl: function() {
-        return window.location.href;
-      },
-
-      confirmationSuccessUrl:  function() {
-        return window.location.href;
-      },
-
-      tokenFormat: {
-        "access-token": "{{ access-token }}",
-        "token-type":   "Bearer",
-        client:         "{{ client }}",
-        expiry:         "{{ expiry }}",
-        uid:            "{{ uid }}",
-      },
-
-      parseExpiry: function(headers){
-        // convert from ruby time (seconds) to js time (millis)
-        return (parseInt(headers['expiry'], 10) * 1000) || null;
-      },
-
-      handleLoginResponse: function(resp) {
-        return resp.data;
-      },
-
-      handleAccountUpdateResponse: function(resp) {
-        return resp.data;
-      },
-
-      handleTokenValidationResponse: function(resp) {
-        return resp.data;
-      },
-
-      authProviderPaths: {
-        saml:    '/auth/saml',
-      }
-    });
-
-    Auth.signOut();
+  onClickedClose = () => {
+    enableBodyScroll(this.target);
+    this.props.hideMobileMenu();
   }
 
-  handleAuthClick = () => {
-    Auth.configure({
-      apiUrl:                API_URL + '/api',
-      signOutPath:           '/auth/sign_out',
-      emailSignInPath:       '/auth/sign_in',
-      emailRegistrationPath: '/auth',
-      accountUpdatePath:     '/auth',
-      accountDeletePath:     '/auth',
-      passwordResetPath:     '/auth/password',
-      passwordUpdatePath:    '/auth/password',
-      tokenValidationPath:   '/auth/validate_token',
-      proxyIf:               function() { return false; },
-      proxyUrl:              '/proxy',
-      validateOnPageLoad:    false,
-      forceHardRedirect:     false,
-      storage:               'cookies',
-      cookieExpiry:          14,
-      cookiePath:            '/',
+  onClickedLogin = () => {
+    this.props.login();
+  }
 
-      passwordResetSuccessUrl: function() {
-        return window.location.href;
-      },
-
-      confirmationSuccessUrl:  function() {
-        return window.location.href;
-      },
-
-      tokenFormat: {
-        "access-token": "{{ access-token }}",
-        "token-type":   "Bearer",
-        client:         "{{ client }}",
-        expiry:         "{{ expiry }}",
-        uid:            "{{ uid }}",
-      },
-
-      parseExpiry: function(headers){
-        // convert from ruby time (seconds) to js time (millis)
-        return (parseInt(headers['expiry'], 10) * 1000) || null;
-      },
-
-      handleLoginResponse: function(resp) {
-        return resp.data;
-      },
-
-      handleAccountUpdateResponse: function(resp) {
-        return resp.data;
-      },
-
-      handleTokenValidationResponse: function(resp) {
-        return resp.data;
-      },
-
-      authProviderPaths: {
-        saml:    '/auth/saml',
-      }
-    });
-
-    var provider = 'saml';
-    Auth.oAuthSignIn({
-      provider: provider,
-      config: this.props.config,
-      params: {
-        namespace_name: 'api',
-        resource_class: 'User',
-      }
-    })
-    .then(function(user) {
-      console.log("The user is logged in");
-      console.log(user);
-      sessionStorage.setItem('user',
-        JSON.stringify({
-          'access-token': user['access-token'],
-          'client': user.client,
-          'uid': user.uid,
-          'expiry': user.expiry,
-          'token-type': 'Bearer',
-        })
-      );
-
-      console.log(sessionStorage.user);
-      })
-    .fail(function(resp) {
-      alert('Authentication failure: ' + resp.errors.join(' '));
-    });
+  onClickedLogout = () => {
+    this.props.logout();
   }
   
   componentDidMount() {
     this.target = document.querySelector('#mobileMenu');
+    this.props.setup();
   }
 
   componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate', this.props.hasLogged);
     if (this.props.hasMobileMenu && !prevProps.hasMobileMenu) {
       disableBodyScroll(this.target);
     }
@@ -170,11 +38,6 @@ class MobileMenu extends Component {
 
   componentWillUnmount() {
     clearAllBodyScrollLocks();
-  }
-
-  onClickedClose = () => {
-    enableBodyScroll(this.target);
-    this.props.hideMobileMenu();
   }
 
   render() {
@@ -231,26 +94,33 @@ class MobileMenu extends Component {
       );
     });
 
-    const buttonLoginOrProfile = true
-      ? <button onClick={this.handleAuthClick}
-                bsStyle='default'
-                data-provider='saml'>
-          Login
-        </button>
-      : <NavLink
-          to="perfil"
-          onClick={this.onClickedClose}>
-          Meu perfil
-        </NavLink>;
+    const buttons = this.props.hasLogged
+      ? <div>
+          <NavLink
+            to="perfil"
+            onClick={this.onClickedClose}>
+            Meu perfil
+          </NavLink>
+          <button onClick={this.onClickedLogout}>
+            Sair
+          </button>
+        </div>
+      : <div>
+          <p>Salve sequências de atividades. E acesse em qualquer lugar.</p>
+          <button
+            className={styles.btn}
+            onClick={this.onClickedLogin}
+          >
+            Login
+          </button>
+          <p>Esta funcionalidade é exclusiva para professores da <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a> da Prefeitura de São Paulo.</p>
+        </div>;
 
     return (
       <nav className={classes.join(' ')} id="mobileMenu">
         {links}
         <hr/>
-        {buttonLoginOrProfile}
-        <button onClick={this.handleLogoutClick}>
-          Sair
-        </button>
+        {buttons}
         <button className={styles.close} onClick={this.onClickedClose}>
           <img src={iconCloseBig} alt="Fechar" />
         </button>
@@ -260,12 +130,17 @@ class MobileMenu extends Component {
 }
 
 MobileMenu.propTypes = {
+  hasLogged: PropTypes.bool,
   hasMobileMenu: PropTypes.bool,
   hideMobileMenu: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  setup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
+    hasLogged: state.AuthReducer.hasLogged,
     hasMobileMenu: state.BodyReducer.hasMobileMenu,
   };
 };
@@ -274,6 +149,15 @@ const mapDispatchToProps = dispatch => {
   return {
     hideMobileMenu: () => {
       dispatch(BodyActions.hideMobileMenu());
+    },
+    login: () => {
+      dispatch(AuthActions.login());
+    },
+    logout: () => {
+      dispatch(AuthActions.logout());
+    },
+    setup: () => {
+      dispatch(AuthActions.setup());
     },
   };
 };
