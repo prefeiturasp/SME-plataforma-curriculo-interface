@@ -10,7 +10,7 @@ steps:
   image: plugins/docker
 
   settings:
-    secrets: [ ssh_key ]
+    secrets: [ api_url ]
     build_args_from_env: [ API_URL ]
     build_args:
       - APP_ENV=production
