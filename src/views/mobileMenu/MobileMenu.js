@@ -82,7 +82,7 @@ class MobileMenu extends Component {
     ];
 
     const links = data.map((item, i) => {
-      const klass = item.isSub ? styles.sub : null;
+      const klass = item.isSub ? styles.btnSmall : styles.btn;
       return (
         <NavLink
           key={i}
@@ -98,22 +98,31 @@ class MobileMenu extends Component {
       ? <div>
           <NavLink
             to="perfil"
-            onClick={this.onClickedClose}>
+            className={styles.btn}
+            onClick={this.onClickedClose}
+          >
             Meu perfil
           </NavLink>
-          <button onClick={this.onClickedLogout}>
+          <button
+            className={styles.btn}
+            onClick={this.onClickedLogout}
+          >
             Sair
           </button>
         </div>
-      : <div>
-          <p>Salve sequências de atividades. E acesse em qualquer lugar.</p>
+      : <div className={styles.login}>
+          <h3>
+            Salve sequências de atividades.
+            <br/>
+            E acesse em qualquer lugar.
+          </h3>
           <button
-            className={styles.btn}
+            className={styles.btnLogin}
             onClick={this.onClickedLogin}
           >
             Login
           </button>
-          <p>Esta funcionalidade é exclusiva para professores da <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a> da Prefeitura de São Paulo.</p>
+          <p className={styles.obs}>Esta funcionalidade é exclusiva para professores da <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a> da Prefeitura de São Paulo.</p>
         </div>;
 
     return (
