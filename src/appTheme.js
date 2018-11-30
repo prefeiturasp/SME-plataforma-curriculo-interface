@@ -28,6 +28,7 @@ const appTheme = createMuiTheme({
   typography: {
     fontFamily: 'Open Sans',
     fontSize: 16,
+    useNextVariants: true,
   },
 });
 
