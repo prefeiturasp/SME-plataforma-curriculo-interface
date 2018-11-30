@@ -10,7 +10,7 @@ steps:
   image: plugins/docker
 
   settings:
-    secrets: [ api_url ]
+    secrets: [ API_URL, docker_repo, docker_username, docker_password, docker_registry ]
     build_args_from_env: [ API_URL ]
     build_args:
       - APP_ENV=production
