@@ -1,1 +1,1 @@
-export const API_URL! = 'http://localhost/'
+teste = 'http://localhost/'
