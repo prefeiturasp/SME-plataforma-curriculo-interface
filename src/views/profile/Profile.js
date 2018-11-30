@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+import ProfileActions from '../../actions/ProfileActions';
 import SimpleFooter from '../common/SimpleFooter';
 import SimpleHeader from '../common/SimpleHeader';
 import imgHome from '../../images/imgHome.jpg';
@@ -9,7 +12,7 @@ import styles from './Profile.scss';
 class Profile extends Component {
   state = {
     isUploading: false,
-    nickname: 'Marília',
+    nickname: '',
     progress: 0,
   };
 
@@ -39,23 +42,29 @@ class Profile extends Component {
 
   onClickedAddPhoto = () => {
     this.startUpload();
+    this.props.savePhoto();
   }
 
   onClickedChangePhoto = () => {
     this.startUpload();
+    this.props.savePhoto();
   }
 
   onClickedDeletePhoto = () => {
-
+    this.props.deletePhoto();
   }
 
   onClickedSave = () => {
-    
+    this.props.saveNickname(this.state.nickname);
+  }
+
+  componentDidMount() {
+    this.props.load();
   }
 
   render() {
-    const nickname = 'Marília';
-    const name = 'Marília Silva';
+    const nickname = this.props.data.nickname;
+    const name = this.props.data.name;
     const hasImage = false;
 
     const progress = this.state.isUploading
@@ -110,7 +119,7 @@ class Profile extends Component {
         </div>
       );
     } else {
-      const letter = nickname.charAt(0).toUpperCase();
+      const letter = nickname.length ? nickname.charAt(0).toUpperCase() : '';
 
       imageOrLetter = (
         <div className={styles.imageWrapper}>
@@ -166,4 +175,35 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  data: PropTypes.object,
+  deletePhoto: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
+  saveNickname: PropTypes.func.isRequired,
+  savePhoto: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    data: state.ProfileReducer,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deletePhoto: () => {
+      dispatch(ProfileActions.deletePhoto());
+    },
+    load: () => {
+      dispatch(ProfileActions.load());
+    },
+    saveNickname: (nickname) => {
+      dispatch(ProfileActions.saveNickname(nickname));
+    },
+    savePhoto: () => {
+      dispatch(ProfileActions.savePhoto());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
