@@ -8,11 +8,10 @@ clone:
 steps:
 - name: interface
   image: plugins/docker
-
+  environment:
+    APP_ENV: production
+    API_URL: http://curriculo.jurema.la
   settings:
-    build_args:
-      APP_ENV: production
-      API_URL: http://curriculo.jurema.la
     repo: 
       from_secret: docker_repo
     username:
