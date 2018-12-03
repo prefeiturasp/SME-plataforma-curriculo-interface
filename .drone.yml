@@ -6,8 +6,8 @@ clone:
 
 
 steps:
-- name: plugins/docker
-  image: docker
+- name: interface
+  image: plugins/docker
   environment:
     API_URL: 
       from_secret: API_URL
