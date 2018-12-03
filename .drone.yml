@@ -23,6 +23,7 @@ steps:
   - echo $DOCKER_USERNAME
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
   - docker build --build-arg API_URL=$API_URL . 
+  - docker images
   - docker push interface:latest
     
   branches:
