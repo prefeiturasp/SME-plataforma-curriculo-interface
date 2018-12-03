@@ -6,7 +6,7 @@ clone:
 
 
 steps:
-- name: interface
+- name: plugins/docker
   image: docker
   environment:
     API_URL: 
@@ -30,11 +30,4 @@ steps:
   - devops
   - master
 
-  volumes:
-  - name: docker
-    path: /var/run/docker.sock
-
-volumes:
-- name: docker
-  host:
-    path: /var/run/docker.sock
+  
