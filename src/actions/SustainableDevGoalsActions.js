@@ -1,4 +1,4 @@
-import loadData from './loadData';
+import { getData } from './dataUtils';
 
 const SustainableDevGoalsActions = {
   LOAD: 'SustainableDevGoalsActions.LOAD',
@@ -6,10 +6,10 @@ const SustainableDevGoalsActions = {
   LOADED_ITEM: 'SustainableDevGoalsActions.LOADED_ITEM',
   
   load() {
-    return loadData('/api/ods', SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED);
+    return getData('/api/ods', SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED);
   },
   loadItem(id) {
-    return loadData(`/api/ods/${id}`, SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED_ITEM);
+    return getData(`/api/ods/${id}`, SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED_ITEM);
   },
 };
 

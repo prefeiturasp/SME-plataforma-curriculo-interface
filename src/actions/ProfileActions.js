@@ -1,4 +1,4 @@
-import loadData from './loadData';
+import { getData, postData, putData } from './dataUtils';
 
 const ProfileActions = {
   LOAD: 'ProfileActions.LOAD',
@@ -9,13 +9,23 @@ const ProfileActions = {
   SAVED_PHOTO: 'ProfileActions.SAVED_PHOTO',
   
   load() {
-    return loadData('/api/perfil', ProfileActions.LOAD, ProfileActions.LOADED);
+    return getData('/api/perfil', ProfileActions.LOAD, ProfileActions.LOADED);
   },
-  saveNickname(nickname) {
-    return loadData('/api/professores/${id}', ProfileActions.SAVE_NICKNAME, ProfileActions.SAVED_NICKNAME);
+  saveNickname(id, nickname) {
+    return putData(
+      `/api/professores/${id}`,
+      { 'teacher[nickname]': nickname },
+      ProfileActions.SAVE_NICKNAME,
+      ProfileActions.SAVED_NICKNAME
+    );
   },
   savePhoto() {
-    return loadData('/api/professores/${id}', ProfileActions.SAVE_PHOTO, ProfileActions.SAVED_PHOTO);
+    return postData(
+      '/api/professores/',
+      {},
+      ProfileActions.SAVE_PHOTO,
+      ProfileActions.SAVED_PHOTO
+    );
   },
 };
 

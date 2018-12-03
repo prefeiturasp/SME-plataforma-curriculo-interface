@@ -1,18 +1,6 @@
-import getFiltersQueryString from './getFiltersQueryString';
-import loadData from './loadData';
 import BodyActions from './BodyActions';
 import SequencesActions from './SequencesActions';
-import { API_URL } from '../constants';
-
-function fetchData(dispatch, url, filters, action) {
-  const queryString = getFiltersQueryString(filters);
-      
-  fetch(`${API_URL}${url}?${queryString}`)
-    .then(response => response.json())
-    .then(data => {
-      dispatch({ data, type: action });
-    });
-}
+import { getData, getData1 } from './dataUtils';
 
 function isYearOrComponent(s) {
   return s === 'years' || s === 'curricular_components';
@@ -31,7 +19,7 @@ const FiltersActions = {
   SEARCH: 'FiltersActions.SEARCH',
   
   load() {
-    return loadData('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
+    return getData('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
   },
   hideCategory() {
     return { type: FiltersActions.HIDE_CATEGORY };
@@ -65,7 +53,7 @@ const FiltersActions = {
 
       if (isYearOrComponent(filter.type)) {
         const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
-        fetchData(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+        getData1(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
       }
     }
   },
@@ -75,10 +63,10 @@ const FiltersActions = {
       dispatch({ type: SequencesActions.SEARCH })
       
       let filters = getState().FiltersReducer.filters.filter(item => item.isActive);
-      fetchData(dispatch, '/api/sequencias', filters, SequencesActions.LOADED);
+      getData1(dispatch, '/api/sequencias', filters, SequencesActions.LOADED);
 
       filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
-      fetchData(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+      getData1(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
     }
   },
   togglePanel() {
