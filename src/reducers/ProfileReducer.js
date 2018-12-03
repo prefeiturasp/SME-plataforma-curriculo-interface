@@ -1,6 +1,7 @@
 import ProfileActions from '../actions/ProfileActions';
 
 const initialState = {
+  id: 0,
   name: '',
   nickname: '',
   photo: '',
@@ -16,9 +17,10 @@ function ProfileReducer(state = initialState, action) {
     case ProfileActions.LOADED:
       return {
         ...state,
-        // name: action.data.name,
-        // nickname: action.data.nickname,
-        // photo: action.data.photo,
+        id: action.data.teacher.id,
+        name: action.data.name,
+        nickname: action.data.teacher.nickname,
+        photo: action.data.teacher.avatar_attributes.default_url,
       };
 
     case ProfileActions.SAVE_NICKNAME:

@@ -12,6 +12,7 @@ import styles from './Profile.scss';
 class Profile extends Component {
   state = {
     isUploading: false,
+    name: '',
     nickname: '',
     progress: 0,
   };
@@ -55,17 +56,25 @@ class Profile extends Component {
   }
 
   onClickedSave = () => {
-    this.props.saveNickname(this.state.nickname);
+    this.props.saveNickname(this.props.data.id, this.state.nickname);
   }
 
   componentDidMount() {
     this.props.load();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.data.nickname !== prevProps.data.nickname) {
+      this.setState({
+        ...this.state,
+        name: this.props.data.name,
+        nickname: this.props.data.nickname,
+      });
+    }
+  }
+
   render() {
-    const nickname = this.props.data.nickname;
-    const name = this.props.data.name;
-    const hasImage = false;
+    const hasImage = this.props.data.photo !== null;
 
     const progress = this.state.isUploading
       ? <div className={styles.progress}>
@@ -114,12 +123,12 @@ class Profile extends Component {
           <img
             className={styles.image}
             src={imgHome}
-            alt={name}
+            alt={this.state.name}
           />
         </div>
       );
     } else {
-      const letter = nickname.length ? nickname.charAt(0).toUpperCase() : '';
+      const letter = this.state.nickname.length ? this.state.nickname.charAt(0).toUpperCase() : '';
 
       imageOrLetter = (
         <div className={styles.imageWrapper}>
@@ -133,7 +142,7 @@ class Profile extends Component {
 
     const isInvalidNickname = this.state.nickname.length <= 0;
     const nicknameMessage = isInvalidNickname ? 'Campo obrigatório' : '';
-
+    
     return (
       <section className={styles.wrapper}>
         <SimpleHeader
@@ -147,7 +156,7 @@ class Profile extends Component {
           <div className={styles.field}>
             <TextField
               id="nickname"
-              defaultValue={nickname}
+              value={this.state.nickname}
               error={isInvalidNickname}
               fullWidth={true}
               helperText={nicknameMessage}
@@ -158,10 +167,10 @@ class Profile extends Component {
           <div className={styles.field}>
             <TextField
               id="name"
+              value={this.state.name}
               disabled={true}
               fullWidth={true}
               label="Nome"
-              value={name}
             />
           </div>
         </div>
@@ -197,8 +206,8 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(ProfileActions.load());
     },
-    saveNickname: (nickname) => {
-      dispatch(ProfileActions.saveNickname(nickname));
+    saveNickname: (id, nickname) => {
+      dispatch(ProfileActions.saveNickname(id, nickname));
     },
     savePhoto: () => {
       dispatch(ProfileActions.savePhoto());
