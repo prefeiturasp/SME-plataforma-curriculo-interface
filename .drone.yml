@@ -7,22 +7,23 @@ clone:
 
 steps:
 - name: interface
-  image: plugins/docker
-
-  settings:
-    secrets: [ API_URL, docker_repo, docker_username, docker_password, docker_registry ]
-    build_args_from_env: [ API_URL ]
-    build_args:
-      - APP_ENV=production
-    repo: 
+  image: docker
+  environment:
+    API_URL: 
+      from_secret: API_URL
+    DOCKER_REPO: 
       from_secret: docker_repo
-    username:
+    DOCKER_USERNAME: 
       from_secret: docker_username
-    password:
-      from_secret: docker_password 
-    registry: 
+    DOCKER_PASSWORD: 
+      from_secret: docker_password
+    DOCKER_REGISTRY: 
       from_secret: docker_registry
-    
+  commands:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker -f docker-compose.yml -f docker-compose-staging.yml push interface
+
+      
   branches:
   - devops
   - master
