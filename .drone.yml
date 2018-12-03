@@ -21,7 +21,7 @@ steps:
       from_secret: docker_registry
   commands:
   - echo $DOCKER_USERNAME
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
   - docker -f docker-compose.yml -f docker-compose-staging.yml push interface
 
       
