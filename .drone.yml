@@ -22,7 +22,7 @@ steps:
   commands:
   - echo $DOCKER_USERNAME
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
-  - docker -f docker-compose.yml -f docker-compose-staging.yml push interface
+  - docker push $DOCKER_REGISTRY/$DOCKER_REPO
 
       
   branches:
