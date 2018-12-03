@@ -56,11 +56,16 @@ function doFetch(method, url, data, action1, action2) {
     };
 
     fetch(`${API_URL}${url}`, request)
-      .then(response => {
-        response.json().then(data => {
+      .then(response => response.text())
+      .then(text => {
+        try {
+          const data = JSON.parse(text);
           dispatch({ type: BodyActions.HIDE_LOADING });
           dispatch({ data, type: action2 });
-        });
+        } catch (e) {
+          dispatch({ type: BodyActions.HIDE_LOADING });
+          dispatch({ type: action2 });
+        }
       });
   };
 }

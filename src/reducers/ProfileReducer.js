@@ -2,9 +2,10 @@ import ProfileActions from '../actions/ProfileActions';
 
 const initialState = {
   id: 0,
+  isUploading: false,
   name: '',
   nickname: '',
-  photo: '',
+  photo: null,
 };
 
 function ProfileReducer(state = initialState, action) {
@@ -36,11 +37,13 @@ function ProfileReducer(state = initialState, action) {
     case ProfileActions.SAVE_PHOTO:
       return {
         ...state,
+        isUploading: true,
       };
 
     case ProfileActions.SAVED_PHOTO:
       return {
         ...state,
+        isUploading: false,
       };
   
     default:

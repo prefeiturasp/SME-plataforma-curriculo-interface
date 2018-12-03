@@ -14,17 +14,22 @@ const ProfileActions = {
   saveNickname(id, nickname) {
     return putData(
       `/api/professores/${id}`,
-      { 'teacher[nickname]': nickname },
+      {
+        'teacher[nickname]': nickname
+      },
       ProfileActions.SAVE_NICKNAME,
-      ProfileActions.SAVED_NICKNAME
+      ProfileActions.SAVED_NICKNAME,
     );
   },
-  savePhoto() {
+  savePhoto(id, photo) {
+    console.log('savePhoto');
     return postData(
-      '/api/professores/',
-      {},
+      `/api/professores/${id}/avatar`,
+      {
+        'teacher[avatar]': photo
+      },
       ProfileActions.SAVE_PHOTO,
-      ProfileActions.SAVED_PHOTO
+      ProfileActions.SAVED_PHOTO,
     );
   },
 };

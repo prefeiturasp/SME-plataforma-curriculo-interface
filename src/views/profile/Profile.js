@@ -6,33 +6,16 @@ import { connect } from 'react-redux';
 import ProfileActions from '../../actions/ProfileActions';
 import SimpleFooter from '../common/SimpleFooter';
 import SimpleHeader from '../common/SimpleHeader';
-import imgHome from '../../images/imgHome.jpg';
 import styles from './Profile.scss';
+import { API_URL } from '../../constants';
 
 class Profile extends Component {
   state = {
     isUploading: false,
     name: '',
     nickname: '',
-    progress: 0,
+    photo: null,
   };
-
-  startUpload = () => {
-    setTimeout(this.finishUpload, 2000);
-
-    this.setState({
-      ...this.state,
-      isUploading: true,
-      progress: 0,
-    });
-  }
-
-  finishUpload = () => {
-    this.setState({
-      ...this.state,
-      isUploading: false,
-    })
-  }
 
   onChangedNickname = (e) => {
     this.setState({
@@ -41,14 +24,23 @@ class Profile extends Component {
     });
   }
 
-  onClickedAddPhoto = () => {
-    this.startUpload();
-    this.props.savePhoto();
+  onClickedAddPhoto = (e) => {
+    const files = Array.from(e.target.files);
+    const file = files[0];
+    this.props.savePhoto(this.props.data.id, file);
+
+    const reader  = new FileReader();
+    reader.onloadend = () => {
+      this.setState({
+        ...this.state,
+        photo: reader.result,
+      });
+    }
+    reader.readAsDataURL(file);
   }
 
-  onClickedChangePhoto = () => {
-    this.startUpload();
-    this.props.savePhoto();
+  onClickedChangePhoto = (e) => {
+    this.onClickedAddPhoto(e);
   }
 
   onClickedDeletePhoto = () => {
@@ -69,6 +61,14 @@ class Profile extends Component {
         ...this.state,
         name: this.props.data.name,
         nickname: this.props.data.nickname,
+        photo: API_URL + this.props.data.photo,
+      });
+    }
+
+    if (this.props.data.isUploading !== prevProps.data.isUploading) {
+      this.setState({
+        ...this.state,
+        isUploading: this.props.data.isUploading,
       });
     }
   }
@@ -96,9 +96,11 @@ class Profile extends Component {
     } else if (hasImage) {
       actions = (
         <div className={styles.actions}>
-          <button onClick={this.onClickedChangePhoto}>
-            Alterar
-          </button>
+          <input
+            id="photo"
+            type="file"
+            onChange={this.onClickedAddPhoto}
+          />
           <span>&middot;</span>
           <button onClick={this.onClickedDeletePhoto}>
             Deletar
@@ -108,9 +110,11 @@ class Profile extends Component {
     } else {
       actions = (
         <div className={styles.actions}>
-          <button onClick={this.onClickedAddPhoto}>
-            Adicionar foto
-          </button>
+          <input
+            id="photo"
+            type="file"
+            onChange={this.onClickedAddPhoto}
+          />
         </div>
       );
     }
@@ -122,13 +126,13 @@ class Profile extends Component {
           {progress}
           <img
             className={styles.image}
-            src={imgHome}
+            src={this.state.photo}
             alt={this.state.name}
           />
         </div>
       );
     } else {
-      const letter = this.state.nickname.length ? this.state.nickname.charAt(0).toUpperCase() : '';
+      const letter = this.state.nickname ? this.state.nickname.charAt(0).toUpperCase() : '';
 
       imageOrLetter = (
         <div className={styles.imageWrapper}>
@@ -209,8 +213,8 @@ const mapDispatchToProps = dispatch => {
     saveNickname: (id, nickname) => {
       dispatch(ProfileActions.saveNickname(id, nickname));
     },
-    savePhoto: () => {
-      dispatch(ProfileActions.savePhoto());
+    savePhoto: (id, photo) => {
+      dispatch(ProfileActions.savePhoto(id, photo));
     },
   };
 };
