@@ -1,0 +1,14 @@
+@import '../../variables';
+@import '../../tools';
+
+.wrapper {
+  border: 1px solid $grey-200;
+  border-radius: rem(1);
+  margin-bottom: rem(50);
+
+  > h3 {
+    font-size: rem(16);
+    line-height: rem(22);
+    margin: rem(21) rem(24) !important;
+  }
+}
