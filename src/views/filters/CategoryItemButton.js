@@ -5,7 +5,7 @@ import FiltersActions from '../../actions/FiltersActions';
 import styles from './CategoryItemButton.css';
 
 class CategoryItemButton extends Component {
-  onClicked() {
+  onClicked = () => {
     this.props.toggleFilter(this.props.data);
   }
 
@@ -14,7 +14,7 @@ class CategoryItemButton extends Component {
     
     return (
       <li>
-        <button className={classes.join(' ')} onClick={this.onClicked.bind(this)}>
+        <button className={classes.join(' ')} onClick={this.onClicked}>
           <div className={styles.check}>
             <div className={styles.checkMark}></div>
           </div>

@@ -2,27 +2,25 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { animationStatus: null };
-  }
-
-  onClickedClose() {
+  state = { animationStatus: null };
+  
+  onClickedClose = () => {
     this.context.router.history.goBack();
   }
 
-  onEntered() {
+  onEntered = () => {
     this.setState({ animationStatus: 'entered' });
   }
 
   componentDidMount() {
-    this.props.showPopup();
+    disableBodyScroll(document.querySelector('#knowledgeMatrixItem'));
     if (this.props.data.length <= 0) {
       this.props.load();
       this.setState({ animationStatus: 'appeared' });
@@ -38,13 +36,13 @@ class KnowledgeMatrixItem extends Component {
       const data = this.props.data.filter(item => item.sequence === index)[0];
       if (data) {
         this.setState({ animationStatus: 'enter' });
-        setTimeout(this.onEntered.bind(this), 1000);
+        setTimeout(this.onEntered, 1000);
       }
     }
   }
 
   componentWillUnmount() {
-    this.props.hidePopup();
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -60,7 +58,7 @@ class KnowledgeMatrixItem extends Component {
     }
 
     return (
-      <section className={classes.join(' ')}>
+      <section className={classes.join(' ')} id="knowledgeMatrixItem">
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
@@ -79,7 +77,7 @@ class KnowledgeMatrixItem extends Component {
                   Ver Sequências de Atividades Relacionadas
                 </NavLink>
               </div>
-              <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+              <button className={styles.close} onClick={this.onClickedClose}>
                 <img src={iconCloseBig} alt="Fechar" />
               </button>
             </div>
@@ -97,8 +95,6 @@ KnowledgeMatrixItem.contextTypes = {
 KnowledgeMatrixItem.propTypes = {
   data: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -112,12 +108,6 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(BodyActions.showLoading());
       dispatch(KnowledgeMatrixActions.load());
-    },
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
-    },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
     },
   };
 };

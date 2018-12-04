@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TimelineLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
 import GenericItem from '../common/GenericItem';
 import Loading from '../util/Loading';
+import Page from '../common/Page';
 import YearButton from './YearButton';
 import getWindowWidth from '../util/getWindowWidth';
 import iconChevronLeft from '../../images/iconChevronLeft.svg';
@@ -16,15 +18,13 @@ import iconWarning from '../../images/iconWarning.svg';
 import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {
-  constructor(props) {
-    super(props);
-    this.refFilters = React.createRef();
-    this.refLoading = React.createRef();
-    this.refResults = React.createRef();
-    this.tl = new TimelineLite();
-  }
+  refFilters = React.createRef();
+  refLoading = React.createRef();
+  refResults = React.createRef();
+  tl = new TimelineLite();
+  target= null;
 
-  onClickedBack() {
+  onClickedBack = () => {
     this.props.hideResults();
 
     this.tl.kill();
@@ -33,12 +33,12 @@ class LearningObjectives extends Component {
     this.tl.to(this.refFilters.current, 0.2, { opacity: 1, display: 'block' });
   }
 
-  onClickedClose() {
+  onClickedClose = () => {
+    clearAllBodyScrollLocks();
     this.props.hideObjectives();
-    this.props.hidePopup();
   }
 
-  onClickedNext() {
+  onClickedNext = () => {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
@@ -49,23 +49,24 @@ class LearningObjectives extends Component {
       this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
       
       if (getWindowWidth() < 768) {
-        this.props.showPopup();
+        disableBodyScroll(this.target);
       }
     } else {
-      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
+      this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
     }
   }
 
-  onClickedSee() {
+  onClickedSee = () => {
     this.props.showObjectives();
     
     if (getWindowWidth() < 768) {
-      this.props.showPopup();
+      disableBodyScroll(this.target);
     }
   }
 
   componentDidMount() {
     this.props.load();
+    this.target = document.querySelector('#learningObjectives');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -79,7 +80,7 @@ class LearningObjectives extends Component {
   }
 
   componentWillUnmount() {
-    this.props.hidePopup();
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -119,7 +120,8 @@ class LearningObjectives extends Component {
     const classes2 = this.props.isShowingResults || totalWidth >= 768 ? [styles.results, styles.isVisible] : [styles.results];
     
     return (
-      <section className={styles.wrapper}>
+      <Page>
+      <section className={styles.wrapper} id="learningObjectives">
         <header className={styles.header}>
           <div className="row">
             <div className="col-md-8 offset-md-2">
@@ -147,7 +149,7 @@ class LearningObjectives extends Component {
                 <strong>0X</strong> Ano de Escolaridade;<br />
                 <strong>CXX</strong> Componente curricular Ciências Naturais seguido da sequência de objetivos de aprendizagem e desenvolvimento desse componente.
               </p>
-              <button className={styles.btnObjectives} onClick={this.onClickedSee.bind(this)}>
+              <button className={styles.btnObjectives} onClick={this.onClickedSee}>
                 Ver os objetivos relacionados
               </button>
             </div>
@@ -187,12 +189,12 @@ class LearningObjectives extends Component {
             </div>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <button className={styles.next} onClick={this.onClickedNext.bind(this)}>
+                <button className={styles.next} onClick={this.onClickedNext}>
                   Avançar
                 </button>
               </div>
             </div>
-            <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+            <button className={styles.close} onClick={this.onClickedClose}>
               <img src={iconCloseBig} alt="Fechar" />
             </button>
           </div>
@@ -203,7 +205,7 @@ class LearningObjectives extends Component {
             <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <button className={styles.back} onClick={this.onClickedBack.bind(this)}>
+                <button className={styles.back} onClick={this.onClickedBack}>
                   <img src={iconChevronLeft} alt="Voltar" />
                   Voltar
                 </button>
@@ -216,12 +218,13 @@ class LearningObjectives extends Component {
                 </ul>
               </div>
             </div>
-            <button className={styles.close} onClick={this.onClickedBack.bind(this)}>
+            <button className={styles.close} onClick={this.onClickedBack}>
               <img src={iconCloseBig} alt="Fechar" />
             </button>
           </div>
         </div>
       </section>
+      </Page>
     );
   }
 }
@@ -233,12 +236,11 @@ LearningObjectives.propTypes = {
   isShowingResults: PropTypes.bool.isRequired,
   load: PropTypes.func.isRequired,
   hideObjectives: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -259,23 +261,17 @@ const mapDispatchToProps = dispatch => {
     hideObjectives: () => {
       dispatch(LearningObjectivesActions.hideObjectives());
     },
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
-    },
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
     },
     search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
     },
-    showModal: (message) => {
-      dispatch(BodyActions.showModal(message));
+    showAlert: (message) => {
+      dispatch(BodyActions.showAlert(message));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());
-    },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
     },
   };
 };

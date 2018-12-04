@@ -6,14 +6,14 @@ import iconChevronRight from '../../images/iconChevronRight.svg';
 import styles from './CategoryButton.css';
 
 class CategoryButton extends Component {
-  onClicked() {
+  onClicked = () => {
     this.props.showCategory(this.props.data);
   }
 
   render() {
     return (
       <li>
-        <button className={styles.wrapper} onClick={this.onClicked.bind(this)}>
+        <button className={styles.wrapper} onClick={this.onClicked}>
           {this.props.data.name}
           <img
             src={iconChevronRight}

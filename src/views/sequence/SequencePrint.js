@@ -12,7 +12,7 @@ import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
 import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
 import convertQuillToHtml from '../util/convertQuillToHtml';
 import iconClock from '../../images/iconClock.svg';
-import styles from './Sequence.css';
+import styles from './Sequence.scss';
 
 let hasPrinted = false;
 

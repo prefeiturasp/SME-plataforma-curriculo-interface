@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
+import Page from '../common/Page';
 import RoadmapActions from '../../actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
 import styles from './Roadmap.css';
@@ -23,6 +24,7 @@ class Roadmap extends Component {
     });
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className="row">
@@ -47,6 +49,7 @@ class Roadmap extends Component {
           </NavLink>
         </footer>
       </section>
+      </Page>
     );
   }
 }

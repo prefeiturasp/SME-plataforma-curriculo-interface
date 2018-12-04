@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './CurricularComponentButton.css';
 
 class CurricularComponentButton extends Component {
-  onClicked() {
+  onClicked = () => {
     this.props.toggleFilter(this.props.data);
   }
 
@@ -16,7 +16,7 @@ class CurricularComponentButton extends Component {
     
     return (
       <li>
-        <button className={classes.join(' ')} style={style} onClick={this.onClicked.bind(this)}>
+        <button className={classes.join(' ')} style={style} onClick={this.onClicked}>
           {this.props.data.name}
         </button>
       </li>

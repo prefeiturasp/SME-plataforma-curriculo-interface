@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 import BodyActions from '../../actions/BodyActions';
 import FiltersActions from '../../actions/FiltersActions';
 import SequencesActions from '../../actions/SequencesActions';
@@ -13,23 +14,20 @@ import iconWarning from '../../images/iconWarning.svg';
 import styles from './FilterPanel.css';
 
 class FilterPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = React.createRef();
-  }
-
+  ref = React.createRef();
+  
   onClickedSearch() {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
-      this.props.hidePopup();
+      clearAllBodyScrollLocks();
     } else {
-      this.props.showModal('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
+      this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
     }
   }
 
   onClickedClose() {
-    this.props.hidePopup();
+    clearAllBodyScrollLocks();
     this.props.togglePanel();
   }
 
@@ -120,11 +118,11 @@ class FilterPanel extends Component {
             </div>
           </div>
           <footer className={styles.footer}>
-            <button className={styles.button} onClick={this.onClickedSearch.bind(this)}>
+            <button className={styles.button} onClick={this.onClickedSearch}>
               Buscar Sequência
             </button>
           </footer>
-          <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+          <button className={styles.close} onClick={this.onClickedClose}>
             <img src={iconCloseBig} alt="Fechar" />
           </button>
         </div>
@@ -136,10 +134,9 @@ class FilterPanel extends Component {
 FilterPanel.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
-  hidePopup: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showModal: PropTypes.func.isRequired,
+  showAlert: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -152,9 +149,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
-    },
     load: () => {
       dispatch(FiltersActions.load());
     },
@@ -162,8 +156,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(FiltersActions.search());
       dispatch(SequencesActions.search(filters));
     },
-    showModal: (message) => {
-      dispatch(BodyActions.showModal(message));
+    showAlert: (message) => {
+      dispatch(BodyActions.showAlert(message));
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());

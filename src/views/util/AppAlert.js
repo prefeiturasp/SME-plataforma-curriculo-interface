@@ -8,21 +8,21 @@ import iconWarningBig from '../../images/iconWarningBig.svg';
 
 Modal.setAppElement('#root');
 
-class AppModal extends Component {
+class AppAlert extends Component {
   onClickedClose() {
-    this.props.hideModal();
+    this.props.hideAlert();
   }
 
   render() {
     return (
       <Modal
-        className="modal"
+        className="alert"
         overlayClassName="overlay"
         contentLabel="Example Modal"
-        isOpen={this.props.hasModal}
-        onRequestClose={this.props.hideModal}
+        isOpen={this.props.hasAlert}
+        onRequestClose={this.props.hideAlert}
         shouldCloseOnOverlayClick={true}>
-        <button onClick={this.props.hideModal}>
+        <button onClick={this.props.hideAlert}>
           <img src={iconClose} alt="Fechar" />
         </button>
         <p>
@@ -34,24 +34,24 @@ class AppModal extends Component {
   }
 }
 
-AppModal.propTypes = {
-  hasModal: PropTypes.bool,
-  hideModal: PropTypes.func.isRequired,
+AppAlert.propTypes = {
+  hasAlert: PropTypes.bool,
+  hideAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    hasModal: state.BodyReducer.hasModal,
+    hasAlert: state.BodyReducer.hasAlert,
     message: state.BodyReducer.message,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    hideModal: () => {
-      dispatch(BodyActions.hideModal());
+    hideAlert: () => {
+      dispatch(BodyActions.hideAlert());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppModal);
+export default connect(mapStateToProps, mapDispatchToProps)(AppAlert);

@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
 import HomeActions from '../../actions/HomeActions';
 import GridItem from './GridItem';
+import Page from '../common/Page';
 import iconActivities from '../../images/iconActivities.svg';
 import iconCurriculum from '../../images/iconCurriculum.svg';
 import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
@@ -33,6 +34,7 @@ class Home extends Component {
     });
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header} style={style}>
           <div className="container">
@@ -119,6 +121,7 @@ class Home extends Component {
           </div>
         </div>
       </section>
+      </Page>
     );
   }
 }

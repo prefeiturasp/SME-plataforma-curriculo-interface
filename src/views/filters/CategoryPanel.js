@@ -15,7 +15,7 @@ function isCategoryOneOf(category, list) {
 }
 
 class CategoryPanel extends Component {
-  onClickedClose() {
+  onClickedClose = () => {
     this.props.hideCategory();
   }
 
@@ -88,7 +88,7 @@ class CategoryPanel extends Component {
     return (
       <div className={classes.join(' ')}>
         <header className={styles.header}>
-          <button className={styles.backArrow} onClick={this.onClickedClose.bind(this)}>
+          <button className={styles.backArrow} onClick={this.onClickedClose}>
             <img src={iconArrowLeft} alt="Voltar" />
           </button>
           <h3>Filtros</h3>
@@ -101,11 +101,11 @@ class CategoryPanel extends Component {
           {items}
         </ul>
         <footer className={styles.footer}>
-          <button className={styles.button} onClick={this.onClickedClose.bind(this)}>
+          <button className={styles.button} onClick={this.onClickedClose}>
             Selecionar
           </button>
         </footer>
-        <button className={styles.back} onClick={this.onClickedClose.bind(this)}>
+        <button className={styles.back} onClick={this.onClickedClose}>
           <img src={iconChevronLeft} alt="Voltar" />
           Voltar
         </button>

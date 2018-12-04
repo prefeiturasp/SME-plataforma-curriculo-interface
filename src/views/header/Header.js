@@ -1,88 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Headroom from 'react-headroom';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from '../../actions/BodyActions';
-import getWindowWidth from '../util/getWindowWidth';
-import iconCloseBig from '../../images/iconCloseBig.svg';
-import iconMenu from '../../images/iconMenu.svg';
-import iconMenuWhite from '../../images/iconMenuWhite.svg';
-import logoColor from '../../images/logo.svg';
-import logoWhite from '../../images/logoWhite.svg';
-import styles from './Header.css';
+import styles from './Header.scss';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.onClickedMenu = this.onClickedMenu.bind(this);
-    this.onClickedClose = this.onClickedClose.bind(this);
-    this.state = { isMenuExpanded: false };
-  }
-
-  onClickedMenu() {
-    this.setState({ isMenuExpanded: true });
-
-    if (getWindowWidth() < 768) {
-      this.props.showPopup();
-    }
-  }
-
-  onClickedClose() {
-    this.setState({ isMenuExpanded: false });
-    this.props.hidePopup();
+  onClickedToggler = () => {
+    this.props.showMobileMenu();
   }
   
   render() {
-    const classes = this.state.isMenuExpanded ? [styles.menu, styles.isMenuExpanded] : [styles.menu];
-
-    const icon = this.props.isHome && !this.props.hasScrolled ? iconMenuWhite : iconMenu;
-    const logo = this.props.isHome && !this.props.hasScrolled ? logoWhite : logoColor;
-
     const data = [
       {
         to: '/',
         label: 'Home',
-        isSub: false,
       },
       {
         to: '/sequencias',
         label: 'Sequências de Atividades',
-        isSub: false,
       },
       {
         to: '/curriculo',
         label: 'Currículo da Cidade',
-        isSub: false,
-      },
-      {
-        to: '/ods',
-        label: 'Objetivos de Desenvolvimento Sustentável',
-        isSub: true,
-      },
-      {
-        to: '/matriz-de-saberes',
-        label: 'Matriz de Saberes',
-        isSub: true,
-      },
-      {
-        to: '/objetivos-de-aprendizagem',
-        label: 'Objetivos de Aprendizagem',
-        isSub: true,
       },
       {
         to: '/descobrir',
         label: 'O que vem por aí',
-        isSub: false,
       },
     ];
 
     const links = data.map((item, i) => {
-      const klass = item.isSub ? styles.sub : null;
       return (
         <NavLink
           key={i}
           to={item.to}
-          className={klass}
           onClick={this.onClickedClose}>
           {item.label}
         </NavLink>
@@ -90,50 +43,37 @@ class Header extends Component {
     })
 
     return (
-      <header className={styles.wrapper}>
-        <NavLink to="/">
-          <div className={styles.logo}>
-            <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
-            <h1>Currículo Digital da Cidade de São Paulo</h1>
-          </div>
-        </NavLink>
-        <nav className={classes.join(' ')}>
-          {links}
-          <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
-            <img src={iconCloseBig} alt="Fechar" />
-          </button>
-        </nav>
-        <button className={styles.toggler} onClick={this.onClickedMenu.bind(this)}>
-          <img src={icon} alt="Menu" />
-        </button>
-      </header>
+      <Headroom disableInlineStyles downTolerance={70}>
+        <header className={styles.wrapper}>
+          <NavLink to="/">
+            <div className={styles.logo}>
+              <span className={styles.logoImage} />
+              <h1>Currículo Digital da Cidade de São Paulo</h1>
+            </div>
+          </NavLink>
+          <nav className={styles.menu}>
+            {links}
+          </nav>
+          <button
+            className={styles.toggler}
+            onClick={this.onClickedToggler}
+          />
+        </header>
+      </Headroom>
     );
   }
 }
 
 Header.propTypes = {
-  hasScrolled: PropTypes.bool.isRequired,
-  isHome: PropTypes.bool.isRequired,
-  hidePopup: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => {
-  return {
-    hasScrolled: state.BodyReducer.hasScrolled,
-    isHome: state.BodyReducer.isHome,
-  };
+  showMobileMenu: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
-    },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
+    showMobileMenu: () => {
+      dispatch(BodyActions.showMobileMenu());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import Page from '../common/Page';
 import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
 import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
 import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
@@ -11,6 +12,7 @@ class Curriculum extends Component {
     const style = { backgroundImage: `url(${imgCurriculum})` };
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className={styles.image} style={style}>
@@ -58,6 +60,7 @@ class Curriculum extends Component {
           </li>
         </ul>
       </section>
+      </Page>
     );
   }
 }
