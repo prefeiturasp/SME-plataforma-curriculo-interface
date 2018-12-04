@@ -8,9 +8,15 @@ import { API_URL } from '../../constants';
 import ActivityActions from '../../actions/ActivityActions';
 import BodyActions from '../../actions/BodyActions';
 import GenericItem from '../common/GenericItem';
+import ModuleExercise from './ModuleExercise';
+import ModuleGallery from './ModuleGallery';
+import ModuleImage from './ModuleImage';
+import ModuleLongText from './ModuleLongText';
+import ModuleQuestion from './ModuleQuestion';
+import ModuleStudent from './ModuleStudent';
 import ModuleTable from './ModuleTable';
+import ModuleTeacher from './ModuleTeacher';
 import Page from '../common/Page';
-import ReadMore from '../util/ReadMore';
 import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
@@ -191,45 +197,13 @@ class Activity extends Component {
                   ['Ice cream sandwich', 237, 9.0],
                 ]}
               />
-              <div className={styles.moduleTeacher}>
-                <h4>Professor(a):</h4>
-                <p>Apresentar a história de Beethoven e possibilitar a escuta de algumas de suas composições, pode enriquecer essa contextualização, além de ampliar o repertório musical das crianças. Há alguns vídeos na internet que, além de possibilitarem a escuta de trechos de composições, abordam aspectos da biografia de Beethoven, tais como:</p>
-                <p>Durante o próximo exercício que é a observação das imagens é importante que você interaja com os(as) estudantes, buscando que eles(as) descrevam cada uma delas. Além disso, poderá questioná-los(las) sobre quais tipos de sons podem ser presenciados em cada uma das situações.</p>
-              </div>
-              <div className={styles.moduleStudent}>
-                <h4>Para o(a) estudante:</h4>
-                <p>Essa atividade tem como abordagens temáticas as práticas e processos de investigação, propiciando a utilização de diferentes ferramentas e recursos para propor as estratégias e hipóteses para resolver as situações observadas. A prática científica tem como plano de trabalho a transformação de curiosidades em ações de investigação. Ciclo investigativo: conceitualização e investigação.</p>
-              </div>
-              <div className={styles.moduleQuestion}>
-                <h5>
-                  <div>1</div>
-                  <div>Leia o texto abaixo:</div>
-                </h5>
-                <p>Você já ouviu falar no grande compositor musical chamado Ludwing Van Beethoven? Ele nasceu em 1770 na Alemanha e ficou bastante famoso e conhecido em todo o mundo por suas canções clássicas. Porém, aos 26 anos de idade, foi acometido por um sério problema de audição, tornando-se completamente surdo.</p>
-                <p>Apesar deste lamentável problema com a surdez, Beethoven continuou por um período a compor, tocar seu piano e a encantar as pessoas com suas belas músicas. Ele dizia que o som não entrava somente pelo seu canal auditivo, mas sim por todo o seu crânio. Por isso, chegou a usar baquetas feitas de madeira entre os seus dentes para apoiar sobre o piano, pois assim podia sentir as notas de suas composições.</p>
-                <p className={styles.moduleSource}>Fonte: Adaptado de <em>A Surdez de Beethoven, o Desafio de um Gênio</em></p>
-              </div>
-              <div className={styles.moduleExercise}>
-                <h5>Roda de conversa</h5>
-                <p>Converse com seus colegas sobre como vocês imaginam ser possível alguém que não escuta poder compor e tocar músicas.</p>
-                <ol>
-                  <li>Desenhe e explique, em seu caderno, como você acha que os sons são produzidos e percebidos pelas pessoas que escutam.</li>
-                  <li>Desenhe e explique como você acha que Beethoven conseguia perceber o som de suas composições ao piano.</li>
-                </ol>
-              </div>
-              <div className={styles.moduleLongText}>
-                <h5>Narrativa de Victor Frankenstein</h5>
-                <ReadMore
-                  lines={15}
-                  children="Como pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?<br/>Era o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.<br/>Dois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.<br/>Como pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?<br/>Era o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.<br/>Dois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas."
-                />
-              </div>
-              <div className={styles.moduleGallery}>
-              </div>
-              <div className={styles.moduleImage}>
-                <img src="#" alt="Lorem ipsum" />
-                <p className={styles.moduleSource}>Fonte: Adaptado de <em>A Surdez de Beethoven, o Desafio de um Gênio</em></p>
-              </div>
+              <ModuleTeacher />
+              <ModuleStudent />
+              <ModuleQuestion />
+              <ModuleExercise />
+              <ModuleLongText />
+              <ModuleGallery />
+              <ModuleImage />
             </div>
             <div className={styles.description} dangerouslySetInnerHTML={{__html: content}} />
           </div>
