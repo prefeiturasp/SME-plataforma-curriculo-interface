@@ -27,7 +27,7 @@ steps:
   - docker push registry.curriculo.jurema.la/interface:latest
     
   branches:
-  - devops
+  - devops 
   - master
 
   volumes:
