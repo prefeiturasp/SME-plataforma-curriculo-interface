@@ -35,14 +35,16 @@ steps:
 - name: ssh
   image: appleboy/drone-ssh
   settings: 
-    host: curriculo.jurema.la
+    host: 
+      from_secret: SSH_HOST
     username: 
       from_secret: SSH_USERNAME
     port: 22
     key: 
       from_secret: SSH_KEY
     script:
-      - pwd
+      - cd SME-plataforma-curriculo
+      - ./deploy.sh
 
 volumes:
 - name: docker
