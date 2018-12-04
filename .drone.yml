@@ -37,8 +37,8 @@ steps:
   host: curriculo.jurema.la
   username: root
   port: 22
-  secrets: [ SSH_KEY ]
-  key: [ SSH_KEY ]
+  key: 
+    from_secret: SSH_KEY
 
 volumes:
 - name: docker
