@@ -14,7 +14,7 @@ RUN npm install -g serve
 
 COPY . ./
 
-RUN echo "export const API_URL3333 = '${API_URL}'" > src/constants.js
+RUN echo "export const API_URL = '${API_URL}'" > src/constants.js
 
 CMD if [ ${APP_ENV} = production ]; \
 	then \

@@ -4,7 +4,6 @@ name: default
 clone:
   depth: 50
 
-
 steps:
 - name: interface
   image: docker
@@ -27,7 +26,7 @@ steps:
   - docker push $DOCKER_REGISTRY/interface:latest    
   branches:
   - devops 
-  - master
+  - staging-v2
   volumes:
   - name: docker
     path: /var/run/docker.sock
@@ -44,7 +43,11 @@ steps:
       from_secret: SSH_KEY
     script:
       - cd SME-plataforma-curriculo
-      - ./deploy.sh
+      - chmod +x full_deploy.sh
+      - ./full_deploy.sh
+  branches:
+  - devops 
+  - staging-v2
 
 volumes:
 - name: docker
