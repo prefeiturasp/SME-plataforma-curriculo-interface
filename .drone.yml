@@ -32,6 +32,14 @@ steps:
   - name: docker
     path: /var/run/docker.sock
 
+- name: ssh
+  image: appleboy/drone-ssh
+  host: curriculo.jurema.la
+  username: root
+  port: 22
+  secrets: [ SSH_KEY ]
+  key: [ SSH_KEY ]
+
 volumes:
 - name: docker
   host:
