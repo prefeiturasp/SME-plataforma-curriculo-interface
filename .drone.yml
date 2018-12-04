@@ -41,6 +41,8 @@ steps:
     port: 22
     key: 
       from_secret: SSH_KEY
+    script:
+      - pwd
 
 volumes:
 - name: docker
