@@ -28,20 +28,18 @@ steps:
   branches:
   - devops 
   - master
-
-pipeline:
-  ssh:
-    image: appleboy/drone-ssh
-    host: curriculo.jurema.la
-    username: ec2-user
-    key: ${SSH_key}
-    port: 22
-    script:
-      - ls
-
   volumes:
   - name: docker
     path: /var/run/docker.sock
+    
+- name: ssh
+  image: appleboy/drone-ssh
+  host: curriculo.jurema.la
+  username: ec2-user
+  key: ${SSH_key}
+  port: 22
+  script:
+    - ls
 
 volumes:
 - name: docker
