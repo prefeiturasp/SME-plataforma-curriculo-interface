@@ -1,1 +1,1 @@
-teste = 'http://localhost/'
+export const API_URL = ''
