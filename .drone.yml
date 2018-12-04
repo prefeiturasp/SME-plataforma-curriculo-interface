@@ -34,11 +34,12 @@ steps:
 
 - name: ssh
   image: appleboy/drone-ssh
-  host: curriculo.jurema.la
-  username: root
-  port: 22
-  key: 
-    from_secret: SSH_KEY
+  settings: 
+    host: curriculo.jurema.la
+    username: root
+    port: 22
+    key: 
+      from_secret: SSH_KEY
 
 volumes:
 - name: docker
