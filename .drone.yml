@@ -36,7 +36,8 @@ steps:
   image: appleboy/drone-ssh
   settings: 
     host: curriculo.jurema.la
-    username: root
+    username: 
+      from_secret: SSH_USERNAME
     port: 22
     key: 
       from_secret: SSH_KEY
