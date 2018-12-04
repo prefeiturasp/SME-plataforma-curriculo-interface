@@ -2,5 +2,10 @@
 @import '../../tools';
 
 .wrapper {
+  margin-bottom: rem(40);
 
+  > h4 {
+    font-size: rem(18);
+    margin-bottom: rem(22);
+  }
 }

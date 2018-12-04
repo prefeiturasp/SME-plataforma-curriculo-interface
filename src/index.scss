@@ -138,22 +138,19 @@ a:hover {
 }
 
 :global(.quill-text) {
-  h1,
-  h2,
-  h3,
-  h4 {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
+  font-size: rem(16);
+  line-height: rem(21);
 
   h1 { font-size: 1.875rem; margin-bottom: 2rem; }
   h2 { font-size: 1.3125rem; }
   h3 { font-size: 1.125rem; }
-  h4 { font-size: 1rem; }
+  
+  h4 {
+    font-size: rem(16);
+    line-height: rem(36);
+    margin-bottom: rem(12);
+  }
+
   hr { margin: 2rem 0; }
 
   blockquote {
@@ -165,24 +162,59 @@ a:hover {
     padding: 1.25rem;
   }
 
-  ol,
-  ul {
-    list-style-position: inside;
+  ul,
+  ol {
+    list-style: none;
+
+    > li {
+      margin-bottom: rem(16);
+      padding-left: rem(24);
+      text-indent: rem(-24);
+    }
   }
 
-  li {
-    margin-bottom: 0.5rem;
+  ol {
+    counter-reset: ol-counter;
+
+    > li {
+      counter-increment: ol-counter;
+    } 
   }
 
-  ul li:before {
-    content: '\2013';
+  ul > li:before {
+    color: $grey-600;
+    content: '\2022';
     display: inline-block;
-    margin-right: 0.25rem;
+    margin-right: rem(22);
+    text-indent: 0;
   }
-
+  
+  ol > li:before {
+    content: counter(ol-counter) ". ";
+    display: inline-block;
+    margin-right: rem(11);
+    text-indent: 0;
+  }
+  
   br {
     content: '';
     display: block;
     margin-bottom: 1.5rem;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+:global(.source) {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(21);
+
+  > em {
+    font-style: normal;
+    text-decoration: underline;
   }
 }

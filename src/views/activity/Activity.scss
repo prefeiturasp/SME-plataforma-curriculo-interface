@@ -2,17 +2,7 @@
 @import '../../tools';
 
 .wrapper {
-  h4 {
-    font-size: rem(20);
-    font-weight: 600;
-    margin-top: 1.9375rem;
-    margin-bottom: 0.5rem;
-    text-align: left;
-  }
-
-  ul {
-    list-style: none;
-  }
+  
 }
 
 :global(.sticky-inner-wrapper) {
@@ -177,8 +167,6 @@
   composes: col-md-8 from global;
   composes: offset-md-2 from global;
   composes: quill-text from global;
-  font-size: 1rem;
-  line-height: 1.5rem;
   margin-left: 0;
   margin-right: 0;
 }
@@ -233,15 +221,7 @@
     display: flex !important;
   }
 
-  .wrapper h4 {
-    font-size: 2.125rem;
-    margin-top: 3rem;
-    margin-bottom: 1.5625rem;
-    text-align: center;
-  }
-
   .description {
-    font-size: 1.125rem;
     margin-top: 2.1875rem;
     margin-left: 12rem;
     margin-right: 12rem;

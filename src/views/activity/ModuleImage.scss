@@ -2,5 +2,8 @@
 @import '../../tools';
 
 .wrapper {
-
+  > img {
+    margin-bottom: rem(8);
+    width: 100%;
+  }
 }

@@ -2,5 +2,14 @@
 @import '../../tools';
 
 .wrapper {
+  background-color: $grey-100;
+  border-radius: rem(4);
+  font-style: italic;
+  margin-bottom: rem(46);
+  padding: rem(16);
 
+  > h4 {
+    font-style: normal;
+    margin-bottom: rem(8);
+  }
 }

@@ -49,7 +49,7 @@ class ModuleTable extends Component {
 
     return (
       <div className={styles.wrapper}>
-        <h3>Título da tabela</h3>
+        <h4>Título da tabela</h4>
         <Table>
           <TableHead>
             <TableRow>
