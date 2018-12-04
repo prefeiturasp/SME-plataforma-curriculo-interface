@@ -23,8 +23,9 @@ steps:
   - echo $DOCKER_USERNAME
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
   - docker build --build-arg API_URL=$API_URL -t interface . 
+  - docker tag interface $DOCKER_REGISTRY/$DOCKER_REPO
   - docker images
-  - docker push interface
+  - docker push $DOCKER_REGISTRY/$DOCKER_REPO
     
   branches:
   - devops
