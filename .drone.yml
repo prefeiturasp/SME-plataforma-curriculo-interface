@@ -23,7 +23,8 @@ steps:
   - echo $DOCKER_USERNAME
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
   - docker build --build-arg API_URL=$API_URL -t interface:latest . 
-  - docker push registry.curriculo.jurema.la/interface
+  - docker tag interface:latest registry.curriculo.jurema.la/interface:latest
+  - docker push registry.curriculo.jurema.la/interface:latest
     
   branches:
   - devops
