@@ -24,12 +24,20 @@ steps:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD $DOCKER_REGISTRY
   - docker build --build-arg API_URL=$API_URL -t interface:latest . 
   - docker tag interface:latest $DOCKER_REGISTRY/interface:latest
-  - docker push $DOCKER_REGISTRY/interface:latest
-  - ls /home
-    
+  - docker push $DOCKER_REGISTRY/interface:latest    
   branches:
   - devops 
   - master
+
+pipeline:
+  ssh:
+    image: appleboy/drone-ssh
+    host: curriculo.jurema.la
+    username: ec2-user
+    key: ${SSH_key}
+    port: 22
+    script:
+      - ls
 
   volumes:
   - name: docker
