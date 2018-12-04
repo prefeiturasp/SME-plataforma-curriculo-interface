@@ -16,10 +16,13 @@ function doPaginatedFetch(method, url, action1, action2) {
   return dispatch => {
     dispatch({ type: action1 });
 
-    const request = { 
-      method,
-      headers: JSON.parse(sessionStorage.getItem('user') ),
+    const request = {
+      method
     };
+
+    if (sessionStorage.getItem('user')) {
+      request.headers = JSON.parse(sessionStorage.getItem('user'));
+    }
 
     fetch(`${API_URL}${url}`, request)
       .then(response => {
