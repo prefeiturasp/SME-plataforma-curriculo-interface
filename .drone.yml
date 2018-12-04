@@ -31,12 +31,12 @@ steps:
   volumes:
   - name: docker
     path: /var/run/docker.sock
-    
+
 - name: ssh
   image: appleboy/drone-ssh
   host: curriculo.jurema.la
   username: ec2-user
-  key: ${SSH_key}
+  key: ${SSH_KEY}
   port: 22
   script:
     - ls
