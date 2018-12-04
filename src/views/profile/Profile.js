@@ -27,7 +27,7 @@ class Profile extends Component {
   onClickedAddPhoto = (e) => {
     const files = Array.from(e.target.files);
     const file = files[0];
-    this.props.savePhoto(this.props.data.id, file);
+    this.props.savePhoto(this.props.id, file);
 
     const reader  = new FileReader();
     reader.onloadend = () => {
@@ -48,7 +48,7 @@ class Profile extends Component {
   }
 
   onClickedSave = () => {
-    this.props.saveNickname(this.props.data.id, this.state.nickname);
+    this.props.saveNickname(this.props.id, this.state.nickname);
   }
 
   componentDidMount() {
@@ -56,25 +56,25 @@ class Profile extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.data.nickname !== prevProps.data.nickname) {
+    if (this.props.nickname !== prevProps.nickname) {
       this.setState({
         ...this.state,
-        name: this.props.data.name,
-        nickname: this.props.data.nickname,
-        photo: API_URL + this.props.data.photo,
+        name: this.props.name,
+        nickname: this.props.nickname,
+        photo: API_URL + this.props.photo,
       });
     }
 
-    if (this.props.data.isUploading !== prevProps.data.isUploading) {
+    if (this.props.isUploading !== prevProps.isUploading) {
       this.setState({
         ...this.state,
-        isUploading: this.props.data.isUploading,
+        isUploading: this.props.isUploading,
       });
     }
   }
 
   render() {
-    const hasImage = this.props.data.photo !== null;
+    const hasImage = this.state.photo !== null;
 
     const progress = this.state.isUploading
       ? <div className={styles.progress}>
@@ -97,10 +97,12 @@ class Profile extends Component {
       actions = (
         <div className={styles.actions}>
           <input
+            className={styles.file}
             id="photo"
             type="file"
             onChange={this.onClickedAddPhoto}
           />
+          <label htmlFor="photo">Alterar</label>
           <span>&middot;</span>
           <button onClick={this.onClickedDeletePhoto}>
             Deletar
@@ -111,10 +113,12 @@ class Profile extends Component {
       actions = (
         <div className={styles.actions}>
           <input
+            className={styles.file}
             id="photo"
             type="file"
             onChange={this.onClickedAddPhoto}
           />
+          <label htmlFor="photo">Adicionar foto</label>
         </div>
       );
     }
@@ -159,22 +163,20 @@ class Profile extends Component {
         <div className={styles.fields}>
           <div className={styles.field}>
             <TextField
-              id="nickname"
-              value={this.state.nickname}
               error={isInvalidNickname}
               fullWidth={true}
               helperText={nicknameMessage}
               label="Apelido"
               onChange={this.onChangedNickname}
+              value={this.state.nickname}
             />
           </div>
           <div className={styles.field}>
             <TextField
-              id="name"
-              value={this.state.name}
               disabled={true}
               fullWidth={true}
               label="Nome"
+              value={this.state.name}
             />
           </div>
         </div>
@@ -189,7 +191,11 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  data: PropTypes.object,
+  id: PropTypes.number,
+  isUploading: PropTypes.bool,
+  name: PropTypes.string,
+  nickname: PropTypes.string,
+  photo: PropTypes.string,
   deletePhoto: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   saveNickname: PropTypes.func.isRequired,
@@ -198,7 +204,11 @@ Profile.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    data: state.ProfileReducer,
+    id: state.ProfileReducer.id,
+    isUploading: state.ProfileReducer.isUploading,
+    name: state.ProfileReducer.name,
+    nickname: state.ProfileReducer.nickname,
+    photo: state.ProfileReducer.photo,
   };
 };
 

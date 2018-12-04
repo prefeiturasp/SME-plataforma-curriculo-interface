@@ -30,7 +30,6 @@ class MobileMenu extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log('componentDidUpdate', this.props.hasLogged);
     if (this.props.hasMobileMenu && !prevProps.hasMobileMenu) {
       disableBodyScroll(this.target);
     }

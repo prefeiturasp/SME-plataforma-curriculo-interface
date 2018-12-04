@@ -22,7 +22,6 @@ const ProfileActions = {
     );
   },
   savePhoto(id, photo) {
-    console.log('savePhoto');
     return postData(
       `/api/professores/${id}/avatar`,
       {

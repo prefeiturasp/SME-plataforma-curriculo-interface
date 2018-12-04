@@ -19,8 +19,8 @@ function ProfileReducer(state = initialState, action) {
       return {
         ...state,
         id: action.data.teacher.id,
-        name: action.data.name,
-        nickname: action.data.teacher.nickname,
+        name: action.data.name || '',
+        nickname: action.data.teacher.nickname || '',
         photo: action.data.teacher.avatar_attributes.default_url,
       };
 
