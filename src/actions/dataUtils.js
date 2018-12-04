@@ -16,12 +16,10 @@ function doPaginatedFetch(method, url, action1, action2) {
   return dispatch => {
     dispatch({ type: action1 });
 
-    const request = {
-      method
-    };
-
-    if (sessionStorage.getItem('user')) {
-      request.headers = JSON.parse(sessionStorage.getItem('user'));
+    const request = { method };
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      request.headers = JSON.parse(user);
     }
 
     fetch(`${API_URL}${url}`, request)
@@ -52,11 +50,11 @@ function doFetch(method, url, data, action1, action2) {
       body.append(key, data[key]);
     }
 
-    const request = { 
-      method,
-      body,
-      headers: JSON.parse(sessionStorage.getItem('user')),
-    };
+    const request = { method, body };
+    const user = sessionStorage.getItem('user');
+    if (user) {
+      request.headers = JSON.parse(user);
+    }
 
     fetch(`${API_URL}${url}`, request)
       .then(response => response.text())
