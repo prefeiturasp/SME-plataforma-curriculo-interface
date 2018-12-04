@@ -25,7 +25,7 @@ steps:
   - docker build --build-arg API_URL=$API_URL -t interface . 
   - docker tag interface $DOCKER_REGISTRY/$DOCKER_REPO
   - docker images
-  - docker push $DOCKER_REGISTRY/$DOCKER_REPO
+  - docker push $DOCKER_REGISTRY
     
   branches:
   - devops
