@@ -7,6 +7,11 @@
 
 :global(.image-gallery) {
   margin: 0 rem(-16) rem(8) rem(-16);
+
+  @include mq("mobile-large") {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 .item {
