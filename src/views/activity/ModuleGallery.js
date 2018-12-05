@@ -75,9 +75,10 @@ class ModuleGallery extends Component {
           showThumbnails={false}
           slideDuration={300}
         />
-        <div className={[classes.join(' ')]}>
-          {description}
-        </div>
+        <div
+          className={[classes.join(' ')]}
+          dangerouslySetInnerHTML={{__html: description}}
+        />
       </div>
     );
   }
