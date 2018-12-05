@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import LearningObjectiveItem from '../common/LearningObjectiveItem';
-import iconChevronDown from '../../images/iconChevronDown.svg';
-import iconChevronRight from '../../images/iconChevronRight.svg';
-import iconChevronUp from '../../images/iconChevronUp.svg';
+import chevronDown from '../../images/chevronDown.svg';
+import chevronRight from '../../images/chevronRight.svg';
+import chevronUp from '../../images/chevronUp.svg';
 import styles from './ExpandableLearningObjectiveItem.css';
 
 class ExpandableLearningObjectiveItem extends Component {
@@ -27,7 +27,7 @@ class ExpandableLearningObjectiveItem extends Component {
 
   render() {
     const classes = this.state.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
-    const chevron = this.state.isExpanded ? iconChevronUp : iconChevronDown;
+    const chevron = this.state.isExpanded ? chevronUp : chevronDown;
     const height1 = this.ref.current ? this.ref.current.scrollHeight : 20;
     const height2 = this.state.isExpanded ? height1 : 20;
     const style = { height: `${height2}px` };
@@ -39,7 +39,7 @@ class ExpandableLearningObjectiveItem extends Component {
     const link = this.props.hasLink ? (
       <NavLink to={`/sequencias/objetivos-de-aprendizagem/${this.props.data.id}`} className={styles.related}>
         Ver Sequências de Atividades Relacionadas
-        <img src={iconChevronRight} alt="Seta" />
+        <img src={chevronRight} alt="Seta" />
       </NavLink>
     ): null;
 

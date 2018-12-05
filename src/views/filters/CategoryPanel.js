@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import FiltersActions from '../../actions/FiltersActions';
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
-import iconArrowLeft from '../../images/iconArrowLeft.svg';
-import iconChevronLeft from '../../images/iconChevronLeft.svg';
+import arrowLeft from '../../images/arrowLeft.svg';
+import chevronLeft from '../../images/chevronLeft.svg';
 import iconHelp from '../../images/iconHelp.svg';
 import styles from './CategoryPanel.css';
 
@@ -89,7 +89,7 @@ class CategoryPanel extends Component {
       <div className={classes.join(' ')}>
         <header className={styles.header}>
           <button className={styles.backArrow} onClick={this.onClickedClose}>
-            <img src={iconArrowLeft} alt="Voltar" />
+            <img src={arrowLeft} alt="Voltar" />
           </button>
           <h3>Filtros</h3>
         </header>
@@ -106,7 +106,7 @@ class CategoryPanel extends Component {
           </button>
         </footer>
         <button className={styles.back} onClick={this.onClickedClose}>
-          <img src={iconChevronLeft} alt="Voltar" />
+          <img src={chevronLeft} alt="Voltar" />
           Voltar
         </button>
         {tooltip}

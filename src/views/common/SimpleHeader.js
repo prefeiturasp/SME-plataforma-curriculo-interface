@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import iconArrowLeft from '../../images/iconArrowLeft.svg';
+import arrowLeft from '../../images/arrowLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './SimpleHeader.scss';
 
@@ -9,7 +9,7 @@ class SimpleHeader extends Component {
   render() {
     const btnBack = this.props.back
       ? <NavLink className={styles.back} to={this.props.back.url}>
-          <img src={iconArrowLeft} alt="Voltar" />
+          <img src={arrowLeft} alt="Voltar" />
         </NavLink>
       : null;
 

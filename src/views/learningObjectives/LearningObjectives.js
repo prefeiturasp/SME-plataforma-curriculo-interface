@@ -12,7 +12,7 @@ import Loading from '../util/Loading';
 import Page from '../common/Page';
 import YearButton from './YearButton';
 import getWindowWidth from '../util/getWindowWidth';
-import iconChevronLeft from '../../images/iconChevronLeft.svg';
+import chevronLeft from '../../images/chevronLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import iconWarning from '../../images/iconWarning.svg';
 import styles from './LearningObjectives.css';
@@ -206,7 +206,7 @@ class LearningObjectives extends Component {
             <div className="row">
               <div className="col-md-8 offset-md-2">
                 <button className={styles.back} onClick={this.onClickedBack}>
-                  <img src={iconChevronLeft} alt="Voltar" />
+                  <img src={chevronLeft} alt="Voltar" />
                   Voltar
                 </button>
                 <p>Ano e componente(s) selecionado(s):</p>

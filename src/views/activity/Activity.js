@@ -20,10 +20,11 @@ import Page from '../common/Page';
 import convertQuillToHtml from '../util/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from '../util/getWindowWidth';
-import iconArrowLeft from '../../images/iconArrowLeft.svg';
-import iconArrowRight from '../../images/iconArrowRight.svg';
+import arrowLeft from '../../images/arrowLeft.svg';
+import arrowRight from '../../images/arrowRight.svg';
 import iconClock from '../../images/iconClockWhite.svg';
 import iconPrint from '../../images/iconPrint.svg';
+import imgHome from '../../images/imgHome.jpg';
 import styles from './Activity.scss';
 
 class Activity extends Component {
@@ -123,7 +124,7 @@ class Activity extends Component {
 
     const arrowPrev = data.last_activity ? (
       <NavLink className={styles.prev} to={linkPrev}>
-        <img src={iconArrowLeft} alt="Seta" />
+        <img src={arrowLeft} alt="Seta" />
         Atividade {data.sequence - 1}
       </NavLink>
     ) : <span />;
@@ -131,7 +132,7 @@ class Activity extends Component {
     const arrowNext = data.next_activity ? (
       <NavLink className={styles.next} to={linkNext}>
         Atividade {data.sequence + 1}
-        <img src={iconArrowRight} alt="Seta" />
+        <img src={arrowRight} alt="Seta" />
       </NavLink>
     ) : null;
 
