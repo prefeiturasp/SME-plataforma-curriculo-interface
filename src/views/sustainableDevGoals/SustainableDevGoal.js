@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { withRouter } from 'react-router';
 import { API_URL } from '../../constants';
 import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
@@ -13,7 +14,7 @@ class SustainableDevGoal extends Component {
   state = { animationStatus: null };
   
   onClickedClose = () => {
-    this.context.router.history.goBack();
+    this.props.history.goBack();
   }
 
   onEntered = () => {
@@ -98,10 +99,6 @@ class SustainableDevGoal extends Component {
   }
 }
 
-SustainableDevGoal.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
 SustainableDevGoal.propTypes = {
   data: PropTypes.object,
   loadItem: PropTypes.func.isRequired,
@@ -121,4 +118,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SustainableDevGoal);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SustainableDevGoal));

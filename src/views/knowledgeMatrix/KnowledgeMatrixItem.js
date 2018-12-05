@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { withRouter } from 'react-router';
 import BodyActions from '../../actions/BodyActions';
 import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
@@ -12,7 +13,7 @@ class KnowledgeMatrixItem extends Component {
   state = { animationStatus: null };
   
   onClickedClose = () => {
-    this.context.router.history.goBack();
+    this.props.history.goBack();
   }
 
   onEntered = () => {
@@ -88,10 +89,6 @@ class KnowledgeMatrixItem extends Component {
   }
 }
 
-KnowledgeMatrixItem.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
 KnowledgeMatrixItem.propTypes = {
   data: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
@@ -112,4 +109,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(KnowledgeMatrixItem);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(KnowledgeMatrixItem));

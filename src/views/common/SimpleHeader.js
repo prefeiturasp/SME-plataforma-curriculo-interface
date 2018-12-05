@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import arrowLeft from '../../images/arrowLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './SimpleHeader.scss';
 
 class SimpleHeader extends Component {
-  render() {
-    const btnBack = this.props.back
-      ? <NavLink className={styles.back} to={this.props.back.url}>
-          <img src={arrowLeft} alt="Voltar" />
-        </NavLink>
-      : null;
+  onClickedBack = () => {
+    this.props.history.goBack();
+  }
 
+  render() {
+    let btnBack = null;
+
+    if (this.props.back) {
+      btnBack = this.props.back.url
+        ? <NavLink className={styles.back} to={this.props.back.url}>
+            <img src={arrowLeft} alt="Voltar" />
+          </NavLink>
+        : <button className={styles.back} onClick={this.onClickedBack}>
+            <img src={arrowLeft} alt="Voltar" />
+          </button>;
+    }
+    
     const btnClose = this.props.close
       ? <button className={styles.close} onClick={this.props.close.onClick}>
           <img src={iconCloseBig} alt="Fechar" />
@@ -35,4 +46,4 @@ SimpleHeader.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default SimpleHeader;
+export default withRouter(SimpleHeader);

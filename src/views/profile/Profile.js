@@ -154,6 +154,7 @@ class Profile extends Component {
     return (
       <section className={styles.wrapper}>
         <SimpleHeader
+          back={true}
           title="Editar Perfil"
         />
         <div className={styles.center}>
