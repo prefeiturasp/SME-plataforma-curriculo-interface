@@ -4,9 +4,41 @@ import ImageGallery from 'react-image-gallery';
 import styles from './ModuleGallery.scss';
 
 class ModuleGallery extends Component {
+  gallery = null;
+  state = {
+    index: 0,
+    isFading: false,
+  };
+
+  onSlide = (index) => {
+    this.setState({
+      ...this.state,
+      isFading: true,
+    });
+    setTimeout(this.onSlide1, 400, index);
+  }
+
+  onSlide1 = (index) => {
+    this.setState({
+      index,
+      isFading: false,
+    });
+  }
+
+  renderItem = (item) => {
+    return (
+      <img
+        className={styles.item}
+        src={item.original}
+        alt={item.originalAlt || item.description}
+      />
+    );
+  }
+
   renderLeftNav = (onClick, disabled) => {
     return (
       <button
+        aria-label="Imagem anterior"
         className={styles.btnLeft}
         disabled={disabled}
         onClick={onClick}
@@ -17,6 +49,7 @@ class ModuleGallery extends Component {
   renderRightNav = (onClick, disabled) => {
     return (
       <button
+        aria-label="Próxima imagem"
         className={styles.btnRight}
         disabled={disabled}
         onClick={onClick}
@@ -24,28 +57,27 @@ class ModuleGallery extends Component {
     );
   }
 
-  renderFullscreenButton = (onClick, isFullscreen) => {
-    return (
-      <button
-        className={styles.btnFull}
-        onClick={onClick}
-      />
-    );
-  }
-
   render() {
+    const classes = this.state.isFading ? [styles.description, styles.isFading] : [styles.description];
+    const description = this.props.images[this.state.index].description;
+
     return (
       <div className={styles.wrapper}>
         <ImageGallery
+          ref={ref => this.gallery = ref}
           items={this.props.images}
+          onSlide={this.onSlide}
+          renderItem={this.renderItem}
           renderLeftNav={this.renderLeftNav}
           renderRightNav={this.renderRightNav}
-          renderFullscreenButton={this.renderFullscreenButton}
+          showFullscreenButton={false}
           showPlayButton={false}
           showThumbnails={false}
           slideDuration={300}
-          useBrowserFullscreen={false}
         />
+        <div className={[classes.join(' ')]}>
+          {description}
+        </div>
       </div>
     );
   }

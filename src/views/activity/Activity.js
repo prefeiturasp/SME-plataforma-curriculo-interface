@@ -218,9 +218,18 @@ class Activity extends Component {
               />
               <ModuleGallery
                 images={[
-                  { original: imgHome },
-                  { original: imgHome },
-                  { original: imgHome },
+                  {
+                    original: imgHome,
+                    description: 'Lorem ipsum dolor!',
+                  },
+                  {
+                    original: imgHome,
+                    description: 'Lorem ipsum dolor sit amet!',
+                  },
+                  {
+                    original: imgHome,
+                    description: 'Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! <em>Lorem ipsum dolor sit amet!</em> Lorem ipsum dolor sit amet!',
+                  },
                 ]}
               />
               <ModuleImage
