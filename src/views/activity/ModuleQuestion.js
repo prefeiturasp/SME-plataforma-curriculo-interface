@@ -7,8 +7,12 @@ class ModuleQuestion extends Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          <div className={styles.number}>1</div>
-          <h4>Leia o texto abaixo:</h4>
+          <div className={styles.number}>
+            {this.props.number}
+          </div>
+          <h4>
+            {this.props.title}
+          </h4>
         </div>
         <p>Você já ouviu falar no grande compositor musical chamado Ludwing Van Beethoven? Ele nasceu em 1770 na Alemanha e ficou bastante famoso e conhecido em todo o mundo por suas canções clássicas. Porém, aos 26 anos de idade, foi acometido por um sério problema de audição, tornando-se completamente surdo.</p>
         <p>Apesar deste lamentável problema com a surdez, Beethoven continuou por um período a compor, tocar seu piano e a encantar as pessoas com suas belas músicas. Ele dizia que o som não entrava somente pelo seu canal auditivo, mas sim por todo o seu crânio. Por isso, chegou a usar baquetas feitas de madeira entre os seus dentes para apoiar sobre o piano, pois assim podia sentir as notas de suas composições.</p>
@@ -25,5 +29,10 @@ class ModuleQuestion extends Component {
     );
   }
 }
+
+ModuleQuestion.propTypes = {
+  number: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 export default ModuleQuestion;

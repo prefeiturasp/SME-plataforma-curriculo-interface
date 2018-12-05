@@ -198,15 +198,41 @@ class Activity extends Component {
                   ['Ice cream sandwich', 237, 9.0],
                 ]}
               />
-              <ModuleTeacher />
-              <ModuleStudent />
-              <ModuleQuestion />
-              <ModuleExercise />
-              <ModuleLongText />
-              <ModuleGallery />
-              <ModuleImage />
+              <ModuleTeacher
+                text="<p>Apresentar a história de Beethoven e possibilitar a escuta de algumas de suas composições, pode enriquecer essa contextualização, além de ampliar o repertório musical das crianças. Há alguns vídeos na internet que, além de possibilitarem a escuta de trechos de composições, abordam aspectos da biografia de Beethoven, tais como:</p><p>Durante o próximo exercício que é a observação das imagens é importante que você interaja com os(as) estudantes, buscando que eles(as) descrevam cada uma delas. Além disso, poderá questioná-los(las) sobre quais tipos de sons podem ser presenciados em cada uma das situações.</p>"
+              />
+              <ModuleStudent
+                text="<p>Essa atividade tem como abordagens temáticas as práticas e processos de investigação, propiciando a utilização de diferentes ferramentas e recursos para propor as estratégias e hipóteses para resolver as situações observadas. A prática científica tem como plano de trabalho a transformação de curiosidades em ações de investigação. Ciclo investigativo: conceitualização e investigação.</p>"
+              />
+              <ModuleQuestion
+                number={1}
+                title="Leia o texto abaixo:"
+              />
+              <ModuleExercise
+                type="roda-de-conversa"
+                text="<p>Converse com seus colegas sobre como vocês imaginam ser possível alguém que não escuta poder compor e tocar músicas.</p><ol><li>Desenhe e explique, em seu caderno, como você acha que os sons são produzidos e percebidos pelas pessoas que escutam.</li><li>Desenhe e explique como você acha que Beethoven conseguia perceber o som de suas composições ao piano.</li></ol>"
+              />
+              <ModuleLongText
+                title="Narrativa de Victor Frankenstein"
+                text="Como pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?<br/>Era o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.<br/>Dois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.<br/>Como pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?<br/>Era o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.<br/>Dois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas."
+              />
+              <ModuleGallery
+                images={[
+                  { original: imgHome },
+                  { original: imgHome },
+                  { original: imgHome },
+                ]}
+              />
+              <ModuleImage
+                src={imgHome}
+                alt="Lorem ipsum"
+                source="Fonte: Adaptado de <em>A Surdez de Beethoven, o Desafio de um Gênio</em>"
+              />
             </div>
-            <div className={styles.description} dangerouslySetInnerHTML={{__html: content}} />
+            <div
+              className={styles.description}
+              dangerouslySetInnerHTML={{__html: content}}
+            />
           </div>
         </div>
         <hr />
