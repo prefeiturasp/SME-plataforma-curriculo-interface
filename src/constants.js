@@ -1,1 +1,2 @@
-export const API_URL = 'http://localhost';
+export const API_URL = 'http://curriculo.jurema.la/';
+// export const API_URL = 'http://localhost';
