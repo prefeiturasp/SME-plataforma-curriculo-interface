@@ -236,7 +236,6 @@ LearningObjectives.propTypes = {
   isShowingResults: PropTypes.bool.isRequired,
   load: PropTypes.func.isRequired,
   hideObjectives: PropTypes.func.isRequired,
-  hideModal: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
   showAlert: PropTypes.func.isRequired,
