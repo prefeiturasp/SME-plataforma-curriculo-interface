@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SimpleFooter.scss';
 
-class SimpleFooter extends Component {
+class SimpleFooter extends React.PureComponent {
   render() {
     return (
       <footer className={styles.wrapper}>

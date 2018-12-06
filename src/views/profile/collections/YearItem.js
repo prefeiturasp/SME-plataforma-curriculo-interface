@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './YearItem.scss';
 
-class YearItem extends Component {
+class YearItem extends React.PureComponent {
   render() {
     return (
       <div

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
@@ -6,7 +6,7 @@ import arrowLeft from '../../images/arrowLeft.svg';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './SimpleHeader.scss';
 
-class SimpleHeader extends Component {
+class SimpleHeader extends React.PureComponent {
   onClickedBack = () => {
     this.props.history.goBack();
   }

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import YearItem from './YearItem';
 import styles from './CollectionItem.scss';
 
-class CollectionItem extends Component {
+class CollectionItem extends React.PureComponent {
   render() {
     const { classrooms, sequences, title, years } = this.props;
     const word1 = sequences === 1 ? 'sequência' : 'sequências';

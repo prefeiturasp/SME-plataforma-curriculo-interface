@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import ReadMore from '../util/ReadMore';
 import styles from './ModuleLongText.scss';
 
-class ModuleLongText extends Component {
+class ModuleLongText extends React.PureComponent {
   render() {
     return (
       <div className={styles.wrapper}>

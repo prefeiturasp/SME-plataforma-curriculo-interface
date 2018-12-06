@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import BodyActions from '../../actions/BodyActions';
 import iconCloseBig from '../../images/iconCloseBig.svg';
 import styles from './MobileMenu.scss';
 
-class MobileMenu extends Component {
+class MobileMenu extends React.PureComponent {
   target = null;
 
   onClickedClose = () => {

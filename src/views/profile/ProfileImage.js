@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ProfileImage.scss';
 
-class ProfileImage extends Component {
+class ProfileImage extends React.PureComponent {
   render() {
     const contents = this.props.photo
       ? <img

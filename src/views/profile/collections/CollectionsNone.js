@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import iconCollections from '../../../images/iconCollections.svg';
 import styles from './CollectionsNone.scss';
 
-class CollectionsNone extends Component {
+class CollectionsNone extends React.PureComponent {
   render() {
     return (
       <section className={styles.wrapper}>

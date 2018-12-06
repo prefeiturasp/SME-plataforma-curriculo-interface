@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Truncate from 'react-truncate';
 import styles from './ReadMore.scss';
 
-class ReadMore extends Component {
+class ReadMore extends React.PureComponent {
   state = {
     expanded: false,
     truncated: false,

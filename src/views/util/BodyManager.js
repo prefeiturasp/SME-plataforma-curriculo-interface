@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class BodyManager extends React.Component {
+class BodyManager extends React.PureComponent {
   componentDidMount() {
     document.body.classList.toggle('isHome', this.props.isHome);
   }

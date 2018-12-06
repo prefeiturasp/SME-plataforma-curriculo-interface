@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ModuleStudent.scss';
 
-class ModuleStudent extends Component {
+class ModuleStudent extends React.PureComponent {
   render() {
     return (
       <div className={styles.wrapper}>
