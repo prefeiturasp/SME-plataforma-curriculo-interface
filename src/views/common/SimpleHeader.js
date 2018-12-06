@@ -41,7 +41,7 @@ class SimpleHeader extends Component {
 }
 
 SimpleHeader.propTypes = {
-  back: PropTypes.object,
+  back: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   close: PropTypes.object,
   title: PropTypes.string.isRequired,
 };
