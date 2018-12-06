@@ -20,6 +20,7 @@ import LearningObjectives from './views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from './views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixItem from './views/knowledgeMatrix/KnowledgeMatrixItem';
 import Profile from './views/profile/Profile';
+import EditProfile from './views/profile/EditProfile';
 import Roadmap from './views/roadmap/Roadmap';
 import ScrollToTop from './views/util/ScrollToTop';
 import Sequence from './views/sequence/Sequence';
@@ -85,6 +86,7 @@ class ModalSwitch extends Component {
           <Route exact path='/objetivos-de-aprendizagem' component={LearningObjectives} />
           <Route exact path='/descobrir' component={Roadmap} />
           <Route exact path='/perfil' component={Profile} />
+          <Route exact path='/perfil/editar' component={EditProfile} />
         </Switch>
         {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
         {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}

@@ -44,20 +44,26 @@ a:hover {
   color: black;
 }
 
-:global(.btn) {
+:global(.btn),
+:global(.btnFullWidth) {
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.25rem;
+  border-radius: rem(4);
   color: black;
   display: flex;
-  font-size: 0.9375rem;
+  font-size: rem(12);
   font-weight: bold;
-  padding: rem(14) 1.625rem;
+  padding: rem(14) rem(16);
   text-transform: uppercase;
 
   > i,
   > img {
     margin-right: 0.5rem;
   }
+}
+
+:global(.btnFullWidth) {
+  justify-content: center;
+  width: 100%;
 }
 
 :global(.tooltip) {
