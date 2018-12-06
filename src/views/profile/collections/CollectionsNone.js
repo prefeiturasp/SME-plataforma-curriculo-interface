@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import iconCollections from '../../images/iconCollections.svg';
+import iconCollections from '../../../images/iconCollections.svg';
 import styles from './CollectionsNone.scss';
 
 class CollectionsNone extends Component {
