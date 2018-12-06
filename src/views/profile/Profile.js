@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import CollectionItem from './CollectionItem';
+import CollectionsList from './CollectionsList';
+import CollectionsNone from './CollectionsNone';
 import Page from '../common/Page';
 import ProfileImage from './ProfileImage';
-import iconCollections from '../../images/iconCollections.svg';
 import iconEdit from '../../images/iconEdit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
   render() {
-    const data = [
+    const data = [];
+    const data1 = [
       {
         title: '[2018] EF 1A Matemática (1)',
         sequences: 2,
@@ -78,45 +79,9 @@ class Profile extends Component {
       },
     ];
 
-    let contents;
-
-    if (data.length > 0) {
-      const collections = data.map((item, i) => {
-        return (
-          <CollectionItem
-            key={i}
-            title={item.title}
-            sequences={item.sequences}
-            classrooms={item.classrooms}
-            years={item.years}
-          />
-        );
-      });
-
-      contents = (
-        <section className={styles.contents}>
-          <h3>Coleções</h3>
-          {collections}
-          <button className="btnFullWidth">
-            Criar uma nova coleção
-          </button>
-        </section>
-      );
-    } else {
-      contents = (
-        <section className={styles.contents}>
-          <img
-            src={iconCollections}
-            alt="Coleções"
-          />
-          <h3>Você ainda não possui coleções</h3>
-          <p>Crie uma nova coleção para salvar sequências de atividades  e acessá-las mais tarde.</p>
-          <button className="btn">
-            Criar coleção
-          </button>
-        </section>
-      );
-    }
+    const contents = data.length > 0
+      ? <CollectionsList items={data} />
+      : <CollectionsNone />;
 
     return (
       <Page>
@@ -137,16 +102,13 @@ class Profile extends Component {
           </div>
           <div className={styles.rowNumbers}>
             <div>
-              <em>6</em>
-              coleções
+              <em>6</em> coleções
             </div>
             <div>
-              <em>6</em>
-              turmas
+              <em>6</em> turmas
             </div>
             <div>
-              <em>3</em>
-              componentes
+              <em>3</em> componentes
             </div>
           </div>
           <button className="btnFullWidth">

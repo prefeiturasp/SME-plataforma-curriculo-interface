@@ -36,6 +36,7 @@
     border-left: 1px solid $grey-200;
     padding-left: rem(24);
     padding-right: rem(24);
+    width: 33%;
     
     &:first-child {
       border-left: 0;
@@ -48,17 +49,5 @@
       font-size: rem(18);
       font-style: normal;
     }
-  }
-}
-
-.contents {
-  background-color: $grey-100;
-  padding: rem(20) rem(16) rem(42) rem(16);
-
-  > h3 {
-    font-size: rem(15);
-    font-weight: 600;
-    line-height: rem(24);
-    margin-bottom: rem(17);
   }
 }
