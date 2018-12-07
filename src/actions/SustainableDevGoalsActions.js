@@ -7,20 +7,10 @@ const SustainableDevGoalsActions = {
   LOADED_ITEM: 'SustainableDevGoalsActions.LOADED_ITEM',
   
   load() {
-    return dispatch => {
-      dispatch({ type: SustainableDevGoalsActions.LOAD });
-      return Api.get('/api/ods', dispatch)
-        .then(response => dispatch({ ...response, type: SustainableDevGoalsActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet('/api/ods', SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED);
   },
   loadItem(id) {
-    return dispatch => {
-      dispatch({ type: SustainableDevGoalsActions.LOAD });
-      return Api.get(`/api/ods/${id}`, dispatch)
-        .then(response => dispatch({ ...response, type: SustainableDevGoalsActions.LOADED_ITEM }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet(`/api/ods/${id}`, SustainableDevGoalsActions.LOAD, SustainableDevGoalsActions.LOADED_ITEM);
   },
 };
 

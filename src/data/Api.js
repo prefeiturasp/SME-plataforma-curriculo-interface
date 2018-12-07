@@ -57,28 +57,31 @@ function doRequest(method, url, data) {
 }
 
 class Api {
-  static simpleGet(dispatch, url, onCall, onSuccess) {
+  static simpleGet(url, onCall, onSuccess) {
     return dispatch => {
-      dispatch({ type: onCall });
-      return Api.get(url, dispatch)
+      if (onCall) {
+        dispatch({ type: onCall });
+      }
+      
+      return Api.get(dispatch, url)
         .then(response => dispatch({ ...response, type: onSuccess }))
         .catch(error => dispatch(BodyActions.showAlert('')));
     };
   }
 
-  static get(url, dispatch) {
+  static get(dispatch, url) {
     return getPromise(dispatch, doRequest, 'GET', url);
   }
 
-  static put(url, data, dispatch) {
+  static put(dispatch, url, data) {
     return getPromise(dispatch, doRequest, 'PUT', url, data);
   }
 
-  static post(url, data, dispatch) {
+  static post(dispatch, url, data) {
     return getPromise(dispatch, doRequest, 'POST', url, data);
   }
 
-  static delete(url, data, dispatch) {
+  static delete(dispatch, url, data) {
     return getPromise(dispatch, doRequest, 'DELETE', url, data);
   }
 }

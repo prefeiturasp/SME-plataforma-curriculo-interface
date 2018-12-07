@@ -6,12 +6,7 @@ const RoadmapActions = {
   LOADED: 'RoadmapActions.LOADED',
   
   load() {
-    return dispatch => {
-      dispatch({ type: RoadmapActions.LOAD });
-      return Api.get('/api/roteiros', dispatch)
-        .then(response => dispatch({ ...response, type: RoadmapActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet('/api/roteiros', RoadmapActions.LOAD, RoadmapActions.LOADED);
   },
 };
 

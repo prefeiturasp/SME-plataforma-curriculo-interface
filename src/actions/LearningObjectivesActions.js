@@ -13,12 +13,7 @@ const LearningObjectivesActions = {
   TOGGLE_FILTER: 'LearningObjectivesActions.TOGGLE_FILTER',
   
   load() {
-    return dispatch => {
-      dispatch({ type: LearningObjectivesActions.LOAD });
-      return Api.get('/api/filtros', dispatch)
-        .then(response => dispatch({ ...response, type: LearningObjectivesActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
   },
   hideObjectives() {
     return { type: LearningObjectivesActions.HIDE_OBJECTIVES };
@@ -28,12 +23,7 @@ const LearningObjectivesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return dispatch => {
-      dispatch({ type: LearningObjectivesActions.LOAD });
-      return Api.get(`/api/filtros?${queryString}`, dispatch)
-        .then(response => dispatch({ ...response, type: LearningObjectivesActions.LOADED_RESULTS }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet(`/api/filtros?${queryString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
   },
   hideResults() {
     return { type: LearningObjectivesActions.HIDE_RESULTS };

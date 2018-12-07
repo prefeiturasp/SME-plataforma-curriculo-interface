@@ -7,12 +7,7 @@ const HomeActions = {
   TOGGLE_PREVIEW: 'HomeActions.TOGGLE_PREVIEW',
   
   load() {
-    return dispatch => {
-      dispatch({ type: HomeActions.LOAD });
-      return Api.get('/api/sequencias', dispatch)
-        .then(response => dispatch({ ...response, type: HomeActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet('/api/sequencias', HomeActions.LOAD, HomeActions.LOADED);
   },
   togglePreview(id) {
     return { type: HomeActions.TOGGLE_PREVIEW, id };

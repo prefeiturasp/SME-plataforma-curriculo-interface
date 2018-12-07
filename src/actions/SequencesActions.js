@@ -18,45 +18,20 @@ const SequencesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return dispatch => {
-      dispatch({ type: SequencesActions.SEARCH });
-      return Api.get(`/api/sequencias?${queryString}`, dispatch)
-        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
   },
   load() {
-    return dispatch => {
-      dispatch({ type: SequencesActions.LOAD });
-      return Api.get('/api/sequencias', dispatch)
-        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
   },
   loadItem(slug) {
-    return dispatch => {
-      dispatch({ type: SequencesActions.LOAD_ITEM });
-      return Api.get(`/api/sequencias/${slug}`, dispatch)
-        .then(response => dispatch({ ...response, type: SequencesActions.LOADED_ITEM }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet(`/api/sequencias/${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
   },
   loadMore(page) {
-    return dispatch => {
-      dispatch({ type: SequencesActions.LOAD_MORE });
-      return Api.get(page, dispatch)
-        .then(response => dispatch({ ...response, type: SequencesActions.LOADED_MORE }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
   },
   loadWithFilter(filter) {
     const queryString = getFiltersQueryString([filter]);
-    return dispatch => {
-      dispatch({ type: SequencesActions.SEARCH });
-      return Api.get(`/api/sequencias?${queryString}`, dispatch)
-        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
-    };
+    return Api.simpleGet(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };
