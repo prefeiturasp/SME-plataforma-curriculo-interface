@@ -16,7 +16,7 @@ import styles from './FilterPanel.css';
 class FilterPanel extends Component {
   ref = React.createRef();
   
-  onClickedSearch() {
+  onClickedSearch = () => {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
@@ -26,7 +26,7 @@ class FilterPanel extends Component {
     }
   }
 
-  onClickedClose() {
+  onClickedClose = () => {
     clearAllBodyScrollLocks();
     this.props.togglePanel();
   }
