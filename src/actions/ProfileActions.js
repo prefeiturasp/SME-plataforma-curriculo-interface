@@ -1,6 +1,8 @@
 import { getData, postData, putData } from './dataUtils';
 
 const ProfileActions = {
+  DELETE_PHOTO: 'ProfileActions.DELETE_PHOTO',
+  DELETED_PHOTO: 'ProfileActions.DELETED_PHOTO',
   LOAD: 'ProfileActions.LOAD',
   LOADED: 'ProfileActions.LOADED',
   SAVE_NICKNAME: 'ProfileActions.SAVE_NICKNAME',
@@ -8,6 +10,9 @@ const ProfileActions = {
   SAVED_NICKNAME: 'ProfileActions.SAVED_NICKNAME',
   SAVED_PHOTO: 'ProfileActions.SAVED_PHOTO',
   
+  deletePhoto() {
+    return { type: ProfileActions.DELETE_PHOTO };
+  },
   load() {
     return getData('/api/perfil', ProfileActions.LOAD, ProfileActions.LOADED);
   },
