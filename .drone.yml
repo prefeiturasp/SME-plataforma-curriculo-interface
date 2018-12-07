@@ -24,9 +24,10 @@ steps:
   - docker build --build-arg API_URL=$API_URL -t interface:latest . 
   - docker tag interface:latest $DOCKER_REGISTRY/interface:latest
   - docker push $DOCKER_REGISTRY/interface:latest    
-  branches:
-  - devops 
-  - staging-v2
+  when:
+    branch:
+    - devops 
+    - staging-v2
   volumes:
   - name: docker
     path: /var/run/docker.sock
@@ -45,9 +46,10 @@ steps:
       - cd SME-plataforma-curriculo
       - chmod +x full_deploy.sh
       - ./full_deploy.sh
-  branches:
-  - devops 
-  - staging-v2
+  when:
+    branch:
+    - devops 
+    - staging-v2
 
 volumes:
 - name: docker
