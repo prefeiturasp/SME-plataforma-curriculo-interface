@@ -5,30 +5,47 @@ import Modal from 'react-modal';
 import BodyActions from 'actions/BodyActions';
 import iconClose from 'images/icon/close.svg';
 import iconWarningBig from 'images/icon/warningBig.svg';
+import styles from './AppAlert.scss';
 
 Modal.setAppElement('#root');
 
 class AppAlert extends Component {
-  onClickedClose() {
-    this.props.hideAlert();
-  }
-
   render() {
+    const { hasAlert, hideAlert, message } = this.props;
+
     return (
       <Modal
-        className="alert"
-        overlayClassName="overlay"
+        className={styles.alert}
+        overlayClassName={styles.overlay}
         contentLabel="Example Modal"
-        isOpen={this.props.hasAlert}
-        onRequestClose={this.props.hideAlert}
-        shouldCloseOnOverlayClick={true}>
-        <button onClick={this.props.hideAlert}>
-          <img src={iconClose} alt="Fechar" />
+        isOpen={hasAlert}
+        onRequestClose={hideAlert}
+        shouldCloseOnOverlayClick={true}
+      >
+        <button
+          className={styles.close}
+          onClick={this.props.hideAlert}
+        >
+          <img
+            src={iconClose}
+            alt="Fechar"
+          />
         </button>
         <p>
-          <img src={iconWarningBig} alt="Atenção" />
-          <span>{this.props.message}</span>
+          <img
+            src={iconWarningBig}
+            alt="Atenção"
+          />
+          <span>
+            {message}
+          </span>
         </p>
+        <button
+          className={styles.ok}
+          onClick={hideAlert}
+        >
+          OK
+        </button>
       </Modal>
     );
   }
@@ -37,6 +54,7 @@ class AppAlert extends Component {
 AppAlert.propTypes = {
   hasAlert: PropTypes.bool,
   hideAlert: PropTypes.func.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {

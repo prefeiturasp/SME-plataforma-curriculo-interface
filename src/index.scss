@@ -52,6 +52,7 @@ a:hover {
   display: flex;
   font-size: rem(12);
   font-weight: bold;
+  justify-content: center;
   padding: rem(14) rem(16);
   text-transform: uppercase;
 
@@ -62,7 +63,6 @@ a:hover {
 }
 
 :global(.btnFullWidth) {
-  justify-content: center;
   width: 100%;
 }
 
@@ -78,50 +78,6 @@ a:hover {
     font-size: 0.9375rem;
     font-weight: normal;
     margin-bottom: 1rem;
-  }
-}
-
-:global(.overlay) {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
-}
-
-:global(.alert) {
-  background: white;
-  border-radius: 0.25rem;
-  color: black;
-  font-size: 1.125rem;
-  max-width: 22rem;
-  margin: 2.5rem;
-  padding: 2.5rem 2rem;
-  position: fixed;
-
-  > button {
-    color: black;
-    font-size: 1.125rem;
-    position: absolute;
-    right: 0.625rem;
-    top: 0.625rem;
-  }
-
-  > p {
-    align-items: flex-start;
-    display: flex;
-    margin-bottom: 0;
-
-    > img {
-      color: #6a6a6a;
-      font-size: 1.5625rem;
-      margin-right: 0.5rem;
-    }
   }
 }
 

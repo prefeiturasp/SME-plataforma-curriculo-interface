@@ -1,0 +1,55 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.overlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 130;
+}
+
+.alert {
+  align-items: center;
+  background: white;
+  border-radius: rem(4);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: rem(18);
+  line-height: rem(22);
+  margin: rem(16);
+  padding: rem(40) rem(60) rem(30) rem(30);
+  position: fixed;
+  left: 0;
+
+  > p {
+    align-items: flex-start;
+    display: flex;
+    margin-bottom: rem(28);
+
+    > img {
+      color: $grey-600;
+      font-size: rem(25);
+      margin-right: rem(8);
+    }
+  }
+}
+
+.close {
+  color: black;
+  font-size: rem(18);
+  position: absolute;
+  right: rem(10);
+  top: rem(10);
+}
+
+.ok {
+  composes: btn from global;
+  width: rem(124);
+}
