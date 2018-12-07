@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import iconRodaDeConversa from '../../images/activity/roda-de-conversa.svg';
+import iconRodaDeConversa from './images/exercises/roda-de-conversa.svg';
 import styles from './ModuleExercise.scss';
 
 class ModuleExercise extends React.PureComponent {

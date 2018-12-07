@@ -1,5 +1,5 @@
 import Auth from 'j-toker';
-import { API_URL } from '../constants';
+import { API_URL } from 'utils/constants';
 
 const AuthActions = {
   FAILED: 'AuthActions.FAILED',

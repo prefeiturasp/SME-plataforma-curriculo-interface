@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SchoolItem from './SchoolItem';
-import SimpleHeader from '../../common/SimpleHeader';
+import SimpleHeader from 'components/SimpleHeader';
 import styles from './Classrooms.scss';
 
 class Classrooms extends Component {

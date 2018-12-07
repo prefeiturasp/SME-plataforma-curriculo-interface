@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AnimateHeight from 'react-animate-height';
 import ClassroomItem from './ClassroomItem';
-import chevronDown from '../../../images/chevronDown.svg';
-import chevronUp from '../../../images/chevronUp.svg';
+import chevronDown from 'images/chevron/down.svg';
+import chevronUp from 'images/chevron/up.svg';
 import styles from './SchoolItem.scss';
 
 class SchoolItem extends React.PureComponent {

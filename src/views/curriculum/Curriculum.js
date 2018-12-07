@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Page from '../common/Page';
-import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
-import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
-import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
-import imgCurriculum from '../../images/imgCurriculum.jpg';
+import Page from 'components/Page';
+import iconKnowledgeMatrix from 'images/illustration/knowledgeMatrix.svg';
+import iconLearningObjectives from 'images/illustration/learningObjectives.svg';
+import iconSustainableDevGoals from 'images/illustration/sustainableDevGoals.svg';
+import imgCurriculum from './curriculum.jpg';
 import styles from './Curriculum.css';
 
 class Curriculum extends Component {

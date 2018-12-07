@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../constants';
+import { API_URL } from 'utils/constants';
 import styles from './SustainableDevGoalButton.css';
 
 class SustainableDevGoalButton extends Component {

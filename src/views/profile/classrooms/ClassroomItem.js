@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CurricularComponentItem from '../../common/CurricularComponentItem';
-import YearItem from '../collections/YearItem';
+import ClassroomYear from 'components/ClassroomYear';
+import CurricularComponentItem from 'components/CurricularComponentItem';
 import styles from './ClassroomItem.scss';
 
 class ClassroomItem extends React.PureComponent {
@@ -20,7 +20,7 @@ class ClassroomItem extends React.PureComponent {
 
     return (
       <div className={styles.wrapper}>
-        <YearItem
+        <ClassroomYear
           size={50}
           year={year}
         />

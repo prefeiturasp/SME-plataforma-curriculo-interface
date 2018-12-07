@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
+import BodyActions from 'actions/BodyActions';
+import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import KnowledgeMatrixButton from './KnowledgeMatrixButton';
-import Page from '../common/Page';
+import Page from 'components/Page';
 import styles from './KnowledgeMatrix.css';
 
 class KnowledgeMatrix extends Component {

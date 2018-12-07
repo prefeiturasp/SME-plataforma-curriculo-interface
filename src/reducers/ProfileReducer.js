@@ -1,4 +1,4 @@
-import ProfileActions from '../actions/ProfileActions';
+import ProfileActions from 'actions/ProfileActions';
 
 const initialState = {
   id: 0,

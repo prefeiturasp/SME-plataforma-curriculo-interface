@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReadMore from '../util/ReadMore';
+import ReadMore from 'components/ReadMore';
 import styles from './ModuleLongText.scss';
 
 class ModuleLongText extends React.PureComponent {

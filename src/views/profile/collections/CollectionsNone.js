@@ -1,5 +1,5 @@
 import React from 'react';
-import iconCollections from '../../../images/iconCollections.svg';
+import iconCollections from './collections.svg';
 import styles from './CollectionsNone.scss';
 
 class CollectionsNone extends React.PureComponent {

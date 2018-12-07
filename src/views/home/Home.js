@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import HomeActions from '../../actions/HomeActions';
+import BodyActions from 'actions/BodyActions';
+import HomeActions from 'actions/HomeActions';
 import GridItem from './GridItem';
-import Page from '../common/Page';
-import iconActivities from '../../images/iconActivities.svg';
-import iconCurriculum from '../../images/iconCurriculum.svg';
-import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
-import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
-import iconSequences from '../../images/iconSequences.svg';
-import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
-import imgHome from '../../images/imgHome.jpg';
+import Page from 'components/Page';
+import iconActivities from 'images/illustration/activities.svg';
+import iconCurriculum from 'images/illustration/curriculum.svg';
+import iconKnowledgeMatrix from 'images/illustration/knowledgeMatrix.svg';
+import iconLearningObjectives from 'images/illustration/learningObjectives.svg';
+import iconSequences from 'images/illustration/sequences.svg';
+import iconSustainableDevGoals from 'images/illustration/sustainableDevGoals.svg';
+import imgHome from './home.jpg';
 import styles from './Home.css';
 
 class Home extends Component {

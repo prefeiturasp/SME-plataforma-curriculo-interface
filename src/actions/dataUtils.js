@@ -1,7 +1,7 @@
 import BodyActions from './BodyActions';
 import getFiltersQueryString from './getFiltersQueryString';
 import parse from 'parse-link-header';
-import { API_URL } from '../constants';
+import { API_URL } from 'utils/constants';
 
 function getNextPage(headers) {
   if (headers.has('link')) {

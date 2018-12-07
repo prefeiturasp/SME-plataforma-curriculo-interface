@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { TimelineLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import BodyActions from '../../actions/BodyActions';
-import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
+import BodyActions from 'actions/BodyActions';
+import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import Loading from '../util/Loading';
-import Page from '../common/Page';
+import ExpandableLearningObjectiveItem from 'components/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/GenericItem';
+import Loading from 'components/Loading';
+import Page from 'components/Page';
 import YearButton from './YearButton';
-import getWindowWidth from '../util/getWindowWidth';
-import chevronLeft from '../../images/chevronLeft.svg';
-import iconCloseBig from '../../images/iconCloseBig.svg';
-import iconWarning from '../../images/iconWarning.svg';
+import getWindowWidth from 'utils/getWindowWidth';
+import chevronLeft from 'images/chevron/left.svg';
+import iconCloseBig from 'images/icon/closeBig.svg';
+import iconWarning from 'images/icon/warning.svg';
 import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {

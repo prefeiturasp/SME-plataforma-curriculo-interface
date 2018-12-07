@@ -4,10 +4,10 @@ import ReactTooltip from 'react-tooltip';
 import Sticky from 'react-stickynode';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../constants';
-import ActivityActions from '../../actions/ActivityActions';
-import BodyActions from '../../actions/BodyActions';
-import GenericItem from '../common/GenericItem';
+import { API_URL } from 'utils/constants';
+import ActivityActions from 'actions/ActivityActions';
+import BodyActions from 'actions/BodyActions';
+import GenericItem from 'components/GenericItem';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
 import ModuleImage from './ModuleImage';
@@ -16,15 +16,15 @@ import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
 import ModuleTable from './ModuleTable';
 import ModuleTeacher from './ModuleTeacher';
-import Page from '../common/Page';
-import convertQuillToHtml from '../util/convertQuillToHtml';
+import Page from 'components/Page';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
-import getWindowWidth from '../util/getWindowWidth';
-import arrowLeft from '../../images/arrowLeft.svg';
-import arrowRight from '../../images/arrowRight.svg';
-import iconClock from '../../images/iconClockWhite.svg';
-import iconPrint from '../../images/iconPrint.svg';
-import imgHome from '../../images/imgHome.jpg';
+import getWindowWidth from 'utils/getWindowWidth';
+import arrowLeft from 'images/arrow/left.svg';
+import arrowRight from 'images/arrow/right.svg';
+import iconClock from 'images/icon/clockWhite.svg';
+import iconPrint from 'images/icon/print.svg';
+import imgPlaceholder from 'images/placeholder.jpg';
 import styles from './Activity.scss';
 
 class Activity extends Component {
@@ -219,21 +219,21 @@ class Activity extends Component {
               <ModuleGallery
                 images={[
                   {
-                    original: imgHome,
+                    original: imgPlaceholder,
                     description: 'Lorem ipsum dolor!',
                   },
                   {
-                    original: imgHome,
+                    original: imgPlaceholder,
                     description: 'Lorem ipsum dolor sit amet!',
                   },
                   {
-                    original: imgHome,
+                    original: imgPlaceholder,
                     description: 'Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! <em>Lorem ipsum dolor sit amet!</em> Lorem ipsum dolor sit amet!',
                   },
                 ]}
               />
               <ModuleImage
-                src={imgHome}
+                src={imgPlaceholder}
                 alt="Lorem ipsum"
                 source="Fonte: Adaptado de <em>A Surdez de Beethoven, o Desafio de um Gênio</em>"
               />

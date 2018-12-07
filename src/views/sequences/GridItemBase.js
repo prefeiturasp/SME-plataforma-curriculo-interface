@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../constants';
+import { API_URL } from 'utils/constants';
 import Preview from './Preview';
-import iconMinus from '../../images/iconMinus.svg';
-import iconPlus from '../../images/iconPlus.svg';
+import iconMinus from 'images/icon/minus.svg';
+import iconPlus from 'images/icon/plus.svg';
 import styles from './GridItemBase.css';
 
 class GridItemBase extends Component {

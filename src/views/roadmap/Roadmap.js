@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import Page from '../common/Page';
-import RoadmapActions from '../../actions/RoadmapActions';
+import BodyActions from 'actions/BodyActions';
+import Page from 'components/Page';
+import RoadmapActions from 'actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
 import styles from './Roadmap.css';
 

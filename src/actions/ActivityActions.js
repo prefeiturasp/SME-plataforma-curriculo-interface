@@ -1,5 +1,5 @@
 import BodyActions from './BodyActions';
-import { API_URL } from '../constants';
+import { API_URL } from 'utils/constants';
 
 const ActivityActions = {
   LOAD: 'ActivityActions.LOAD',

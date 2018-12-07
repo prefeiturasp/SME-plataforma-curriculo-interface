@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import YearItem from './YearItem';
+import ClassroomYear from 'components/ClassroomYear';
 import styles from './CollectionItem.scss';
 
 class CollectionItem extends React.PureComponent {
@@ -12,7 +12,7 @@ class CollectionItem extends React.PureComponent {
     
     const items = years.map((year, i) => {
       return (
-        <YearItem
+        <ClassroomYear
           key={i}
           color={year.color}
           year={year.year}

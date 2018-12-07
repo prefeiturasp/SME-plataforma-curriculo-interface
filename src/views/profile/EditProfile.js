@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import ProfileActions from '../../actions/ProfileActions';
-import SimpleFooter from '../common/SimpleFooter';
-import SimpleHeader from '../common/SimpleHeader';
+import ProfileActions from 'actions/ProfileActions';
+import SimpleFooter from 'components/SimpleFooter';
+import SimpleHeader from 'components/SimpleHeader';
 import styles from './EditProfile.scss';
-import { API_URL } from '../../constants';
+import { API_URL } from 'utils/constants';
 
 class EditProfile extends Component {
   state = {

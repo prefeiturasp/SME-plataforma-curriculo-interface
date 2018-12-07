@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import CollectionsList from './collections/CollectionsList';
 import CollectionsNone from './collections/CollectionsNone';
-import Page from '../common/Page';
+import Page from 'components/Page';
 import ProfileImage from './ProfileImage';
-import iconEdit from '../../images/iconEdit.svg';
+import iconEdit from 'images/icon/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {

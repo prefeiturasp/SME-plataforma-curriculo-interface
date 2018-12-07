@@ -1,4 +1,4 @@
-import BodyActions from '../actions/BodyActions';
+import BodyActions from 'actions/BodyActions';
 
 const initialState = {
   hasMobileMenu: false,

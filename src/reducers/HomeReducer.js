@@ -1,4 +1,4 @@
-import HomeActions from '../actions/HomeActions';
+import HomeActions from 'actions/HomeActions';
 
 const initialState = {
   items: [],

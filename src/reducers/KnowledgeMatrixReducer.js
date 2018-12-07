@@ -1,4 +1,4 @@
-import KnowledgeMatrixActions from '../actions/KnowledgeMatrixActions';
+import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 
 const initialState = {
   items: [],
