@@ -32,7 +32,7 @@ class SimpleHeader extends React.PureComponent {
 
     return (
       <div className={styles.wrapper}>
-        <h3>{this.props.title}</h3>
+        <h1>{this.props.title}</h1>
         {btnBack}
         {btnClose}
       </div>
