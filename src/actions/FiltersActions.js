@@ -1,6 +1,7 @@
+import Api from 'data/Api';
 import BodyActions from './BodyActions';
 import SequencesActions from './SequencesActions';
-import { getData, getData1 } from './dataUtils';
+import { getData1 } from 'data/dataUtils';
 
 function isYearOrComponent(s) {
   return s === 'years' || s === 'curricular_components';
@@ -19,7 +20,12 @@ const FiltersActions = {
   SEARCH: 'FiltersActions.SEARCH',
   
   load() {
-    return getData('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
+    return dispatch => {
+      dispatch({ type: FiltersActions.LOAD });
+      return Api.get('/api/filtros', dispatch)
+        .then(response => dispatch({ ...response, type: FiltersActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   hideCategory() {
     return { type: FiltersActions.HIDE_CATEGORY };
@@ -53,7 +59,12 @@ const FiltersActions = {
 
       if (isYearOrComponent(filter.type)) {
         const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
-        getData1(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+        queryString = getFiltersQueryString(filters);
+        return dispatch => {
+          return Api.get(`/api/filtros${queryString}`, dispatch)
+            .then(response => dispatch({ ...response, type: FiltersActions.LOADED_EXTRA }))
+            .catch(error => dispatch(BodyActions.showAlert('')));
+        };
       }
     }
   },
@@ -63,10 +74,20 @@ const FiltersActions = {
       dispatch({ type: SequencesActions.SEARCH })
       
       let filters = getState().FiltersReducer.filters.filter(item => item.isActive);
-      getData1(dispatch, '/api/sequencias', filters, SequencesActions.LOADED);
+      let queryString = getFiltersQueryString(filters);
+      return dispatch => {
+          return Api.get(`/api/sequencias${queryString}`, dispatch)
+            .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
+            .catch(error => dispatch(BodyActions.showAlert('')));
+        };
 
       filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
-      getData1(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+      queryString = getFiltersQueryString(filters);
+      return dispatch => {
+        return Api.get(`/api/filtros${queryString}`, dispatch)
+          .then(response => dispatch({ ...response, type: FiltersActions.LOADED_EXTRA }))
+          .catch(error => dispatch(BodyActions.showAlert('')));
+      };
     }
   },
   togglePanel() {

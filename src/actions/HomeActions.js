@@ -1,4 +1,5 @@
-import { getData } from './dataUtils';
+import Api from 'data/Api';
+import BodyActions from 'actions/BodyActions';
 
 const HomeActions = {
   LOAD: 'HomeActions.LOAD',
@@ -6,7 +7,12 @@ const HomeActions = {
   TOGGLE_PREVIEW: 'HomeActions.TOGGLE_PREVIEW',
   
   load() {
-    return getData('/api/sequencias', HomeActions.LOAD, HomeActions.LOADED);
+    return dispatch => {
+      dispatch({ type: HomeActions.LOAD });
+      return Api.get('/api/sequencias', dispatch)
+        .then(response => dispatch({ ...response, type: HomeActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   togglePreview(id) {
     return { type: HomeActions.TOGGLE_PREVIEW, id };

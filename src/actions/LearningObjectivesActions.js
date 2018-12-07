@@ -1,5 +1,6 @@
-import getFiltersQueryString from './getFiltersQueryString';
-import { getData } from './dataUtils';
+import Api from 'data/Api';
+import BodyActions from 'actions/BodyActions';
+import getFiltersQueryString from 'data/getFiltersQueryString';
 
 const LearningObjectivesActions = {
   LOAD: 'LearningObjectivesActions.LOAD',
@@ -12,7 +13,12 @@ const LearningObjectivesActions = {
   TOGGLE_FILTER: 'LearningObjectivesActions.TOGGLE_FILTER',
   
   load() {
-    return getData('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
+    return dispatch => {
+      dispatch({ type: LearningObjectivesActions.LOAD });
+      return Api.get('/api/filtros', dispatch)
+        .then(response => dispatch({ ...response, type: LearningObjectivesActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   hideObjectives() {
     return { type: LearningObjectivesActions.HIDE_OBJECTIVES };
@@ -22,7 +28,12 @@ const LearningObjectivesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return getData(`/api/filtros?${queryString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
+    return dispatch => {
+      dispatch({ type: LearningObjectivesActions.LOAD });
+      return Api.get(`/api/filtros?${queryString}`, dispatch)
+        .then(response => dispatch({ ...response, type: LearningObjectivesActions.LOADED_RESULTS }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   hideResults() {
     return { type: LearningObjectivesActions.HIDE_RESULTS };

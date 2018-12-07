@@ -8,7 +8,7 @@ import ProfileActions from 'actions/ProfileActions';
 import SimpleFooter from 'components/SimpleFooter';
 import SimpleHeader from 'components/SimpleHeader';
 import styles from './EditProfile.scss';
-import { API_URL } from 'utils/constants';
+import { API_URL } from 'data/constants';
 
 class EditProfile extends Component {
   state = {

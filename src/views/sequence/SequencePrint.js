@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_URL } from 'utils/constants';
+import { API_URL } from 'data/constants';
 import BodyActions from 'actions/BodyActions';
 import SequencesActions from 'actions/SequencesActions';
 import ActivityPrint from 'views/activity/ActivityPrint';

@@ -1,5 +1,6 @@
-import getFiltersQueryString from './getFiltersQueryString';
-import { getData } from './dataUtils';
+import Api from 'data/Api';
+import BodyActions from 'actions/BodyActions';
+import getFiltersQueryString from 'data/getFiltersQueryString';
 
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
@@ -17,20 +18,45 @@ const SequencesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return getData(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
+    return dispatch => {
+      dispatch({ type: SequencesActions.SEARCH });
+      return Api.get(`/api/sequencias?${queryString}`, dispatch)
+        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   load() {
-    return getData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
+    return dispatch => {
+      dispatch({ type: SequencesActions.LOAD });
+      return Api.get('/api/sequencias', dispatch)
+        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   loadItem(slug) {
-    return getData(`/api/sequencias/${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
+    return dispatch => {
+      dispatch({ type: SequencesActions.LOAD_ITEM });
+      return Api.get(`/api/sequencias/${slug}`, dispatch)
+        .then(response => dispatch({ ...response, type: SequencesActions.LOADED_ITEM }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   loadMore(page) {
-    return getData(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
+    return dispatch => {
+      dispatch({ type: SequencesActions.LOAD_MORE });
+      return Api.get(page, dispatch)
+        .then(response => dispatch({ ...response, type: SequencesActions.LOADED_MORE }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   loadWithFilter(filter) {
     const queryString = getFiltersQueryString([filter]);
-    return getData(`/api/sequencias?${queryString}`, SequencesActions.LOAD, SequencesActions.LOADED);
+    return dispatch => {
+      dispatch({ type: SequencesActions.SEARCH });
+      return Api.get(`/api/sequencias?${queryString}`, dispatch)
+        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('')));
+    };
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };

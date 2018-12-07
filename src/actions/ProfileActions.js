@@ -1,4 +1,5 @@
-import { getData, postData, putData } from './dataUtils';
+import Api from 'data/Api';
+import BodyActions from 'actions/BodyActions';
 
 const ProfileActions = {
   DELETE_PHOTO: 'ProfileActions.DELETE_PHOTO',
@@ -14,27 +15,30 @@ const ProfileActions = {
     return { type: ProfileActions.DELETE_PHOTO };
   },
   load() {
-    return getData('/api/perfil', ProfileActions.LOAD, ProfileActions.LOADED);
+    return dispatch => {
+      dispatch({ type: ProfileActions.LOAD });
+      return Api.get('/api/perfil', dispatch)
+        .then(response => dispatch({ ...response, type: ProfileActions.LOADED }))
+        .catch(error => dispatch(BodyActions.showAlert('Ocorreu um erro!')));
+    };
   },
   saveNickname(id, nickname) {
-    return putData(
-      `/api/professores/${id}`,
-      {
-        'teacher[nickname]': nickname
-      },
-      ProfileActions.SAVE_NICKNAME,
-      ProfileActions.SAVED_NICKNAME,
-    );
+    return dispatch => {
+      dispatch({ type: ProfileActions.SAVE_NICKNAME });
+      const data = { 'teacher[nickname]': nickname };
+      return Api.put(`/api/professores/${id}`, data, dispatch)
+        .then(response => dispatch({ ...response, type: ProfileActions.SAVED_NICKNAME }))
+        .catch(error => dispatch(BodyActions.showAlert('Ocorreu um erro!')));
+    };
   },
   savePhoto(id, photo) {
-    return postData(
-      `/api/professores/${id}/avatar`,
-      {
-        'teacher[avatar]': photo
-      },
-      ProfileActions.SAVE_PHOTO,
-      ProfileActions.SAVED_PHOTO,
-    );
+    return dispatch => {
+      dispatch({ type: ProfileActions.SAVE_PHOTO });
+      const data = { 'teacher[avatar]': photo };
+      return Api.post(`/api/professores/${id}/avatar`, data, dispatch)
+        .then(response => dispatch({ ...response, type: ProfileActions.SAVED_PHOTO }))
+        .catch(error => dispatch(BodyActions.showAlert('Ocorreu um erro!')));
+    };
   },
 };
 

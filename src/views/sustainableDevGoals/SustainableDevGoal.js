@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
-import { API_URL } from 'utils/constants';
+import { API_URL } from 'data/constants';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
 import iconCloseBigWhite from 'images/icon/closeBigWhite.svg';

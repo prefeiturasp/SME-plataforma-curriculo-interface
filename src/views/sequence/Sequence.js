@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from 'utils/constants';
+import { API_URL } from 'data/constants';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
 import GenericItem from 'components/objects/GenericItem';

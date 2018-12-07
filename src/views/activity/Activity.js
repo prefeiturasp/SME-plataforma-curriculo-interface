@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import Sticky from 'react-stickynode';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from 'utils/constants';
+import { API_URL } from 'data/constants';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
 import GenericItem from 'components/objects/GenericItem';

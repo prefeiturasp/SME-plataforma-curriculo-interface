@@ -9,10 +9,10 @@ import styles from './Alert.scss';
 
 Modal.setAppElement('#root');
 
-class AppAlert extends Component {
+class Alert extends Component {
   render() {
     const { hasAlert, hideAlert, message } = this.props;
-
+    
     return (
       <Modal
         className={styles.alert}
@@ -51,7 +51,7 @@ class AppAlert extends Component {
   }
 }
 
-AppAlert.propTypes = {
+Alert.propTypes = {
   hasAlert: PropTypes.bool,
   hideAlert: PropTypes.func.isRequired,
   message: PropTypes.string.isRequired,
@@ -72,4 +72,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppAlert);
+export default connect(mapStateToProps, mapDispatchToProps)(Alert);

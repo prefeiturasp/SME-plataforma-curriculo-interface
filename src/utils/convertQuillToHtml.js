@@ -1,5 +1,5 @@
 import QuillDeltaToHtmlConverter from 'quill-delta-to-html';
-import { API_URL } from 'utils/constants';
+import { API_URL } from 'data/constants';
 
 export default function convertQuillToHtml(json) {
   const ops = JSON.parse(json).ops;
