@@ -3,11 +3,13 @@
 
 .wrapper {
   align-items: center;
+  background-color: $grey-200;
   border-radius: rem(4);
   color: white;
   display: flex;
   justify-content: center;
   font-size: rem(11);
+  font-weight: bold;
   line-height: rem(18);
   margin: rem(1);
   width: rem(34);

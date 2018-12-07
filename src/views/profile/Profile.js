@@ -9,8 +9,7 @@ import styles from './Profile.scss';
 
 class Profile extends Component {
   render() {
-    const data = [];
-    const data1 = [
+    const data = [
       {
         title: '[2018] EF 1A Matemática (1)',
         sequences: 2,
@@ -110,9 +109,12 @@ class Profile extends Component {
               <em>3</em> componentes
             </div>
           </div>
-          <button className="btnFullWidth">
+          <NavLink
+            className="btnFullWidth"
+            to="/turmas"
+          >
             Ver minhas turmas
-          </button>
+          </NavLink>
         </header>
         {contents}
       </Page>
