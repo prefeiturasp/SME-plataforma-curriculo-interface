@@ -3,7 +3,7 @@
 
 .wrapper {
   background: white;
-  padding: rem(16);
+  padding: rem(15);
   position: fixed;
   width: 100%;
   height: 100%;
@@ -12,36 +12,67 @@
   bottom: 0;
   transition: left 0.3s ease-in-out;
   z-index: 120;
+
+  &.isExpanded {
+    left: 0;
+  }
   
-  > a {
+  .btn {
     color: black !important;
     display: block;
-    font-size: 1.75rem;
+    font-size: rem(18);
     font-weight: bold;
-    margin-top: 2.25rem;
+    line-height: rem(36);
+    margin-top: rem(20);
     text-decoration: none;
-    
-    &.sub {
-      color: $grey-600;
-      display: block;
-      font-size: 1.125rem;
-      font-weight: 600;
-      margin-left: 1.25rem;
-      margin-top: 0.875rem;
-    }
+  }
+
+  .btnSmall {
+    color: $grey-600;
+    display: block;
+    font-size: rem(16);
+    font-weight: 600;
+    line-height: rem(22);
+    margin-left: rem(20);
+    margin-top: rem(14);
   }
 
   > hr {
-    margin: 24px -16px 0 -16px;
+    margin: rem(24) rem(-15);
   }
 }
 
 .close {
   position: absolute;
-  right: 1.125rem;
-  top: 1.125rem;
+  right: rem(15);
+  top: rem(13);
 }
 
-.isExpanded {
-  left: 0;
+.login {
+  > h3 {
+    color: black;
+    font-size: rem(16);
+    font-weight: 600;
+    line-height: rem(22);
+    margin-bottom: rem(17);
+  }
+
+  .obs {
+    color: $grey-600;
+    font-size: rem(13);
+    line-height: rem(18);
+
+    a {
+      color: $grey-600;
+      text-decoration: underline;
+    }
+  }
+}
+
+.btnLogin {
+  composes: btn from global;
+  background-color: $color-turquoise;
+  border: 0 !important;
+  color: white !important;
+  margin-bottom: rem(14);
 }

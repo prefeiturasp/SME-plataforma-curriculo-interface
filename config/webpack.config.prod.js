@@ -167,7 +167,7 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
-            exclude: /(.+\/bootstrap-reboot|bootstrap-grid|index)\.css$/,
+            exclude: /(.+\/bootstrap-reboot|bootstrap-grid|image-gallery-no-icon|index)\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
@@ -215,7 +215,7 @@ module.exports = {
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
           {
-            test: /(.+\/bootstrap-reboot|bootstrap-grid|index)\.css$/,
+            test: /(.+\/bootstrap-reboot|bootstrap-grid|image-gallery-no-icon|index)\.css$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {

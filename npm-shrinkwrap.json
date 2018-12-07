@@ -2877,6 +2877,11 @@
       "resolved": "https://registry.npmjs.org/detect-node/-/detect-node-2.0.3.tgz",
       "integrity": "sha1-ogM8CcyOFY03dI+951B4Mr1s4Sc="
     },
+    "detect-passive-events": {
+      "version": "1.0.4",
+      "resolved": "https://registry.npmjs.org/detect-passive-events/-/detect-passive-events-1.0.4.tgz",
+      "integrity": "sha1-btR35uW863kHlzXc01d4nTf5qRo="
+    },
     "detect-port-alt": {
       "version": "1.1.6",
       "resolved": "https://registry.npmjs.org/detect-port-alt/-/detect-port-alt-1.1.6.tgz",
@@ -5985,6 +5990,17 @@
         "handlebars": "4.0.11"
       }
     },
+    "j-toker": {
+      "version": "0.0.10-beta3",
+      "resolved": "https://registry.npmjs.org/j-toker/-/j-toker-0.0.10-beta3.tgz",
+      "integrity": "sha1-NzgGidXXZj5Qt0G+bEY5sXktBOc=",
+      "requires": {
+        "jquery": ">1.11.2",
+        "jquery-deparam": "^0.1.0",
+        "jquery.cookie": "^1.4.1",
+        "pubsub-js": "^1.5.2"
+      }
+    },
     "jest": {
       "version": "20.0.4",
       "resolved": "https://registry.npmjs.org/jest/-/jest-20.0.4.tgz",
@@ -6525,6 +6541,21 @@
         "pretty-format": "20.0.3"
       }
     },
+    "jquery": {
+      "version": "3.3.1",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.3.1.tgz",
+      "integrity": "sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg=="
+    },
+    "jquery-deparam": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/jquery-deparam/-/jquery-deparam-0.1.0.tgz",
+      "integrity": "sha1-6qYMFpn6t2N9GsuNKgjHLQlaC5Y="
+    },
+    "jquery.cookie": {
+      "version": "1.4.1",
+      "resolved": "https://registry.npmjs.org/jquery.cookie/-/jquery.cookie-1.4.1.tgz",
+      "integrity": "sha1-1j3OIJ6raR/mMxbbCMqeR+D5OFs="
+    },
     "js-base64": {
       "version": "2.4.5",
       "resolved": "https://registry.npmjs.org/js-base64/-/js-base64-2.4.5.tgz",
@@ -6886,6 +6917,11 @@
       "resolved": "https://registry.npmjs.org/lodash.cond/-/lodash.cond-4.5.2.tgz",
       "integrity": "sha1-9HGh2khr5g9quVXRcRVSPdHSVdU="
     },
+    "lodash.debounce": {
+      "version": "4.0.8",
+      "resolved": "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-4.0.8.tgz",
+      "integrity": "sha1-gteb/zCmfEAF/9XiUVMArZyk168="
+    },
     "lodash.defaults": {
       "version": "4.2.0",
       "resolved": "https://registry.npmjs.org/lodash.defaults/-/lodash.defaults-4.2.0.tgz",
@@ -6944,6 +6980,11 @@
       "requires": {
         "lodash._reinterpolate": "3.0.0"
       }
+    },
+    "lodash.throttle": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz",
+      "integrity": "sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ="
     },
     "lodash.uniq": {
       "version": "4.5.0",
@@ -9358,6 +9399,11 @@
         "randombytes": "2.0.6"
       }
     },
+    "pubsub-js": {
+      "version": "1.7.0",
+      "resolved": "https://registry.npmjs.org/pubsub-js/-/pubsub-js-1.7.0.tgz",
+      "integrity": "sha512-Pb68P9qFZxnvDipHMuj9oT1FoIgBcXJ9C9eWdHCLZAnulaUoJ3+Y87RhGMYilWpun6DMWVmvK70T4RP4drZMSA=="
+    },
     "punycode": {
       "version": "2.1.0",
       "resolved": "https://registry.npmjs.org/punycode/-/punycode-2.1.0.tgz",
@@ -9618,6 +9664,18 @@
         "shallowequal": "^0.2.2"
       }
     },
+    "react-image-gallery": {
+      "version": "0.8.12",
+      "resolved": "https://registry.npmjs.org/react-image-gallery/-/react-image-gallery-0.8.12.tgz",
+      "integrity": "sha512-jkrsEhRZ3JPxFhLznrwPyAVy/n6HiM204tKBJ1W5z1a8QnWLVVi+j/UXsMETvks4rnSIkAQbW3WPHbrS19nNMQ==",
+      "requires": {
+        "lodash.debounce": "^4.0.8",
+        "lodash.throttle": "^4.1.1",
+        "prop-types": "^15.5.8",
+        "react-swipeable": "^4.2.2",
+        "resize-observer-polyfill": "^1.5.0"
+      }
+    },
     "react-is": {
       "version": "16.6.3",
       "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.6.3.tgz",
@@ -9693,6 +9751,15 @@
         "prop-types": "^15.6.0",
         "react-addons-shallow-compare": "^0.14.2 || ^15.0.0",
         "subscribe-ui-event": "^2.0.0"
+      }
+    },
+    "react-swipeable": {
+      "version": "4.3.0",
+      "resolved": "https://registry.npmjs.org/react-swipeable/-/react-swipeable-4.3.0.tgz",
+      "integrity": "sha512-L21VMbcDvG+AOVF4ZIbQ8sICGIgiKB/plGKWBMw6dkxt5neS7x74ZlTbJ39U8slz798MZBv/uIoE9Vzgp3PODQ==",
+      "requires": {
+        "detect-passive-events": "^1.0.4",
+        "prop-types": "^15.5.8"
       }
     },
     "react-tooltip": {
@@ -10056,6 +10123,11 @@
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz",
       "integrity": "sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8="
+    },
+    "resize-observer-polyfill": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/resize-observer-polyfill/-/resize-observer-polyfill-1.5.0.tgz",
+      "integrity": "sha512-M2AelyJDVR/oLnToJLtuDJRBBWUGUvvGigj1411hXhAdyFWqMaqHp7TixW3FpiLuVaikIcR1QL+zqoJoZlOgpg=="
     },
     "resolve": {
       "version": "1.6.0",

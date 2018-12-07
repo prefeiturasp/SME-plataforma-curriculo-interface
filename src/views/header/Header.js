@@ -10,7 +10,7 @@ class Header extends Component {
   onClickedToggler = () => {
     this.props.showMobileMenu();
   }
-  
+
   render() {
     const data = [
       {

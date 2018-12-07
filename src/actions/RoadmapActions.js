@@ -1,11 +1,11 @@
-import loadData from './loadData';
+import { getData } from './dataUtils';
 
 const RoadmapActions = {
   LOAD: 'RoadmapActions.LOAD',
   LOADED: 'RoadmapActions.LOADED',
   
   load() {
-    return loadData('/api/roteiros', RoadmapActions.LOAD, RoadmapActions.LOADED);
+    return getData('/api/roteiros', RoadmapActions.LOAD, RoadmapActions.LOADED);
   },
 };
 

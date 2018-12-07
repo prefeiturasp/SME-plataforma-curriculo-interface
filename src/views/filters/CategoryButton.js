@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from '../../actions/FiltersActions';
-import iconChevronRight from '../../images/iconChevronRight.svg';
+import chevronRight from '../../images/chevronRight.svg';
 import styles from './CategoryButton.css';
 
 class CategoryButton extends Component {
@@ -16,7 +16,7 @@ class CategoryButton extends Component {
         <button className={styles.wrapper} onClick={this.onClicked}>
           {this.props.data.name}
           <img
-            src={iconChevronRight}
+            src={chevronRight}
             alt={this.props.data.name} />
         </button>
       </li>

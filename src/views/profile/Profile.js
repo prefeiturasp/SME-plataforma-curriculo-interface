@@ -1,34 +1,21 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+import ProfileActions from '../../actions/ProfileActions';
 import SimpleFooter from '../common/SimpleFooter';
 import SimpleHeader from '../common/SimpleHeader';
-import imgHome from '../../images/imgHome.jpg';
 import styles from './Profile.scss';
+import { API_URL } from '../../constants';
 
 class Profile extends Component {
   state = {
     isUploading: false,
-    nickname: 'Marília',
-    progress: 0,
+    name: '',
+    nickname: '',
+    photo: null,
   };
-
-  startUpload = () => {
-    setTimeout(this.finishUpload, 2000);
-
-    this.setState({
-      ...this.state,
-      isUploading: true,
-      progress: 0,
-    });
-  }
-
-  finishUpload = () => {
-    this.setState({
-      ...this.state,
-      isUploading: false,
-    })
-  }
 
   onChangedNickname = (e) => {
     this.setState({
@@ -37,26 +24,57 @@ class Profile extends Component {
     });
   }
 
-  onClickedAddPhoto = () => {
-    this.startUpload();
+  onClickedAddPhoto = (e) => {
+    const files = Array.from(e.target.files);
+    const file = files[0];
+    this.props.savePhoto(this.props.id, file);
+
+    const reader  = new FileReader();
+    reader.onloadend = () => {
+      this.setState({
+        ...this.state,
+        photo: reader.result,
+      });
+    }
+    reader.readAsDataURL(file);
   }
 
-  onClickedChangePhoto = () => {
-    this.startUpload();
+  onClickedChangePhoto = (e) => {
+    this.onClickedAddPhoto(e);
   }
 
   onClickedDeletePhoto = () => {
-
+    this.props.deletePhoto();
   }
 
   onClickedSave = () => {
-    
+    this.props.saveNickname(this.props.id, this.state.nickname);
+  }
+
+  componentDidMount() {
+    this.props.load();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.nickname !== prevProps.nickname) {
+      this.setState({
+        ...this.state,
+        name: this.props.name,
+        nickname: this.props.nickname,
+        photo: API_URL + this.props.photo,
+      });
+    }
+
+    if (this.props.isUploading !== prevProps.isUploading) {
+      this.setState({
+        ...this.state,
+        isUploading: this.props.isUploading,
+      });
+    }
   }
 
   render() {
-    const nickname = 'Marília';
-    const name = 'Marília Silva';
-    const hasImage = false;
+    const hasImage = this.state.photo !== null;
 
     const progress = this.state.isUploading
       ? <div className={styles.progress}>
@@ -78,9 +96,13 @@ class Profile extends Component {
     } else if (hasImage) {
       actions = (
         <div className={styles.actions}>
-          <button onClick={this.onClickedChangePhoto}>
-            Alterar
-          </button>
+          <input
+            className={styles.file}
+            id="photo"
+            type="file"
+            onChange={this.onClickedAddPhoto}
+          />
+          <label htmlFor="photo">Alterar</label>
           <span>&middot;</span>
           <button onClick={this.onClickedDeletePhoto}>
             Deletar
@@ -90,9 +112,13 @@ class Profile extends Component {
     } else {
       actions = (
         <div className={styles.actions}>
-          <button onClick={this.onClickedAddPhoto}>
-            Adicionar foto
-          </button>
+          <input
+            className={styles.file}
+            id="photo"
+            type="file"
+            onChange={this.onClickedAddPhoto}
+          />
+          <label htmlFor="photo">Adicionar foto</label>
         </div>
       );
     }
@@ -104,13 +130,13 @@ class Profile extends Component {
           {progress}
           <img
             className={styles.image}
-            src={imgHome}
-            alt={name}
+            src={this.state.photo}
+            alt={this.state.name}
           />
         </div>
       );
     } else {
-      const letter = nickname.charAt(0).toUpperCase();
+      const letter = this.state.nickname ? this.state.nickname.charAt(0).toUpperCase() : '';
 
       imageOrLetter = (
         <div className={styles.imageWrapper}>
@@ -124,10 +150,11 @@ class Profile extends Component {
 
     const isInvalidNickname = this.state.nickname.length <= 0;
     const nicknameMessage = isInvalidNickname ? 'Campo obrigatório' : '';
-
+    
     return (
       <section className={styles.wrapper}>
         <SimpleHeader
+          back={true}
           title="Editar Perfil"
         />
         <div className={styles.center}>
@@ -137,22 +164,20 @@ class Profile extends Component {
         <div className={styles.fields}>
           <div className={styles.field}>
             <TextField
-              id="nickname"
-              defaultValue={nickname}
               error={isInvalidNickname}
               fullWidth={true}
               helperText={nicknameMessage}
               label="Apelido"
               onChange={this.onChangedNickname}
+              value={this.state.nickname}
             />
           </div>
           <div className={styles.field}>
             <TextField
-              id="name"
               disabled={true}
               fullWidth={true}
               label="Nome"
-              value={name}
+              value={this.state.name}
             />
           </div>
         </div>
@@ -166,4 +191,43 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+Profile.propTypes = {
+  id: PropTypes.number,
+  isUploading: PropTypes.bool,
+  name: PropTypes.string,
+  nickname: PropTypes.string,
+  photo: PropTypes.string,
+  deletePhoto: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
+  saveNickname: PropTypes.func.isRequired,
+  savePhoto: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    id: state.ProfileReducer.id,
+    isUploading: state.ProfileReducer.isUploading,
+    name: state.ProfileReducer.name,
+    nickname: state.ProfileReducer.nickname,
+    photo: state.ProfileReducer.photo,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deletePhoto: () => {
+      dispatch(ProfileActions.deletePhoto());
+    },
+    load: () => {
+      dispatch(ProfileActions.load());
+    },
+    saveNickname: (id, nickname) => {
+      dispatch(ProfileActions.saveNickname(id, nickname));
+    },
+    savePhoto: (id, photo) => {
+      dispatch(ProfileActions.savePhoto(id, photo));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

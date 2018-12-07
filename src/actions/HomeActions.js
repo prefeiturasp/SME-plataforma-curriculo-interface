@@ -1,4 +1,4 @@
-import loadData from './loadData';
+import { getData } from './dataUtils';
 
 const HomeActions = {
   LOAD: 'HomeActions.LOAD',
@@ -6,7 +6,7 @@ const HomeActions = {
   TOGGLE_PREVIEW: 'HomeActions.TOGGLE_PREVIEW',
   
   load() {
-    return loadData('/api/sequencias', HomeActions.LOAD, HomeActions.LOADED);
+    return getData('/api/sequencias', HomeActions.LOAD, HomeActions.LOADED);
   },
   togglePreview(id) {
     return { type: HomeActions.TOGGLE_PREVIEW, id };

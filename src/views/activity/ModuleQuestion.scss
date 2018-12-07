@@ -1,0 +1,30 @@
+@import '../../variables';
+@import '../../tools';
+
+.wrapper {
+  margin-bottom: rem(30);
+}
+
+.title {
+  display: flex;
+  margin-bottom: rem(14);
+
+  > h4 {
+    font-weight: normal;
+    line-height: 1;
+    margin: 0;
+  }  
+}
+
+.number {
+  align-items: center;
+  border: 1px solid $grey-200;
+  border-radius: 50%;
+  color: $grey-600;
+  display: flex;
+  font-size: rem(16);
+  justify-content: center;
+  margin-right: rem(14);
+  width: rem(32);
+  height: rem(32);
+}

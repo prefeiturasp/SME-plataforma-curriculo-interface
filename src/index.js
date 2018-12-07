@@ -35,6 +35,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
+import 'react-image-gallery/styles/css/image-gallery-no-icon.css';
 import './index.scss';
 
 function checkModal(location, previousLocation, key) {

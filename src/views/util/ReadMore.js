@@ -30,7 +30,7 @@ class ReadMore extends Component {
     const { expanded, truncated } = this.state;
 
     return (
-      <div>
+      <div className={styles.text}>
         <Truncate
           lines={!expanded && lines}
           ellipsis={(
@@ -44,7 +44,7 @@ class ReadMore extends Component {
           )}
           onTruncate={this.handleTruncate}
         >
-        <div dangerouslySetInnerHTML={{__html: children}} />
+          <div dangerouslySetInnerHTML={{__html: children}} />
         </Truncate>
         {!truncated && expanded && (
           <span>

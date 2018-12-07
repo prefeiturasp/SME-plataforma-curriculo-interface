@@ -1,11 +1,11 @@
-import loadData from './loadData';
+import { getData } from './dataUtils';
 
 const KnowledgeMatrixActions = {
   LOAD: 'KnowledgeMatrixActions.LOAD',
   LOADED: 'KnowledgeMatrixActions.LOADED',
   
   load() {
-    return loadData('/api/saberes', KnowledgeMatrixActions.LOAD, KnowledgeMatrixActions.LOADED);
+    return getData('/api/saberes', KnowledgeMatrixActions.LOAD, KnowledgeMatrixActions.LOADED);
   },
 };
 

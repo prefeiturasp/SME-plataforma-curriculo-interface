@@ -1,0 +1,36 @@
+@import '../../variables';
+@import '../../tools';
+
+.wrapper {
+  background-color: $grey-100;
+  border-radius: rem(4);
+  margin-top: rem(12);
+  margin-bottom: rem(46);
+  padding: rem(16);
+  position: relative;
+
+  > p {
+    margin-bottom: rem(16);
+  }
+
+  > ul,
+  > ol {
+    
+    > li {
+      margin-bottom: rem(16);
+    }
+  }
+}
+
+.icon {
+  align-items: center;
+  background-color: $color-blue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: rem(60);
+  height: rem(60);
+  top: rem(-12);
+  right: rem(16);
+}

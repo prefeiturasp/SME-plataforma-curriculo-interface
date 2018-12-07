@@ -158,7 +158,7 @@ module.exports = {
           // in development "style" loader enables hot editing of CSS.
           {
             test: /\.css$/,
-            exclude: /(.+\/bootstrap-reboot|bootstrap-grid|index)\.css$/,
+            exclude: /(.+\/bootstrap-reboot|bootstrap-grid|image-gallery-no-icon|index)\.css$/,
             use: [
               require.resolve('style-loader'),
               {
@@ -192,7 +192,7 @@ module.exports = {
             ],
           },
           {
-            test: /(.+\/bootstrap-reboot|bootstrap-grid|index)\.css$/,
+            test: /(.+\/bootstrap-reboot|bootstrap-grid|image-gallery-no-icon|index)\.css$/,
             use: [
               require.resolve('style-loader'),
               {
