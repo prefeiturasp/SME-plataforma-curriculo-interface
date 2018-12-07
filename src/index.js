@@ -11,7 +11,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Activity from 'views/activity/Activity';
 import ActivityChars from 'views/activity/ActivityChars';
 import ActivityPrint from 'views/activity/ActivityPrint';
-import AppAlert from 'components/AppAlert';
+import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Curriculum from 'views/curriculum/Curriculum';
@@ -109,7 +109,7 @@ ReactDOM.render(
           <MuiThemeProvider theme={theme}>
             <Route component={ModalSwitch} />
             <AppLoading />
-            <AppAlert />
+            <Alert />
           </MuiThemeProvider>
         </ScrollToTop>
       </Analytics>
