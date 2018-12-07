@@ -3,25 +3,12 @@ import BodyActions from 'actions/BodyActions';
 const initialState = {
   hasMobileMenu: false,
   hasAlert: false,
-  isHome: false,
   isLoading: false,
   message: '',
 };
 
 function BodyReducer(state = initialState, action) {
   switch (action.type) {
-    case BodyActions.ENTER_HOME:
-      return {
-        ...state,
-        isHome: true,
-      };
-
-    case BodyActions.EXIT_HOME:
-      return {
-        ...state,
-        isHome: false,
-      };
-
     case BodyActions.HIDE_LOADING:
       return {
         ...state,

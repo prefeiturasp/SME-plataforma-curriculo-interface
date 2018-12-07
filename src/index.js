@@ -110,7 +110,6 @@ ReactDOM.render(
             <Route component={ModalSwitch} />
             <AppLoading />
             <AppAlert />
-            <BodyManager />
           </MuiThemeProvider>
         </ScrollToTop>
       </Analytics>
