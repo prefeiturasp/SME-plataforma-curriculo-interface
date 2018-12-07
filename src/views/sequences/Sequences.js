@@ -7,7 +7,7 @@ import SequencesActions from 'actions/SequencesActions';
 import FilterBar from './filters/FilterBar';
 import FilterPanel from './filters/FilterPanel';
 import GridItem from './GridItem';
-import Loading from 'components/Loading';
+import Loading from 'components/loading/Loading';
 import Page from 'components/Page';
 import ResultsLoading from './ResultsLoading';
 import ResultsNotFound from './ResultsNotFound';

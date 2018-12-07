@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { API_URL } from 'utils/constants';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
-import GenericItem from 'components/GenericItem';
+import GenericItem from 'components/objects/GenericItem';
 import Page from 'components/Page';
 import ReadMore from 'components/ReadMore';
 import SequencesActions from 'actions/SequencesActions';

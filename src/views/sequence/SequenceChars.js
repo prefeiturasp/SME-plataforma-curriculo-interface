@@ -4,11 +4,11 @@ import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import SequencesActions from 'actions/SequencesActions';
-import CurricularComponentItem from 'components/CurricularComponentItem';
-import ExpandableLearningObjectiveItem from 'components/ExpandableLearningObjectiveItem';
-import KnowledgeMatrixItem from 'components/KnowledgeMatrixItem';
+import CurricularComponentItem from 'components/objects/CurricularComponentItem';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import SimpleHeader from 'components/SimpleHeader';
-import SustainableDevGoalItem from 'components/SustainableDevGoalItem';
+import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
 import iconHelp from 'images/icon/help.svg';
 import styles from './SequenceChars.scss';
 

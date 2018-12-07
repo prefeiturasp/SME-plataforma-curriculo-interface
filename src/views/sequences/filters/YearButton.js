@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import YearButton from 'components/YearButton';
+import YearButton from 'components/objects/YearButton';
 import FiltersActions from 'actions/FiltersActions';
 
 const mapDispatchToProps = dispatch => {

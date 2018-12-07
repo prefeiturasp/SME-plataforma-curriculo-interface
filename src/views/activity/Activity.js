@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { API_URL } from 'utils/constants';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
-import GenericItem from 'components/GenericItem';
+import GenericItem from 'components/objects/GenericItem';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
 import ModuleImage from './ModuleImage';

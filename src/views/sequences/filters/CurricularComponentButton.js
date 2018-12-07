@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CurricularComponentButton from 'components/CurricularComponentButton';
+import CurricularComponentButton from 'components/objects/CurricularComponentButton';
 import FiltersActions from 'actions/FiltersActions';
 
 const mapDispatchToProps = dispatch => {

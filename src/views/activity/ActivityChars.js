@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
-import ExpandableLearningObjectiveItem from 'components/ExpandableLearningObjectiveItem';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import SimpleHeader from 'components/SimpleHeader';
 import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from 'utils/getWindowWidth';

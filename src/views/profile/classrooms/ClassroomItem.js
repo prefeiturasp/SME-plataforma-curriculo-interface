@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ClassroomYear from 'components/ClassroomYear';
-import CurricularComponentItem from 'components/CurricularComponentItem';
+import ClassroomYear from 'components/objects/ClassroomYear';
+import CurricularComponentItem from 'components/objects/CurricularComponentItem';
 import styles from './ClassroomItem.scss';
 
 class ClassroomItem extends React.PureComponent {
