@@ -1,5 +1,4 @@
 import Api from 'data/Api';
-import BodyActions from 'actions/BodyActions';
 import getFiltersQueryString from 'data/getFiltersQueryString';
 
 const SequencesActions = {
