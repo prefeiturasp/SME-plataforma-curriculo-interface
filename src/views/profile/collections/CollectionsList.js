@@ -9,6 +9,7 @@ class CollectionsList extends Component {
       return (
         <CollectionItem
           key={i}
+          id={item.id}
           title={item.title}
           sequences={item.sequences}
           classrooms={item.classrooms}

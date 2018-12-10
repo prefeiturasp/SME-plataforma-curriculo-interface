@@ -10,8 +10,9 @@ import styles from './Profile.scss';
 
 class Profile extends Component {
   render() {
-    const data = [
+    const collections = [
       {
+        id: 1,
         title: '[2018] EF 1A Matemática (1)',
         sequences: 2,
         classrooms: 1,
@@ -23,6 +24,7 @@ class Profile extends Component {
         ],
       },
       {
+        id: 2,
         title: '[2018] EF 1A Matemática (2)',
         sequences: 2,
         classrooms: 1,
@@ -34,6 +36,7 @@ class Profile extends Component {
         ],
       },
       {
+        id: 3,
         title: '[2018] EF 1A Ciências Naturais',
         sequences: 2,
         classrooms: 1,
@@ -45,6 +48,7 @@ class Profile extends Component {
         ],
       },
       {
+        id: 4,
         title: '[2018] EF 1A História',
         sequences: 2,
         classrooms: 1,
@@ -56,12 +60,14 @@ class Profile extends Component {
         ],
       },
       {
+        id: 5,
         title: 'Planeta',
         sequences: 5,
         classrooms: 0,
         years: [],
       },
       {
+        id: 6,
         title: 'Água',
         sequences: 0,
         classrooms: 3,
@@ -78,8 +84,8 @@ class Profile extends Component {
       },
     ];
 
-    const contents = data.length > 0
-      ? <CollectionsList items={data} />
+    const contents = collections.length > 0
+      ? <CollectionsList items={collections} />
       : <CollectionsNone />;
 
     const notification = true

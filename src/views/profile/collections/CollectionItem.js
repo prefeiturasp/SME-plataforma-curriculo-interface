@@ -6,7 +6,8 @@ import styles from './CollectionItem.scss';
 
 class CollectionItem extends React.PureComponent {
   render() {
-    const { classrooms, sequences, title, years } = this.props;
+    const { classrooms, id, sequences, title, years } = this.props;
+    const link = `/colecao/${id}`;
     const word1 = sequences === 1 ? 'sequência' : 'sequências';
     const word2 = classrooms === 1 ? 'turma' : 'turmas';
     
@@ -21,7 +22,7 @@ class CollectionItem extends React.PureComponent {
     });
 
     return (
-      <NavLink to="" className={styles.wrapper}>
+      <NavLink to={link} className={styles.wrapper}>
         <div className={styles.info}>
           <h4>{title}</h4>
           <p>{sequences} {word1} &bull; {classrooms} {word2}</p>
@@ -36,6 +37,7 @@ class CollectionItem extends React.PureComponent {
 
 CollectionItem.propTypes = {
   classrooms: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   sequences: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   years: PropTypes.array.isRequired,
