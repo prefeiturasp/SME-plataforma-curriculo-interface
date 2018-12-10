@@ -14,6 +14,7 @@ import ActivityPrint from 'views/activity/ActivityPrint';
 import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
 import Classrooms from 'views/profile/classrooms/Classrooms';
+import Collection from 'views/profile/collection/Collection';
 import Curriculum from 'views/curriculum/Curriculum';
 import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
@@ -88,6 +89,7 @@ class ModalSwitch extends Component {
           <Route exact path='/perfil' component={Profile} />
           <Route exact path='/perfil/editar' component={EditProfile} />
           <Route exact path='/turmas' component={Classrooms} />
+          <Route exact path='/colecao/:id' component={Collection} />
         </Switch>
         {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
         {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
