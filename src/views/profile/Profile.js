@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import CollectionsList from './collections/CollectionsList';
 import CollectionsNone from './collections/CollectionsNone';
+import Notification from './Notification';
 import Page from 'components/Page';
 import ProfileImage from './ProfileImage';
 import iconEdit from 'images/icon/edit.svg';
@@ -81,8 +82,13 @@ class Profile extends Component {
       ? <CollectionsList items={data} />
       : <CollectionsNone />;
 
+    const notification = true
+      ? <Notification />
+      : null;
+
     return (
       <Page>
+        {notification}
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
