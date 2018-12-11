@@ -1,10 +1,6 @@
 @import '~variables.scss';
 @import '~tools.scss';
 
-.wrapper {
-  
-}
-
 .header {
   border-bottom: 1px solid $grey-200;
   padding: rem(16);
@@ -12,6 +8,8 @@
 }
 
 .list {
+  flex-shrink: 10;
+  overflow-y: scroll;
   padding: rem(16);
 
   > h3 {

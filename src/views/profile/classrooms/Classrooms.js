@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ModalPage from 'components/ModalPage';
 import SchoolItem from './SchoolItem';
 import SimpleHeader from 'components/SimpleHeader';
 import styles from './Classrooms.scss';
@@ -68,6 +69,37 @@ class Classrooms extends Component {
           },
         ],
       },
+      {
+        name: 'EMEF Maria da Silva',
+        classrooms: [
+          {
+            year: '1A',
+            name: '1o ano A',
+            level: 'EF',
+            components: [
+              {
+                color: '#66ac70',
+                name: 'Ciências Naturais',
+              },
+              {
+                color: '#ff7e2c',
+                name: 'História',
+              },
+            ],
+          },
+          {
+            year: '3A',
+            name: '3o ano A',
+            level: 'EJA',
+            components: [
+              {
+                color: '#ff007d',
+                name: 'Matemática',
+              },
+            ],
+          },
+        ],
+      },
     ];
 
     const items = schools.map((school, i) => {
@@ -81,15 +113,15 @@ class Classrooms extends Component {
     });
 
     return (
-      <section className={styles.wrapper}>
+      <ModalPage>
         <SimpleHeader
           back={true}
           title="Minhas turmas"
         />
-        <div className="container">
+        <div className={styles.list}>
           {items}
         </div>
-      </section>
+      </ModalPage>
     );
   }
 }

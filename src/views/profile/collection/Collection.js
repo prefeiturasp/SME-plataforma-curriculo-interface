@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ClassroomYear from 'components/objects/ClassroomYear';
+import ModalPage from 'components/ModalPage';
 import SequencesList from './SequencesList';
 import SequencesNone from './SequencesNone';
 import iconClose from 'images/icon/closeBig.svg';
@@ -21,6 +22,36 @@ class Collection extends Component {
 
   render() {
     const sequences = [
+      {
+        name: 'Os Movimentos do nosso Planeta',
+        component: 'Ciências Naturais',
+        componentColor: '#70b279',
+        isCompleted: true,
+        image: imgPlaceholder,
+        slug: 'os-movimentos-do-nosso-planeta',
+      },
+      {
+        name: 'Animais de estimação',
+        component: 'Matemática',
+        componentColor: '#ff007f',
+        image: imgPlaceholder,
+        slug: 'animais-de-estimacao',
+      },
+      {
+        name: 'Os Movimentos do nosso Planeta',
+        component: 'Ciências Naturais',
+        componentColor: '#70b279',
+        isCompleted: true,
+        image: imgPlaceholder,
+        slug: 'os-movimentos-do-nosso-planeta',
+      },
+      {
+        name: 'Animais de estimação',
+        component: 'Matemática',
+        componentColor: '#ff007f',
+        image: imgPlaceholder,
+        slug: 'animais-de-estimacao',
+      },
       {
         name: 'Os Movimentos do nosso Planeta',
         component: 'Ciências Naturais',
@@ -77,7 +108,7 @@ class Collection extends Component {
       : <SequencesNone />;
 
     return (
-      <section className={styles.wrapper}>
+      <ModalPage>
         <div className={styles.buttons}>
           <NavLink to={link}>
             <img
@@ -113,7 +144,7 @@ class Collection extends Component {
           </div>
         </header>
         {contents}
-      </section>
+      </ModalPage>
     );
   }
 }

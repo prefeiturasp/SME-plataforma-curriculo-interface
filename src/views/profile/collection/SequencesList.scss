@@ -4,6 +4,7 @@
 .wrapper {
   background-color: $grey-100;
   flex: 1;
+  overflow-y: scroll;
   padding: rem(19) rem(16);
 
   > h3 {
