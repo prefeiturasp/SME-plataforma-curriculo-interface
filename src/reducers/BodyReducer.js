@@ -2,9 +2,7 @@ import BodyActions from 'actions/BodyActions';
 
 const initialState = {
   hasMobileMenu: false,
-  hasAlert: false,
   isLoading: false,
-  message: '',
 };
 
 function BodyReducer(state = initialState, action) {
@@ -33,19 +31,6 @@ function BodyReducer(state = initialState, action) {
         ...state,
         hasMobileMenu: true,
         hasModal: true,
-      };
-
-    case BodyActions.HIDE_ALERT:
-      return {
-        ...state,
-        hasAlert: false,
-      };
-
-    case BodyActions.SHOW_ALERT:
-      return {
-        ...state,
-        hasAlert: true,
-        message: action.message,
       };
 
     default:

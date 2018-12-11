@@ -1,5 +1,5 @@
 import Api from 'data/Api';
-import BodyActions from './BodyActions';
+import AlertActions from './AlertActions';
 import SequencesActions from './SequencesActions';
 import getFiltersQueryString from 'data/getFiltersQueryString';
 
@@ -36,7 +36,7 @@ const FiltersActions = {
         ) &&
         filters.length <= 0
       ) {
-        dispatch({ type: BodyActions.SHOW_ALERT, message: 'Selecione um ano ou componente curricular.'});
+        dispatch({ type: AlertActions.OPEN, message: 'Selecione um ano ou componente curricular.'});
       } else {
         dispatch({ type: FiltersActions.SHOW_CATEGORY, category });
       }

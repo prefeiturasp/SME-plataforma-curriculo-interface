@@ -1,5 +1,5 @@
 import Api from 'data/Api';
-import BodyActions from 'actions/BodyActions';
+import AlertActions from 'actions/AlertActions';
 
 const ProfileActions = {
   DELETE_PHOTO: 'ProfileActions.DELETE_PHOTO',
@@ -23,7 +23,7 @@ const ProfileActions = {
       const data = { 'teacher[nickname]': nickname };
       return Api.put(dispatch, `/api/professores/${id}`, data)
         .then(response => dispatch({ ...response, type: ProfileActions.SAVED_NICKNAME }))
-        .catch(error => dispatch(BodyActions.showAlert('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },
   savePhoto(id, photo) {
@@ -32,7 +32,7 @@ const ProfileActions = {
       const data = { 'teacher[avatar]': photo };
       return Api.post(dispatch, `/api/professores/${id}/avatar`, data)
         .then(response => dispatch({ ...response, type: ProfileActions.SAVED_PHOTO }))
-        .catch(error => dispatch(BodyActions.showAlert('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },
 };
