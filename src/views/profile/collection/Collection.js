@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import ClassroomYear from 'components/objects/ClassroomYear';
+import ConfirmActions from 'actions/ConfirmActions';
 import ModalPage from 'components/ModalPage';
 import SequencesList from './SequencesList';
 import SequencesNone from './SequencesNone';
@@ -16,8 +18,18 @@ class Collection extends Component {
     this.props.history.goBack();
   }
 
-  onClickedDelete = () => {
+  onClickedConfirm = () => {
+    console.log('confirmed!');
+  }
 
+  onClickedDelete = () => {
+    this.props.openConfirm(
+      'Excluir essa coleção e todas as suas sequências de atividades?',
+      'Sua coleção Favoritos e todas as suas 5 sequências serão excluídos permanentemente.',
+      'Excluir',
+      'Cancelar',
+      this.onClickedConfirm,
+    );
   }
 
   render() {
@@ -152,4 +164,12 @@ class Collection extends Component {
 Collection.propTypes = {
 };
 
-export default withRouter(Collection);
+const mapDispatchToProps = dispatch => {
+  return {
+    openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
+      dispatch(ConfirmActions.open(title, message, labelYes, labelNo, onConfirm));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(withRouter(Collection));

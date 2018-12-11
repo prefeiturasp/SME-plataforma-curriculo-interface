@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { TimelineLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
@@ -237,8 +238,8 @@ LearningObjectives.propTypes = {
   load: PropTypes.func.isRequired,
   hideObjectives: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
+  openAlert: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showAlert: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
 };
 
@@ -263,11 +264,11 @@ const mapDispatchToProps = dispatch => {
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
     },
+    openAlert: (message) => {
+      dispatch(AlertActions.open(message));
+    },
     search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
-    },
-    showAlert: (message) => {
-      dispatch(BodyActions.showAlert(message));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());

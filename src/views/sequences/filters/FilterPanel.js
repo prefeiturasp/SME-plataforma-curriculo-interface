@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { clearAllBodyScrollLocks } from 'body-scroll-lock';
-import BodyActions from 'actions/BodyActions';
+import AlertActions from 'actions/AlertActions';
 import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
 import CategoryButton from './CategoryButton';
@@ -22,7 +22,7 @@ class FilterPanel extends Component {
       this.props.search(activeFilters);
       clearAllBodyScrollLocks();
     } else {
-      this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
+      this.props.openAlert('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
     }
   }
 
@@ -135,8 +135,8 @@ FilterPanel.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   load: PropTypes.func.isRequired,
+  openAlert: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showAlert: PropTypes.func.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
 
@@ -152,12 +152,12 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(FiltersActions.load());
     },
+    openAlert: (message) => {
+      dispatch(AlertActions.open(message));
+    },
     search: (filters) => {
       dispatch(FiltersActions.search());
       dispatch(SequencesActions.search(filters));
-    },
-    showAlert: (message) => {
-      dispatch(BodyActions.showAlert(message));
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());

@@ -15,9 +15,10 @@ import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Collection from 'views/profile/collection/Collection';
+import Confirm from 'components/Confirm';
 import Curriculum from 'views/curriculum/Curriculum';
-import EditCollection from 'views/profile/collection/EditCollection';
-import EditProfile from 'views/profile/EditProfile';
+import EditCollection from 'views/profile/collection/edit/EditCollection';
+import EditProfile from 'views/profile/edit/EditProfile';
 import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
@@ -114,6 +115,7 @@ ReactDOM.render(
             <Route component={ModalSwitch} />
             <AppLoading />
             <Alert />
+            <Confirm />
           </MuiThemeProvider>
         </ScrollToTop>
       </Analytics>

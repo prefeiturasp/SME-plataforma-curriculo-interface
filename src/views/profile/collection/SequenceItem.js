@@ -1,13 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import ConfirmActions from 'actions/ConfirmActions';
 import iconCheck from 'images/icon/check.png';
 import iconDelete from 'images/icon/delete.svg';
 import styles from './SequenceItem.scss';
 
 class SequenceItem extends React.PureComponent {
-  onClickedDelete = () => {
+  onClickedConfirm = () => {
+    console.log('confirmed!');
+  }
 
+  onClickedDelete = () => {
+    this.props.openConfirm(
+      'Excluir sequência?',
+      'Você não poderá reverter esta ação.',
+      'Excluir',
+      'Cancelar',
+      this.onClickedConfirm,
+    );
   }
 
   render() {
@@ -69,4 +81,12 @@ SequenceItem.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-export default SequenceItem;
+const mapDispatchToProps = dispatch => {
+  return {
+    openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
+      dispatch(ConfirmActions.open(title, message, labelYes, labelNo, onConfirm));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SequenceItem);

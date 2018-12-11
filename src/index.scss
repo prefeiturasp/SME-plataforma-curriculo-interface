@@ -53,7 +53,7 @@ a:hover {
 :global(.btn),
 :global(.btnBig),
 :global(.btnFullWidth) {
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid $grey-200;
   border-radius: rem(4);
   color: black;
   display: flex;

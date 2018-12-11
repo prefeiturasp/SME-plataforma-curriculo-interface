@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import BodyActions from 'actions/BodyActions';
+import AlertActions from 'actions/AlertActions';
 import ProfileActions from 'actions/ProfileActions';
 import SimpleFooter from 'components/SimpleFooter';
 import SimpleHeader from 'components/SimpleHeader';
@@ -200,9 +200,9 @@ EditProfile.propTypes = {
   photo: PropTypes.string,
   deletePhoto: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
+  openAlert: PropTypes.func.isRequired,
   saveNickname: PropTypes.func.isRequired,
   savePhoto: PropTypes.func.isRequired,
-  showAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -223,14 +223,14 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(ProfileActions.load());
     },
+    openAlert: (message) => {
+      dispatch(AlertActions.open(message));
+    },
     saveNickname: (id, nickname) => {
       dispatch(ProfileActions.saveNickname(id, nickname));
     },
     savePhoto: (id, photo) => {
       dispatch(ProfileActions.savePhoto(id, photo));
-    },
-    showAlert: (message) => {
-      dispatch(BodyActions.showAlert(message));
     },
   };
 };
