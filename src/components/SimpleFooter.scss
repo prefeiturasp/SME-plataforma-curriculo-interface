@@ -7,11 +7,7 @@
   display: flex;
   justify-content: center;
   padding: rem(12);
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
+  position: relative;
   z-index: 80;
 }
 
