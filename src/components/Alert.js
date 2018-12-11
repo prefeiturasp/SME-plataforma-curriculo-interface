@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
-import BodyActions from 'actions/BodyActions';
+import AlertActions from 'actions/AlertActions';
 import iconClose from 'images/icon/close.svg';
 import iconWarningBig from 'images/icon/warningBig.svg';
 import styles from './Alert.scss';
@@ -11,20 +11,19 @@ Modal.setAppElement('#root');
 
 class Alert extends Component {
   render() {
-    const { hasAlert, hideAlert, message } = this.props;
+    const { isOpened, close, message } = this.props;
     
     return (
       <Modal
         className={styles.alert}
         overlayClassName={styles.overlay}
-        contentLabel="Example Modal"
-        isOpen={hasAlert}
-        onRequestClose={hideAlert}
+        isOpen={isOpened}
+        onRequestClose={close}
         shouldCloseOnOverlayClick={true}
       >
         <button
           className={styles.close}
-          onClick={this.props.hideAlert}
+          onClick={close}
         >
           <img
             src={iconClose}
@@ -42,7 +41,7 @@ class Alert extends Component {
         </p>
         <button
           className={styles.ok}
-          onClick={hideAlert}
+          onClick={close}
         >
           OK
         </button>
@@ -52,22 +51,22 @@ class Alert extends Component {
 }
 
 Alert.propTypes = {
-  hasAlert: PropTypes.bool,
-  hideAlert: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
+  isOpened: PropTypes.bool,
   message: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    hasAlert: state.BodyReducer.hasAlert,
-    message: state.BodyReducer.message,
+    isOpened: state.AlertReducer.isOpened,
+    message: state.AlertReducer.message,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    hideAlert: () => {
-      dispatch(BodyActions.hideAlert());
+    close: () => {
+      dispatch(AlertActions.close());
     },
   };
 };
