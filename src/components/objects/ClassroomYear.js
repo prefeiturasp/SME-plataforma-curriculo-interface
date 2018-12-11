@@ -4,10 +4,16 @@ import styles from './ClassroomYear.scss';
 
 class ClassroomYear extends React.PureComponent {
   render() {
-    const { color, size, year } = this.props;
+    const { color, isBordered, isDimmed, size, year } = this.props;
+
+    const classes = [styles.wrapper];
+    if (isBordered) {
+      classes.push(styles.isBordered);
+    }
+
     const style = {};
     
-    if (color) {
+    if (color && !isDimmed) {
       style.backgroundColor = color;
     }
 
@@ -19,7 +25,7 @@ class ClassroomYear extends React.PureComponent {
 
     return (
       <div
-        className={styles.wrapper}
+        className={classes.join(' ')}
         style={style}
       >
         {year}
@@ -30,6 +36,8 @@ class ClassroomYear extends React.PureComponent {
 
 ClassroomYear.propTypes = {
   color: PropTypes.string,
+  isBordered: PropTypes.bool,
+  isDimmed: PropTypes.bool,
   size: PropTypes.number,
   year: PropTypes.string.isRequired,
 };

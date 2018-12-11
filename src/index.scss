@@ -51,6 +51,7 @@ a:hover {
 }
 
 :global(.btn),
+:global(.btnBig),
 :global(.btnFullWidth) {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: rem(4);
@@ -66,6 +67,11 @@ a:hover {
   > img {
     margin-right: 0.5rem;
   }
+}
+
+:global(.btnBig) {
+  font-size: rem(15);
+  padding: rem(18) rem(26);
 }
 
 :global(.btnFullWidth) {

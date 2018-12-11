@@ -149,8 +149,8 @@ class EditProfile extends Component {
       );
     }
 
-    const isInvalidNickname = this.state.nickname.length <= 0;
-    const nicknameMessage = isInvalidNickname ? 'Campo obrigatório' : '';
+    const isInvalid = this.state.nickname.length <= 0;
+    const message = isInvalid ? 'Campo obrigatório' : '';
     
     return (
       <section className={styles.wrapper}>
@@ -165,9 +165,9 @@ class EditProfile extends Component {
         <div className={styles.fields}>
           <div className={styles.field}>
             <TextField
-              error={isInvalidNickname}
+              error={isInvalid}
               fullWidth={true}
-              helperText={nicknameMessage}
+              helperText={message}
               label="Apelido"
               onChange={this.onChangedNickname}
               value={this.state.nickname}

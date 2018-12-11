@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import SequencesList from './SequencesList';
@@ -37,7 +38,7 @@ class Collection extends Component {
       },
     ];
 
-    const years = [
+    const classrooms = [
       {
         year: '2D',
         color: '#ff007f',
@@ -56,11 +57,12 @@ class Collection extends Component {
       },
     ];
 
+    const id = 1;
     const name = 'Planeta';
-    const count = 1;
-    const word = count > 1 ? 'turmas' : 'turma';
-
-    const yearsItems = years.map((year, i) => {
+    const word = classrooms.length > 1 ? 'turmas' : 'turma';
+    const link = `/colecao/${id}/editar`;
+    
+    const years = classrooms.map((year, i) => {
       return (
         <ClassroomYear
           key={i}
@@ -77,12 +79,12 @@ class Collection extends Component {
     return (
       <section className={styles.wrapper}>
         <div className={styles.buttons}>
-          <button>
+          <NavLink to={link}>
             <img
               src={iconEdit}
               alt="Editar"
             />
-          </button>
+          </NavLink>
           <button onClick={this.onClickedDelete}>
             <img
               src={iconDelete}
@@ -104,10 +106,10 @@ class Collection extends Component {
             {name}
           </h2>
           <p>
-            {count} {word}
+            {classrooms.length} {word}
           </p>
           <div className={styles.years}>
-            {yearsItems}
+            {years}
           </div>
         </header>
         {contents}

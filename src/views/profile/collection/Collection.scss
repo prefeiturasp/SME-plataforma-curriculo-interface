@@ -11,10 +11,8 @@
   display: flex;
   padding: rem(10) rem(16);
 
-  > button {
-    &:first-child {
-      margin-right: rem(10);
-    }
+  > a:first-child {
+    margin-right: rem(10);
   }
 }
 

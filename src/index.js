@@ -16,12 +16,13 @@ import AppLoading from 'components/loading/AppLoading';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Collection from 'views/profile/collection/Collection';
 import Curriculum from 'views/curriculum/Curriculum';
+import EditCollection from 'views/profile/collection/EditCollection';
+import EditProfile from 'views/profile/EditProfile';
 import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixItem from 'views/knowledgeMatrix/KnowledgeMatrixItem';
 import Profile from 'views/profile/Profile';
-import EditProfile from 'views/profile/EditProfile';
 import Roadmap from 'views/roadmap/Roadmap';
 import ScrollToTop from 'components/ScrollToTop';
 import Sequence from 'views/sequence/Sequence';
@@ -90,6 +91,7 @@ class ModalSwitch extends Component {
           <Route exact path='/perfil/editar' component={EditProfile} />
           <Route exact path='/turmas' component={Classrooms} />
           <Route exact path='/colecao/:id' component={Collection} />
+          <Route exact path='/colecao/:id/editar' component={EditCollection} />
         </Switch>
         {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
         {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
