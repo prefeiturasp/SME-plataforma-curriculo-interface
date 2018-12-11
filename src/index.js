@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Analytics from 'react-router-ga';
 import thunk from 'redux-thunk';
@@ -68,7 +68,7 @@ class ModalSwitch extends Component {
     const locationProp = isModalSustainableDevGoal || isModalKnowledgeMatrix ? this.previousLocation : location;
 
     return (
-      <div>
+      <Fragment>
         <Switch location={locationProp}>
           <Route exact path='/' component={Home} />
           <Route exact path='/sequencias' component={Sequences} />
@@ -93,7 +93,7 @@ class ModalSwitch extends Component {
         </Switch>
         {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
         {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
-      </div>
+      </Fragment>
     );
   }
 }
