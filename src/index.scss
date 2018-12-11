@@ -7,6 +7,12 @@
 
 html,
 body,
+:global(#root) {
+  height: 100%;
+}
+
+html,
+body,
 button,
 input,
 select,

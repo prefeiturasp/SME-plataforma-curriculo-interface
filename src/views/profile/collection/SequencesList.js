@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import SequenceItem from './SequenceItem';
 import styles from './SequencesList.scss';
 
 class SequencesList extends Component {
   render() {
     const count = this.props.items.length;
-    const word = count > 0 ? 'sequências' : 'sequência';
+    const word = count > 1 ? 'sequências' : 'sequência';
     const items = this.props.items.map((item, i) => {
       return (
         <SequenceItem
@@ -27,9 +28,9 @@ class SequencesList extends Component {
           {count} {word}
         </h3>
         {items}
-        <button className="btnFullWidth">
+        <NavLink className="btnFullWidth" to="/sequencias">
           Buscar mais sequências
-        </button>
+        </NavLink>
       </section>
     );
   }

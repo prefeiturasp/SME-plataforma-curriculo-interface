@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import iconCheck from 'images/icon/check.png';
-import iconTrash from 'images/icon/trash.svg';
+import iconDelete from 'images/icon/delete.svg';
 import styles from './SequenceItem.scss';
 
 class SequenceItem extends React.PureComponent {
@@ -49,7 +49,7 @@ class SequenceItem extends React.PureComponent {
           </NavLink>
           <button onClick={this.onClickedDelete}>
             <img
-              src={iconTrash}
+              src={iconDelete}
               alt="Excluir"
             />
           </button>

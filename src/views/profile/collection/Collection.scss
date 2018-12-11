@@ -2,9 +2,45 @@
 @import '~tools.scss';
 
 .wrapper {
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.buttons {
+  display: flex;
+  padding: rem(10) rem(16);
+
+  > button {
+    &:first-child {
+      margin-right: rem(10);
+    }
+  }
+}
+
+.btnClose {
+  margin-left: auto;
 }
 
 .header {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+  padding: rem(10) rem(16) rem(30) rem(16);
 
+  > h2 {
+    color: black;
+    font-size: rem(21);
+    line-height: rem(36);
+    margin-bottom: rem(4);
+  }
+
+  > p {
+    margin-bottom: rem(6);
+  }
+}
+
+.years {
+  display: flex;
+  margin-left: rem(-1);
 }

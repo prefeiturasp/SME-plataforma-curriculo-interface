@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
+import ClassroomYear from 'components/objects/ClassroomYear';
 import SequencesList from './SequencesList';
 import SequencesNone from './SequencesNone';
+import iconClose from 'images/icon/closeBig.svg';
+import iconEdit from 'images/icon/edit.svg';
+import iconDelete from 'images/icon/delete1.svg';
 import imgPlaceholder from 'images/placeholder.jpg';
 import styles from './Collection.scss';
 
 class Collection extends Component {
+  onClickedClose = () => {
+    this.props.history.goBack();
+  }
+
+  onClickedDelete = () => {
+
+  }
+
   render() {
     const sequences = [
       {
@@ -24,9 +37,38 @@ class Collection extends Component {
       },
     ];
 
+    const years = [
+      {
+        year: '2D',
+        color: '#ff007f',
+      },
+      {
+        year: '2D',
+        color: '#66ac70',
+      },
+      {
+        year: '3A',
+        color: '#ff007f',
+      },
+      {
+        year: '1A',
+        color: '#ff7e2c',
+      },
+    ];
+
     const name = 'Planeta';
     const count = 1;
-    const word = count > 0 ? 'turmas' : 'turma';
+    const word = count > 1 ? 'turmas' : 'turma';
+
+    const yearsItems = years.map((year, i) => {
+      return (
+        <ClassroomYear
+          key={i}
+          year={year.year}
+          color={year.color}
+        />
+      );
+    });
 
     const contents = sequences.length > 0
       ? <SequencesList items={sequences} />
@@ -34,6 +76,29 @@ class Collection extends Component {
 
     return (
       <section className={styles.wrapper}>
+        <div className={styles.buttons}>
+          <button>
+            <img
+              src={iconEdit}
+              alt="Editar"
+            />
+          </button>
+          <button onClick={this.onClickedDelete}>
+            <img
+              src={iconDelete}
+              alt="Excluir"
+            />
+          </button>
+          <button
+            className={styles.btnClose}
+            onClick={this.onClickedClose}
+          >
+            <img
+              src={iconClose}
+              alt="Fechar"
+            />
+          </button>
+        </div>
         <header className={styles.header}>
           <h2>
             {name}
@@ -41,6 +106,9 @@ class Collection extends Component {
           <p>
             {count} {word}
           </p>
+          <div className={styles.years}>
+            {yearsItems}
+          </div>
         </header>
         {contents}
       </section>
@@ -51,4 +119,4 @@ class Collection extends Component {
 Collection.propTypes = {
 };
 
-export default Collection;
+export default withRouter(Collection);
