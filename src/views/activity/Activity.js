@@ -202,8 +202,6 @@ class Activity extends Component {
         })
       : null;
 
-    const content = convertQuillToHtml(data.content);
-    
     const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
@@ -264,7 +262,6 @@ class Activity extends Component {
           <div className="row">
             <div className={styles.description}>
               {contentBlocks}
-              <div dangerouslySetInnerHTML={{__html: content}} />
             </div>
           </div>
         </div>
