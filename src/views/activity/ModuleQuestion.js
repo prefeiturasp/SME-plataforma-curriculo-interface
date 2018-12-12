@@ -21,7 +21,7 @@ class ModuleQuestion extends React.PureComponent {
 }
 
 ModuleQuestion.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
