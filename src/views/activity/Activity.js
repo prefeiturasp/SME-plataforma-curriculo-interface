@@ -25,75 +25,6 @@ import iconHelp from 'images/icon/help.svg';
 import iconPrint from 'images/icon/print.svg';
 import styles from './Activity.css';
 
-const content_blocks = [
-{
-"type": "to_teacher",
-"content": {
-"body": "{\"ops\":[{\"insert\":\"Conteúdo para o professor\\n\"}]}"
-}
-},
-{
-"type": "to_student",
-"content": {
-"body": "{\"ops\":[{\"insert\":\"Conteúdo para o estudante\\n\"}]}"
-}
-},
-{
-"type": "question",
-"content": {
-"title": "Título da questão",
-"number": "1",
-"body": "{\"ops\":[{\"insert\":\"Texto da questão\\n\"}]}"
-}
-},
-{
-"type": "predefined_exercise",
-"content": {
-"title": "Atividade prática",
-"body": "{\"ops\":[{\"insert\":\"Conteúdo do pré-definido\\n\"}]}",
-"icon_url": "http://localhost/images/pre_defined_exercises/atividade_pratica.svg"
-}
-},
-{
-"type": "long_text",
-"content": {
-"title": "Titulo texto longo",
-"body": "{\"ops\":[{\"insert\":\"Conteúdo do texto longo\\nComo pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro\\nEra o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.\\nDois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.\\nComo pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?\\nEra o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.\\nDois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.\"}]}"
-}
-},
-{
-"type": "gallery",
-"images": [
-{
-"subtitle": "Legenda 1",
-"file_attributes": {
-"default_url": "full/path/rodada31.png",
-"default_size": "medium",
-"medium": {
-"url": "full/path/rodada31.png"
-}
-}
-},
-{
-"subtitle": "Legenda 2",
-"file_attributes": {
-"default_url": "full/path/lista_produtos.png",
-"default_size": "medium",
-"medium": {
-"url": "/full/path/lista_produtos.png"
-}
-}
-}
-]
-},
-{
-"type": "free_text",
-"content": {
-"body": "{\"ops\":[{\"insert\":\"Texto livre\\n\"}]}"
-}
-}
-];
-
 class Activity extends Component {
   state = { isShowingAllLearningObjectives: false };
 
@@ -204,7 +135,6 @@ class Activity extends Component {
       </div>
     ) : null;
 
-    data.content_blocks = content_blocks;
     const contentBlocks = data.content_blocks
       ? data.content_blocks.map((block, i) => {
           switch(block.type) {
@@ -238,6 +168,8 @@ class Activity extends Component {
               return (
                 <ModuleExercise
                   key={i}
+                  icon={block.content.icon_url}
+                  title={block.content.title}
                   text={convertQuillToHtml(block.content.body)}
                 />
               );
@@ -260,7 +192,12 @@ class Activity extends Component {
               );
 
             default:
-              return <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(block.content.body)}} />;
+              return (
+                <div
+                  key={i}
+                  dangerouslySetInnerHTML={{__html: convertQuillToHtml(block.content.body)}}
+                />
+              );
           }
         })
       : null;
