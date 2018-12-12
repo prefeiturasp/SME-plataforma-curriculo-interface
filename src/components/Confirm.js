@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ConfirmActions from 'actions/ConfirmActions';
 import iconClose from 'images/icon/close.svg';
-import iconWarningBig from 'images/icon/warningBig.svg';
 import styles from './Confirm.scss';
 
 Modal.setAppElement('#root');

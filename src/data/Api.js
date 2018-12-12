@@ -1,3 +1,4 @@
+import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
 import parse from 'parse-link-header';
 import { API_URL } from 'data/constants';
@@ -65,7 +66,7 @@ class Api {
       
       return Api.get(dispatch, url)
         .then(response => dispatch({ ...response, type: onSuccess }))
-        .catch(error => dispatch(BodyActions.showAlert('')));
+        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
     };
   }
 
