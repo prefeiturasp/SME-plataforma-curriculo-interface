@@ -1,5 +1,5 @@
-import getFiltersQueryString from './getFiltersQueryString';
-import { getData } from './dataUtils';
+import Api from 'data/Api';
+import getFiltersQueryString from 'data/getFiltersQueryString';
 
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
@@ -17,20 +17,20 @@ const SequencesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return getData(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
+    return Api.simpleGet(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
   },
   load() {
-    return getData('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
+    return Api.simpleGet('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
   },
   loadItem(slug) {
-    return getData(`/api/sequencias/${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
+    return Api.simpleGet(`/api/sequencias/${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
   },
   loadMore(page) {
-    return getData(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
+    return Api.simpleGet(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
   },
   loadWithFilter(filter) {
     const queryString = getFiltersQueryString([filter]);
-    return getData(`/api/sequencias?${queryString}`, SequencesActions.LOAD, SequencesActions.LOADED);
+    return Api.simpleGet(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../constants';
+import { API_URL } from 'data/constants';
 import ActivityItem from './ActivityItem';
-import BodyActions from '../../actions/BodyActions';
-import GenericItem from '../common/GenericItem';
-import Page from '../common/Page';
-import ReadMore from '../util/ReadMore';
-import SequencesActions from '../../actions/SequencesActions';
-import iconClock from '../../images/iconClockWhite.svg';
-import iconPrint from '../../images/iconPrint.svg';
+import BodyActions from 'actions/BodyActions';
+import GenericItem from 'components/objects/GenericItem';
+import Page from 'components/Page';
+import ReadMore from 'components/ReadMore';
+import SequencesActions from 'actions/SequencesActions';
+import iconClock from 'images/icon/clockWhite.svg';
+import iconPrint from 'images/icon/print.svg';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {

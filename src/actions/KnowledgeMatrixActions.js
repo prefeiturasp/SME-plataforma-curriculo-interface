@@ -1,11 +1,11 @@
-import { getData } from './dataUtils';
+import Api from 'data/Api';
 
 const KnowledgeMatrixActions = {
   LOAD: 'KnowledgeMatrixActions.LOAD',
   LOADED: 'KnowledgeMatrixActions.LOADED',
   
   load() {
-    return getData('/api/saberes', KnowledgeMatrixActions.LOAD, KnowledgeMatrixActions.LOADED);
+    return Api.simpleGet('/api/saberes', KnowledgeMatrixActions.LOAD, KnowledgeMatrixActions.LOADED);
   },
 };
 

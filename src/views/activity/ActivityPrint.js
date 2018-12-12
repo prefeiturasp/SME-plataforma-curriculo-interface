@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_URL } from '../../constants';
-import ActivityActions from '../../actions/ActivityActions';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import convertQuillToHtml from '../util/convertQuillToHtml';
+import { API_URL } from 'data/constants';
+import ActivityActions from 'actions/ActivityActions';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
-import getWindowWidth from '../util/getWindowWidth';
-import iconClock from '../../images/iconClock.svg';
+import getWindowWidth from 'utils/getWindowWidth';
+import iconClock from 'images/icon/clock.svg';
 import styles from './Activity.scss';
 
 let hasPrinted = false;

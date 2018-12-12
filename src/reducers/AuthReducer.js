@@ -1,4 +1,4 @@
-import AuthActions from '../actions/AuthActions';
+import AuthActions from 'actions/AuthActions';
 
 const initialState = {
   hasSetup: false,

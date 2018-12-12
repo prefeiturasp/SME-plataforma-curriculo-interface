@@ -1,233 +1,140 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
-import ProfileActions from '../../actions/ProfileActions';
-import SimpleFooter from '../common/SimpleFooter';
-import SimpleHeader from '../common/SimpleHeader';
+import { NavLink } from 'react-router-dom';
+import CollectionsList from './collections/CollectionsList';
+import CollectionsNone from './collections/CollectionsNone';
+import Notification from './Notification';
+import Page from 'components/Page';
+import ProfileImage from './ProfileImage';
+import iconEdit from 'images/icon/edit.svg';
 import styles from './Profile.scss';
-import { API_URL } from '../../constants';
 
 class Profile extends Component {
-  state = {
-    isUploading: false,
-    name: '',
-    nickname: '',
-    photo: null,
-  };
-
-  onChangedNickname = (e) => {
-    this.setState({
-      ...this.state,
-      nickname: e.target.value,
-    });
-  }
-
-  onClickedAddPhoto = (e) => {
-    const files = Array.from(e.target.files);
-    const file = files[0];
-    this.props.savePhoto(this.props.id, file);
-
-    const reader  = new FileReader();
-    reader.onloadend = () => {
-      this.setState({
-        ...this.state,
-        photo: reader.result,
-      });
-    }
-    reader.readAsDataURL(file);
-  }
-
-  onClickedChangePhoto = (e) => {
-    this.onClickedAddPhoto(e);
-  }
-
-  onClickedDeletePhoto = () => {
-    this.props.deletePhoto();
-  }
-
-  onClickedSave = () => {
-    this.props.saveNickname(this.props.id, this.state.nickname);
-  }
-
-  componentDidMount() {
-    this.props.load();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.nickname !== prevProps.nickname) {
-      this.setState({
-        ...this.state,
-        name: this.props.name,
-        nickname: this.props.nickname,
-        photo: API_URL + this.props.photo,
-      });
-    }
-
-    if (this.props.isUploading !== prevProps.isUploading) {
-      this.setState({
-        ...this.state,
-        isUploading: this.props.isUploading,
-      });
-    }
-  }
-
   render() {
-    const hasImage = this.state.photo !== null;
+    const collections = [
+      {
+        id: 1,
+        title: '[2018] EF 1A Matemática (1)',
+        sequences: 2,
+        classrooms: 1,
+        years: [
+          {
+            color: '#ff0784',
+            year: '1A',
+          }
+        ],
+      },
+      {
+        id: 2,
+        title: '[2018] EF 1A Matemática (2)',
+        sequences: 2,
+        classrooms: 1,
+        years: [
+          {
+            color: '#ff0784',
+            year: '1A',
+          }
+        ],
+      },
+      {
+        id: 3,
+        title: '[2018] EF 1A Ciências Naturais',
+        sequences: 2,
+        classrooms: 1,
+        years: [
+          {
+            color: '#66ac70',
+            year: '1A',
+          }
+        ],
+      },
+      {
+        id: 4,
+        title: '[2018] EF 1A História',
+        sequences: 2,
+        classrooms: 1,
+        years: [
+          {
+            color: '#66ac70',
+            year: '1A',
+          }
+        ],
+      },
+      {
+        id: 5,
+        title: 'Planeta',
+        sequences: 5,
+        classrooms: 0,
+        years: [],
+      },
+      {
+        id: 6,
+        title: 'Água',
+        sequences: 0,
+        classrooms: 3,
+          years: [
+          {
+            color: '#66ac70',
+            year: '1A',
+          },
+          {
+            color: '#ff0784',
+            year: '1A',
+          }
+        ],
+      },
+    ];
 
-    const progress = this.state.isUploading
-      ? <div className={styles.progress}>
-          <CircularProgress
-            size={108}
-            thickness={2}
-            value={this.state.progress}
-          />
-        </div>
+    const contents = collections.length > 0
+      ? <CollectionsList items={collections} />
+      : <CollectionsNone />;
+
+    const notification = true
+      ? <Notification />
       : null;
 
-    let actions = null;
-    if (this.state.isUploading) {
-      actions = (
-        <div className={styles.actions}>
-          Atualizando...
-        </div>
-      );
-    } else if (hasImage) {
-      actions = (
-        <div className={styles.actions}>
-          <input
-            className={styles.file}
-            id="photo"
-            type="file"
-            onChange={this.onClickedAddPhoto}
-          />
-          <label htmlFor="photo">Alterar</label>
-          <span>&middot;</span>
-          <button onClick={this.onClickedDeletePhoto}>
-            Deletar
-          </button>
-        </div>
-      );
-    } else {
-      actions = (
-        <div className={styles.actions}>
-          <input
-            className={styles.file}
-            id="photo"
-            type="file"
-            onChange={this.onClickedAddPhoto}
-          />
-          <label htmlFor="photo">Adicionar foto</label>
-        </div>
-      );
-    }
-
-    let imageOrLetter = null;
-    if (hasImage) {
-      imageOrLetter = (
-        <div className={styles.imageWrapper}>
-          {progress}
-          <img
-            className={styles.image}
-            src={this.state.photo}
-            alt={this.state.name}
-          />
-        </div>
-      );
-    } else {
-      const letter = this.state.nickname ? this.state.nickname.charAt(0).toUpperCase() : '';
-
-      imageOrLetter = (
-        <div className={styles.imageWrapper}>
-          {progress}
-          <div className={styles.letter}>
-            {letter}
-          </div>
-        </div>
-      );
-    }
-
-    const isInvalidNickname = this.state.nickname.length <= 0;
-    const nicknameMessage = isInvalidNickname ? 'Campo obrigatório' : '';
-    
     return (
-      <section className={styles.wrapper}>
-        <SimpleHeader
-          back={true}
-          title="Editar Perfil"
-        />
-        <div className={styles.center}>
-          {imageOrLetter}
-          {actions}
-        </div>
-        <div className={styles.fields}>
-          <div className={styles.field}>
-            <TextField
-              error={isInvalidNickname}
-              fullWidth={true}
-              helperText={nicknameMessage}
-              label="Apelido"
-              onChange={this.onChangedNickname}
-              value={this.state.nickname}
-            />
+      <Page>
+        {notification}
+        <header className={styles.header}>
+          <div className={styles.rowName}>
+            <div className={styles.photoAndName}>
+              <ProfileImage
+                nickname="Marília"
+                size={60}
+              />
+              <h2>
+                Marília
+              </h2>
+            </div>
+            <NavLink to="/perfil/editar">
+              <img src={iconEdit} alt="Editar perfil" />
+            </NavLink>
           </div>
-          <div className={styles.field}>
-            <TextField
-              disabled={true}
-              fullWidth={true}
-              label="Nome"
-              value={this.state.name}
-            />
+          <div className={styles.rowNumbers}>
+            <div>
+              <em>6</em> coleções
+            </div>
+            <div>
+              <em>6</em> turmas
+            </div>
+            <div>
+              <em>3</em> componentes
+            </div>
           </div>
-        </div>
-        <p className={styles.obs}>Caso deseje alterar sua senha, acesse sua conta na <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a>.</p>
-        <SimpleFooter
-          label="Salvar"
-          onClick={this.onClickedSave}
-        />
-      </section>
+          <NavLink
+            className="btnFullWidth"
+            to="/turmas"
+          >
+            Ver minhas turmas
+          </NavLink>
+        </header>
+        {contents}
+      </Page>
     );
   }
 }
 
 Profile.propTypes = {
-  id: PropTypes.number,
-  isUploading: PropTypes.bool,
-  name: PropTypes.string,
-  nickname: PropTypes.string,
-  photo: PropTypes.string,
-  deletePhoto: PropTypes.func.isRequired,
-  load: PropTypes.func.isRequired,
-  saveNickname: PropTypes.func.isRequired,
-  savePhoto: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
-  return {
-    id: state.ProfileReducer.id,
-    isUploading: state.ProfileReducer.isUploading,
-    name: state.ProfileReducer.name,
-    nickname: state.ProfileReducer.nickname,
-    photo: state.ProfileReducer.photo,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    deletePhoto: () => {
-      dispatch(ProfileActions.deletePhoto());
-    },
-    load: () => {
-      dispatch(ProfileActions.load());
-    },
-    saveNickname: (id, nickname) => {
-      dispatch(ProfileActions.saveNickname(id, nickname));
-    },
-    savePhoto: (id, photo) => {
-      dispatch(ProfileActions.savePhoto(id, photo));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default Profile;

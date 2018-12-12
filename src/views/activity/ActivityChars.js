@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
-import ActivityActions from '../../actions/ActivityActions';
-import BodyActions from '../../actions/BodyActions';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import SimpleHeader from '../common/SimpleHeader';
+import ActivityActions from 'actions/ActivityActions';
+import BodyActions from 'actions/BodyActions';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import SimpleHeader from 'components/SimpleHeader';
 import getActivityTypeIcon from './getActivityTypeIcon';
-import getWindowWidth from '../util/getWindowWidth';
-import iconHelp from '../../images/iconHelp.svg';
-import styles from '../sequence/SequenceChars.scss';
+import getWindowWidth from 'utils/getWindowWidth';
+import iconHelp from 'images/icon/help.svg';
+import styles from 'views/sequence/SequenceChars.scss';
 
 class ActivityChars extends Component {
   onResized = () => {

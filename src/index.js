@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Analytics from 'react-router-ga';
 import thunk from 'redux-thunk';
@@ -8,30 +8,34 @@ import { Route, Switch } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import Activity from './views/activity/Activity';
-import ActivityChars from './views/activity/ActivityChars';
-import ActivityPrint from './views/activity/ActivityPrint';
-import AppAlert from './views/util/AppAlert';
-import AppLoading from './views/util/AppLoading';
-import BodyManager from './views/util/BodyManager';
-import Curriculum from './views/curriculum/Curriculum';
-import Home from './views/home/Home';
-import LearningObjectives from './views/learningObjectives/LearningObjectives';
-import KnowledgeMatrix from './views/knowledgeMatrix/KnowledgeMatrix';
-import KnowledgeMatrixItem from './views/knowledgeMatrix/KnowledgeMatrixItem';
-import Profile from './views/profile/Profile';
-import Roadmap from './views/roadmap/Roadmap';
-import ScrollToTop from './views/util/ScrollToTop';
-import Sequence from './views/sequence/Sequence';
-import SequenceChars from './views/sequence/SequenceChars';
-import SequencePrint from './views/sequence/SequencePrint';
-import Sequences from './views/sequences/Sequences';
-import SustainableDevGoal from './views/sustainableDevGoals/SustainableDevGoal';
-import SustainableDevGoals from './views/sustainableDevGoals/SustainableDevGoals';
+import Activity from 'views/activity/Activity';
+import ActivityChars from 'views/activity/ActivityChars';
+import ActivityPrint from 'views/activity/ActivityPrint';
+import Alert from 'components/Alert';
+import AppLoading from 'components/loading/AppLoading';
+import Classrooms from 'views/profile/classrooms/Classrooms';
+import Collection from 'views/profile/collection/Collection';
+import Confirm from 'components/Confirm';
+import Curriculum from 'views/curriculum/Curriculum';
+import EditCollection from 'views/profile/collection/edit/EditCollection';
+import EditProfile from 'views/profile/edit/EditProfile';
+import Home from 'views/home/Home';
+import LearningObjectives from 'views/learningObjectives/LearningObjectives';
+import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
+import KnowledgeMatrixItem from 'views/knowledgeMatrix/KnowledgeMatrixItem';
+import Profile from 'views/profile/Profile';
+import Roadmap from 'views/roadmap/Roadmap';
+import ScrollToTop from 'components/ScrollToTop';
+import Sequence from 'views/sequence/Sequence';
+import SequenceChars from 'views/sequence/SequenceChars';
+import SequencePrint from 'views/sequence/SequencePrint';
+import Sequences from 'views/sequences/Sequences';
+import SustainableDevGoal from 'views/sustainableDevGoals/SustainableDevGoal';
+import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 
-import appTheme from './appTheme';
-import reducers from './reducers';
-import registerServiceWorker from './registerServiceWorker';
+import reducers from 'reducers';
+import registerServiceWorker from 'utils/registerServiceWorker';
+import theme from 'utils/theme';
 
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
@@ -66,7 +70,7 @@ class ModalSwitch extends Component {
     const locationProp = isModalSustainableDevGoal || isModalKnowledgeMatrix ? this.previousLocation : location;
 
     return (
-      <div>
+      <Fragment>
         <Switch location={locationProp}>
           <Route exact path='/' component={Home} />
           <Route exact path='/sequencias' component={Sequences} />
@@ -85,10 +89,14 @@ class ModalSwitch extends Component {
           <Route exact path='/objetivos-de-aprendizagem' component={LearningObjectives} />
           <Route exact path='/descobrir' component={Roadmap} />
           <Route exact path='/perfil' component={Profile} />
+          <Route exact path='/perfil/editar' component={EditProfile} />
+          <Route exact path='/turmas' component={Classrooms} />
+          <Route exact path='/colecao/:id' component={Collection} />
+          <Route exact path='/colecao/:id/editar' component={EditCollection} />
         </Switch>
         {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
         {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
-      </div>
+      </Fragment>
     );
   }
 }
@@ -103,11 +111,11 @@ ReactDOM.render(
     <BrowserRouter>
       <Analytics id="UA-85250794-5">
         <ScrollToTop>
-          <MuiThemeProvider theme={appTheme}>
+          <MuiThemeProvider theme={theme}>
             <Route component={ModalSwitch} />
             <AppLoading />
-            <AppAlert />
-            <BodyManager />
+            <Alert />
+            <Confirm />
           </MuiThemeProvider>
         </ScrollToTop>
       </Analytics>

@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
-import BodyActions from '../../actions/BodyActions';
-import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
-import iconCloseBig from '../../images/iconCloseBig.svg';
+import BodyActions from 'actions/BodyActions';
+import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
+import iconCloseBig from 'images/icon/closeBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {

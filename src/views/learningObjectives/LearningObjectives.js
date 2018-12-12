@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { TimelineLite } from 'gsap/TweenMax';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import BodyActions from '../../actions/BodyActions';
-import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
+import AlertActions from 'actions/AlertActions';
+import BodyActions from 'actions/BodyActions';
+import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import Loading from '../util/Loading';
-import Page from '../common/Page';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
+import Loading from 'components/loading/Loading';
+import Page from 'components/Page';
 import YearButton from './YearButton';
-import getWindowWidth from '../util/getWindowWidth';
-import chevronLeft from '../../images/chevronLeft.svg';
-import iconCloseBig from '../../images/iconCloseBig.svg';
-import iconWarning from '../../images/iconWarning.svg';
+import getWindowWidth from 'utils/getWindowWidth';
+import chevronLeft from 'images/chevron/left.svg';
+import iconCloseBig from 'images/icon/closeBig.svg';
+import iconWarning from 'images/icon/warning.svg';
 import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {
@@ -236,10 +237,9 @@ LearningObjectives.propTypes = {
   isShowingResults: PropTypes.bool.isRequired,
   load: PropTypes.func.isRequired,
   hideObjectives: PropTypes.func.isRequired,
-  hideModal: PropTypes.func.isRequired,
   hideResults: PropTypes.func.isRequired,
+  openAlert: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
-  showAlert: PropTypes.func.isRequired,
   showObjectives: PropTypes.func.isRequired,
 };
 
@@ -264,11 +264,11 @@ const mapDispatchToProps = dispatch => {
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
     },
+    openAlert: (message) => {
+      dispatch(AlertActions.open(message));
+    },
     search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
-    },
-    showAlert: (message) => {
-      dispatch(BodyActions.showAlert(message));
     },
     showObjectives: () => {
       dispatch(LearningObjectivesActions.showObjectives());

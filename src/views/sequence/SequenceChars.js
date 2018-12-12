@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import SequencesActions from '../../actions/SequencesActions';
-import CurricularComponentItem from '../common/CurricularComponentItem';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
-import SimpleHeader from '../common/SimpleHeader';
-import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
-import iconHelp from '../../images/iconHelp.svg';
+import BodyActions from 'actions/BodyActions';
+import SequencesActions from 'actions/SequencesActions';
+import CurricularComponentItem from 'components/objects/CurricularComponentItem';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
+import SimpleHeader from 'components/SimpleHeader';
+import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
+import iconHelp from 'images/icon/help.svg';
 import styles from './SequenceChars.scss';
 
 class SequenceChars extends Component {

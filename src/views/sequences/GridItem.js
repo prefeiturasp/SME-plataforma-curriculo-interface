@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SequencesActions from '../../actions/SequencesActions';
+import SequencesActions from 'actions/SequencesActions';
 import GridItemBase from './GridItemBase';
 
 const mapDispatchToProps = dispatch => {

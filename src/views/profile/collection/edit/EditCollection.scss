@@ -1,0 +1,22 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.header {
+  border-bottom: 1px solid $grey-200;
+  padding: rem(16);
+  padding-bottom: rem(26);
+}
+
+.list {
+  flex-shrink: 10;
+  overflow-y: scroll;
+  padding: rem(16);
+
+  > h3 {
+    color: $grey-600;
+    font-size: rem(13);
+    font-weight: normal;
+    line-height: rem(18);
+    margin-bottom: rem(12);
+  }
+}
