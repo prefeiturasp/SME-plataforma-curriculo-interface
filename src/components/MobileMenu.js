@@ -127,8 +127,6 @@ class MobileMenu extends React.PureComponent {
     return (
       <nav className={classes.join(' ')} id="mobileMenu">
         {links}
-        <hr/>
-        {buttons}
         <button className={styles.close} onClick={this.onClickedClose}>
           <img src={iconCloseBig} alt="Fechar" />
         </button>
