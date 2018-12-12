@@ -1,3 +1,8 @@
+import 'bootstrap/dist/css/bootstrap-reboot.css';
+import 'bootstrap/dist/css/bootstrap-grid.css';
+import 'react-image-gallery/styles/css/image-gallery-no-icon.css';
+import './index.scss';
+
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Analytics from 'react-router-ga';
@@ -29,11 +34,6 @@ import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
-
-import 'bootstrap/dist/css/bootstrap-reboot.css';
-import 'bootstrap/dist/css/bootstrap-grid.css';
-import 'react-image-gallery/styles/css/image-gallery-no-icon.css';
-import './index.scss';
 
 function checkModal(location, previousLocation, key) {
   return !!(
