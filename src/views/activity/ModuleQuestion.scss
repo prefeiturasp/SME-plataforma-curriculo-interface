@@ -6,13 +6,12 @@
 }
 
 .title {
-  align-items: center;
   display: flex;
   margin-bottom: rem(14);
 
   > h4 {
     font-weight: normal;
-    line-height: 1;
+    line-height: inherit;
     margin: 0;
   }  
 }

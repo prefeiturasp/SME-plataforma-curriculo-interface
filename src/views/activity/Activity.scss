@@ -149,7 +149,7 @@
 
 .btnPrint {
   composes: btn from global;
-  display: none !important;
+  display: none;
 }
 
 .title {
@@ -212,13 +212,13 @@
 
 .back {
   composes: btn from global;
-  display: inline-block !important;
+  display: inline-block;
   margin: 1.875rem auto;
 }
 
 @include mq("tablet-portrait") {
   .btnPrint {
-    display: flex !important;
+    display: flex;
   }
 
   .description {
