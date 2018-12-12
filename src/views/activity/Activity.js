@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
-import Sticky from 'react-stickynode';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import GenericItem from 'components/objects/GenericItem';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
-import ModuleImage from './ModuleImage';
 import ModuleLongText from './ModuleLongText';
 import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
-import ModuleTable from './ModuleTable';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/Page';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
@@ -22,12 +20,87 @@ import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from 'utils/getWindowWidth';
 import arrowLeft from 'images/arrow/left.svg';
 import arrowRight from 'images/arrow/right.svg';
-import iconClock from 'images/icon/clockWhite.svg';
+import iconClock from 'images/icon/clock.svg';
+import iconHelp from 'images/icon/help.svg';
 import iconPrint from 'images/icon/print.svg';
-import imgPlaceholder from 'images/placeholder.jpg';
-import styles from './Activity.scss';
+import styles from './Activity.css';
+
+const content_blocks = [
+{
+"type": "to_teacher",
+"content": {
+"body": "{\"ops\":[{\"insert\":\"Conteúdo para o professor\\n\"}]}"
+}
+},
+{
+"type": "to_student",
+"content": {
+"body": "{\"ops\":[{\"insert\":\"Conteúdo para o estudante\\n\"}]}"
+}
+},
+{
+"type": "question",
+"content": {
+"title": "Título da questão",
+"number": "1",
+"body": "{\"ops\":[{\"insert\":\"Texto da questão\\n\"}]}"
+}
+},
+{
+"type": "predefined_exercise",
+"content": {
+"title": "Atividade prática",
+"body": "{\"ops\":[{\"insert\":\"Conteúdo do pré-definido\\n\"}]}",
+"icon_url": "http://localhost/images/pre_defined_exercises/atividade_pratica.svg"
+}
+},
+{
+"type": "long_text",
+"content": {
+"title": "Titulo texto longo",
+"body": "{\"ops\":[{\"insert\":\"Conteúdo do texto longo\\nComo pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro\\nEra o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.\\nDois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.\\nComo pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?\\nEra o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.\\nDois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.\"}]}"
+}
+},
+{
+"type": "gallery",
+"images": [
+{
+"subtitle": "Legenda 1",
+"file_attributes": {
+"default_url": "full/path/rodada31.png",
+"default_size": "medium",
+"medium": {
+"url": "full/path/rodada31.png"
+}
+}
+},
+{
+"subtitle": "Legenda 2",
+"file_attributes": {
+"default_url": "full/path/lista_produtos.png",
+"default_size": "medium",
+"medium": {
+"url": "/full/path/lista_produtos.png"
+}
+}
+}
+]
+},
+{
+"type": "free_text",
+"content": {
+"body": "{\"ops\":[{\"insert\":\"Texto livre\\n\"}]}"
+}
+}
+];
 
 class Activity extends Component {
+  state = { isShowingAllLearningObjectives: false };
+
+  onClickedAllLearningObjectives = () => {
+    this.setState({ isShowingAllLearningObjectives: true });
+  }
+
   onResized = () => {
     const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
@@ -71,16 +144,38 @@ class Activity extends Component {
     let duration = null;
     if (data.estimated_time) {
       const word = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word}`;
       duration = (
         <div className={styles.duration}>
           <img src={iconClock} alt="Número de aulas" />
-          <div>
-            <em>{data.estimated_time}</em>
-            {word}
-          </div>
+          <strong>{durationText}</strong>
+          (Tempo estimado)
         </div>
-      );
+      )
     }
+
+    const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
+      <div className={styles.title}>
+        Objetivos de aprendizagem
+        <button data-tip data-for="tooltipLearningObjectives">
+          <img src={iconHelp} alt="Ajuda" />
+        </button>
+      </div>
+    ) : null;
+
+    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
+
+    const learningObjectives = learningObjectivesList.map((item, i) => {
+      return (
+        <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
+      );
+    });
+
+    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
+      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
+        Ver Todos os Objetivos
+      </button>
+    );
 
     const iconsItems = data.activity_types.map((item, i) => {
       const icon = getActivityTypeIcon(item.name);
@@ -91,32 +186,87 @@ class Activity extends Component {
         </li>
       );
     });
-
     const icons = (
       <ul className={styles.icons}>
         {iconsItems}
       </ul>
     );
-    
-    const sequenceImage = data.image_attributes.default_url ? (
-      <img
-        className={styles.sequenceImage}
-        src={API_URL + data.image_attributes.default_url}
-        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-        alt={sequence.title} />
+    const icons1 = this.state.totalWidth < 992 ? null : icons;
+    const icons2 = this.state.totalWidth < 992 ? icons : null;
+
+    const cover = data.image_attributes.default_url ? (
+      <div className="container">
+        <img
+          className={styles.cover}
+          src={API_URL + data.image_attributes.default_url}
+          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
+          alt={data.title} />
+      </div>
     ) : null;
 
-    const image = data.image_attributes.default_url ? (
-      <img
-        className={styles.image}
-        src={API_URL + data.image_attributes.default_url}
-        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-        alt={data.title} />
-    ) : null;
+    data.content_blocks = content_blocks;
+    const contentBlocks = data.content_blocks
+      ? data.content_blocks.map((block, i) => {
+          switch(block.type) {
+            case 'to_teacher':
+              return (
+                <ModuleTeacher
+                  key={i}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'to_student':
+              return (
+                <ModuleStudent
+                  key={i}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'question':
+              return (
+                <ModuleQuestion
+                  key={i}
+                  number={block.content.number}
+                  title={block.content.title}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'predefined_exercise':
+              return (
+                <ModuleExercise
+                  key={i}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'long_text':
+              return (
+                <ModuleLongText
+                  key={i}
+                  title={block.content.title}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'gallery':
+              return (
+                <ModuleGallery
+                  key={i}
+                  images={block.images}
+                />
+              );
+
+            default:
+              return <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(block.content.body)}} />;
+          }
+        })
+      : null;
 
     const content = convertQuillToHtml(data.content);
     
-    const linkChars = `/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}/caracteristicas`;
     const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
@@ -139,109 +289,46 @@ class Activity extends Component {
     return (
       <Page>
       <section className={styles.wrapper}>
-        <Sticky>
-          <div className={styles.sequence}>
-            {sequenceImage}
-            <div>
-              <p>Sequência de atividades</p>
-              <NavLink to={link}>
-                <h1>{sequence.title}</h1>
-              </NavLink>
-            </div>
-            <button className={styles.btnSave}>
-              <img src={iconPrint} alt="Salvar" />
-              Salvar
-            </button>
+        <div className={styles.header}>
+          <div>
+            <h3>Atividade {data.sequence}</h3>
+            <h1>{data.title}</h1>
+            <h2>Sequência didática: {sequence.title}</h2>
           </div>
-        </Sticky>
-        <header className={styles.header}>
-          <div className={styles.banner}>
-            {image}
-            <ul>
-              {filters}
-            </ul>
-            {duration}
-          </div>
-          <div className={styles.info}>
-            <div>
-              <p>Atividade {data.sequence}</p>
-              <h1>{data.title}</h1>
-            </div>
-          </div>
-          <NavLink className={styles.btnInfo} to={linkChars}>
-            Ver características
-          </NavLink>
-          <NavLink className={styles.btnPrint} to={linkPrint}>
+          <NavLink className="btn" to={linkPrint}>
             <img src={iconPrint} alt="Imprimir" />
             Imprimir
           </NavLink>
-        </header>
+        </div>
+        <div className={styles.infos}>
+          <div className="row">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <ul>
+                {filters}
+              </ul>
+              {duration}
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-6">
+              {learningObjectivesTitle}
+              <ul>
+                {learningObjectives}
+              </ul>
+              {btnAllLearningObjectives}
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
+              {icons1}
+            </div>
+          </div>
+        </div>
+        {cover}
+        {icons2}
+        <hr />
         <div className="container">
           <div className="row">
             <div className={styles.description}>
-              <ModuleTable
-                data={[
-                  ['Frozen yoghurt', 159, 6.0],
-                  ['Ice cream sandwich', 237, 9.0],
-                  ['Eclair', 262, 16.0],
-                  ['Cupcake', 305, 3.7],
-                  ['Gingerbread', 356, 16.0],
-                  ['Ice cream sandwich', 237, 9.0],
-                  ['Eclair', 262, 16.0],
-                  ['Cupcake', 305, 3.7],
-                  ['Gingerbread', 356, 16.0],
-                  ['Frozen yoghurt', 159, 6.0],
-                  ['Eclair', 262, 16.0],
-                  ['Cupcake', 305, 3.7],
-                  ['Gingerbread', 356, 16.0],
-                  ['Frozen yoghurt', 159, 6.0],
-                  ['Ice cream sandwich', 237, 9.0],
-                ]}
-              />
-              <ModuleTeacher
-                text="<p>Apresentar a história de Beethoven e possibilitar a escuta de algumas de suas composições, pode enriquecer essa contextualização, além de ampliar o repertório musical das crianças. Há alguns vídeos na internet que, além de possibilitarem a escuta de trechos de composições, abordam aspectos da biografia de Beethoven, tais como:</p><p>Durante o próximo exercício que é a observação das imagens é importante que você interaja com os(as) estudantes, buscando que eles(as) descrevam cada uma delas. Além disso, poderá questioná-los(las) sobre quais tipos de sons podem ser presenciados em cada uma das situações.</p>"
-              />
-              <ModuleStudent
-                text="<p>Essa atividade tem como abordagens temáticas as práticas e processos de investigação, propiciando a utilização de diferentes ferramentas e recursos para propor as estratégias e hipóteses para resolver as situações observadas. A prática científica tem como plano de trabalho a transformação de curiosidades em ações de investigação. Ciclo investigativo: conceitualização e investigação.</p>"
-              />
-              <ModuleQuestion
-                number={1}
-                title="Leia o texto abaixo:"
-              />
-              <ModuleExercise
-                type="roda-de-conversa"
-                text="<p>Converse com seus colegas sobre como vocês imaginam ser possível alguém que não escuta poder compor e tocar músicas.</p><ol><li>Desenhe e explique, em seu caderno, como você acha que os sons são produzidos e percebidos pelas pessoas que escutam.</li><li>Desenhe e explique como você acha que Beethoven conseguia perceber o som de suas composições ao piano.</li></ol>"
-              />
-              <ModuleLongText
-                title="Narrativa de Victor Frankenstein"
-                text="Como pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?<br/>Era o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.<br/>Dois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas.<br/>Como pode o verme ser o herdeiro das maravilhas de um olho ou de um cérebro?<br/>Era o que eu pensava enquanto me debruçava, com um misto de nojo e fascínio, sobre os corpos em decomposição no laboratório. Nenhum prazer da juventude me deixaria tão realizado quanto a tarefa a que eu me entregara.<br/>Dois anos antes, quando fiz dezessete anos, meu pai, Alphonse Frankenstein, me mandara para a universidade de Ingolstadt, no Sul da Alemanha. Já me apaixonara por química no colégio em Genebra, mas ele achou importante que eu completasse os estudos fora da Suíça. E foi em Ingolstadt, ao assistir às aulas de herr Waldman, que passei a admirar os velhos alquimistas."
-              />
-              <ModuleGallery
-                images={[
-                  {
-                    original: imgPlaceholder,
-                    description: 'Lorem ipsum dolor!',
-                  },
-                  {
-                    original: imgPlaceholder,
-                    description: 'Lorem ipsum dolor sit amet!',
-                  },
-                  {
-                    original: imgPlaceholder,
-                    description: 'Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! Lorem ipsum dolor sit amet! <em>Lorem ipsum dolor sit amet!</em> Lorem ipsum dolor sit amet!',
-                  },
-                ]}
-              />
-              <ModuleImage
-                src={imgPlaceholder}
-                alt="Lorem ipsum"
-                source="Fonte: Adaptado de <em>A Surdez de Beethoven, o Desafio de um Gênio</em>"
-              />
+              {contentBlocks}
+              <div dangerouslySetInnerHTML={{__html: content}} />
             </div>
-            <div
-              className={styles.description}
-              dangerouslySetInnerHTML={{__html: content}}
-            />
           </div>
         </div>
         <hr />
