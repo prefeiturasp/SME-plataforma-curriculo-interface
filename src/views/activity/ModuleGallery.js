@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageGallery from 'react-image-gallery';
 import styles from './ModuleGallery.scss';
+import { API_URL } from 'data/constants';
 
 class ModuleGallery extends Component {
   gallery = null;
@@ -58,14 +59,22 @@ class ModuleGallery extends Component {
   }
 
   render() {
-    const classes = this.state.isFading ? [styles.description, styles.isFading] : [styles.description];
-    const description = this.props.images[this.state.index].description;
+    const items = this.props.images.map(image => {
+      return {
+        original: API_URL + image.file_attributes.default_url,
+        description: image.subtitle,
+      };
+    });
+
+    const { isFading, index } = this.state;
+    const classes = isFading ? [styles.description, styles.isFading] : [styles.description];
+    const description = items[index].description;
 
     return (
       <div className={styles.wrapper}>
         <ImageGallery
           ref={ref => this.gallery = ref}
-          items={this.props.images}
+          items={items}
           onSlide={this.onSlide}
           renderItem={this.renderItem}
           renderLeftNav={this.renderLeftNav}
@@ -75,10 +84,9 @@ class ModuleGallery extends Component {
           showThumbnails={false}
           slideDuration={300}
         />
-        <div
-          className={[classes.join(' ')]}
-          dangerouslySetInnerHTML={{__html: description}}
-        />
+        <div className={[classes.join(' ')]}>
+          {description}
+        </div>
       </div>
     );
   }
