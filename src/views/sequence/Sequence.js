@@ -12,6 +12,7 @@ import ReadMore from 'components/ReadMore';
 import SequencesActions from 'actions/SequencesActions';
 import iconClock from 'images/icon/clockWhite.svg';
 import iconPrint from 'images/icon/print.svg';
+import iconSave from 'images/icon/save.svg';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {
@@ -88,7 +89,7 @@ class Sequence extends Component {
               <h1>{data.title}</h1>
             </div>
             <button className={styles.btnSave}>
-              <img src={iconPrint} alt="Salvar" />
+              <img src={iconSave} alt="Salvar" />
               Salvar
             </button>
           </div>
