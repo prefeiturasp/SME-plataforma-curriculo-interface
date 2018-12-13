@@ -23,6 +23,7 @@ const ProfileActions = {
       const data = { 'teacher[nickname]': nickname };
       return Api.put(dispatch, `/api/professores/${id}`, data)
         .then(response => dispatch({ ...response, type: ProfileActions.SAVED_NICKNAME }))
+        .then(response => dispatch(AlertActions.open('Perfil salvo com sucesso!')))
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },
@@ -32,6 +33,7 @@ const ProfileActions = {
       const data = { 'teacher[avatar]': photo };
       return Api.post(dispatch, `/api/professores/${id}/avatar`, data)
         .then(response => dispatch({ ...response, type: ProfileActions.SAVED_PHOTO }))
+        .then(response => dispatch(AlertActions.open('Foto salva com sucesso!')))
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },

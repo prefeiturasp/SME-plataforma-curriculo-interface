@@ -96,7 +96,7 @@ class MobileMenu extends React.PureComponent {
     const buttons = this.props.hasLogged
       ? <div>
           <NavLink
-            to="perfil"
+            to="/perfil"
             className={styles.btn}
             onClick={this.onClickedClose}
           >
