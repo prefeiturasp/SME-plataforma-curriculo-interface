@@ -1,8 +1,10 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
   background: #fff;
-  border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  border-radius: rem(4);
+  margin-top: rem(32);
   overflow: hidden;
   text-align: left;
 }
@@ -21,8 +23,8 @@
 
 .initials {
   align-items: center;
-  background: #ccc;
-  color: #6a6a6a;
+  background: $grey-300;
+  color: $grey-600;
   display: flex;
   font-size: 5rem;
   font-weight: 600;
@@ -30,41 +32,38 @@
 }
 
 .component {
-  color: #6a6a6a;
+  color: $grey-600;
   font-size: 0.9375rem;
   font-weight: 600;
   margin: 1rem 1.5625rem 0.625rem 1.5625rem;
-}
 
-.component > em {
-  border-right: 1px solid #e0e0e0;
-  font-style: normal;
-  margin-right: 0.5rem;
-  padding-right: 0.5rem;
+  > em {
+    border-right: 1px solid $grey-200;
+    font-style: normal;
+    margin-right: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 
 .title {
-  color: #252525;
+  color: $grey-800;
   font-size: 1.3125rem;
   font-weight: bold;
   height: 3.15rem;
   line-height: 1.2;
   margin: 0 1.5625rem 1rem 1.5625rem;
   overflow: hidden;
-}
-.title a {
-  color: #252525;
+
+  a {
+    color: $grey-800;
+  }
 }
 
 .infos {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid $grey-200;
   display: flex;
   padding: 0.75rem 1.5625rem;
   justify-content: space-between;
-}
-
-.info {
-
 }
 
 .number {
@@ -73,15 +72,22 @@
 }
 
 .label {
-  color: #6a6a6a;
+  color: $grey-600;
   font-size: 0.875rem;
 }
 
 .expand {
   align-items: center;
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid $grey-200;
   cursor: pointer;
   display: flex;
   justify-content: center;
   padding: 0.5rem;
+}
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    margin-top: rem(16);
+    margin-bottom: rem(16);
+  }
 }

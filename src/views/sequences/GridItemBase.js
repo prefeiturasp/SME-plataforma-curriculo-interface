@@ -5,7 +5,7 @@ import { API_URL } from 'data/constants';
 import Preview from './Preview';
 import iconMinus from 'images/icon/minus.svg';
 import iconPlus from 'images/icon/plus.svg';
-import styles from './GridItemBase.css';
+import styles from './GridItemBase.scss';
 
 class GridItemBase extends Component {
   ref = React.createRef();
@@ -24,18 +24,16 @@ class GridItemBase extends Component {
     const style = { color: data.main_curricular_component.color };
 
     const link = `/sequencia/${data.slug}`;
-    const thumbnail = data.image_attributes.default_url ? (
-      <div className={styles.image}>
-        <img
-          src={API_URL + data.image_attributes.default_url}
-          srcSet={`${API_URL}${data.image_attributes.thumb.url}, ${API_URL}${data.image_attributes.extra_thumb.url} 2x`}
-          alt="" />
-      </div>
-    ) : (
-      <div className={styles.initials}>
-        {data.main_curricular_component.name.split(' ').map(s => s.charAt(0)).join('')}
-      </div>
-    );
+    const thumbnail = data.image_attributes.default_url
+      ? <div className={styles.image}>
+          <img
+            src={API_URL + data.image_attributes.default_url}
+            srcSet={`${API_URL}${data.image_attributes.thumb.url}, ${API_URL}${data.image_attributes.extra_thumb.url} 2x`}
+            alt="" />
+        </div>
+      : <div className={styles.initials}>
+          {data.main_curricular_component.name.split(' ').map(s => s.charAt(0)).join('')}
+        </div>;
 
     const maxChars = 32
     const title = data.title.length > maxChars ? data.title.substr(0, maxChars).trim() + '...' : data.title
@@ -82,7 +80,8 @@ class GridItemBase extends Component {
           data={data}
           width={width}
           height={height}
-          isLeftAligned={isLeftAligned} />
+          isLeftAligned={isLeftAligned}
+        />
       </li>
     );
   }
