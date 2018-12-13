@@ -1,57 +1,6 @@
 @import '~variables.scss';
 @import '~tools.scss';
 
-.wrapper {
-  
-}
-
-:global(.sticky-inner-wrapper) {
-  z-index: 100;
-
-  :global(.active) & {
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
-  }
-}
-
-.sequence {
-  align-items: center;
-  background: white;
-  display: flex;
-  justify-content: flex-start;
-  padding: rem(15);
-
-  div {
-    padding: rem(10);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: calc(100% - 80px - 48px);
-  }
-
-  p {
-    color: $grey-500;
-    font-size: rem(11);
-    margin: 0;
-  }
-
-  h1 {
-    display: inline-block;
-    font-size: rem(16);
-    margin: 0;
-  }
-
-  a {
-    color: black;
-    text-decoration: none;
-  }
-}
-
-.sequenceImage {
-  object-fit: cover;
-  width: rem(60);
-  height: rem(42);
-}
-
 .header {
   p {
     color: $grey-500;
@@ -72,21 +21,6 @@
   justify-content: space-between;
   padding-left: rem(15);
   padding-right: rem(15);
-}
-
-.btnSave {
-  align-items: center;
-  color: $grey-600;
-  display: flex;
-  flex-direction: column;
-  font-size: rem(12);
-  justify-content: center;
-  position: absolute;
-  right: rem(15);
-  
-  > img {
-    margin-bottom: rem(4);
-  }
 }
 
 .btnInfo {

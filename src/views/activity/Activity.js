@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
-import Sticky from 'react-stickynode';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from 'data/constants';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
 import ModuleExercise from './ModuleExercise';
@@ -16,11 +14,11 @@ import ModuleTable from './ModuleTable';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/Page';
 import SequenceCover from 'views/sequence/SequenceCover';
+import SequencePreview from './SequencePreview';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
 import arrowLeft from 'images/arrow/left.svg';
 import arrowRight from 'images/arrow/right.svg';
 import iconPrint from 'images/icon/print.svg';
-import iconSave from 'images/icon/save.svg';
 import styles from './Activity.scss';
 
 class Activity extends Component {
@@ -45,14 +43,6 @@ class Activity extends Component {
     const data = this.props.data;
     const sequence = data.activity_sequence;
     
-    const sequenceImage = data.image_attributes.default_url ? (
-      <img
-        className={styles.sequenceImage}
-        src={API_URL + data.image_attributes.default_url}
-        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-        alt={sequence.title} />
-    ) : null;
-
     const contentBlocks = data.content_blocks
       ? data.content_blocks.map((block, i) => {
           switch(block.type) {
@@ -124,7 +114,7 @@ class Activity extends Component {
     const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
-    const link = `/sequencia/${sequence.slug}`;
+    const linkSequence = `/sequencia/${sequence.slug}`;
 
     const arrowPrev = data.last_activity
       ? <NavLink className={styles.prev} to={linkPrev}>
@@ -143,21 +133,10 @@ class Activity extends Component {
     return (
       <Page>
       <section className={styles.wrapper}>
-        <Sticky>
-          <div className={styles.sequence}>
-            {sequenceImage}
-            <div>
-              <p>Sequência de atividades</p>
-              <NavLink to={link}>
-                <h1>{sequence.title}</h1>
-              </NavLink>
-            </div>
-            <button className={styles.btnSave}>
-              <img src={iconSave} alt="Salvar" />
-              Salvar
-            </button>
-          </div>
-        </Sticky>
+        <SequencePreview
+          data={data}
+          sequence={sequence}
+        />
         <header className={styles.header}>
           <SequenceCover
             data={data}
@@ -190,7 +169,7 @@ class Activity extends Component {
           {arrowNext}
         </div>
         <div className={styles.footer}>
-          <NavLink className={styles.back} to={link}>
+          <NavLink className={styles.back} to={linkSequence}>
             Voltar para a sequência
           </NavLink>
         </div>
