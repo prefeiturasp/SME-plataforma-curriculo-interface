@@ -19,7 +19,7 @@ class Collection extends Component {
   }
 
   onClickedConfirm = () => {
-    console.log('confirmed!');
+    
   }
 
   onClickedDelete = () => {

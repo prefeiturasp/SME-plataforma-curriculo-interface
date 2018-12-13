@@ -9,7 +9,7 @@ import styles from './SequenceItem.scss';
 
 class SequenceItem extends React.PureComponent {
   onClickedConfirm = () => {
-    console.log('confirmed!');
+    
   }
 
   onClickedDelete = () => {
