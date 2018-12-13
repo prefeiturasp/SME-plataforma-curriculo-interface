@@ -1,4 +1,4 @@
-import FiltersActions from '../actions/FiltersActions';
+import FiltersActions from 'actions/FiltersActions';
 
 function clearFilter(item) {
   return {

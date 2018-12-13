@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
+import BodyActions from 'actions/BodyActions';
+import Page from 'components/Page';
+import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import SustainableDevGoalButton from './SustainableDevGoalButton';
 import styles from './SustainableDevGoals.css';
 
@@ -19,6 +20,7 @@ class SustainableDevGoals extends Component {
     });
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className="row">
@@ -39,6 +41,7 @@ class SustainableDevGoals extends Component {
           </ul>
         </div>
       </section>
+      </Page>
     );
   }
 }

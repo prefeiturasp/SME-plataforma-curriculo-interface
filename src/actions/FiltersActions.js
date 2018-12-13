@@ -1,18 +1,7 @@
-import getFiltersQueryString from './getFiltersQueryString';
-import loadData from './loadData';
-import BodyActions from './BodyActions';
+import Api from 'data/Api';
+import AlertActions from './AlertActions';
 import SequencesActions from './SequencesActions';
-import { API_URL } from '../constants';
-
-function fetchData(dispatch, url, filters, action) {
-  const queryString = getFiltersQueryString(filters);
-      
-  fetch(`${API_URL}${url}?${queryString}`)
-    .then(response => response.json())
-    .then(data => {
-      dispatch({ data, type: action });
-    });
-}
+import getFiltersQueryString from 'data/getFiltersQueryString';
 
 function isYearOrComponent(s) {
   return s === 'years' || s === 'curricular_components';
@@ -31,7 +20,7 @@ const FiltersActions = {
   SEARCH: 'FiltersActions.SEARCH',
   
   load() {
-    return loadData('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
+    return Api.simpleGet('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
   },
   hideCategory() {
     return { type: FiltersActions.HIDE_CATEGORY };
@@ -47,7 +36,7 @@ const FiltersActions = {
         ) &&
         filters.length <= 0
       ) {
-        dispatch({ type: BodyActions.SHOW_MODAL, message: 'Selecione um ano ou componente curricular.'});
+        dispatch({ type: AlertActions.OPEN, message: 'Selecione um ano ou componente curricular.'});
       } else {
         dispatch({ type: FiltersActions.SHOW_CATEGORY, category });
       }
@@ -65,7 +54,8 @@ const FiltersActions = {
 
       if (isYearOrComponent(filter.type)) {
         const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
-        fetchData(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+        const queryString = getFiltersQueryString(filters);
+        Api.simpleGet(`/api/filtros?${queryString}`, null, FiltersActions.LOADED_EXTRA);
       }
     }
   },
@@ -75,10 +65,12 @@ const FiltersActions = {
       dispatch({ type: SequencesActions.SEARCH })
       
       let filters = getState().FiltersReducer.filters.filter(item => item.isActive);
-      fetchData(dispatch, '/api/sequencias', filters, SequencesActions.LOADED);
-
+      let queryString = getFiltersQueryString(filters);
+      Api.simpleGet(`/api/sequencias?${queryString}`, null, SequencesActions.LOADED);
+      
       filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
-      fetchData(dispatch, '/api/filtros', filters, FiltersActions.LOADED_EXTRA);
+      queryString = getFiltersQueryString(filters);
+      Api.simpleGet(`/api/filtros?${queryString}`, null, FiltersActions.LOADED_EXTRA);
     }
   },
   togglePanel() {

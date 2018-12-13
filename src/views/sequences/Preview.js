@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
-import LearningObjectiveItem from '../common/LearningObjectiveItem';
-import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
-import getWindowWidth from '../util/getWindowWidth';
-import iconHelp from '../../images/iconHelp.svg';
+import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
+import LearningObjectiveItem from 'components/objects/LearningObjectiveItem';
+import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
+import getWindowWidth from 'utils/getWindowWidth';
+import iconHelp from 'images/icon/help.svg';
 import styles from './Preview.css';
 
 class Preview extends Component {
-  constructor(props) {
-    super(props);
-    this.refWrapper = React.createRef();
-    this.refAccess = React.createRef();
-  }
+  refWrapper = React.createRef();
+  refAccess = React.createRef();
 
   render() {
     const knowledgeMatrices = this.props.data.knowledge_matrices.map((item, i) => {

@@ -1,0 +1,27 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  border-bottom: 1px solid $grey-200;
+  font-size: rem(13);
+  line-height: rem(18);
+  padding: rem(13) rem(16);
+
+  > p {
+    margin-bottom: rem(13);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    color: $color-turquoise;
+    font-size: rem(12);
+    font-weight: bold;
+    line-height: rem(18);
+    margin-left: rem(20);
+    text-transform: uppercase;
+  }
+}

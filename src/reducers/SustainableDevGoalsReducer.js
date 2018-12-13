@@ -1,4 +1,4 @@
-import SustainableDevGoalsActions from '../actions/SustainableDevGoalsActions';
+import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 
 const initialState = {
   items: [],

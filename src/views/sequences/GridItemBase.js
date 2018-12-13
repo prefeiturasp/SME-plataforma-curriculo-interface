@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../constants';
+import { API_URL } from 'data/constants';
 import Preview from './Preview';
-import iconMinus from '../../images/iconMinus.svg';
-import iconPlus from '../../images/iconPlus.svg';
+import iconMinus from 'images/icon/minus.svg';
+import iconPlus from 'images/icon/plus.svg';
 import styles from './GridItemBase.css';
 
 class GridItemBase extends Component {
-  constructor(props) {
-    super(props);
-    this.ref = React.createRef();
-  }
-
-  onClickedExpand() {
+  ref = React.createRef();
+  
+  onClickedExpand = () => {
     this.props.togglePreview(this.props.data.id);
   }
 
@@ -77,7 +74,7 @@ class GridItemBase extends Component {
               <div className={styles.label}>{word2}</div>
             </div>
           </div>
-          <div className={styles.expand} onClick={this.onClickedExpand.bind(this)}>
+          <div className={styles.expand} onClick={this.onClickedExpand}>
             <img src={icon} alt={alt} />
           </div>
         </article>

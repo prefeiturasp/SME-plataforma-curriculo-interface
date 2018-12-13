@@ -2,26 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import HomeActions from '../../actions/HomeActions';
+import BodyActions from 'actions/BodyActions';
+import HomeActions from 'actions/HomeActions';
 import GridItem from './GridItem';
-import iconActivities from '../../images/iconActivities.svg';
-import iconCurriculum from '../../images/iconCurriculum.svg';
-import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
-import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
-import iconSequences from '../../images/iconSequences.svg';
-import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
-import imgHome from '../../images/imgHome.jpg';
+import Page from 'components/Page';
+import iconActivities from 'images/illustration/activities.svg';
+import iconCurriculum from 'images/illustration/curriculum.svg';
+import iconKnowledgeMatrix from 'images/illustration/knowledgeMatrix.svg';
+import iconLearningObjectives from 'images/illustration/learningObjectives.svg';
+import iconSequences from 'images/illustration/sequences.svg';
+import iconSustainableDevGoals from 'images/illustration/sustainableDevGoals.svg';
+import imgHome from './home.jpg';
 import styles from './Home.css';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.enterHome();
     this.props.load();
+    document.body.classList.toggle('isHome', true);
   }
 
   componentWillUnmount() {
-    this.props.exitHome();
+    document.body.classList.toggle('isHome', false);
   }
 
   render() {
@@ -33,6 +34,7 @@ class Home extends Component {
     });
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header} style={style}>
           <div className="container">
@@ -119,14 +121,13 @@ class Home extends Component {
           </div>
         </div>
       </section>
+      </Page>
     );
   }
 }
 
 Home.propTypes = {
   sequences: PropTypes.array.isRequired,
-  enterHome: PropTypes.func.isRequired,
-  exitHome: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
 };
 
@@ -139,12 +140,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    enterHome: () => {
-      dispatch(BodyActions.enterHome());
-    },
-    exitHome: () => {
-      dispatch(BodyActions.exitHome());
-    },
     load: () => {
       dispatch(BodyActions.showLoading());
       dispatch(HomeActions.load());

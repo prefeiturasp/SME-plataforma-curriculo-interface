@@ -1,4 +1,4 @@
-import RoadpmapActions from '../actions/RoadmapActions';
+import RoadpmapActions from 'actions/RoadmapActions';
 
 const initialState = {
   items: [],

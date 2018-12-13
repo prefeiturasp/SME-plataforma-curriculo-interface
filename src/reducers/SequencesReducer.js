@@ -1,4 +1,4 @@
-import SequencesActions from '../actions/SequencesActions';
+import SequencesActions from 'actions/SequencesActions';
 
 const initialState = {
   items: [],

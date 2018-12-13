@@ -1,0 +1,11 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  margin-bottom: rem(30);
+  
+  > img {
+    margin-bottom: rem(8);
+    width: 100%;
+  }
+}

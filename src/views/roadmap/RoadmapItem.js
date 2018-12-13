@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import iconClockBig from '../../images/iconClockBig.svg';
-import iconPublished from '../../images/iconPublished.svg';
+import iconClockBig from 'images/icon/clockBig.svg';
+import iconPublished from 'images/icon/published.svg';
 import styles from './RoadmapItem.css';
 
 class RoadmapItem extends Component {

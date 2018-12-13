@@ -3,32 +3,36 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from '../../constants';
-import ActivityActions from '../../actions/ActivityActions';
-import BodyActions from '../../actions/BodyActions';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import convertQuillToHtml from '../util/convertQuillToHtml';
+import { API_URL } from 'data/constants';
+import ActivityActions from 'actions/ActivityActions';
+import BodyActions from 'actions/BodyActions';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
+import ModuleExercise from './ModuleExercise';
+import ModuleGallery from './ModuleGallery';
+import ModuleLongText from './ModuleLongText';
+import ModuleQuestion from './ModuleQuestion';
+import ModuleStudent from './ModuleStudent';
+import ModuleTeacher from './ModuleTeacher';
+import Page from 'components/Page';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
-import getWindowWidth from '../util/getWindowWidth';
-import iconArrowLeft from '../../images/iconArrowLeft.svg';
-import iconArrowRight from '../../images/iconArrowRight.svg';
-import iconClock from '../../images/iconClock.svg';
-import iconHelp from '../../images/iconHelp.svg';
-import iconPrint from '../../images/iconPrint.svg';
+import getWindowWidth from 'utils/getWindowWidth';
+import arrowLeft from 'images/arrow/left.svg';
+import arrowRight from 'images/arrow/right.svg';
+import iconClock from 'images/icon/clock.svg';
+import iconHelp from 'images/icon/help.svg';
+import iconPrint from 'images/icon/print.svg';
 import styles from './Activity.css';
 
 class Activity extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isShowingAllLearningObjectives: false };
-  }
+  state = { isShowingAllLearningObjectives: false };
 
-  onClickedAllLearningObjectives() {
+  onClickedAllLearningObjectives = () => {
     this.setState({ isShowingAllLearningObjectives: true });
   }
 
-  onResized() {
+  onResized = () => {
     const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
@@ -38,7 +42,7 @@ class Activity extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResized.bind(this));
+    window.addEventListener('resize', this.onResized);
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
   }
@@ -52,7 +56,7 @@ class Activity extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized.bind(this));
+    window.removeEventListener('resize', this.onResized);
   }
 
   render() {
@@ -131,8 +135,73 @@ class Activity extends Component {
       </div>
     ) : null;
 
-    const content = convertQuillToHtml(data.content);
-    
+    const contentBlocks = data.content_blocks
+      ? data.content_blocks.map((block, i) => {
+          switch(block.type) {
+            case 'to_teacher':
+              return (
+                <ModuleTeacher
+                  key={i}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'to_student':
+              return (
+                <ModuleStudent
+                  key={i}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'question':
+              return (
+                <ModuleQuestion
+                  key={i}
+                  number={block.content.number}
+                  title={block.content.title}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'predefined_exercise':
+              return (
+                <ModuleExercise
+                  key={i}
+                  icon={block.content.icon_url}
+                  title={block.content.title}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'long_text':
+              return (
+                <ModuleLongText
+                  key={i}
+                  title={block.content.title}
+                  text={convertQuillToHtml(block.content.body)}
+                />
+              );
+
+            case 'gallery':
+              return (
+                <ModuleGallery
+                  key={i}
+                  images={block.images}
+                />
+              );
+
+            default:
+              return (
+                <div
+                  key={i}
+                  dangerouslySetInnerHTML={{__html: convertQuillToHtml(block.content.body)}}
+                />
+              );
+          }
+        })
+      : null;
+
     const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
@@ -140,7 +209,7 @@ class Activity extends Component {
 
     const arrowPrev = data.last_activity ? (
       <NavLink className={styles.prev} to={linkPrev}>
-        <img src={iconArrowLeft} alt="Seta" />
+        <img src={arrowLeft} alt="Seta" />
         Atividade {data.sequence - 1}
       </NavLink>
     ) : <span />;
@@ -148,11 +217,12 @@ class Activity extends Component {
     const arrowNext = data.next_activity ? (
       <NavLink className={styles.next} to={linkNext}>
         Atividade {data.sequence + 1}
-        <img src={iconArrowRight} alt="Seta" />
+        <img src={arrowRight} alt="Seta" />
       </NavLink>
     ) : null;
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <div className={styles.header}>
           <div>
@@ -190,7 +260,9 @@ class Activity extends Component {
         <hr />
         <div className="container">
           <div className="row">
-            <div className={styles.description} dangerouslySetInnerHTML={{__html: content}} />
+            <div className={styles.description}>
+              {contentBlocks}
+            </div>
           </div>
         </div>
         <hr />
@@ -213,6 +285,7 @@ class Activity extends Component {
           <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
         </ReactTooltip>
       </section>
+      </Page>
     );
   }
 }
