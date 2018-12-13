@@ -59,6 +59,8 @@ class Sequences extends Component {
       );
     });
 
+    let contents = <ResultsNotFound />;
+    
     if (this.props.data.length) {
       const button = this.props.nextPage ? (
         <button className={styles.load} onClick={this.onClickedLoadMore}>
@@ -68,8 +70,7 @@ class Sequences extends Component {
 
       const loadingOrButton = this.props.isSearching ? <Loading /> : button;
 
-      return (
-        <Page>
+      contents = (
         <section className={styles.wrapper}>
           <div className="container">
             <h1>Sequências de Atividades</h1>
@@ -91,17 +92,18 @@ class Sequences extends Component {
             </div>
           </div>
         </section>
-        </Page>
       );
     }
     else if (this.props.isSearching) {
-      return (
+      contents = (
         <ResultsLoading height={this.state.windowHeight} />
       );
     }
     
     return (
-      <ResultsNotFound />
+      <Page>
+        {contents}
+      </Page>
     );
   }
 }
