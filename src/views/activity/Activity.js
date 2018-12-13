@@ -10,7 +10,6 @@ import ModuleGallery from './ModuleGallery';
 import ModuleLongText from './ModuleLongText';
 import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
-import ModuleTable from './ModuleTable';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/Page';
 import SequenceCover from 'views/sequence/SequenceCover';
