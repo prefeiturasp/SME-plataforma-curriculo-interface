@@ -1,5 +1,5 @@
-import iconIndoors from './images/types/indoors.svg';
-import iconOutdoors from './images/types/outdoors.svg';
+import iconIndoors from './images/indoors.svg';
+import iconOutdoors from './images/outdoors.svg';
 
 export default function getEnvironmentIconAndLabel(type) {
   switch (type) {
