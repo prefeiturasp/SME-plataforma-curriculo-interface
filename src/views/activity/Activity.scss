@@ -60,14 +60,14 @@
 
 .next,
 .prev {
-  color: #6a6a6a;
+  color: $grey-600;
   font-size: 0.9375rem;
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 1rem;
 
   > img {
-    border: 1px solid #e0e0e0;
+    border: 1px solid $grey-200;
     border-radius: 3rem;
     line-height: 3rem;
     padding: 0.9375rem;
