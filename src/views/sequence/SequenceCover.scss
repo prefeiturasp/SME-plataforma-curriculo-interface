@@ -1,0 +1,71 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  align-items: flex-end;
+  border-bottom: 1px solid $grey-200;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 rem(16) rem(12) rem(16);
+  padding: rem(13) 0;
+  position: relative;
+  
+  &.withImage {
+    border-bottom: 0;
+    height: rem(190);
+    margin-left: 0;
+    margin-right: 0;
+    padding: rem(13) rem(16);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    margin-left: rem(-3);
+  }
+}
+
+.image {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.duration {
+  align-items: center;
+  color: $grey-600;
+  font-size: rem(12);
+  display: flex;
+  justify-content: center;
+
+  > img {
+    margin-right: rem(8);
+  }
+
+  > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > em {
+      color: black;
+      font-size: rem(14);
+      font-style: normal;
+      font-weight: 600;
+    }
+  }
+
+  .withImage & {
+    color: $grey-200;
+
+    > div {
+      > em {
+        color: white;
+      }
+    }
+  }
+}

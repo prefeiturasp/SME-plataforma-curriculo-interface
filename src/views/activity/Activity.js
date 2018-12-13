@@ -7,39 +7,24 @@ import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
-import GenericItem from 'components/objects/GenericItem';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
-import ModuleImage from './ModuleImage';
 import ModuleLongText from './ModuleLongText';
 import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
 import ModuleTable from './ModuleTable';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/Page';
+import SequenceCover from 'components/sequence/SequenceCover';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import getActivityTypeIcon from './getActivityTypeIcon';
-import getWindowWidth from 'utils/getWindowWidth';
 import arrowLeft from 'images/arrow/left.svg';
 import arrowRight from 'images/arrow/right.svg';
-import iconClock from 'images/icon/clockWhite.svg';
 import iconPrint from 'images/icon/print.svg';
 import iconSave from 'images/icon/save.svg';
-import imgPlaceholder from 'images/placeholder.jpg';
 import styles from './Activity.scss';
 
 class Activity extends Component {
-  onResized = () => {
-    const totalWidth = getWindowWidth();
-    this.setState({ totalWidth });
-  }
-
-  componentWillMount() {
-    this.onResized();
-  }
-
   componentDidMount() {
-    window.addEventListener('resize', this.onResized);
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
   }
@@ -52,10 +37,6 @@ class Activity extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized);
-  }
-
   render() {
     if (this.props.data == null) {
       return <span />;
@@ -63,42 +44,6 @@ class Activity extends Component {
 
     const data = this.props.data;
     const sequence = data.activity_sequence;
-    console.log(sequence);
-    
-    const filters = [
-      <GenericItem key={0} data={{name: sequence.year}} />,
-      <GenericItem key={1} data={sequence.main_curricular_component} />,
-    ];
-
-    let duration = null;
-    if (data.estimated_time) {
-      const word = data.estimated_time > 1 ? 'aulas' : 'aula';
-      duration = (
-        <div className={styles.duration}>
-          <img src={iconClock} alt="Número de aulas" />
-          <div>
-            <em>{data.estimated_time}</em>
-            {word}
-          </div>
-        </div>
-      );
-    }
-
-    const iconsItems = data.activity_types.map((item, i) => {
-      const icon = getActivityTypeIcon(item.name);
-      return (
-        <li key={i}>
-          <img src={icon} alt={item.name} />
-          <div>{item.name}</div>
-        </li>
-      );
-    });
-
-    const icons = (
-      <ul className={styles.icons}>
-        {iconsItems}
-      </ul>
-    );
     
     const sequenceImage = data.image_attributes.default_url ? (
       <img
@@ -174,13 +119,6 @@ class Activity extends Component {
           }
         })
       : null;
-    const image = data.image_attributes.default_url ? (
-      <img
-        className={styles.image}
-        src={API_URL + data.image_attributes.default_url}
-        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-        alt={data.title} />
-    ) : null;
 
     const linkChars = `/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}/caracteristicas`;
     const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
@@ -188,19 +126,19 @@ class Activity extends Component {
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
     const link = `/sequencia/${sequence.slug}`;
 
-    const arrowPrev = data.last_activity ? (
-      <NavLink className={styles.prev} to={linkPrev}>
-        <img src={arrowLeft} alt="Seta" />
-        Atividade {data.sequence - 1}
-      </NavLink>
-    ) : <span />;
+    const arrowPrev = data.last_activity
+      ? <NavLink className={styles.prev} to={linkPrev}>
+          <img src={arrowLeft} alt="Seta" />
+          Atividade {data.sequence - 1}
+        </NavLink>
+      : <span />;
 
-    const arrowNext = data.next_activity ? (
-      <NavLink className={styles.next} to={linkNext}>
-        Atividade {data.sequence + 1}
-        <img src={arrowRight} alt="Seta" />
-      </NavLink>
-    ) : null;
+    const arrowNext = data.next_activity
+      ? <NavLink className={styles.next} to={linkNext}>
+          Atividade {data.sequence + 1}
+          <img src={arrowRight} alt="Seta" />
+        </NavLink>
+      : null;
 
     return (
       <Page>
@@ -221,13 +159,10 @@ class Activity extends Component {
           </div>
         </Sticky>
         <header className={styles.header}>
-          <div className={styles.banner}>
-            {image}
-            <ul>
-              {filters}
-            </ul>
-            {duration}
-          </div>
+          <SequenceCover
+            data={data}
+            sequence={sequence}
+          />
           <div className={styles.info}>
             <div>
               <p>Atividade {data.sequence}</p>
