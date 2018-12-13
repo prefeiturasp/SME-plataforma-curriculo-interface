@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from 'data/constants';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
-import GenericItem from 'components/objects/GenericItem';
 import Page from 'components/Page';
 import ReadMore from 'components/ReadMore';
 import SequenceCover from './SequenceCover';
 import SequencesActions from 'actions/SequencesActions';
-import iconClock from 'images/icon/clock.svg';
-import iconClockWhite from 'images/icon/clockWhite.svg';
 import iconPrint from 'images/icon/print.svg';
 import iconSave from 'images/icon/save.svg';
 import styles from './Sequence.scss';
@@ -54,7 +50,7 @@ class Sequence extends Component {
         <header className={styles.header}>
           <SequenceCover
             data={data}
-            sequence={sequence}
+            sequence={data}
           />
           <div className={styles.info}>
             <div>

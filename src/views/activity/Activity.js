@@ -15,7 +15,7 @@ import ModuleStudent from './ModuleStudent';
 import ModuleTable from './ModuleTable';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/Page';
-import SequenceCover from 'components/sequence/SequenceCover';
+import SequenceCover from 'views/sequence/SequenceCover';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
 import arrowLeft from 'images/arrow/left.svg';
 import arrowRight from 'images/arrow/right.svg';

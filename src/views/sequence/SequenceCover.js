@@ -6,10 +6,10 @@ import iconClockWhite from 'images/icon/clockWhite.svg';
 import styles from './SequenceCover.scss';
 import { API_URL } from 'data/constants';
 
-class SequenceCover extends React.Component {
+class SequenceCover extends Component {
   render() {
     const { data, sequence } = this.props;
-    
+
     const filters = [
       <GenericItem key={0} data={{name: sequence.year}} />,
       <GenericItem key={1} data={sequence.main_curricular_component} />,
