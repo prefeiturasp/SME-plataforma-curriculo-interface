@@ -6,7 +6,6 @@ import ActivityActions from 'actions/ActivityActions';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import GenericItem from 'components/objects/GenericItem';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import getActivityTypeIcon from './getActivityTypeIcon';
 import getWindowWidth from 'utils/getWindowWidth';
 import iconClock from 'images/icon/clock.svg';
 import styles from './Activity.scss';
@@ -94,23 +93,6 @@ class ActivityPrint extends Component {
       );
     });
 
-    const iconsItems = data.activity_types.map((item, i) => {
-      const icon = getActivityTypeIcon(item.name);
-      return (
-        <li key={i}>
-          <img src={icon} alt={item.name} />
-          <div>{item.name}</div>
-        </li>
-      );
-    });
-    const icons = (
-      <ul className={styles.icons}>
-        {iconsItems}
-      </ul>
-    );
-    const icons1 = this.state.totalWidth < 768 ? null : icons;
-    const icons2 = this.state.totalWidth < 768 ? icons : null;
-
     const cover = data.image_attributes.default_url ? (
       <div className="container">
         <img
@@ -146,13 +128,9 @@ class ActivityPrint extends Component {
                 {learningObjectives}
               </ul>
             </div>
-            <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
-              {icons1}
-            </div>
           </div>
         </div>
         {cover}
-        {icons2}
         <hr />
         <div className="container">
           <div className="row">

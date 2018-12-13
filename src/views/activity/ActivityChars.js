@@ -7,7 +7,6 @@ import BodyActions from 'actions/BodyActions';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import SimpleHeader from 'components/SimpleHeader';
 import getEnvironmentIconAndLabel from './getEnvironmentIconAndLabel';
-import getWindowWidth from 'utils/getWindowWidth';
 import iconHelp from 'images/icon/help.svg';
 import styles from 'views/sequence/SequenceChars.scss';
 import styles1 from './ActivityChars.scss';
