@@ -4,11 +4,23 @@ import Sticky from 'react-stickynode';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import iconSave from 'images/icon/save.svg';
+import iconSaved from 'images/icon/saved.svg';
 import styles from './SequencePreview.scss';
 
 class SequencePreview extends Component {
+  state = {
+    isSaved: false,
+  };
+
+  onClickedSave = () => {
+    this.setState({
+      isSaved: !this.state.isSaved,
+    });
+  }
+
   render() {
     const { data, sequence } = this.props;
+    const { isSaved } = this.state;
 
     const image = data.image_attributes.default_url
       ? <img
@@ -20,6 +32,8 @@ class SequencePreview extends Component {
       : null;
 
     const link = `/sequencia/${sequence.slug}`;
+    const icon = isSaved ? iconSaved : iconSave;
+    const label = isSaved ? 'Salvo' : 'Salvar';
 
     return (
       <Sticky>
@@ -31,9 +45,9 @@ class SequencePreview extends Component {
               <h1>{sequence.title}</h1>
             </NavLink>
           </div>
-          <button className={styles.btn}>
-            <img src={iconSave} alt="Salvar" />
-            Salvar
+          <button className={styles.btn} onClick={this.onClickedSave}>
+            <img src={icon} alt={label} />
+            {label}
           </button>
         </div>
       </Sticky>
