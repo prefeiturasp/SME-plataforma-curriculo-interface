@@ -6,23 +6,14 @@ import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import SimpleHeader from 'components/SimpleHeader';
-import getActivityTypeIcon from './getActivityTypeIcon';
+import getEnvironmentIconAndLabel from './getEnvironmentIconAndLabel';
 import getWindowWidth from 'utils/getWindowWidth';
 import iconHelp from 'images/icon/help.svg';
 import styles from 'views/sequence/SequenceChars.scss';
+import styles1 from './ActivityChars.scss';
 
 class ActivityChars extends Component {
-  onResized = () => {
-    const totalWidth = getWindowWidth();
-    this.setState({ totalWidth });
-  }
-
-  componentWillMount() {
-    this.onResized();
-  }
-
   componentDidMount() {
-    window.addEventListener('resize', this.onResized);
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
   }
@@ -35,10 +26,6 @@ class ActivityChars extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized);
-  }
-
   render() {
     if (this.props.data == null) {
       return <span />;
@@ -48,6 +35,8 @@ class ActivityChars extends Component {
     
     const sequence = data.activity_sequence;
     const linkBack = `/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
+    
+    const environment = getEnvironmentIconAndLabel(data.environment);
     
     const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
       <div className={styles.title}>
@@ -64,28 +53,20 @@ class ActivityChars extends Component {
       );
     });
 
-    const iconsItems = data.activity_types.map((item, i) => {
-      const icon = getActivityTypeIcon(item.name);
-      return (
-        <li key={i}>
-          <img src={icon} alt={item.name} />
-          <div>{item.name}</div>
-        </li>
-      );
-    });
-
-    const icons = (
-      <ul className={styles.icons}>
-        {iconsItems}
-      </ul>
-    );
-
     return (
       <section className={styles.wrapper}>
         <SimpleHeader
           back={{ url: linkBack }}
           title="Características"
         />
+
+        <div className={styles.title}>
+          Ambiente
+        </div>
+        <div className={styles1.environment}>
+          <img src={environment.icon} alt={environment.label} />
+          {environment.label}
+        </div>
         
         {learningObjectivesTitle}
         <ul>
