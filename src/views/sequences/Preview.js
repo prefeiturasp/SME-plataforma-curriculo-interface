@@ -6,30 +6,11 @@ import { NavLink } from 'react-router-dom';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import LearningObjectiveItem from 'components/objects/LearningObjectiveItem';
 import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
-import getWindowWidth from 'utils/getWindowWidth';
+import withWidth from 'components/hoc/withWidth';
 import iconHelp from 'images/icon/help.svg';
 import styles from './Preview.scss';
 
 class Preview extends Component {
-  state = {
-    totalWidth: 0,
-  };
-
-  onResized = () => {
-    this.setState({
-      totalWidth: getWindowWidth(),
-    });
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.onResized);
-    this.onResized();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized);
-  }
-
   render() {
     const knowledgeMatrices = this.props.data.knowledge_matrices.map((item, i) => {
       return (
@@ -123,7 +104,7 @@ class Preview extends Component {
       </Fragment>
     );
 
-    if (this.state.totalWidth < 768) {
+    if (this.props.windowWidth < 768) {
       const height = this.props.data.isExpanded ? 'auto' : 0;
       return (
         <AnimateHeight height={height}>
@@ -170,4 +151,4 @@ Preview.propTypes = {
   isLeftAligned: PropTypes.bool.isRequired,
 };
 
-export default Preview;
+export default withWidth(Preview);

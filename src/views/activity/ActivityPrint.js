@@ -6,26 +6,13 @@ import ActivityActions from 'actions/ActivityActions';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import GenericItem from 'components/objects/GenericItem';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import getWindowWidth from 'utils/getWindowWidth';
 import iconClock from 'images/icon/clock.svg';
 import styles from './Activity.scss';
 
 let hasPrinted = false;
 
 class ActivityPrint extends Component {
-  state = {};
-  
-  onResized = () => {
-    const totalWidth = getWindowWidth();
-    this.setState({ totalWidth });
-  }
-
-  componentWillMount() {
-    this.onResized();
-  }
-
   componentDidMount() {
-    window.addEventListener('resize', this.onResized);
     if (this.props.match) {
       const params = this.props.match.params;
       this.props.load(params.slug1, params.slug2);
@@ -47,10 +34,6 @@ class ActivityPrint extends Component {
       hasPrinted = true;
       setTimeout(window.print, 2000);
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized);
   }
 
   render() {
