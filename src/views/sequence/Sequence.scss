@@ -110,7 +110,7 @@
 
 .btnPrint {
   composes: btn from global;
-  display: none !important;
+  display: none;
 }
 
 .title {
@@ -136,7 +136,7 @@
 
 @include mq("tablet-portrait") {
   .btnPrint {
-    display: flex !important;
+    display: flex;
   }
 
   .wrapper h4 {

@@ -1,19 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import iconRodaDeConversa from './images/exercises/roda-de-conversa.svg';
 import styles from './ModuleExercise.scss';
 
 class ModuleExercise extends React.PureComponent {
   render() {
-    let title;
-    let icon;
-
-    switch (this.props.type) {
-      default:
-        title = 'Roda de conversa';
-        icon = iconRodaDeConversa;
-    }
-
+    const { icon, text, title } = this.props;
+    
     return (
       <div className={styles.wrapper}>
         <h4>{title}</h4>
@@ -23,15 +15,16 @@ class ModuleExercise extends React.PureComponent {
             alt={title}
           />
         </div>
-        <div dangerouslySetInnerHTML={{__html: this.props.text}} />
+        <div dangerouslySetInnerHTML={{__html: text}} />
       </div>
     );
   }
 }
 
 ModuleExercise.propTypes = {
-  type: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default ModuleExercise;

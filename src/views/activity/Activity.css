@@ -1,0 +1,281 @@
+.wrapper {
+
+}
+
+.wrapper ul {
+  list-style: none;
+}
+
+.header {
+  composes: container from global;
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.875rem;
+  padding-bottom: 1.25rem;
+}
+
+.header h1 {
+  color: black;
+  font-size: 2.5rem;
+  line-height: 1.05;
+  margin-bottom: 0.8125rem;
+}
+
+.header h2 {
+  color: #6a6a6a;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.header h3 {
+  color: #6a6a6a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.875rem;
+}
+
+.header ul {
+  margin-bottom: 0;
+}
+
+.infos {
+  composes: container from global;
+  margin-bottom: 1rem;
+}
+
+.duration {
+  align-items: center;
+  color: #6a6a6a;
+  display: flex;
+  font-size: 1.125rem;
+  font-weight: normal;
+}
+
+.duration > strong {
+  color: black;
+  font-weight: 600;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.title {
+  color: #252525;
+  font-weight: 600;
+  margin-bottom: 0.8125rem;
+}
+
+.title > button {
+  color: #e0e0e0;
+  margin-left: 0.25rem;
+}
+
+.btnAllLearningObjectives {
+  color: #6a6a6a;
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.icons {
+  display: flex;
+  margin-bottom: 0;
+}
+
+.icons > li {
+  border: 1px solid #e0e0e0;
+  border-right: 0;
+  color: #6a6a6a;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9375rem;
+  justify-content: center;
+  padding: 0.9375rem;
+  text-align: center;
+  width: 11rem;
+}
+
+.icons > li:last-child {
+  border-right: 1px solid #e0e0e0;
+}
+
+.icons > li > img {
+  color: black;
+  margin-bottom: 0.4375rem;
+}
+
+.cover,
+.image {
+  display: block;
+  margin: 1.25rem auto;
+  object-fit: cover;
+  width: auto;
+  height: auto;
+  max-height: 80vh;
+  max-width: 100%;
+}
+
+.description {
+  composes: col-md-8 from global;
+  composes: offset-md-2 from global;
+  composes: quill-text from global;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.arrows {
+  composes: container from global;
+  display: flex;
+  justify-content: space-between;
+}
+
+.next,
+.prev {
+  color: #6a6a6a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.next > img,
+.prev > img {
+  border: 1px solid #e0e0e0;
+  border-radius: 3rem;
+  line-height: 3rem;
+  padding: 0.9375rem;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+}
+
+.next > img {
+  margin-left: 0.4375rem;
+}
+
+.prev > img {
+  margin-right: 0.4375rem;
+}
+
+.footer {
+  composes: container from global;
+  text-align: center;
+}
+
+.back {
+  composes: btn from global;
+  display: inline-block !important;
+  margin: 1.875rem auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .icons {
+    margin: 0;
+    width: 100%;
+  }
+
+  .icons > li {
+    border-bottom: 0;
+    flex-grow: 1;
+  }
+
+  .icons > li:first-child {
+    border-left: 0;
+  }
+
+  .icons > li:last-child {
+    border-right: 0;
+  }
+
+  .header {
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+
+  .header h1 {
+    font-size: 2.125rem;
+  }
+
+  .header h2 {
+    font-size: 0.9375rem;
+    margin-bottom: 1.5625rem;
+  }
+
+  .header h3 {
+    margin-bottom: 0.75rem;
+  }
+
+  .infos {
+    margin-top: 1.125rem;
+    width: 100%;
+  }
+
+  .infos > button {
+    display: none;
+  }
+
+  .duration {
+    margin-bottom: 2rem;
+  }
+
+  .cover,
+  .image {
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .wrapper h5 {
+    margin-top: 0.8125rem;
+  }
+
+  .next,
+  .prev {
+    font-size: 0.9375rem;
+  }
+}
+
+@media only print {
+  .infos > button,
+  .arrows,
+  .footer {
+    display: none;
+  }
+
+  .duration {
+    margin-bottom: 1rem;
+  }
+
+  .icons {
+    flex-direction: column;
+  }
+
+  .icons > li {
+    border-bottom: 0;
+    border-right: 1px solid #e0e0e0;
+    width: auto;
+  }
+
+  .icons > li:last-child {
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .cover {
+    max-height: 10rem;
+  }
+
+  .cover,
+  .image {
+    object-fit: cover;
+  }
+}

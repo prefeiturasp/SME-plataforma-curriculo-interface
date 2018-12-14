@@ -4,8 +4,8 @@ import iconIndividual from './images/types/individual.svg';
 import iconIndoors from './images/types/indoors.svg';
 import iconOutdoors from './images/types/outdoors.svg';
 
-export default function getActivityTypeIcon(activityType) {
-  switch (activityType) {
+export default function getActivityTypeIcon(type) {
+  switch (type) {
     case 'Dupla':
       return iconPair;
 
