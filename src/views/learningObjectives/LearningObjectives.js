@@ -8,7 +8,7 @@ import BodyActions from 'actions/BodyActions';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
-import GenericItem from 'components/objects/GenericItem';
+import PillItem from 'components/objects/PillItem';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import YearButton from './YearButton';
@@ -105,7 +105,7 @@ class LearningObjectives extends Component {
       .filter(item => item.isActive)
       .map((item, i) => {
         return (
-          <GenericItem key={i} data={item} />
+          <PillItem key={i} data={item} />
         );
       });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ClassroomYear from 'components/objects/ClassroomYear';
-import GenericItem from 'components/objects/GenericItem';
+import PillItem from 'components/objects/PillItem';
 import styles from './ClassroomItem.scss';
 
 class ClassroomItem extends React.PureComponent {
@@ -10,7 +10,7 @@ class ClassroomItem extends React.PureComponent {
 
     const items = components.map((component, i) => {
       return (
-        <GenericItem
+        <PillItem
           key={i}
           data={component}
         />
