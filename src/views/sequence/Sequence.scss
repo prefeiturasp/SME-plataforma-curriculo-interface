@@ -50,14 +50,9 @@
   }
 }
 
-.btnInfo {
+.btnChars {
   composes: btn from global;
   margin: 0 rem(15) rem(40) rem(15);
-}
-
-.btnPrint {
-  composes: btn from global;
-  display: none;
 }
 
 .title {
@@ -81,11 +76,11 @@
   line-height: 200%;
 }
 
-@include mq("tablet-portrait") {
-  .btnPrint {
-    display: flex;
-  }
+.chars {
+  background-color: $grey-050;
+}
 
+@include mq("tablet-landscape") {
   .wrapper h4 {
     font-size: 2.125rem;
     margin-top: 3rem;
@@ -93,10 +88,12 @@
     text-align: center;
   }
 
+  .btnChars {
+    display: none;
+  }
+
   .description {
     font-size: 1.125rem;
     margin-top: 2.1875rem;
-    margin-left: 12rem;
-    margin-right: 12rem;
   }
 }

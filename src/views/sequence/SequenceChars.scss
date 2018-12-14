@@ -2,8 +2,6 @@
 @import '~tools.scss';
 
 .wrapper {
-  padding: rem(15);
-
   ul {
     list-style: none;
   }
@@ -32,6 +30,10 @@
   text-decoration: underline;
 }
 
+.btnPrint {
+  composes: btn from global;
+  display: none;
+}
 
 @include mq("tablet-portrait") {
   .wrapper h4 {
@@ -45,5 +47,9 @@
 @include mq("tablet-landscape") {
   .btnAllLearningObjectives {
     margin-bottom: 0;
+  }
+
+  .btnPrint {
+    display: flex;
   }
 }
