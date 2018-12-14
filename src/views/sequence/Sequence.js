@@ -37,8 +37,6 @@ class Sequence extends Component {
     }
 
     const word = data.activities.length > 1 ? 'Atividades' : 'Atividade';
-    const activitiesTitle = `${data.activities.length} ${word}`;
-
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityItem
@@ -73,12 +71,16 @@ class Sequence extends Component {
               <div className={styles.description}>
                 <ReadMore lines={15} children={description} />
               </div>
-              <h4>{activitiesTitle}</h4>
-              <ul className="row">
-                {activities}
-              </ul>
+              <div className={styles.activities}>
+                <h3>
+                  {data.activities.length} {word}
+                </h3>
+                <ul className="row">
+                  {activities}
+                </ul>
+              </div>
             </div>
-            <div className={`col-sm-12 col-lg-4 ${styles.chars}`}>
+            <div className={styles.chars}>
               <SequenceChars data={this.props.data} />
             </div>
           </div>

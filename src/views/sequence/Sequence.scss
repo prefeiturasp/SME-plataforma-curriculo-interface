@@ -1,20 +1,6 @@
 @import '~variables.scss';
 @import '~tools.scss';
 
-.wrapper {
-  h4 {
-    font-size: rem(20);
-    font-weight: 600;
-    margin-top: 1.9375rem;
-    margin-bottom: 0.5rem;
-    text-align: left;
-  }
-
-  ul {
-    list-style: none;
-  }
-}
-
 .btnChars {
   composes: btnFullWidth from global;
   margin-bottom: rem(40);
@@ -41,7 +27,23 @@
   line-height: 200%;
 }
 
+.activities {
+  > h3 {
+    font-size: rem(20);
+    font-weight: 600;
+    margin-top: 1.9375rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  > ul {
+    list-style: none;
+  }
+}
+
 .chars {
+  composes: col-sm-12 from global;
+  composes: col-lg-4 from global;
   background-color: $grey-050;
   display: none;
 }
@@ -65,5 +67,7 @@
 
   .chars {
     display: block;
+    padding-top: rem(20);
+    padding-bottom: rem(20);
   }
 }
