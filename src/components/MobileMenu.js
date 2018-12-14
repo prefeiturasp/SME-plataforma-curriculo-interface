@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import AuthActions from 'actions/AuthActions';
 import BodyActions from 'actions/BodyActions';
-import iconCloseBig from 'images/icon/closeBig.svg';
+import MobileModal from 'components/layout/MobileModal';
+import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './MobileMenu.scss';
 
 class MobileMenu extends React.PureComponent {
   target = null;
 
   onClickedClose = () => {
-    enableBodyScroll(this.target);
     this.props.hideMobileMenu();
   }
 
@@ -25,23 +24,10 @@ class MobileMenu extends React.PureComponent {
   }
   
   componentDidMount() {
-    this.target = document.querySelector('#mobileMenu');
     this.props.setup();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.hasMobileMenu && !prevProps.hasMobileMenu) {
-      disableBodyScroll(this.target);
-    }
-  }
-
-  componentWillUnmount() {
-    clearAllBodyScrollLocks();
-  }
-
   render() {
-    const classes = this.props.hasMobileMenu ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
-
     const data = [
       {
         to: '/',
@@ -125,14 +111,19 @@ class MobileMenu extends React.PureComponent {
         </div>;
 
     return (
-      <nav className={classes.join(' ')} id="mobileMenu">
-        {links}
-        <hr/>
-        {buttons}
-        <button className={styles.close} onClick={this.onClickedClose}>
-          <img src={iconCloseBig} alt="Fechar" />
-        </button>
-      </nav>
+      <MobileModal
+        htmlId="mobileMenu"
+        isExpanded={this.props.hasMobileMenu}
+      >
+        <nav className={styles.wrapper} id="mobileMenu">
+          {links}
+          <hr/>
+          {buttons}
+          <button className={styles.close} onClick={this.onClickedClose}>
+            <img src={iconCloseBig} alt="Fechar" />
+          </button>
+        </nav>
+      </MobileModal>
     );
   }
 }
