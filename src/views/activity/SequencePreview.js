@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
-import iconSave from 'images/icon/save.svg';
-import iconSaved from 'images/icon/saved.svg';
+import iconSave from 'images/icons/save.svg';
+import iconSaved from 'images/icons/saved.svg';
 import styles from './SequencePreview.scss';
 
 class SequencePreview extends Component {

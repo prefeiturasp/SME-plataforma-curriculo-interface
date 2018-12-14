@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
-import arrowLeft from 'images/arrow/left.svg';
-import chevronLeft from 'images/chevron/left.svg';
-import iconHelp from 'images/icon/help.svg';
+import arrowLeft from 'images/arrows/left.svg';
+import chevronLeft from 'images/chevrons/left.svg';
+import iconHelp from 'images/icons/help.svg';
 import styles from './CategoryPanel.css';
 
 function isCategoryOneOf(category, list) {

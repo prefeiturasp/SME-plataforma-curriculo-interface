@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import Preview from './Preview';
-import iconMinus from 'images/icon/minus.svg';
-import iconPlus from 'images/icon/plus.svg';
+import iconMinus from 'images/icons/minus.svg';
+import iconPlus from 'images/icons/plus.svg';
 import styles from './GridItemBase.scss';
 
 class GridItemBase extends Component {

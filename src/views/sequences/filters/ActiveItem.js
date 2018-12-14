@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
-import iconCloseSmall from 'images/icon/closeSmall.svg';
-import iconCloseSmallWhite from 'images/icon/closeSmallWhite.svg';
+import iconCloseSmall from 'images/icons/closeSmall.svg';
+import iconCloseSmallWhite from 'images/icons/closeSmallWhite.svg';
 import styles from './ActiveItem.css';
 
 class ActiveItem extends Component {

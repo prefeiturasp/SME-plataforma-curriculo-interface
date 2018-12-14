@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import ClassroomItem from './ClassroomItem';
-import ModalPage from 'components/ModalPage';
-import SimpleFooter from 'components/SimpleFooter';
-import SimpleHeader from 'components/SimpleHeader';
+import ModalPage from 'components/layout/ModalPage';
+import SimpleFooter from 'components/footer/SimpleFooter';
+import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './EditCollection.scss';
 
 class EditCollection extends Component {

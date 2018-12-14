@@ -1,5 +1,5 @@
 import React from 'react';
-import iconLoading from 'images/icon/loading.png';
+import iconLoading from 'images/icons/loading.png';
 import styles from './Loading.css';
 
 class Loading extends React.PureComponent {

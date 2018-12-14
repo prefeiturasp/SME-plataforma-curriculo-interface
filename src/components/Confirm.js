@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ConfirmActions from 'actions/ConfirmActions';
-import iconClose from 'images/icon/close.svg';
+import iconClose from 'images/icons/close.svg';
 import styles from './Confirm.scss';
 
 Modal.setAppElement('#root');

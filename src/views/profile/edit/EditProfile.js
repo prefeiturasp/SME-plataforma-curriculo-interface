@@ -5,8 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import AlertActions from 'actions/AlertActions';
 import ProfileActions from 'actions/ProfileActions';
-import SimpleFooter from 'components/SimpleFooter';
-import SimpleHeader from 'components/SimpleHeader';
+import SimpleFooter from 'components/footer/SimpleFooter';
+import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './EditProfile.scss';
 import { API_URL } from 'data/constants';
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
-import SimpleHeader from 'components/SimpleHeader';
+import SimpleHeader from 'components/header/SimpleHeader';
+import Tooltips from 'components/Tooltips';
 import getEnvironmentIconAndLabel from './getEnvironmentIconAndLabel';
-import iconHelp from 'images/icon/help.svg';
+import iconHelp from 'images/icons/help.svg';
 import styles from 'views/sequence/SequenceChars.scss';
 import styles1 from './ActivityChars.scss';
 
@@ -72,15 +72,7 @@ class ActivityChars extends Component {
           {learningObjectives}
         </ul>
 
-        <ReactTooltip
-          place="bottom"
-          type="dark"
-          effect="solid"
-          id="tooltipLearningObjectives"
-          className="tooltip">
-          <strong>O que são os objetivos de aprendizagem?</strong>
-          <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
-        </ReactTooltip>
+        <Tooltips />
       </section>
     );
   }

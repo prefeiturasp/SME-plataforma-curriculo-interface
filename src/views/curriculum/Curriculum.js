@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Page from 'components/Page';
-import iconKnowledgeMatrix from 'images/illustration/knowledgeMatrix.svg';
-import iconLearningObjectives from 'images/illustration/learningObjectives.svg';
-import iconSustainableDevGoals from 'images/illustration/sustainableDevGoals.svg';
+import Page from 'components/layout/Page';
+import iconKnowledgeMatrix from 'images/illustrations/knowledgeMatrix.svg';
+import iconLearningObjectives from 'images/illustrations/learningObjectives.svg';
+import iconSustainableDevGoals from 'images/illustrations/sustainableDevGoals.svg';
 import imgCurriculum from './curriculum.jpg';
 import styles from './Curriculum.css';
 

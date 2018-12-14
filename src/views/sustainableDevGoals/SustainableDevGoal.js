@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 import { API_URL } from 'data/constants';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
-import iconCloseBigWhite from 'images/icon/closeBigWhite.svg';
+import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
 import styles from './SustainableDevGoal.css';
 
 class SustainableDevGoal extends Component {

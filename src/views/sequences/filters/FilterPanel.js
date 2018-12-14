@@ -9,8 +9,8 @@ import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
 import CurricularComponentButton from './CurricularComponentButton';
 import YearButton from './YearButton';
-import iconCloseBig from 'images/icon/closeBig.svg';
-import iconWarning from 'images/icon/warning.svg';
+import iconCloseBig from 'images/icons/closeBig.svg';
+import iconWarning from 'images/icons/warning.svg';
 import styles from './FilterPanel.css';
 
 class FilterPanel extends Component {

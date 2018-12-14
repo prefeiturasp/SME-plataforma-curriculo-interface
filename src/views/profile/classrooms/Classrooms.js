@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ModalPage from 'components/ModalPage';
+import ModalPage from 'components/layout/ModalPage';
 import SchoolItem from './SchoolItem';
-import SimpleHeader from 'components/SimpleHeader';
+import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './Classrooms.scss';
 
 class Classrooms extends Component {

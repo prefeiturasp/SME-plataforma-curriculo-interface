@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
-import chevronRight from 'images/chevron/right.svg';
+import chevronRight from 'images/chevrons/right.svg';
 import styles from './CategoryButton.css';
 
 class CategoryButton extends Component {

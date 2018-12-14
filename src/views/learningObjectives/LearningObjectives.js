@@ -10,12 +10,12 @@ import CurricularComponentButton from './CurricularComponentButton';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
 import GenericItem from 'components/objects/GenericItem';
 import Loading from 'components/loading/Loading';
-import Page from 'components/Page';
+import Page from 'components/layout/Page';
 import YearButton from './YearButton';
 import getWindowWidth from 'utils/getWindowWidth';
-import chevronLeft from 'images/chevron/left.svg';
-import iconCloseBig from 'images/icon/closeBig.svg';
-import iconWarning from 'images/icon/warning.svg';
+import chevronLeft from 'images/chevrons/left.svg';
+import iconCloseBig from 'images/icons/closeBig.svg';
+import iconWarning from 'images/icons/warning.svg';
 import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {

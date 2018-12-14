@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GenericItem from 'components/objects/GenericItem';
-import iconClock from 'images/icon/clock.svg';
-import iconClockWhite from 'images/icon/clockWhite.svg';
+import iconClock from 'images/icons/clock.svg';
+import iconClockWhite from 'images/icons/clockWhite.svg';
 import styles from './SequenceCover.scss';
 import { API_URL } from 'data/constants';
 

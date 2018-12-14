@@ -6,7 +6,7 @@ import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
 import BodyActions from 'actions/BodyActions';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
-import iconCloseBig from 'images/icon/closeBig.svg';
+import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {

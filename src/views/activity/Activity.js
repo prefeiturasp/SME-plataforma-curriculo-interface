@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ActivityActions from 'actions/ActivityActions';
@@ -11,13 +10,14 @@ import ModuleLongText from './ModuleLongText';
 import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
 import ModuleTeacher from './ModuleTeacher';
-import Page from 'components/Page';
+import Page from 'components/layout/Page';
 import SequenceCover from 'views/sequence/SequenceCover';
 import SequencePreview from './SequencePreview';
+import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import arrowLeft from 'images/arrow/left.svg';
-import arrowRight from 'images/arrow/right.svg';
-import iconPrint from 'images/icon/print.svg';
+import arrowLeft from 'images/arrows/left.svg';
+import arrowRight from 'images/arrows/right.svg';
+import iconPrint from 'images/icons/print.svg';
 import styles from './Activity.scss';
 
 class Activity extends Component {
@@ -172,15 +172,7 @@ class Activity extends Component {
             Voltar para a sequência
           </NavLink>
         </div>
-        <ReactTooltip
-          place="bottom"
-          type="dark"
-          effect="solid"
-          id="tooltipLearningObjectives"
-          className="tooltip">
-          <strong>O que são os objetivos de aprendizagem?</strong>
-          <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
-        </ReactTooltip>
+        <Tooltips />
       </section>
       </Page>
     );

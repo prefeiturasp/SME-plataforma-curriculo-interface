@@ -5,7 +5,7 @@ import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import FiltersActions from 'actions/FiltersActions';
 import ActiveItem from './ActiveItem';
 import getWindowWidth from 'utils/getWindowWidth';
-import iconFilters from 'images/icon/filters.svg';
+import iconFilters from 'images/icons/filters.svg';
 import styles from './FilterBar.css';
 
 class FilterBar extends Component {

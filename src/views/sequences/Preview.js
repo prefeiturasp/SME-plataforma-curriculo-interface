@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import AnimateHeight from 'react-animate-height';
-import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import LearningObjectiveItem from 'components/objects/LearningObjectiveItem';
 import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
+import Tooltips from 'components/Tooltips';
 import withWidth from 'components/hoc/withWidth';
-import iconHelp from 'images/icon/help.svg';
+import iconHelp from 'images/icons/help.svg';
 import styles from './Preview.scss';
 
 class Preview extends Component {
@@ -68,33 +68,7 @@ class Preview extends Component {
           <ul>
             {sustainableDevGoals}
           </ul>
-          <ReactTooltip
-            place="bottom"
-            type="dark"
-            effect="solid"
-            id="tooltipKnowledgeMatrices"
-            className="tooltip">
-            <strong>O que são as matrizes de saberes?</strong>
-            <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
-          </ReactTooltip>
-          <ReactTooltip
-            place="bottom"
-            type="dark"
-            effect="solid"
-            id="tooltipLearningObjectives"
-            className="tooltip">
-            <strong>O que são os objetivos de aprendizagem?</strong>
-            <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
-          </ReactTooltip>
-          <ReactTooltip
-            place="bottom"
-            type="dark"
-            effect="solid"
-            id="tooltipDevelopmentGoals"
-            className="tooltip">
-            <strong>O que são os ODS?</strong>
-            <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
-          </ReactTooltip>
+          <Tooltips />
         </div>
         <div className={styles.access}>
           <NavLink to={link}>

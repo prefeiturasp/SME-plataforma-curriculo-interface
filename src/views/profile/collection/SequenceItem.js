@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ConfirmActions from 'actions/ConfirmActions';
-import iconCheck from 'images/icon/check.png';
-import iconDelete from 'images/icon/delete.svg';
+import iconCheck from 'images/icons/check.png';
+import iconDelete from 'images/icons/delete.svg';
 import styles from './SequenceItem.scss';
 
 class SequenceItem extends React.PureComponent {

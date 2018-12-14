@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import AlertActions from 'actions/AlertActions';
-import iconClose from 'images/icon/close.svg';
-import iconWarningBig from 'images/icon/warningBig.svg';
+import iconClose from 'images/icons/close.svg';
+import iconWarningBig from 'images/icons/warningBig.svg';
 import styles from './Alert.scss';
 
 Modal.setAppElement('#root');

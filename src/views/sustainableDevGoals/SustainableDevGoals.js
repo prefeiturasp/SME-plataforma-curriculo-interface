@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
-import Page from 'components/Page';
+import Page from 'components/layout/Page';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import SustainableDevGoalButton from './SustainableDevGoalButton';
 import styles from './SustainableDevGoals.css';

@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import CollectionsList from './collections/CollectionsList';
 import CollectionsNone from './collections/CollectionsNone';
 import Notification from 'components/objects/Notification';
-import Page from 'components/Page';
+import Page from 'components/layout/Page';
 import ProfileImage from './ProfileImage';
-import iconEdit from 'images/icon/edit.svg';
+import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {

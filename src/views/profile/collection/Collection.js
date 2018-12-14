@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import ConfirmActions from 'actions/ConfirmActions';
-import ModalPage from 'components/ModalPage';
+import ModalPage from 'components/layout/ModalPage';
 import SequencesList from './SequencesList';
 import SequencesNone from './SequencesNone';
-import iconClose from 'images/icon/closeBig.svg';
-import iconEdit from 'images/icon/edit.svg';
-import iconDelete from 'images/icon/delete1.svg';
+import iconClose from 'images/icons/closeBig.svg';
+import iconEdit from 'images/icons/edit.svg';
+import iconDelete from 'images/icons/delete1.svg';
 import imgPlaceholder from 'images/placeholder.jpg';
 import styles from './Collection.scss';
 

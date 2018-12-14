@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import KnowledgeMatrixButton from './KnowledgeMatrixButton';
-import Page from 'components/Page';
+import Page from 'components/layout/Page';
 import styles from './KnowledgeMatrix.css';
 
 class KnowledgeMatrix extends Component {
