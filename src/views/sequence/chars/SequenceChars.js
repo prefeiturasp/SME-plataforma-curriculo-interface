@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
-import GenericItem from 'components/objects/GenericItem';
+import PillItem from 'components/objects/PillItem';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
-import MobileModal from 'components/layout/MobileModal';
-import ModalPage from 'components/layout/ModalPage';
-import SimpleHeader from 'components/header/SimpleHeader';
 import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
 import Tooltips from 'components/Tooltips';
 import iconHelp from 'images/icons/help.svg';
@@ -36,7 +33,7 @@ class SequenceChars extends Component {
 
     const relatedComponents = uniqueCurricularComponents.map((item, i) => {
       return (
-        <GenericItem key={i} data={item} />
+        <PillItem key={i} data={item} isOutlined={true} />
       );
     });
 
@@ -69,64 +66,58 @@ class SequenceChars extends Component {
     const linkPrint = `/imprimir/sequencia/xxx`;
 
     return (
-        <div>
-          <SimpleHeader
-            back={true}
-            title="Características"
-          />
-
-          <div className={styles.title}>
-            Componentes relacionados
-          </div>
-          <ul>
-            {relatedComponents}
-          </ul>
-        
-          <div className={styles.title}>
-            Objetivos de aprendizagem
-            <button data-tip data-for="tooltipLearningObjectives">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {learningObjectives}
-          </ul>
-          {btnAllLearningObjectives}
-        
-          <div className={styles.title}>
-            Objetivos de Desenvolvimento Sustentável (ODS)
-            <button data-tip data-for="tooltipDevelopmentGoals">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {sustainableDevGoals}
-          </ul>
-            
-          <div className={styles.title}>
-            Matriz de saberes
-            <button data-tip data-for="tooltipKnowledgeMatrices">
-              <img src={iconHelp} alt="Ajuda" />
-            </button>
-          </div>
-          <ul>
-            {knowledgeMatrices}
-          </ul>
-
-          <NavLink className={styles.btnPrint} to={linkPrint}>
-            <img src={iconPrint} alt="Imprimir" />
-            Imprimir
-          </NavLink>
-          
-          <Tooltips />
+      <Fragment>
+        <div className={styles.title}>
+          Componentes relacionados
         </div>
+        <ul>
+          {relatedComponents}
+        </ul>
+      
+        <div className={styles.title}>
+          Objetivos de aprendizagem
+          <button data-tip data-for="tooltipLearningObjectives">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+        <ul>
+          {learningObjectives}
+        </ul>
+        {btnAllLearningObjectives}
+      
+        <div className={styles.title}>
+          Objetivos de Desenvolvimento Sustentável (ODS)
+          <button data-tip data-for="tooltipDevelopmentGoals">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+        <ul>
+          {sustainableDevGoals}
+        </ul>
+          
+        <div className={styles.title}>
+          Matriz de saberes
+          <button data-tip data-for="tooltipKnowledgeMatrices">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+        <ul>
+          {knowledgeMatrices}
+        </ul>
+
+        <NavLink className={styles.btnPrint} to={linkPrint}>
+          <img src={iconPrint} alt="Imprimir" />
+          Imprimir
+        </NavLink>
+        
+        <Tooltips />
+      </Fragment>
     );
   }
 }
 
 SequenceChars.propTypes = {
   data: PropTypes.object,
-  isExpanded: PropTypes.bool,
 };
 
 export default SequenceChars;
