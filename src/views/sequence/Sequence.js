@@ -64,7 +64,11 @@ class Sequence extends Component {
                 data={data}
                 sequence={data}
               />
-              <SequenceTitle title={data.title} />
+              <SequenceTitle
+                hasButton={true}
+                text="Sequência de atividades"
+                title={data.title}
+              />
               <button className={styles.btnChars} onClick={this.onClickedChars}>
                 Ver características
               </button>

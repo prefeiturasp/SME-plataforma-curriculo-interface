@@ -18,8 +18,8 @@
 }
 
 .description {
-  font-size: 1rem;
-  line-height: 2rem;
+  font-size: rem(16);
+  line-height: rem(21);
   margin-bottom: rem(48);
 }
 
@@ -49,20 +49,13 @@
 }
 
 @include mq("tablet-landscape") {
-  .wrapper h4 {
-    font-size: 2.125rem;
-    margin-top: 3rem;
-    margin-bottom: 1.5625rem;
-    text-align: center;
-  }
-
   .btnChars {
     display: none;
   }
 
   .description {
-    font-size: 1.125rem;
-    margin-top: 2.1875rem;
+    font-size: rem(18);
+    line-height: rem(24);
   }
 
   .chars {

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ActivityActions from 'actions/ActivityActions';
+import ActivityChars from './chars/ActivityChars';
+import ActivityCharsMobile from './chars/ActivityCharsMobile';
 import BodyActions from 'actions/BodyActions';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
@@ -13,14 +15,25 @@ import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/layout/Page';
 import SequenceCover from 'views/sequence/SequenceCover';
 import SequencePreview from './SequencePreview';
+import SequenceTitle from 'views/sequence/SequenceTitle';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
 import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';
-import iconPrint from 'images/icons/print.svg';
-import styles from './Activity.scss';
+import styles from 'views/sequence/Sequence.scss';
+import styles1 from './Activity.scss';
 
 class Activity extends Component {
+  state = {
+    isCharsExpanded: false,
+  };
+
+  onClickedChars = () => {
+    this.setState({
+      isCharsExpanded: !this.state.isCharsExpanded,
+    });
+  }
+
   componentDidMount() {
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
@@ -109,21 +122,19 @@ class Activity extends Component {
         })
       : null;
 
-    const linkChars = `/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}/caracteristicas`;
-    const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
     const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
     const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
     const linkSequence = `/sequencia/${sequence.slug}`;
 
     const arrowPrev = data.last_activity
-      ? <NavLink className={styles.prev} to={linkPrev}>
+      ? <NavLink className={styles1.prev} to={linkPrev}>
           <img src={arrowLeft} alt="Seta" />
           Atividade {data.sequence - 1}
         </NavLink>
       : <span />;
 
     const arrowNext = data.next_activity
-      ? <NavLink className={styles.next} to={linkNext}>
+      ? <NavLink className={styles1.next} to={linkNext}>
           Atividade {data.sequence + 1}
           <img src={arrowRight} alt="Seta" />
         </NavLink>
@@ -132,46 +143,47 @@ class Activity extends Component {
     return (
       <Page>
       <section className={styles.wrapper}>
-        <SequencePreview
-          data={data}
-          sequence={sequence}
-        />
-        <header className={styles.header}>
-          <SequenceCover
-            data={data}
-            sequence={sequence}
-          />
-          <div className={styles.info}>
-            <div>
-              <p>Atividade {data.sequence}</p>
-              <h1>{data.title}</h1>
-            </div>
-          </div>
-          <NavLink className={styles.btnInfo} to={linkChars}>
-            Ver características
-          </NavLink>
-          <NavLink className={styles.btnPrint} to={linkPrint}>
-            <img src={iconPrint} alt="Imprimir" />
-            Imprimir
-          </NavLink>
-        </header>
         <div className="container">
           <div className="row">
-            <div className={styles.description}>
-              {contentBlocks}
+            <div className="col-sm-12 col-lg-8">
+              <SequencePreview
+                data={data}
+                sequence={sequence}
+              />
+              <SequenceCover
+                data={data}
+                sequence={sequence}
+              />
+              <SequenceTitle
+                text={`Atividade ${data.sequence}`}
+                title={data.title}
+              />
+              <button className={styles.btnChars} onClick={this.onClickedChars}>
+                Ver características
+              </button>
+              <div className={styles.description}>
+                {contentBlocks}
+              </div>
+            </div>
+            <div className={styles.chars}>
+              <ActivityChars data={this.props.data} />
             </div>
           </div>
         </div>
         <hr />
-        <div className={styles.arrows}>
+        <div className={styles1.arrows}>
           {arrowPrev}
           {arrowNext}
         </div>
-        <div className={styles.footer}>
-          <NavLink className={styles.back} to={linkSequence}>
+        <div className={styles1.footer}>
+          <NavLink className={styles1.back} to={linkSequence}>
             Voltar para a sequência
           </NavLink>
         </div>
+        <ActivityCharsMobile
+          data={this.props.data}
+          isExpanded={this.state.isCharsExpanded}
+        />
         <Tooltips />
       </section>
       </Page>

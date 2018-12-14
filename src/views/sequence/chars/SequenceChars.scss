@@ -35,15 +35,6 @@
   display: none;
 }
 
-@include mq("tablet-portrait") {
-  .wrapper h4 {
-    font-size: 2.125rem;
-    margin-top: 3rem;
-    margin-bottom: 1.5625rem;
-    text-align: center;
-  }
-}
-
 @include mq("tablet-landscape") {
   .btnAllLearningObjectives {
     margin-bottom: 0;

@@ -1,57 +1,6 @@
 @import '~variables.scss';
 @import '~tools.scss';
 
-.header {
-  p {
-    color: $grey-500;
-    font-size: rem(15);
-    margin-bottom: rem(4);
-  }
-
-  h1 {
-    font-size: rem(24);
-    line-height: rem(33);
-    margin-bottom: rem(12);
-  }
-}
-
-.info {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  padding-left: rem(15);
-  padding-right: rem(15);
-}
-
-.btnInfo {
-  composes: btn from global;
-  margin: 0 rem(15) rem(40) rem(15);
-}
-
-.btnPrint {
-  composes: btn from global;
-  display: none;
-}
-
-.title {
-  color: $grey-200;
-  font-weight: 600;
-  margin-bottom: 0.8125rem;
-
-  > button {
-    color: $grey-200;
-    margin-left: 0.25rem;
-  }
-}
-
-.description {
-  composes: col-md-8 from global;
-  composes: offset-md-2 from global;
-  composes: quill-text from global;
-  margin-left: 0;
-  margin-right: 0;
-}
-
 .arrows {
   composes: container from global;
   display: flex;
@@ -97,16 +46,6 @@
 }
 
 @include mq("tablet-portrait") {
-  .btnPrint {
-    display: flex;
-  }
-
-  .description {
-    margin-top: 2.1875rem;
-    margin-left: 12rem;
-    margin-right: 12rem;
-  }
-
   .next,
   .prev {
     font-size: 1.125rem;
