@@ -12,5 +12,7 @@
 }
 
 .button {
-  composes: btnBig from global;
+  composes: btn from global;
+  font-size: rem(15);
+  padding: rem(18) rem(26);
 }

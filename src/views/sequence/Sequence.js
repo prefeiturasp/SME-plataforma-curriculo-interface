@@ -6,11 +6,12 @@ import BodyActions from 'actions/BodyActions';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
-import SequenceChars from './SequenceChars';
+import SequenceChars from './chars/SequenceChars';
+import SequenceCharsMobile from './chars/SequenceCharsMobile';
 import SequenceCover from './SequenceCover';
+import SequenceTitle from './SequenceTitle';
 import SequencesActions from 'actions/SequencesActions';
 import Tooltips from 'components/Tooltips';
-import iconSave from 'images/icons/save.svg';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {
@@ -61,25 +62,14 @@ class Sequence extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-8">
-              <header className={styles.header}>
-                <SequenceCover
-                  data={data}
-                  sequence={data}
-                />
-                <div className={styles.info}>
-                  <div>
-                    <p>Sequência de atividades</p>
-                    <h1>{data.title}</h1>
-                  </div>
-                  <button className={styles.btnSave}>
-                    <img src={iconSave} alt="Salvar" />
-                    Salvar
-                  </button>
-                </div>
-                <button className={styles.btnChars} onClick={this.onClickedChars}>
-                  Ver características
-                </button>
-              </header>
+              <SequenceCover
+                data={data}
+                sequence={data}
+              />
+              <SequenceTitle title={data.title} />
+              <button className={styles.btnChars} onClick={this.onClickedChars}>
+                Ver características
+              </button>
               <div className={styles.description}>
                 <ReadMore lines={15} children={description} />
               </div>
@@ -89,13 +79,14 @@ class Sequence extends Component {
               </ul>
             </div>
             <div className={`col-sm-12 col-lg-4 ${styles.chars}`}>
-              <SequenceChars
-                data={this.props.data}
-                isExpanded={this.state.isCharsExpanded}
-              />
+              <SequenceChars data={this.props.data} />
             </div>
           </div>
         </div>
+        <SequenceCharsMobile
+          data={this.props.data}
+          isExpanded={this.state.isCharsExpanded}
+        />
         <Tooltips />
       </Page>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GenericItem from 'components/objects/GenericItem';
+import PillItem from 'components/objects/PillItem';
 import iconClock from 'images/icons/clock.svg';
 import iconClockWhite from 'images/icons/clockWhite.svg';
 import styles from './SequenceCover.scss';
@@ -9,11 +9,6 @@ import { API_URL } from 'data/constants';
 class SequenceCover extends Component {
   render() {
     const { data, sequence } = this.props;
-
-    const filters = [
-      <GenericItem key={0} data={{name: sequence.year}} />,
-      <GenericItem key={1} data={sequence.main_curricular_component} />,
-    ];
 
     const image = data.image_attributes.default_url
       ? <img
@@ -36,8 +31,7 @@ class SequenceCover extends Component {
         <div className={styles.duration}>
           <img src={icon} alt="Número de aulas" />
           <div>
-            <em>{data.estimated_time}</em>
-            {word}
+            <em>{data.estimated_time}</em> {word} <span>(Tempo estimado)</span>
           </div>
         </div>
       );
@@ -47,7 +41,8 @@ class SequenceCover extends Component {
       <div className={classes.join(' ')}>
         {image}
         <ul>
-          {filters}
+          <PillItem data={{name: sequence.year}} />
+          <PillItem data={sequence.main_curricular_component} />
         </ul>
         {duration}
       </div>

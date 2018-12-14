@@ -51,7 +51,6 @@ a:hover {
 }
 
 :global(.btn),
-:global(.btnBig),
 :global(.btnFullWidth) {
   border: 1px solid $grey-200;
   border-radius: rem(4);
@@ -60,18 +59,20 @@ a:hover {
   font-size: rem(12);
   font-weight: bold;
   justify-content: center;
+  line-height: rem(16);
   padding: rem(14) rem(16);
   text-transform: uppercase;
 
   > i,
   > img {
-    margin-right: 0.5rem;
+    margin-right: rem(8);
   }
-}
 
-:global(.btnBig) {
-  font-size: rem(15);
-  padding: rem(18) rem(26);
+  @include mq("tablet-landscape") {
+    font-size: rem(15);
+    line-height: rem(20);
+    padding: rem(18) rem(26);
+  }
 }
 
 :global(.btnFullWidth) {
