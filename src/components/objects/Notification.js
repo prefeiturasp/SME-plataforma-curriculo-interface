@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import AnimateHeight from 'react-animate-height';
 import styles from './Notification.scss';
 
@@ -18,18 +19,19 @@ class Notification extends Component {
   }
 
   render() {
+    const { labelNo, labelYes, text } = this.props;
     const height = this.state.isExpanded ? 'auto' : 0;
 
     return (
       <AnimateHeight height={height}>
         <div className={styles.wrapper}>
-          <p>Você completou 3 sequências de atividades recentemente. Avalie agora e nos ajude a construir novos conteúdos.</p>
+          <p>{text}</p>
           <div className={styles.buttons}>
             <button onClick={this.onClickedNo}>
-              Agora não
+              {labelNo}
             </button>
             <button onClick={this.onClickedYes}>
-              Avaliar sequência
+              {labelYes}
             </button>
           </div>
         </div>
@@ -37,5 +39,11 @@ class Notification extends Component {
     );
   }
 }
+
+Notification.propTypes = {
+  labelNo: PropTypes.string.isRequired,
+  labelYes: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
 
 export default Notification;

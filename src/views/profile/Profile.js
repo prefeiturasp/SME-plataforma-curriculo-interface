@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import CollectionsList from './collections/CollectionsList';
 import CollectionsNone from './collections/CollectionsNone';
-import Notification from './Notification';
+import Notification from 'components/objects/Notification';
 import Page from 'components/Page';
 import ProfileImage from './ProfileImage';
 import iconEdit from 'images/icon/edit.svg';
@@ -89,7 +89,11 @@ class Profile extends Component {
       : <CollectionsNone />;
 
     const notification = true
-      ? <Notification />
+      ? <Notification
+          text="Você completou 3 sequências de atividades recentemente. Avalie agora e nos ajude a construir novos conteúdos."
+          labelNo="Agora não"
+          labelYes="Avaliar sequência"
+        />
       : null;
 
     return (

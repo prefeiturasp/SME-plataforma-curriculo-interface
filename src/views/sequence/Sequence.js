@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
+import Notification from 'components/objects/Notification';
 import Page from 'components/Page';
 import ReadMore from 'components/ReadMore';
 import SequenceCover from './SequenceCover';
@@ -47,6 +48,11 @@ class Sequence extends Component {
     return (
       <Page>
       <section className={styles.wrapper}>
+        <Notification
+          text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
+          labelNo="Agora não"
+          labelYes="Avaliar sequência"
+        />
         <header className={styles.header}>
           <SequenceCover
             data={data}
