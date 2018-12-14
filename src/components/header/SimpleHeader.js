@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
-import arrowLeft from 'images/arrow/left.svg';
-import iconCloseBig from 'images/icon/closeBig.svg';
+import arrowLeft from 'images/arrows/left.svg';
+import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './SimpleHeader.scss';
 
 class SimpleHeader extends React.PureComponent {
