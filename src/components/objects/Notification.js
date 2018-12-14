@@ -25,14 +25,16 @@ class Notification extends Component {
     return (
       <AnimateHeight height={height}>
         <div className={styles.wrapper}>
-          <p>{text}</p>
-          <div className={styles.buttons}>
-            <button onClick={this.onClickedNo}>
-              {labelNo}
-            </button>
-            <button onClick={this.onClickedYes}>
-              {labelYes}
-            </button>
+          <div className="container">
+            <p>{text}</p>
+            <div className={styles.buttons}>
+              <button onClick={this.onClickedNo}>
+                {labelNo}
+              </button>
+              <button onClick={this.onClickedYes}>
+                {labelYes}
+              </button>
+            </div>
           </div>
         </div>
       </AnimateHeight>

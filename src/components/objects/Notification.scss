@@ -2,13 +2,12 @@
 @import '~tools.scss';
 
 .wrapper {
-  composes: container from global;
   border-bottom: 1px solid $grey-200;
   font-size: rem(13);
   line-height: rem(18);
   padding: rem(13) rem(16);
 
-  > p {
+  p {
     margin-bottom: rem(13);
   }
 }
@@ -29,12 +28,15 @@
 
 @include mq("tablet-landscape") {
   .wrapper {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
     padding: rem(16);
+
+    div {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
     
-    > p {
+    p {
       margin-bottom: 0;
     }
   }
