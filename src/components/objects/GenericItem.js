@@ -8,9 +8,9 @@ class GenericItem extends Component {
     const style = this.props.data.color ? { backgroundColor: this.props.data.color } : {};
 
     return (
-      <button className={classes.join(' ')} style={style}>
+      <span className={classes.join(' ')} style={style}>
         {this.props.data.name || this.props.data.description}
-      </button>
+      </span>
     );
   }
 }

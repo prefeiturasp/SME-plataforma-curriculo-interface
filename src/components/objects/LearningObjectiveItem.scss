@@ -3,9 +3,7 @@
 
 .wrapper {
   @include pill;
-  background-color: $grey-200;
-}
-
-.isColored {
-  color: white;
+  border: 1px solid $grey-200;
+  min-width: rem(96);
+  text-align: center;
 }

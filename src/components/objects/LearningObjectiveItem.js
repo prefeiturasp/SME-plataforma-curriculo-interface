@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './LearningObjectiveItem.css';
+import styles from './LearningObjectiveItem.scss';
 
 class LearningObjectiveItem extends Component {
   render() {

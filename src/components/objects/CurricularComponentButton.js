@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './CurricularComponentButton.css';
+import styles from './CurricularComponentButton.scss';
 
 class CurricularComponentButton extends Component {
   onClicked = () => {

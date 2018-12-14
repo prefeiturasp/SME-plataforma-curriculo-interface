@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import LearningObjectiveItem from './LearningObjectiveItem';
-import chevronDown from 'images/chevron/down.svg';
-import chevronRight from 'images/chevron/right.svg';
-import chevronUp from 'images/chevron/up.svg';
+import chevronDown from 'images/chevrons/down.svg';
+import chevronRight from 'images/chevrons/right.svg';
+import chevronUp from 'images/chevrons/up.svg';
 import styles from './ExpandableLearningObjectiveItem.css';
 
 class ExpandableLearningObjectiveItem extends Component {

@@ -1,0 +1,15 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  @include pill;
+  
+  &:hover {
+    border-color: $grey-600;
+  }
+
+  &.isActive {
+    border-color: transparent;
+    color: white;
+  }
+}
