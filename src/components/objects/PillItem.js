@@ -15,12 +15,9 @@ class PillItem extends Component {
       classes.push(styles.isColored);
       style.backgroundColor = data.color;
     }
-    
+
     return (
-      <div
-        className={classes.join(' ')}
-        style={style}
-      >
+      <div className={classes.join(' ')} style={style}>
         {data.name || data.description}
       </div>
     );

@@ -16,20 +16,22 @@ class SequencePreview extends Component {
     this.setState({
       isSaved: !this.state.isSaved,
     });
-  }
+  };
 
   render() {
     const { data, sequence } = this.props;
     const { isSaved } = this.state;
 
-    const image = data.image_attributes.default_url
-      ? <img
-          className={styles.image}
-          src={API_URL + data.image_attributes.default_url}
-          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-          alt={sequence.title}
-        />
-      : null;
+    const image = data.image_attributes.default_url ? (
+      <img
+        className={styles.image}
+        src={API_URL + data.image_attributes.default_url}
+        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${
+          data.image_attributes.extra_large.url
+        } 2x`}
+        alt={sequence.title}
+      />
+    ) : null;
 
     const link = `/sequencia/${sequence.slug}`;
     const icon = isSaved ? iconSaved : iconSave;
@@ -58,6 +60,6 @@ class SequencePreview extends Component {
 SequencePreview.propTypes = {
   data: PropTypes.object.isRequired,
   sequence: PropTypes.object.isRequired,
-}
+};
 
 export default SequencePreview;

@@ -13,16 +13,16 @@ class MobileMenu extends React.PureComponent {
 
   onClickedClose = () => {
     this.props.hideMobileMenu();
-  }
+  };
 
   onClickedLogin = () => {
     this.props.login();
-  }
+  };
 
   onClickedLogout = () => {
     this.props.logout();
-  }
-  
+  };
+
   componentDidMount() {
     this.props.setup();
   }
@@ -73,51 +73,54 @@ class MobileMenu extends React.PureComponent {
           key={i}
           to={item.to}
           className={klass}
-          onClick={this.onClickedClose}>
+          onClick={this.onClickedClose}
+        >
           {item.label}
         </NavLink>
       );
     });
 
-    const buttons = this.props.hasLogged
-      ? <div>
-          <NavLink
-            to="/perfil"
-            className={styles.btn}
-            onClick={this.onClickedClose}
+    const buttons = this.props.hasLogged ? (
+      <div>
+        <NavLink
+          to="/perfil"
+          className={styles.btn}
+          onClick={this.onClickedClose}
+        >
+          Meu perfil
+        </NavLink>
+        <button className={styles.btn} onClick={this.onClickedLogout}>
+          Sair
+        </button>
+      </div>
+    ) : (
+      <div className={styles.login}>
+        <h3>
+          Salve sequências de atividades.
+          <br />E acesse em qualquer lugar.
+        </h3>
+        <button className={styles.btnLogin} onClick={this.onClickedLogin}>
+          Login
+        </button>
+        <p className={styles.obs}>
+          Esta funcionalidade é exclusiva para professores da{' '}
+          <a
+            href="https://sme.prefeitura.sp.gov.br/"
+            target="_blank"
+            rel="noreferrer noopener"
           >
-            Meu perfil
-          </NavLink>
-          <button
-            className={styles.btn}
-            onClick={this.onClickedLogout}
-          >
-            Sair
-          </button>
-        </div>
-      : <div className={styles.login}>
-          <h3>
-            Salve sequências de atividades.
-            <br/>
-            E acesse em qualquer lugar.
-          </h3>
-          <button
-            className={styles.btnLogin}
-            onClick={this.onClickedLogin}
-          >
-            Login
-          </button>
-          <p className={styles.obs}>Esta funcionalidade é exclusiva para professores da <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a> da Prefeitura de São Paulo.</p>
-        </div>;
+            Secretaria Municipal de Educação
+          </a>{' '}
+          da Prefeitura de São Paulo.
+        </p>
+      </div>
+    );
 
     return (
-      <MobileModal
-        htmlId="mobileMenu"
-        isExpanded={this.props.hasMobileMenu}
-      >
+      <MobileModal htmlId="mobileMenu" isExpanded={this.props.hasMobileMenu}>
         <nav className={styles.wrapper} id="mobileMenu">
           {links}
-          <hr/>
+          <hr />
           {buttons}
           <button className={styles.close} onClick={this.onClickedClose}>
             <img src={iconCloseBig} alt="Fechar" />
@@ -161,4 +164,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MobileMenu);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MobileMenu);

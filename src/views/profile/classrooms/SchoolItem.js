@@ -11,7 +11,7 @@ class SchoolItem extends React.PureComponent {
 
   onToggled = () => {
     this.setState({ isExpanded: !this.state.isExpanded });
-  }
+  };
 
   render() {
     const { classrooms, name } = this.props;
@@ -28,30 +28,22 @@ class SchoolItem extends React.PureComponent {
       );
     });
 
-    const classes = this.state.isExpanded ? [styles.toggler, styles.isExpanded] : [styles.toggler];
+    const classes = this.state.isExpanded
+      ? [styles.toggler, styles.isExpanded]
+      : [styles.toggler];
     const height = this.state.isExpanded ? 'auto' : 0;
     const chevron = this.state.isExpanded ? chevronUp : chevronDown;
     const alt = this.state.isExpanded ? 'Esconder' : 'Exibir';
-    
+
     return (
       <div className={styles.wrapper}>
-        <div
-          className={[classes.join(' ')]}
-          onClick={this.onToggled}
-        >
+        <div className={[classes.join(' ')]} onClick={this.onToggled}>
           <h2>
             {name} ({classrooms.length})
           </h2>
-          <img
-            src={chevron}
-            alt={alt}
-            width={12}
-          />
+          <img src={chevron} alt={alt} width={12} />
         </div>
-        <AnimateHeight
-          duration={300}
-          height={height}
-        >
+        <AnimateHeight duration={300} height={height}>
           {items}
         </AnimateHeight>
       </div>

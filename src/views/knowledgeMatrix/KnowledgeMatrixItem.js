@@ -11,22 +11,21 @@ import styles from './KnowledgeMatrixItem.css';
 
 class KnowledgeMatrixItem extends Component {
   state = { animationStatus: null };
-  
+
   onClickedClose = () => {
     this.props.history.goBack();
-  }
+  };
 
   onEntered = () => {
     this.setState({ animationStatus: 'entered' });
-  }
+  };
 
   componentDidMount() {
     disableBodyScroll(document.querySelector('#knowledgeMatrixItem'));
     if (this.props.data.length <= 0) {
       this.props.load();
       this.setState({ animationStatus: 'appeared' });
-    }
-    else {
+    } else {
       this.setState({ animationStatus: 'enter' });
     }
   }
@@ -64,9 +63,7 @@ class KnowledgeMatrixItem extends Component {
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <div className={styles.header}>
-                <div className={styles.number}>
-                  {index}
-                </div>
+                <div className={styles.number}>{index}</div>
                 <h1>{title}</h1>
               </div>
               <div className={styles.contents}>
@@ -74,7 +71,10 @@ class KnowledgeMatrixItem extends Component {
                 <p>{knowDescription}</p>
                 <h2>Para</h2>
                 <p>{forDescription}</p>
-                <NavLink to={`/sequencias/matriz-de-saberes/${index}`} className={styles.button}>
+                <NavLink
+                  to={`/sequencias/matriz-de-saberes/${index}`}
+                  className={styles.button}
+                >
                   Ver Sequências de Atividades Relacionadas
                 </NavLink>
               </div>
@@ -109,4 +109,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(KnowledgeMatrixItem));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(KnowledgeMatrixItem));

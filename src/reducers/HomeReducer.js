@@ -10,7 +10,7 @@ function HomeReducer(state = initialState, action) {
       return {
         ...state,
       };
-      
+
     case HomeActions.LOADED:
       return {
         ...state,
@@ -27,7 +27,7 @@ function HomeReducer(state = initialState, action) {
           };
         }),
       };
-  
+
     default:
       return state;
   }

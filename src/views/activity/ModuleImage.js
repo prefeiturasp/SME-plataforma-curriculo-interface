@@ -6,13 +6,10 @@ class ModuleImage extends React.PureComponent {
   render() {
     return (
       <div className={styles.wrapper}>
-        <img
-          src={this.props.src}
-          alt={this.props.alt}
-        />
+        <img src={this.props.src} alt={this.props.alt} />
         <p
           className="source"
-          dangerouslySetInnerHTML={{__html: this.props.source}}
+          dangerouslySetInnerHTML={{ __html: this.props.source }}
         />
       </div>
     );

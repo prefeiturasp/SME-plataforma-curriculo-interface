@@ -8,15 +8,9 @@ import SimpleHeader from 'components/header/SimpleHeader';
 class SequenceCharsMobile extends Component {
   render() {
     return (
-      <MobileModal
-        htmlId="sequenceChars"
-        isExpanded={this.props.isExpanded}
-      >
+      <MobileModal htmlId="sequenceChars" isExpanded={this.props.isExpanded}>
         <ModalPage id="sequenceChars">
-          <SimpleHeader
-            back={true}
-            title="Características"
-          />
+          <SimpleHeader back={true} title="Características" />
           <SequenceChars data={this.props.data} />
         </ModalPage>
       </MobileModal>

@@ -18,39 +18,39 @@ class EditProfile extends Component {
     photo: null,
   };
 
-  onChangedNickname = (e) => {
+  onChangedNickname = e => {
     this.setState({
       ...this.state,
       nickname: e.target.value,
     });
-  }
+  };
 
-  onClickedAddPhoto = (e) => {
+  onClickedAddPhoto = e => {
     const files = Array.from(e.target.files);
     const file = files[0];
     this.props.savePhoto(this.props.id, file);
 
-    const reader  = new FileReader();
+    const reader = new FileReader();
     reader.onloadend = () => {
       this.setState({
         ...this.state,
         photo: reader.result,
       });
-    }
+    };
     reader.readAsDataURL(file);
-  }
+  };
 
-  onClickedChangePhoto = (e) => {
+  onClickedChangePhoto = e => {
     this.onClickedAddPhoto(e);
-  }
+  };
 
   onClickedDeletePhoto = () => {
     this.props.deletePhoto();
-  }
+  };
 
   onClickedSave = () => {
     this.props.saveNickname(this.props.id, this.state.nickname);
-  }
+  };
 
   componentDidMount() {
     this.props.load();
@@ -77,23 +77,19 @@ class EditProfile extends Component {
   render() {
     const hasImage = this.state.photo !== null;
 
-    const progress = this.state.isUploading
-      ? <div className={styles.progress}>
-          <CircularProgress
-            size={108}
-            thickness={2}
-            value={this.state.progress}
-          />
-        </div>
-      : null;
+    const progress = this.state.isUploading ? (
+      <div className={styles.progress}>
+        <CircularProgress
+          size={108}
+          thickness={2}
+          value={this.state.progress}
+        />
+      </div>
+    ) : null;
 
     let actions = null;
     if (this.state.isUploading) {
-      actions = (
-        <div className={styles.actions}>
-          Atualizando...
-        </div>
-      );
+      actions = <div className={styles.actions}>Atualizando...</div>;
     } else if (hasImage) {
       actions = (
         <div className={styles.actions}>
@@ -105,9 +101,7 @@ class EditProfile extends Component {
           />
           <label htmlFor="photo">Alterar</label>
           <span>&middot;</span>
-          <button onClick={this.onClickedDeletePhoto}>
-            Deletar
-          </button>
+          <button onClick={this.onClickedDeletePhoto}>Deletar</button>
         </div>
       );
     } else {
@@ -137,27 +131,24 @@ class EditProfile extends Component {
         </div>
       );
     } else {
-      const letter = this.state.nickname ? this.state.nickname.charAt(0).toUpperCase() : '';
+      const letter = this.state.nickname
+        ? this.state.nickname.charAt(0).toUpperCase()
+        : '';
 
       imageOrLetter = (
         <div className={styles.imageWrapper}>
           {progress}
-          <div className={styles.letter}>
-            {letter}
-          </div>
+          <div className={styles.letter}>{letter}</div>
         </div>
       );
     }
 
     const isInvalid = this.state.nickname.length <= 0;
     const message = isInvalid ? 'Campo obrigatório' : '';
-    
+
     return (
       <section className={styles.wrapper}>
-        <SimpleHeader
-          back={true}
-          title="Editar Perfil"
-        />
+        <SimpleHeader back={true} title="Editar Perfil" />
         <div className={styles.center}>
           {imageOrLetter}
           {actions}
@@ -182,11 +173,18 @@ class EditProfile extends Component {
             />
           </div>
         </div>
-        <p className={styles.obs}>Caso deseje alterar sua senha, acesse sua conta na <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a>.</p>
-        <SimpleFooter
-          label="Salvar"
-          onClick={this.onClickedSave}
-        />
+        <p className={styles.obs}>
+          Caso deseje alterar sua senha, acesse sua conta na{' '}
+          <a
+            href="https://sme.prefeitura.sp.gov.br/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Secretaria Municipal de Educação
+          </a>
+          .
+        </p>
+        <SimpleFooter label="Salvar" onClick={this.onClickedSave} />
       </section>
     );
   }
@@ -223,7 +221,7 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(ProfileActions.load());
     },
-    openAlert: (message) => {
+    openAlert: message => {
       dispatch(AlertActions.open(message));
     },
     saveNickname: (id, nickname) => {
@@ -235,4 +233,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditProfile);

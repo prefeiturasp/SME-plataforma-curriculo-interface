@@ -6,7 +6,7 @@ class YearItem extends React.PureComponent {
   render() {
     const { color, size, year } = this.props;
     const style = {};
-    
+
     if (color) {
       style.backgroundColor = color;
     }
@@ -18,10 +18,7 @@ class YearItem extends React.PureComponent {
     }
 
     return (
-      <div
-        className={styles.wrapper}
-        style={style}
-      >
+      <div className={styles.wrapper} style={style}>
         {year}
       </div>
     );

@@ -14,20 +14,23 @@ function getNextPage(headers) {
 
 function getPromise(dispatch, func, method, url, data) {
   return new Promise((resolve, reject) => {
-    func.apply(this, [method, url, data])
+    func
+      .apply(this, [method, url, data])
       .then(response => {
-        response.json().then(data => {
-          const headers = response.headers;
-          const nextPage = getNextPage(headers);
-          const totalItems = headers.has('total') ? headers.get('total') : 0;
-          resolve({
-            data,
-            headers,
-            nextPage,
-            totalItems,
-          });
-        })
-        .catch(reject);
+        response
+          .json()
+          .then(data => {
+            const headers = response.headers;
+            const nextPage = getNextPage(headers);
+            const totalItems = headers.has('total') ? headers.get('total') : 0;
+            resolve({
+              data,
+              headers,
+              nextPage,
+              totalItems,
+            });
+          })
+          .catch(reject);
       })
       .catch(reject)
       .finally(response => dispatch({ type: BodyActions.HIDE_LOADING }));
@@ -53,7 +56,7 @@ function doRequest(method, url, data) {
   return fetch(`${API_URL}${url}`, options)
     .then(response => response)
     .catch(error => {
-      throw error
+      throw error;
     });
 }
 
@@ -63,7 +66,7 @@ class Api {
       if (onCall) {
         dispatch({ type: onCall });
       }
-      
+
       return Api.get(dispatch, url)
         .then(response => dispatch({ ...response, type: onSuccess }))
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));

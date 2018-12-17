@@ -50,7 +50,7 @@ class ModalSwitch extends Component {
   componentWillUpdate(nextProps) {
     const location = this.props.location;
     if (
-      nextProps.history.action !== "POP" &&
+      nextProps.history.action !== 'POP' &&
       (!location.state || !location.state.modal)
     ) {
       this.previousLocation = this.props.location;
@@ -60,43 +60,75 @@ class ModalSwitch extends Component {
   render() {
     const location = this.props.location;
 
-    const isModalSustainableDevGoal = checkModal(location, this.previousLocation, 'isModalSustainableDevGoal');
-    const isModalKnowledgeMatrix = checkModal(location, this.previousLocation, 'isModalKnowledgeMatrix');
+    const isModalSustainableDevGoal = checkModal(
+      location,
+      this.previousLocation,
+      'isModalSustainableDevGoal'
+    );
+    const isModalKnowledgeMatrix = checkModal(
+      location,
+      this.previousLocation,
+      'isModalKnowledgeMatrix'
+    );
 
-    const locationProp = isModalSustainableDevGoal || isModalKnowledgeMatrix ? this.previousLocation : location;
+    const locationProp =
+      isModalSustainableDevGoal || isModalKnowledgeMatrix
+        ? this.previousLocation
+        : location;
 
     return (
       <Fragment>
         <Switch location={locationProp}>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/sequencias' component={Sequences} />
-          <Route exact path='/sequencias/ods/:ods' component={Sequences} />
-          <Route exact path='/sequencias/matriz-de-saberes/:mds' component={Sequences} />
-          <Route exact path='/sequencias/objetivos-de-aprendizagem/:oda' component={Sequences} />
-          <Route exact path='/sequencia/:slug' component={Sequence} />
-          <Route exact path='/sequencia/:slug1/atividade/:slug2' component={Activity} />
-          <Route exact path='/curriculo' component={Curriculum} />
-          <Route exact path='/ods' component={SustainableDevGoals} />
-          <Route exact path='/matriz-de-saberes' component={KnowledgeMatrix} />
-          <Route exact path='/objetivos-de-aprendizagem' component={LearningObjectives} />
-          <Route exact path='/descobrir' component={Roadmap} />
-          <Route exact path='/perfil' component={Profile} />
-          <Route exact path='/perfil/editar' component={EditProfile} />
-          <Route exact path='/turmas' component={Classrooms} />
-          <Route exact path='/colecao/:id' component={Collection} />
-          <Route exact path='/colecao/:id/editar' component={EditCollection} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/sequencias" component={Sequences} />
+          <Route exact path="/sequencias/ods/:ods" component={Sequences} />
+          <Route
+            exact
+            path="/sequencias/matriz-de-saberes/:mds"
+            component={Sequences}
+          />
+          <Route
+            exact
+            path="/sequencias/objetivos-de-aprendizagem/:oda"
+            component={Sequences}
+          />
+          <Route exact path="/sequencia/:slug" component={Sequence} />
+          <Route
+            exact
+            path="/sequencia/:slug1/atividade/:slug2"
+            component={Activity}
+          />
+          <Route exact path="/curriculo" component={Curriculum} />
+          <Route exact path="/ods" component={SustainableDevGoals} />
+          <Route exact path="/matriz-de-saberes" component={KnowledgeMatrix} />
+          <Route
+            exact
+            path="/objetivos-de-aprendizagem"
+            component={LearningObjectives}
+          />
+          <Route exact path="/descobrir" component={Roadmap} />
+          <Route exact path="/perfil" component={Profile} />
+          <Route exact path="/perfil/editar" component={EditProfile} />
+          <Route exact path="/turmas" component={Classrooms} />
+          <Route exact path="/colecao/:id" component={Collection} />
+          <Route exact path="/colecao/:id/editar" component={EditCollection} />
         </Switch>
-        {isModalSustainableDevGoal ? <Route exact path='/ods/:id' component={SustainableDevGoal} /> : null}
-        {isModalKnowledgeMatrix ? <Route exact path='/matriz-de-saberes/:index' component={KnowledgeMatrixItem} /> : null}
+        {isModalSustainableDevGoal ? (
+          <Route exact path="/ods/:id" component={SustainableDevGoal} />
+        ) : null}
+        {isModalKnowledgeMatrix ? (
+          <Route
+            exact
+            path="/matriz-de-saberes/:index"
+            component={KnowledgeMatrixItem}
+          />
+        ) : null}
       </Fragment>
     );
   }
 }
 
-const store = createStore(
-  reducers,
-  applyMiddleware(thunk),
-);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

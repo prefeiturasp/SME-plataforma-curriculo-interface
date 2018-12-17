@@ -33,7 +33,7 @@ function SequencesReducer(state = initialState, action) {
         currItem: null,
         isSearching: true,
       };
-      
+
     case SequencesActions.LOADED:
       return {
         ...state,
@@ -42,7 +42,7 @@ function SequencesReducer(state = initialState, action) {
         nextPage: action.nextPage,
         totalItems: action.totalItems,
       };
-      
+
     case SequencesActions.LOADED_ITEM:
       return {
         ...state,
@@ -74,7 +74,7 @@ function SequencesReducer(state = initialState, action) {
           };
         }),
       };
-      
+
     default:
       return state;
   }

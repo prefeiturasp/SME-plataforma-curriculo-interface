@@ -32,7 +32,7 @@ class Activity extends Component {
     this.setState({
       isCharsExpanded: !this.state.isCharsExpanded,
     });
-  }
+  };
 
   componentDidMount() {
     const params = this.props.match.params;
@@ -54,10 +54,10 @@ class Activity extends Component {
 
     const data = this.props.data;
     const sequence = data.activity_sequence;
-    
+
     const contentBlocks = data.content_blocks
       ? data.content_blocks.map((block, i) => {
-          switch(block.type) {
+          switch (block.type) {
             case 'to_teacher':
               return (
                 <ModuleTeacher
@@ -104,88 +104,86 @@ class Activity extends Component {
               );
 
             case 'gallery':
-              return (
-                <ModuleGallery
-                  key={i}
-                  images={block.images}
-                />
-              );
+              return <ModuleGallery key={i} images={block.images} />;
 
             default:
               return (
                 <div
                   key={i}
-                  dangerouslySetInnerHTML={{__html: convertQuillToHtml(block.content.body)}}
+                  dangerouslySetInnerHTML={{
+                    __html: convertQuillToHtml(block.content.body),
+                  }}
                 />
               );
           }
         })
       : null;
 
-    const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
-    const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
+    const linkPrev = `/sequencia/${sequence.slug}/atividade/${
+      data.last_activity
+    }`;
+    const linkNext = `/sequencia/${sequence.slug}/atividade/${
+      data.next_activity
+    }`;
     const linkSequence = `/sequencia/${sequence.slug}`;
 
-    const arrowPrev = data.last_activity
-      ? <NavLink className={styles1.prev} to={linkPrev}>
-          <img src={arrowLeft} alt="Seta" />
-          Atividade {data.sequence - 1}
-        </NavLink>
-      : <span />;
+    const arrowPrev = data.last_activity ? (
+      <NavLink className={styles1.prev} to={linkPrev}>
+        <img src={arrowLeft} alt="Seta" />
+        Atividade {data.sequence - 1}
+      </NavLink>
+    ) : (
+      <span />
+    );
 
-    const arrowNext = data.next_activity
-      ? <NavLink className={styles1.next} to={linkNext}>
-          Atividade {data.sequence + 1}
-          <img src={arrowRight} alt="Seta" />
-        </NavLink>
-      : null;
+    const arrowNext = data.next_activity ? (
+      <NavLink className={styles1.next} to={linkNext}>
+        Atividade {data.sequence + 1}
+        <img src={arrowRight} alt="Seta" />
+      </NavLink>
+    ) : null;
 
     return (
       <Page>
-      <section className={styles.wrapper}>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-lg-8">
-              <SequencePreview
-                data={data}
-                sequence={sequence}
-              />
-              <SequenceCover
-                data={data}
-                sequence={sequence}
-              />
-              <SequenceTitle
-                text={`Atividade ${data.sequence}`}
-                title={data.title}
-              />
-              <button className={styles.btnChars} onClick={this.onClickedChars}>
-                Ver características
-              </button>
-              <div className={styles.description}>
-                {contentBlocks}
+        <section className={styles.wrapper}>
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 col-lg-8">
+                <SequencePreview data={data} sequence={sequence} />
+                <SequenceCover data={data} sequence={sequence} />
+                <SequenceTitle
+                  text={`Atividade ${data.sequence}`}
+                  title={data.title}
+                />
+                <button
+                  className={styles.btnChars}
+                  onClick={this.onClickedChars}
+                >
+                  Ver características
+                </button>
+                <div className={styles.description}>{contentBlocks}</div>
+              </div>
+              <div className={styles.chars}>
+                <ActivityChars data={this.props.data} />
               </div>
             </div>
-            <div className={styles.chars}>
-              <ActivityChars data={this.props.data} />
-            </div>
           </div>
-        </div>
-        <hr />
-        <div className={styles1.arrows}>
-          {arrowPrev}
-          {arrowNext}
-        </div>
-        <div className={styles1.footer}>
-          <NavLink className={styles1.back} to={linkSequence}>
-            Voltar para a sequência
-          </NavLink>
-        </div>
-        <ActivityCharsMobile
-          data={this.props.data}
-          isExpanded={this.state.isCharsExpanded}
-        />
-        <Tooltips />
-      </section>
+          <hr />
+          <div className={styles1.arrows}>
+            {arrowPrev}
+            {arrowNext}
+          </div>
+          <div className={styles1.footer}>
+            <NavLink className={styles1.back} to={linkSequence}>
+              Voltar para a sequência
+            </NavLink>
+          </div>
+          <ActivityCharsMobile
+            data={this.props.data}
+            isExpanded={this.state.isCharsExpanded}
+          />
+          <Tooltips />
+        </section>
       </Page>
     );
   }
@@ -219,4 +217,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Activity);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Activity);

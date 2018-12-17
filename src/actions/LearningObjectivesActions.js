@@ -10,9 +10,13 @@ const LearningObjectivesActions = {
   LOADED_RESULTS: 'LearningObjectivesActions.LOADED_RESULTS',
   HIDE_RESULTS: 'LearningObjectivesActions.HIDE_RESULTS',
   TOGGLE_FILTER: 'LearningObjectivesActions.TOGGLE_FILTER',
-  
+
   load() {
-    return Api.simpleGet('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
+    return Api.simpleGet(
+      '/api/filtros',
+      LearningObjectivesActions.LOAD,
+      LearningObjectivesActions.LOADED
+    );
   },
   hideObjectives() {
     return { type: LearningObjectivesActions.HIDE_OBJECTIVES };
@@ -22,7 +26,11 @@ const LearningObjectivesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return Api.simpleGet(`/api/filtros?${queryString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
+    return Api.simpleGet(
+      `/api/filtros?${queryString}`,
+      LearningObjectivesActions.SEARCH,
+      LearningObjectivesActions.LOADED_RESULTS
+    );
   },
   hideResults() {
     return { type: LearningObjectivesActions.HIDE_RESULTS };

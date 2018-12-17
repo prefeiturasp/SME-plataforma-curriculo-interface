@@ -12,16 +12,13 @@ class ClassroomItem extends React.PureComponent {
     this.setState({
       isSelected: !this.state.isSelected,
     });
-  }
+  };
 
   render() {
     const { color, level, name, school, year } = this.props;
 
     return (
-      <button
-        className={styles.wrapper}
-        onClick={this.onClicked}
-      >
+      <button className={styles.wrapper} onClick={this.onClicked}>
         <ClassroomYear
           color={color}
           isBordered={this.state.isSelected}
@@ -33,9 +30,7 @@ class ClassroomItem extends React.PureComponent {
           <h4>
             {name} {year} {level}
           </h4>
-          <p>
-            {school}
-          </p>
+          <p>{school}</p>
         </div>
       </button>
     );

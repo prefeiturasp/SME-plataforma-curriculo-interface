@@ -9,34 +9,45 @@ import styles from './GridItemBase.scss';
 
 class GridItemBase extends Component {
   ref = React.createRef();
-  
+
   onClickedExpand = () => {
     this.props.togglePreview(this.props.data.id);
-  }
+  };
 
   render() {
     const data = this.props.data;
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
     const icon = data.isExpanded ? iconMinus : iconPlus;
-    const alt = data.isExpanded ? "Esconder" : "Expandir";
+    const alt = data.isExpanded ? 'Esconder' : 'Expandir';
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
     const style = { color: data.main_curricular_component.color };
 
     const link = `/sequencia/${data.slug}`;
-    const thumbnail = data.image_attributes.default_url
-      ? <div className={styles.image}>
-          <img
-            src={API_URL + data.image_attributes.default_url}
-            srcSet={`${API_URL}${data.image_attributes.thumb.url}, ${API_URL}${data.image_attributes.extra_thumb.url} 2x`}
-            alt="" />
-        </div>
-      : <div className={styles.initials}>
-          {data.main_curricular_component.name.split(' ').map(s => s.charAt(0)).join('')}
-        </div>;
+    const thumbnail = data.image_attributes.default_url ? (
+      <div className={styles.image}>
+        <img
+          src={API_URL + data.image_attributes.default_url}
+          srcSet={`${API_URL}${data.image_attributes.thumb.url}, ${API_URL}${
+            data.image_attributes.extra_thumb.url
+          } 2x`}
+          alt=""
+        />
+      </div>
+    ) : (
+      <div className={styles.initials}>
+        {data.main_curricular_component.name
+          .split(' ')
+          .map(s => s.charAt(0))
+          .join('')}
+      </div>
+    );
 
-    const maxChars = 32
-    const title = data.title.length > maxChars ? data.title.substr(0, maxChars).trim() + '...' : data.title
+    const maxChars = 32;
+    const title =
+      data.title.length > maxChars
+        ? data.title.substr(0, maxChars).trim() + '...'
+        : data.title;
 
     let duration = null;
     if (data.estimated_time) {
@@ -55,9 +66,7 @@ class GridItemBase extends Component {
     return (
       <li className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <article className={styles.wrapper} ref={this.ref}>
-          <NavLink to={link}>
-            {thumbnail}
-          </NavLink>
+          <NavLink to={link}>{thumbnail}</NavLink>
           <div className={styles.component}>
             <em style={style}>{data.main_curricular_component.name}</em>
             <span>{data.year} ano</span>

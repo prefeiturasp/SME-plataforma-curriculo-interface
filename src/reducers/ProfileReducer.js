@@ -12,7 +12,7 @@ function ProfileReducer(state = initialState, action) {
   switch (action.type) {
     case ProfileActions.LOAD:
       return initialState;
-      
+
     case ProfileActions.LOADED:
       return {
         ...state,
@@ -43,7 +43,7 @@ function ProfileReducer(state = initialState, action) {
         ...state,
         isUploading: false,
       };
-  
+
     default:
       return state;
   }

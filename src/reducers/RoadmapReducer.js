@@ -14,7 +14,7 @@ function RoadmapReducer(state = initialState, action) {
     case RoadpmapActions.LOADED:
       return {
         ...state,
-        items: action.data
+        items: action.data,
       };
 
     default:

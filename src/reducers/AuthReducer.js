@@ -12,7 +12,7 @@ function AuthReducer(state = initialState, action) {
         hasSetup: true,
         hasLogged: true,
       };
-      
+
     case AuthActions.LOGOUT:
       sessionStorage.removeItem('user');
 
@@ -26,7 +26,7 @@ function AuthReducer(state = initialState, action) {
         hasSetup: true,
         hasLogged: sessionStorage.getItem('user') !== null,
       };
-  
+
     default:
       return state;
   }

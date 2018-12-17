@@ -22,22 +22,21 @@ function doPaginatedFetch(method, url, action1, action2) {
       request.headers = JSON.parse(user);
     }
 
-    fetch(`${API_URL}${url}`, request)
-      .then(response => {
-        response.json().then(data => {
-          const headers = response.headers;
-          const nextPage = getNextPage(headers);
-          const totalItems = headers.has('total') ? headers.get('total') : 0;
-          
-          dispatch({ type: BodyActions.HIDE_LOADING });
-          dispatch({
-            data,
-            nextPage,
-            totalItems,
-            type: action2,
-          });
+    fetch(`${API_URL}${url}`, request).then(response => {
+      response.json().then(data => {
+        const headers = response.headers;
+        const nextPage = getNextPage(headers);
+        const totalItems = headers.has('total') ? headers.get('total') : 0;
+
+        dispatch({ type: BodyActions.HIDE_LOADING });
+        dispatch({
+          data,
+          nextPage,
+          totalItems,
+          type: action2,
         });
       });
+    });
   };
 }
 
@@ -73,7 +72,7 @@ function doFetch(method, url, data, action1, action2) {
 
 export function getData1(dispatch, url, filters, action) {
   const queryString = getFiltersQueryString(filters);
-  
+
   fetch(`${API_URL}${url}?${queryString}`)
     .then(response => response.json())
     .then(data => {

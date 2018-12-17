@@ -7,18 +7,23 @@ import styles from './CategoryItemButton.css';
 class CategoryItemButton extends Component {
   onClicked = () => {
     this.props.toggleFilter(this.props.data);
-  }
+  };
 
   render() {
-    const classes = this.props.data.isActive ? [styles.wrapper, styles.isActive] : [styles.wrapper];
-    
+    const classes = this.props.data.isActive
+      ? [styles.wrapper, styles.isActive]
+      : [styles.wrapper];
+
     return (
       <li>
         <button className={classes.join(' ')} onClick={this.onClicked}>
           <div className={styles.check}>
-            <div className={styles.checkMark}></div>
+            <div className={styles.checkMark} />
           </div>
-          {this.props.data.name || this.props.data.title || this.props.data.code || this.props.data.description}
+          {this.props.data.name ||
+            this.props.data.title ||
+            this.props.data.code ||
+            this.props.data.description}
         </button>
       </li>
     );
@@ -38,4 +43,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CategoryItemButton);
+export default connect(
+  null,
+  mapDispatchToProps
+)(CategoryItemButton);

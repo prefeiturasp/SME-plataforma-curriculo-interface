@@ -7,22 +7,18 @@ class SequenceTitle extends Component {
   render() {
     const { hasButton, text, title } = this.props;
 
-    const button = hasButton
-      ? <button className={styles.btnSave}>
-          <img src={iconSave} alt="Salvar" />
-          Salvar
-        </button>
-      : null;
+    const button = hasButton ? (
+      <button className={styles.btnSave}>
+        <img src={iconSave} alt="Salvar" />
+        Salvar
+      </button>
+    ) : null;
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          <p>
-            {text}
-          </p>
-          <h1>
-            {title}
-          </h1>
+          <p>{text}</p>
+          <h1>{title}</h1>
         </div>
         {button}
       </div>

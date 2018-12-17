@@ -10,14 +10,16 @@ class SequenceCover extends Component {
   render() {
     const { data, sequence } = this.props;
 
-    const image = data.image_attributes.default_url
-      ? <img
-          className={styles.image}
-          src={API_URL + data.image_attributes.default_url}
-          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
-          alt={data.title}
-        />
-      : null;
+    const image = data.image_attributes.default_url ? (
+      <img
+        className={styles.image}
+        src={API_URL + data.image_attributes.default_url}
+        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${
+          data.image_attributes.extra_large.url
+        } 2x`}
+        alt={data.title}
+      />
+    ) : null;
 
     const classes = image
       ? [styles.wrapper, styles.withImage]
@@ -35,13 +37,13 @@ class SequenceCover extends Component {
           </div>
         </div>
       );
-    }     
+    }
 
-    return (     
+    return (
       <div className={classes.join(' ')}>
         {image}
         <ul>
-          <PillItem data={{name: sequence.year}} />
+          <PillItem data={{ name: sequence.year }} />
           <PillItem data={sequence.main_curricular_component} />
         </ul>
         {duration}

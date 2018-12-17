@@ -9,7 +9,8 @@ class SustainableDevGoalItem extends Component {
     const image = (
       <img
         src={API_URL + this.props.data.icon_url}
-        alt={this.props.data.name} />
+        alt={this.props.data.name}
+      />
     );
 
     const link = {
@@ -21,14 +22,10 @@ class SustainableDevGoalItem extends Component {
 
     return this.props.isLink ? (
       <li className={styles.wrapper}>
-        <NavLink to={link}>
-          {image}
-        </NavLink>
+        <NavLink to={link}>{image}</NavLink>
       </li>
     ) : (
-      <li className={styles.wrapper}>
-        {image}
-      </li>
+      <li className={styles.wrapper}>{image}</li>
     );
   }
 }

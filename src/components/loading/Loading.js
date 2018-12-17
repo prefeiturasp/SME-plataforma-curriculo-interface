@@ -5,10 +5,7 @@ import styles from './Loading.css';
 class Loading extends React.PureComponent {
   render() {
     return (
-      <img
-        className={styles.wrapper}
-        src={iconLoading}
-        alt="Carregando" />
+      <img className={styles.wrapper} src={iconLoading} alt="Carregando" />
     );
   }
 }

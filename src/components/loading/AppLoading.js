@@ -6,7 +6,9 @@ import styles from './AppLoading.css';
 
 class AppLoading extends React.PureComponent {
   render() {
-    const classes = this.props.isVisible ? [styles.wrapper, styles.isVisible] : [styles.wrapper];
+    const classes = this.props.isVisible
+      ? [styles.wrapper, styles.isVisible]
+      : [styles.wrapper];
 
     return (
       <div className={classes.join(' ')}>

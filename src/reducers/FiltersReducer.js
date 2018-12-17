@@ -123,7 +123,7 @@ function FiltersReducer(state = initialState, action) {
         ...state,
         isExpanded: false,
       };
-      
+
     default:
       return state;
   }

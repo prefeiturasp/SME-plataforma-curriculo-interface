@@ -8,14 +8,17 @@ import styles from './ResultsNotFound.css';
 class ResultsNotFound extends Component {
   onClicked = () => {
     this.props.clearSearch();
-  }
+  };
 
   render() {
     return (
       <div className="container">
         <div className={styles.wrapper}>
           <div className="col-md-6 offset-md-3">
-            <p>A sequência que você procura não foi encontrada. Mas você pode procurar por outras sequências usando filtros diferentes.</p>
+            <p>
+              A sequência que você procura não foi encontrada. Mas você pode
+              procurar por outras sequências usando filtros diferentes.
+            </p>
             <button className="btn" onClick={this.onClicked}>
               Fazer nova busca
             </button>
@@ -39,4 +42,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ResultsNotFound);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ResultsNotFound);

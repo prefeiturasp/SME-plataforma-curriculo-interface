@@ -22,9 +22,7 @@ class CollectionsList extends Component {
       <section className={styles.wrapper}>
         <h3>Coleções</h3>
         {items}
-        <button className="btnFullWidth">
-          Criar uma nova coleção
-        </button>
+        <button className="btnFullWidth">Criar uma nova coleção</button>
       </section>
     );
   }

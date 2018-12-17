@@ -18,7 +18,7 @@ class Sequences extends Component {
 
   onClickedLoadMore = () => {
     this.props.loadMore(this.props.nextPage);
-  }
+  };
 
   componentDidMount() {
     this.setState({
@@ -31,36 +31,28 @@ class Sequences extends Component {
         type: 'sustainable_development_goals',
         id: parseInt(params.ods, 10),
       });
-    }
-    else if (params.mds) {
+    } else if (params.mds) {
       this.props.loadWithFilter({
         type: 'knowledge_matrices',
         id: parseInt(params.mds, 10),
       });
-    }
-    else if (params.oda) {
+    } else if (params.oda) {
       this.props.loadWithFilter({
         type: 'learning_objectives',
         id: parseInt(params.oda, 10),
       });
-    }
-    else {
+    } else {
       this.props.load();
     }
   }
 
   render() {
     const items = this.props.data.map((item, i) => {
-      return (
-        <GridItem
-          key={i}
-          index={i}
-          data={item} />
-      );
+      return <GridItem key={i} index={i} data={item} />;
     });
 
     let contents = <ResultsNotFound />;
-    
+
     if (this.props.data.length) {
       const button = this.props.nextPage ? (
         <button className={styles.load} onClick={this.onClickedLoadMore}>
@@ -74,7 +66,10 @@ class Sequences extends Component {
         <section className={styles.wrapper}>
           <div className="container">
             <h1>Sequências de Atividades</h1>
-            <h2><strong>{this.props.totalItems}</strong> sequências foram encontradas</h2>
+            <h2>
+              <strong>{this.props.totalItems}</strong> sequências foram
+              encontradas
+            </h2>
             <FilterBar />
           </div>
           <hr />
@@ -83,28 +78,17 @@ class Sequences extends Component {
           </div>
           <div className={styles.list}>
             <div className={styles.results}>
-              <ul className="row">
-                {items}
-              </ul>
-              <div className={styles.center}>
-                {loadingOrButton}
-              </div>
+              <ul className="row">{items}</ul>
+              <div className={styles.center}>{loadingOrButton}</div>
             </div>
           </div>
         </section>
       );
+    } else if (this.props.isSearching) {
+      contents = <ResultsLoading height={this.state.windowHeight} />;
     }
-    else if (this.props.isSearching) {
-      contents = (
-        <ResultsLoading height={this.state.windowHeight} />
-      );
-    }
-    
-    return (
-      <Page>
-        {contents}
-      </Page>
-    );
+
+    return <Page>{contents}</Page>;
   }
 }
 
@@ -133,15 +117,18 @@ const mapDispatchToProps = dispatch => {
       dispatch(FiltersActions.clearFilters());
       dispatch(SequencesActions.load());
     },
-    loadMore: (page) => {
+    loadMore: page => {
       dispatch(SequencesActions.loadMore(page));
     },
-    loadWithFilter: (data) => {
+    loadWithFilter: data => {
       dispatch(FiltersActions.clearFilters());
       dispatch(FiltersActions.cacheFilter(data));
       dispatch(SequencesActions.loadWithFilter(data));
-    }
+    },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sequences);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sequences);

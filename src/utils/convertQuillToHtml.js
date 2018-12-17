@@ -7,11 +7,11 @@ export default function convertQuillToHtml(json) {
 
   converter.beforeRender(function(groupType, data) {
     if (data.ops) {
-      data.ops.forEach(item  => {
+      data.ops.forEach(item => {
         if (item.insert.type === 'image') {
           item.insert.value = API_URL + item.insert.value;
         }
-      })
+      });
     }
   });
 
@@ -25,10 +25,10 @@ export default function convertQuillToHtml(json) {
 
   converter.afterRender(function(groupType, html) {
     if (groupType === 'video') {
-      html = `<div class="ql-video-wrapper">${html}</div>`
+      html = `<div class="ql-video-wrapper">${html}</div>`;
     }
-    return html
-  })
+    return html;
+  });
 
   return converter.convert();
 }

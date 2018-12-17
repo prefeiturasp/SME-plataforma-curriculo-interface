@@ -9,27 +9,17 @@ class ClassroomItem extends React.PureComponent {
     const { components, level, name, year } = this.props;
 
     const items = components.map((component, i) => {
-      return (
-        <PillItem
-          key={i}
-          data={component}
-        />
-      );
+      return <PillItem key={i} data={component} />;
     });
 
     return (
       <div className={styles.wrapper}>
-        <ClassroomYear
-          size={50}
-          year={year}
-        />
+        <ClassroomYear size={50} year={year} />
         <div className={styles.info}>
           <div>
             {name} | {level}
           </div>
-          <ul>
-            {items}
-          </ul>
+          <ul>{items}</ul>
         </div>
       </div>
     );

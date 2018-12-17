@@ -28,99 +28,118 @@ class Home extends Component {
   render() {
     const style = { backgroundImage: `url(${imgHome})` };
     const sequences = this.props.sequences.map((item, i) => {
-      return (
-        <GridItem key={i} index={i} data={item} />
-      );
+      return <GridItem key={i} index={i} data={item} />;
     });
 
     return (
       <Page>
-      <section className={styles.wrapper}>
-        <header className={styles.header} style={style}>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8 offset-md-2">
-                <p>Bem vindo!</p>
-                <h1>Currículo da Cidade de São Paulo</h1>
+        <section className={styles.wrapper}>
+          <header className={styles.header} style={style}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-8 offset-md-2">
+                  <p>Bem vindo!</p>
+                  <h1>Currículo da Cidade de São Paulo</h1>
+                </div>
               </div>
             </div>
-          </div>
-        </header>
-        <div className={styles.intro}>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <p>Nesta plataforma, o currículo da cidade se torna um material vivo e dinâmico, para consulta, inspiração e aplicação em sala de  aula. Veja o que já é possível fazer:</p>
-            </div>
-          </div>
-          <ul className="row">
-            <li className="col-md-4">
-              <img src={iconCurriculum} alt="Conhecer e explorar o Currículo da Cidade" />
-              <div>Conhecer e explorar o Currículo da Cidade</div>
-            </li>
-            <li className="col-md-4">
-              <img src={iconSequences} alt="Buscar sequências do Ciclo de Alfabetização" />
-              <div>Buscar sequências do Ciclo de Alfabetização</div>
-            </li>
-            <li className="col-md-4">
-              <img src={iconActivities} alt="Encontrar conexões entre objetivos e práticas" />
-              <div>Encontrar conexões entre objetivos e práticas</div>
-            </li>
-          </ul>
-        </div>
-        <div className={styles.sequences}>
-          <div className="container">
+          </header>
+          <div className={styles.intro}>
             <div className="row">
-              <div className="col-md-6 offset-md-3">
-                <h2>Veja alguns exemplos de Sequências de Atividades</h2>
+              <div className="col-md-8 offset-md-2">
+                <p>
+                  Nesta plataforma, o currículo da cidade se torna um material
+                  vivo e dinâmico, para consulta, inspiração e aplicação em sala
+                  de aula. Veja o que já é possível fazer:
+                </p>
               </div>
             </div>
             <ul className="row">
-              {sequences}
+              <li className="col-md-4">
+                <img
+                  src={iconCurriculum}
+                  alt="Conhecer e explorar o Currículo da Cidade"
+                />
+                <div>Conhecer e explorar o Currículo da Cidade</div>
+              </li>
+              <li className="col-md-4">
+                <img
+                  src={iconSequences}
+                  alt="Buscar sequências do Ciclo de Alfabetização"
+                />
+                <div>Buscar sequências do Ciclo de Alfabetização</div>
+              </li>
+              <li className="col-md-4">
+                <img
+                  src={iconActivities}
+                  alt="Encontrar conexões entre objetivos e práticas"
+                />
+                <div>Encontrar conexões entre objetivos e práticas</div>
+              </li>
             </ul>
-            <NavLink to="/sequencias" className={styles.button}>
-              Ver outras sequências
+          </div>
+          <div className={styles.sequences}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-6 offset-md-3">
+                  <h2>Veja alguns exemplos de Sequências de Atividades</h2>
+                </div>
+              </div>
+              <ul className="row">{sequences}</ul>
+              <NavLink to="/sequencias" className={styles.button}>
+                Ver outras sequências
+              </NavLink>
+            </div>
+          </div>
+          <div className={styles.curriculum}>
+            <h2>O que é o novo Currículo da Cidade</h2>
+            <ul className="row">
+              <li className="col-md-4">
+                <NavLink to="/ods">
+                  <img
+                    src={iconSustainableDevGoals}
+                    alt="Objetivos de Desenvolvimento Sustentável (ODS)"
+                  />
+                  <div>Objetivos de Desenvolvimento Sustentável (ODS)</div>
+                </NavLink>
+              </li>
+              <li className="col-md-4">
+                <NavLink to="/matriz-de-saberes">
+                  <img src={iconKnowledgeMatrix} alt="Matriz de Saberes" />
+                  <div>Matriz de Saberes</div>
+                </NavLink>
+              </li>
+              <li className="col-md-4">
+                <NavLink to="/objetivos-de-aprendizagem">
+                  <img
+                    src={iconLearningObjectives}
+                    alt="Objetivos de Aprendizagem"
+                  />
+                  <div>Objetivos de Aprendizagem</div>
+                </NavLink>
+              </li>
+            </ul>
+            <NavLink to="/curriculo" className={styles.button}>
+              Quero saber mais sobre o currículo
             </NavLink>
           </div>
-        </div>
-        <div className={styles.curriculum}>
-          <h2>O que é o novo Currículo da Cidade</h2>
-          <ul className="row">
-            <li className="col-md-4">
-              <NavLink to='/ods'>
-                <img src={iconSustainableDevGoals} alt="Objetivos de Desenvolvimento Sustentável (ODS)" />
-                <div>Objetivos de Desenvolvimento Sustentável (ODS)</div>
-              </NavLink>
-            </li>
-            <li className="col-md-4">
-              <NavLink to='/matriz-de-saberes'>
-                <img src={iconKnowledgeMatrix} alt="Matriz de Saberes" />
-                <div>Matriz de Saberes</div>
-              </NavLink>
-            </li>
-            <li className="col-md-4">
-              <NavLink to='/objetivos-de-aprendizagem'>
-                <img src={iconLearningObjectives} alt="Objetivos de Aprendizagem" />
-                <div>Objetivos de Aprendizagem</div>
-              </NavLink>
-            </li>
-          </ul>
-          <NavLink to="/curriculo" className={styles.button}>
-            Quero saber mais sobre o currículo
-          </NavLink>
-        </div>
-        <div className={styles.discover}>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-10 offset-md-1">
-                <p>A plataforma ainda está crescendo, veja o que vem por aí!<br />Este é só o começo.</p>
-                <NavLink to="/descobrir" className={styles.button}>
-                  Quero descobrir
-                </NavLink>
+          <div className={styles.discover}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-10 offset-md-1">
+                  <p>
+                    A plataforma ainda está crescendo, veja o que vem por aí!
+                    <br />
+                    Este é só o começo.
+                  </p>
+                  <NavLink to="/descobrir" className={styles.button}>
+                    Quero descobrir
+                  </NavLink>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       </Page>
     );
   }
@@ -147,4 +166,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

@@ -12,34 +12,37 @@ import styles from './Preview.scss';
 
 class Preview extends Component {
   render() {
-    const knowledgeMatrices = this.props.data.knowledge_matrices.map((item, i) => {
-      return (
-        <KnowledgeMatrixItem key={i} data={item} />
-      );
-    });
+    const knowledgeMatrices = this.props.data.knowledge_matrices.map(
+      (item, i) => {
+        return <KnowledgeMatrixItem key={i} data={item} />;
+      }
+    );
 
-    const learningObjectives = this.props.data.learning_objectives.map((item, i) => {
-      return (
-        <li key={i}>
-          <LearningObjectiveItem data={item} />
-        </li>
-      );
-    });
+    const learningObjectives = this.props.data.learning_objectives.map(
+      (item, i) => {
+        return (
+          <li key={i}>
+            <LearningObjectiveItem data={item} />
+          </li>
+        );
+      }
+    );
 
-    const sustainableDevGoals = this.props.data.sustainable_development_goals.map((item, i) => {
-      return (
-        <SustainableDevGoalItem key={i} data={item} />
-      );
-    });
+    const sustainableDevGoals = this.props.data.sustainable_development_goals.map(
+      (item, i) => {
+        return <SustainableDevGoalItem key={i} data={item} />;
+      }
+    );
 
-    const sustainableDevGoalsTitle = sustainableDevGoals.length > 0 ? (
-      <div className={styles.title}>
-        Objetivos de Desenvolvimento Sustentável (ODS)
-        <button data-tip data-for="tooltipDevelopmentGoals">
-          <img src={iconHelp} alt="Ajuda" />
-        </button>
-      </div>
-    ) : null;
+    const sustainableDevGoalsTitle =
+      sustainableDevGoals.length > 0 ? (
+        <div className={styles.title}>
+          Objetivos de Desenvolvimento Sustentável (ODS)
+          <button data-tip data-for="tooltipDevelopmentGoals">
+            <img src={iconHelp} alt="Ajuda" />
+          </button>
+        </div>
+      ) : null;
 
     const link = `/sequencia/${this.props.data.slug}`;
 
@@ -52,28 +55,20 @@ class Preview extends Component {
               <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
-          <ul>
-            {knowledgeMatrices}
-          </ul>
+          <ul>{knowledgeMatrices}</ul>
           <div className={styles.title}>
             Objetivos de Aprendizagem
             <button data-tip data-for="tooltipLearningObjectives">
               <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
-          <ul className={styles.objectives}>
-            {learningObjectives}
-          </ul>
+          <ul className={styles.objectives}>{learningObjectives}</ul>
           {sustainableDevGoalsTitle}
-          <ul>
-            {sustainableDevGoals}
-          </ul>
+          <ul>{sustainableDevGoals}</ul>
           <Tooltips />
         </div>
         <div className={styles.access}>
-          <NavLink to={link}>
-            Acessar
-          </NavLink>
+          <NavLink to={link}>Acessar</NavLink>
         </div>
       </Fragment>
     );
@@ -82,25 +77,23 @@ class Preview extends Component {
       const height = this.props.data.isExpanded ? 'auto' : 0;
       return (
         <AnimateHeight height={height}>
-          <div className={styles.wrapper}>
-            {contents}
-          </div>
+          <div className={styles.wrapper}>{contents}</div>
         </AnimateHeight>
       );
     } else {
       const height = this.props.height;
       const width = this.props.width + 30;
-      
+
       const styleMask = {
         width: this.props.data.isExpanded ? width : 0,
         height,
       };
-      
+
       const styleWrapper = {
         width,
         height,
       };
-      
+
       const classes = [
         styles.mask,
         this.props.data.isExpanded ? styles.isExpanded : '',

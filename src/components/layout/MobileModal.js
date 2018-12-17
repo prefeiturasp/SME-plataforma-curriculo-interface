@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock';
 import styles from './MobileModal.scss';
 
 class MobileModal extends React.PureComponent {
   target = null;
-  
+
   componentDidMount() {
     this.target = document.querySelector(this.props.htmlId);
   }
@@ -13,8 +17,7 @@ class MobileModal extends React.PureComponent {
   componentDidUpdate(prevProps) {
     if (this.props.isExpanded && !prevProps.isExpanded) {
       disableBodyScroll(this.target);
-    }
-    else if (!this.props.isExpanded && prevProps.isExpanded) {
+    } else if (!this.props.isExpanded && prevProps.isExpanded) {
       enableBodyScroll(this.target);
     }
   }
@@ -28,11 +31,7 @@ class MobileModal extends React.PureComponent {
       ? [styles.wrapper, styles.isExpanded]
       : [styles.wrapper];
 
-    return (
-      <div className={classes.join(' ')}>
-        {this.props.children}
-      </div>
-    );
+    return <div className={classes.join(' ')}>{this.props.children}</div>;
   }
 }
 

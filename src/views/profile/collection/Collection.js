@@ -16,11 +16,9 @@ import styles from './Collection.scss';
 class Collection extends Component {
   onClickedClose = () => {
     this.props.history.goBack();
-  }
+  };
 
-  onClickedConfirm = () => {
-    
-  }
+  onClickedConfirm = () => {};
 
   onClickedDelete = () => {
     this.props.openConfirm(
@@ -28,9 +26,9 @@ class Collection extends Component {
       'Sua coleção Favoritos e todas as suas 5 sequências serão excluídos permanentemente.',
       'Excluir',
       'Cancelar',
-      this.onClickedConfirm,
+      this.onClickedConfirm
     );
-  }
+  };
 
   render() {
     const sequences = [
@@ -104,56 +102,37 @@ class Collection extends Component {
     const name = 'Planeta';
     const word = classrooms.length > 1 ? 'turmas' : 'turma';
     const link = `/colecao/${id}/editar`;
-    
+
     const years = classrooms.map((year, i) => {
-      return (
-        <ClassroomYear
-          key={i}
-          year={year.year}
-          color={year.color}
-        />
-      );
+      return <ClassroomYear key={i} year={year.year} color={year.color} />;
     });
 
-    const contents = sequences.length > 0
-      ? <SequencesList items={sequences} />
-      : <SequencesNone />;
+    const contents =
+      sequences.length > 0 ? (
+        <SequencesList items={sequences} />
+      ) : (
+        <SequencesNone />
+      );
 
     return (
       <ModalPage>
         <div className={styles.buttons}>
           <NavLink to={link}>
-            <img
-              src={iconEdit}
-              alt="Editar"
-            />
+            <img src={iconEdit} alt="Editar" />
           </NavLink>
           <button onClick={this.onClickedDelete}>
-            <img
-              src={iconDelete}
-              alt="Excluir"
-            />
+            <img src={iconDelete} alt="Excluir" />
           </button>
-          <button
-            className={styles.btnClose}
-            onClick={this.onClickedClose}
-          >
-            <img
-              src={iconClose}
-              alt="Fechar"
-            />
+          <button className={styles.btnClose} onClick={this.onClickedClose}>
+            <img src={iconClose} alt="Fechar" />
           </button>
         </div>
         <header className={styles.header}>
-          <h2>
-            {name}
-          </h2>
+          <h2>{name}</h2>
           <p>
             {classrooms.length} {word}
           </p>
-          <div className={styles.years}>
-            {years}
-          </div>
+          <div className={styles.years}>{years}</div>
         </header>
         {contents}
       </ModalPage>
@@ -161,15 +140,19 @@ class Collection extends Component {
   }
 }
 
-Collection.propTypes = {
-};
+Collection.propTypes = {};
 
 const mapDispatchToProps = dispatch => {
   return {
     openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
-      dispatch(ConfirmActions.open(title, message, labelYes, labelNo, onConfirm));
+      dispatch(
+        ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
+      );
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(withRouter(Collection));
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(Collection));

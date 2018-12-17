@@ -12,7 +12,7 @@ class ClassroomYear extends React.PureComponent {
     }
 
     const style = {};
-    
+
     if (color && !isDimmed) {
       style.backgroundColor = color;
     }
@@ -24,10 +24,7 @@ class ClassroomYear extends React.PureComponent {
     }
 
     return (
-      <div
-        className={classes.join(' ')}
-        style={style}
-      >
+      <div className={classes.join(' ')} style={style}>
         {year}
       </div>
     );

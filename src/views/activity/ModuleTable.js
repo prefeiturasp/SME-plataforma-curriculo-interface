@@ -34,7 +34,8 @@ class ModuleTable extends Component {
     const { page, rowsPerPage } = this.state;
     const indexStart = page * rowsPerPage;
     const indexEnd = indexStart + rowsPerPage;
-    const tableRows = this.props.data.slice(indexStart, indexEnd)
+    const tableRows = this.props.data
+      .slice(indexStart, indexEnd)
       .map((row, index) => {
         return (
           <TableRow key={index}>
@@ -58,9 +59,7 @@ class ModuleTable extends Component {
               <TableCell numeric>Coluna 3</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {tableRows}
-          </TableBody>
+          <TableBody>{tableRows}</TableBody>
         </Table>
         <TablePagination
           component="div"

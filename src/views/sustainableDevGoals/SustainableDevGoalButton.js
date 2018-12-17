@@ -17,16 +17,13 @@ class SustainableDevGoalButton extends Component {
     return (
       <li className="col-md-6 col-lg-4">
         <NavLink to={link} className={styles.wrapper} style={style}>
-          <div className={styles.number}>
-            {this.props.data.sequence}
-          </div>
-          <div className={styles.label}>
-            {this.props.data.name}
-          </div>
+          <div className={styles.number}>{this.props.data.sequence}</div>
+          <div className={styles.label}>{this.props.data.name}</div>
           <img
             src={API_URL + this.props.data.sub_icon}
             alt={this.props.data.name}
-            className={styles.icon} />
+            className={styles.icon}
+          />
         </NavLink>
       </li>
     );

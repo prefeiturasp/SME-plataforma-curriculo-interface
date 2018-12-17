@@ -8,15 +8,15 @@ class RoadmapItem extends Component {
   render() {
     const isToRight = this.props.index % 2 === 0;
 
-    const classes = isToRight ? [styles.wrapper, styles.isToRight] : [styles.wrapper];
+    const classes = isToRight
+      ? [styles.wrapper, styles.isToRight]
+      : [styles.wrapper];
 
     const isPublished = this.props.data.status === 'Executado';
     const icon = isPublished ? iconPublished : iconClockBig;
     const alt = isPublished ? 'Publicado' : 'Em breve';
     const soon = !isPublished ? null : (
-      <div className={styles.soon}>
-        {this.props.data.status}
-      </div>
+      <div className={styles.soon}>{this.props.data.status}</div>
     );
 
     return (

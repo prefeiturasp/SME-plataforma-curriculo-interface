@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 export default function withWidth(Page) {
   class PageWithWidth extends Component {
     state = { windowWidth: 0 };
-    
+
     onResized = () => {
       this.onResized1();
       setTimeout(this.onResized1, 15);
-    }
+    };
 
     onResized1 = () => {
-      const windowWidth = window.innerWidth > 0 ? window.innerWidth : window.screen.width;
+      const windowWidth =
+        window.innerWidth > 0 ? window.innerWidth : window.screen.width;
       this.setState({ windowWidth });
-    }
+    };
 
     componentDidMount() {
       window.addEventListener('resize', this.onResized);
@@ -25,12 +26,7 @@ export default function withWidth(Page) {
     }
 
     render() {
-      return (
-        <Page
-          {...this.props}
-          windowWidth={this.state.windowWidth}
-        />
-      );
+      return <Page {...this.props} windowWidth={this.state.windowWidth} />;
     }
   }
 

@@ -23,7 +23,7 @@ class Sequence extends Component {
     this.setState({
       isCharsExpanded: !this.state.isCharsExpanded,
     });
-  }
+  };
 
   componentDidMount() {
     this.props.loadItem(this.props.match.params.slug);
@@ -60,10 +60,7 @@ class Sequence extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-8">
-              <SequenceCover
-                data={data}
-                sequence={data}
-              />
+              <SequenceCover data={data} sequence={data} />
               <SequenceTitle
                 hasButton={true}
                 text="Sequência de atividades"
@@ -79,9 +76,7 @@ class Sequence extends Component {
                 <h3>
                   {data.activities.length} {word}
                 </h3>
-                <ul className="row">
-                  {activities}
-                </ul>
+                <ul className="row">{activities}</ul>
               </div>
             </div>
             <div className={styles.chars}>
@@ -112,11 +107,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadItem: (slug) => {
+    loadItem: slug => {
       dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.loadItem(slug));
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sequence);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sequence);

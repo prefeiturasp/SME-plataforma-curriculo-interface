@@ -104,29 +104,19 @@ class Classrooms extends Component {
 
     const items = schools.map((school, i) => {
       return (
-        <SchoolItem
-          key={i}
-          name={school.name}
-          classrooms={school.classrooms}
-        />
+        <SchoolItem key={i} name={school.name} classrooms={school.classrooms} />
       );
     });
 
     return (
       <ModalPage>
-        <SimpleHeader
-          back={true}
-          title="Minhas turmas"
-        />
-        <div className={styles.list}>
-          {items}
-        </div>
+        <SimpleHeader back={true} title="Minhas turmas" />
+        <div className={styles.list}>{items}</div>
       </ModalPage>
     );
   }
 }
 
-Classrooms.propTypes = {
-};
+Classrooms.propTypes = {};
 
 export default Classrooms;

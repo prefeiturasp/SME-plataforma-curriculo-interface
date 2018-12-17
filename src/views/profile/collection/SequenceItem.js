@@ -8,9 +8,7 @@ import iconDelete from 'images/icons/delete.svg';
 import styles from './SequenceItem.scss';
 
 class SequenceItem extends React.PureComponent {
-  onClickedConfirm = () => {
-    
-  }
+  onClickedConfirm = () => {};
 
   onClickedDelete = () => {
     this.props.openConfirm(
@@ -18,52 +16,44 @@ class SequenceItem extends React.PureComponent {
       'Você não poderá reverter esta ação.',
       'Excluir',
       'Cancelar',
-      this.onClickedConfirm,
+      this.onClickedConfirm
     );
-  }
+  };
 
   render() {
-    const { component, componentColor, image, isCompleted, name, slug } = this.props;
+    const {
+      component,
+      componentColor,
+      image,
+      isCompleted,
+      name,
+      slug,
+    } = this.props;
 
     const link = `/sequencia/${slug}`;
 
-    const bar = isCompleted
-      ? <div className={styles.bar}>
-          <span>
-            <img
-              src={iconCheck}
-              alt="Sequência realizada"
-            />
-            Sequência realizada
-          </span>
-          <button>
-            Avaliar
-          </button>
-        </div>
-      : null;
+    const bar = isCompleted ? (
+      <div className={styles.bar}>
+        <span>
+          <img src={iconCheck} alt="Sequência realizada" />
+          Sequência realizada
+        </span>
+        <button>Avaliar</button>
+      </div>
+    ) : null;
 
     return (
       <div className={styles.wrapper}>
         <div className={styles.item}>
           <NavLink className={styles.image} to={link}>
-            <img
-              src={image}
-              alt={name}
-            />
+            <img src={image} alt={name} />
           </NavLink>
           <NavLink className={styles.info} to={link}>
-            <h4 style={{color: componentColor}}>
-              {component}
-            </h4>
-            <h3>
-              {name}
-            </h3>
+            <h4 style={{ color: componentColor }}>{component}</h4>
+            <h3>{name}</h3>
           </NavLink>
           <button onClick={this.onClickedDelete}>
-            <img
-              src={iconDelete}
-              alt="Excluir"
-            />
+            <img src={iconDelete} alt="Excluir" />
           </button>
         </div>
         {bar}
@@ -84,9 +74,14 @@ SequenceItem.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
-      dispatch(ConfirmActions.open(title, message, labelYes, labelNo, onConfirm));
+      dispatch(
+        ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
+      );
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(SequenceItem);
+export default connect(
+  null,
+  mapDispatchToProps
+)(SequenceItem);

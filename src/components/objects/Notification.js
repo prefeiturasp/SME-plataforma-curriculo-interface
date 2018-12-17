@@ -12,11 +12,9 @@ class Notification extends Component {
     this.setState({
       isExpanded: false,
     });
-  }
+  };
 
-  onClickedYes = () => {
-
-  }
+  onClickedYes = () => {};
 
   render() {
     const { labelNo, labelYes, text } = this.props;
@@ -28,12 +26,8 @@ class Notification extends Component {
           <div className="container">
             <p>{text}</p>
             <div className={styles.buttons}>
-              <button onClick={this.onClickedNo}>
-                {labelNo}
-              </button>
-              <button onClick={this.onClickedYes}>
-                {labelYes}
-              </button>
+              <button onClick={this.onClickedNo}>{labelNo}</button>
+              <button onClick={this.onClickedYes}>{labelYes}</button>
             </div>
           </div>
         </div>

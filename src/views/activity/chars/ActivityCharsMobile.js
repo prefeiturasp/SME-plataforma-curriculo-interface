@@ -8,15 +8,9 @@ import SimpleHeader from 'components/header/SimpleHeader';
 class ActivityCharsMobile extends Component {
   render() {
     return (
-      <MobileModal
-        htmlId="activityChars"
-        isExpanded={this.props.isExpanded}
-      >
+      <MobileModal htmlId="activityChars" isExpanded={this.props.isExpanded}>
         <ModalPage id="activityChars">
-          <SimpleHeader
-            back={true}
-            title="Características"
-          />
+          <SimpleHeader back={true} title="Características" />
           <ActivityChars data={this.props.data} />
         </ModalPage>
       </MobileModal>
