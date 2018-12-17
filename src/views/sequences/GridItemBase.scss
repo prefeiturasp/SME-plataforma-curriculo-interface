@@ -85,7 +85,7 @@
   padding: 0.5rem;
 }
 
-@include mq("tablet-portrait") {
+@include mq('tablet-portrait') {
   .wrapper {
     margin-top: rem(16);
     margin-bottom: rem(16);

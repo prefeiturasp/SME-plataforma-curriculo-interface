@@ -35,7 +35,7 @@
   display: none;
 }
 
-@include mq("tablet-landscape") {
+@include mq('tablet-landscape') {
   .btnAllLearningObjectives {
     margin-bottom: 0;
   }

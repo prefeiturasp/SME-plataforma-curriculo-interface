@@ -8,7 +8,7 @@
   justify-content: space-between;
   padding: rem(13) 0;
   position: relative;
-  
+
   &.withImage {
     align-items: flex-end;
     border-bottom: 0;
@@ -78,7 +78,7 @@
   }
 }
 
-@include mq("tablet-landscape") {
+@include mq('tablet-landscape') {
   .wrapper {
     &.withImage {
       height: rem(374);

@@ -10,8 +10,7 @@
   left: 100%;
   top: 0;
   z-index: 90;
-  transition: left 0.3s ease-in-out,
-    width 0.3s ease-in-out,
+  transition: left 0.3s ease-in-out, width 0.3s ease-in-out,
     z-index 0.3s ease-in-out;
 
   &.isExpanded {
@@ -32,7 +31,7 @@
     border-left-color: transparent;
     border-right-color: $grey-200;
     left: -100%;
-  }              
+  }
 }
 
 .wrapper {
@@ -45,7 +44,7 @@
   font-weight: 600;
   text-align: left;
   width: 100%;
-  
+
   ul {
     list-style: none;
     margin-bottom: 1.4375rem;
@@ -93,7 +92,7 @@
   flex-wrap: wrap;
 }
 
-@include mq("tablet-portrait") {
+@include mq('tablet-portrait') {
   .wrapper {
     position: absolute;
     left: 0;

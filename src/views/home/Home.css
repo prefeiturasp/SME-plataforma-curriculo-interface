@@ -1,5 +1,4 @@
 .wrapper {
-  
 }
 
 .header,
@@ -98,7 +97,7 @@
 }
 
 .curriculum a {
-  color: black
+  color: black;
 }
 
 .discover {
@@ -134,8 +133,7 @@
 
   .intro,
   .sequences,
-  .curriculum
-  .discover {
+  .curriculum .discover {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
   }

@@ -3,7 +3,7 @@
 
 .wrapper {
   @include pill;
-  
+
   &:hover {
     border-color: $grey-600;
   }

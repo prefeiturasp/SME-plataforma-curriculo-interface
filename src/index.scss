@@ -68,7 +68,7 @@ a:hover {
     margin-right: rem(8);
   }
 
-  @include mq("tablet-landscape") {
+  @include mq('tablet-landscape') {
     font-size: rem(15);
     line-height: rem(20);
     padding: rem(18) rem(26);
@@ -117,24 +117,33 @@ a:hover {
   font-size: rem(16);
   line-height: rem(21);
 
-  h1 { font-size: 1.875rem; margin-bottom: 2rem; }
-  h2 { font-size: 1.3125rem; }
-  h3 { font-size: 1.125rem; }
-  
+  h1 {
+    font-size: 1.875rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.3125rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+  }
+
   h4 {
     font-size: rem(16);
     line-height: rem(36);
     margin-bottom: rem(8);
   }
 
-  hr { margin: 2rem 0; }
+  hr {
+    margin: 2rem 0;
+  }
 
   blockquote {
     background-color: #e0e0e0;
     border-radius: 0.25rem;
     font-style: italic;
-    margin-top: 2.1875rem; 
-    margin-bottom: 2.1875rem; 
+    margin-top: 2.1875rem;
+    margin-bottom: 2.1875rem;
     padding: 1.25rem;
   }
 
@@ -154,7 +163,7 @@ a:hover {
 
     > li {
       counter-increment: ol-counter;
-    } 
+    }
   }
 
   ul > li:before {
@@ -164,14 +173,14 @@ a:hover {
     margin-right: rem(22);
     text-indent: 0;
   }
-  
+
   ol > li:before {
-    content: counter(ol-counter) ". ";
+    content: counter(ol-counter) '. ';
     display: inline-block;
     margin-right: rem(11);
     text-indent: 0;
   }
-  
+
   br {
     content: '';
     display: block;

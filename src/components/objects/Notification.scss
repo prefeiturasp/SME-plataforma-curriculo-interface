@@ -26,7 +26,7 @@
   }
 }
 
-@include mq("tablet-landscape") {
+@include mq('tablet-landscape') {
   .wrapper {
     padding: rem(16);
 
@@ -35,7 +35,7 @@
       display: flex;
       justify-content: space-between;
     }
-    
+
     p {
       margin-bottom: 0;
     }

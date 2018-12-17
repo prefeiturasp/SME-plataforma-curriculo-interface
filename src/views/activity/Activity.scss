@@ -45,7 +45,7 @@
   margin: 1.875rem auto;
 }
 
-@include mq("tablet-portrait") {
+@include mq('tablet-portrait') {
   .next,
   .prev {
     font-size: 1.125rem;

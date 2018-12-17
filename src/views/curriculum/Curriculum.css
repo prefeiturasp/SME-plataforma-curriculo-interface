@@ -1,5 +1,4 @@
 .wrapper {
-
 }
 
 .header {
@@ -92,7 +91,7 @@ li.knowledgeMatrix > .button {
 
 li.knowledgeMatrix > a,
 li.knowledgeMatrix > a > h2 {
-  color:white;
+  color: white;
 }
 
 li.learningObjectives {

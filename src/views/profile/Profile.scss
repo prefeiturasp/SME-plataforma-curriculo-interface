@@ -31,13 +31,13 @@
   justify-content: space-between;
   line-height: rem(18);
   margin-bottom: rem(22);
-  
+
   > div {
     border-left: 1px solid $grey-200;
     padding-left: rem(24);
     padding-right: rem(24);
     width: 33%;
-    
+
     &:first-child {
       border-left: 0;
       padding-left: rem(10);
