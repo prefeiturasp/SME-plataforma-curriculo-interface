@@ -14,8 +14,19 @@
   }
 }
 
+:global(.image-gallery-slide) {
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
 .item {
-  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
 }
 
 .description {
