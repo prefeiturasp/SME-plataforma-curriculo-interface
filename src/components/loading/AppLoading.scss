@@ -10,8 +10,8 @@
   bottom: 0;
   visibility: hidden;
   z-index: 50;
-}
 
-.isVisible {
-  visibility: visible;
+  &.isVisible {
+    visibility: visible;
+  }
 }

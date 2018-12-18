@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './YearButton.css';
+import styles from './YearButton.scss';
 
 class YearButton extends Component {
   onClicked = () => {

@@ -4,7 +4,7 @@ import logoPrefecture from './images/prefecture.png';
 import logoPrefecture2x from './images/prefecture@2x.png';
 import logoUnesco from './images/unesco.png';
 import logoUnesco2x from './images/unesco@2x.png';
-import styles from './Footer.css';
+import styles from './Footer.scss';
 
 class Footer extends Component {
   render() {

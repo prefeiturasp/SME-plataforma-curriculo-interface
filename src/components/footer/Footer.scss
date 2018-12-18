@@ -1,22 +1,25 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
-  background: #6a6a6a;
+  background: $grey-600;
   color: white;
   text-align: center;
 }
 
 .logos {
   align-items: center;
-  border-bottom: 1px solid #828282;
+  border-bottom: 1px solid $grey-500;
   display: flex;
   justify-content: center;
   padding: 3.75rem;
   max-height: 9rem;
-}
 
-.logos > img {
-  margin: 0 3.75rem;
-  height: 6rem;
-  width: auto;
+  > img {
+    margin: 2rem 0;
+    height: 6rem;
+    width: auto;
+  }
 }
 
 .license {
@@ -25,24 +28,20 @@
   line-height: 1.125rem;
   padding-top: 0.625rem;
   padding-bottom: 0.5rem;
-}
 
-.license > a {
-  display: inline-block;
-  margin-bottom: 0.8125rem;
-}
+  > a {
+    display: inline-block;
+    margin-bottom: 0.8125rem;
+  }
 
-.license a {
-  color: white;
-  font-weight: bold;
-}
+  a {
+    color: white;
+    font-weight: bold;
 
-.license a:hover {
-  color: white;
-}
-
-.logos > img {
-  margin: 2rem 0;
+    .license a:hover {
+      color: white;
+    }
+  }
 }
 
 @media only print {

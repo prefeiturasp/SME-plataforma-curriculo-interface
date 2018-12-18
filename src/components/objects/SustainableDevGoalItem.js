@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
-import styles from './SustainableDevGoalItem.css';
+import styles from './SustainableDevGoalItem.scss';
 
 class SustainableDevGoalItem extends Component {
   render() {

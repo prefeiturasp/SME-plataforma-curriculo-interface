@@ -1,29 +1,32 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
   align-items: flex-start;
-  border-top: 1px solid #e0e0e0;
-  color: #6a6a6a;
+  border-top: 1px solid $grey-200;
+  color: $grey-600;
   cursor: pointer;
   display: flex;
   font-size: 0.9375rem;
   padding-top: 0.8125rem;
   padding-bottom: 0.8125rem;
   text-align: left;
-}
 
-.wrapper:first-child:not(.hasBorder) {
-  border-top: 0;
-}
+  &:first-child:not(.hasBorder) {
+    border-top: 0;
+  }
 
-.wrapper.hasBorder {
-  margin-bottom: 0.875rem;
-}
+  &.hasBorder {
+    margin-bottom: 0.875rem;
+  
+    &:last-child {
+      border-bottom: 1px solid $grey-200;
+    }
+  }
 
-.wrapper.hasBorder:last-child {
-  border-bottom: 1px solid #e0e0e0;
-}
-
-.wrapper div:first-child {
-  margin-bottom: 0;
+  div:first-child {
+    margin-bottom: 0;
+  }
 }
 
 .description {
@@ -33,22 +36,22 @@
   text-overflow: ellipsis;
   transition: height 0.3s ease-in-out;
   white-space: nowrap;
-}
 
-.isExpanded .description {
-  white-space: normal;
+  .isExpanded & {
+    white-space: normal;
+  }
 }
 
 .related {
-  color: #6a6a6a;
+  color: $grey-600;
   display: block;
   font-size: 1.125rem;
   font-weight: 600;
   margin-top: 0.8125rem;
-}
 
-.related > img {
-  margin-left: 0.5rem;
+  > img {
+    margin-left: 0.5rem;
+  }
 }
 
 .toggler {
