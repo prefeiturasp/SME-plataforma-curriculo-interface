@@ -7,7 +7,7 @@ export default function withWidth(Page) {
 
     onResized = () => {
       this.onResized1();
-      setTimeout(this.onResized1, 15);
+      this.timeout = setTimeout(this.onResized1, 15);
     };
 
     onResized1 = () => {
@@ -23,6 +23,7 @@ export default function withWidth(Page) {
 
     componentWillUnmount() {
       window.removeEventListener('resize', this.onResized);
+      clearTimeout(this.timeout);
     }
 
     render() {
