@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <title>90DC54E2-F16B-4E6D-9C9D-BB7E735DC264</title>
   <desc>Created with sketchtool.</desc>
-  <g id="Telas" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <g id="SME-Sequências-Card-Aberto" transform="translate(-480.000000, -652.000000)">
-      <g id="cards" transform="translate(85.000000, 306.000000)">
-        <g id="card-aberto" transform="translate(285.000000, 0.000000)">
-          <g id="hide-icon" transform="translate(111.000000, 347.000000)">
-            <rect id="rect-1" fill="#6A6A6A" x="16" y="10" width="2" height="14" transform="matrix(0, 1, -1, 0, 34, 0)"/>
-            <rect id="Combined-Shape" fill="#6A6A6A" x="16" y="10" width="2" height="14"/>
-            <circle id="Oval" stroke="#E0E0E0" cx="17" cy="17" r="17"/>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
+  <rect id="rect-1" fill="#6A6A6A" x="16" y="10" width="2" height="14" transform="matrix(0, 1, -1, 0, 24, -10)" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+  <rect id="Combined-Shape" fill="#6A6A6A" x="6" width="2" height="14" stroke="none" stroke-width="1" fill-rule="evenodd"/>
 </svg>
