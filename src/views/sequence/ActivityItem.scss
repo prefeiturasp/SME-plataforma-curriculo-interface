@@ -1,7 +1,10 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
-  border: 1px solid #e0e0e0;
+  border: 1px solid $grey-200;
   border-radius: 0.25rem;
-  color: #000;
+  color: black;
   display: block;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -9,8 +12,8 @@
 }
 
 .wrapper:hover {
-  border-color: #6a6a6a;
-  color: #000;
+  border-color: $grey-600;
+  color: black;
   text-decoration: none;
 }
 
@@ -41,8 +44,8 @@
 }
 
 .title {
-  border-bottom: 1px solid #e0e0e0;
-  color: #252525;
+  border-bottom: 1px solid $grey-200;
+  color: $grey-800;
   font-size: 1.3125rem;
   font-weight: bold;
   height: 7.625rem;
@@ -58,7 +61,7 @@
 }
 
 .classes > img {
-  color: #6a6a6a;
+  color: $grey-600;
   margin-right: 0.5rem;
 }
 

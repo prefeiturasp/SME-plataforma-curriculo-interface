@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
-import styles from './CategoryItemButton.css';
+import styles from './CategoryItemButton.scss';
 
 class CategoryItemButton extends Component {
   onClicked = () => {

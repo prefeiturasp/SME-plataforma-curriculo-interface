@@ -5,7 +5,7 @@ import BodyActions from 'actions/BodyActions';
 import Page from 'components/layout/Page';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import SustainableDevGoalButton from './SustainableDevGoalButton';
-import styles from './SustainableDevGoals.css';
+import styles from './SustainableDevGoals.scss';
 
 class SustainableDevGoals extends Component {
   componentDidMount() {

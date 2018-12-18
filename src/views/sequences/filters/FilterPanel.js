@@ -11,7 +11,7 @@ import CurricularComponentButton from './CurricularComponentButton';
 import YearButton from './YearButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import iconWarning from 'images/icons/warning.svg';
-import styles from './FilterPanel.css';
+import styles from './FilterPanel.scss';
 
 class FilterPanel extends Component {
   ref = React.createRef();

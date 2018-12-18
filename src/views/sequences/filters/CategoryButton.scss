@@ -1,6 +1,9 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
   align-items: center;
-  color: #6a6a6a;
+  color: $grey-600;
   display: flex;
   font-size: 1.125rem;
   font-weight: 600;

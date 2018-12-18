@@ -8,7 +8,7 @@ import { API_URL } from 'data/constants';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
 import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
-import styles from './SustainableDevGoal.css';
+import styles from './SustainableDevGoal.scss';
 
 class SustainableDevGoal extends Component {
   state = { animationStatus: null };

@@ -1,3 +1,6 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
 }
 
@@ -45,7 +48,7 @@
 }
 
 .code > span {
-  border: 1px solid #e0e0e0;
+  border: 1px solid $grey-200;
   border-radius: 0.25rem;
   margin: 0 0.1875rem;
   padding: 1.25rem 1.5rem;
@@ -62,14 +65,14 @@
 }
 
 .code > span.code3 {
-  background: #01add2;
-  border-color: #01add2;
+  background: $color-cerulean;
+  border-color: $color-cerulean;
   color: white;
 }
 
 .code > span.code4 {
-  border-color: #01add2;
-  color: #01add2;
+  border-color: $color-cerulean;
+  color: $color-cerulean;
 }
 
 .btnObjectives {
@@ -120,14 +123,14 @@
 
 .warning {
   align-items: flex-start;
-  color: #6a6a6a;
+  color: $grey-600;
   display: flex;
   font-size: 0.8125rem;
   margin-top: 1.5rem;
 }
 
 .warning > img {
-  color: #e0e0e0;
+  color: $grey-200;
   margin-right: 0.3125rem;
 }
 
@@ -154,7 +157,7 @@
 }
 
 .back {
-  color: #6a6a6a;
+  color: $grey-600;
   font-size: 1.125rem;
   font-weight: 600;
   position: absolute;

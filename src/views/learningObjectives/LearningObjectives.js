@@ -16,7 +16,7 @@ import getWindowWidth from 'utils/getWindowWidth';
 import chevronLeft from 'images/chevrons/left.svg';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import iconWarning from 'images/icons/warning.svg';
-import styles from './LearningObjectives.css';
+import styles from './LearningObjectives.scss';
 
 class LearningObjectives extends Component {
   refFilters = React.createRef();

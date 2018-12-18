@@ -1,5 +1,8 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
-  border: 1px solid #e0e0e0;
+  border: 1px solid $grey-200;
   border-bottom: 0;
   font-size: 1rem;
   padding: 1.5625rem 1.875rem;
@@ -11,7 +14,7 @@
 }
 
 .wrapper:last-child {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid $grey-200;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }

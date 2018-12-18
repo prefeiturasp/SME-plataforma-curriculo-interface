@@ -1,3 +1,6 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
   background: white;
   overflow-y: scroll;
@@ -55,7 +58,7 @@
 }
 
 .contents h2 {
-  color: #6a6a6a;
+  color: $grey-600;
   font-size: 1.875rem;
   margin-top: 2.125rem;
   margin-bottom: 1.5rem;

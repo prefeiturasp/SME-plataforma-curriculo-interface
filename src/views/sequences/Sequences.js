@@ -11,7 +11,7 @@ import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import ResultsLoading from './ResultsLoading';
 import ResultsNotFound from './ResultsNotFound';
-import styles from './Sequences.css';
+import styles from './Sequences.scss';
 
 class Sequences extends Component {
   state = { windowHeight: 1000 };

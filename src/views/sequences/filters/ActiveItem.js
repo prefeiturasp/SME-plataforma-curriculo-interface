@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import iconCloseSmall from 'images/icons/closeSmall.svg';
 import iconCloseSmallWhite from 'images/icons/closeSmallWhite.svg';
-import styles from './ActiveItem.css';
+import styles from './ActiveItem.scss';
 
 class ActiveItem extends Component {
   onClicked = () => {

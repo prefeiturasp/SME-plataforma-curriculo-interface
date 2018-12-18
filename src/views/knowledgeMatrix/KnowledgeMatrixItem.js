@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 import BodyActions from 'actions/BodyActions';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import iconCloseBig from 'images/icons/closeBig.svg';
-import styles from './KnowledgeMatrixItem.css';
+import styles from './KnowledgeMatrixItem.scss';
 
 class KnowledgeMatrixItem extends Component {
   state = { animationStatus: null };

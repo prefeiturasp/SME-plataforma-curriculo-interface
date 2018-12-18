@@ -1,8 +1,11 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
   align-items: center;
-  background-color: #e0e0e0;
+  background-color: $grey-200;
   border-radius: 3rem;
-  color: #6a6a6a;
+  color: $grey-600;
   display: flex;
   font-size: 0.9375rem;
   font-weight: 600;

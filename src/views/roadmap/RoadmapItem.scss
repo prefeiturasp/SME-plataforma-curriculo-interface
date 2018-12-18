@@ -1,5 +1,8 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
-  color: #6a6a6a;
+  color: $grey-600;
   display: flex;
   font-size: 0.9375rem;
 
@@ -35,7 +38,7 @@
   width: 14%;
 
   > .line {
-    border-left: 1px solid #e0e0e0;
+    border-left: 1px solid $grey-200;
     height: 100%;
     position: absolute;
     left: 50%;
@@ -45,7 +48,7 @@
 }
 
 .soon {
-  background: #e0e0e0;
+  background: $grey-200;
   border-radius: 3rem;
   color: white;
   display: inline-block;

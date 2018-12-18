@@ -1,3 +1,6 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .header,
 .intro,
 .sequences,
@@ -60,7 +63,7 @@
 }
 
 .sequences {
-  background: #efefef;
+  background: $grey-100;
   padding-top: 3.125rem;
   padding-bottom: 3.75rem;
 }
@@ -84,7 +87,7 @@
 }
 
 .curriculum ul {
-  color: #252525;
+  color: $grey-800;
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: 3.25rem;

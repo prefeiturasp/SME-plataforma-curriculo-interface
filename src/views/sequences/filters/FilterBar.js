@@ -6,7 +6,7 @@ import FiltersActions from 'actions/FiltersActions';
 import ActiveItem from './ActiveItem';
 import getWindowWidth from 'utils/getWindowWidth';
 import iconFilters from 'images/icons/filters.svg';
-import styles from './FilterBar.css';
+import styles from './FilterBar.scss';
 
 class FilterBar extends Component {
   componentDidMount() {

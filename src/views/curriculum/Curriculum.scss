@@ -1,3 +1,6 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .header {
   composes: container from global;
   font-size: 1.125rem;
@@ -71,11 +74,11 @@
 }
 
 li.sustainableDevGoals > p {
-  color: #6a6a6a;
+  color: $grey-600;
 }
 
 li.knowledgeMatrix {
-  background: #3a3a3a;
+  background: $grey-700;
   color: white;
 
   > a,

@@ -12,7 +12,7 @@ import iconKnowledgeMatrix from 'images/illustrations/knowledgeMatrix.svg';
 import iconLearningObjectives from 'images/illustrations/learningObjectives.svg';
 import iconSequences from 'images/illustrations/sequences.svg';
 import iconSustainableDevGoals from 'images/illustrations/sustainableDevGoals.svg';
-import styles from './Home.css';
+import styles from './Home.scss';
 
 class Home extends Component {
   componentDidMount() {

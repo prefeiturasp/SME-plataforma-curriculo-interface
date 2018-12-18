@@ -8,7 +8,7 @@ import CategoryItemImageButton from './CategoryItemImageButton';
 import arrowLeft from 'images/arrows/left.svg';
 import chevronLeft from 'images/chevrons/left.svg';
 import iconHelp from 'images/icons/help.svg';
-import styles from './CategoryPanel.css';
+import styles from './CategoryPanel.scss';
 
 function isCategoryOneOf(category, list) {
   return category && list.indexOf(category.slug) >= 0;

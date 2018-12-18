@@ -1,6 +1,9 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
 .wrapper {
   align-items: center;
-  color: #6a6a6a;
+  color: $grey-600;
   display: flex;
   font-size: 1.125rem;
   font-weight: 600;
@@ -15,7 +18,7 @@
 
 .check {
   align-items: center;
-  border: 1px solid #6a6a6a;
+  border: 1px solid $grey-600;
   border-radius: 0.25rem;
   display: flex;
   justify-content: center;
@@ -31,5 +34,5 @@
 }
 
 .isActive .checkMark {
-  background: #6a6a6a;
+  background: $grey-600;
 }
