@@ -59,10 +59,10 @@ a:hover {
 :global(.btnSmall),
 :global(.btnFullWidth) {
   align-items: center;
-  border: 1px solid $grey-200;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: rem(4);
   color: black;
-  display: flex;
+  display: inline-flex;
   font-size: rem(12);
   font-weight: bold;
   justify-content: center;
@@ -89,6 +89,7 @@ a:hover {
 }
 
 :global(.btnFullWidth) {
+  display: flex;
   width: 100%;
 }
 
