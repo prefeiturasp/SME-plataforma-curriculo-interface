@@ -5,12 +5,15 @@ import CollectionsNone from './collections/CollectionsNone';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ProfileImage from './ProfileImage';
+import withWidth from 'components/hoc/withWidth';
+import chevronRight from 'images/chevrons/right.svg';
 import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
   render() {
-    const collections = [
+    const collections = [];
+    const collections1 = [
       {
         id: 1,
         title: '[2018] EF 1A Matemática (1)',
@@ -99,14 +102,21 @@ class Profile extends Component {
       />
     ) : null;
 
+    const size = this.props.windowWidth < 768 ? 60 : 80;
+
     return (
       <Page>
         {notification}
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <ProfileImage nickname="Marília" size={60} />
-              <h2>Marília</h2>
+              <ProfileImage nickname="Marília" size={size} />
+              <div className={styles.name}>
+                <h2>Marília</h2>
+                <NavLink to="/perfil/editar">
+                  Editar perfil
+                </NavLink>
+              </div>
             </div>
             <NavLink to="/perfil/editar">
               <img src={iconEdit} alt="Editar perfil" />
@@ -123,8 +133,9 @@ class Profile extends Component {
               <em>3</em> componentes
             </div>
           </div>
-          <NavLink className="btnFullWidth" to="/turmas">
+          <NavLink className="btnSmall btnFullWidth" to="/turmas">
             Ver minhas turmas
+            <img src={chevronRight} alt="" />
           </NavLink>
         </header>
         {contents}
@@ -135,4 +146,4 @@ class Profile extends Component {
 
 Profile.propTypes = {};
 
-export default Profile;
+export default withWidth(Profile);

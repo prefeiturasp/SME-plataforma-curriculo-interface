@@ -6,6 +6,7 @@
   background-color: $grey-100;
   display: flex;
   flex-direction: column;
+  flex-grow: 10;
   font-size: rem(13);
   justify-content: center;
   line-height: rem(18);

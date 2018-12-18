@@ -16,6 +16,7 @@ class CollectionItem extends React.PureComponent {
     });
 
     return (
+      <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
       <NavLink to={link} className={styles.wrapper}>
         <div className={styles.info}>
           <h4>{title}</h4>
@@ -25,6 +26,7 @@ class CollectionItem extends React.PureComponent {
         </div>
         <div className={styles.years}>{items}</div>
       </NavLink>
+      </div>
     );
   }
 }

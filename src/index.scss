@@ -46,12 +46,18 @@ hr {
   margin: 0;
 }
 
+a {
+  color: $grey-600;
+}
+
 a:hover {
   color: black;
 }
 
 :global(.btn),
+:global(.btnSmall),
 :global(.btnFullWidth) {
+  align-items: center;
   border: 1px solid $grey-200;
   border-radius: rem(4);
   color: black;
@@ -63,9 +69,9 @@ a:hover {
   padding: rem(14) rem(16);
   text-transform: uppercase;
 
-  > i,
   > img {
-    margin-right: rem(8);
+    padding-left: rem(8);
+    padding-right: rem(8);
   }
 
   @include mq('tablet-landscape') {
@@ -73,6 +79,12 @@ a:hover {
     line-height: rem(20);
     padding: rem(18) rem(26);
   }
+}
+
+:global(.btnSmall) {
+  font-size: rem(12) !important;
+  line-height: rem(16) !important;
+  padding: rem(15) rem(26) !important;
 }
 
 :global(.btnFullWidth) {

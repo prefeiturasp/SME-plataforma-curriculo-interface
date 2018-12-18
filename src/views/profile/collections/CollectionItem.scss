@@ -34,3 +34,25 @@
 .years {
   display: flex;
 }
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    align-items: flex-start;
+    height: rem(150);
+    margin-bottom: rem(30);
+    padding: rem(17) rem(14);
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding-bottom: rem(10);
+  }
+
+  .years {
+    align-items: flex-end;
+    height: 100%;
+  }
+}

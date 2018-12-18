@@ -2,6 +2,7 @@
 @import '~tools.scss';
 
 .header {
+  composes: container from global;
   padding: rem(16);
 }
 
@@ -16,10 +17,21 @@
   align-items: center;
   display: flex;
 
+  > .name {
+    margin-left: rem(15);
+  }
+
   > h2 {
     font-size: rem(20);
     line-height: rem(24);
-    margin-left: rem(15);
+  }
+
+  a {
+    color: $grey-600;
+    display: none;
+    font-size: rem(15);
+    font-weight: bold;
+    text-decoration: underline;
   }
 }
 
@@ -48,6 +60,43 @@
       display: block;
       font-size: rem(18);
       font-style: normal;
+    }
+  }
+}
+
+@include mq("tablet-portrait") {
+  .header {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+    > a {
+      width: auto !important;
+    }
+  }
+
+  .photoAndName {
+    a {
+      display: block;
+    }
+  }
+
+  .rowName,
+  .rowNumbers {
+    margin-bottom: 0;
+  }
+
+  .rowName {
+    > a {
+      display: none;
+    }
+  }
+
+  .rowNumbers {
+    margin-left: auto;
+
+    > div {
+      width: auto;
     }
   }
 }
