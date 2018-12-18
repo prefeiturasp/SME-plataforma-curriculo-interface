@@ -1,6 +1,3 @@
-.wrapper {
-}
-
 .header {
   composes: container from global;
   font-size: 1.125rem;
@@ -10,6 +7,7 @@
 
 .image {
   align-items: center;
+  background-image: url(./curriculum.jpg);
   background-position: 50% 50%;
   background-size: cover;
   color: white;
@@ -20,12 +18,12 @@
   text-align: center;
   width: 100%;
   height: 26rem;
-}
 
-.image > h1 {
-  font-size: 2.5rem;
-  line-height: 1;
-  max-width: 50%;
+  > h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+    max-width: 50%;
+  }
 }
 
 .slogan {
@@ -35,10 +33,10 @@
   padding-top: 5rem;
   padding-bottom: 5rem;
   text-align: center;
-}
 
-.slogan p {
-  margin-bottom: 0;
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .list {
@@ -47,32 +45,29 @@
   list-style: none;
   justify-content: space-around;
   margin-bottom: 0;
-}
 
-.list > li {
-  padding: 5.5rem 2.8rem;
-  text-align: center;
-  flex-grow: 1;
-  flex-basis: 33%;
-}
+  > li {
+    padding: 5.5rem 2.8rem;
+    text-align: center;
+    flex-grow: 1;
+    flex-basis: 33%;
 
-.list > li > a > img {
-  margin-bottom: 1.3125rem;
-}
+    > a {
+      > img {
+        margin-bottom: 1.3125rem;
+      }
 
-.list > li > a > h2 {
-  font-size: 1.3125rem;
-  margin-bottom: 0.75rem;
-  color: black;
-}
+      > h2 {
+        font-size: 1.3125rem;
+        margin-bottom: 0.75rem;
+        color: black;
+      }
+    }
 
-.list > li > p {
-  margin-bottom: 1.5rem;
-}
-
-.button {
-  composes: btn from global;
-  display: inline-block !important;
+    > p {
+      margin-bottom: 1.5rem;
+    }
+  }
 }
 
 li.sustainableDevGoals > p {
@@ -82,16 +77,11 @@ li.sustainableDevGoals > p {
 li.knowledgeMatrix {
   background: #3a3a3a;
   color: white;
-}
 
-li.knowledgeMatrix > .button {
-  border-color: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-li.knowledgeMatrix > a,
-li.knowledgeMatrix > a > h2 {
-  color: white;
+  > a,
+  > a > h2 {
+    color: white;
+  }
 }
 
 li.learningObjectives {
@@ -102,6 +92,14 @@ li.learningObjectives {
   line-height: 2rem;
 }
 
+.btn {
+  composes: btn from global;
+  
+  .knowledgeMatrix & {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .header {
     font-size: 1rem;
@@ -110,11 +108,11 @@ li.learningObjectives {
 
   .image {
     margin-bottom: 1.25rem;
-  }
-
-  .image > h1 {
-    font-size: 2.125rem;
-    max-width: none;
+  
+    > h1 {
+      font-size: 2.125rem;
+      max-width: none;
+    }
   }
 
   .slogan {
@@ -125,14 +123,14 @@ li.learningObjectives {
 
   .list {
     flex-direction: column;
-  }
-
-  .list > li {
-    padding: 2.75rem 1rem;
-    width: 100%;
-  }
-
-  .list > li > p {
-    margin-bottom: 1rem;
+  
+    > li {
+      padding: 2.75rem 1rem;
+      width: 100%;
+  
+      > p {
+        margin-bottom: 1rem;
+      }
+    }
   }
 }

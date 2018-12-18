@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import iconClockBig from 'images/icons/clockBig.svg';
 import iconPublished from 'images/icons/published.svg';
-import styles from './RoadmapItem.css';
+import styles from './RoadmapItem.scss';
 
 class RoadmapItem extends Component {
   render() {

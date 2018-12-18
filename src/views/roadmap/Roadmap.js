@@ -6,7 +6,7 @@ import BodyActions from 'actions/BodyActions';
 import Page from 'components/layout/Page';
 import RoadmapActions from 'actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
-import styles from './Roadmap.css';
+import styles from './Roadmap.scss';
 
 class Roadmap extends Component {
   componentDidMount() {
@@ -41,7 +41,7 @@ class Roadmap extends Component {
           </div>
           <hr />
           <footer className={styles.footer}>
-            <NavLink to="/sequencias" className={styles.button}>
+            <NavLink to="/sequencias" className="btn">
               Encontre sequências de atividades
             </NavLink>
           </footer>

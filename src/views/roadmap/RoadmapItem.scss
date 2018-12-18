@@ -2,12 +2,12 @@
   color: #6a6a6a;
   display: flex;
   font-size: 0.9375rem;
-}
 
-.wrapper h2 {
-  color: black;
-  font-size: 1.125rem;
-  font-weight: 600;
+  h2 {
+    color: black;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
 }
 
 .content {
@@ -16,15 +16,15 @@
   text-align: right;
   left: -14%;
   width: 43%;
-}
 
-.wrapper:last-child > .content {
-  padding-bottom: 2.875rem;
-}
+  .wrapper:last-child > & {
+    padding-bottom: 2.875rem;
+  }
 
-.isToRight .content {
-  left: 43%;
-  text-align: left;
+  .isToRight & {
+    left: 43%;
+    text-align: left;
+  }
 }
 
 .middle {
@@ -33,15 +33,15 @@
   text-align: center;
   left: 43%;
   width: 14%;
-}
 
-.middle > .line {
-  border-left: 1px solid #e0e0e0;
-  height: 100%;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  z-index: -10;
+  > .line {
+    border-left: 1px solid #e0e0e0;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: -10;
+  }
 }
 
 .soon {
