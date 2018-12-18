@@ -125,8 +125,9 @@
 }
 
 .description {
-  font-size: 1rem;
-  line-height: 2rem;
+  composes: quill-text from global;
+  font-size: rem(16);
+  line-height: rem(21);
   margin-bottom: rem(48);
 }
 

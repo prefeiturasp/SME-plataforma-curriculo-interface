@@ -6,7 +6,7 @@
 }
 
 :global(.image-gallery) {
-  margin: 0 rem(-16) rem(8) rem(-16);
+  margin: 0 rem(-15) rem(8) rem(-15);
 
   @include mq("mobile-large") {
     margin-left: 0;
