@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Footer from 'components/footer/Footer';
 import Header from 'components/header/Header';
 import MobileMenu from 'components/MobileMenu';

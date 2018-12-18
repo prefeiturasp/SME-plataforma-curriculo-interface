@@ -12,8 +12,7 @@ import styles from './Profile.scss';
 
 class Profile extends Component {
   render() {
-    const collections = [];
-    const collections1 = [
+    const collections = [
       {
         id: 1,
         title: '[2018] EF 1A Matemática (1)',
