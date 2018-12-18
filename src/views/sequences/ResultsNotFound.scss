@@ -1,0 +1,17 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  composes: container from global;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 10;
+  justify-content: center;
+  text-align: center;
+
+  p {
+    margin-bottom: 1rem;
+    max-width: rem(500);
+  }
+}
