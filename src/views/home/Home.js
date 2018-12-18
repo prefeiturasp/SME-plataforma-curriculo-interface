@@ -12,7 +12,6 @@ import iconKnowledgeMatrix from 'images/illustrations/knowledgeMatrix.svg';
 import iconLearningObjectives from 'images/illustrations/learningObjectives.svg';
 import iconSequences from 'images/illustrations/sequences.svg';
 import iconSustainableDevGoals from 'images/illustrations/sustainableDevGoals.svg';
-import imgHome from './home.jpg';
 import styles from './Home.css';
 
 class Home extends Component {
@@ -26,7 +25,6 @@ class Home extends Component {
   }
 
   render() {
-    const style = { backgroundImage: `url(${imgHome})` };
     const sequences = this.props.sequences.map((item, i) => {
       return <GridItem key={i} index={i} data={item} />;
     });
@@ -34,7 +32,7 @@ class Home extends Component {
     return (
       <Page>
         <section className={styles.wrapper}>
-          <header className={styles.header} style={style}>
+          <header className={styles.header}>
             <div className="container">
               <div className="row">
                 <div className="col-md-8 offset-md-2">

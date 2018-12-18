@@ -4,7 +4,6 @@ import Page from 'components/layout/Page';
 import iconKnowledgeMatrix from 'images/illustrations/knowledgeMatrix.svg';
 import iconLearningObjectives from 'images/illustrations/learningObjectives.svg';
 import iconSustainableDevGoals from 'images/illustrations/sustainableDevGoals.svg';
-import imgCurriculum from './curriculum.jpg';
 import styles from './Curriculum.scss';
 
 class Curriculum extends Component {

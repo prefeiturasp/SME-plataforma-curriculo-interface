@@ -1,6 +1,3 @@
-.wrapper {
-}
-
 .header,
 .intro,
 .sequences,
@@ -10,6 +7,7 @@
 
 .header {
   align-items: center;
+  background-image: url(./home.jpg);
   background-position: 50% 50%;
   background-size: cover;
   color: white;
