@@ -13,7 +13,8 @@ class EmptyList extends React.PureComponent {
               <img src={iconCollection} alt="Coleção" />
               <h3>Sua coleção está vazia</h3>
               <p>
-                Salve sequências ao acessá-las clicando no ícone do marcador de livro.
+                Salve sequências ao acessá-las clicando no ícone do marcador de
+                livro.
               </p>
               <NavLink className="btn" to="/sequencias">
                 Buscar sequências

@@ -33,9 +33,7 @@ class SequenceList extends Component {
               Buscar mais sequências
             </NavLink>
           </div>
-          <div className="row">
-            {items}
-          </div>
+          <div className="row">{items}</div>
           <div className={styles.rowBelow}>
             <NavLink className="btnFullWidth" to="/sequencias">
               Buscar mais sequências

@@ -29,9 +29,7 @@ class CollectionList extends Component {
               <img src={iconPlus} alt="Criar coleção" />
             </button>
           </div>
-          <div className="row">
-            {items}
-          </div>
+          <div className="row">{items}</div>
           <div className={styles.rowBelow}>
             <button className="btnFullWidth">
               Criar uma nova coleção

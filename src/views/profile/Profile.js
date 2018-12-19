@@ -112,9 +112,7 @@ class Profile extends Component {
               <Avatar nickname="Marília" size={size} />
               <div className={styles.name}>
                 <h2>Marília</h2>
-                <NavLink to="/perfil/editar">
-                  Editar perfil
-                </NavLink>
+                <NavLink to="/perfil/editar">Editar perfil</NavLink>
               </div>
             </div>
             <NavLink to="/perfil/editar">

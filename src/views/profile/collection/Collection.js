@@ -109,11 +109,7 @@ class Collection extends Component {
     });
 
     const contents =
-      sequences.length > 0 ? (
-        <SequenceList items={sequences} />
-      ) : (
-        <EmptyList />
-      );
+      sequences.length > 0 ? <SequenceList items={sequences} /> : <EmptyList />;
 
     return (
       <Page>
