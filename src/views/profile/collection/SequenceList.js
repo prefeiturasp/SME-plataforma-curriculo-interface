@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Sequence from './Sequence';
-import styles from './SequenceList.scss';
+import styles from 'views/profile/collections/CollectionList.scss';
 
 class SequenceList extends Component {
   render() {
