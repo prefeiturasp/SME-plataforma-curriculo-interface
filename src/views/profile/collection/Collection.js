@@ -6,6 +6,7 @@ import ClassroomYear from 'components/objects/ClassroomYear';
 import ConfirmActions from 'actions/ConfirmActions';
 import EmptyList from './EmptyList';
 import ModalPage from 'components/layout/ModalPage';
+import Page from 'components/layout/Page';
 import SequenceList from './SequenceList';
 import iconClose from 'images/icons/closeBig.svg';
 import iconEdit from 'images/icons/edit.svg';
@@ -31,8 +32,7 @@ class Collection extends Component {
   };
 
   render() {
-    const sequences = [];
-    const sequences1 = [
+    const sequences = [
       {
         name: 'Os Movimentos do nosso Planeta',
         component: 'Ciências Naturais',
@@ -116,27 +116,29 @@ class Collection extends Component {
       );
 
     return (
-      <ModalPage>
-        <div className={styles.buttons}>
-          <NavLink to={link}>
-            <img src={iconEdit} alt="Editar" />
-          </NavLink>
-          <button onClick={this.onClickedDelete}>
-            <img src={iconDelete} alt="Excluir" />
-          </button>
-          <button className={styles.btnClose} onClick={this.onClickedClose}>
-            <img src={iconClose} alt="Fechar" />
-          </button>
+      <Page>
+        <div className={styles.header}>
+          <div className={styles.buttons}>
+            <NavLink to={link}>
+              <img src={iconEdit} alt="Editar" />
+            </NavLink>
+            <button onClick={this.onClickedDelete}>
+              <img src={iconDelete} alt="Excluir" />
+            </button>
+            <button className={styles.btnClose} onClick={this.onClickedClose}>
+              <img src={iconClose} alt="Fechar" />
+            </button>
+          </div>
+          <header className={styles.info}>
+            <h2>{name}</h2>
+            <p>
+              {classrooms.length} {word}
+            </p>
+            <div className={styles.years}>{years}</div>
+          </header>
         </div>
-        <header className={styles.header}>
-          <h2>{name}</h2>
-          <p>
-            {classrooms.length} {word}
-          </p>
-          <div className={styles.years}>{years}</div>
-        </header>
         {contents}
-      </ModalPage>
+      </Page>
     );
   }
 }
