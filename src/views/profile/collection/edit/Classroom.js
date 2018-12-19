@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ClassroomYear from 'components/objects/ClassroomYear';
-import styles from './ClassroomItem.scss';
+import styles from './Classroom.scss';
 
-class ClassroomItem extends React.PureComponent {
+class Classroom extends React.PureComponent {
   state = {
     isSelected: false,
   };
@@ -37,7 +37,7 @@ class ClassroomItem extends React.PureComponent {
   }
 }
 
-ClassroomItem.propTypes = {
+Classroom.propTypes = {
   color: PropTypes.string.isRequired,
   level: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -45,4 +45,4 @@ ClassroomItem.propTypes = {
   year: PropTypes.string.isRequired,
 };
 
-export default ClassroomItem;
+export default Classroom;

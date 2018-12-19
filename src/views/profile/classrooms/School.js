@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AnimateHeight from 'react-animate-height';
-import ClassroomItem from './ClassroomItem';
+import Classroom from './Classroom';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
-import styles from './SchoolItem.scss';
+import styles from './School.scss';
 
-class SchoolItem extends React.PureComponent {
+class School extends React.PureComponent {
   state = { isExpanded: true };
 
   onToggled = () => {
@@ -18,7 +18,7 @@ class SchoolItem extends React.PureComponent {
 
     const items = classrooms.map((classroom, i) => {
       return (
-        <ClassroomItem
+        <Classroom
           key={i}
           components={classroom.components}
           level={classroom.level}
@@ -51,9 +51,9 @@ class SchoolItem extends React.PureComponent {
   }
 }
 
-SchoolItem.propTypes = {
+School.propTypes = {
   classrooms: PropTypes.array.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default SchoolItem;
+export default School;

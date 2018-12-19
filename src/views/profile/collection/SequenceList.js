@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import SequenceItem from './SequenceItem';
-import styles from './SequencesList.scss';
+import Sequence from './Sequence';
+import styles from './SequenceList.scss';
 
-class SequencesList extends Component {
+class SequenceList extends Component {
   render() {
     const count = this.props.items.length;
     const word = count > 1 ? 'sequências' : 'sequência';
     const items = this.props.items.map((item, i) => {
       return (
-        <SequenceItem
+        <Sequence
           key={i}
           name={item.name}
           component={item.component}
@@ -36,8 +36,8 @@ class SequencesList extends Component {
   }
 }
 
-SequencesList.propTypes = {
+SequenceList.propTypes = {
   items: PropTypes.array.isRequired,
 };
 
-export default SequencesList;
+export default SequenceList;

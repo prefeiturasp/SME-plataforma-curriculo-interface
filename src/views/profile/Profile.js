@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Avatar from './Avatar';
+import CollectionList from './collections/CollectionList';
 import EmptyList from './collections/EmptyList';
-import List from './collections/List';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import withWidth from 'components/hoc/withWidth';
@@ -88,7 +88,7 @@ class Profile extends Component {
 
     const contents =
       collections.length > 0 ? (
-        <List items={collections} />
+        <CollectionList items={collections} />
       ) : (
         <EmptyList />
       );

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Collection from './Collection';
 import iconPlus from 'images/icons/plus.svg';
-import styles from './List.scss';
+import styles from './CollectionList.scss';
 
-class List extends Component {
+class CollectionList extends Component {
   render() {
     const items = this.props.items.map((item, i) => {
       return (
@@ -44,8 +44,8 @@ class List extends Component {
   }
 }
 
-List.propTypes = {
+CollectionList.propTypes = {
   items: PropTypes.array.isRequired,
 };
 
-export default List;
+export default CollectionList;

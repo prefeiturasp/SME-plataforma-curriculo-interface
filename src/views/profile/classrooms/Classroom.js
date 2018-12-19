@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import PillItem from 'components/objects/PillItem';
-import styles from './ClassroomItem.scss';
+import styles from './Classroom.scss';
 
-class ClassroomItem extends React.PureComponent {
+class Classroom extends React.PureComponent {
   render() {
     const { components, level, name, year } = this.props;
 
@@ -26,11 +26,11 @@ class ClassroomItem extends React.PureComponent {
   }
 }
 
-ClassroomItem.propTypes = {
+Classroom.propTypes = {
   components: PropTypes.array.isRequired,
   level: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
 };
 
-export default ClassroomItem;
+export default Classroom;

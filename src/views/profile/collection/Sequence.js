@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import ConfirmActions from 'actions/ConfirmActions';
 import iconCheck from 'images/icons/check.png';
 import iconDelete from 'images/icons/delete.svg';
-import styles from './SequenceItem.scss';
+import styles from './Sequence.scss';
 
-class SequenceItem extends React.PureComponent {
+class Sequence extends React.PureComponent {
   onClickedConfirm = () => {};
 
   onClickedDelete = () => {
@@ -62,7 +62,7 @@ class SequenceItem extends React.PureComponent {
   }
 }
 
-SequenceItem.propTypes = {
+Sequence.propTypes = {
   component: PropTypes.string.isRequired,
   componentColor: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
@@ -84,4 +84,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(SequenceItem);
+)(Sequence);

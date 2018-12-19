@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import ConfirmActions from 'actions/ConfirmActions';
+import EmptyList from './EmptyList';
 import ModalPage from 'components/layout/ModalPage';
-import SequencesList from './SequencesList';
-import SequencesNone from './SequencesNone';
+import SequenceList from './SequenceList';
 import iconClose from 'images/icons/closeBig.svg';
 import iconEdit from 'images/icons/edit.svg';
 import iconDelete from 'images/icons/delete1.svg';
@@ -31,7 +31,8 @@ class Collection extends Component {
   };
 
   render() {
-    const sequences = [
+    const sequences = [];
+    const sequences1 = [
       {
         name: 'Os Movimentos do nosso Planeta',
         component: 'Ciências Naturais',
@@ -109,9 +110,9 @@ class Collection extends Component {
 
     const contents =
       sequences.length > 0 ? (
-        <SequencesList items={sequences} />
+        <SequenceList items={sequences} />
       ) : (
-        <SequencesNone />
+        <EmptyList />
       );
 
     return (

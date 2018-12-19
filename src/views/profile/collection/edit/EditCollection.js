@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import ClassroomItem from './ClassroomItem';
+import Classroom from './Classroom';
 import ModalPage from 'components/layout/ModalPage';
 import SimpleFooter from 'components/footer/SimpleFooter';
 import SimpleHeader from 'components/header/SimpleHeader';
@@ -81,7 +81,7 @@ class EditCollection extends Component {
 
     const items = classrooms.map((classroom, i) => {
       return (
-        <ClassroomItem
+        <Classroom
           key={i}
           color={classroom.color}
           level={classroom.level}

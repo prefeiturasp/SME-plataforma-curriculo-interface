@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ModalPage from 'components/layout/ModalPage';
-import SchoolItem from './SchoolItem';
+import School from './School';
 import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './Classrooms.scss';
 
@@ -104,7 +104,7 @@ class Classrooms extends Component {
 
     const items = schools.map((school, i) => {
       return (
-        <SchoolItem key={i} name={school.name} classrooms={school.classrooms} />
+        <School key={i} name={school.name} classrooms={school.classrooms} />
       );
     });
 
