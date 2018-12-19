@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .header {
   composes: container from global;
@@ -97,7 +97,7 @@ li.learningObjectives {
 
 .btn {
   composes: btn from global;
-  
+
   .knowledgeMatrix & {
     border-color: rgba(255, 255, 255, 0.2);
   }
@@ -111,7 +111,7 @@ li.learningObjectives {
 
   .image {
     margin-bottom: 1.25rem;
-  
+
     > h1 {
       font-size: 2.125rem;
       max-width: none;
@@ -126,11 +126,11 @@ li.learningObjectives {
 
   .list {
     flex-direction: column;
-  
+
     > li {
       padding: 2.75rem 1rem;
       width: 100%;
-  
+
       > p {
         margin-bottom: 1rem;
       }

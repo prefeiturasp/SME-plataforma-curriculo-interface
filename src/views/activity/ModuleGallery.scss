@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   margin-bottom: rem(18);
@@ -8,7 +8,7 @@
 :global(.image-gallery) {
   margin: 0 rem(-15) rem(8) rem(-15);
 
-  @include mq('mobile-large') {
+  @include mq("mobile-large") {
     margin-left: 0;
     margin-right: 0;
   }

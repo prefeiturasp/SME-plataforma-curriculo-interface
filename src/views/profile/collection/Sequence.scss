@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   background: white;
@@ -52,7 +52,7 @@
   flex-direction: column;
   font-weight: 600;
   justify-content: center;
-  
+
   > h3 {
     font-size: rem(14);
     line-height: rem(19);

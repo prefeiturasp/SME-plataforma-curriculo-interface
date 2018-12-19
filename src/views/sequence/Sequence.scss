@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .btnChars {
   composes: btnFullWidth from global;
@@ -49,7 +49,7 @@
   display: none;
 }
 
-@include mq('tablet-landscape') {
+@include mq("tablet-landscape") {
   .btnChars {
     display: none;
   }

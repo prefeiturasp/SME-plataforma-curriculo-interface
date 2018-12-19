@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .arrows {
   composes: container from global;
@@ -45,7 +45,7 @@
   margin: 1.875rem auto;
 }
 
-@include mq('tablet-portrait') {
+@include mq("tablet-portrait") {
   .next,
   .prev {
     font-size: 1.125rem;

@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   align-items: center;
@@ -49,7 +49,7 @@
     width: 100%;
     height: 100%;
     justify-content: space-between;
-    
+
     > p {
       align-items: center;
       display: flex;

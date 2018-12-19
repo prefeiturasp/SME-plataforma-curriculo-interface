@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   align-items: flex-start;
@@ -18,7 +18,7 @@
 
   &.hasBorder {
     margin-bottom: 0.875rem;
-  
+
     &:last-child {
       border-bottom: 1px solid $grey-200;
     }
