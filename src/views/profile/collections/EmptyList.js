@@ -1,8 +1,8 @@
 import React from 'react';
 import iconCollections from './collections.svg';
-import styles from './CollectionsNone.scss';
+import styles from './EmptyList.scss';
 
-class CollectionsNone extends React.PureComponent {
+class EmptyList extends React.PureComponent {
   render() {
     return (
       <section className={styles.wrapper}>
@@ -18,4 +18,4 @@ class CollectionsNone extends React.PureComponent {
   }
 }
 
-export default CollectionsNone;
+export default EmptyList;

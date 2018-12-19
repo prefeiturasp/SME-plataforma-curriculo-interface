@@ -37,22 +37,30 @@
 
 @include mq("tablet-portrait") {
   .wrapper {
-    align-items: flex-start;
     height: rem(150);
     margin-bottom: rem(30);
-    padding: rem(17) rem(14);
+    padding: rem(17) rem(12);
+    position: relative;
   }
 
   .info {
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100%;
     justify-content: space-between;
-    padding-bottom: rem(10);
+    
+    > p {
+      align-items: center;
+      display: flex;
+      height: rem(34);
+      margin-right: rem(72);
+    }
   }
 
   .years {
-    align-items: flex-end;
-    height: 100%;
+    right: rem(12);
+    bottom: rem(17);
+    position: absolute;
   }
 }

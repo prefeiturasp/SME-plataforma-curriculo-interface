@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import CollectionItem from './CollectionItem';
+import Collection from './Collection';
 import iconPlus from 'images/icons/plus.svg';
-import styles from './CollectionsList.scss';
+import styles from './List.scss';
 
-class CollectionsList extends Component {
+class List extends Component {
   render() {
     const items = this.props.items.map((item, i) => {
       return (
-        <CollectionItem
+        <Collection
           key={i}
           id={item.id}
           title={item.title}
@@ -44,8 +44,8 @@ class CollectionsList extends Component {
   }
 }
 
-CollectionsList.propTypes = {
+List.propTypes = {
   items: PropTypes.array.isRequired,
 };
 
-export default CollectionsList;
+export default List;

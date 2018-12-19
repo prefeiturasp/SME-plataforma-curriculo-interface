@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './ProfileImage.scss';
+import styles from './Avatar.scss';
 
-class ProfileImage extends React.PureComponent {
+class Avatar extends React.PureComponent {
   render() {
     const contents = this.props.photo ? (
       <img
@@ -37,10 +37,10 @@ class ProfileImage extends React.PureComponent {
   }
 }
 
-ProfileImage.propTypes = {
+Avatar.propTypes = {
   nickname: PropTypes.string.isRequired,
   photo: PropTypes.string,
   size: PropTypes.number.isRequired,
 };
 
-export default ProfileImage;
+export default Avatar;

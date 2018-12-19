@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import CollectionsList from './collections/CollectionsList';
-import CollectionsNone from './collections/CollectionsNone';
+import Avatar from './Avatar';
+import EmptyList from './collections/EmptyList';
+import List from './collections/List';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
-import ProfileImage from './ProfileImage';
 import withWidth from 'components/hoc/withWidth';
 import chevronRight from 'images/chevrons/right.svg';
 import iconEdit from 'images/icons/edit.svg';
@@ -88,9 +88,9 @@ class Profile extends Component {
 
     const contents =
       collections.length > 0 ? (
-        <CollectionsList items={collections} />
+        <List items={collections} />
       ) : (
-        <CollectionsNone />
+        <EmptyList />
       );
 
     const notification = true ? (
@@ -109,7 +109,7 @@ class Profile extends Component {
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <ProfileImage nickname="Marília" size={size} />
+              <Avatar nickname="Marília" size={size} />
               <div className={styles.name}>
                 <h2>Marília</h2>
                 <NavLink to="/perfil/editar">
