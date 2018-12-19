@@ -1,0 +1,21 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  border: 1px solid $grey-200;
+  border-radius: 0.25rem;
+  color: $grey-600;
+  font-size: 1.875rem;
+  margin-right: 0.5625rem;
+  padding: 0.75rem 1.125rem;
+
+  &:hover {
+    border-color: $grey-600;
+  }
+
+  &.isActive {
+    background-color: $grey-200;
+    border-color: $grey-200;
+    font-weight: 600;
+  }
+}

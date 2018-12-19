@@ -1,0 +1,40 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  background-color: $grey-100;
+  flex-grow: 10;
+  padding: rem(20) rem(16) rem(42) rem(16);
+}
+
+.rowTitle {
+  margin-bottom: rem(17);
+
+  > h3 {
+    font-size: rem(15);
+    font-weight: 600;
+    line-height: rem(24);
+    margin: 0;
+  }
+
+  > a {
+    display: none;
+  }
+}
+
+@include mq("tablet-portrait") {
+  .rowTitle {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: rem(20);
+
+    > a {
+      display: block;
+    }
+  }
+
+  .rowBelow {
+    display: none;
+  }
+}

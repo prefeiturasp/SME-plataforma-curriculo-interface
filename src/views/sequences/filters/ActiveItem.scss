@@ -1,0 +1,28 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  align-items: center;
+  background-color: $grey-200;
+  border-radius: 3rem;
+  color: $grey-600;
+  display: flex;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-right: 0.375rem;
+  margin-top: 0.1875rem;
+  margin-bottom: 0.1875rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+.wrapper.isColored,
+.wrapper.isColored > img {
+  color: white;
+}
+
+.wrapper > img {
+  color: black;
+  margin-left: 0.375rem;
+  margin-top: 0.125rem;
+}

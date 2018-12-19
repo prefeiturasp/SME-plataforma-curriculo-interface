@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import LearningObjectiveItem from './LearningObjectiveItem';
-import chevronDown from 'images/chevron/down.svg';
-import chevronRight from 'images/chevron/right.svg';
-import chevronUp from 'images/chevron/up.svg';
-import styles from './ExpandableLearningObjectiveItem.css';
+import chevronDown from 'images/chevrons/down.svg';
+import chevronRight from 'images/chevrons/right.svg';
+import chevronUp from 'images/chevrons/up.svg';
+import styles from './ExpandableLearningObjectiveItem.scss';
 
 class ExpandableLearningObjectiveItem extends Component {
   ref = React.createRef();
@@ -13,7 +13,7 @@ class ExpandableLearningObjectiveItem extends Component {
 
   onClickedToggle = () => {
     this.setState({ isExpanded: !this.state.isExpanded });
-  }
+  };
 
   componentDidMount() {
     this.setState({ timestamp: Date.now() });
@@ -26,7 +26,9 @@ class ExpandableLearningObjectiveItem extends Component {
   }
 
   render() {
-    const classes = this.state.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
+    const classes = this.state.isExpanded
+      ? [styles.wrapper, styles.isExpanded]
+      : [styles.wrapper];
     const chevron = this.state.isExpanded ? chevronUp : chevronDown;
     const height1 = this.ref.current ? this.ref.current.scrollHeight : 20;
     const height2 = this.state.isExpanded ? height1 : 20;
@@ -37,11 +39,14 @@ class ExpandableLearningObjectiveItem extends Component {
     }
 
     const link = this.props.hasLink ? (
-      <NavLink to={`/sequencias/objetivos-de-aprendizagem/${this.props.data.id}`} className={styles.related}>
+      <NavLink
+        to={`/sequencias/objetivos-de-aprendizagem/${this.props.data.id}`}
+        className={styles.related}
+      >
         Ver Sequências de Atividades Relacionadas
         <img src={chevronRight} alt="Seta" />
       </NavLink>
-    ): null;
+    ) : null;
 
     return (
       <li className={classes.join(' ')} onClick={this.onClickedToggle}>

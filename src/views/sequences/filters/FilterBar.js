@@ -5,8 +5,8 @@ import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import FiltersActions from 'actions/FiltersActions';
 import ActiveItem from './ActiveItem';
 import getWindowWidth from 'utils/getWindowWidth';
-import iconFilters from 'images/icon/filters.svg';
-import styles from './FilterBar.css';
+import iconFilters from 'images/icons/filters.svg';
+import styles from './FilterBar.scss';
 
 class FilterBar extends Component {
   componentDidMount() {
@@ -23,21 +23,17 @@ class FilterBar extends Component {
     if (getWindowWidth() < 768) {
       disableBodyScroll(this.target);
     }
-  }
+  };
 
   render() {
     const filters = this.props.filters.concat(this.props.filtersExtra);
     const items = filters.map((item, i) => {
-      return (
-        <ActiveItem key={i} data={item} />
-      );
+      return <ActiveItem key={i} data={item} />;
     });
 
     return (
       <div className={styles.wrapper}>
-        <ul>
-          {items}
-        </ul>
+        <ul>{items}</ul>
         <button className={styles.button} onClick={this.onClickedToggle}>
           <img src={iconFilters} alt="Filtros" />
           Filtros
@@ -55,7 +51,9 @@ FilterBar.propTypes = {
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters.filter(item => item.isActive),
-    filtersExtra: state.FiltersReducer.filtersExtra.filter(item => item.isActive),
+    filtersExtra: state.FiltersReducer.filtersExtra.filter(
+      item => item.isActive
+    ),
   };
 };
 
@@ -67,4 +65,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterBar);

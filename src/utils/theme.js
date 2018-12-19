@@ -11,7 +11,7 @@ const theme = createMuiTheme({
     MuiInput: {
       input: {
         fontWeight: 'bold',
-      }
+      },
     },
   },
   palette: {

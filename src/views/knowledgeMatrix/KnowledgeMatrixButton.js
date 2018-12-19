@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import styles from './KnowledgeMatrixButton.css';
+import styles from './KnowledgeMatrixButton.scss';
 
 class KnowledgeMatrixButton extends Component {
   render() {
@@ -11,16 +11,12 @@ class KnowledgeMatrixButton extends Component {
         isModalKnowledgeMatrix: true,
       },
     };
-    
+
     return (
       <li className="col-md-6 col-lg-4">
         <NavLink to={link} className={styles.wrapper}>
-          <div className={styles.number}>
-            {this.props.data.sequence}
-          </div>
-          <div className={styles.label}>
-            {this.props.data.title}
-          </div>
+          <div className={styles.number}>{this.props.data.sequence}</div>
+          <div className={styles.label}>{this.props.data.title}</div>
         </NavLink>
       </li>
     );

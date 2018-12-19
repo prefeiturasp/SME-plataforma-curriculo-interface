@@ -11,26 +11,46 @@ const SequencesActions = {
   LOADED_MORE: 'SequencesActions.LOADED_MORE',
   SEARCH: 'SequencesActions.SEARCH',
   TOGGLE_PREVIEW: 'SequencesActions.TOGGLE_PREVIEW',
-  
+
   clearSearch() {
     return { type: SequencesActions.CLEAR };
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return Api.simpleGet(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
+    return Api.simpleGet(
+      `/api/sequencias?${queryString}`,
+      SequencesActions.SEARCH,
+      SequencesActions.LOADED
+    );
   },
   load() {
-    return Api.simpleGet('/api/sequencias', SequencesActions.LOAD, SequencesActions.LOADED);
+    return Api.simpleGet(
+      '/api/sequencias',
+      SequencesActions.LOAD,
+      SequencesActions.LOADED
+    );
   },
   loadItem(slug) {
-    return Api.simpleGet(`/api/sequencias/${slug}`, SequencesActions.LOAD_ITEM, SequencesActions.LOADED_ITEM);
+    return Api.simpleGet(
+      `/api/sequencias/${slug}`,
+      SequencesActions.LOAD_ITEM,
+      SequencesActions.LOADED_ITEM
+    );
   },
   loadMore(page) {
-    return Api.simpleGet(page, SequencesActions.LOAD_MORE, SequencesActions.LOADED_MORE);
+    return Api.simpleGet(
+      page,
+      SequencesActions.LOAD_MORE,
+      SequencesActions.LOADED_MORE
+    );
   },
   loadWithFilter(filter) {
     const queryString = getFiltersQueryString([filter]);
-    return Api.simpleGet(`/api/sequencias?${queryString}`, SequencesActions.SEARCH, SequencesActions.LOADED);
+    return Api.simpleGet(
+      `/api/sequencias?${queryString}`,
+      SequencesActions.SEARCH,
+      SequencesActions.LOADED
+    );
   },
   togglePreview(id) {
     return { type: SequencesActions.TOGGLE_PREVIEW, id };

@@ -1,0 +1,17 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  @include pill;
+  background-color: $grey-200;
+  display: inline-block;
+}
+
+.isColored {
+  color: white;
+}
+
+.isOutlined {
+  background-color: transparent;
+  border: 1px solid $grey-200;
+}

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
-import Page from 'components/Page';
+import Page from 'components/layout/Page';
 import RoadmapActions from 'actions/RoadmapActions';
 import RoadmapItem from './RoadmapItem';
-import styles from './Roadmap.css';
+import styles from './Roadmap.scss';
 
 class Roadmap extends Component {
   componentDidMount() {
@@ -15,40 +15,37 @@ class Roadmap extends Component {
 
   render() {
     const items = this.props.data.map((item, i) => {
-      return (
-        <RoadmapItem
-          key={i}
-          index={i}
-          data={item} />
-      );
+      return <RoadmapItem key={i} index={i} data={item} />;
     });
 
     return (
       <Page>
-      <section className={styles.wrapper}>
-        <header className={styles.header}>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <h1>O que vem por aí</h1>
-              <p>O projeto do currículo digital da cidade está em constante evolução. Veja aqui o que já temos planejado para esta plataforma.</p>
+        <section className={styles.wrapper}>
+          <header className={styles.header}>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <h1>O que vem por aí</h1>
+                <p>
+                  O projeto do currículo digital da cidade está em constante
+                  evolução. Veja aqui o que já temos planejado para esta
+                  plataforma.
+                </p>
+              </div>
+            </div>
+          </header>
+          <hr />
+          <div className="container">
+            <div className="row">
+              <ul className={styles.list}>{items}</ul>
             </div>
           </div>
-        </header>
-        <hr />
-        <div className="container">
-          <div className="row">
-            <ul className={styles.list}>
-              {items}
-            </ul>
-          </div>
-        </div>
-        <hr />
-        <footer className={styles.footer}>
-          <NavLink to="/sequencias" className={styles.button}>
-            Encontre sequências de atividades
-          </NavLink>
-        </footer>
-      </section>
+          <hr />
+          <footer className={styles.footer}>
+            <NavLink to="/sequencias" className="btn">
+              Encontre sequências de atividades
+            </NavLink>
+          </footer>
+        </section>
       </Page>
     );
   }
@@ -74,4 +71,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Roadmap);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Roadmap);

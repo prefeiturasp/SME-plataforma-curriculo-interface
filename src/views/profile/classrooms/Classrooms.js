@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ModalPage from 'components/ModalPage';
-import SchoolItem from './SchoolItem';
-import SimpleHeader from 'components/SimpleHeader';
+import ModalPage from 'components/layout/ModalPage';
+import School from './School';
+import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './Classrooms.scss';
 
 class Classrooms extends Component {
@@ -104,29 +104,19 @@ class Classrooms extends Component {
 
     const items = schools.map((school, i) => {
       return (
-        <SchoolItem
-          key={i}
-          name={school.name}
-          classrooms={school.classrooms}
-        />
+        <School key={i} name={school.name} classrooms={school.classrooms} />
       );
     });
 
     return (
       <ModalPage>
-        <SimpleHeader
-          back={true}
-          title="Minhas turmas"
-        />
-        <div className={styles.list}>
-          {items}
-        </div>
+        <SimpleHeader back={true} title="Minhas turmas" />
+        <div className={styles.list}>{items}</div>
       </ModalPage>
     );
   }
 }
 
-Classrooms.propTypes = {
-};
+Classrooms.propTypes = {};
 
 export default Classrooms;

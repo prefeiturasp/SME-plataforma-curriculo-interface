@@ -9,7 +9,7 @@ import styles from './Header.scss';
 class Header extends Component {
   onClickedToggler = () => {
     this.props.showMobileMenu();
-  }
+  };
 
   render() {
     const data = [
@@ -33,14 +33,11 @@ class Header extends Component {
 
     const links = data.map((item, i) => {
       return (
-        <NavLink
-          key={i}
-          to={item.to}
-          onClick={this.onClickedClose}>
+        <NavLink key={i} to={item.to} onClick={this.onClickedClose}>
           {item.label}
         </NavLink>
       );
-    })
+    });
 
     return (
       <Headroom disableInlineStyles downTolerance={70}>
@@ -51,13 +48,8 @@ class Header extends Component {
               <h1>Currículo Digital da Cidade de São Paulo</h1>
             </div>
           </NavLink>
-          <nav className={styles.menu}>
-            {links}
-          </nav>
-          <button
-            className={styles.toggler}
-            onClick={this.onClickedToggler}
-          />
+          <nav className={styles.menu}>{links}</nav>
+          <button className={styles.toggler} onClick={this.onClickedToggler} />
         </header>
       </Headroom>
     );
@@ -76,4 +68,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Header);

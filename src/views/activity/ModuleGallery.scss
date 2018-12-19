@@ -6,16 +6,27 @@
 }
 
 :global(.image-gallery) {
-  margin: 0 rem(-16) rem(8) rem(-16);
+  margin: 0 rem(-15) rem(8) rem(-15);
 
-  @include mq("mobile-large") {
+  @include mq('mobile-large') {
     margin-left: 0;
     margin-right: 0;
   }
 }
 
+:global(.image-gallery-slide) {
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
 .item {
-  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
 }
 
 .description {
@@ -43,11 +54,11 @@
 }
 
 .btnLeft {
-  background-image: url(images/arrow/leftWhite.svg);
+  background-image: url(images/arrows/leftWhite.svg);
   left: 0;
 }
 
 .btnRight {
-  background-image: url(images/arrow/rightWhite.svg);
+  background-image: url(images/arrows/rightWhite.svg);
   right: 0;
 }

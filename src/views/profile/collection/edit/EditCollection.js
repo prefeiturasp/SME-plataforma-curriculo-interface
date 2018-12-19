@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import ClassroomItem from './ClassroomItem';
-import ModalPage from 'components/ModalPage';
-import SimpleFooter from 'components/SimpleFooter';
-import SimpleHeader from 'components/SimpleHeader';
+import Classroom from './Classroom';
+import ModalPage from 'components/layout/ModalPage';
+import SimpleFooter from 'components/footer/SimpleFooter';
+import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './EditCollection.scss';
 
 class EditCollection extends Component {
@@ -11,15 +11,13 @@ class EditCollection extends Component {
     name: 'Favoritos',
   };
 
-  onChangedName = (e) => {
+  onChangedName = e => {
     this.setState({
       name: e.target.value,
     });
-  }
+  };
 
-  onClickedSave = () => {
-
-  }
+  onClickedSave = () => {};
 
   render() {
     const classrooms = [
@@ -83,7 +81,7 @@ class EditCollection extends Component {
 
     const items = classrooms.map((classroom, i) => {
       return (
-        <ClassroomItem
+        <Classroom
           key={i}
           color={classroom.color}
           level={classroom.level}
@@ -99,10 +97,7 @@ class EditCollection extends Component {
 
     return (
       <ModalPage>
-        <SimpleHeader
-          back={true}
-          title="Editar coleção"
-        />
+        <SimpleHeader back={true} title="Editar coleção" />
         <header className={styles.header}>
           <TextField
             error={isInvalid}
@@ -117,16 +112,12 @@ class EditCollection extends Component {
           <h3>Selecionar turmas (opcional)</h3>
           {items}
         </div>
-        <SimpleFooter
-          label="Salvar alterações"
-          onClick={this.onClickedSave}
-        />
+        <SimpleFooter label="Salvar alterações" onClick={this.onClickedSave} />
       </ModalPage>
     );
   }
 }
 
-EditCollection.propTypes = {
-};
+EditCollection.propTypes = {};
 
 export default EditCollection;

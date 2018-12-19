@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import CollectionsList from './collections/CollectionsList';
-import CollectionsNone from './collections/CollectionsNone';
-import Notification from './Notification';
-import Page from 'components/Page';
-import ProfileImage from './ProfileImage';
-import iconEdit from 'images/icon/edit.svg';
+import Avatar from './Avatar';
+import CollectionList from './collections/CollectionList';
+import EmptyList from './collections/EmptyList';
+import Notification from 'components/objects/Notification';
+import Page from 'components/layout/Page';
+import withWidth from 'components/hoc/withWidth';
+import chevronRight from 'images/chevrons/right.svg';
+import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
@@ -20,7 +22,7 @@ class Profile extends Component {
           {
             color: '#ff0784',
             year: '1A',
-          }
+          },
         ],
       },
       {
@@ -32,7 +34,7 @@ class Profile extends Component {
           {
             color: '#ff0784',
             year: '1A',
-          }
+          },
         ],
       },
       {
@@ -44,7 +46,7 @@ class Profile extends Component {
           {
             color: '#66ac70',
             year: '1A',
-          }
+          },
         ],
       },
       {
@@ -56,7 +58,7 @@ class Profile extends Component {
           {
             color: '#66ac70',
             year: '1A',
-          }
+          },
         ],
       },
       {
@@ -71,7 +73,7 @@ class Profile extends Component {
         title: 'Água',
         sequences: 0,
         classrooms: 3,
-          years: [
+        years: [
           {
             color: '#66ac70',
             year: '1A',
@@ -79,18 +81,27 @@ class Profile extends Component {
           {
             color: '#ff0784',
             year: '1A',
-          }
+          },
         ],
       },
     ];
 
-    const contents = collections.length > 0
-      ? <CollectionsList items={collections} />
-      : <CollectionsNone />;
+    const contents =
+      collections.length > 0 ? (
+        <CollectionList items={collections} />
+      ) : (
+        <EmptyList />
+      );
 
-    const notification = true
-      ? <Notification />
-      : null;
+    const notification = true ? (
+      <Notification
+        text="Você completou 3 sequências de atividades recentemente. Avalie agora e nos ajude a construir novos conteúdos."
+        labelNo="Agora não"
+        labelYes="Avaliar sequência"
+      />
+    ) : null;
+
+    const size = this.props.windowWidth < 768 ? 60 : 80;
 
     return (
       <Page>
@@ -98,13 +109,13 @@ class Profile extends Component {
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <ProfileImage
-                nickname="Marília"
-                size={60}
-              />
-              <h2>
-                Marília
-              </h2>
+              <Avatar nickname="Marília" size={size} />
+              <div className={styles.name}>
+                <h2>Marília</h2>
+                <NavLink to="/perfil/editar">
+                  Editar perfil
+                </NavLink>
+              </div>
             </div>
             <NavLink to="/perfil/editar">
               <img src={iconEdit} alt="Editar perfil" />
@@ -121,11 +132,9 @@ class Profile extends Component {
               <em>3</em> componentes
             </div>
           </div>
-          <NavLink
-            className="btnFullWidth"
-            to="/turmas"
-          >
+          <NavLink className="btnSmall btnFullWidth" to="/turmas">
             Ver minhas turmas
+            <img src={chevronRight} alt="" />
           </NavLink>
         </header>
         {contents}
@@ -134,7 +143,6 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {
-};
+Profile.propTypes = {};
 
-export default Profile;
+export default withWidth(Profile);

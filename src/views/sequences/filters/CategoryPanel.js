@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import CategoryItemButton from './CategoryItemButton';
 import CategoryItemImageButton from './CategoryItemImageButton';
-import arrowLeft from 'images/arrow/left.svg';
-import chevronLeft from 'images/chevron/left.svg';
-import iconHelp from 'images/icon/help.svg';
-import styles from './CategoryPanel.css';
+import arrowLeft from 'images/arrows/left.svg';
+import chevronLeft from 'images/chevrons/left.svg';
+import iconHelp from 'images/icons/help.svg';
+import styles from './CategoryPanel.scss';
 
 function isCategoryOneOf(category, list) {
   return category && list.indexOf(category.slug) >= 0;
@@ -17,17 +17,24 @@ function isCategoryOneOf(category, list) {
 class CategoryPanel extends Component {
   onClickedClose = () => {
     this.props.hideCategory();
-  }
+  };
 
   render() {
-    const classes = this.props.isShowingCategory ? [styles.wrapper, styles.isShowing] : [styles.wrapper];
+    const classes = this.props.isShowingCategory
+      ? [styles.wrapper, styles.isShowing]
+      : [styles.wrapper];
 
     const hasImage = this.props.items.findIndex(item => item.url) >= 0;
     const listStyle = hasImage ? styles.images : null;
-    
-    const isAxesOrLearningObjectives = isCategoryOneOf(this.props.currCategory, ['axes', 'learning_objectives']);
-    const list = isAxesOrLearningObjectives ? this.props.itemsExtra : this.props.items;
-    
+
+    const isAxesOrLearningObjectives = isCategoryOneOf(
+      this.props.currCategory,
+      ['axes', 'learning_objectives']
+    );
+    const list = isAxesOrLearningObjectives
+      ? this.props.itemsExtra
+      : this.props.items;
+
     const items = list.map((item, i) => {
       return hasImage ? (
         <CategoryItemImageButton key={i} data={item} />
@@ -36,12 +43,18 @@ class CategoryPanel extends Component {
       );
     });
 
-    const categoryName = this.props.currCategory ? this.props.currCategory.name : '';
+    const categoryName = this.props.currCategory
+      ? this.props.currCategory.name
+      : '';
 
-    const hasTooltip = isCategoryOneOf(this.props.currCategory, ['knowledge_matrices', 'learning_objectives', 'sustainable_development_goals']);
+    const hasTooltip = isCategoryOneOf(this.props.currCategory, [
+      'knowledge_matrices',
+      'learning_objectives',
+      'sustainable_development_goals',
+    ]);
     let btnTooltip = null;
     let tooltip = null;
-    
+
     if (hasTooltip) {
       let tooltipTitle = '';
       let tooltipText = '';
@@ -49,17 +62,20 @@ class CategoryPanel extends Component {
       switch (this.props.currCategory.slug) {
         case 'knowledge_matrices':
           tooltipTitle = 'O que são as matrizes de saberes?';
-          tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
+          tooltipText =
+            'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
           break;
 
         case 'learning_objectives':
           tooltipTitle = 'O que são os objetivos de aprendizagem?';
-          tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
+          tooltipText =
+            'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
           break;
 
         case 'sustainable_development_goals':
           tooltipTitle = 'O que são os ODS?';
-          tooltipText = 'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
+          tooltipText =
+            'O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.';
           break;
 
         default:
@@ -78,13 +94,14 @@ class CategoryPanel extends Component {
           type="dark"
           effect="solid"
           id="tooltip"
-          className="tooltip">
+          className="tooltip"
+        >
           <strong>{tooltipTitle}</strong>
           <p>{tooltipText}</p>
         </ReactTooltip>
-      )
+      );
     }
-    
+
     return (
       <div className={classes.join(' ')}>
         <header className={styles.header}>
@@ -97,9 +114,7 @@ class CategoryPanel extends Component {
           {categoryName}
           {btnTooltip}
         </h5>
-        <ul className={listStyle}>
-          {items}
-        </ul>
+        <ul className={listStyle}>{items}</ul>
         <footer className={styles.footer}>
           <button className={styles.button} onClick={this.onClickedClose}>
             Selecionar
@@ -129,8 +144,16 @@ const mapStateToProps = state => {
   return {
     currCategory,
     isShowingCategory: state.FiltersReducer.isShowingCategory,
-    items: currCategory ? state.FiltersReducer.filters.filter(item => item.type === currCategory.slug) : [],
-    itemsExtra: currCategory ? state.FiltersReducer.filtersExtra.filter(item => item.type === currCategory.slug) : [],
+    items: currCategory
+      ? state.FiltersReducer.filters.filter(
+          item => item.type === currCategory.slug
+        )
+      : [],
+    itemsExtra: currCategory
+      ? state.FiltersReducer.filtersExtra.filter(
+          item => item.type === currCategory.slug
+        )
+      : [],
   };
 };
 
@@ -145,4 +168,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryPanel);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryPanel);

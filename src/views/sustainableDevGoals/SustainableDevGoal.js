@@ -7,20 +7,20 @@ import { withRouter } from 'react-router';
 import { API_URL } from 'data/constants';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
-import iconCloseBigWhite from 'images/icon/closeBigWhite.svg';
-import styles from './SustainableDevGoal.css';
+import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
+import styles from './SustainableDevGoal.scss';
 
 class SustainableDevGoal extends Component {
   state = { animationStatus: null };
-  
+
   onClickedClose = () => {
     this.props.history.goBack();
-  }
+  };
 
   onEntered = () => {
     this.setState({ animationStatus: 'entered' });
-  }
-  
+  };
+
   componentDidMount() {
     disableBodyScroll(document.querySelector('#sustainableDevGoal'));
     this.props.loadItem(this.props.match.params.id);
@@ -46,12 +46,7 @@ class SustainableDevGoal extends Component {
     }
 
     const goals = data.goals.map((item, i) => {
-      return (
-        <GoalItem
-          key={i}
-          data={item}
-          index={i + 1} />
-      );
+      return <GoalItem key={i} data={item} index={i + 1} />;
     });
 
     const classes = [styles.wrapper];
@@ -67,9 +62,7 @@ class SustainableDevGoal extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <div className={styles.number}>
-                  {data.sequence}
-                </div>
+                <div className={styles.number}>{data.sequence}</div>
                 <h1>{data.name}</h1>
                 <h2>{data.description}</h2>
                 <img src={API_URL + data.sub_icon} alt={data.name} />
@@ -82,10 +75,11 @@ class SustainableDevGoal extends Component {
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <h2>Conheça as metas</h2>
-              <ul className={styles.list}>
-                {goals}
-              </ul>
-              <NavLink to={`/sequencias/ods/${this.props.match.params.id}`} className={styles.button}>
+              <ul className={styles.list}>{goals}</ul>
+              <NavLink
+                to={`/sequencias/ods/${this.props.match.params.id}`}
+                className={styles.button}
+              >
                 Ver Sequências de Atividades Relacionadas
               </NavLink>
             </div>
@@ -112,10 +106,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadItem: (id) => {
+    loadItem: id => {
       dispatch(SustainableDevGoalsActions.loadItem(id));
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SustainableDevGoal));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(SustainableDevGoal));

@@ -34,7 +34,7 @@
 
 .letter {
   align-items: center;
-  background-color: #3bd2da;
+  background-color: $color-turquoise;
   color: white;
   display: flex;
   font-size: rem(34);
@@ -56,7 +56,7 @@
   font-size: rem(15);
   font-weight: bold;
   text-transform: lowercase;
-  
+
   > label,
   > button {
     background: none;

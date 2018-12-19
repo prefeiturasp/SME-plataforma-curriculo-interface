@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import AlertActions from 'actions/AlertActions';
-import iconClose from 'images/icon/close.svg';
-import iconWarningBig from 'images/icon/warningBig.svg';
+import iconClose from 'images/icons/close.svg';
+import iconWarningBig from 'images/icons/warningBig.svg';
 import styles from './Alert.scss';
 
 Modal.setAppElement('#root');
@@ -12,7 +12,7 @@ Modal.setAppElement('#root');
 class Alert extends Component {
   render() {
     const { isOpened, close, message } = this.props;
-    
+
     return (
       <Modal
         className={styles.alert}
@@ -21,28 +21,14 @@ class Alert extends Component {
         onRequestClose={close}
         shouldCloseOnOverlayClick={true}
       >
-        <button
-          className={styles.close}
-          onClick={close}
-        >
-          <img
-            src={iconClose}
-            alt="Fechar"
-          />
+        <button className={styles.close} onClick={close}>
+          <img src={iconClose} alt="Fechar" />
         </button>
         <p>
-          <img
-            src={iconWarningBig}
-            alt="Atenção"
-          />
-          <span>
-            {message}
-          </span>
+          <img src={iconWarningBig} alt="Atenção" />
+          <span>{message}</span>
         </p>
-        <button
-          className={styles.ok}
-          onClick={close}
-        >
+        <button className={styles.ok} onClick={close}>
           OK
         </button>
       </Modal>
@@ -71,4 +57,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Alert);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Alert);

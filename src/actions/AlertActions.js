@@ -1,7 +1,7 @@
 const AlertActions = {
   CLOSE: 'AlertActions.CLOSE',
   OPEN: 'AlertActions.OPEN',
-  
+
   close() {
     return { type: AlertActions.CLOSE };
   },

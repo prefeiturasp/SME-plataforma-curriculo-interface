@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ConfirmActions from 'actions/ConfirmActions';
-import iconClose from 'images/icon/close.svg';
+import iconClose from 'images/icons/close.svg';
 import styles from './Confirm.scss';
 
 Modal.setAppElement('#root');
@@ -12,11 +12,11 @@ class Confirm extends Component {
   onClickedYes = () => {
     this.props.onConfirm();
     this.props.close();
-  }
+  };
 
   render() {
     const { isOpened, close, labelYes, labelNo, message, title } = this.props;
-    
+
     return (
       <Modal
         className={styles.confirm}
@@ -25,31 +25,17 @@ class Confirm extends Component {
         onRequestClose={close}
         shouldCloseOnOverlayClick={true}
       >
-        <button
-          className={styles.close}
-          onClick={close}
-        >
-          <img
-            src={iconClose}
-            alt="Fechar"
-          />
+        <button className={styles.close} onClick={close}>
+          <img src={iconClose} alt="Fechar" />
         </button>
         <p>
           <strong>{title}</strong>
         </p>
-        <p>
-          {message}
-        </p>
-        <button
-          className={styles.btnYes}
-          onClick={this.onClickedYes}
-        >
+        <p>{message}</p>
+        <button className={styles.btnYes} onClick={this.onClickedYes}>
           {labelYes}
         </button>
-        <button
-          className={styles.btnNo}
-          onClick={close}
-        >
+        <button className={styles.btnNo} onClick={close}>
           {labelNo}
         </button>
       </Modal>
@@ -86,4 +72,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Confirm);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Confirm);

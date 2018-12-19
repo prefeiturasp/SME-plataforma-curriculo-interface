@@ -6,7 +6,7 @@ const AuthActions = {
   LOGGED_IN: 'AuthActions.LOGGED_IN',
   LOGOUT: 'AuthActions.LOGOUT',
   SETUP: 'AuthActions.SETUP',
-  
+
   login() {
     return dispatch => {
       Auth.oAuthSignIn({
@@ -14,27 +14,28 @@ const AuthActions = {
         params: {
           namespace_name: 'api',
           resource_class: 'User',
-        }
+        },
       })
-      .then(function(user) {
-        sessionStorage.setItem('user',
-          JSON.stringify({
-            'access-token': user['access-token'],
-            'client': user.client,
-            'uid': user.uid,
-            'expiry': user.expiry,
-            'token-type': 'Bearer',
-          })
-        );
+        .then(function(user) {
+          sessionStorage.setItem(
+            'user',
+            JSON.stringify({
+              'access-token': user['access-token'],
+              client: user.client,
+              uid: user.uid,
+              expiry: user.expiry,
+              'token-type': 'Bearer',
+            })
+          );
 
-        console.log("Login success:", user);
-        dispatch({ type: AuthActions.LOGGED_IN });
-      })
-      .fail(function(error) {
-        console.error('Login failure: ' + error.errors);
-        dispatch({ type: AuthActions.FAILED });
-      });
-    }
+          console.log('Login success:', user);
+          dispatch({ type: AuthActions.LOGGED_IN });
+        })
+        .fail(function(error) {
+          console.error('Login failure: ' + error.errors);
+          dispatch({ type: AuthActions.FAILED });
+        });
+    };
   },
   logout() {
     Auth.signOut();
@@ -42,42 +43,44 @@ const AuthActions = {
   },
   setup() {
     Auth.configure({
-      apiUrl:                API_URL + '/api',
-      signOutPath:           '/auth/sign_out',
-      emailSignInPath:       '/auth/sign_in',
+      apiUrl: API_URL + '/api',
+      signOutPath: '/auth/sign_out',
+      emailSignInPath: '/auth/sign_in',
       emailRegistrationPath: '/auth',
-      accountUpdatePath:     '/auth',
-      accountDeletePath:     '/auth',
-      passwordResetPath:     '/auth/password',
-      passwordUpdatePath:    '/auth/password',
-      tokenValidationPath:   '/auth/validate_token',
-      proxyIf:               function() { return false; },
-      proxyUrl:              '/proxy',
-      validateOnPageLoad:    false,
-      forceHardRedirect:     false,
-      storage:               'cookies',
-      cookieExpiry:          14,
-      cookiePath:            '/',
+      accountUpdatePath: '/auth',
+      accountDeletePath: '/auth',
+      passwordResetPath: '/auth/password',
+      passwordUpdatePath: '/auth/password',
+      tokenValidationPath: '/auth/validate_token',
+      proxyIf: function() {
+        return false;
+      },
+      proxyUrl: '/proxy',
+      validateOnPageLoad: false,
+      forceHardRedirect: false,
+      storage: 'cookies',
+      cookieExpiry: 14,
+      cookiePath: '/',
 
       passwordResetSuccessUrl: function() {
         return window.location.href;
       },
 
-      confirmationSuccessUrl:  function() {
+      confirmationSuccessUrl: function() {
         return window.location.href;
       },
 
       tokenFormat: {
-        "access-token": "{{ access-token }}",
-        "token-type":   "Bearer",
-        client:         "{{ client }}",
-        expiry:         "{{ expiry }}",
-        uid:            "{{ uid }}",
+        'access-token': '{{ access-token }}',
+        'token-type': 'Bearer',
+        client: '{{ client }}',
+        expiry: '{{ expiry }}',
+        uid: '{{ uid }}',
       },
 
-      parseExpiry: function(headers){
+      parseExpiry: function(headers) {
         // convert from ruby time (seconds) to js time (millis)
-        return (parseInt(headers['expiry'], 10) * 1000) || null;
+        return parseInt(headers['expiry'], 10) * 1000 || null;
       },
 
       handleLoginResponse: function(resp) {
@@ -93,8 +96,8 @@ const AuthActions = {
       },
 
       authProviderPaths: {
-        saml:    '/auth/saml',
-      }
+        saml: '/auth/saml',
+      },
     });
 
     return { type: AuthActions.SETUP };

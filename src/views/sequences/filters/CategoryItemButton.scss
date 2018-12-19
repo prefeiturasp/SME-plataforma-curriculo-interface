@@ -1,0 +1,38 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  align-items: center;
+  color: $grey-600;
+  display: flex;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5625rem;
+  padding: 0;
+  text-align: left;
+}
+
+.wrapper:hover {
+  text-decoration: underline;
+}
+
+.check {
+  align-items: center;
+  border: 1px solid $grey-600;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  margin-right: 0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.checkMark {
+  background: transparent;
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.isActive .checkMark {
+  background: $grey-600;
+}

@@ -11,17 +11,15 @@ const initialState = {
 function ProfileReducer(state = initialState, action) {
   switch (action.type) {
     case ProfileActions.LOAD:
-      return {
-        ...state
-      };
-      
+      return initialState;
+
     case ProfileActions.LOADED:
       return {
         ...state,
-        id: 1,//action.data.teacher.id,
-        name: 'Marília Silva',//action.data.name || '',
-        nickname: 'Marília Silva',//action.data.teacher.nickname || '',
-        photo: null//action.data.teacher.avatar_attributes.default_url,
+        id: action.data.teacher.id,
+        name: action.data.name || '',
+        nickname: action.data.teacher.nickname || '',
+        photo: action.data.teacher.avatar_attributes.default_url,
       };
 
     case ProfileActions.SAVE_NICKNAME:
@@ -45,7 +43,7 @@ function ProfileReducer(state = initialState, action) {
         ...state,
         isUploading: false,
       };
-  
+
     default:
       return state;
   }

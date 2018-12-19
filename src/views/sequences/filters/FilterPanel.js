@@ -9,49 +9,50 @@ import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
 import CurricularComponentButton from './CurricularComponentButton';
 import YearButton from './YearButton';
-import iconCloseBig from 'images/icon/closeBig.svg';
-import iconWarning from 'images/icon/warning.svg';
-import styles from './FilterPanel.css';
+import iconCloseBig from 'images/icons/closeBig.svg';
+import iconWarning from 'images/icons/warning.svg';
+import styles from './FilterPanel.scss';
 
 class FilterPanel extends Component {
   ref = React.createRef();
-  
+
   onClickedSearch = () => {
     const activeFilters = this.props.filters.filter(item => item.isActive);
     if (activeFilters.length > 0) {
       this.props.search(activeFilters);
       clearAllBodyScrollLocks();
     } else {
-      this.props.openAlert('Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.');
+      this.props.openAlert(
+        'Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.'
+      );
     }
-  }
+  };
 
   onClickedClose = () => {
     clearAllBodyScrollLocks();
     this.props.togglePanel();
-  }
+  };
 
   componentDidMount() {
     this.props.load();
   }
 
   render() {
-    const style = this.props.isExpanded && this.ref.current ? { height: `${this.ref.current.clientHeight}px` } : {};
-    
+    const style =
+      this.props.isExpanded && this.ref.current
+        ? { height: `${this.ref.current.clientHeight}px` }
+        : {};
+
     const yearButtons = this.props.filters
       .filter(item => item.type === 'years')
       .map((item, i) => {
-        return (
-          <YearButton key={i} data={item} />
-        );
+        return <YearButton key={i} data={item} />;
       });
 
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
-        return (
-          <CurricularComponentButton key={i} data={item} />
-        );
+        return <CurricularComponentButton key={i} data={item} />;
       });
 
     const categories = [
@@ -78,12 +79,12 @@ class FilterPanel extends Component {
     ];
 
     const categoryButtons = categories.map((item, i) => {
-      return (
-        <CategoryButton key={i} data={item} />
-      );
+      return <CategoryButton key={i} data={item} />;
     });
 
-    const classes = this.props.isExpanded ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
+    const classes = this.props.isExpanded
+      ? [styles.wrapper, styles.isExpanded]
+      : [styles.wrapper];
 
     return (
       <div className={classes.join(' ')} style={style}>
@@ -93,26 +94,23 @@ class FilterPanel extends Component {
             <div className="col-sm-12 col-md-6 col-lg-3">
               <h4>Ano</h4>
               <h5>Ciclo de Alfabetização</h5>
-              <ul className={styles.buttons}>
-                {yearButtons}
-              </ul>
+              <ul className={styles.buttons}>{yearButtons}</ul>
               <p className={styles.warning}>
                 <img src={iconWarning} alt="Observação" />
-                <span>Em breve, estarão disponíveis sequências para todos os componentes e os ciclos do Ensino Fundamental.</span>
+                <span>
+                  Em breve, estarão disponíveis sequências para todos os
+                  componentes e os ciclos do Ensino Fundamental.
+                </span>
               </p>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
               <h4>Componente Curricular</h4>
-              <ul className={styles.buttons}>
-                {componentButtons}
-              </ul>
+              <ul className={styles.buttons}>{componentButtons}</ul>
             </div>
             <div className="col-sm-12 col-md-12 col-lg-5">
               <h4>Filtros</h4>
               <div className={styles.categories}>
-                <ul>
-                  {categoryButtons}
-                </ul>
+                <ul>{categoryButtons}</ul>
                 <CategoryPanel />
               </div>
             </div>
@@ -152,10 +150,10 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(FiltersActions.load());
     },
-    openAlert: (message) => {
+    openAlert: message => {
       dispatch(AlertActions.open(message));
     },
-    search: (filters) => {
+    search: filters => {
       dispatch(FiltersActions.search());
       dispatch(SequencesActions.search(filters));
     },
@@ -165,4 +163,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilterPanel);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterPanel);

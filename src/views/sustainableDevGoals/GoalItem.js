@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './GoalItem.css';
+import styles from './GoalItem.scss';
 
 class GoalItem extends Component {
   render() {
