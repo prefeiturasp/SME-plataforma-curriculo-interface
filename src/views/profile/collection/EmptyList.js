@@ -1,6 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import iconCollection from './collection.svg';
-import styles from './EmptyList.scss';
+import styles from 'views/profile/collections/EmptyList.scss';
 
 class EmptyList extends React.PureComponent {
   render() {
@@ -14,7 +15,9 @@ class EmptyList extends React.PureComponent {
               <p>
                 Salve sequências ao acessá-las clicando no ícone do marcador de livro.
               </p>
-              <button className="btn">Buscar sequências</button>
+              <NavLink className="btn" to="/sequencias">
+                Buscar sequências
+              </NavLink>
             </div>
           </div>
         </div>
