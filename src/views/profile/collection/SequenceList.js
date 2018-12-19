@@ -27,7 +27,11 @@ class SequenceList extends Component {
         <h3>
           {count} {word}
         </h3>
-        {items}
+        <div className="container">
+          <div className="row">
+            {items}
+          </div>
+        </div>
         <NavLink className="btnFullWidth" to="/sequencias">
           Buscar mais sequências
         </NavLink>
