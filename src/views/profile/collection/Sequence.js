@@ -49,13 +49,15 @@ class Sequence extends React.PureComponent {
             <NavLink className={styles.image} to={link}>
               <img src={image} alt={name} />
             </NavLink>
-            <NavLink className={styles.info} to={link}>
-              <h4 style={{ color: componentColor }}>{component}</h4>
-              <h3>{name}</h3>
-            </NavLink>
-            <button onClick={this.onClickedDelete}>
-              <img src={iconDelete} alt="Excluir" />
-            </button>
+            <div className={styles.info}>
+              <NavLink className={styles.text} to={link}>
+                <h4 style={{ color: componentColor }}>{component}</h4>
+                <h3>{name}</h3>
+              </NavLink>
+              <button onClick={this.onClickedDelete}>
+                <img src={iconDelete} alt="Excluir" />
+              </button>
+            </div>
           </div>
           {bar}
         </div>

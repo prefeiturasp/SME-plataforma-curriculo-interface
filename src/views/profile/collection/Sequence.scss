@@ -13,22 +13,10 @@
   align-items: stretch;
   background: white;
   display: flex;
-
-  > a {
-    color: black;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  > button {
-    margin-left: auto;
-    padding: rem(10);
-  }
 }
 
 .image {
+  flex-shrink: 0;
   width: rem(100);
   height: rem(100%);
 
@@ -40,12 +28,31 @@
 }
 
 .info {
+  align-items: flex-start;
+  display: flex;
+  flex-grow: 10;
+  padding: rem(10) rem(15);
+
+  > a {
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  > button {
+    align-self: center;
+    margin-left: auto;
+  }
+}
+
+.text {
   display: flex;
   flex-direction: column;
   font-weight: 600;
   justify-content: center;
-  padding: rem(10) rem(15);
-
+  
   > h3 {
     font-size: rem(14);
     line-height: rem(19);
@@ -77,5 +84,39 @@
     font-weight: bold;
     padding: rem(10);
     text-transform: uppercase;
+  }
+}
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: rem(275);
+    margin-bottom: rem(34);
+  }
+
+  .item {
+    flex-direction: column;
+  }
+
+  .image {
+    width: auto;
+    height: rem(160);
+  }
+
+  .info {
+    > button {
+      align-self: flex-start;
+      margin-top: rem(16);
+    }
+  }
+
+  .text {
+    margin-right: rem(16);
+  }
+
+  .bar {
+    height: rem(40);
+    margin-top: auto;
   }
 }

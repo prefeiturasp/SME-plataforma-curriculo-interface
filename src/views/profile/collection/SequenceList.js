@@ -24,17 +24,24 @@ class SequenceList extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <h3>
-          {count} {word}
-        </h3>
         <div className="container">
+          <div className={styles.rowTitle}>
+            <h3>
+              {count} {word}
+            </h3>
+            <NavLink className="btnSmall" to="/sequencias">
+              Buscar mais sequências
+            </NavLink>
+          </div>
           <div className="row">
             {items}
           </div>
+          <div className={styles.rowBelow}>
+            <NavLink className="btnFullWidth" to="/sequencias">
+              Buscar mais sequências
+            </NavLink>
+          </div>
         </div>
-        <NavLink className="btnFullWidth" to="/sequencias">
-          Buscar mais sequências
-        </NavLink>
       </section>
     );
   }
