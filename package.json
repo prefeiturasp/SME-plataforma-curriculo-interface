@@ -62,7 +62,9 @@
   "scripts": {
     "start": "PORT=5000 node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "prettier-js": "./node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
+    "prettier-css": "./node_modules/.bin/prettier --write \"src/**/*.scss\""
   },
   "jest": {
     "collectCoverageFrom": [
