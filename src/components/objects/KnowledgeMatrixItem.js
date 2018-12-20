@@ -7,9 +7,7 @@ class KnowledgeMatrixItem extends Component {
   render() {
     const link = {
       pathname: `/matriz-de-saberes/${this.props.data.sequence}`,
-      state: {
-        isModalKnowledgeMatrix: true,
-      },
+      state: { isModal: true },
     };
 
     return this.props.isLink ? (

@@ -8,9 +8,7 @@ class SustainableDevGoalButton extends Component {
   render() {
     const link = {
       pathname: `/ods/${this.props.data.id}`,
-      state: {
-        isModalSustainableDevGoal: true,
-      },
+      state: { isModal: true },
     };
     const style = { backgroundColor: this.props.data.color };
 
