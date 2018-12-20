@@ -2,47 +2,37 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
 import BodyActions from 'actions/BodyActions';
+import FullModal from 'components/layout/FullModal';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './KnowledgeMatrixItem.scss';
 
 class KnowledgeMatrixItem extends Component {
-  state = { animationStatus: null };
+  state = { isLoaded: true };
 
   onClickedClose = () => {
     this.props.history.goBack();
   };
 
-  onEntered = () => {
-    this.setState({ animationStatus: 'entered' });
-  };
-
   componentDidMount() {
-    disableBodyScroll(document.querySelector('#knowledgeMatrixItem'));
     if (this.props.data.length <= 0) {
       this.props.load();
-      this.setState({ animationStatus: 'appeared' });
+      this.setState({ isLoaded: false });
     } else {
-      this.setState({ animationStatus: 'enter' });
+      this.setState({ isLoaded: true });
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.state.animationStatus === 'appeared') {
+    if (this.props.match.params.index !== prevProps.match.params.index) {
       const index = parseInt(this.props.match.params.index, 10);
       const data = this.props.data.filter(item => item.sequence === index)[0];
       if (data) {
-        this.setState({ animationStatus: 'enter' });
-        setTimeout(this.onEntered, 1000);
+        this.setState({ isLoaded: true });
       }
     }
-  }
-
-  componentWillUnmount() {
-    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -52,13 +42,12 @@ class KnowledgeMatrixItem extends Component {
     const knowDescription = data ? data.know_description : '';
     const forDescription = data ? data.for_description : '';
 
-    const classes = [styles.wrapper];
-    if (this.state.animationStatus) {
-      classes.push(styles[this.state.animationStatus]);
-    }
-
     return (
-      <section className={classes.join(' ')} id="knowledgeMatrixItem">
+      <FullModal
+        id="knowledgeMatrixItem"
+        isVisible={this.state.isLoaded}
+      >
+      <section className={styles.wrapper}>
         <div className="container">
           <div className="row">
             <div className="col-md-8 offset-md-2">
@@ -85,6 +74,7 @@ class KnowledgeMatrixItem extends Component {
           </div>
         </div>
       </section>
+      </FullModal>
     );
   }
 }

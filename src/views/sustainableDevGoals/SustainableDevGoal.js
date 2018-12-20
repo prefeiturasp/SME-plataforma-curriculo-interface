@@ -2,40 +2,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
 import { API_URL } from 'data/constants';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
+import FullModal from 'components/layout/FullModal';
 import GoalItem from './GoalItem';
 import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
 import styles from './SustainableDevGoal.scss';
 
 class SustainableDevGoal extends Component {
-  state = { animationStatus: null };
-
   onClickedClose = () => {
     this.props.history.goBack();
   };
-
-  onEntered = () => {
-    this.setState({ animationStatus: 'entered' });
-  };
-
+  
   componentDidMount() {
-    disableBodyScroll(document.querySelector('#sustainableDevGoal'));
     this.props.loadItem(this.props.match.params.id);
-    this.setState({ animationStatus: 'appeared' });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.state.animationStatus === 'appeared' && this.props.data) {
-      this.setState({ animationStatus: 'enter' });
-      setTimeout(this.onEntered, 1000);
-    }
-  }
-
-  componentWillUnmount() {
-    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -49,15 +30,14 @@ class SustainableDevGoal extends Component {
       return <GoalItem key={i} data={item} index={i + 1} />;
     });
 
-    const classes = [styles.wrapper];
-    if (this.state.animationStatus) {
-      classes.push(styles[this.state.animationStatus]);
-    }
-
     const style = { backgroundColor: data.color };
 
     return (
-      <section className={classes.join(' ')} id="sustainableDevGoal">
+      <FullModal
+        id="sustainableDevGoal"
+        isVisible={true}
+      >
+      <section className={styles.wrapper}>
         <header className={styles.header} style={style}>
           <div className="container">
             <div className="row">
@@ -89,6 +69,7 @@ class SustainableDevGoal extends Component {
           <img src={iconCloseBigWhite} alt="Fechar" />
         </button>
       </section>
+      </FullModal>
     );
   }
 }
