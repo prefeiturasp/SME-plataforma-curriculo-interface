@@ -1,0 +1,33 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 130;
+}
+
+.wrapper {
+  background: white;
+  height: 100%;
+}
+
+@include mq("tablet-landscape") {
+  .overlay {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+  }
+
+  .wrapper {
+    border-radius: rem(4);
+    height: auto;
+    max-height: 90vh;
+    min-width: rem(540);
+    overflow: hidden;
+  }
+}
