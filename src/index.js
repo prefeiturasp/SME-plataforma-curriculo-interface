@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'react-image-gallery/styles/css/image-gallery-no-icon.css';
+import 'components/layout/FullModalPage.scss';
 import './index.scss';
 
 import React, { Component, Fragment } from 'react';
@@ -28,7 +29,6 @@ import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixItem from 'views/knowledgeMatrix/KnowledgeMatrixItem';
 import Profile from 'views/profile/Profile';
 import Roadmap from 'views/roadmap/Roadmap';
-import ScrollToTop from 'components/ScrollToTop';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
 import SustainableDevGoal from 'views/sustainableDevGoals/SustainableDevGoal';
@@ -37,14 +37,6 @@ import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
-
-function checkModal(location, previousLocation, key) {
-  return !!(
-    location.state &&
-    location.state[key] &&
-    previousLocation !== location
-  );
-}
 
 class ModalSwitch extends Component {
   componentWillUpdate(nextProps) {
@@ -60,21 +52,13 @@ class ModalSwitch extends Component {
   render() {
     const location = this.props.location;
 
-    const isModalSustainableDevGoal = checkModal(
-      location,
-      this.previousLocation,
-      'isModalSustainableDevGoal'
-    );
-    const isModalKnowledgeMatrix = checkModal(
-      location,
-      this.previousLocation,
-      'isModalKnowledgeMatrix'
+    const isModal = !!(
+      location.state &&
+      location.state.isModal &&
+      this.previousLocation !== location
     );
 
-    const locationProp =
-      isModalSustainableDevGoal || isModalKnowledgeMatrix
-        ? this.previousLocation
-        : location;
+    const locationProp = isModal ? this.previousLocation : location;
 
     return (
       <Fragment>
@@ -108,21 +92,17 @@ class ModalSwitch extends Component {
           />
           <Route exact path="/descobrir" component={Roadmap} />
           <Route exact path="/perfil" component={Profile} />
-          <Route exact path="/perfil/editar" component={EditProfile} />
-          <Route exact path="/turmas" component={Classrooms} />
           <Route exact path="/colecao/:id" component={Collection} />
-          <Route exact path="/colecao/:id/editar" component={EditCollection} />
         </Switch>
-        {isModalSustainableDevGoal ? (
-          <Route exact path="/ods/:id" component={SustainableDevGoal} />
-        ) : null}
-        {isModalKnowledgeMatrix ? (
-          <Route
-            exact
-            path="/matriz-de-saberes/:index"
-            component={KnowledgeMatrixItem}
-          />
-        ) : null}
+        <Route exact path="/ods/:id" component={SustainableDevGoal} />
+        <Route
+          exact
+          path="/matriz-de-saberes/:index"
+          component={KnowledgeMatrixItem}
+        />
+        <Route exact path="/turmas" component={Classrooms} />
+        <Route exact path="/colecao/:id/editar" component={EditCollection} />
+        <Route exact path="/perfil/editar" component={EditProfile} />
       </Fragment>
     );
   }
@@ -134,14 +114,12 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Analytics id="UA-85250794-5">
-        <ScrollToTop>
-          <MuiThemeProvider theme={theme}>
-            <Route component={ModalSwitch} />
-            <AppLoading />
-            <Alert />
-            <Confirm />
-          </MuiThemeProvider>
-        </ScrollToTop>
+        <MuiThemeProvider theme={theme}>
+          <Route component={ModalSwitch} />
+          <AppLoading />
+          <Alert />
+          <Confirm />
+        </MuiThemeProvider>
       </Analytics>
     </BrowserRouter>
   </Provider>,
