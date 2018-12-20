@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 * {
   box-sizing: border-box;
@@ -17,7 +17,7 @@ button,
 input,
 select,
 textarea {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 1.2;
 }
 
@@ -75,7 +75,7 @@ a:hover {
     padding-right: rem(8);
   }
 
-  @include mq('tablet-landscape') {
+  @include mq("tablet-landscape") {
     font-size: rem(15);
     line-height: rem(20);
     padding: rem(18) rem(26);
@@ -182,21 +182,21 @@ a:hover {
 
   ul > li:before {
     color: $grey-600;
-    content: '\2022';
+    content: "\2022";
     display: inline-block;
     margin-right: rem(18);
     text-indent: 0;
   }
 
   ol > li:before {
-    content: counter(ol-counter) '. ';
+    content: counter(ol-counter) ". ";
     display: inline-block;
     margin-right: rem(11);
     text-indent: 0;
   }
 
   br {
-    content: '';
+    content: "";
     display: block;
     margin-bottom: 1.5rem;
   }

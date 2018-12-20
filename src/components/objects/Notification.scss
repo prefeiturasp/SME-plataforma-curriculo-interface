@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   border-bottom: 1px solid $grey-200;
@@ -26,7 +26,7 @@
   }
 }
 
-@include mq('tablet-landscape') {
+@include mq("tablet-landscape") {
   .wrapper {
     padding: rem(16);
 

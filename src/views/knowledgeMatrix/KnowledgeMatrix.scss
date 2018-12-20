@@ -1,8 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
-
-.wrapper {
-}
+@import "~variables.scss";
+@import "~tools.scss";
 
 .header {
   composes: container from global;

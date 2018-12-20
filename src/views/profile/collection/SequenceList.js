@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Sequence from './Sequence';
-import styles from './SequenceList.scss';
+import styles from 'views/profile/collections/CollectionList.scss';
 
 class SequenceList extends Component {
   render() {
@@ -24,13 +24,22 @@ class SequenceList extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <h3>
-          {count} {word}
-        </h3>
-        {items}
-        <NavLink className="btnFullWidth" to="/sequencias">
-          Buscar mais sequências
-        </NavLink>
+        <div className="container">
+          <div className={styles.rowTitle}>
+            <h3>
+              {count} {word}
+            </h3>
+            <NavLink className="btnSmall" to="/sequencias">
+              Buscar mais sequências
+            </NavLink>
+          </div>
+          <div className="row">{items}</div>
+          <div className={styles.rowBelow}>
+            <NavLink className="btnFullWidth" to="/sequencias">
+              Buscar mais sequências
+            </NavLink>
+          </div>
+        </div>
       </section>
     );
   }

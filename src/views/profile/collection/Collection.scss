@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .buttons {
   display: flex;
@@ -48,5 +48,10 @@
 
   .btnClose {
     display: none;
+  }
+
+  .info {
+    padding-left: 0;
+    padding-right: 0;
   }
 }

@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .mask {
   border-left: 1px solid transparent;
@@ -92,7 +92,7 @@
   flex-wrap: wrap;
 }
 
-@include mq('tablet-portrait') {
+@include mq("tablet-portrait") {
   .wrapper {
     position: absolute;
     left: 0;

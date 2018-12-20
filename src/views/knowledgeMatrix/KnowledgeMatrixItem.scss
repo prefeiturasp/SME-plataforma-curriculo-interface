@@ -1,17 +1,11 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   background: $grey-200;
   font-size: 1.125rem;
-  overflow-y: scroll;
-  position: fixed;
+  height: 100%;
   text-align: center;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 110;
 }
 
 .wrapper h1 {
@@ -27,6 +21,14 @@
 
 .wrapper p {
   margin: 0 auto 1.75rem auto;
+}
+
+.header {
+  composes: fullModalHeader from global;
+}
+
+.contents {
+  composes: fullModalContents from global;
 }
 
 .number {
@@ -51,41 +53,6 @@
   position: absolute;
   right: 1.75rem;
   top: 1.75rem;
-}
-
-.enter {
-  bottom: 100%;
-  animation: animMask 0.5s ease-in-out forwards;
-}
-
-.enter .header {
-  opacity: 0;
-  animation: animOpacity 0.5s 0.25s ease-in-out forwards;
-}
-
-.enter .contents {
-  opacity: 0;
-  animation: animOpacity 0.5s 0.5s ease-in-out forwards;
-}
-
-@keyframes animMask {
-  from {
-    top: 25%;
-    bottom: 100%;
-  }
-  to {
-    top: 0;
-    bottom: 0;
-  }
-}
-
-@keyframes animOpacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 @media only screen and (max-width: 768px) {

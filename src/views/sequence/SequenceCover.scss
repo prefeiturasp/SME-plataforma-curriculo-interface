@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   align-items: center;
@@ -78,7 +78,7 @@
   }
 }
 
-@include mq('tablet-landscape') {
+@include mq("tablet-landscape") {
   .wrapper {
     &.withImage {
       height: rem(374);

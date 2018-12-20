@@ -1,18 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
-
-.overlay {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 130;
-}
+@import "~variables.scss";
+@import "~tools.scss";
 
 .confirm {
   background: white;
@@ -22,9 +9,6 @@
   line-height: rem(22);
   margin: rem(16);
   padding: rem(46) rem(32) rem(34) rem(32);
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
   width: rem(345);
 
   > p {
@@ -34,14 +18,6 @@
       font-weight: 600;
     }
   }
-}
-
-.close {
-  color: black;
-  font-size: rem(18);
-  position: absolute;
-  right: rem(10);
-  top: rem(10);
 }
 
 .btnYes,

@@ -5,6 +5,10 @@ import MobileMenu from 'components/MobileMenu';
 import styles from './Page.scss';
 
 class Page extends React.PureComponent {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   render() {
     return (
       <div className={styles.wrapper}>

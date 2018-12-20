@@ -31,7 +31,7 @@
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
     "prop-types": "^15.6.1",
-    "quill-delta-to-html": "^0.8.4",
+    "quill-delta-to-html": "^0.10.6",
     "raf": "3.4.0",
     "react": "^16.3.2",
     "react-addons-css-transition-group": "^15.6.2",
@@ -62,7 +62,9 @@
   "scripts": {
     "start": "PORT=5000 node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "prettier-js": "./node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
+    "prettier-css": "./node_modules/.bin/prettier --write \"src/**/*.scss\""
   },
   "jest": {
     "collectCoverageFrom": [

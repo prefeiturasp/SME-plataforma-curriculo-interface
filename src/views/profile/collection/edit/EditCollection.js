@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Classroom from './Classroom';
+import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
 import SimpleFooter from 'components/footer/SimpleFooter';
 import SimpleHeader from 'components/header/SimpleHeader';
@@ -96,6 +97,7 @@ class EditCollection extends Component {
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
+      <DesktopModal>
       <ModalPage>
         <SimpleHeader back={true} title="Editar coleção" />
         <header className={styles.header}>
@@ -114,6 +116,7 @@ class EditCollection extends Component {
         </div>
         <SimpleFooter label="Salvar alterações" onClick={this.onClickedSave} />
       </ModalPage>
+      </DesktopModal>
     );
   }
 }
