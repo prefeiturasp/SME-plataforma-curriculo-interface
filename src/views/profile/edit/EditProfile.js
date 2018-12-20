@@ -4,7 +4,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import AlertActions from 'actions/AlertActions';
+import DesktopModal from 'components/layout/DesktopModal';
 import ProfileActions from 'actions/ProfileActions';
+import ModalPage from 'components/layout/ModalPage';
 import SimpleFooter from 'components/footer/SimpleFooter';
 import SimpleHeader from 'components/header/SimpleHeader';
 import styles from './EditProfile.scss';
@@ -147,7 +149,8 @@ class EditProfile extends Component {
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
-      <section className={styles.wrapper}>
+      <DesktopModal>
+      <ModalPage>
         <SimpleHeader back={true} title="Editar Perfil" />
         <div className={styles.center}>
           {imageOrLetter}
@@ -185,7 +188,8 @@ class EditProfile extends Component {
           .
         </p>
         <SimpleFooter label="Salvar" onClick={this.onClickedSave} />
-      </section>
+      </ModalPage>
+      </DesktopModal>
     );
   }
 }
