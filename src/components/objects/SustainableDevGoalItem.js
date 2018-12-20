@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
+import createModalLink from 'utils/createModalLink';
 import styles from './SustainableDevGoalItem.scss';
 
 class SustainableDevGoalItem extends Component {
@@ -13,10 +14,7 @@ class SustainableDevGoalItem extends Component {
       />
     );
 
-    const link = {
-      pathname: `/ods/${this.props.data.id}`,
-      state: { isModal: true },
-    };
+    const link = createModalLink(`/ods/${this.props.data.id}`);
 
     return this.props.isLink ? (
       <li className={styles.wrapper}>
