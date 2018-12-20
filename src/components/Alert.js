@@ -21,14 +21,14 @@ class Alert extends Component {
         onRequestClose={close}
         shouldCloseOnOverlayClick={true}
       >
-        <button className={styles.close} onClick={close}>
+        <button className={styles.btnClose} onClick={close}>
           <img src={iconClose} alt="Fechar" />
         </button>
         <p>
           <img src={iconWarningBig} alt="Atenção" />
           <span>{message}</span>
         </p>
-        <button className={styles.ok} onClick={close}>
+        <button className={styles.btnOk} onClick={close}>
           OK
         </button>
       </Modal>

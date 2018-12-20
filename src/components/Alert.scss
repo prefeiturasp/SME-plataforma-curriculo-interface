@@ -11,7 +11,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 130;
+  z-index: 140;
 }
 
 .alert {
@@ -25,9 +25,6 @@
   line-height: rem(22);
   margin: rem(16);
   padding: rem(40) rem(60) rem(30) rem(30);
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
   width: rem(345);
 
   > p {
@@ -43,15 +40,14 @@
   }
 }
 
-.close {
+.btnClose {
   color: black;
-  font-size: rem(18);
   position: absolute;
   right: rem(10);
   top: rem(10);
 }
 
-.ok {
+.btnOk {
   composes: btn from global;
   width: rem(124);
 }
