@@ -40,7 +40,7 @@ class Header extends Component {
     });
 
     return (
-      <Headroom disableInlineStyles downTolerance={70}>
+      <Headroom disableInlineStyles>
         <header className={styles.wrapper}>
           <NavLink to="/">
             <div className={styles.logo}>
