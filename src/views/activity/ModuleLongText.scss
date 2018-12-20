@@ -1,0 +1,14 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  border: 1px solid $grey-200;
+  border-radius: rem(4);
+  margin-bottom: rem(46);
+  padding: rem(16);
+
+  > h4 {
+    margin-bottom: rem(12);
+    text-align: center;
+  }
+}

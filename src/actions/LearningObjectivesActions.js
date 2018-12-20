@@ -1,5 +1,5 @@
-import getFiltersQueryString from './getFiltersQueryString';
-import loadData from './loadData';
+import Api from 'data/Api';
+import getFiltersQueryString from 'data/getFiltersQueryString';
 
 const LearningObjectivesActions = {
   LOAD: 'LearningObjectivesActions.LOAD',
@@ -12,7 +12,7 @@ const LearningObjectivesActions = {
   TOGGLE_FILTER: 'LearningObjectivesActions.TOGGLE_FILTER',
   
   load() {
-    return loadData('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
+    return Api.simpleGet('/api/filtros', LearningObjectivesActions.LOAD, LearningObjectivesActions.LOADED);
   },
   hideObjectives() {
     return { type: LearningObjectivesActions.HIDE_OBJECTIVES };
@@ -22,7 +22,7 @@ const LearningObjectivesActions = {
   },
   search(filters) {
     const queryString = getFiltersQueryString(filters);
-    return loadData(`/api/filtros?${queryString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
+    return Api.simpleGet(`/api/filtros?${queryString}`, LearningObjectivesActions.SEARCH, LearningObjectivesActions.LOADED_RESULTS);
   },
   hideResults() {
     return { type: LearningObjectivesActions.HIDE_RESULTS };

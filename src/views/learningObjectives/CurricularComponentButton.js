@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import CurricularComponentButton from '../common/CurricularComponentButton';
-import LearningObjectivesActions from '../../actions/LearningObjectivesActions';
+import CurricularComponentButton from 'components/objects/CurricularComponentButton';
+import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 
 const mapDispatchToProps = dispatch => {
   return {

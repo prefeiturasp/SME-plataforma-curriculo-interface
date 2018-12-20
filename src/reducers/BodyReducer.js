@@ -1,27 +1,12 @@
-import BodyActions from '../actions/BodyActions';
+import BodyActions from 'actions/BodyActions';
 
 const initialState = {
-  hasModal: false,
-  hasPopup: false,
-  isHome: false,
+  hasMobileMenu: false,
   isLoading: false,
-  message: '',
 };
 
 function BodyReducer(state = initialState, action) {
   switch (action.type) {
-    case BodyActions.ENTER_HOME:
-      return {
-        ...state,
-        isHome: true,
-      };
-
-    case BodyActions.EXIT_HOME:
-      return {
-        ...state,
-        isHome: false,
-      };
-
     case BodyActions.HIDE_LOADING:
       return {
         ...state,
@@ -34,29 +19,18 @@ function BodyReducer(state = initialState, action) {
         isLoading: true,
       };
 
-    case BodyActions.HIDE_MODAL:
+    case BodyActions.HIDE_MOBILE_MENU:
       return {
         ...state,
+        hasMobileMenu: false,
         hasModal: false,
       };
 
-    case BodyActions.SHOW_MODAL:
+    case BodyActions.SHOW_MOBILE_MENU:
       return {
         ...state,
+        hasMobileMenu: true,
         hasModal: true,
-        message: action.message,
-      };
-
-    case BodyActions.HIDE_POPUP:
-      return {
-        ...state,
-        hasPopup: false,
-      };
-
-    case BodyActions.SHOW_POPUP:
-      return {
-        ...state,
-        hasPopup: true,
       };
 
     default:

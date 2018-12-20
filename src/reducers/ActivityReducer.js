@@ -1,4 +1,4 @@
-import ActivityActions from '../actions/ActivityActions';
+import ActivityActions from 'actions/ActivityActions';
 
 const initialState = {};
 

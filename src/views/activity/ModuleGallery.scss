@@ -1,0 +1,64 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  margin-bottom: rem(18);
+}
+
+:global(.image-gallery) {
+  margin: 0 rem(-15) rem(8) rem(-15);
+
+  @include mq("mobile-large") {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+:global(.image-gallery-slide) {
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+.item {
+  object-fit: cover;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.description {
+  composes: source from global;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.isFading {
+  opacity: 0;
+}
+
+.btnLeft,
+.btnRight {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: rem(18) rem(15);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: rem(46);
+  height: rem(46);
+  z-index: 3;
+}
+
+.btnLeft {
+  background-image: url(images/arrow/leftWhite.svg);
+  left: 0;
+}
+
+.btnRight {
+  background-image: url(images/arrow/rightWhite.svg);
+  right: 0;
+}

@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_URL } from '../../constants';
-import ActivityActions from '../../actions/ActivityActions';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import convertQuillToHtml from '../util/convertQuillToHtml';
+import { API_URL } from 'data/constants';
+import ActivityActions from 'actions/ActivityActions';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
 import getActivityTypeIcon from './getActivityTypeIcon';
-import getWindowWidth from '../util/getWindowWidth';
-import iconClock from '../../images/iconClock.svg';
-import styles from './Activity.css';
+import getWindowWidth from 'utils/getWindowWidth';
+import iconClock from 'images/icon/clock.svg';
+import styles from './Activity.scss';
 
 let hasPrinted = false;
 
 class ActivityPrint extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  onResized() {
+  state = {};
+  
+  onResized = () => {
     const totalWidth = getWindowWidth();
     this.setState({ totalWidth });
   }
@@ -29,7 +26,7 @@ class ActivityPrint extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.onResized.bind(this));
+    window.addEventListener('resize', this.onResized);
     if (this.props.match) {
       const params = this.props.match.params;
       this.props.load(params.slug1, params.slug2);
@@ -54,7 +51,7 @@ class ActivityPrint extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.onResized.bind(this));
+    window.removeEventListener('resize', this.onResized);
   }
 
   render() {

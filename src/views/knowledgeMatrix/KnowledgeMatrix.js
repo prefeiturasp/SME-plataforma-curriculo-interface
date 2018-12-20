@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import KnowledgeMatrixActions from '../../actions/KnowledgeMatrixActions';
+import BodyActions from 'actions/BodyActions';
+import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import KnowledgeMatrixButton from './KnowledgeMatrixButton';
+import Page from 'components/Page';
 import styles from './KnowledgeMatrix.css';
 
 class KnowledgeMatrix extends Component {
@@ -19,6 +20,7 @@ class KnowledgeMatrix extends Component {
     });
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className="row">
@@ -40,6 +42,7 @@ class KnowledgeMatrix extends Component {
           </ul>
         </div>
       </section>
+      </Page>
     );
   }
 }

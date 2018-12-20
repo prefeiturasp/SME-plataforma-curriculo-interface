@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import iconKnowledgeMatrix from '../../images/iconKnowledgeMatrix.svg';
-import iconLearningObjectives from '../../images/iconLearningObjectives.svg';
-import iconSustainableDevGoals from '../../images/iconSustainableDevGoals.svg';
-import imgCurriculum from '../../images/imgCurriculum.jpg';
+import Page from 'components/Page';
+import iconKnowledgeMatrix from 'images/illustration/knowledgeMatrix.svg';
+import iconLearningObjectives from 'images/illustration/learningObjectives.svg';
+import iconSustainableDevGoals from 'images/illustration/sustainableDevGoals.svg';
+import imgCurriculum from './curriculum.jpg';
 import styles from './Curriculum.css';
 
 class Curriculum extends Component {
@@ -11,6 +12,7 @@ class Curriculum extends Component {
     const style = { backgroundImage: `url(${imgCurriculum})` };
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className={styles.image} style={style}>
@@ -58,6 +60,7 @@ class Curriculum extends Component {
           </li>
         </ul>
       </section>
+      </Page>
     );
   }
 }

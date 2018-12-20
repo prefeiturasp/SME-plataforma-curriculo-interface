@@ -2,29 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { API_URL } from '../../constants';
-import BodyActions from '../../actions/BodyActions';
-import SustainableDevGoalsActions from '../../actions/SustainableDevGoalsActions';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { withRouter } from 'react-router';
+import { API_URL } from 'data/constants';
+import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import GoalItem from './GoalItem';
-import iconCloseBigWhite from '../../images/iconCloseBigWhite.svg';
+import iconCloseBigWhite from 'images/icon/closeBigWhite.svg';
 import styles from './SustainableDevGoal.css';
 
 class SustainableDevGoal extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { animationStatus: null };
+  state = { animationStatus: null };
+  
+  onClickedClose = () => {
+    this.props.history.goBack();
   }
 
-  onClickedClose() {
-    this.context.router.history.goBack();
-  }
-
-  onEntered() {
+  onEntered = () => {
     this.setState({ animationStatus: 'entered' });
   }
   
   componentDidMount() {
-    this.props.showPopup();
+    disableBodyScroll(document.querySelector('#sustainableDevGoal'));
     this.props.loadItem(this.props.match.params.id);
     this.setState({ animationStatus: 'appeared' });
   }
@@ -32,12 +30,12 @@ class SustainableDevGoal extends Component {
   componentDidUpdate(prevProps) {
     if (this.state.animationStatus === 'appeared' && this.props.data) {
       this.setState({ animationStatus: 'enter' });
-      setTimeout(this.onEntered.bind(this), 1000);
+      setTimeout(this.onEntered, 1000);
     }
   }
 
   componentWillUnmount() {
-    this.props.hidePopup();
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -64,7 +62,7 @@ class SustainableDevGoal extends Component {
     const style = { backgroundColor: data.color };
 
     return (
-      <section className={classes.join(' ')}>
+      <section className={classes.join(' ')} id="sustainableDevGoal">
         <header className={styles.header} style={style}>
           <div className="container">
             <div className="row">
@@ -93,7 +91,7 @@ class SustainableDevGoal extends Component {
             </div>
           </div>
         </div>
-        <button className={styles.close} onClick={this.onClickedClose.bind(this)}>
+        <button className={styles.close} onClick={this.onClickedClose}>
           <img src={iconCloseBigWhite} alt="Fechar" />
         </button>
       </section>
@@ -101,15 +99,9 @@ class SustainableDevGoal extends Component {
   }
 }
 
-SustainableDevGoal.contextTypes = {
-  router: PropTypes.object.isRequired,
-};
-
 SustainableDevGoal.propTypes = {
   data: PropTypes.object,
   loadItem: PropTypes.func.isRequired,
-  hidePopup: PropTypes.func.isRequired,
-  showPopup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -123,13 +115,7 @@ const mapDispatchToProps = dispatch => {
     loadItem: (id) => {
       dispatch(SustainableDevGoalsActions.loadItem(id));
     },
-    hidePopup: () => {
-      dispatch(BodyActions.hidePopup());
-    },
-    showPopup: () => {
-      dispatch(BodyActions.showPopup());
-    },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SustainableDevGoal);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(SustainableDevGoal));

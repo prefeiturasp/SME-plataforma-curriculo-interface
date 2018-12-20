@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BodyActions from '../../actions/BodyActions';
-import FiltersActions from '../../actions/FiltersActions';
-import SequencesActions from '../../actions/SequencesActions';
-import FilterBar from '../filters/FilterBar';
-import FilterPanel from '../filters/FilterPanel';
+import BodyActions from 'actions/BodyActions';
+import FiltersActions from 'actions/FiltersActions';
+import SequencesActions from 'actions/SequencesActions';
+import FilterBar from './filters/FilterBar';
+import FilterPanel from './filters/FilterPanel';
 import GridItem from './GridItem';
-import Loading from '../util/Loading';
+import Loading from 'components/loading/Loading';
+import Page from 'components/Page';
 import ResultsLoading from './ResultsLoading';
 import ResultsNotFound from './ResultsNotFound';
 import styles from './Sequences.css';
 
 class Sequences extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      windowHeight: 1000,
-    };
-  }
+  state = { windowHeight: 1000 };
 
-  onClickedLoadMore() {
+  onClickedLoadMore = () => {
     this.props.loadMore(this.props.nextPage);
   }
 
@@ -65,7 +61,7 @@ class Sequences extends Component {
 
     if (this.props.data.length) {
       const button = this.props.nextPage ? (
-        <button className={styles.load} onClick={this.onClickedLoadMore.bind(this)}>
+        <button className={styles.load} onClick={this.onClickedLoadMore}>
           Carregar mais
         </button>
       ) : null;
@@ -73,6 +69,7 @@ class Sequences extends Component {
       const loadingOrButton = this.props.isSearching ? <Loading /> : button;
 
       return (
+        <Page>
         <section className={styles.wrapper}>
           <div className="container">
             <h1>Sequências de Atividades</h1>
@@ -94,6 +91,7 @@ class Sequences extends Component {
             </div>
           </div>
         </section>
+        </Page>
       );
     }
     else if (this.props.isSearching) {

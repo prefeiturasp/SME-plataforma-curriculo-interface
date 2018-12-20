@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_URL } from '../../constants';
-import BodyActions from '../../actions/BodyActions';
-import SequencesActions from '../../actions/SequencesActions';
-import ActivityPrint from '../activity/ActivityPrint';
-import CurricularComponentItem from '../common/CurricularComponentItem';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
-import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
-import convertQuillToHtml from '../util/convertQuillToHtml';
-import iconClock from '../../images/iconClock.svg';
-import styles from './Sequence.css';
+import { API_URL } from 'data/constants';
+import BodyActions from 'actions/BodyActions';
+import SequencesActions from 'actions/SequencesActions';
+import ActivityPrint from 'views/activity/ActivityPrint';
+import CurricularComponentItem from 'components/objects/CurricularComponentItem';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
+import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
+import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
+import iconClock from 'images/icon/clock.svg';
+import styles from './Sequence.scss';
 
 let hasPrinted = false;
 

@@ -1,11 +1,11 @@
-import iconPair from '../../images/iconPair.svg';
-import iconGroup from '../../images/iconGroup.svg';
-import iconIndividual from '../../images/iconIndividual.svg';
-import iconIndoors from '../../images/iconIndoors.svg';
-import iconOutdoors from '../../images/iconOutdoors.svg';
+import iconPair from './images/types/pair.svg';
+import iconGroup from './images/types/group.svg';
+import iconIndividual from './images/types/individual.svg';
+import iconIndoors from './images/types/indoors.svg';
+import iconOutdoors from './images/types/outdoors.svg';
 
-export default function getActivityTypeIcon(activityType) {
-  switch (activityType) {
+export default function getActivityTypeIcon(type) {
+  switch (type) {
     case 'Dupla':
       return iconPair;
 

@@ -1,0 +1,16 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  background: white;
+  border-top: 1px solid $grey-200;
+  display: flex;
+  justify-content: center;
+  padding: rem(12);
+  position: relative;
+  z-index: 80;
+}
+
+.button {
+  composes: btnBig from global;
+}

@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import ReadMore from '../util/ReadMore';
-import { API_URL } from '../../constants';
-import BodyActions from '../../actions/BodyActions';
-import SequencesActions from '../../actions/SequencesActions';
+import { API_URL } from 'data/constants';
+import BodyActions from 'actions/BodyActions';
+import SequencesActions from 'actions/SequencesActions';
 import ActivityItem from './ActivityItem';
-import CurricularComponentItem from '../common/CurricularComponentItem';
-import ExpandableLearningObjectiveItem from '../common/ExpandableLearningObjectiveItem';
-import GenericItem from '../common/GenericItem';
-import KnowledgeMatrixItem from '../common/KnowledgeMatrixItem';
-import SustainableDevGoalItem from '../common/SustainableDevGoalItem';
-import convertQuillToHtml from '../util/convertQuillToHtml';
-import iconClock from '../../images/iconClock.svg';
-import iconHelp from '../../images/iconHelp.svg';
-import iconPrint from '../../images/iconPrint.svg';
+import CurricularComponentItem from 'components/objects/CurricularComponentItem';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
+import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
+import Page from 'components/Page';
+import ReadMore from 'components/ReadMore';
+import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
+import iconClock from 'images/icon/clock.svg';
+import iconHelp from 'images/icon/help.svg';
+import iconPrint from 'images/icon/print.svg';
 import styles from './Sequence.css';
 
 class Sequence extends Component {
@@ -130,6 +131,7 @@ class Sequence extends Component {
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
 
     return (
+      <Page>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div>
@@ -230,6 +232,7 @@ class Sequence extends Component {
           <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
         </ReactTooltip>
       </section>
+      </Page>
     );
   }
 }

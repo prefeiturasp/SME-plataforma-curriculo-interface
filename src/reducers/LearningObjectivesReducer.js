@@ -1,4 +1,4 @@
-import LearningObjectivesActions from '../actions/LearningObjectivesActions';
+import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 
 const initialState = {
   filters: [],

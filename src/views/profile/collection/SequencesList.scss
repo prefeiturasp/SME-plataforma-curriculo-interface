@@ -1,0 +1,16 @@
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  background-color: $grey-100;
+  flex: 1;
+  overflow-y: scroll;
+  padding: rem(19) rem(16);
+
+  > h3 {
+    font-size: rem(15);
+    font-weight: 600;
+    line-height: rem(24);
+    margin-bottom: rem(20);
+  }
+}

@@ -1,0 +1,17 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.toggler {
+  color: $grey-600;
+  display: inline-block;
+  font-size: rem(12);
+  font-weight: 600;
+  margin-top: rem(13);
+  text-transform: uppercase;
+}
+
+.text {
+  br {
+    margin: 0 !important;
+  }
+}
