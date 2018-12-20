@@ -7,6 +7,7 @@ import ConfirmActions from 'actions/ConfirmActions';
 import EmptyList from './EmptyList';
 import Page from 'components/layout/Page';
 import SequenceList from './SequenceList';
+import createModalLink from 'utils/createModalLink';
 import iconClose from 'images/icons/closeBig.svg';
 import iconEdit from 'images/icons/edit.svg';
 import iconDelete from 'images/icons/delete1.svg';
@@ -101,7 +102,7 @@ class Collection extends Component {
     const id = 1;
     const name = 'Planeta';
     const word = classrooms.length > 1 ? 'turmas' : 'turma';
-    const link = `/colecao/${id}/editar`;
+    const link = createModalLink(`/colecao/${id}/editar`);
 
     const years = classrooms.map((year, i) => {
       return <ClassroomYear key={i} year={year.year} color={year.color} />;

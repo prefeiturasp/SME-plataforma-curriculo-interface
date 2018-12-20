@@ -5,6 +5,7 @@ import CollectionList from './collections/CollectionList';
 import EmptyList from './collections/EmptyList';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
+import createModalLink from 'utils/createModalLink';
 import withWidth from 'components/hoc/withWidth';
 import chevronRight from 'images/chevrons/right.svg';
 import iconEdit from 'images/icons/edit.svg';
@@ -103,6 +104,9 @@ class Profile extends Component {
 
     const size = this.props.windowWidth < 768 ? 60 : 80;
 
+    const linkEdit = createModalLink('/perfil/editar');
+    const linkClassrooms = createModalLink('/turmas');
+
     return (
       <Page>
         {notification}
@@ -112,10 +116,10 @@ class Profile extends Component {
               <Avatar nickname="Marília" size={size} />
               <div className={styles.name}>
                 <h2>Marília</h2>
-                <NavLink to="/perfil/editar">Editar perfil</NavLink>
+                <NavLink to={linkEdit}>Editar perfil</NavLink>
               </div>
             </div>
-            <NavLink to="/perfil/editar">
+            <NavLink to={linkEdit}>
               <img src={iconEdit} alt="Editar perfil" />
             </NavLink>
           </div>
@@ -130,7 +134,7 @@ class Profile extends Component {
               <em>3</em> componentes
             </div>
           </div>
-          <NavLink className="btnSmall btnFullWidth" to="/turmas">
+          <NavLink className="btnSmall btnFullWidth" to={linkClassrooms}>
             Ver minhas turmas
             <img src={chevronRight} alt="" />
           </NavLink>
