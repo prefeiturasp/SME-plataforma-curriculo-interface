@@ -1,22 +1,28 @@
-import QuillDeltaToHtmlConverter from 'quill-delta-to-html';
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 import { API_URL } from 'data/constants';
 
 export default function convertQuillToHtml(json) {
   const ops = JSON.parse(json).ops;
-  const converter = new QuillDeltaToHtmlConverter(ops);
 
-  converter.beforeRender(function(groupType, data) {
-    if (data.ops) {
-      data.ops.forEach(item => {
-        if (item.insert.type === 'image') {
-          item.insert.value = API_URL + item.insert.value;
-        }
-      });
+  ops.forEach(item => {
+    if (item.insert.image) {
+      item.insert.image = API_URL + item.insert.image;
+
+      if (item.attributes.style) {
+        item.insert.imageWithStyle = item.insert.image;
+        delete item.insert.image;
+      }
     }
   });
 
-  converter.renderCustomWith(function(customOp, contextOp) {
-    if (customOp.insert.type === 'divider') {
+  const converter = new QuillDeltaToHtmlConverter(ops);
+
+  converter.renderCustomWith(function(op, context) {
+    if (op.insert.type === 'imageWithStyle') {
+      const attrs = op.attributes;
+      const src = op.insert.value;
+      return `<img style="${attrs.style}" width="${attrs.width}" src="${src}" />`;
+    } else if (op.insert.type === 'divider') {
       return '<hr />';
     } else {
       return null;
