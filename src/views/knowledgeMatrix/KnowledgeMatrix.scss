@@ -1,9 +1,6 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
-.wrapper {
-}
-
 .header {
   composes: container from global;
   font-size: 1.125rem;

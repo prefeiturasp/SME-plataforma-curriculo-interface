@@ -5,7 +5,6 @@ import { withRouter } from 'react-router';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import ConfirmActions from 'actions/ConfirmActions';
 import EmptyList from './EmptyList';
-import ModalPage from 'components/layout/ModalPage';
 import Page from 'components/layout/Page';
 import SequenceList from './SequenceList';
 import iconClose from 'images/icons/closeBig.svg';
