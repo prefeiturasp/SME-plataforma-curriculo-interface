@@ -43,10 +43,7 @@ class KnowledgeMatrixItem extends Component {
     const forDescription = data ? data.for_description : '';
 
     return (
-      <FullModal
-        id="knowledgeMatrixItem"
-        isVisible={this.state.isLoaded}
-      >
+      <FullModal isVisible={this.state.isLoaded}>
       <section className={styles.wrapper}>
         <div className="container">
           <div className="row">

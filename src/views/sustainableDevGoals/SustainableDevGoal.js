@@ -33,10 +33,7 @@ class SustainableDevGoal extends Component {
     const style = { backgroundColor: data.color };
 
     return (
-      <FullModal
-        id="sustainableDevGoal"
-        isVisible={true}
-      >
+      <FullModal isVisible={true}>
       <section className={styles.wrapper}>
         <header className={styles.header} style={style}>
           <div className="container">

@@ -15,7 +15,7 @@ class FullModal extends React.PureComponent {
   };
 
   componentDidMount() {
-    disableBodyScroll(document.querySelector(`#${this.props.id}`));
+    disableBodyScroll(document.querySelector("#fullModal"));
     if (this.props.isVisible) {
       this.enter();
     }
@@ -38,7 +38,7 @@ class FullModal extends React.PureComponent {
     }
 
     return (
-      <div className={classes.join(' ')} id={this.props.id}>
+      <div className={classes.join(' ')} id="fullModal">
         {this.props.children}
       </div>
     );
@@ -46,7 +46,6 @@ class FullModal extends React.PureComponent {
 }
 
 FullModal.propTypes = {
-  id: PropTypes.string.isRequired,
   isVisible: PropTypes.bool,
 };
 
