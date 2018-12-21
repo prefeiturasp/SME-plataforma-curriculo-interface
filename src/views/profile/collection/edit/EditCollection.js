@@ -105,6 +105,7 @@ class EditCollection extends Component {
               error={isInvalid}
               fullWidth={true}
               helperText={message}
+              inputRef={input => input.focus()}
               label="Nome da coleção"
               onChange={this.onChangedName}
               value={this.state.name}
