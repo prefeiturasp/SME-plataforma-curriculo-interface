@@ -4,10 +4,14 @@ import styles from './PillItem.scss';
 
 class PillItem extends Component {
   render() {
-    const { data, isOutlined } = this.props;
+    const { data, isOutlined, isSmall } = this.props;
 
     const classes = [styles.wrapper];
     const style = {};
+
+    if (isSmall) {
+      classes.push(styles.isSmall);
+    }
 
     if (isOutlined) {
       classes.push(styles.isOutlined);
@@ -27,6 +31,7 @@ class PillItem extends Component {
 PillItem.propTypes = {
   data: PropTypes.object,
   isOutlined: PropTypes.bool,
+  isSmall: PropTypes.bool,
 };
 
 export default PillItem;

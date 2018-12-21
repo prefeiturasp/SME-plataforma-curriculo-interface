@@ -5,13 +5,19 @@
   @include pill;
   background-color: $grey-200;
   display: inline-block;
-}
 
-.isColored {
-  color: white;
-}
+  &.isColored {
+    color: white;
+  }
 
-.isOutlined {
-  background-color: transparent;
-  border: 1px solid $grey-200;
+  &.isOutlined {
+    background-color: transparent;
+    border: 1px solid $grey-200;
+  }
+
+  &.isSmall {
+    font-size: rem(12);
+    margin: rem(3);
+    padding: rem(3) rem(12);
+  }
 }
