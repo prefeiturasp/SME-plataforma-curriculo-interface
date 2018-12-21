@@ -105,7 +105,7 @@ class CreateCollection extends Component {
               error={isInvalid}
               fullWidth={true}
               helperText={message}
-              inputRef={input => input.focus()}
+              inputRef={input => input ? input.focus() : null}
               label="Nome da coleção"
               onChange={this.onChangedName}
               value={this.state.name}
