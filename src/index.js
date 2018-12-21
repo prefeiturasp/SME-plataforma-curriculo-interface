@@ -29,6 +29,7 @@ import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Profile from 'views/profile/Profile';
 import Roadmap from 'views/roadmap/Roadmap';
+import SaveSequence from 'views/sequence/save/SaveSequence';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
@@ -103,6 +104,7 @@ class ModalSwitch extends Component {
         <Route exact path="/turmas" component={Classrooms} />
         <Route exact path="/colecao/:id/editar" component={EditCollection} />
         <Route exact path="/perfil/editar" component={EditProfile} />
+        <Route exact path="/sequencia/:slug/salvar" component={SaveSequence} />
       </Fragment>
     );
   }

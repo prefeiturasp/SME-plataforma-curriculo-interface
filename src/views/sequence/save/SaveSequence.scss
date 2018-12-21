@@ -1,0 +1,29 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.list {
+  border-top: 1px solid $grey-200;
+  flex-shrink: 10;
+  overflow-y: scroll;
+  padding: rem(15);
+}
+
+.footer {
+  background: white;
+  border-top: 1px solid $grey-200;
+  display: flex;
+  justify-content: flex-start;
+  padding: rem(16);
+  position: relative;
+}
+
+.btnCreate {
+  color: $grey-600;
+  font-size: rem(18);
+  font-weight: 600;
+  line-height: rem(22);
+
+  > img {
+    margin-right: rem(14);
+  }
+}
