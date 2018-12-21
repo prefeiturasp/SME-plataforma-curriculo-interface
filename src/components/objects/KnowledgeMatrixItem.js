@@ -10,19 +10,16 @@ class KnowledgeMatrixItem extends Component {
       `/matriz-de-saberes/${this.props.data.sequence}`
     );
 
-    return this.props.isLink ? (
-      <li className={styles.wrapper}>
-        <NavLink to={link}>
-          <div>{this.props.data.sequence}</div>
-          <div>{this.props.data.title}</div>
-        </NavLink>
-      </li>
-    ) : (
-      <li className={styles.wrapper}>
-        <div>{this.props.data.sequence}</div>
-        <div>{this.props.data.title}</div>
-      </li>
+    const contents = (
+      <div className={styles.wrapper}>
+        <div className={styles.number}>{this.props.data.sequence}</div>
+        <div className={styles.label}>{this.props.data.title}</div>
+      </div>
     );
+
+    return this.props.isLink
+      ? <NavLink to={link}>{contents}</NavLink>
+      : contents;
   }
 }
 
