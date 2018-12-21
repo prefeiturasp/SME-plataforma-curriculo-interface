@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   disableBodyScroll,
   clearAllBodyScrollLocks,
@@ -39,14 +40,22 @@ class DesktopModal extends Component {
   }
 
   render() {
+    const classes = this.props.isSmall
+      ? [styles.wrapper, styles.isSmall]
+      : [styles.wrapper];
+
     return (
       <div className={styles.overlay} onClick={this.onClosed} id="desktopModal">
-        <div className={styles.wrapper} onClick={this.onClicked}>
+        <div className={classes.join(' ')} onClick={this.onClicked}>
           {this.props.children}
         </div>
       </div>
     );
   }
 }
+
+DesktopModal.propTypes = {
+  isSmall: PropTypes.bool,
+};
 
 export default withRouter(withWidth(DesktopModal));
