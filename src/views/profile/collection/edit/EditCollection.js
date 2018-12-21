@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import Classroom from './Classroom';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
-import SimpleFooter from 'components/footer/SimpleFooter';
-import SimpleHeader from 'components/header/SimpleHeader';
+import ModalFooter from 'components/footer/ModalFooter';
+import ModalHeader from 'components/header/ModalHeader';
 import styles from './EditCollection.scss';
 
 class EditCollection extends Component {
@@ -99,7 +99,7 @@ class EditCollection extends Component {
     return (
       <DesktopModal>
         <ModalPage>
-          <SimpleHeader back={true} title="Editar coleção" />
+          <ModalHeader title="Editar coleção" />
           <header className={styles.header}>
             <TextField
               error={isInvalid}
@@ -114,7 +114,7 @@ class EditCollection extends Component {
             <h3>Selecionar turmas (opcional)</h3>
             {items}
           </div>
-          <SimpleFooter
+          <ModalFooter
             label="Salvar alterações"
             onClick={this.onClickedSave}
           />

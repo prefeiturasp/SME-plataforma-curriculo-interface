@@ -7,7 +7,7 @@ import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import CurricularComponentButton from './CurricularComponentButton';
-import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import PillItem from 'components/objects/PillItem';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
@@ -110,7 +110,7 @@ class LearningObjectives extends Component {
 
     const learningObjectivesItems = this.props.results.map((item, i) => {
       return (
-        <ExpandableLearningObjectiveItem key={i} data={item} hasLink={true} />
+        <ExpandableLearningObjective key={i} data={item} hasLink={true} />
       );
     });
 

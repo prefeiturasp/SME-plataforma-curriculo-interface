@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import MobileModal from 'components/layout/MobileModal';
 import ModalPage from 'components/layout/ModalPage';
 import SequenceChars from './SequenceChars';
-import SimpleHeader from 'components/header/SimpleHeader';
+import ModalHeader from 'components/header/ModalHeader';
 
 class SequenceCharsMobile extends Component {
   render() {
     return (
       <MobileModal htmlId="sequenceChars" isExpanded={this.props.isExpanded}>
         <ModalPage id="sequenceChars">
-          <SimpleHeader back={true} title="Características" />
+          <ModalHeader title="Características" />
           <SequenceChars data={this.props.data} />
         </ModalPage>
       </MobileModal>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
 import School from './School';
-import SimpleHeader from 'components/header/SimpleHeader';
+import ModalHeader from 'components/header/ModalHeader';
 import styles from './Classrooms.scss';
 
 class Classrooms extends Component {
@@ -112,7 +112,7 @@ class Classrooms extends Component {
     return (
       <DesktopModal>
         <ModalPage>
-          <SimpleHeader back={true} title="Minhas turmas" />
+          <ModalHeader title="Minhas turmas" />
           <div className={styles.list}>{items}</div>
         </ModalPage>
       </DesktopModal>
