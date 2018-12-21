@@ -9,7 +9,7 @@ class Classroom extends React.PureComponent {
     const { components, level, name, year } = this.props;
 
     const items = components.map((component, i) => {
-      return <PillItem key={i} data={component} />;
+      return <PillItem key={i} data={component} isSmall={true} />;
     });
 
     return (

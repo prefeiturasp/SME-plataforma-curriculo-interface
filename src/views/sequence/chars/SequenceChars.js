@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import PillItem from 'components/objects/PillItem';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
@@ -44,7 +44,7 @@ class SequenceChars extends Component {
 
     const learningObjectives = learningObjectivesList.map((item, i) => {
       return (
-        <ExpandableLearningObjectiveItem
+        <ExpandableLearningObjective
           key={i}
           data={item}
           isExpanded={i === 0}
@@ -72,7 +72,7 @@ class SequenceChars extends Component {
     const linkPrint = `/imprimir/sequencia/xxx`;
 
     return (
-      <Fragment>
+      <div className={styles.wrapper}>
         <div className={styles.title}>Componentes relacionados</div>
         <ul>{relatedComponents}</ul>
 
@@ -107,7 +107,7 @@ class SequenceChars extends Component {
         </NavLink>
 
         <Tooltips />
-      </Fragment>
+      </div>
     );
   }
 }

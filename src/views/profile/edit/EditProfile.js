@@ -7,8 +7,8 @@ import AlertActions from 'actions/AlertActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ProfileActions from 'actions/ProfileActions';
 import ModalPage from 'components/layout/ModalPage';
-import SimpleFooter from 'components/footer/SimpleFooter';
-import SimpleHeader from 'components/header/SimpleHeader';
+import ModalFooter from 'components/footer/ModalFooter';
+import ModalHeader from 'components/header/ModalHeader';
 import styles from './EditProfile.scss';
 import { API_URL } from 'data/constants';
 
@@ -149,14 +149,14 @@ class EditProfile extends Component {
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
-      <DesktopModal>
+      <DesktopModal isSmall>
         <ModalPage>
-          <SimpleHeader back={true} title="Editar Perfil" />
-          <div className={styles.center}>
-            {imageOrLetter}
-            {actions}
-          </div>
-          <div className={styles.fields}>
+          <ModalHeader title="Editar Perfil" />
+          <div className={styles.contents}>
+            <div className={styles.center}>
+              {imageOrLetter}
+              {actions}
+            </div>
             <div className={styles.field}>
               <TextField
                 error={isInvalid}
@@ -175,19 +175,19 @@ class EditProfile extends Component {
                 value={this.state.name}
               />
             </div>
+            <p className={styles.obs}>
+              Caso deseje alterar sua senha, acesse sua conta na{' '}
+              <a
+                href="https://sme.prefeitura.sp.gov.br/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Secretaria Municipal de Educação
+              </a>
+              .
+            </p>
           </div>
-          <p className={styles.obs}>
-            Caso deseje alterar sua senha, acesse sua conta na{' '}
-            <a
-              href="https://sme.prefeitura.sp.gov.br/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Secretaria Municipal de Educação
-            </a>
-            .
-          </p>
-          <SimpleFooter label="Salvar" onClick={this.onClickedSave} />
+          <ModalFooter label="Salvar" onClick={this.onClickedSave} />
         </ModalPage>
       </DesktopModal>
     );
