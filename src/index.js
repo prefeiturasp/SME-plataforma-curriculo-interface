@@ -20,6 +20,7 @@ import AppLoading from 'components/loading/AppLoading';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Collection from 'views/profile/collection/Collection';
 import Confirm from 'components/Confirm';
+import CreateCollection from 'views/profile/collection/create/CreateCollection';
 import Curriculum from 'views/curriculum/Curriculum';
 import EditCollection from 'views/profile/collection/edit/EditCollection';
 import EditProfile from 'views/profile/edit/EditProfile';
@@ -102,6 +103,7 @@ class ModalSwitch extends Component {
           component={KnowledgeMatrixDetail}
         />
         <Route exact path="/turmas" component={Classrooms} />
+        <Route exact path="/colecao/criar" component={CreateCollection} />
         <Route exact path="/colecao/:id/editar" component={EditCollection} />
         <Route exact path="/perfil/editar" component={EditProfile} />
         <Route exact path="/sequencia/:slug/salvar" component={SaveSequence} />
