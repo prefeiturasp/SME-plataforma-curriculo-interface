@@ -23,7 +23,7 @@ class ActivityItem extends Component {
     ) : null;
 
     return (
-      <li className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+      <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
         <NavLink to={link} className={styles.wrapper}>
           <div className={styles.image}>
             {image}
@@ -35,7 +35,7 @@ class ActivityItem extends Component {
             {duration} {word}
           </div>
         </NavLink>
-      </li>
+      </div>
     );
   }
 }

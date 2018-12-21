@@ -15,17 +15,15 @@ class CategoryItemButton extends Component {
       : [styles.wrapper];
 
     return (
-      <li>
-        <button className={classes.join(' ')} onClick={this.onClicked}>
-          <div className={styles.check}>
-            <div className={styles.checkMark} />
-          </div>
-          {this.props.data.name ||
-            this.props.data.title ||
-            this.props.data.code ||
-            this.props.data.description}
-        </button>
-      </li>
+      <button className={classes.join(' ')} onClick={this.onClicked}>
+        <div className={styles.check}>
+          <div className={styles.checkMark} />
+        </div>
+        {this.props.data.name ||
+          this.props.data.title ||
+          this.props.data.code ||
+          this.props.data.description}
+      </button>
     );
   }
 }

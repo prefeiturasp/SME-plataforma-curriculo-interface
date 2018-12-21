@@ -50,7 +50,7 @@ class SustainableDevGoals extends Component {
                 Conheça os Objetivos de Desenvolvimento Sustentável
               </h2>
             </div>
-            <ul className={styles.list}>{items}</ul>
+            <div className="row">{items}</div>
           </div>
         </section>
       </Page>

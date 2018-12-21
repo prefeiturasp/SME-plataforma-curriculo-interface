@@ -78,7 +78,7 @@ class Sequences extends Component {
           </div>
           <div className={styles.list}>
             <div className={styles.results}>
-              <ul className="row">{items}</ul>
+              <div className="row">{items}</div>
               <div className={styles.center}>{loadingOrButton}</div>
             </div>
           </div>

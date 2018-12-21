@@ -20,7 +20,7 @@ class RoadmapItem extends Component {
     );
 
     return (
-      <li className={classes.join(' ')}>
+      <div className={classes.join(' ')}>
         <div className={styles.middle}>
           <div className={styles.line} />
           <img src={icon} alt={alt} />
@@ -30,7 +30,7 @@ class RoadmapItem extends Component {
           <h2>{this.props.data.title}</h2>
           <p>{this.props.data.description}</p>
         </div>
-      </li>
+      </div>
     );
   }
 }

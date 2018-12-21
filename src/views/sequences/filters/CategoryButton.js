@@ -12,12 +12,10 @@ class CategoryButton extends Component {
 
   render() {
     return (
-      <li>
-        <button className={styles.wrapper} onClick={this.onClicked}>
-          {this.props.data.name}
-          <img src={chevronRight} alt={this.props.data.name} />
-        </button>
-      </li>
+      <button className={styles.wrapper} onClick={this.onClicked}>
+        {this.props.data.name}
+        <img src={chevronRight} alt={this.props.data.name} />
+      </button>
     );
   }
 }

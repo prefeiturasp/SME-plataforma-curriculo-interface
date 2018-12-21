@@ -16,11 +16,9 @@ class CategoryItemImageButton extends Component {
       : [styles.wrapper];
 
     return (
-      <li>
-        <button className={classes.join(' ')} onClick={this.onClicked}>
-          <img src={API_URL + this.props.data.url} alt={this.props.data.name} />
-        </button>
-      </li>
+      <button className={classes.join(' ')} onClick={this.onClicked}>
+        <img src={API_URL + this.props.data.url} alt={this.props.data.name} />
+      </button>
     );
   }
 }

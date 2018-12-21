@@ -76,7 +76,7 @@ class Sequence extends Component {
                 <h3>
                   {data.activities.length} {word}
                 </h3>
-                <ul className="row">{activities}</ul>
+                <div className="row">{activities}</div>
               </div>
             </div>
             <div className={styles.chars}>

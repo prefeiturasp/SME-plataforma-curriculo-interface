@@ -52,7 +52,7 @@ class Detail extends Component {
             <div className="row">
               <div className="col-md-8 offset-md-2">
                 <h2>Conheça as metas</h2>
-                <ul className={styles.list}>{goals}</ul>
+                <div className={styles.list}>{goals}</div>
                 <NavLink
                   to={`/sequencias/ods/${this.props.match.params.id}`}
                   className={styles.button}

@@ -36,7 +36,7 @@ class Roadmap extends Component {
           <hr />
           <div className="container">
             <div className="row">
-              <ul className={styles.list}>{items}</ul>
+              <div className={styles.list}>{items}</div>
             </div>
           </div>
           <hr />

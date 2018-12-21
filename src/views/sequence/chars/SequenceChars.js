@@ -74,7 +74,7 @@ class SequenceChars extends Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>Componentes relacionados</div>
-        <ul>{relatedComponents}</ul>
+        <div>{relatedComponents}</div>
 
         <div className={styles.title}>
           Objetivos de aprendizagem
@@ -82,7 +82,7 @@ class SequenceChars extends Component {
             <img src={iconHelp} alt="Ajuda" />
           </button>
         </div>
-        <ul>{learningObjectives}</ul>
+        <div>{learningObjectives}</div>
         {btnAllLearningObjectives}
 
         <div className={styles.title}>
@@ -91,7 +91,7 @@ class SequenceChars extends Component {
             <img src={iconHelp} alt="Ajuda" />
           </button>
         </div>
-        <ul>{sustainableDevGoals}</ul>
+        <div>{sustainableDevGoals}</div>
 
         <div className={styles.title}>
           Matriz de saberes
@@ -99,7 +99,7 @@ class SequenceChars extends Component {
             <img src={iconHelp} alt="Ajuda" />
           </button>
         </div>
-        <ul>{knowledgeMatrices}</ul>
+        <div>{knowledgeMatrices}</div>
 
         <NavLink className={styles.btnPrint} to={linkPrint}>
           <img src={iconPrint} alt="Imprimir" />

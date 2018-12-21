@@ -94,7 +94,7 @@ class FilterPanel extends Component {
             <div className="col-sm-12 col-md-6 col-lg-3">
               <h4>Ano</h4>
               <h5>Ciclo de Alfabetização</h5>
-              <ul className={styles.buttons}>{yearButtons}</ul>
+              <div className={styles.buttons}>{yearButtons}</div>
               <p className={styles.warning}>
                 <img src={iconWarning} alt="Observação" />
                 <span>
@@ -105,12 +105,12 @@ class FilterPanel extends Component {
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
               <h4>Componente Curricular</h4>
-              <ul className={styles.buttons}>{componentButtons}</ul>
+              <div className={styles.buttons}>{componentButtons}</div>
             </div>
             <div className="col-sm-12 col-md-12 col-lg-5">
               <h4>Filtros</h4>
               <div className={styles.categories}>
-                <ul>{categoryButtons}</ul>
+                <div>{categoryButtons}</div>
                 <CategoryPanel />
               </div>
             </div>

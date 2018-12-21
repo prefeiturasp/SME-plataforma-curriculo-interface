@@ -21,9 +21,9 @@ class Preview extends Component {
     const learningObjectives = this.props.data.learning_objectives.map(
       (item, i) => {
         return (
-          <li key={i}>
+          <div key={i}>
             <LearningObjectiveItem data={item} />
-          </li>
+          </div>
         );
       }
     );
@@ -55,16 +55,16 @@ class Preview extends Component {
               <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
-          <ul>{knowledgeMatrices}</ul>
+          <div>{knowledgeMatrices}</div>
           <div className={styles.title}>
             Objetivos de Aprendizagem
             <button data-tip data-for="tooltipLearningObjectives">
               <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
-          <ul className={styles.objectives}>{learningObjectives}</ul>
+          <div className={styles.objectives}>{learningObjectives}</div>
           {sustainableDevGoalsTitle}
-          <ul>{sustainableDevGoals}</ul>
+          <div>{sustainableDevGoals}</div>
           <Tooltips />
         </div>
         <div className={styles.access}>

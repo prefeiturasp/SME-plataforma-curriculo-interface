@@ -43,7 +43,7 @@ class KnowledgeMatrix extends Component {
             <div className="row">
               <h2 className="col-md-8 offset-md-2">Conheça a matriz</h2>
             </div>
-            <ul className={styles.list}>{items}</ul>
+            <div className="row">{items}</div>
           </div>
         </section>
       </Page>

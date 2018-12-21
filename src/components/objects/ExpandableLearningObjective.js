@@ -49,14 +49,14 @@ class ExpandableLearningObjective extends Component {
     ) : null;
 
     return (
-      <li className={classes.join(' ')} onClick={this.onClickedToggle}>
+      <div className={classes.join(' ')} onClick={this.onClickedToggle}>
         <LearningObjectiveItem data={this.props.data} />
         <div className={styles.description} style={style} ref={this.ref}>
           {this.props.data.description}
           {link}
         </div>
         <img src={chevron} alt="Seta" className={styles.toggler} />
-      </li>
+      </div>
     );
   }
 }

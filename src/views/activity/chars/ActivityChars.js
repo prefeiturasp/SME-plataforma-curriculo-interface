@@ -50,7 +50,7 @@ class ActivityChars extends Component {
         </div>
 
         {learningObjectivesTitle}
-        <ul>{learningObjectives}</ul>
+        <div>{learningObjectives}</div>
 
         <NavLink className={styles.btnPrint} to={linkPrint}>
           <img src={iconPrint} alt="Imprimir" />

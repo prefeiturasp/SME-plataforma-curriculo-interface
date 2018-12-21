@@ -19,7 +19,7 @@ class Classroom extends React.PureComponent {
           <div>
             {name} | {level}
           </div>
-          <ul>{items}</ul>
+          <div>{items}</div>
         </div>
       </div>
     );

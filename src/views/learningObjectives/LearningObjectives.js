@@ -194,7 +194,7 @@ class LearningObjectives extends Component {
                   <div className={styles.pickYear}>
                     <h3>Escolha o ano</h3>
                     <h4>Ciclo de alfabetização</h4>
-                    <ul className={styles.buttons}>{yearButtons}</ul>
+                    <div className={styles.buttons}>{yearButtons}</div>
                     <p className={styles.warning}>
                       <img src={iconWarning} alt="Observação" />
                       <span>
@@ -207,7 +207,7 @@ class LearningObjectives extends Component {
                 <div className="col-md-4">
                   <div className={styles.pickCurricularComponent}>
                     <h3>Escolha o Componente Curricular</h3>
-                    <ul className={styles.buttons}>{componentButtons}</ul>
+                    <div className={styles.buttons}>{componentButtons}</div>
                   </div>
                 </div>
               </div>
@@ -234,8 +234,8 @@ class LearningObjectives extends Component {
                     Voltar
                   </button>
                   <p>Ano e componente(s) selecionado(s):</p>
-                  <ul>{selectedFiltersButtons}</ul>
-                  <ul>{learningObjectivesItems}</ul>
+                  <div>{selectedFiltersButtons}</div>
+                  <div>{learningObjectivesItems}</div>
                 </div>
               </div>
               <button className={styles.close} onClick={this.onClickedBack}>

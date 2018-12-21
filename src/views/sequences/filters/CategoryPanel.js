@@ -114,7 +114,7 @@ class CategoryPanel extends Component {
           {categoryName}
           {btnTooltip}
         </h5>
-        <ul className={listStyle}>{items}</ul>
+        <div className={listStyle}>{items}</div>
         <footer className={styles.footer}>
           <button className={styles.button} onClick={this.onClickedClose}>
             Selecionar
