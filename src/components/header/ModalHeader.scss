@@ -31,6 +31,7 @@
 @include mq("tablet-landscape") {
   .wrapper {
     border-bottom: 1px solid $grey-200;
+    margin-bottom: 0;
   }
 
   .btnBack {
