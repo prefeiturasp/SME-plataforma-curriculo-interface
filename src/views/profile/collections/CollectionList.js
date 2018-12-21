@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import Collection from './Collection';
+import createModalLink from 'utils/createModalLink';
 import iconPlus from 'images/icons/plus.svg';
 import styles from './CollectionList.scss';
 
@@ -19,22 +21,24 @@ class CollectionList extends Component {
       );
     });
 
+    const link = createModalLink('/colecao/criar');
+
     return (
       <section className={styles.wrapper}>
         <div className="container">
           <div className={styles.rowTitle}>
             <h3>Coleções</h3>
-            <button className="btnSmall">
+            <NavLink className="btnSmall" to={link}>
               Criar coleção
               <img src={iconPlus} alt="Criar coleção" />
-            </button>
+            </NavLink>
           </div>
           <div className="row">{items}</div>
           <div className={styles.rowBelow}>
-            <button className="btnFullWidth">
+            <NavLink className="btnFullWidth" to={link}>
               Criar uma nova coleção
               <img src={iconPlus} alt="Criar coleção" />
-            </button>
+            </NavLink>
           </div>
         </div>
       </section>
