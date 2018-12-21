@@ -5,9 +5,9 @@ import LearningObjectiveItem from './LearningObjectiveItem';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronRight from 'images/chevrons/right.svg';
 import chevronUp from 'images/chevrons/up.svg';
-import styles from './ExpandableLearningObjectiveItem.scss';
+import styles from './ExpandableLearningObjective.scss';
 
-class ExpandableLearningObjectiveItem extends Component {
+class ExpandableLearningObjective extends Component {
   ref = React.createRef();
   state = { isExpanded: this.props.isExpanded };
 
@@ -55,17 +55,15 @@ class ExpandableLearningObjectiveItem extends Component {
           {this.props.data.description}
           {link}
         </div>
-        <button className={styles.toggler}>
-          <img src={chevron} alt="Seta" />
-        </button>
+        <img src={chevron} alt="Seta" className={styles.toggler} />
       </li>
     );
   }
 }
 
-ExpandableLearningObjectiveItem.propTypes = {
+ExpandableLearningObjective.propTypes = {
   data: PropTypes.object.isRequired,
   hasLink: PropTypes.bool,
 };
 
-export default ExpandableLearningObjectiveItem;
+export default ExpandableLearningObjective;

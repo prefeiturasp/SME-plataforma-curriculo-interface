@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './SimpleFooter.scss';
+import styles from './ModalFooter.scss';
 
-class SimpleFooter extends React.PureComponent {
+class ModalFooter extends React.PureComponent {
   render() {
     return (
       <footer className={styles.wrapper}>
@@ -14,9 +14,9 @@ class SimpleFooter extends React.PureComponent {
   }
 }
 
-SimpleFooter.propTypes = {
+ModalFooter.propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
-export default SimpleFooter;
+export default ModalFooter;
