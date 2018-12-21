@@ -94,9 +94,9 @@ a:hover {
 }
 
 :global(.tooltip) {
-  font-size: 0.8125rem;
+  font-size: rem(13);
   font-weight: normal;
-  line-height: 1.15;
+  line-height: rem(16);
   max-width: 15rem;
   padding: 0.8125rem 1.25rem;
 
