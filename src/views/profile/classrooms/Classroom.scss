@@ -19,14 +19,14 @@
 
 .info {
   margin-left: rem(20);
+}
 
-  > div {
-    margin-bottom: rem(8);
-  }
+.name {
+  margin-bottom: rem(8);
+}
 
-  > ul {
-    margin: 0;
-  }
+.list {
+  margin: 0;
 }
 
 @include mq("tablet-landscape") {

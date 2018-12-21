@@ -25,7 +25,7 @@ class CategoryPanel extends Component {
       : [styles.wrapper];
 
     const hasImage = this.props.items.findIndex(item => item.url) >= 0;
-    const listStyle = hasImage ? styles.images : null;
+    const listStyle = hasImage ? styles.images : styles.list;
 
     const isAxesOrLearningObjectives = isCategoryOneOf(
       this.props.currCategory,

@@ -42,7 +42,7 @@ class Cover extends Component {
     return (
       <div className={classes.join(' ')}>
         {image}
-        <div>
+        <div className={styles.list}>
           <PillItem data={{ name: sequence.year }} />
           <PillItem data={sequence.main_curricular_component} />
         </div>

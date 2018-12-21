@@ -33,7 +33,7 @@ class FilterBar extends Component {
 
     return (
       <div className={styles.wrapper}>
-        <div>{items}</div>
+        <div className={styles.list}>{items}</div>
         <button className={styles.button} onClick={this.onClickedToggle}>
           <img src={iconFilters} alt="Filtros" />
           Filtros

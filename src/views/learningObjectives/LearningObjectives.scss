@@ -113,8 +113,7 @@
   text-align: left;
 }
 
-.pickYear > ul,
-.pickCurricularComponent > ul {
+.buttons {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 0;
@@ -149,9 +148,6 @@
   display: none;
   font-size: 1.125rem;
   position: relative;
-}
-
-.results ul {
 }
 
 .back {

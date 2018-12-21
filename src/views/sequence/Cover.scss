@@ -17,13 +17,13 @@
     margin-right: 0;
     padding: rem(13) rem(16);
   }
+}
 
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    margin-left: rem(-3);
-  }
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-left: rem(-3);
 }
 
 .image {
