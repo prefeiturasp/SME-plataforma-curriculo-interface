@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import iconSave from 'images/icons/save.svg';
-import styles from './SequenceTitle.scss';
+import styles from './Title.scss';
 
-class SequenceTitle extends Component {
+class Title extends Component {
   render() {
     const { hasButton, text, title } = this.props;
 
@@ -26,10 +26,10 @@ class SequenceTitle extends Component {
   }
 }
 
-SequenceTitle.propTypes = {
+Title.propTypes = {
   hasButton: PropTypes.bool,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
-export default SequenceTitle;
+export default Title;

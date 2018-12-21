@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import PillItem from 'components/objects/PillItem';
 import iconClock from 'images/icons/clock.svg';
 import iconClockWhite from 'images/icons/clockWhite.svg';
-import styles from './SequenceCover.scss';
+import styles from './Cover.scss';
 import { API_URL } from 'data/constants';
 
-class SequenceCover extends Component {
+class Cover extends Component {
   render() {
     const { data, sequence } = this.props;
 
@@ -52,9 +52,9 @@ class SequenceCover extends Component {
   }
 }
 
-SequenceCover.propTypes = {
+Cover.propTypes = {
   data: PropTypes.object.isRequired,
   sequence: PropTypes.object.isRequired,
 };
 
-export default SequenceCover;
+export default Cover;

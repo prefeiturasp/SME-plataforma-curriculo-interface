@@ -8,8 +8,8 @@ import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
 import SequenceChars from './chars/SequenceChars';
 import SequenceCharsMobile from './chars/SequenceCharsMobile';
-import SequenceCover from './SequenceCover';
-import SequenceTitle from './SequenceTitle';
+import Cover from './Cover';
+import Title from './Title';
 import SequencesActions from 'actions/SequencesActions';
 import Tooltips from 'components/Tooltips';
 import styles from './Sequence.scss';
@@ -60,8 +60,8 @@ class Sequence extends Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-8">
-              <SequenceCover data={data} sequence={data} />
-              <SequenceTitle
+              <Cover data={data} sequence={data} />
+              <Title
                 hasButton={true}
                 text="Sequência de atividades"
                 title={data.title}
