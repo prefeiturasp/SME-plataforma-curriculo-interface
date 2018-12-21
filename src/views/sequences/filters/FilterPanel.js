@@ -7,7 +7,7 @@ import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
 import CategoryButton from './CategoryButton';
 import CategoryPanel from './CategoryPanel';
-import CurricularComponentButton from './CurricularComponentButton';
+import CurricularComponent from './CurricularComponent';
 import YearButton from './YearButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import iconWarning from 'images/icons/warning.svg';
@@ -52,7 +52,7 @@ class FilterPanel extends Component {
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
-        return <CurricularComponentButton key={i} data={item} />;
+        return <CurricularComponent key={i} data={item} />;
       });
 
     const categories = [

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './CurricularComponentButton.scss';
+import styles from './CurricularComponent.scss';
 
-class CurricularComponentButton extends Component {
+class CurricularComponent extends Component {
   onClicked = () => {
     this.props.toggleFilter(this.props.data);
   };
@@ -33,9 +33,9 @@ class CurricularComponentButton extends Component {
   }
 }
 
-CurricularComponentButton.propTypes = {
+CurricularComponent.propTypes = {
   data: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
 };
 
-export default CurricularComponentButton;
+export default CurricularComponent;

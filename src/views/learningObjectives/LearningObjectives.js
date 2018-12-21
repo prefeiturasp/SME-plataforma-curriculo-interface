@@ -6,7 +6,7 @@ import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
-import CurricularComponentButton from './CurricularComponentButton';
+import CurricularComponent from './CurricularComponent';
 import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import PillItem from 'components/objects/PillItem';
 import Loading from 'components/loading/Loading';
@@ -99,7 +99,7 @@ class LearningObjectives extends Component {
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
-        return <CurricularComponentButton key={i} data={item} />;
+        return <CurricularComponent key={i} data={item} />;
       });
 
     const selectedFiltersButtons = this.props.filters

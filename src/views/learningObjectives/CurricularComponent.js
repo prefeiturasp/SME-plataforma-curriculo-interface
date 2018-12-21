@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CurricularComponentButton from 'components/objects/CurricularComponentButton';
+import CurricularComponent from 'components/objects/CurricularComponent';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 
 const mapDispatchToProps = dispatch => {
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(CurricularComponentButton);
+)(CurricularComponent);
