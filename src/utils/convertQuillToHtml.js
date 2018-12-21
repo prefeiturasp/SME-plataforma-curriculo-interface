@@ -21,7 +21,9 @@ export default function convertQuillToHtml(json) {
     if (op.insert.type === 'imageWithStyle') {
       const attrs = op.attributes;
       const src = op.insert.value;
-      return `<img style="${attrs.style}" width="${attrs.width}" src="${src}" />`;
+      return `<img style="${attrs.style}" width="${
+        attrs.width
+      }" src="${src}" />`;
     } else if (op.insert.type === 'divider') {
       return '<hr />';
     } else {

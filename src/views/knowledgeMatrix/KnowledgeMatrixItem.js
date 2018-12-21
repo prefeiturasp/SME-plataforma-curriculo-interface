@@ -44,33 +44,33 @@ class KnowledgeMatrixItem extends Component {
 
     return (
       <FullModal isVisible={this.state.isLoaded}>
-      <section className={styles.wrapper}>
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <div className={styles.header}>
-                <div className={styles.number}>{index}</div>
-                <h1>{title}</h1>
+        <section className={styles.wrapper}>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <div className={styles.header}>
+                  <div className={styles.number}>{index}</div>
+                  <h1>{title}</h1>
+                </div>
+                <div className={styles.contents}>
+                  <h2>Saber</h2>
+                  <p>{knowDescription}</p>
+                  <h2>Para</h2>
+                  <p>{forDescription}</p>
+                  <NavLink
+                    to={`/sequencias/matriz-de-saberes/${index}`}
+                    className={styles.button}
+                  >
+                    Ver Sequências de Atividades Relacionadas
+                  </NavLink>
+                </div>
+                <button className={styles.close} onClick={this.onClickedClose}>
+                  <img src={iconCloseBig} alt="Fechar" />
+                </button>
               </div>
-              <div className={styles.contents}>
-                <h2>Saber</h2>
-                <p>{knowDescription}</p>
-                <h2>Para</h2>
-                <p>{forDescription}</p>
-                <NavLink
-                  to={`/sequencias/matriz-de-saberes/${index}`}
-                  className={styles.button}
-                >
-                  Ver Sequências de Atividades Relacionadas
-                </NavLink>
-              </div>
-              <button className={styles.close} onClick={this.onClickedClose}>
-                <img src={iconCloseBig} alt="Fechar" />
-              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       </FullModal>
     );
   }

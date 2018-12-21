@@ -8,14 +8,14 @@ class FullModal extends React.PureComponent {
   enter = () => {
     this.setState({ animationStatus: 'enter' });
     setTimeout(this.onEntered, 1000);
-  }
+  };
 
   onEntered = () => {
     this.setState({ animationStatus: 'entered' });
   };
 
   componentDidMount() {
-    disableBodyScroll(document.querySelector("#fullModal"));
+    disableBodyScroll(document.querySelector('#fullModal'));
     if (this.props.isVisible) {
       this.enter();
     }

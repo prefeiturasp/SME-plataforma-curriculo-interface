@@ -111,10 +111,10 @@ class Classrooms extends Component {
 
     return (
       <DesktopModal>
-      <ModalPage>
-        <SimpleHeader back={true} title="Minhas turmas" />
-        <div className={styles.list}>{items}</div>
-      </ModalPage>
+        <ModalPage>
+          <SimpleHeader back={true} title="Minhas turmas" />
+          <div className={styles.list}>{items}</div>
+        </ModalPage>
       </DesktopModal>
     );
   }

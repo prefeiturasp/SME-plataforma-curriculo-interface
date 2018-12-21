@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {
   disableBodyScroll,
   clearAllBodyScrollLocks,
-  enableBodyScroll
+  enableBodyScroll,
 } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
 import withWidth from 'components/hoc/withWidth';
@@ -13,15 +13,15 @@ class DesktopModal extends Component {
 
   onClosed = () => {
     this.props.history.goBack();
-  }
+  };
 
   onClicked = e => {
     e.preventDefault();
     e.stopPropagation();
-  }
+  };
 
   componentDidMount() {
-    this.target = document.querySelector("#desktopModal");
+    this.target = document.querySelector('#desktopModal');
   }
 
   componentDidUpdate(prevProps) {
@@ -40,11 +40,7 @@ class DesktopModal extends Component {
 
   render() {
     return (
-      <div
-        className={styles.overlay}
-        onClick={this.onClosed}
-        id="desktopModal"
-      >
+      <div className={styles.overlay} onClick={this.onClosed} id="desktopModal">
         <div className={styles.wrapper} onClick={this.onClicked}>
           {this.props.children}
         </div>

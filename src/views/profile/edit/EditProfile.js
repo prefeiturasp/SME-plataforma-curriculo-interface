@@ -150,45 +150,45 @@ class EditProfile extends Component {
 
     return (
       <DesktopModal>
-      <ModalPage>
-        <SimpleHeader back={true} title="Editar Perfil" />
-        <div className={styles.center}>
-          {imageOrLetter}
-          {actions}
-        </div>
-        <div className={styles.fields}>
-          <div className={styles.field}>
-            <TextField
-              error={isInvalid}
-              fullWidth={true}
-              helperText={message}
-              label="Apelido"
-              onChange={this.onChangedNickname}
-              value={this.state.nickname}
-            />
+        <ModalPage>
+          <SimpleHeader back={true} title="Editar Perfil" />
+          <div className={styles.center}>
+            {imageOrLetter}
+            {actions}
           </div>
-          <div className={styles.field}>
-            <TextField
-              disabled={true}
-              fullWidth={true}
-              label="Nome"
-              value={this.state.name}
-            />
+          <div className={styles.fields}>
+            <div className={styles.field}>
+              <TextField
+                error={isInvalid}
+                fullWidth={true}
+                helperText={message}
+                label="Apelido"
+                onChange={this.onChangedNickname}
+                value={this.state.nickname}
+              />
+            </div>
+            <div className={styles.field}>
+              <TextField
+                disabled={true}
+                fullWidth={true}
+                label="Nome"
+                value={this.state.name}
+              />
+            </div>
           </div>
-        </div>
-        <p className={styles.obs}>
-          Caso deseje alterar sua senha, acesse sua conta na{' '}
-          <a
-            href="https://sme.prefeitura.sp.gov.br/"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Secretaria Municipal de Educação
-          </a>
-          .
-        </p>
-        <SimpleFooter label="Salvar" onClick={this.onClickedSave} />
-      </ModalPage>
+          <p className={styles.obs}>
+            Caso deseje alterar sua senha, acesse sua conta na{' '}
+            <a
+              href="https://sme.prefeitura.sp.gov.br/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Secretaria Municipal de Educação
+            </a>
+            .
+          </p>
+          <SimpleFooter label="Salvar" onClick={this.onClickedSave} />
+        </ModalPage>
       </DesktopModal>
     );
   }

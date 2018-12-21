@@ -6,7 +6,9 @@ import styles from './KnowledgeMatrixButton.scss';
 
 class KnowledgeMatrixButton extends Component {
   render() {
-    const link = createModalLink(`/matriz-de-saberes/${this.props.data.sequence}`);
+    const link = createModalLink(
+      `/matriz-de-saberes/${this.props.data.sequence}`
+    );
 
     return (
       <li className="col-md-6 col-lg-4">

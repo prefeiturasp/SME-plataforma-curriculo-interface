@@ -6,7 +6,9 @@ import styles from './KnowledgeMatrixItem.scss';
 
 class KnowledgeMatrixItem extends Component {
   render() {
-    const link = createModalLink(`/matriz-de-saberes/${this.props.data.sequence}`);
+    const link = createModalLink(
+      `/matriz-de-saberes/${this.props.data.sequence}`
+    );
 
     return this.props.isLink ? (
       <li className={styles.wrapper}>

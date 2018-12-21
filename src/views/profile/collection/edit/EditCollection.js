@@ -98,24 +98,27 @@ class EditCollection extends Component {
 
     return (
       <DesktopModal>
-      <ModalPage>
-        <SimpleHeader back={true} title="Editar coleção" />
-        <header className={styles.header}>
-          <TextField
-            error={isInvalid}
-            fullWidth={true}
-            helperText={message}
-            label="Nome da coleção"
-            onChange={this.onChangedName}
-            value={this.state.name}
+        <ModalPage>
+          <SimpleHeader back={true} title="Editar coleção" />
+          <header className={styles.header}>
+            <TextField
+              error={isInvalid}
+              fullWidth={true}
+              helperText={message}
+              label="Nome da coleção"
+              onChange={this.onChangedName}
+              value={this.state.name}
+            />
+          </header>
+          <div className={styles.list}>
+            <h3>Selecionar turmas (opcional)</h3>
+            {items}
+          </div>
+          <SimpleFooter
+            label="Salvar alterações"
+            onClick={this.onClickedSave}
           />
-        </header>
-        <div className={styles.list}>
-          <h3>Selecionar turmas (opcional)</h3>
-          {items}
-        </div>
-        <SimpleFooter label="Salvar alterações" onClick={this.onClickedSave} />
-      </ModalPage>
+        </ModalPage>
       </DesktopModal>
     );
   }

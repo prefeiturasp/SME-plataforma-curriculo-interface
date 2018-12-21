@@ -14,7 +14,7 @@ class SustainableDevGoal extends Component {
   onClickedClose = () => {
     this.props.history.goBack();
   };
-  
+
   componentDidMount() {
     this.props.loadItem(this.props.match.params.id);
   }
@@ -34,38 +34,38 @@ class SustainableDevGoal extends Component {
 
     return (
       <FullModal isVisible={true}>
-      <section className={styles.wrapper}>
-        <header className={styles.header} style={style}>
-          <div className="container">
+        <section className={styles.wrapper}>
+          <header className={styles.header} style={style}>
+            <div className="container">
+              <div className="row">
+                <div className="col-md-8 offset-md-2">
+                  <div className={styles.number}>{data.sequence}</div>
+                  <h1>{data.name}</h1>
+                  <h2>{data.description}</h2>
+                  <img src={API_URL + data.sub_icon} alt={data.name} />
+                  <p>{data.text}</p>
+                </div>
+              </div>
+            </div>
+          </header>
+          <div className={styles.contents}>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <div className={styles.number}>{data.sequence}</div>
-                <h1>{data.name}</h1>
-                <h2>{data.description}</h2>
-                <img src={API_URL + data.sub_icon} alt={data.name} />
-                <p>{data.text}</p>
+                <h2>Conheça as metas</h2>
+                <ul className={styles.list}>{goals}</ul>
+                <NavLink
+                  to={`/sequencias/ods/${this.props.match.params.id}`}
+                  className={styles.button}
+                >
+                  Ver Sequências de Atividades Relacionadas
+                </NavLink>
               </div>
             </div>
           </div>
-        </header>
-        <div className={styles.contents}>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <h2>Conheça as metas</h2>
-              <ul className={styles.list}>{goals}</ul>
-              <NavLink
-                to={`/sequencias/ods/${this.props.match.params.id}`}
-                className={styles.button}
-              >
-                Ver Sequências de Atividades Relacionadas
-              </NavLink>
-            </div>
-          </div>
-        </div>
-        <button className={styles.close} onClick={this.onClickedClose}>
-          <img src={iconCloseBigWhite} alt="Fechar" />
-        </button>
-      </section>
+          <button className={styles.close} onClick={this.onClickedClose}>
+            <img src={iconCloseBigWhite} alt="Fechar" />
+          </button>
+        </section>
       </FullModal>
     );
   }
