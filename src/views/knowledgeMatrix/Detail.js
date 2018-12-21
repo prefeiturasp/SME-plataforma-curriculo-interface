@@ -7,9 +7,9 @@ import BodyActions from 'actions/BodyActions';
 import FullModal from 'components/layout/FullModal';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import iconCloseBig from 'images/icons/closeBig.svg';
-import styles from './KnowledgeMatrixItem.scss';
+import styles from './Detail.scss';
 
-class KnowledgeMatrixItem extends Component {
+class Detail extends Component {
   state = { isLoaded: true };
 
   onClickedClose = () => {
@@ -76,7 +76,7 @@ class KnowledgeMatrixItem extends Component {
   }
 }
 
-KnowledgeMatrixItem.propTypes = {
+Detail.propTypes = {
   data: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
 };
@@ -99,4 +99,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(KnowledgeMatrixItem));
+)(withRouter(Detail));

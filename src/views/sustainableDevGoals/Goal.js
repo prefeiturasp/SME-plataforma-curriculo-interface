@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './GoalItem.scss';
+import styles from './Goal.scss';
 
-class GoalItem extends Component {
+class Goal extends Component {
   render() {
     return (
-      <li className={styles.wrapper}>
+      <div className={styles.wrapper}>
         <strong>{this.props.index}</strong> {this.props.data.description}
-      </li>
+      </div>
     );
   }
 }
 
-GoalItem.propTypes = {
+Goal.propTypes = {
   data: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
 };
 
-export default GoalItem;
+export default Goal;

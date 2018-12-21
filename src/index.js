@@ -26,12 +26,12 @@ import EditProfile from 'views/profile/edit/EditProfile';
 import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
-import KnowledgeMatrixItem from 'views/knowledgeMatrix/KnowledgeMatrixItem';
+import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Profile from 'views/profile/Profile';
 import Roadmap from 'views/roadmap/Roadmap';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
-import SustainableDevGoal from 'views/sustainableDevGoals/SustainableDevGoal';
+import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 
 import reducers from 'reducers';
@@ -94,11 +94,11 @@ class ModalSwitch extends Component {
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/colecao/:id" component={Collection} />
         </Switch>
-        <Route exact path="/ods/:id" component={SustainableDevGoal} />
+        <Route exact path="/ods/:id" component={SustainableDevGoalDetail} />
         <Route
           exact
           path="/matriz-de-saberes/:index"
-          component={KnowledgeMatrixItem}
+          component={KnowledgeMatrixDetail}
         />
         <Route exact path="/turmas" component={Classrooms} />
         <Route exact path="/colecao/:id/editar" component={EditCollection} />

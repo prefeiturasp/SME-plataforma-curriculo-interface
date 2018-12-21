@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
-import KnowledgeMatrixButton from './KnowledgeMatrixButton';
+import Button from './Button';
 import Page from 'components/layout/Page';
 import styles from './KnowledgeMatrix.scss';
 
@@ -14,7 +14,7 @@ class KnowledgeMatrix extends Component {
 
   render() {
     const items = this.props.data.map((item, i) => {
-      return <KnowledgeMatrixButton key={i} data={item} />;
+      return <Button key={i} data={item} />;
     });
 
     return (

@@ -6,11 +6,11 @@ import { withRouter } from 'react-router';
 import { API_URL } from 'data/constants';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 import FullModal from 'components/layout/FullModal';
-import GoalItem from './GoalItem';
+import Goal from './Goal';
 import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
-import styles from './SustainableDevGoal.scss';
+import styles from './Detail.scss';
 
-class SustainableDevGoal extends Component {
+class Detail extends Component {
   onClickedClose = () => {
     this.props.history.goBack();
   };
@@ -27,7 +27,7 @@ class SustainableDevGoal extends Component {
     }
 
     const goals = data.goals.map((item, i) => {
-      return <GoalItem key={i} data={item} index={i + 1} />;
+      return <Goal key={i} data={item} index={i + 1} />;
     });
 
     const style = { backgroundColor: data.color };
@@ -71,7 +71,7 @@ class SustainableDevGoal extends Component {
   }
 }
 
-SustainableDevGoal.propTypes = {
+Detail.propTypes = {
   data: PropTypes.object,
   loadItem: PropTypes.func.isRequired,
 };
@@ -93,4 +93,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(SustainableDevGoal));
+)(withRouter(Detail));
