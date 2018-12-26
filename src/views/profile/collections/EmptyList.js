@@ -1,9 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import createModalLink from 'utils/createModalLink';
 import iconCollections from './collections.svg';
 import styles from './EmptyList.scss';
 
 class EmptyList extends React.PureComponent {
   render() {
+    const link = createModalLink('/colecao/criar');
+
     return (
       <section className={styles.wrapper}>
         <div className="container">
@@ -15,7 +19,9 @@ class EmptyList extends React.PureComponent {
                 Crie uma nova coleção para salvar sequências de atividades e
                 acessá-las mais tarde.
               </p>
-              <button className="btn">Criar coleção</button>
+              <NavLink className="btnSmall" to={link}>
+                Criar coleção
+              </NavLink>
             </div>
           </div>
         </div>

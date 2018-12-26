@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Classroom from 'views/profile/collection/edit/Classroom';
+import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
 import ModalFooter from 'components/footer/ModalFooter';
@@ -9,16 +13,21 @@ import styles from 'views/profile/collection/edit/EditCollection.scss';
 
 class CreateCollection extends Component {
   state = {
+    hasEdited: false,
     name: '',
   };
 
   onChangedName = e => {
     this.setState({
+      hasEdited: true,
       name: e.target.value,
     });
   };
 
-  onClickedSave = () => {};
+  onClickedSave = () => {
+    this.props.create(this.state.name);
+    this.props.history.goBack();
+  };
 
   render() {
     const classrooms = [
@@ -93,7 +102,7 @@ class CreateCollection extends Component {
       );
     });
 
-    const isInvalid = this.state.name.length <= 0;
+    const isInvalid = this.state.hasEdited && this.state.name.length <= 0;
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
@@ -105,7 +114,7 @@ class CreateCollection extends Component {
               error={isInvalid}
               fullWidth={true}
               helperText={message}
-              inputRef={input => input ? input.focus() : null}
+              inputRef={input => (input ? input.focus() : null)}
               label="Nome da coleção"
               onChange={this.onChangedName}
               value={this.state.name}
@@ -115,16 +124,26 @@ class CreateCollection extends Component {
             <h3>Selecionar turmas (opcional)</h3>
             {items}
           </div>
-          <ModalFooter
-            label="Criar"
-            onClick={this.onClickedSave}
-          />
+          <ModalFooter label="Criar" onClick={this.onClickedSave} />
         </ModalPage>
       </DesktopModal>
     );
   }
 }
 
-CreateCollection.propTypes = {};
+CreateCollection.propTypes = {
+  create: PropTypes.func.isRequired,
+};
 
-export default CreateCollection;
+const mapDispatchToProps = dispatch => {
+  return {
+    create: name => {
+      dispatch(CollectionActions.create(name));
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(CreateCollection));

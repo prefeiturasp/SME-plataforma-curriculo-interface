@@ -14,12 +14,15 @@ function ProfileReducer(state = initialState, action) {
       return initialState;
 
     case ProfileActions.LOADED:
+      const { name, teacher } = action.data;
+      sessionStorage.setItem('teacherId', teacher.id);
+
       return {
         ...state,
-        id: action.data.teacher.id,
-        name: action.data.name || '',
-        nickname: action.data.teacher.nickname || '',
-        photo: action.data.teacher.avatar_attributes.default_url,
+        id: teacher.id,
+        name: name || '',
+        nickname: teacher.nickname || '',
+        photo: teacher.avatar_attributes.default_url,
       };
 
     case ProfileActions.SAVE_NICKNAME:

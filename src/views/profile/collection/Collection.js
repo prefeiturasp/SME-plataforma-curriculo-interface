@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import BodyActions from 'actions/BodyActions';
 import ClassroomYear from 'components/objects/ClassroomYear';
+import CollectionActions from 'actions/CollectionActions';
 import ConfirmActions from 'actions/ConfirmActions';
 import EmptyList from './EmptyList';
 import Page from 'components/layout/Page';
@@ -15,11 +18,20 @@ import imgPlaceholder from 'images/placeholder.jpg';
 import styles from './Collection.scss';
 
 class Collection extends Component {
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.props.load(id);
+    this.props.loadSequences(id);
+  }
+
   onClickedClose = () => {
     this.props.history.goBack();
   };
 
-  onClickedConfirm = () => {};
+  onClickedConfirm = () => {
+    this.props.delete(this.props.match.params.id);
+    this.props.history.goBack();
+  };
 
   onClickedDelete = () => {
     this.props.openConfirm(
@@ -32,53 +44,7 @@ class Collection extends Component {
   };
 
   render() {
-    const sequences = [
-      {
-        name: 'Os Movimentos do nosso Planeta',
-        component: 'Ciências Naturais',
-        componentColor: '#70b279',
-        isCompleted: true,
-        image: imgPlaceholder,
-        slug: 'os-movimentos-do-nosso-planeta',
-      },
-      {
-        name: 'Animais de estimação',
-        component: 'Matemática',
-        componentColor: '#ff007f',
-        image: imgPlaceholder,
-        slug: 'animais-de-estimacao',
-      },
-      {
-        name: 'Os Movimentos do nosso Planeta',
-        component: 'Ciências Naturais',
-        componentColor: '#70b279',
-        isCompleted: true,
-        image: imgPlaceholder,
-        slug: 'os-movimentos-do-nosso-planeta',
-      },
-      {
-        name: 'Animais de estimação',
-        component: 'Matemática',
-        componentColor: '#ff007f',
-        image: imgPlaceholder,
-        slug: 'animais-de-estimacao',
-      },
-      {
-        name: 'Os Movimentos do nosso Planeta',
-        component: 'Ciências Naturais',
-        componentColor: '#70b279',
-        isCompleted: true,
-        image: imgPlaceholder,
-        slug: 'os-movimentos-do-nosso-planeta',
-      },
-      {
-        name: 'Animais de estimação',
-        component: 'Matemática',
-        componentColor: '#ff007f',
-        image: imgPlaceholder,
-        slug: 'animais-de-estimacao',
-      },
-    ];
+    const { sequences } = this.props;
 
     const classrooms = [
       {
@@ -99,8 +65,7 @@ class Collection extends Component {
       },
     ];
 
-    const id = 1;
-    const name = 'Planeta';
+    const { id, name } = this.props.data;
     const word = classrooms.length > 1 ? 'turmas' : 'turma';
     const link = createModalLink(`/colecao/${id}/editar`);
 
@@ -109,7 +74,11 @@ class Collection extends Component {
     });
 
     const contents =
-      sequences.length > 0 ? <SequenceList items={sequences} /> : <EmptyList />;
+      sequences.length > 0 ? (
+        <SequenceList collectionId={id} items={sequences} />
+      ) : (
+        <EmptyList />
+      );
 
     return (
       <Page>
@@ -139,10 +108,33 @@ class Collection extends Component {
   }
 }
 
-Collection.propTypes = {};
+Collection.propTypes = {
+  data: PropTypes.object.isRequired,
+  delete: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
+  openConfirm: PropTypes.func.isRequired,
+  sequences: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    data: state.CollectionReducer.data,
+    sequences: state.CollectionReducer.sequences,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
+    delete: id => {
+      dispatch(CollectionActions.delete(id));
+    },
+    load: id => {
+      dispatch(BodyActions.showLoading());
+      dispatch(CollectionActions.load(id));
+    },
+    loadSequences: id => {
+      dispatch(CollectionActions.loadSequences(id));
+    },
     openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
       dispatch(
         ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
@@ -152,6 +144,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withRouter(Collection));

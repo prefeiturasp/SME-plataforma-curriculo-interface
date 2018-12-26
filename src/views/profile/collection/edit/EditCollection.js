@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import Classroom from './Classroom';
+import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
 import ModalFooter from 'components/footer/ModalFooter';
@@ -9,16 +13,34 @@ import styles from './EditCollection.scss';
 
 class EditCollection extends Component {
   state = {
-    name: 'Favoritos',
+    hasEdited: false,
+    name: '',
   };
+
+  componentDidMount() {
+    this.props.load(this.props.match.params.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.data.name !== this.props.data.name) {
+      this.setState({
+        hasEdited: false,
+        name: this.props.data.name,
+      });
+    }
+  }
 
   onChangedName = e => {
     this.setState({
+      hasEdited: true,
       name: e.target.value,
     });
   };
 
-  onClickedSave = () => {};
+  onClickedSave = () => {
+    this.props.edit(this.props.match.params.id, this.state.name);
+    this.props.history.goBack();
+  };
 
   render() {
     const classrooms = [
@@ -93,7 +115,7 @@ class EditCollection extends Component {
       );
     });
 
-    const isInvalid = this.state.name.length <= 0;
+    const isInvalid = this.state.hasEdited && this.state.name.length <= 0;
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
@@ -105,7 +127,7 @@ class EditCollection extends Component {
               error={isInvalid}
               fullWidth={true}
               helperText={message}
-              inputRef={input => input ? input.focus() : null}
+              inputRef={input => (input ? input.focus() : null)}
               label="Nome da coleção"
               onChange={this.onChangedName}
               value={this.state.name}
@@ -115,16 +137,37 @@ class EditCollection extends Component {
             <h3>Selecionar turmas (opcional)</h3>
             {items}
           </div>
-          <ModalFooter
-            label="Salvar alterações"
-            onClick={this.onClickedSave}
-          />
+          <ModalFooter label="Salvar alterações" onClick={this.onClickedSave} />
         </ModalPage>
       </DesktopModal>
     );
   }
 }
 
-EditCollection.propTypes = {};
+EditCollection.propTypes = {
+  data: PropTypes.object.isRequired,
+  edit: PropTypes.func.isRequired,
+  load: PropTypes.func.isRequired,
+};
 
-export default EditCollection;
+const mapStateToProps = state => {
+  return {
+    data: state.CollectionReducer.data,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    edit: (id, name) => {
+      dispatch(CollectionActions.edit(id, name));
+    },
+    load: id => {
+      dispatch(CollectionActions.load(id));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(EditCollection));

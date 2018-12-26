@@ -2,13 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { API_URL } from 'data/constants';
+import CollectionActions from 'actions/CollectionActions';
 import ConfirmActions from 'actions/ConfirmActions';
 import iconCheck from 'images/icons/check.png';
 import iconDelete from 'images/icons/delete.svg';
 import styles from './Sequence.scss';
 
 class Sequence extends React.PureComponent {
-  onClickedConfirm = () => {};
+  onClickedConfirm = () => {
+    this.props.removeSequence(this.props.collectionId, this.props.id);
+    this.props.loadSequences(this.props.collectionId);
+  };
 
   onClickedDelete = () => {
     this.props.openConfirm(
@@ -21,14 +26,9 @@ class Sequence extends React.PureComponent {
   };
 
   render() {
-    const {
-      component,
-      componentColor,
-      image,
-      isCompleted,
-      name,
-      slug,
-    } = this.props;
+    const { component, componentColor, isCompleted, slug, title } = this.props;
+
+    const image = API_URL + this.props.image_attributes.default_url;
 
     const link = `/sequencia/${slug}`;
 
@@ -47,12 +47,12 @@ class Sequence extends React.PureComponent {
         <div className={styles.wrapper}>
           <div className={styles.item}>
             <NavLink className={styles.image} to={link}>
-              <img src={image} alt={name} />
+              <img src={image} alt={title} />
             </NavLink>
             <div className={styles.info}>
               <NavLink className={styles.text} to={link}>
                 <h4 style={{ color: componentColor }}>{component}</h4>
-                <h3>{name}</h3>
+                <h3>{title}</h3>
               </NavLink>
               <button onClick={this.onClickedDelete}>
                 <img src={iconDelete} alt="Excluir" />
@@ -67,12 +67,15 @@ class Sequence extends React.PureComponent {
 }
 
 Sequence.propTypes = {
+  collectionId: PropTypes.number.isRequired,
   component: PropTypes.string.isRequired,
   componentColor: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
   isCompleted: PropTypes.bool,
-  name: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  openConfirm: PropTypes.func.isRequired,
+  loadSequences: PropTypes.func.isRequired,
+  removeSequence: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => {
@@ -81,6 +84,12 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
       );
+    },
+    loadSequences: collectionId => {
+      dispatch(CollectionActions.loadSequences(collectionId));
+    },
+    removeSequence: (collectionId, sequenceId) => {
+      dispatch(CollectionActions.removeSequence(collectionId, sequenceId));
     },
   };
 };
