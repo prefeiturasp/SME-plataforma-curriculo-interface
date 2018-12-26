@@ -14,7 +14,6 @@ import createModalLink from 'utils/createModalLink';
 import iconClose from 'images/icons/closeBig.svg';
 import iconEdit from 'images/icons/edit.svg';
 import iconDelete from 'images/icons/delete1.svg';
-import imgPlaceholder from 'images/placeholder.jpg';
 import styles from './Collection.scss';
 
 class Collection extends Component {
