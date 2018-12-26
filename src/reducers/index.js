@@ -3,6 +3,8 @@ import ActivityReducer from './ActivityReducer';
 import AlertReducer from './AlertReducer';
 import AuthReducer from './AuthReducer';
 import BodyReducer from './BodyReducer';
+import CollectionReducer from './CollectionReducer';
+import CollectionsReducer from './CollectionsReducer';
 import ConfirmReducer from './ConfirmReducer';
 import FiltersReducer from './FiltersReducer';
 import HomeReducer from './HomeReducer';
@@ -18,6 +20,8 @@ export default combineReducers({
   AlertReducer,
   AuthReducer,
   BodyReducer,
+  CollectionReducer,
+  CollectionsReducer,
   ConfirmReducer,
   FiltersReducer,
   HomeReducer,
