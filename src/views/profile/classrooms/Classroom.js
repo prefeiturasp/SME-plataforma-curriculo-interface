@@ -16,7 +16,9 @@ class Classroom extends React.PureComponent {
       <div className={styles.wrapper}>
         <ClassroomYear size={50} year={year} />
         <div className={styles.info}>
-          <div className={styles.name}>{name} | {level}</div>
+          <div className={styles.name}>
+            {name} | {level}
+          </div>
           <div className={styles.list}>{items}</div>
         </div>
       </div>

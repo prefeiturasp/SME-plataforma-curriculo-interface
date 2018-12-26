@@ -33,12 +33,8 @@ class SequencePreview extends Component {
 
     if (isInActivity) {
       const linkSequence = `/sequencia/${sequence.slug}`;
-      
-      title = (
-        <NavLink to={linkSequence}>
-          {title}
-        </NavLink>
-      );
+
+      title = <NavLink to={linkSequence}>{title}</NavLink>;
 
       const icon = isSaved ? iconSaved : iconSave;
       const label = isSaved ? 'Salvo' : 'Salvar';

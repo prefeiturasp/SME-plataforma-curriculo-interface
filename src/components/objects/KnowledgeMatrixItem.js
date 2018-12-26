@@ -17,9 +17,11 @@ class KnowledgeMatrixItem extends Component {
       </div>
     );
 
-    return this.props.isLink
-      ? <NavLink to={link}>{contents}</NavLink>
-      : contents;
+    return this.props.isLink ? (
+      <NavLink to={link}>{contents}</NavLink>
+    ) : (
+      contents
+    );
   }
 }
 

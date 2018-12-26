@@ -109,9 +109,7 @@ class LearningObjectives extends Component {
       });
 
     const learningObjectivesItems = this.props.results.map((item, i) => {
-      return (
-        <ExpandableLearningObjective key={i} data={item} hasLink={true} />
-      );
+      return <ExpandableLearningObjective key={i} data={item} hasLink={true} />;
     });
 
     const totalWidth = getWindowWidth();

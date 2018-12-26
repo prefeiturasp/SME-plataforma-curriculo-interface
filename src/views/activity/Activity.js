@@ -151,10 +151,7 @@ class Activity extends Component {
               <div className="col-sm-12 col-lg-8">
                 <SequencePreview data={data} sequence={sequence} isInActivity />
                 <Cover data={data} sequence={sequence} />
-                <Title
-                  text={`Atividade ${data.sequence}`}
-                  title={data.title}
-                />
+                <Title text={`Atividade ${data.sequence}`} title={data.title} />
                 <button
                   className={styles.btnChars}
                   onClick={this.onClickedChars}

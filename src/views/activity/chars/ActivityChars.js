@@ -31,11 +31,7 @@ class ActivityChars extends Component {
 
     const learningObjectives = data.learning_objectives.map((item, i) => {
       return (
-        <ExpandableLearningObjective
-          key={i}
-          data={item}
-          isExpanded={i === 0}
-        />
+        <ExpandableLearningObjective key={i} data={item} isExpanded={i === 0} />
       );
     });
 

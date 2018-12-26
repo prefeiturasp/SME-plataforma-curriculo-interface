@@ -44,11 +44,7 @@ class SequenceChars extends Component {
 
     const learningObjectives = learningObjectivesList.map((item, i) => {
       return (
-        <ExpandableLearningObjective
-          key={i}
-          data={item}
-          isExpanded={i === 0}
-        />
+        <ExpandableLearningObjective key={i} data={item} isExpanded={i === 0} />
       );
     });
 
