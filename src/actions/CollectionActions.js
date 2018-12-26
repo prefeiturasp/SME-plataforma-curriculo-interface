@@ -6,6 +6,24 @@ function getTeacherId() {
   return sessionStorage.getItem('teacherId');
 }
 
+function doSaveSequence(dispatch, id, sequenceId) {
+  dispatch({ type: CollectionActions.SAVE_SEQUENCE });
+  const data = {
+    'collection_activity_sequence[activity_sequence_id]': sequenceId,
+  };
+  const teacherId = getTeacherId();
+  return Api.post(
+    dispatch,
+    `/api/professores/${teacherId}/colecoes/${id}/sequencias`,
+    data
+  )
+    .then(response => {
+      dispatch({ ...response, type: CollectionActions.SAVED_SEQUENCE });
+      dispatch(AlertActions.open('Sequência salva com sucesso!'));
+    })
+    .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+}
+
 const CollectionActions = {
   CREATE: 'CollectionActions.CREATE',
   CREATED: 'CollectionActions.CREATED',
@@ -38,21 +56,7 @@ const CollectionActions = {
   },
   saveSequence(id, sequenceId) {
     return dispatch => {
-      dispatch({ type: CollectionActions.SAVE_SEQUENCE });
-      const data = {
-        'collection_activity_sequence[activity_sequence_id]': sequenceId,
-      };
-      const teacherId = getTeacherId();
-      return Api.post(
-        dispatch,
-        `/api/professores/${teacherId}/colecoes/${id}/sequencias`,
-        data
-      )
-        .then(response => {
-          dispatch({ ...response, type: CollectionActions.SAVED_SEQUENCE });
-          dispatch(AlertActions.open('Sequência salva com sucesso!'));
-        })
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+      return doSaveSequence(dispatch, id, sequenceId);
     };
   },
   create(name) {
@@ -69,18 +73,15 @@ const CollectionActions = {
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },
-  createAndAddSequence(name, sequenceId) {
+  createAndSaveSequence(name, sequenceId) {
     return dispatch => {
       dispatch({ type: CollectionActions.CREATE });
       const data = { 'collection[name]': name };
       const teacherId = getTeacherId();
       return Api.post(dispatch, `/api/professores/${teacherId}/colecoes`, data)
         .then(response => {
-          dispatch({ ...response, type: CollectionActions.CREATED });
-          // dispatch(CollectionActions.saveSequence(response.id, sequenceId)
-          //   .then(response =>
-          //     dispatch(AlertActions.open('Coleção criada e sequência salva com sucesso!'))
-          //   )
+          console.warn('createAndSaveSequence', name, sequenceId, response.data.id);
+          return doSaveSequence(dispatch, response.data.id, sequenceId);
         })
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
@@ -114,7 +115,7 @@ const CollectionActions = {
         .then(response => {
           dispatch({ ...response, type: CollectionActions.EDITED });
           dispatch(AlertActions.open('Coleção salva com sucesso!'));
-          dispatch(CollectionsActions.load());
+          dispatch(CollectionActions.load(id));
         })
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };

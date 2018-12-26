@@ -15,6 +15,7 @@ class CreateCollection extends Component {
   state = {
     hasEdited: false,
     name: '',
+    sequenceId: 0,
   };
 
   onChangedName = e => {
@@ -25,9 +26,27 @@ class CreateCollection extends Component {
   };
 
   onClickedSave = () => {
-    this.props.create(this.state.name);
-    this.props.history.goBack();
+    if (this.state.sequenceId > 0) {
+      this.props.createAndSaveSequence(this.state.name, this.state.sequenceId);
+      this.props.history.go(-2);
+    } else {
+      this.props.create(this.state.name);
+      this.props.history.goBack();
+    }
   };
+
+  componentDidMount() {
+    if (
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.sequenceId > 0
+    ) {
+      this.setState({
+        ...this.state,
+        sequenceId: this.props.location.state.sequenceId,
+      });
+    }
+  }
 
   render() {
     const classrooms = [
@@ -139,6 +158,9 @@ const mapDispatchToProps = dispatch => {
   return {
     create: name => {
       dispatch(CollectionActions.create(name));
+    },
+    createAndSaveSequence: (name, sequenceId) => {
+      dispatch(CollectionActions.createAndSaveSequence(name, sequenceId));
     },
   };
 };
