@@ -18,13 +18,20 @@ class EditCollection extends Component {
   };
 
   componentDidMount() {
-    this.props.load(this.props.match.params.id);
+    if (this.props.data.name) {
+      this.setState({
+        ...this.state,
+        name: this.props.data.name,
+      });
+    } else {
+      this.props.load(this.props.match.params.id);
+    }
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.data.name !== this.props.data.name) {
       this.setState({
-        hasEdited: false,
+        ...this.state,
         name: this.props.data.name,
       });
     }
