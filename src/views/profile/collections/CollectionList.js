@@ -12,7 +12,7 @@ class CollectionList extends Component {
       return <Collection key={i} {...item} />;
     });
 
-    const link = createModalLink('/colecao/criar');
+    const link = createModalLink('/criar-colecao');
 
     return (
       <section className={styles.wrapper}>

@@ -103,7 +103,7 @@ class ModalSwitch extends Component {
           component={KnowledgeMatrixDetail}
         />
         <Route exact path="/turmas" component={Classrooms} />
-        <Route exact path="/colecao/criar" component={CreateCollection} />
+        <Route exact path="/criar-colecao" component={CreateCollection} />
         <Route exact path="/colecao/:id/editar" component={EditCollection} />
         <Route exact path="/perfil/editar" component={EditProfile} />
         <Route exact path="/sequencia/:slug/salvar" component={SaveSequence} />

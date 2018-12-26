@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import BodyActions from 'actions/BodyActions';
+import CollectionActions from 'actions/CollectionActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -11,6 +13,7 @@ import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import SequencePreview from 'views/activity/SequencePreview';
 import SequencesActions from 'actions/SequencesActions';
+import createModalLink from 'utils/createModalLink';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
 
@@ -34,6 +37,9 @@ class SaveSequence extends Component {
       return <Collection key={i} sequenceId={this.props.data.id} {...item} />;
     });
 
+    const link = createModalLink('/criar-colecao');
+    link.state.sequenceId = this.props.data.id;
+    
     return (
       <DesktopModal>
         <ModalPage>
@@ -43,10 +49,10 @@ class SaveSequence extends Component {
           </div>
           <div className={styles.list}>{items}</div>
           <div className={styles.footer}>
-            <button className={styles.btnCreate}>
+            <NavLink className={styles.btnCreate} to={link}>
               <img src={iconPlus} alt="Criar coleção" />
               Criar coleção
-            </button>
+            </NavLink>
           </div>
           <ReactTooltip
             place="bottom"
@@ -92,4 +98,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SaveSequence);
+)(withRouter(SaveSequence));
