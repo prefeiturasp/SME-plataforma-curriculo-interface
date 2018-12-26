@@ -23,6 +23,7 @@ class Profile extends Component {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.data.id && this.props.data.id) {
+      this.props.loadClassrooms();
       this.props.loadCollections();
     }
   }
@@ -102,6 +103,9 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(BodyActions.showLoading());
       dispatch(ProfileActions.load());
+    },
+    loadClassrooms: () => {
+      dispatch(ProfileActions.loadClassrooms());
     },
     loadCollections: () => {
       dispatch(CollectionsActions.load());

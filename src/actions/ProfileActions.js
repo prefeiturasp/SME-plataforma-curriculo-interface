@@ -6,6 +6,8 @@ const ProfileActions = {
   DELETED_PHOTO: 'ProfileActions.DELETED_PHOTO',
   LOAD: 'ProfileActions.LOAD',
   LOADED: 'ProfileActions.LOADED',
+  LOAD_CLASSROOMS: 'ProfileActions.LOAD_CLASSROOMS',
+  LOADED_CLASSROOMS: 'ProfileActions.LOADED_CLASSROOMS',
   SAVE_NICKNAME: 'ProfileActions.SAVE_NICKNAME',
   SAVE_PHOTO: 'ProfileActions.SAVE_PHOTO',
   SAVED_NICKNAME: 'ProfileActions.SAVED_NICKNAME',
@@ -19,6 +21,14 @@ const ProfileActions = {
       '/api/perfil',
       ProfileActions.LOAD,
       ProfileActions.LOADED
+    );
+  },
+  loadClassrooms() {
+    const teacherId = sessionStorage.getItem('teacherId');
+    return Api.simpleGet(
+      `/api/professores/${teacherId}`,
+      ProfileActions.LOAD_CLASSROOMS,
+      ProfileActions.LOADED_CLASSROOMS
     );
   },
   saveNickname(id, nickname) {

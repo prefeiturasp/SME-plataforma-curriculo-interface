@@ -6,6 +6,7 @@ const initialState = {
   name: '',
   nickname: '',
   photo: null,
+  schools: [],
 };
 
 function ProfileReducer(state = initialState, action) {
@@ -25,11 +26,14 @@ function ProfileReducer(state = initialState, action) {
         photo: teacher.avatar_attributes.default_url,
       };
 
-    case ProfileActions.SAVE_NICKNAME:
+    case ProfileActions.LOADED_CLASSROOMS:
       return {
         ...state,
+        schools: action.data.schools,
       };
 
+    case ProfileActions.LOAD_CLASSROOMS:
+    case ProfileActions.SAVE_NICKNAME:
     case ProfileActions.SAVED_NICKNAME:
       return {
         ...state,
