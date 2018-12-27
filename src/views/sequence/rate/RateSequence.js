@@ -66,7 +66,7 @@ class RateSequence extends Component {
       );
     });
 
-    const label = currPage < numPages - 1 ? 'Próximo' : 'Enviar';
+    const label = currPage < numPages - 1 ? 'Próximo' : 'Concluir';
 
     return (
       <DesktopModal>
