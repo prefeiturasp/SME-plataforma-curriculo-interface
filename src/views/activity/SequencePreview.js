@@ -15,15 +15,15 @@ class SequencePreview extends Component {
   };
 
   render() {
-    const { data, isInActivity, sequence } = this.props;
+    const { isInActivity, sequence } = this.props;
     const { isSaved } = this.state;
 
-    const image = data.image_attributes.default_url ? (
+    const image = sequence.image_attributes.default_url ? (
       <img
         className={styles.image}
-        src={API_URL + data.image_attributes.default_url}
-        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${
-          data.image_attributes.extra_large.url
+        src={API_URL + sequence.image_attributes.default_url}
+        srcSet={`${API_URL}${sequence.image_attributes.large.url}, ${API_URL}${
+          sequence.image_attributes.extra_large.url
         } 2x`}
         alt={sequence.title}
       />
@@ -65,7 +65,6 @@ class SequencePreview extends Component {
 }
 
 SequencePreview.propTypes = {
-  data: PropTypes.object.isRequired,
   isInActivity: PropTypes.bool,
   sequence: PropTypes.object.isRequired,
 };

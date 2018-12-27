@@ -149,7 +149,7 @@ class Activity extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-lg-8">
-                <SequencePreview data={data} sequence={sequence} isInActivity />
+                <SequencePreview sequence={sequence} isInActivity />
                 <Cover data={data} sequence={sequence} />
                 <Title text={`Atividade ${data.sequence}`} title={data.title} />
                 <button
