@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import BodyActions from 'actions/BodyActions';
-import CollectionActions from 'actions/CollectionActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -53,9 +52,12 @@ class SaveSequence extends Component {
         <ModalPage>
           <ModalHeader title="Salvar sequência" />
           <div ref={this.ref} data-tip data-for="tooltipSequenceAlreadySaved">
-            <SequencePreview data={data} sequence={data} />
+            <SequencePreview sequence={data} />
           </div>
-          <div className={styles.list}>{items}</div>
+          <div className={styles.list}>
+            <p>Selecione uma coleção</p>
+            {items}
+          </div>
           <div className={styles.footer}>
             {btnCreate}
           </div>

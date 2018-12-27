@@ -6,6 +6,12 @@
   flex-shrink: 10;
   overflow-y: scroll;
   padding: rem(15);
+
+  > p {
+    color: $grey-600;
+    font-size: rem(13);
+    line-height: rem(16);
+  }
 }
 
 .footer {
