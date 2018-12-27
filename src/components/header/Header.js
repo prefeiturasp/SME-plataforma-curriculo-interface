@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Headroom from 'react-headroom';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Avatar from 'views/profile/Avatar';
 import BodyActions from 'actions/BodyActions';
+import isLogged from 'data/isLogged';
 import styles from './Header.scss';
 
 class Header extends Component {
@@ -39,6 +41,14 @@ class Header extends Component {
       );
     });
 
+    const avatar = isLogged() ? (
+      <Avatar nickname="Marília" size={35} />
+    ) : null;
+
+    const btnLogin = (
+      <button>Login</button>
+    );
+
     return (
       <Headroom disableInlineStyles>
         <header className={styles.wrapper}>
@@ -48,8 +58,14 @@ class Header extends Component {
               <h1>Currículo Digital da Cidade de São Paulo</h1>
             </div>
           </NavLink>
-          <nav className={styles.menu}>{links}</nav>
-          <button className={styles.toggler} onClick={this.onClickedToggler} />
+          <nav className={styles.menu}>
+            {links}
+            {avatar || btnLogin}
+          </nav>
+          <div className={styles.toggler}>
+            {avatar}
+            <button onClick={this.onClickedToggler} />
+          </div>
         </header>
       </Headroom>
     );

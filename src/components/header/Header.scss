@@ -77,16 +77,22 @@
 }
 
 .toggler {
-  background-image: url(./images/menu.svg);
-  width: rem(40);
-  height: rem(21);
+  align-items: center;
+  display: flex;
 
-  :global(.isHome) & {
-    background-image: url(./images/menuWhite.svg);
-  }
-
-  :global(.headroom--pinned) & {
+  > button {
     background-image: url(./images/menu.svg);
+    margin-left: rem(20);
+    width: rem(40);
+    height: rem(21);
+
+    :global(.isHome) & {
+      background-image: url(./images/menuWhite.svg);
+    }
+
+    :global(.headroom--pinned) & {
+      background-image: url(./images/menu.svg);
+    }
   }
 }
 
@@ -116,14 +122,20 @@
   }
 
   .menu {
-    display: block;
+    align-items: center;
+    display: flex;
 
-    > a {
+    > a,
+    > button {
       color: black;
-      font-size: 0.9375rem;
+      font-size: rem(15);
       font-weight: bold;
-      padding: 0 0.9375rem;
+      padding: 0 rem(15);
       text-transform: uppercase;
+    }
+
+    > div {
+      margin: 0 rem(15);
     }
   }
 
