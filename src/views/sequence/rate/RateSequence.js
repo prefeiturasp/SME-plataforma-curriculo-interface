@@ -1,0 +1,155 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import DesktopModal from 'components/layout/DesktopModal';
+import ModalFooter from 'components/footer/ModalFooter';
+import ModalHeader from 'components/header/ModalHeader';
+import ModalPage from 'components/layout/ModalPage';
+import Question from './Question';
+import SequencePreview from 'views/activity/SequencePreview';
+import SequencesActions from 'actions/SequencesActions';
+import styles from './RateSequence.scss';
+
+const PER_PAGE = 3;
+
+class RateSequence extends Component {
+  state = {
+    answers: {},
+    currPage: 0,
+    numPages: 1,
+  };
+
+  onChangedAnswer = (id, value) => {
+    const newAnswers = Object.assign({}, this.state.answers);
+    newAnswers[id] = value;
+
+    this.setState({
+      ...this.state,
+      answers: newAnswers,
+    });
+  }
+
+  onClickedNext = () => {
+    const { currPage, numPages } = this.state;
+    if (currPage < numPages - 1) {
+      this.setState({
+        ...this.state,
+        currPage: currPage + 1,
+      });
+    } else {
+
+    }
+  }
+
+  componentDidMount() {
+    this.props.load(this.props.match.params.slug);
+    this.setState({
+      ...this.state,
+      numPages: Math.ceil(this.props.questions.length / PER_PAGE),
+    });
+  }
+
+  render() {
+    if (this.props.data == null) {
+      return <span />;
+    }
+
+    const { data, questions } = this.props;
+    const { currPage, numPages } = this.state;
+    const startIndex = currPage * PER_PAGE;
+    const endIndex = startIndex + PER_PAGE;
+
+    const items = questions.slice(startIndex, endIndex).map((question, i) => {
+      return (
+        <Question key={i} {...question} onChange={this.onChangedAnswer} />
+      );
+    });
+
+    const label = currPage < numPages - 1 ? 'Próximo' : 'Enviar';
+
+    return (
+      <DesktopModal>
+        <ModalPage>
+          <ModalHeader title="Avaliar sequência" />
+          <SequencePreview sequence={data} />
+          <div className={styles.list}>
+            {items}
+            <p className={styles.page}>{currPage + 1} / {numPages}</p>
+          </div>
+          <ModalFooter label={label} onClick={this.onClickedNext} />
+        </ModalPage>
+      </DesktopModal>
+    );
+  }
+}
+
+RateSequence.propTypes = {
+  data: PropTypes.object,
+  questions: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+  rate: PropTypes.func.isRequired,
+};
+
+RateSequence.defaultProps = {
+  questions: [
+    {
+      id: 1,
+      title: 'Como você avalia a qualidade do conteúdo?',
+    },
+    {
+      id: 2,
+      title: 'E a metodologia aplicada?',
+    },
+    {
+      id: 3,
+      title: 'Qual foi o nível de envolvimento dos estudantes com as atividades?',
+    },
+    {
+      id: 4,
+      title: 'Como você avalia a qualidade do conteúdo?',
+    },
+    {
+      id: 5,
+      title: 'E a metodologia aplicada?',
+    },
+    {
+      id: 6,
+      title: 'Qual foi o nível de envolvimento dos estudantes com as atividades?',
+    },
+    {
+      id: 7,
+      title: 'Como você avalia a qualidade do conteúdo?',
+    },
+    {
+      id: 8,
+      title: 'E a metodologia aplicada?',
+    },
+    {
+      id: 9,
+      title: 'Qual foi o nível de envolvimento dos estudantes com as atividades?',
+    },
+  ],
+};
+
+const mapStateToProps = state => {
+  return {
+    data: state.SequencesReducer.currItem,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    load: slug => {
+      dispatch(SequencesActions.loadItem(slug));
+    },
+    rate: () => {
+      
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(RateSequence));
