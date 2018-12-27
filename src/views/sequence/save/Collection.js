@@ -28,15 +28,15 @@ class Collection extends React.PureComponent {
   }
 }
 
-Collection.defaultProps = {
-  years: [],
-};
-
 Collection.propTypes = {
   id: PropTypes.number.isRequired,
   sequenceId: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   years: PropTypes.array.isRequired,
+};
+
+Collection.defaultProps = {
+  years: [],
 };
 
 const mapDispatchToProps = dispatch => {

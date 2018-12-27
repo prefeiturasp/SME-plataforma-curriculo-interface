@@ -31,18 +31,18 @@ class Collection extends React.PureComponent {
   }
 }
 
-Collection.defaultProps = {
-  classrooms: 0,
-  sequences: 0,
-  years: [],
-};
-
 Collection.propTypes = {
   classrooms: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   sequences: PropTypes.number.isRequired,
   years: PropTypes.array.isRequired,
+};
+
+Collection.defaultProps = {
+  classrooms: 0,
+  sequences: 0,
+  years: [],
 };
 
 export default Collection;

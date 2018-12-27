@@ -58,17 +58,17 @@ class ReadMore extends React.PureComponent {
   }
 }
 
-ReadMore.defaultProps = {
-  lines: 3,
-  more: 'Mostrar mais',
-  less: 'Mostrar menos',
-};
-
 ReadMore.propTypes = {
   children: PropTypes.string.isRequired,
   lines: PropTypes.number,
   less: PropTypes.string,
   more: PropTypes.string,
+};
+
+ReadMore.defaultProps = {
+  lines: 3,
+  more: 'Mostrar mais',
+  less: 'Mostrar menos',
 };
 
 export default ReadMore;
