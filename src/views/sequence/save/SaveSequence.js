@@ -14,6 +14,7 @@ import ModalPage from 'components/layout/ModalPage';
 import SequencePreview from 'views/activity/SequencePreview';
 import SequencesActions from 'actions/SequencesActions';
 import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
 
@@ -39,6 +40,13 @@ class SaveSequence extends Component {
 
     const link = createModalLink('/criar-colecao');
     link.state.sequenceId = this.props.data.id;
+
+    const btnCreate = isLogged() ? (
+      <NavLink className={styles.btnCreate} to={link}>
+        <img src={iconPlus} alt="Criar coleção" />
+        Criar coleção
+      </NavLink>
+    ) : null;
     
     return (
       <DesktopModal>
@@ -49,10 +57,7 @@ class SaveSequence extends Component {
           </div>
           <div className={styles.list}>{items}</div>
           <div className={styles.footer}>
-            <NavLink className={styles.btnCreate} to={link}>
-              <img src={iconPlus} alt="Criar coleção" />
-              Criar coleção
-            </NavLink>
+            {btnCreate}
           </div>
           <ReactTooltip
             place="bottom"

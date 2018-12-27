@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
 import styles from './Title.scss';
 
@@ -11,7 +12,7 @@ class Title extends Component {
 
     const link = createModalLink(`/sequencia/${slug}/salvar`);
 
-    const button = hasButton ? (
+    const button = hasButton && isLogged() ? (
       <NavLink className={styles.btnSave} to={link}>
         <img src={iconSave} alt="Salvar" />
         Salvar

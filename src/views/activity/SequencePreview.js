@@ -4,6 +4,7 @@ import Sticky from 'react-stickynode';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
 import styles from './SequencePreview.scss';
@@ -40,12 +41,12 @@ class SequencePreview extends Component {
       const label = isSaved ? 'Salvo' : 'Salvar';
       const linkSave = createModalLink(`/sequencia/${sequence.slug}/salvar`);
 
-      btnSave = (
+      btnSave = isLogged() ? (
         <NavLink className={styles.btnSave} to={linkSave}>
           <img src={icon} alt={label} />
           {label}
         </NavLink>
-      );
+      ) : null;
     }
 
     return (
