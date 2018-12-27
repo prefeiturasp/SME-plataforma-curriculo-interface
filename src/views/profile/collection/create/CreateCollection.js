@@ -9,6 +9,7 @@ import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
+import SequencePreview from 'views/activity/SequencePreview';
 import styles from 'views/profile/collection/edit/EditCollection.scss';
 
 class CreateCollection extends Component {
@@ -121,6 +122,12 @@ class CreateCollection extends Component {
       );
     });
 
+    const sequencePreview = this.state.sequenceId ? (
+      <SequencePreview sequence={this.props.sequence} />
+    ) : null;
+
+    const hr = this.state.sequenceId ? <hr /> : null;
+
     const isInvalid = this.state.hasEdited && this.state.name.length <= 0;
     const message = isInvalid ? 'Campo obrigatório' : '';
 
@@ -128,6 +135,8 @@ class CreateCollection extends Component {
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="Criar coleção" />
+          {sequencePreview}
+          {hr}
           <header className={styles.header}>
             <TextField
               error={isInvalid}
@@ -154,6 +163,12 @@ CreateCollection.propTypes = {
   create: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => {
+  return {
+    sequence: state.SequencesReducer.currItem,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     create: name => {
@@ -166,6 +181,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(withRouter(CreateCollection));
