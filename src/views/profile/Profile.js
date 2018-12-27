@@ -29,7 +29,8 @@ class Profile extends Component {
   }
 
   render() {
-    const { items } = this.props;
+    const { data, items } = this.props;
+    const { nickname } = data;
 
     const contents =
       items.length > 0 ? <CollectionList items={items} /> : <EmptyList />;
@@ -53,9 +54,9 @@ class Profile extends Component {
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <Avatar nickname="Marília" size={size} />
+              <Avatar nickname={nickname} size={size} />
               <div className={styles.name}>
-                <h2>Marília</h2>
+                <h2>{nickname}</h2>
                 <NavLink to={linkEdit}>Editar perfil</NavLink>
               </div>
             </div>
