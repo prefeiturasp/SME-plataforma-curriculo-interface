@@ -29,6 +29,7 @@ import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Profile from 'views/profile/Profile';
+import RateSequence from 'views/sequence/rate/RateSequence';
 import Roadmap from 'views/roadmap/Roadmap';
 import SaveSequence from 'views/sequence/save/SaveSequence';
 import Sequence from 'views/sequence/Sequence';
@@ -106,6 +107,7 @@ class ModalSwitch extends Component {
         <Route exact path="/criar-colecao" component={CreateCollection} />
         <Route exact path="/colecao/:id/editar" component={EditCollection} />
         <Route exact path="/perfil/editar" component={EditProfile} />
+        <Route exact path="/sequencia/:slug/avaliar" component={RateSequence} />
         <Route exact path="/sequencia/:slug/salvar" component={SaveSequence} />
       </Fragment>
     );

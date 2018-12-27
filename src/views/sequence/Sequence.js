@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
 import Notification from 'components/objects/Notification';
@@ -12,6 +13,7 @@ import Cover from './Cover';
 import Title from './Title';
 import SequencesActions from 'actions/SequencesActions';
 import Tooltips from 'components/Tooltips';
+import createModalLink from 'utils/createModalLink';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {
@@ -23,6 +25,11 @@ class Sequence extends Component {
     this.setState({
       isCharsExpanded: !this.state.isCharsExpanded,
     });
+  };
+
+  onClickedRate = () => {
+    const link = createModalLink(`/sequencia/${this.props.match.params.slug}/avaliar`);
+    this.props.history.push(link);
   };
 
   componentDidMount() {
@@ -56,6 +63,7 @@ class Sequence extends Component {
           text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
           labelNo="Agora não"
           labelYes="Avaliar sequência"
+          onClickedYes={this.onClickedRate}
         />
         <div className="container">
           <div className="row">
@@ -118,4 +126,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Sequence);
+)(withRouter(Sequence));
