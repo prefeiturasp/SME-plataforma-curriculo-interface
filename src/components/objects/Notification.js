@@ -14,8 +14,6 @@ class Notification extends Component {
     });
   };
 
-  onClickedYes = () => {};
-
   render() {
     const { labelNo, labelYes, text } = this.props;
     const height = this.state.isExpanded ? 'auto' : 0;
@@ -27,7 +25,7 @@ class Notification extends Component {
             <p>{text}</p>
             <div className={styles.buttons}>
               <button onClick={this.onClickedNo}>{labelNo}</button>
-              <button onClick={this.onClickedYes}>{labelYes}</button>
+              <button onClick={this.props.onClickedYes}>{labelYes}</button>
             </div>
           </div>
         </div>
@@ -39,6 +37,7 @@ class Notification extends Component {
 Notification.propTypes = {
   labelNo: PropTypes.string.isRequired,
   labelYes: PropTypes.string.isRequired,
+  onClickedYes: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 
