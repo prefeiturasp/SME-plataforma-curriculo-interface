@@ -1,0 +1,19 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.popover {
+  min-width: rem(190);
+  padding: rem(5) rem(28);
+}
+
+.btn {
+  color: black;
+  display: block;
+  font-size: rem(15);
+  font-weight: bold;
+  line-height: rem(36);
+  margin-top: rem(10);
+  margin-bottom: rem(10);
+  text-decoration: none;
+  text-transform: uppercase;
+}
