@@ -5,12 +5,32 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Avatar from 'views/profile/Avatar';
 import BodyActions from 'actions/BodyActions';
+import Fade from '@material-ui/core/Fade';
+import LoginPopover from 'components/popovers/LoginPopover';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import ProfilePopover from 'components/popovers/ProfilePopover';
 import isLogged from 'data/isLogged';
+import chevronDown from 'images/chevrons/down.svg';
 import styles from './Header.scss';
 
 class Header extends Component {
+  state = { anchor: null };
+
   onClickedToggler = () => {
     this.props.showMobileMenu();
+  };
+
+  onClosePopover = () => {
+    this.setState({ anchor: null });
+  };
+
+  onMouseEnter = e => {
+    this.setState({ anchor: e.currentTarget });
+  };
+
+  onMouseLeave = e => {
+    this.setState({ anchor: null });
   };
 
   render() {
@@ -33,6 +53,9 @@ class Header extends Component {
       },
     ];
 
+    const { anchor } = this.state;
+    const hasPopover = !!anchor;
+
     const links = data.map((item, i) => {
       return (
         <NavLink key={i} to={item.to} onClick={this.onClickedClose}>
@@ -42,11 +65,46 @@ class Header extends Component {
     });
 
     const avatar = isLogged() ? (
-      <Avatar nickname="Marília" size={35} />
+      <button
+        className={styles.avatar}
+        onMouseEnter={this.onMouseEnter}
+      >
+        <Avatar nickname="Marília" size={35} />
+        <img src={chevronDown} alt="Perfil" />
+      </button>
     ) : null;
 
     const btnLogin = (
-      <button>Login</button>
+      <button
+        onMouseEnter={this.onMouseEnter}
+      >
+        Login
+      </button>
+    );
+
+    const popoverContents = isLogged() ? (
+      <ProfilePopover onMouseLeave={this.onMouseLeave} />
+    ) : (
+      <LoginPopover onMouseLeave={this.onMouseLeave} />
+    );
+
+    const popover = (
+      <Popper
+        open={hasPopover}
+        anchorEl={anchor}
+        onClose={this.onClosePopover}
+        placement="bottom-end"
+        disablePortal
+        transition
+      >
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={300}>
+            <Paper>
+              {popoverContents}
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
     );
 
     return (
@@ -62,10 +120,11 @@ class Header extends Component {
             {links}
             {avatar || btnLogin}
           </nav>
-          <div className={styles.toggler}>
+          <div className={styles.mobile}>
             {avatar}
-            <button onClick={this.onClickedToggler} />
+            <button className={styles.toggler} onClick={this.onClickedToggler} />
           </div>
+          {popover}
         </header>
       </Headroom>
     );
