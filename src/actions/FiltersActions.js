@@ -18,6 +18,7 @@ const FiltersActions = {
   TOGGLE_FILTER: 'FiltersActions.TOGGLE_FILTER',
   TOGGLE_PANEL: 'FiltersActions.TOGGLE_PANEL',
   SEARCH: 'FiltersActions.SEARCH',
+  SET_QUERY: 'FiltersActions.SET_QUERY',
 
   load() {
     return Api.simpleGet(
@@ -102,6 +103,9 @@ const FiltersActions = {
   },
   search() {
     return { type: FiltersActions.SEARCH };
+  },
+  setQuery(query) {
+    return { type: FiltersActions.SET_QUERY, query };
   },
 };
 
