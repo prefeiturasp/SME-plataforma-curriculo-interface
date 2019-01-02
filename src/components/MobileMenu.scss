@@ -54,8 +54,8 @@
 .btnLogin {
   composes: btn from global;
   background-color: $color-turquoise-medium;
-  border: 0 !important;
-  color: white !important;
+  border: 0;
+  color: white;
   margin-bottom: rem(14);
 }
 

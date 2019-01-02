@@ -77,7 +77,7 @@
 
 .btnObjectives {
   composes: btn from global;
-  display: none !important;
+  display: none;
 }
 
 .objectives {
@@ -134,7 +134,7 @@
 
 .next {
   composes: btn from global;
-  display: inline-block !important;
+  display: inline-block;
 }
 
 .loading {
@@ -180,7 +180,7 @@
   }
 
   .btnObjectives {
-    display: inline-block !important;
+    display: inline-block;
   }
 
   .objectives,
