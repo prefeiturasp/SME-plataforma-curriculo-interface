@@ -2,12 +2,17 @@
 @import "~tools.scss";
 
 .wrapper {
+  align-items: center;
   border: 1px solid $grey-200;
-  border-radius: 0.25rem;
+  border-radius: rem(4);
   color: $grey-600;
-  font-size: 1.875rem;
-  margin-right: 0.5625rem;
-  padding: 0.75rem 1.125rem;
+  display: inline-flex;
+  font-size: rem(21);
+  justify-content: center;
+  margin-right: rem(5);
+  margin-bottom: rem(5);
+  width: rem(52);
+  height: rem(52);
 
   &:hover {
     border-color: $grey-600;

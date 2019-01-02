@@ -21,6 +21,7 @@ class YearButton extends Component {
 }
 
 YearButton.propTypes = {
+  data: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
 };
 
