@@ -6,6 +6,7 @@ import BodyActions from 'actions/BodyActions';
 import HomeActions from 'actions/HomeActions';
 import GridItem from './GridItem';
 import Page from 'components/layout/Page';
+import Search from './search/Search';
 import iconActivities from 'images/illustrations/activities.svg';
 import iconCurriculum from 'images/illustrations/curriculum.svg';
 import iconKnowledgeMatrix from 'images/illustrations/knowledgeMatrix.svg';
@@ -35,9 +36,8 @@ class Home extends Component {
           <header className={styles.header}>
             <div className="container">
               <div className="row">
-                <div className="col-md-8 offset-md-2">
-                  <p>Bem vindo!</p>
-                  <h1>Currículo da Cidade de São Paulo</h1>
+                <div className="col-md-10 offset-md-1">
+                  <Search />
                 </div>
               </div>
             </div>
