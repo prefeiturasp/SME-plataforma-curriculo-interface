@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AnimateHeight from 'react-animate-height';
+import Collapse from '@material-ui/core/Collapse';
 import styles from './Notification.scss';
 
 class Notification extends Component {
@@ -16,10 +16,9 @@ class Notification extends Component {
 
   render() {
     const { labelNo, labelYes, text } = this.props;
-    const height = this.state.isExpanded ? 'auto' : 0;
-
+    
     return (
-      <AnimateHeight height={height}>
+      <Collapse in={this.state.isExpanded}>
         <div className={styles.wrapper}>
           <div className="container">
             <p>{text}</p>
@@ -29,7 +28,7 @@ class Notification extends Component {
             </div>
           </div>
         </div>
-      </AnimateHeight>
+      </Collapse>
     );
   }
 }

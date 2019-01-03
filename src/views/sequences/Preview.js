@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import AnimateHeight from 'react-animate-height';
+import Collapse from '@material-ui/core/Collapse';
 import { NavLink } from 'react-router-dom';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import LearningObjectiveItem from 'components/objects/LearningObjectiveItem';
@@ -74,11 +74,10 @@ class Preview extends Component {
     );
 
     if (this.props.windowWidth < 768) {
-      const height = this.props.data.isExpanded ? 'auto' : 0;
       return (
-        <AnimateHeight height={height}>
+        <Collapse in={this.props.data.isExpanded}>
           <div className={styles.wrapper}>{contents}</div>
-        </AnimateHeight>
+        </Collapse>
       );
     } else {
       const height = this.props.height;
