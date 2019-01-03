@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import ActiveItem from './ActiveItem';
+import Chip from 'views/sequences/objects/Chip';
 import FiltersActions from 'actions/FiltersActions';
-import OrderButton from './OrderButton';
-import QueryField from './QueryField';
+import OrderButton from 'views/sequences/bar/OrderButton';
+import SearchField from 'views/sequences/bar/SearchField';
 import getWindowWidth from 'utils/getWindowWidth';
 import iconFilters from 'images/icons/filters.svg';
-import styles from './FilterBar.scss';
+import styles from './Bar.scss';
 
-class FilterBar extends Component {
+class Bar extends Component {
   componentDidMount() {
     this.target = document.querySelector('#sustainableDevGoal');
   }
@@ -31,7 +31,7 @@ class FilterBar extends Component {
     const filters = this.props.filters.concat(this.props.filtersExtra);
 
     const items = filters.map((item, i) => {
-      return <ActiveItem key={i} data={item} />;
+      return <Chip key={i} data={item} />;
     });
 
     const spacer = items.length ? <div className={styles.spacer} /> : null;
@@ -39,7 +39,7 @@ class FilterBar extends Component {
     return (
       <div className={styles.wrapper}>
         <div>
-          <QueryField />
+          <SearchField />
           {spacer}
           <div className={styles.list}>{items}</div>
         </div>
@@ -55,7 +55,7 @@ class FilterBar extends Component {
   }
 }
 
-FilterBar.propTypes = {
+Bar.propTypes = {
   filters: PropTypes.array.isRequired,
   togglePanel: PropTypes.func.isRequired,
 };
@@ -80,4 +80,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FilterBar);
+)(Bar);

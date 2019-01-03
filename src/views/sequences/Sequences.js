@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
-import FilterBar from './filters/FilterBar';
-import FilterPanel from './filters/FilterPanel';
+import Bar from './bar/Bar';
+import Filters from './filters/Filters';
 import GridItem from './GridItem';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
@@ -70,11 +70,11 @@ class Sequences extends Component {
               <strong>{this.props.totalItems}</strong> sequências foram
               encontradas
             </h2>
-            <FilterBar />
+            <Bar />
           </div>
           <hr />
           <div className="container">
-            <FilterPanel />
+            <Filters />
           </div>
           <div className={styles.list}>
             <div className={styles.results}>

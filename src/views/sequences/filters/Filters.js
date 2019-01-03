@@ -5,15 +5,15 @@ import { clearAllBodyScrollLocks } from 'body-scroll-lock';
 import AlertActions from 'actions/AlertActions';
 import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
-import CategoryButton from './CategoryButton';
-import CategoryPanel from './CategoryPanel';
-import CurricularComponent from './CurricularComponent';
-import YearButton from './YearButton';
+import Category from 'views/sequences/categories/Category';
+import CategoryPanel from 'views/sequences/categories/CategoryPanel';
+import CurricularComponent from 'views/sequences/objects/CurricularComponent';
+import YearButton from 'views/sequences/objects/YearButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import iconWarning from 'images/icons/warning.svg';
-import styles from './FilterPanel.scss';
+import styles from './Filters.scss';
 
-class FilterPanel extends Component {
+class Filters extends Component {
   ref = React.createRef();
 
   onClickedSearch = () => {
@@ -79,7 +79,7 @@ class FilterPanel extends Component {
     ];
 
     const categoryButtons = categories.map((item, i) => {
-      return <CategoryButton key={i} data={item} />;
+      return <Category key={i} data={item} />;
     });
 
     const classes = this.props.isExpanded
@@ -129,7 +129,7 @@ class FilterPanel extends Component {
   }
 }
 
-FilterPanel.propTypes = {
+Filters.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   load: PropTypes.func.isRequired,
@@ -166,4 +166,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FilterPanel);
+)(Filters);
