@@ -18,6 +18,7 @@ const FiltersActions = {
   TOGGLE_FILTER: 'FiltersActions.TOGGLE_FILTER',
   TOGGLE_PANEL: 'FiltersActions.TOGGLE_PANEL',
   SEARCH: 'FiltersActions.SEARCH',
+  SET_ORDER: 'FiltersActions.SET_ORDER',
   SET_QUERY: 'FiltersActions.SET_QUERY',
 
   load() {
@@ -103,6 +104,9 @@ const FiltersActions = {
   },
   search() {
     return { type: FiltersActions.SEARCH };
+  },
+  setOrder(order) {
+    return { type: FiltersActions.SET_ORDER, order };
   },
   setQuery(query) {
     return { type: FiltersActions.SET_QUERY, query };
