@@ -15,8 +15,13 @@
   margin-top: 1rem;
 }
 
+.buttons {
+  display: flex;
+}
+
 .button {
   composes: btn from global;
+  margin-right: rem(14);
   min-width: 9rem;
 }
 

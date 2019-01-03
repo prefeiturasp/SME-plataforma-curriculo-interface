@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import FiltersActions from 'actions/FiltersActions';
 import ActiveItem from './ActiveItem';
+import FiltersActions from 'actions/FiltersActions';
+import OrderButton from './OrderButton';
 import getWindowWidth from 'utils/getWindowWidth';
 import iconFilters from 'images/icons/filters.svg';
 import styles from './FilterBar.scss';
@@ -34,10 +35,13 @@ class FilterBar extends Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles.list}>{items}</div>
-        <button className={styles.button} onClick={this.onClickedToggle}>
-          <img src={iconFilters} alt="Filtros" />
-          Filtros
-        </button>
+        <div className={styles.buttons}>
+          <button className={styles.button} onClick={this.onClickedToggle}>
+            <img src={iconFilters} alt="Filtros" />
+            Filtros
+          </button>
+          <OrderButton />
+        </div>
       </div>
     );
   }
