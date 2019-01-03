@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PillItem from 'components/objects/PillItem';
+import Chip from 'components/objects/Chip';
 import iconClock from 'images/icons/clock.svg';
 import iconClockWhite from 'images/icons/clockWhite.svg';
 import styles from './Cover.scss';
@@ -43,8 +43,8 @@ class Cover extends Component {
       <div className={classes.join(' ')}>
         {image}
         <div className={styles.list}>
-          <PillItem data={{ name: sequence.year }} />
-          <PillItem data={sequence.main_curricular_component} />
+          <Chip data={{ name: sequence.year }} />
+          <Chip data={sequence.main_curricular_component} />
         </div>
         {duration}
       </div>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Popover from '@material-ui/core/Popover';
 import { connect } from 'react-redux';
-import CurricularComponent from 'views/sequences/filters/CurricularComponent';
+import CurricularComponent from 'views/sequences/objects/CurricularComponent';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
 import styles from './Field.scss';

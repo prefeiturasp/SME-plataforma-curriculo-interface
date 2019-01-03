@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_URL } from 'data/constants';
 import FiltersActions from 'actions/FiltersActions';
-import styles from './CategoryItemImageButton.scss';
+import styles from './TextButton.scss';
 
-class CategoryItemImageButton extends Component {
+class TextButton extends Component {
   onClicked = () => {
     this.props.toggleFilter(this.props.data);
   };
@@ -17,13 +16,19 @@ class CategoryItemImageButton extends Component {
 
     return (
       <button className={classes.join(' ')} onClick={this.onClicked}>
-        <img src={API_URL + this.props.data.url} alt={this.props.data.name} />
+        <div className={styles.check}>
+          <div className={styles.checkMark} />
+        </div>
+        {this.props.data.name ||
+          this.props.data.title ||
+          this.props.data.code ||
+          this.props.data.description}
       </button>
     );
   }
 }
 
-CategoryItemImageButton.propTypes = {
+TextButton.propTypes = {
   data: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
 };
@@ -39,4 +44,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(CategoryItemImageButton);
+)(TextButton);

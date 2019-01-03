@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import Chip from 'components/objects/Chip';
 import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
-import PillItem from 'components/objects/PillItem';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
 import Tooltips from 'components/Tooltips';
@@ -31,7 +31,7 @@ class SequenceChars extends Component {
     );
 
     const relatedComponents = uniqueCurricularComponents.map((item, i) => {
-      return <PillItem key={i} data={item} isOutlined={true} />;
+      return <Chip key={i} data={item} isOutlined={true} />;
     });
 
     const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {

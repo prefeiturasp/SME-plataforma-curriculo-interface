@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
-import CategoryItemButton from './CategoryItemButton';
-import CategoryItemImageButton from './CategoryItemImageButton';
+import ImageButton from './ImageButton';
+import TextButton from './TextButton';
 import arrowLeft from 'images/arrows/left.svg';
 import chevronLeft from 'images/chevrons/left.svg';
 import iconHelp from 'images/icons/help.svg';
@@ -37,9 +37,9 @@ class CategoryPanel extends Component {
 
     const items = list.map((item, i) => {
       return hasImage ? (
-        <CategoryItemImageButton key={i} data={item} />
+        <ImageButton key={i} data={item} />
       ) : (
-        <CategoryItemButton key={i} data={item} />
+        <TextButton key={i} data={item} />
       );
     });
 

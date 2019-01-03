@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Popover from '@material-ui/core/Popover';
 import { connect } from 'react-redux';
-import YearButton from 'views/sequences/filters/YearButton';
+import YearButton from 'views/sequences/objects/YearButton';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
 import styles from './Field.scss';

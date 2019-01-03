@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CurricularComponentField from './CurricularComponentField';
 import FiltersActions from 'actions/FiltersActions';
-import ThemeField from './ThemeField';
+import SearchField from './SearchField';
 import YearField from './YearField';
 import styles from './Search.scss';
 
@@ -21,7 +21,7 @@ class Search extends Component {
       <div className={styles.wrapper}>
         <p>Encontre sequências de atividades para a sala de aula</p>
         <div className={styles.box}>
-          <ThemeField />
+          <SearchField />
           <YearField />
           <CurricularComponentField />
           <button className={styles.btn1} onClick={this.onClicked}>

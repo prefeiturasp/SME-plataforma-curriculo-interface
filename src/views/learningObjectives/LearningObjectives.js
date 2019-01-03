@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
-import LearningObjectivesActions from 'actions/LearningObjectivesActions';
+import Chip from 'components/objects/Chip';
 import CurricularComponent from './CurricularComponent';
 import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
-import PillItem from 'components/objects/PillItem';
+import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import YearButton from './YearButton';
@@ -105,7 +105,7 @@ class LearningObjectives extends Component {
     const selectedFiltersButtons = this.props.filters
       .filter(item => item.isActive)
       .map((item, i) => {
-        return <PillItem key={i} data={item} />;
+        return <Chip key={i} data={item} />;
       });
 
     const learningObjectivesItems = this.props.results.map((item, i) => {

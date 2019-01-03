@@ -4,9 +4,9 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import iconSearch from 'images/icons/search.svg';
-import styles from './QueryField.scss';
+import styles from './SearchField.scss';
 
-class QueryField extends Component {
+class SearchField extends Component {
   state = { query: '' };
   
   onChangedQuery = e => {
@@ -28,7 +28,7 @@ class QueryField extends Component {
   }
 }
 
-QueryField.propTypes = {
+SearchField.propTypes = {
   setQuery: PropTypes.func.isRequired,
 };
 
@@ -43,5 +43,5 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(QueryField);
+)(SearchField);
 

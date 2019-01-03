@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import iconCloseSmall from 'images/icons/closeSmall.svg';
 import iconCloseSmallWhite from 'images/icons/closeSmallWhite.svg';
-import styles from './ActiveItem.scss';
+import styles from './Chip.scss';
 
-class ActiveItem extends Component {
+class Chip extends Component {
   onClicked = () => {
     this.props.toggleFilter(this.props.data);
   };
@@ -38,7 +38,7 @@ class ActiveItem extends Component {
   }
 }
 
-ActiveItem.propTypes = {
+Chip.propTypes = {
   data: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
 };
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(ActiveItem);
+)(Chip);

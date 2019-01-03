@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Chip from 'components/objects/Chip';
 import ClassroomYear from 'components/objects/ClassroomYear';
-import PillItem from 'components/objects/PillItem';
 import styles from './Classroom.scss';
 
 class Classroom extends React.PureComponent {
@@ -9,7 +9,7 @@ class Classroom extends React.PureComponent {
     const { components, level, name, year } = this.props;
 
     const items = components.map((component, i) => {
-      return <PillItem key={i} data={component} isSmall={true} />;
+      return <Chip key={i} data={component} isSmall={true} />;
     });
 
     return (

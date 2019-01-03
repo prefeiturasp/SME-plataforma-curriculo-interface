@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import chevronRight from 'images/chevrons/right.svg';
-import styles from './CategoryButton.scss';
+import styles from './Category.scss';
 
-class CategoryButton extends Component {
+class Category extends Component {
   onClicked = () => {
     this.props.showCategory(this.props.data);
   };
@@ -20,7 +20,7 @@ class CategoryButton extends Component {
   }
 }
 
-CategoryButton.propTypes = {
+Category.propTypes = {
   data: PropTypes.object.isRequired,
   showCategory: PropTypes.func.isRequired,
 };
@@ -36,4 +36,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(CategoryButton);
+)(Category);

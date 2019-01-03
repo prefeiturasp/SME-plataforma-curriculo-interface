@@ -14,15 +14,15 @@
   margin-bottom: 0.1875rem;
   padding: 0.5rem 1rem;
   text-align: left;
-}
 
-.wrapper.isColored,
-.wrapper.isColored > img {
-  color: white;
-}
+  > img {
+    color: black;
+    margin-left: 0.375rem;
+    margin-top: 0.125rem;
+  }
 
-.wrapper > img {
-  color: black;
-  margin-left: 0.375rem;
-  margin-top: 0.125rem;
+  &.isColored,
+  &.isColored > img {
+    color: white;
+  }
 }

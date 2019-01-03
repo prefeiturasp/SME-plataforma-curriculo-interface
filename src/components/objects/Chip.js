@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './PillItem.scss';
+import styles from './Chip.scss';
 
-class PillItem extends Component {
+class Chip extends Component {
   render() {
     const { data, isOutlined, isSmall } = this.props;
 
@@ -28,10 +28,10 @@ class PillItem extends Component {
   }
 }
 
-PillItem.propTypes = {
+Chip.propTypes = {
   data: PropTypes.object,
   isOutlined: PropTypes.bool,
   isSmall: PropTypes.bool,
 };
 
-export default PillItem;
+export default Chip;
