@@ -45,7 +45,7 @@ class OrderButton extends Component {
 
     const optionButtons = options.map((option, i) => {
       return (
-        <button className={styles.option} onClick={this.onClickedOption(option)}>
+        <button key={i} className={styles.option} onClick={this.onClickedOption(option)}>
           {option.label}
         </button>
       );
@@ -88,7 +88,7 @@ class OrderButton extends Component {
 }
 
 OrderButton.propTypes = {
-  order: PropTypes.string.isRequired,
+  order: PropTypes.string,
   setOrder: PropTypes.func.isRequired,
 };
 
