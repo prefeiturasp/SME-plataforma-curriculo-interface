@@ -4,6 +4,7 @@
 .wrapper {
   align-items: flex-end;
   display: flex;
+  margin-bottom: rem(40);
   
   > img {
     margin-bottom: rem(5);
@@ -13,4 +14,10 @@
 
 .field {
   min-width: rem(320) !important;
+}
+
+@include mq("tablet-landscape") {
+  .wrapper {
+    margin-bottom: 0;
+  }
 }

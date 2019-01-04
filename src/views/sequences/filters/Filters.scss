@@ -5,33 +5,33 @@
   height: 0;
   overflow: hidden;
   transition: height 0.3s ease-in-out;
-}
 
-.wrapper > div {
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-}
+  > div {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+  }
 
-.wrapper h3 {
-  color: black;
-  display: none;
-  font-size: 1.75rem;
-  text-align: center;
-}
+  h3 {
+    color: black;
+    display: none;
+    font-size: 1.75rem;
+    text-align: center;
+  }
 
-.wrapper h4 {
-  color: $grey-800;
-  font-size: 1.3125rem;
-  margin-top: 1.6875rem;
-  margin-bottom: 0.8125rem;
-}
+  h4 {
+    color: $grey-800;
+    font-size: 1.3125rem;
+    margin-top: 1.6875rem;
+    margin-bottom: 0.8125rem;
+  }
 
-.wrapper h5 {
-  color: black;
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
+  h5 {
+    color: black;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
 }
 
 .buttons {
@@ -45,11 +45,11 @@
   display: flex;
   font-size: 0.8125rem;
   margin-top: 1.5rem;
-}
 
-.warning > img {
-  color: $grey-200;
-  margin-right: 0.3125rem;
+  > img {
+    color: $grey-200;
+    margin-right: 0.3125rem;
+  }
 }
 
 .categories {
@@ -81,20 +81,22 @@
     width: 100%;
     z-index: 70;
     transition: left 0.3s ease-in-out;
-  }
 
-  .wrapper h3 {
-    display: block;
-  }
+    h3 {
+      display: block;
+    }
 
-  .wrapper > div {
-    align-items: center;
+    > div {
+      align-items: center;
+    }
   }
 
   .footer {
+    align-items: center;
     background: white;
     border-top: 1px solid $grey-200;
-    display: block;
+    display: flex;
+    justify-content: center;
     position: fixed;
     left: 100%;
     bottom: 0;
