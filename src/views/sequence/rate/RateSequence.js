@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
@@ -10,6 +11,7 @@ import Question from './Question';
 import SequencePreview from 'views/activity/SequencePreview';
 import SequencesActions from 'actions/SequencesActions';
 import styles from './RateSequence.scss';
+import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 const PER_PAGE = 3;
 
@@ -72,10 +74,19 @@ class RateSequence extends Component {
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="Avaliar sequência" />
-          <SequencePreview sequence={data} />
-          <div className={styles.list}>
-            {items}
-            <p className={styles.page}>{currPage + 1} / {numPages}</p>
+          <div className={styles1.row}>
+            <div className={styles1.col1}>
+              <BigSequencePreview sequence={data} />
+            </div>
+            <div className={styles1.col2}>
+              <div className={styles1.small}>
+                <SequencePreview sequence={data} />
+              </div>
+              <div className={styles.list}>
+                {items}
+                <p className={styles.page}>{currPage + 1} / {numPages}</p>
+              </div>
+            </div>
           </div>
           <ModalFooter label={label} onClick={this.onClickedNext} />
         </ModalPage>

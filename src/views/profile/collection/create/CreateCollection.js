@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import Classroom from 'views/profile/collection/edit/Classroom';
 import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -11,6 +12,7 @@ import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import SequencePreview from 'views/activity/SequencePreview';
 import styles from 'views/profile/collection/edit/EditCollection.scss';
+import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 class CreateCollection extends Component {
   state = {
@@ -122,6 +124,10 @@ class CreateCollection extends Component {
       );
     });
 
+    const bigSequencePreview = this.state.sequenceId ? (
+      <BigSequencePreview sequence={this.props.sequence} />
+    ) : null;
+
     const sequencePreview = this.state.sequenceId ? (
       <SequencePreview sequence={this.props.sequence} />
     ) : null;
@@ -135,22 +141,31 @@ class CreateCollection extends Component {
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="Criar coleção" />
-          {sequencePreview}
-          {hr}
-          <header className={styles.header}>
-            <TextField
-              error={isInvalid}
-              fullWidth={true}
-              helperText={message}
-              inputRef={input => (input ? input.focus() : null)}
-              label="Nome da coleção"
-              onChange={this.onChangedName}
-              value={this.state.name}
-            />
-          </header>
-          <div className={styles.list}>
-            <h3>Selecionar turmas (opcional)</h3>
-            {items}
+          <div className={styles1.row}>
+            <div className={styles1.col1}>
+              {bigSequencePreview}
+            </div>
+            <div className={styles1.col2}>
+              <div className={styles1.small}>
+                {sequencePreview}
+                {hr}
+              </div>
+              <header className={styles.header}>
+                <TextField
+                  error={isInvalid}
+                  fullWidth={true}
+                  helperText={message}
+                  inputRef={input => (input ? input.focus() : null)}
+                  label="Nome da coleção"
+                  onChange={this.onChangedName}
+                  value={this.state.name}
+                />
+              </header>
+              <div className={styles.list}>
+                <h3>Selecionar turmas (opcional)</h3>
+                {items}
+              </div>
+            </div>
           </div>
           <ModalFooter label="Criar" onClick={this.onClickedSave} />
         </ModalPage>

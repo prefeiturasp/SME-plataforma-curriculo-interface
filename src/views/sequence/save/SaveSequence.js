@@ -4,6 +4,7 @@ import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import BodyActions from 'actions/BodyActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
@@ -16,6 +17,7 @@ import createModalLink from 'utils/createModalLink';
 import isLogged from 'data/isLogged';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
+import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 class SaveSequence extends Component {
   ref = React.createRef();
@@ -51,25 +53,33 @@ class SaveSequence extends Component {
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="Salvar sequência" />
-          <div ref={this.ref} data-tip data-for="tooltipSequenceAlreadySaved">
-            <SequencePreview sequence={data} />
+          <div className={styles1.row}>
+            <div className={styles1.col1}>
+              <BigSequencePreview sequence={data} />
+            </div>
+            <div className={styles1.col2}>
+              <div ref={this.ref} className={styles1.small} data-tip data-for="tooltipSequenceAlreadySaved">
+                <SequencePreview sequence={data} />
+                <hr />
+              </div>
+              <div className={styles.list}>
+                <p>Selecione uma coleção</p>
+                {items}
+              </div>
+              <div className={styles.footer}>
+                {btnCreate}
+              </div>
+              <ReactTooltip
+                place="bottom"
+                type="dark"
+                effect="solid"
+                id="tooltipSequenceAlreadySaved"
+                className="tooltip"
+              >
+                Você já salvou esta sequência em Ciências Naturais 1o ano.
+              </ReactTooltip>
+            </div>
           </div>
-          <div className={styles.list}>
-            <p>Selecione uma coleção</p>
-            {items}
-          </div>
-          <div className={styles.footer}>
-            {btnCreate}
-          </div>
-          <ReactTooltip
-            place="bottom"
-            type="dark"
-            effect="solid"
-            id="tooltipSequenceAlreadySaved"
-            className="tooltip"
-          >
-            Você já salvou esta sequência em Ciências Naturais 1o ano.
-          </ReactTooltip>
         </ModalPage>
       </DesktopModal>
     );
