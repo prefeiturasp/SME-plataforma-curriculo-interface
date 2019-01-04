@@ -111,6 +111,7 @@
 :global(.isHome) {
   .wrapper,
   .menu > a,
+  .menu > button,
   .logo {
     color: white;
   }
@@ -123,6 +124,7 @@
 :global(.headroom--pinned) {
   .wrapper,
   .menu > a,
+  .menu > button,
   .logo {
     color: $grey-800;
   }
