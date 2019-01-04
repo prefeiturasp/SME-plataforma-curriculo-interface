@@ -89,11 +89,16 @@ class Filters extends Component {
     return (
       <div className={classes.join(' ')} style={style}>
         <div ref={this.ref}>
-          <h3>Filtros</h3>
-          <div className="row">
+          <header className={styles.header}>
+            <button className={styles.close} onClick={this.onClickedClose}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
+            <h1>Filtros</h1>
+          </header>
+          <div className={styles.row}>
             <div className="col-sm-12 col-md-6 col-lg-3">
-              <h4>Ano</h4>
-              <h5>Ciclo de Alfabetização</h5>
+              <h2 className={styles.h2}>Ano</h2>
+              <h3 className={styles.h3}>Ciclo de Alfabetização</h3>
               <div className={styles.buttons}>{yearButtons}</div>
               <p className={styles.warning}>
                 <img src={iconWarning} alt="Observação" />
@@ -104,11 +109,11 @@ class Filters extends Component {
               </p>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
-              <h4>Componente Curricular</h4>
+              <h2 className={styles.h2}>Componente Curricular</h2>
               <div className={styles.buttons}>{componentButtons}</div>
             </div>
             <div className="col-sm-12 col-md-12 col-lg-5">
-              <h4>Filtros</h4>
+              <h2 className={styles.h2}>Filtros</h2>
               <div className={styles.categories}>
                 <div>{categoryButtons}</div>
                 <CategoryPanel />
@@ -116,13 +121,10 @@ class Filters extends Component {
             </div>
           </div>
           <footer className={styles.footer}>
-            <button className={styles.button} onClick={this.onClickedSearch}>
+            <button className="btn" onClick={this.onClickedSearch}>
               Buscar Sequência
             </button>
           </footer>
-          <button className={styles.close} onClick={this.onClickedClose}>
-            <img src={iconCloseBig} alt="Fechar" />
-          </button>
         </div>
       </div>
     );

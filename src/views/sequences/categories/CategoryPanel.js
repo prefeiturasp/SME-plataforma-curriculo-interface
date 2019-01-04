@@ -25,7 +25,7 @@ class CategoryPanel extends Component {
       : [styles.wrapper];
 
     const hasImage = this.props.items.findIndex(item => item.url) >= 0;
-    const listStyle = hasImage ? styles.images : styles.list;
+    const listClass = hasImage ? styles.images : styles.list;
 
     const isAxesOrLearningObjectives = isCategoryOneOf(
       this.props.currCategory,
@@ -108,22 +108,22 @@ class CategoryPanel extends Component {
           <button className={styles.backArrow} onClick={this.onClickedClose}>
             <img src={arrowLeft} alt="Voltar" />
           </button>
-          <h3>Filtros</h3>
+          <h1>Filtros</h1>
         </header>
-        <h5>
+        <h2 className={styles.h2}>
           {categoryName}
           {btnTooltip}
-        </h5>
-        <div className={listStyle}>{items}</div>
-        <footer className={styles.footer}>
-          <button className={styles.button} onClick={this.onClickedClose}>
-            Selecionar
-          </button>
-        </footer>
+        </h2>
+        <div className={listClass}>{items}</div>
         <button className={styles.back} onClick={this.onClickedClose}>
           <img src={chevronLeft} alt="Voltar" />
           Voltar
         </button>
+        <footer className={styles.footer}>
+          <button className="btn" onClick={this.onClickedClose}>
+            Selecionar
+          </button>
+        </footer>
         {tooltip}
       </div>
     );

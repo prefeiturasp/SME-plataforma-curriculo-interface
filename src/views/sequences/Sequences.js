@@ -65,8 +65,8 @@ class Sequences extends Component {
       contents = (
         <section className={styles.wrapper}>
           <div className="container">
-            <h1>Sequências de Atividades</h1>
-            <h2>
+            <h1 className={styles.h1}>Sequências de Atividades</h1>
+            <h2 className={styles.h2}>
               <strong>{this.props.totalItems}</strong> sequências foram
               encontradas
             </h2>
