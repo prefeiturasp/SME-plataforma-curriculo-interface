@@ -32,6 +32,7 @@
 
 .col1 {
   display: none;
+  max-width: rem(256);
 
   @include mq("tablet-landscape") {
     border-right: 1px solid $grey-200;
