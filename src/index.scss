@@ -217,3 +217,47 @@ a:hover {
     text-decoration: underline;
   }
 }
+
+@include mq("tablet-landscape") {
+  :global(.modal) {
+    background-color: white;
+    border-radius: rem(4);
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 120;
+  }
+
+  :global(.modalIn) {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+  }
+
+  :global(.modalOut) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+
+  :global(.backdrop) {
+    background-color: black;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 110;
+  }
+
+  :global(.backdropIn) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.5;
+  }
+
+  :global(.backdropOut) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+}
