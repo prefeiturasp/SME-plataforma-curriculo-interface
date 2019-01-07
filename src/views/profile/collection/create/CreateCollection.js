@@ -40,13 +40,13 @@ class CreateCollection extends Component {
 
   componentDidMount() {
     if (
-      this.props.location &&
-      this.props.location.state &&
-      this.props.location.state.sequenceId > 0
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.slug
     ) {
       this.setState({
         ...this.state,
-        sequenceId: this.props.location.state.sequenceId,
+        sequenceId: this.props.match.params.slug,
       });
     }
   }
@@ -142,9 +142,7 @@ class CreateCollection extends Component {
         <ModalPage>
           <ModalHeader title="Criar coleção" />
           <div className={styles1.row}>
-            <div className={styles1.col1}>
-              {bigSequencePreview}
-            </div>
+            <div className={styles1.col1}>{bigSequencePreview}</div>
             <div className={styles1.col2}>
               <div className={styles1.small}>
                 {sequencePreview}

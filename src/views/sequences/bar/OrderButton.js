@@ -45,7 +45,11 @@ class OrderButton extends Component {
 
     const optionButtons = options.map((option, i) => {
       return (
-        <button key={i} className={styles.option} onClick={this.onClickedOption(option)}>
+        <button
+          key={i}
+          className={styles.option}
+          onClick={this.onClickedOption(option)}
+        >
           {option.label}
         </button>
       );
@@ -54,15 +58,15 @@ class OrderButton extends Component {
     const { order } = this.props;
     const { anchor } = this.state;
     const hasPopover = !!anchor;
-    const classes = hasPopover ? [styles.button, styles.isFocused] : [styles.button];
+    const classes = hasPopover
+      ? [styles.button, styles.isFocused]
+      : [styles.button];
     const value = order ? order.label : options[0].label;
 
     return (
       <div>
         <button className={classes.join(' ')} onClick={this.onClicked}>
-          <span className={styles.label}>
-            Ordenar por
-          </span>
+          <span className={styles.label}>Ordenar por</span>
           <span>{value}</span>
         </button>
         <Popover
@@ -78,9 +82,7 @@ class OrderButton extends Component {
             horizontal: 'left',
           }}
         >
-          <div className={styles.popover}>
-            {optionButtons}
-          </div>
+          <div className={styles.popover}>{optionButtons}</div>
         </Popover>
       </div>
     );

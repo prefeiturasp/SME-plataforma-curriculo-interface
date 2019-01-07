@@ -13,7 +13,7 @@ class Question extends React.PureComponent {
     return () => {
       this.props.onChange(this.props.id, value);
       this.setState({ value });
-    }
+    };
   };
 
   render() {

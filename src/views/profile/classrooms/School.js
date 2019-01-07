@@ -42,9 +42,7 @@ class School extends React.PureComponent {
           </h2>
           <img src={chevron} alt={alt} width={12} />
         </div>
-        <Collapse in={this.state.isExpanded}>
-          {items}
-        </Collapse>
+        <Collapse in={this.state.isExpanded}>{items}</Collapse>
       </div>
     );
   }

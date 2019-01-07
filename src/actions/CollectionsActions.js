@@ -10,15 +10,16 @@ const CollectionsActions = {
   LOADED: 'CollectionsActions.LOADED',
 
   load() {
-    return dispatch => {
-      dispatch({ type: CollectionsActions.LOAD });
-      const teacherId = getTeacherId();
-      return Api.get(dispatch, `/api/professores/${teacherId}/colecoes`)
-        .then(response =>
-          dispatch({ ...response, type: CollectionsActions.LOADED })
-        )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
-    };
+    return { type: 'NOTHING' };
+    // return dispatch => {
+    //   dispatch({ type: CollectionsActions.LOAD });
+    //   const teacherId = getTeacherId();
+    //   return Api.get(dispatch, `/api/professores/${teacherId}/colecoes`)
+    //     .then(response =>
+    //       dispatch({ ...response, type: CollectionsActions.LOADED })
+    //     )
+    //     .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+    // };
   },
 };
 

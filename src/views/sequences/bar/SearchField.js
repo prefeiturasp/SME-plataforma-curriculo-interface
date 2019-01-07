@@ -8,7 +8,7 @@ import styles from './SearchField.scss';
 
 class SearchField extends Component {
   state = { query: '' };
-  
+
   onChangedQuery = e => {
     this.setState({ query: e.target.value });
   };
@@ -18,7 +18,7 @@ class SearchField extends Component {
       <div className={styles.wrapper}>
         <img src={iconSearch} alt="Buscar" />
         <TextField
-          classes={{root: styles.field}}
+          classes={{ root: styles.field }}
           label="Buscar sequência por tema"
           onChange={this.onChangedQuery}
           value={this.state.query}
@@ -44,4 +44,3 @@ export default connect(
   null,
   mapDispatchToProps
 )(SearchField);
-

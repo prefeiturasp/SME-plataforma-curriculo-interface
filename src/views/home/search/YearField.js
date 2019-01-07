@@ -21,13 +21,11 @@ class YearField extends Component {
   };
 
   render() {
-    const years = this.props.filters
-      .filter(item => item.type === 'years');
+    const years = this.props.filters.filter(item => item.type === 'years');
 
-    const yearButtons = years
-      .map((item, i) => {
-        return <YearButton key={i} data={item} />;
-      });
+    const yearButtons = years.map((item, i) => {
+      return <YearButton key={i} data={item} />;
+    });
 
     const selectedYears = years.filter(item => item.isActive);
     const numSelectedYears = selectedYears.length;
@@ -42,14 +40,20 @@ class YearField extends Component {
 
     const { anchor } = this.state;
     const hasPopover = !!anchor;
-    const classes = hasPopover ? [styles.field, styles.isFocused] : [styles.field];
+    const classes = hasPopover
+      ? [styles.field, styles.isFocused]
+      : [styles.field];
     const chevron = hasPopover ? chevronUp : chevronDown;
     const alt = hasPopover ? 'Fechar' : 'Abrir';
     const width = this.ref.current ? this.ref.current.offsetWidth : 0;
 
     return (
       <div className={styles.wrapper}>
-        <div className={classes.join(' ')} onClick={this.onClicked} ref={this.ref}>
+        <div
+          className={classes.join(' ')}
+          onClick={this.onClicked}
+          ref={this.ref}
+        >
           <span>{label}</span>
           <img src={chevron} alt={alt} />
         </div>
@@ -66,10 +70,8 @@ class YearField extends Component {
             horizontal: 'left',
           }}
         >
-          <div className={styles.popover} style={{width}}>
-            <div>
-              {yearButtons}
-            </div>
+          <div className={styles.popover} style={{ width }}>
+            <div>{yearButtons}</div>
             <button className={styles.btnClose} onClick={this.onClosePopover}>
               Fechar
             </button>

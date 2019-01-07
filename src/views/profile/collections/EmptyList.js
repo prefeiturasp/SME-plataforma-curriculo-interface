@@ -6,7 +6,7 @@ import styles from './EmptyList.scss';
 
 class EmptyList extends React.PureComponent {
   render() {
-    const link = createModalLink('/criar-colecao');
+    const link = createModalLink('/perfil/criar-colecao');
 
     return (
       <section className={styles.wrapper}>

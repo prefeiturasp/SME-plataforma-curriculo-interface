@@ -43,7 +43,7 @@ class Detail extends Component {
     const forDescription = data ? data.for_description : '';
 
     return (
-      <FullModal isVisible={this.state.isLoaded}>
+      <FullModal>
         <section className={styles.wrapper}>
           <div className="container">
             <div className="row">

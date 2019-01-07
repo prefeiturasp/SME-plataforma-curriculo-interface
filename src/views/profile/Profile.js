@@ -17,6 +17,8 @@ import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
+  onClickedRate = () => {};
+
   componentDidMount() {
     this.props.load();
   }
@@ -40,13 +42,14 @@ class Profile extends Component {
         text="Você completou 3 sequências de atividades recentemente. Avalie agora e nos ajude a construir novos conteúdos."
         labelNo="Agora não"
         labelYes="Avaliar sequência"
+        onClickedYes={this.onClickedRate}
       />
     ) : null;
 
     const size = this.props.windowWidth < 768 ? 60 : 80;
 
     const linkEdit = createModalLink('/perfil/editar');
-    const linkClassrooms = createModalLink('/turmas');
+    const linkClassrooms = createModalLink('/perfil/turmas');
 
     return (
       <Page>
@@ -90,6 +93,8 @@ Profile.propTypes = {
   data: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
+  loadClassrooms: PropTypes.func.isRequired,
+  loadCollections: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {

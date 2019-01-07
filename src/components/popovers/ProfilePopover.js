@@ -13,10 +13,7 @@ class ProfilePopover extends React.PureComponent {
   render() {
     return (
       <div className={styles.popover} onMouseLeave={this.props.onMouseLeave}>
-        <NavLink
-          to="/perfil"
-          className={styles.btn}
-        >
+        <NavLink to="/perfil" className={styles.btn}>
           Meu perfil
         </NavLink>
         <button className={styles.btn} onClick={this.onClickedLogout}>

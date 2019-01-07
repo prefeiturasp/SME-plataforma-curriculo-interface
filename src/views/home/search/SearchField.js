@@ -7,7 +7,7 @@ import styles from './Field.scss';
 class ThemeField extends Component {
   onChanged = e => {
     this.props.setQuery(e.currentTarget.value);
-  }
+  };
 
   render() {
     return (

@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
-import BodyActions from 'actions/BodyActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -24,8 +23,12 @@ class SaveSequence extends Component {
 
   componentDidMount() {
     ReactTooltip.show(this.ref.current);
-    this.props.load(this.props.match.params.slug);
-    this.props.loadCollections();
+    if (!this.props.data) {
+      this.props.load(this.props.match.params.slug);
+    }
+    if (!this.props.collections) {
+      this.props.loadCollections();
+    }
   }
 
   render() {
@@ -36,11 +39,10 @@ class SaveSequence extends Component {
     const { collections, data } = this.props;
 
     const items = collections.map((item, i) => {
-      return <Collection key={i} sequenceId={this.props.data.id} {...item} />;
+      return <Collection key={i} sequenceId={data.id} {...item} />;
     });
 
-    const link = createModalLink('/criar-colecao');
-    link.state.sequenceId = this.props.data.id;
+    const link = createModalLink(`/sequencia/${data.slug}/criar-colecao`);
 
     const btnCreate = isLogged() ? (
       <NavLink className={styles.btnCreate} to={link}>
@@ -48,7 +50,7 @@ class SaveSequence extends Component {
         Criar coleção
       </NavLink>
     ) : null;
-    
+
     return (
       <DesktopModal>
         <ModalPage>
@@ -58,7 +60,12 @@ class SaveSequence extends Component {
               <BigSequencePreview sequence={data} />
             </div>
             <div className={styles1.col2}>
-              <div ref={this.ref} className={styles1.small} data-tip data-for="tooltipSequenceAlreadySaved">
+              <div
+                ref={this.ref}
+                className={styles1.small}
+                data-tip
+                data-for="tooltipSequenceAlreadySaved"
+              >
                 <SequencePreview sequence={data} />
                 <hr />
               </div>
@@ -66,9 +73,7 @@ class SaveSequence extends Component {
                 <p>Selecione uma coleção</p>
                 {items}
               </div>
-              <div className={styles.footer}>
-                {btnCreate}
-              </div>
+              <div className={styles.footer}>{btnCreate}</div>
               <ReactTooltip
                 place="bottom"
                 type="dark"
@@ -103,7 +108,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
-      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.loadItem(slug));
     },
     loadCollections: () => {

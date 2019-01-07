@@ -7,14 +7,14 @@
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
-  bottom: 0;
+  top: 25%;
+  bottom: 100%;
   z-index: 110;
 }
 
-:global(.enter) {
+:global(.fullModalIn) {
   bottom: 100%;
-  animation: animMask 0.5s ease-in-out forwards;
+  animation: animMaskIn 0.5s ease-in-out forwards;
 
   :global(.fullModalHeader) {
     opacity: 0;
@@ -27,10 +27,12 @@
   }
 }
 
-:global(.entered) {
+:global(.fullModalOut) {
+  bottom: 0;
+  animation: animMaskOut 0.5s ease-in-out forwards;
 }
 
-@keyframes animMask {
+@keyframes animMaskIn {
   from {
     top: 25%;
     bottom: 100%;
@@ -38,6 +40,17 @@
   to {
     top: 0;
     bottom: 0;
+  }
+}
+
+@keyframes animMaskOut {
+  from {
+    top: 0;
+    bottom: 0;
+  }
+  to {
+    top: 25%;
+    bottom: 100%;
   }
 }
 
