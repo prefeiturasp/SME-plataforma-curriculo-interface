@@ -20,18 +20,21 @@ import AppLoading from 'components/loading/AppLoading';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Collection from 'views/profile/collection/Collection';
 import Confirm from 'components/Confirm';
+import CreateCollection from 'views/profile/collection/create/CreateCollection';
 import Curriculum from 'views/curriculum/Curriculum';
 import EditCollection from 'views/profile/collection/edit/EditCollection';
 import EditProfile from 'views/profile/edit/EditProfile';
 import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
-import KnowledgeMatrixItem from 'views/knowledgeMatrix/KnowledgeMatrixItem';
+import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Profile from 'views/profile/Profile';
+import RateSequence from 'views/sequence/rate/RateSequence';
 import Roadmap from 'views/roadmap/Roadmap';
+import SaveSequence from 'views/sequence/save/SaveSequence';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
-import SustainableDevGoal from 'views/sustainableDevGoals/SustainableDevGoal';
+import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 
 import reducers from 'reducers';
@@ -94,15 +97,18 @@ class ModalSwitch extends Component {
           <Route exact path="/perfil" component={Profile} />
           <Route exact path="/colecao/:id" component={Collection} />
         </Switch>
-        <Route exact path="/ods/:id" component={SustainableDevGoal} />
+        <Route exact path="/ods/:id" component={SustainableDevGoalDetail} />
         <Route
           exact
           path="/matriz-de-saberes/:index"
-          component={KnowledgeMatrixItem}
+          component={KnowledgeMatrixDetail}
         />
         <Route exact path="/turmas" component={Classrooms} />
+        <Route exact path="/criar-colecao" component={CreateCollection} />
         <Route exact path="/colecao/:id/editar" component={EditCollection} />
         <Route exact path="/perfil/editar" component={EditProfile} />
+        <Route exact path="/sequencia/:slug/avaliar" component={RateSequence} />
+        <Route exact path="/sequencia/:slug/salvar" component={SaveSequence} />
       </Fragment>
     );
   }

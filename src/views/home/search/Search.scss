@@ -1,0 +1,39 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.box {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: rem(4);
+  margin-bottom: rem(18);
+  padding: rem(15) rem(10);
+}
+
+.btn1,
+.btn2 {
+  composes: btn from global;
+  background-color: $color-turquoise-medium;
+  border: 0;
+  color: white;
+  font-size: rem(15);
+}
+
+.btn1 {
+  display: none;
+}
+
+@include mq("tablet-landscape") {
+  .box {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .btn1 {
+    display: flex;
+    padding-top: rem(8);
+    padding-bottom: rem(8);
+  }
+
+  .btn2 {
+    display: none;
+  }
+}

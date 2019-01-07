@@ -31,12 +31,12 @@ export default function withWidth(Page) {
     }
   }
 
-  PageWithWidth.defaultProps = {
-    windowWidth: 0,
-  };
-
   PageWithWidth.propTypes = {
     windowWidth: PropTypes.number.isRequired,
+  };
+  
+  PageWithWidth.defaultProps = {
+    windowWidth: 0,
   };
 
   return PageWithWidth;

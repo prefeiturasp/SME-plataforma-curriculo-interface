@@ -13,9 +13,9 @@ import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/layout/Page';
-import SequenceCover from 'views/sequence/SequenceCover';
+import Cover from 'views/sequence/Cover';
 import SequencePreview from './SequencePreview';
-import SequenceTitle from 'views/sequence/SequenceTitle';
+import Title from 'views/sequence/Title';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
 import arrowLeft from 'images/arrows/left.svg';
@@ -149,12 +149,9 @@ class Activity extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-lg-8">
-                <SequencePreview data={data} sequence={sequence} />
-                <SequenceCover data={data} sequence={sequence} />
-                <SequenceTitle
-                  text={`Atividade ${data.sequence}`}
-                  title={data.title}
-                />
+                <SequencePreview sequence={sequence} isInActivity />
+                <Cover data={data} sequence={sequence} />
+                <Title text={`Atividade ${data.sequence}`} title={data.title} />
                 <button
                   className={styles.btnChars}
                   onClick={this.onClickedChars}

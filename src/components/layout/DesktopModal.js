@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   disableBodyScroll,
   clearAllBodyScrollLocks,
-  enableBodyScroll
+  enableBodyScroll,
 } from 'body-scroll-lock';
 import { withRouter } from 'react-router';
 import withWidth from 'components/hoc/withWidth';
@@ -13,15 +14,15 @@ class DesktopModal extends Component {
 
   onClosed = () => {
     this.props.history.goBack();
-  }
+  };
 
   onClicked = e => {
     e.preventDefault();
     e.stopPropagation();
-  }
+  };
 
   componentDidMount() {
-    this.target = document.querySelector("#desktopModal");
+    this.target = document.querySelector('#desktopModal');
   }
 
   componentDidUpdate(prevProps) {
@@ -39,18 +40,22 @@ class DesktopModal extends Component {
   }
 
   render() {
+    const classes = this.props.isSmall
+      ? [styles.wrapper, styles.isSmall]
+      : [styles.wrapper];
+
     return (
-      <div
-        className={styles.overlay}
-        onClick={this.onClosed}
-        id="desktopModal"
-      >
-        <div className={styles.wrapper} onClick={this.onClicked}>
+      <div className={styles.overlay} onClick={this.onClosed} id="desktopModal">
+        <div className={classes.join(' ')} onClick={this.onClicked}>
           {this.props.children}
         </div>
       </div>
     );
   }
 }
+
+DesktopModal.propTypes = {
+  isSmall: PropTypes.bool,
+};
 
 export default withRouter(withWidth(DesktopModal));

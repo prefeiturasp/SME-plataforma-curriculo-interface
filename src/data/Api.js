@@ -17,20 +17,26 @@ function getPromise(dispatch, func, method, url, data) {
     func
       .apply(this, [method, url, data])
       .then(response => {
-        response
-          .json()
-          .then(data => {
-            const headers = response.headers;
-            const nextPage = getNextPage(headers);
-            const totalItems = headers.has('total') ? headers.get('total') : 0;
-            resolve({
-              data,
-              headers,
-              nextPage,
-              totalItems,
-            });
-          })
-          .catch(reject);
+        if (response.status === 204) {
+          resolve({});
+        } else {
+          response
+            .json()
+            .then(data => {
+              const headers = response.headers;
+              const nextPage = getNextPage(headers);
+              const totalItems = headers.has('total')
+                ? headers.get('total')
+                : 0;
+              resolve({
+                data,
+                headers,
+                nextPage,
+                totalItems,
+              });
+            })
+            .catch(reject);
+        }
       })
       .catch(reject)
       .finally(response => dispatch({ type: BodyActions.HIDE_LOADING }));

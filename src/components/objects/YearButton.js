@@ -13,16 +13,15 @@ class YearButton extends Component {
       : [styles.wrapper];
 
     return (
-      <li>
-        <button className={[classes.join(' ')]} onClick={this.onClicked}>
-          {this.props.data.description}
-        </button>
-      </li>
+      <button className={[classes.join(' ')]} onClick={this.onClicked}>
+        {this.props.data.description}
+      </button>
     );
   }
 }
 
 YearButton.propTypes = {
+  data: PropTypes.object.isRequired,
   toggleFilter: PropTypes.func.isRequired,
 };
 

@@ -3,27 +3,23 @@
 
 .wrapper {
   align-items: center;
-  display: flex;
   color: $grey-600;
+  display: flex;
   font-weight: 600;
   line-height: 1.2;
   margin-bottom: 0.5rem;
+}
 
-  a:hover {
-    text-decoration: none;
+.number {
+  border-radius: 2rem;
+  border: 1px solid $grey-200;
+  line-height: 1.8rem;
+  margin-right: 0.5rem;
+  text-align: center;
+  min-width: 2rem;
+  height: 2rem;
+}
 
-    div:last-child {
-      text-decoration: underline;
-    }
-  }
-
-  div:first-child {
-    border-radius: 2rem;
-    border: 1px solid $grey-200;
-    line-height: 1.8rem;
-    margin-right: 0.5rem;
-    text-align: center;
-    min-width: 2rem;
-    height: 2rem;
-  }
+:hover .label {
+  text-decoration: underline;
 }

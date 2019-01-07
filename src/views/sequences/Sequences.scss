@@ -1,13 +1,13 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
-.wrapper h1 {
+.h1 {
   font-size: 2.5rem;
   margin-bottom: 0.8125rem;
   margin-top: 1.6875rem;
 }
 
-.wrapper h2 {
+.h2 {
   font-weight: normal;
   font-size: 1.125rem;
   margin-bottom: 0.75rem;
@@ -20,10 +20,6 @@
 .results {
   composes: container from global;
   padding: 1rem 0;
-}
-
-.results > ul {
-  list-style: none;
 }
 
 .results > ul > li {
@@ -41,7 +37,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .wrapper h1 {
+  .h1 {
     font-size: 2.125rem;
     margin-bottom: 0.75rem;
   }

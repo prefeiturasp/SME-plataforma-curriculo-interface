@@ -2,9 +2,8 @@
 @import "~tools.scss";
 
 .wrapper {
-  ul {
-    list-style: none;
-  }
+  overflow-y: scroll;
+  padding: rem(15);
 }
 
 .title {

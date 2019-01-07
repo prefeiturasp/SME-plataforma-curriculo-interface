@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
+import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
 import styles from './SequencePreview.scss';
@@ -12,30 +14,40 @@ class SequencePreview extends Component {
     isSaved: false,
   };
 
-  onClickedSave = () => {
-    this.setState({
-      isSaved: !this.state.isSaved,
-    });
-  };
-
   render() {
-    const { data, sequence } = this.props;
+    const { isInActivity, sequence } = this.props;
     const { isSaved } = this.state;
 
-    const image = data.image_attributes.default_url ? (
+    const image = sequence.image_attributes.default_url ? (
       <img
         className={styles.image}
-        src={API_URL + data.image_attributes.default_url}
-        srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${
-          data.image_attributes.extra_large.url
+        src={API_URL + sequence.image_attributes.default_url}
+        srcSet={`${API_URL}${sequence.image_attributes.large.url}, ${API_URL}${
+          sequence.image_attributes.extra_large.url
         } 2x`}
         alt={sequence.title}
       />
     ) : null;
 
-    const link = `/sequencia/${sequence.slug}`;
-    const icon = isSaved ? iconSaved : iconSave;
-    const label = isSaved ? 'Salvo' : 'Salvar';
+    let btnSave = null;
+    let title = <h1>{sequence.title}</h1>;
+
+    if (isInActivity) {
+      const linkSequence = `/sequencia/${sequence.slug}`;
+
+      title = <NavLink to={linkSequence}>{title}</NavLink>;
+
+      const icon = isSaved ? iconSaved : iconSave;
+      const label = isSaved ? 'Salvo' : 'Salvar';
+      const linkSave = createModalLink(`/sequencia/${sequence.slug}/salvar`);
+
+      btnSave = isLogged() ? (
+        <NavLink className={styles.btnSave} to={linkSave}>
+          <img src={icon} alt={label} />
+          {label}
+        </NavLink>
+      ) : null;
+    }
 
     return (
       <Sticky>
@@ -43,14 +55,9 @@ class SequencePreview extends Component {
           {image}
           <div>
             <p>Sequência de atividades</p>
-            <NavLink to={link}>
-              <h1>{sequence.title}</h1>
-            </NavLink>
+            {title}
           </div>
-          <button className={styles.btn} onClick={this.onClickedSave}>
-            <img src={icon} alt={label} />
-            {label}
-          </button>
+          {btnSave}
         </div>
       </Sticky>
     );
@@ -58,7 +65,7 @@ class SequencePreview extends Component {
 }
 
 SequencePreview.propTypes = {
-  data: PropTypes.object.isRequired,
+  isInActivity: PropTypes.bool,
   sequence: PropTypes.object.isRequired,
 };
 

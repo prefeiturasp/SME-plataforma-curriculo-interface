@@ -1,0 +1,51 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+  padding: rem(15);
+
+  > p {
+    margin-bottom: rem(2);
+  }
+
+  > h1 {
+    color: black;
+    font-size: rem(21);
+    line-height: rem(28);
+  }
+}
+
+.image {
+  margin-bottom: rem(12);
+  object-fit: cover;
+  width: rem(226);
+  height: rem(114);
+}
+
+.row {
+  display: flex;
+  width: 100%;
+}
+
+.col1 {
+  display: none;
+
+  @include mq("tablet-landscape") {
+    border-right: 1px solid $grey-200;
+    display: block;
+  }
+}
+
+.col2 {
+  flex-grow: 10;
+  overflow-y: auto;
+}
+
+.small {
+  @include mq("tablet-landscape") {
+    display: none;
+  }
+}

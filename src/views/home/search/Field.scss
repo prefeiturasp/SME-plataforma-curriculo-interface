@@ -1,0 +1,75 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  margin-bottom: rem(10);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.field {
+  background-color: white;
+  border: 1px solid transparent;
+  border-radius: rem(4);
+  color: black;
+  display: flex;
+  font-size: rem(15);
+  font-weight: normal;
+  line-height: rem(24);
+  justify-content: space-between;
+  outline: 0;
+  padding: rem(8) rem(15);
+  text-align: left;
+  width: 100%;
+
+  &:focus,
+  &.isFocused {
+    border-color: $color-turquoise;
+  }
+
+  > span {
+    margin-right: rem(10);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  > img {
+    opacity: 0.7;
+    width: rem(12);
+  }
+}
+
+.popover {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  padding: rem(14);
+  padding-bottom: rem(20);
+}
+
+.btnClose {
+  font-size: rem(12);
+  font-weight: bold;
+  margin-top: rem(16);
+  text-transform: uppercase;
+}
+
+@include mq("tablet-landscape") {
+  .wrapper {
+    margin-bottom: 0;
+    width: rem(205);
+  }
+
+  .popover {
+    width: rem(325) !important;
+  }
+}
+
+@include mq("desktop") {
+  .wrapper {
+    width: rem(250);
+  }
+}

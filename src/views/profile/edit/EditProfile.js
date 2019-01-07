@@ -7,8 +7,8 @@ import AlertActions from 'actions/AlertActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ProfileActions from 'actions/ProfileActions';
 import ModalPage from 'components/layout/ModalPage';
-import SimpleFooter from 'components/footer/SimpleFooter';
-import SimpleHeader from 'components/header/SimpleHeader';
+import ModalFooter from 'components/footer/ModalFooter';
+import ModalHeader from 'components/header/ModalHeader';
 import styles from './EditProfile.scss';
 import { API_URL } from 'data/constants';
 
@@ -149,46 +149,46 @@ class EditProfile extends Component {
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
-      <DesktopModal>
-      <ModalPage>
-        <SimpleHeader back={true} title="Editar Perfil" />
-        <div className={styles.center}>
-          {imageOrLetter}
-          {actions}
-        </div>
-        <div className={styles.fields}>
-          <div className={styles.field}>
-            <TextField
-              error={isInvalid}
-              fullWidth={true}
-              helperText={message}
-              label="Apelido"
-              onChange={this.onChangedNickname}
-              value={this.state.nickname}
-            />
+      <DesktopModal isSmall>
+        <ModalPage>
+          <ModalHeader title="Editar Perfil" />
+          <div className={styles.contents}>
+            <div className={styles.center}>
+              {imageOrLetter}
+              {actions}
+            </div>
+            <div className={styles.field}>
+              <TextField
+                error={isInvalid}
+                fullWidth={true}
+                helperText={message}
+                label="Apelido"
+                onChange={this.onChangedNickname}
+                value={this.state.nickname}
+              />
+            </div>
+            <div className={styles.field}>
+              <TextField
+                disabled={true}
+                fullWidth={true}
+                label="Nome"
+                value={this.state.name}
+              />
+            </div>
+            <p className={styles.obs}>
+              Caso deseje alterar sua senha, acesse sua conta na{' '}
+              <a
+                href="https://sme.prefeitura.sp.gov.br/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Secretaria Municipal de Educação
+              </a>
+              .
+            </p>
           </div>
-          <div className={styles.field}>
-            <TextField
-              disabled={true}
-              fullWidth={true}
-              label="Nome"
-              value={this.state.name}
-            />
-          </div>
-        </div>
-        <p className={styles.obs}>
-          Caso deseje alterar sua senha, acesse sua conta na{' '}
-          <a
-            href="https://sme.prefeitura.sp.gov.br/"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Secretaria Municipal de Educação
-          </a>
-          .
-        </p>
-        <SimpleFooter label="Salvar" onClick={this.onClickedSave} />
-      </ModalPage>
+          <ModalFooter label="Salvar" onClick={this.onClickedSave} />
+        </ModalPage>
       </DesktopModal>
     );
   }

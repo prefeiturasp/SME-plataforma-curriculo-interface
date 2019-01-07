@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import ActivityChars from './ActivityChars';
 import MobileModal from 'components/layout/MobileModal';
 import ModalPage from 'components/layout/ModalPage';
-import SimpleHeader from 'components/header/SimpleHeader';
+import ModalHeader from 'components/header/ModalHeader';
 
 class ActivityCharsMobile extends Component {
   render() {
     return (
       <MobileModal htmlId="activityChars" isExpanded={this.props.isExpanded}>
         <ModalPage id="activityChars">
-          <SimpleHeader back={true} title="Características" />
+          <ModalHeader title="Características" />
           <ActivityChars data={this.props.data} />
         </ModalPage>
       </MobileModal>

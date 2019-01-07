@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
+import Button from './Button';
 import Page from 'components/layout/Page';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
-import SustainableDevGoalButton from './SustainableDevGoalButton';
 import styles from './SustainableDevGoals.scss';
 
 class SustainableDevGoals extends Component {
@@ -14,7 +14,7 @@ class SustainableDevGoals extends Component {
 
   render() {
     const items = this.props.data.map((item, i) => {
-      return <SustainableDevGoalButton key={i} data={item} />;
+      return <Button key={i} data={item} />;
     });
 
     return (
@@ -50,7 +50,7 @@ class SustainableDevGoals extends Component {
                 Conheça os Objetivos de Desenvolvimento Sustentável
               </h2>
             </div>
-            <ul className={styles.list}>{items}</ul>
+            <div className="row">{items}</div>
           </div>
         </section>
       </Page>

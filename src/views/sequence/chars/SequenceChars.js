@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
-import PillItem from 'components/objects/PillItem';
+import Chip from 'components/objects/Chip';
+import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
 import SustainableDevGoalItem from 'components/objects/SustainableDevGoalItem';
 import Tooltips from 'components/Tooltips';
@@ -31,7 +31,7 @@ class SequenceChars extends Component {
     );
 
     const relatedComponents = uniqueCurricularComponents.map((item, i) => {
-      return <PillItem key={i} data={item} isOutlined={true} />;
+      return <Chip key={i} data={item} isOutlined={true} />;
     });
 
     const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {
@@ -44,11 +44,7 @@ class SequenceChars extends Component {
 
     const learningObjectives = learningObjectivesList.map((item, i) => {
       return (
-        <ExpandableLearningObjectiveItem
-          key={i}
-          data={item}
-          isExpanded={i === 0}
-        />
+        <ExpandableLearningObjective key={i} data={item} isExpanded={i === 0} />
       );
     });
 
@@ -72,9 +68,9 @@ class SequenceChars extends Component {
     const linkPrint = `/imprimir/sequencia/xxx`;
 
     return (
-      <Fragment>
+      <div className={styles.wrapper}>
         <div className={styles.title}>Componentes relacionados</div>
-        <ul>{relatedComponents}</ul>
+        <div>{relatedComponents}</div>
 
         <div className={styles.title}>
           Objetivos de aprendizagem
@@ -82,7 +78,7 @@ class SequenceChars extends Component {
             <img src={iconHelp} alt="Ajuda" />
           </button>
         </div>
-        <ul>{learningObjectives}</ul>
+        <div>{learningObjectives}</div>
         {btnAllLearningObjectives}
 
         <div className={styles.title}>
@@ -91,7 +87,7 @@ class SequenceChars extends Component {
             <img src={iconHelp} alt="Ajuda" />
           </button>
         </div>
-        <ul>{sustainableDevGoals}</ul>
+        <div>{sustainableDevGoals}</div>
 
         <div className={styles.title}>
           Matriz de saberes
@@ -99,7 +95,7 @@ class SequenceChars extends Component {
             <img src={iconHelp} alt="Ajuda" />
           </button>
         </div>
-        <ul>{knowledgeMatrices}</ul>
+        <div>{knowledgeMatrices}</div>
 
         <NavLink className={styles.btnPrint} to={linkPrint}>
           <img src={iconPrint} alt="Imprimir" />
@@ -107,7 +103,7 @@ class SequenceChars extends Component {
         </NavLink>
 
         <Tooltips />
-      </Fragment>
+      </div>
     );
   }
 }

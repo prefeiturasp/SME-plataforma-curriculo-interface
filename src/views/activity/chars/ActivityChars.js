@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import Tooltips from 'components/Tooltips';
 import getEnvironmentIconAndLabel from './getEnvironmentIconAndLabel';
 import iconHelp from 'images/icons/help.svg';
@@ -31,11 +31,7 @@ class ActivityChars extends Component {
 
     const learningObjectives = data.learning_objectives.map((item, i) => {
       return (
-        <ExpandableLearningObjectiveItem
-          key={i}
-          data={item}
-          isExpanded={i === 0}
-        />
+        <ExpandableLearningObjective key={i} data={item} isExpanded={i === 0} />
       );
     });
 
@@ -50,7 +46,7 @@ class ActivityChars extends Component {
         </div>
 
         {learningObjectivesTitle}
-        <ul>{learningObjectives}</ul>
+        <div>{learningObjectives}</div>
 
         <NavLink className={styles.btnPrint} to={linkPrint}>
           <img src={iconPrint} alt="Imprimir" />

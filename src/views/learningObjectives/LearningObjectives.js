@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
+import Chip from 'components/objects/Chip';
+import CurricularComponent from './CurricularComponent';
+import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
-import CurricularComponentButton from './CurricularComponentButton';
-import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
-import PillItem from 'components/objects/PillItem';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import YearButton from './YearButton';
@@ -99,19 +99,17 @@ class LearningObjectives extends Component {
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
-        return <CurricularComponentButton key={i} data={item} />;
+        return <CurricularComponent key={i} data={item} />;
       });
 
     const selectedFiltersButtons = this.props.filters
       .filter(item => item.isActive)
       .map((item, i) => {
-        return <PillItem key={i} data={item} />;
+        return <Chip key={i} data={item} />;
       });
 
     const learningObjectivesItems = this.props.results.map((item, i) => {
-      return (
-        <ExpandableLearningObjectiveItem key={i} data={item} hasLink={true} />
-      );
+      return <ExpandableLearningObjective key={i} data={item} hasLink={true} />;
     });
 
     const totalWidth = getWindowWidth();
@@ -194,7 +192,7 @@ class LearningObjectives extends Component {
                   <div className={styles.pickYear}>
                     <h3>Escolha o ano</h3>
                     <h4>Ciclo de alfabetização</h4>
-                    <ul className={styles.buttons}>{yearButtons}</ul>
+                    <div className={styles.buttons}>{yearButtons}</div>
                     <p className={styles.warning}>
                       <img src={iconWarning} alt="Observação" />
                       <span>
@@ -207,7 +205,7 @@ class LearningObjectives extends Component {
                 <div className="col-md-4">
                   <div className={styles.pickCurricularComponent}>
                     <h3>Escolha o Componente Curricular</h3>
-                    <ul className={styles.buttons}>{componentButtons}</ul>
+                    <div className={styles.buttons}>{componentButtons}</div>
                   </div>
                 </div>
               </div>
@@ -234,8 +232,8 @@ class LearningObjectives extends Component {
                     Voltar
                   </button>
                   <p>Ano e componente(s) selecionado(s):</p>
-                  <ul>{selectedFiltersButtons}</ul>
-                  <ul>{learningObjectivesItems}</ul>
+                  <div>{selectedFiltersButtons}</div>
+                  <div>{learningObjectivesItems}</div>
                 </div>
               </div>
               <button className={styles.close} onClick={this.onClickedBack}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
 import Notification from 'components/objects/Notification';
@@ -8,10 +9,11 @@ import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
 import SequenceChars from './chars/SequenceChars';
 import SequenceCharsMobile from './chars/SequenceCharsMobile';
-import SequenceCover from './SequenceCover';
-import SequenceTitle from './SequenceTitle';
+import Cover from './Cover';
+import Title from './Title';
 import SequencesActions from 'actions/SequencesActions';
 import Tooltips from 'components/Tooltips';
+import createModalLink from 'utils/createModalLink';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {
@@ -23,6 +25,11 @@ class Sequence extends Component {
     this.setState({
       isCharsExpanded: !this.state.isCharsExpanded,
     });
+  };
+
+  onClickedRate = () => {
+    const link = createModalLink(`/sequencia/${this.props.match.params.slug}/avaliar`);
+    this.props.history.push(link);
   };
 
   componentDidMount() {
@@ -56,13 +63,15 @@ class Sequence extends Component {
           text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
           labelNo="Agora não"
           labelYes="Avaliar sequência"
+          onClickedYes={this.onClickedRate}
         />
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-8">
-              <SequenceCover data={data} sequence={data} />
-              <SequenceTitle
+              <Cover data={data} sequence={data} />
+              <Title
                 hasButton={true}
+                slug={data.slug}
                 text="Sequência de atividades"
                 title={data.title}
               />
@@ -76,7 +85,7 @@ class Sequence extends Component {
                 <h3>
                   {data.activities.length} {word}
                 </h3>
-                <ul className="row">{activities}</ul>
+                <div className="row">{activities}</div>
               </div>
             </div>
             <div className={styles.chars}>
@@ -117,4 +126,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Sequence);
+)(withRouter(Sequence));

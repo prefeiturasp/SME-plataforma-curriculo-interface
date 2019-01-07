@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Avatar from './Avatar';
+import BodyActions from 'actions/BodyActions';
+import CollectionsActions from 'actions/CollectionsActions';
 import CollectionList from './collections/CollectionList';
 import EmptyList from './collections/EmptyList';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
+import ProfileActions from 'actions/ProfileActions';
 import createModalLink from 'utils/createModalLink';
 import withWidth from 'components/hoc/withWidth';
 import chevronRight from 'images/chevrons/right.svg';
@@ -12,87 +17,23 @@ import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
+  componentDidMount() {
+    this.props.load();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.data.id && this.props.data.id) {
+      this.props.loadClassrooms();
+      this.props.loadCollections();
+    }
+  }
+
   render() {
-    const collections = [
-      {
-        id: 1,
-        title: '[2018] EF 1A Matemática (1)',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#ff0784',
-            year: '1A',
-          },
-        ],
-      },
-      {
-        id: 2,
-        title: '[2018] EF 1A Matemática (2)',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#ff0784',
-            year: '1A',
-          },
-        ],
-      },
-      {
-        id: 3,
-        title: '[2018] EF 1A Ciências Naturais',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#66ac70',
-            year: '1A',
-          },
-        ],
-      },
-      {
-        id: 4,
-        title: '[2018] EF 1A História',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#66ac70',
-            year: '1A',
-          },
-        ],
-      },
-      {
-        id: 5,
-        title: 'Planeta',
-        sequences: 5,
-        classrooms: 0,
-        years: [],
-      },
-      {
-        id: 6,
-        title: 'Água',
-        sequences: 0,
-        classrooms: 3,
-        years: [
-          {
-            color: '#66ac70',
-            year: '1A',
-          },
-          {
-            color: '#ff0784',
-            year: '1A',
-          },
-        ],
-      },
-    ];
+    const { data, items } = this.props;
+    const { nickname } = data;
 
     const contents =
-      collections.length > 0 ? (
-        <CollectionList items={collections} />
-      ) : (
-        <EmptyList />
-      );
+      items.length > 0 ? <CollectionList items={items} /> : <EmptyList />;
 
     const notification = true ? (
       <Notification
@@ -113,9 +54,9 @@ class Profile extends Component {
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <Avatar nickname="Marília" size={size} />
+              <Avatar nickname={nickname} size={size} />
               <div className={styles.name}>
-                <h2>Marília</h2>
+                <h2>{nickname}</h2>
                 <NavLink to={linkEdit}>Editar perfil</NavLink>
               </div>
             </div>
@@ -145,6 +86,35 @@ class Profile extends Component {
   }
 }
 
-Profile.propTypes = {};
+Profile.propTypes = {
+  data: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+};
 
-export default withWidth(Profile);
+const mapStateToProps = state => {
+  return {
+    data: state.ProfileReducer,
+    items: state.CollectionsReducer.items,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => {
+      dispatch(BodyActions.showLoading());
+      dispatch(ProfileActions.load());
+    },
+    loadClassrooms: () => {
+      dispatch(ProfileActions.loadClassrooms());
+    },
+    loadCollections: () => {
+      dispatch(CollectionsActions.load());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withWidth(Profile));

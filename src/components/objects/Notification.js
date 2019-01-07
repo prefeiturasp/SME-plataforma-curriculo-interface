@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AnimateHeight from 'react-animate-height';
+import Collapse from '@material-ui/core/Collapse';
 import styles from './Notification.scss';
 
 class Notification extends Component {
@@ -14,24 +14,21 @@ class Notification extends Component {
     });
   };
 
-  onClickedYes = () => {};
-
   render() {
     const { labelNo, labelYes, text } = this.props;
-    const height = this.state.isExpanded ? 'auto' : 0;
-
+    
     return (
-      <AnimateHeight height={height}>
+      <Collapse in={this.state.isExpanded}>
         <div className={styles.wrapper}>
           <div className="container">
             <p>{text}</p>
             <div className={styles.buttons}>
               <button onClick={this.onClickedNo}>{labelNo}</button>
-              <button onClick={this.onClickedYes}>{labelYes}</button>
+              <button onClick={this.props.onClickedYes}>{labelYes}</button>
             </div>
           </div>
         </div>
-      </AnimateHeight>
+      </Collapse>
     );
   }
 }
@@ -39,6 +36,7 @@ class Notification extends Component {
 Notification.propTypes = {
   labelNo: PropTypes.string.isRequired,
   labelYes: PropTypes.string.isRequired,
+  onClickedYes: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
 

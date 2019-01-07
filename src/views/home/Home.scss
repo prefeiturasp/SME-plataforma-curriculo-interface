@@ -17,18 +17,15 @@
   display: flex;
   flex-direction: column;
   font-weight: 600;
-  height: 32.5rem;
+  height: rem(520);
   justify-content: center;
-}
+  padding-top: rem(70);
 
-.header p {
-  font-size: 1.3125rem;
-  margin-bottom: 1rem;
-}
-
-.header h1 {
-  font-size: 3.75rem;
-  line-height: 1;
+  p {
+    font-size: rem(21);
+    line-height: rem(24);
+    margin-bottom: rem(34);
+  }
 }
 
 .intro,
@@ -40,11 +37,20 @@
   font-weight: 600;
   padding-top: 3.5rem;
   padding-bottom: 3.75rem;
-}
 
-.intro p {
-  font-size: 1.3125rem;
-  margin-bottom: 3.75rem;
+  p {
+    font-size: 1.3125rem;
+    margin-bottom: 3.75rem;
+  }
+
+  ul {
+    font-size: 1.125rem;
+    margin-bottom: 2.375rem;
+  }
+
+  img {
+    margin-bottom: 1.125rem;
+  }
 }
 
 .intro ul,
@@ -53,85 +59,68 @@
   list-style: none;
 }
 
-.intro ul {
-  font-size: 1.125rem;
-  margin-bottom: 2.375rem;
-}
-
-.intro img {
-  margin-bottom: 1.125rem;
+.sequences h2,
+.curriculum h2 {
+  font-size: 1.875rem;
 }
 
 .sequences {
   background: $grey-100;
   padding-top: 3.125rem;
   padding-bottom: 3.75rem;
-}
 
-.sequences h2,
-.curriculum h2 {
-  font-size: 1.875rem;
-}
-
-.sequences h2 {
-  margin-bottom: 2.5rem;
+  h2 {
+    margin-bottom: 2.5rem;
+  }
 }
 
 .curriculum {
   padding-top: 4rem;
   padding-bottom: 3.75rem;
-}
 
-.curriculum h2 {
-  margin-bottom: 3.75rem;
-}
+  h2 {
+    margin-bottom: 3.75rem;
+  }
 
-.curriculum ul {
-  color: $grey-800;
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 3.25rem;
-}
+  ul {
+    color: $grey-800;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 3.25rem;
+  }
 
-.curriculum img {
-  margin-bottom: 1.25rem;
-}
+  img {
+    margin-bottom: 1.25rem;
+  }
 
-.curriculum a {
-  color: black;
+  a {
+    color: black;
+  }
 }
 
 .discover {
   background: #d8eb59;
   padding-top: 3.375rem;
   padding-bottom: 3.375rem;
-}
 
-.discover > div > div > div {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
+  > div > div > div {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
 
-.discover p {
-  font-size: 1.3125rem;
-  font-weight: 600;
+  p {
+    font-size: 1.3125rem;
+    font-weight: 600;
+  }
 }
 
 .button {
   composes: btn from global;
-  display: inline-block !important;
+  display: inline-block;
 }
 
 @media only screen and (max-width: 768px) {
-  .header {
-    height: 28.75rem;
-  }
-
-  .header h1 {
-    font-size: 2.5rem;
-  }
-
   .intro,
   .sequences,
   .curriculum .discover {
@@ -139,12 +128,18 @@
     padding-bottom: 2.5rem;
   }
 
-  .intro p {
-    margin-bottom: 3rem;
-  }
+  .intro {
+    p {
+      margin-bottom: 3rem;
+    }
 
-  .intro ul {
-    margin-bottom: 2.25rem;
+    ul {
+      margin-bottom: 2.25rem;
+    }
+
+    img {
+      margin-bottom: 1rem;
+    }
   }
 
   .intro li,
@@ -156,11 +151,7 @@
   .curriculum li:last-child {
     margin-bottom: 0;
   }
-
-  .intro img {
-    margin-bottom: 1rem;
-  }
-
+  
   .sequences h2,
   .curriculum h2 {
     font-size: 1.75rem;
@@ -176,13 +167,13 @@
 
   .discover {
     text-align: center;
-  }
+  
+    > div > div > div {
+      flex-direction: column;
+    }
 
-  .discover > div > div > div {
-    flex-direction: column;
-  }
-
-  .discover p {
-    margin-bottom: 1.875rem;
+    p {
+      margin-bottom: 1.875rem;
+    }
   }
 }

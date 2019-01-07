@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AnimateHeight from 'react-animate-height';
+import Collapse from '@material-ui/core/Collapse';
 import Classroom from './Classroom';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
@@ -31,7 +31,6 @@ class School extends React.PureComponent {
     const classes = this.state.isExpanded
       ? [styles.toggler, styles.isExpanded]
       : [styles.toggler];
-    const height = this.state.isExpanded ? 'auto' : 0;
     const chevron = this.state.isExpanded ? chevronUp : chevronDown;
     const alt = this.state.isExpanded ? 'Esconder' : 'Exibir';
 
@@ -43,9 +42,9 @@ class School extends React.PureComponent {
           </h2>
           <img src={chevron} alt={alt} width={12} />
         </div>
-        <AnimateHeight duration={300} height={height}>
+        <Collapse in={this.state.isExpanded}>
           {items}
-        </AnimateHeight>
+        </Collapse>
       </div>
     );
   }

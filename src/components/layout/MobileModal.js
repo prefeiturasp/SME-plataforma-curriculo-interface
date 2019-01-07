@@ -27,11 +27,13 @@ class MobileModal extends React.PureComponent {
   }
 
   render() {
-    const classes = this.props.isExpanded
+    const { children, isExpanded } = this.props;
+
+    const classes = isExpanded
       ? [styles.wrapper, styles.isExpanded]
       : [styles.wrapper];
 
-    return <div className={classes.join(' ')}>{this.props.children}</div>;
+    return <div className={classes.join(' ')}>{children}</div>;
   }
 }
 

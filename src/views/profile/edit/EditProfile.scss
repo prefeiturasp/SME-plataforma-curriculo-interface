@@ -6,6 +6,12 @@
   padding-bottom: rem(72);
 }
 
+.contents {
+  margin-left: auto;
+  margin-right: auto;
+  width: rem(350);
+}
+
 .center {
   align-items: center;
   display: flex;
@@ -84,14 +90,16 @@
   z-index: -1;
 }
 
-.field {
-  margin-bottom: rem(40);
+.field + .field {
+  margin-top: rem(40);
 }
 
 .obs {
   color: $grey-600;
   font-size: rem(13);
   line-height: rem(24);
+  margin-top: rem(12);
+  margin-bottom: rem(26);
 
   > a {
     color: inherit;
