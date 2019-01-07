@@ -22,9 +22,6 @@ class SequencePreview extends Component {
       <img
         className={styles.image}
         src={API_URL + sequence.image_attributes.default_url}
-        srcSet={`${API_URL}${sequence.image_attributes.large.url}, ${API_URL}${
-          sequence.image_attributes.extra_large.url
-        } 2x`}
         alt={sequence.title}
       />
     ) : null;

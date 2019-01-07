@@ -119,12 +119,8 @@ class Activity extends Component {
         })
       : null;
 
-    const linkPrev = `/sequencia/${sequence.slug}/atividade/${
-      data.last_activity
-    }`;
-    const linkNext = `/sequencia/${sequence.slug}/atividade/${
-      data.next_activity
-    }`;
+    const linkPrev = `/atividade/${sequence.slug}/${data.last_activity}`;
+    const linkNext = `/atividade/${sequence.slug}/${data.next_activity}`;
     const linkSequence = `/sequencia/${sequence.slug}`;
 
     const arrowPrev = data.last_activity ? (
@@ -151,7 +147,11 @@ class Activity extends Component {
               <div className="col-sm-12 col-lg-8">
                 <SequencePreview sequence={sequence} isInActivity />
                 <Cover data={data} sequence={sequence} />
-                <Title text={`Atividade ${data.sequence}`} title={data.title} />
+                <Title
+                  slug={sequence.slug}
+                  text={`Atividade ${data.sequence}`}
+                  title={data.title}
+                />
                 <button
                   className={styles.btnChars}
                   onClick={this.onClickedChars}

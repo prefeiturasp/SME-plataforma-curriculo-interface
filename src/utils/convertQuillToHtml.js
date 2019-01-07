@@ -8,7 +8,7 @@ export default function convertQuillToHtml(json) {
     if (item.insert.image) {
       item.insert.image = API_URL + item.insert.image;
 
-      if (item.attributes.style) {
+      if (item.attributes && item.attributes.style) {
         item.insert.imageWithStyle = item.insert.image;
         delete item.insert.image;
       }
