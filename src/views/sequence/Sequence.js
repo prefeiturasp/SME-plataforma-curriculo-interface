@@ -28,7 +28,9 @@ class Sequence extends Component {
   };
 
   onClickedRate = () => {
-    const link = createModalLink(`/sequencia/${this.props.match.params.slug}/avaliar`);
+    const link = createModalLink(
+      `/sequencia/${this.props.match.params.slug}/avaliar`
+    );
     this.props.history.push(link);
   };
 

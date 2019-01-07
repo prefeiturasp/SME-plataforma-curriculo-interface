@@ -10,7 +10,7 @@ import styles from './Search.scss';
 class Search extends Component {
   onClicked = () => {
     this.props.search();
-  }
+  };
 
   componentDidMount() {
     this.props.load();
@@ -41,9 +41,7 @@ Search.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return {
-    
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {
@@ -51,9 +49,7 @@ const mapDispatchToProps = dispatch => {
     load: () => {
       dispatch(FiltersActions.load());
     },
-    search: () => {
-      
-    },
+    search: () => {},
   };
 };
 

@@ -16,7 +16,7 @@ class Notification extends Component {
 
   render() {
     const { labelNo, labelYes, text } = this.props;
-    
+
     return (
       <Collapse in={this.state.isExpanded}>
         <div className={styles.wrapper}>

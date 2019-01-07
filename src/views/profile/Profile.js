@@ -17,10 +17,8 @@ import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
-  onClickedRate = () => {
+  onClickedRate = () => {};
 
-  };
-  
   componentDidMount() {
     this.props.load();
   }

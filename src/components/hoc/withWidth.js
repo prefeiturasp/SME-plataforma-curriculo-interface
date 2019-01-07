@@ -34,7 +34,7 @@ export default function withWidth(Page) {
   PageWithWidth.propTypes = {
     windowWidth: PropTypes.number.isRequired,
   };
-  
+
   PageWithWidth.defaultProps = {
     windowWidth: 0,
   };

@@ -11,11 +11,7 @@ class FullModal extends React.PureComponent {
   }
 
   render() {
-    return (
-      <div id="fullModal">
-        {this.props.children}
-      </div>
-    );
+    return <div id="fullModal">{this.props.children}</div>;
   }
 }
 

@@ -43,14 +43,14 @@ class SaveSequence extends Component {
     });
 
     const link = createModalLink(`/sequencia/${data.slug}/criar-colecao`);
-    
+
     const btnCreate = isLogged() ? (
       <NavLink className={styles.btnCreate} to={link}>
         <img src={iconPlus} alt="Criar coleção" />
         Criar coleção
       </NavLink>
     ) : null;
-    
+
     return (
       <DesktopModal>
         <ModalPage>
@@ -60,7 +60,12 @@ class SaveSequence extends Component {
               <BigSequencePreview sequence={data} />
             </div>
             <div className={styles1.col2}>
-              <div ref={this.ref} className={styles1.small} data-tip data-for="tooltipSequenceAlreadySaved">
+              <div
+                ref={this.ref}
+                className={styles1.small}
+                data-tip
+                data-for="tooltipSequenceAlreadySaved"
+              >
                 <SequencePreview sequence={data} />
                 <hr />
               </div>
@@ -68,9 +73,7 @@ class SaveSequence extends Component {
                 <p>Selecione uma coleção</p>
                 {items}
               </div>
-              <div className={styles.footer}>
-                {btnCreate}
-              </div>
+              <div className={styles.footer}>{btnCreate}</div>
               <ReactTooltip
                 place="bottom"
                 type="dark"

@@ -21,8 +21,9 @@ class CurricularComponentField extends Component {
   };
 
   render() {
-    const components = this.props.filters
-      .filter(item => item.type === 'curricular_components');
+    const components = this.props.filters.filter(
+      item => item.type === 'curricular_components'
+    );
 
     const componentButtons = components.map((item, i) => {
       return <CurricularComponent key={i} data={item} />;
@@ -38,14 +39,20 @@ class CurricularComponentField extends Component {
 
     const { anchor } = this.state;
     const hasPopover = !!anchor;
-    const classes = hasPopover ? [styles.field, styles.isFocused] : [styles.field];
+    const classes = hasPopover
+      ? [styles.field, styles.isFocused]
+      : [styles.field];
     const chevron = hasPopover ? chevronUp : chevronDown;
     const alt = hasPopover ? 'Fechar' : 'Abrir';
     const width = this.ref.current ? this.ref.current.offsetWidth : 0;
 
     return (
       <div className={styles.wrapper}>
-        <div className={classes.join(' ')} onClick={this.onClicked} ref={this.ref}>
+        <div
+          className={classes.join(' ')}
+          onClick={this.onClicked}
+          ref={this.ref}
+        >
           <span>{label}</span>
           <img src={chevron} alt={alt} />
         </div>
@@ -62,10 +69,8 @@ class CurricularComponentField extends Component {
             horizontal: 'left',
           }}
         >
-          <div className={styles.popover} style={{width}}>
-            <div>
-              {componentButtons}
-            </div>
+          <div className={styles.popover} style={{ width }}>
+            <div>{componentButtons}</div>
             <button className={styles.btnClose} onClick={this.onClosePopover}>
               Fechar
             </button>

@@ -102,11 +102,7 @@ class ModalSwitch extends Component {
             component={Sequences}
           />
           <Route path="/sequencia/:slug" component={Sequence} />
-          <Route
-            exact
-            path="/atividade/:slug1/:slug2"
-            component={Activity}
-          />
+          <Route exact path="/atividade/:slug1/:slug2" component={Activity} />
           <Route exact path="/curriculo" component={Curriculum} />
           <Route path="/ods" component={SustainableDevGoals} />
           <Route path="/matriz-de-saberes" component={KnowledgeMatrix} />
@@ -119,7 +115,12 @@ class ModalSwitch extends Component {
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
         </Switch>
-        <ModalRoute path="/ods/:id" parentPath="/ods" component={SustainableDevGoalDetail} {...fullModalProps} />
+        <ModalRoute
+          path="/ods/:id"
+          parentPath="/ods"
+          component={SustainableDevGoalDetail}
+          {...fullModalProps}
+        />
         <ModalRoute
           exact
           path="/matriz-de-saberes/:index"
@@ -127,13 +128,48 @@ class ModalSwitch extends Component {
           component={KnowledgeMatrixDetail}
           {...fullModalProps}
         />
-        <ModalRoute exact path="/perfil/turmas" component={Classrooms} {...modalProps} />
-        <ModalRoute exact path="/perfil/criar-colecao" component={CreateCollection} {...modalProps} />
-        <ModalRoute exact path="/perfil/editar" component={EditProfile} {...modalProps} />
-        <ModalRoute exact path="/colecao/:id/editar" component={EditCollection} {...modalProps} />
-        <ModalRoute exact path="/sequencia/:slug/criar-colecao" component={CreateCollection} {...modalProps} />
-        <ModalRoute exact path="/sequencia/:slug/avaliar" component={RateSequence} {...modalProps} />
-        <ModalRoute exact path="/sequencia/:slug/salvar" component={SaveSequence} {...modalProps} />
+        <ModalRoute
+          exact
+          path="/perfil/turmas"
+          component={Classrooms}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/perfil/criar-colecao"
+          component={CreateCollection}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/perfil/editar"
+          component={EditProfile}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/colecao/:id/editar"
+          component={EditCollection}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/sequencia/:slug/criar-colecao"
+          component={CreateCollection}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/sequencia/:slug/avaliar"
+          component={RateSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/sequencia/:slug/salvar"
+          component={SaveSequence}
+          {...modalProps}
+        />
         <ModalContainer />
       </Fragment>
     );

@@ -65,22 +65,13 @@ class Header extends Component {
     });
 
     const avatar = isLogged() ? (
-      <button
-        className={styles.avatar}
-        onMouseEnter={this.onMouseEnter}
-      >
+      <button className={styles.avatar} onMouseEnter={this.onMouseEnter}>
         <Avatar nickname="Marília" size={35} />
         <img src={chevronDown} alt="Perfil" />
       </button>
     ) : null;
 
-    const btnLogin = (
-      <button
-        onMouseEnter={this.onMouseEnter}
-      >
-        Login
-      </button>
-    );
+    const btnLogin = <button onMouseEnter={this.onMouseEnter}>Login</button>;
 
     const popoverContents = isLogged() ? (
       <ProfilePopover onMouseLeave={this.onMouseLeave} />
@@ -99,9 +90,7 @@ class Header extends Component {
       >
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={300}>
-            <Paper>
-              {popoverContents}
-            </Paper>
+            <Paper>{popoverContents}</Paper>
           </Fade>
         )}
       </Popper>
@@ -122,7 +111,10 @@ class Header extends Component {
           </nav>
           <div className={styles.mobile}>
             {avatar}
-            <button className={styles.toggler} onClick={this.onClickedToggler} />
+            <button
+              className={styles.toggler}
+              onClick={this.onClickedToggler}
+            />
           </div>
           {popover}
         </header>

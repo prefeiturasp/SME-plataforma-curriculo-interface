@@ -142,9 +142,7 @@ class CreateCollection extends Component {
         <ModalPage>
           <ModalHeader title="Criar coleção" />
           <div className={styles1.row}>
-            <div className={styles1.col1}>
-              {bigSequencePreview}
-            </div>
+            <div className={styles1.col1}>{bigSequencePreview}</div>
             <div className={styles1.col2}>
               <div className={styles1.small}>
                 {sequencePreview}

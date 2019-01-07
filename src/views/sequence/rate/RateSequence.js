@@ -30,7 +30,7 @@ class RateSequence extends Component {
       ...this.state,
       answers: newAnswers,
     });
-  }
+  };
 
   onClickedNext = () => {
     const { currPage, numPages } = this.state;
@@ -40,9 +40,8 @@ class RateSequence extends Component {
         currPage: currPage + 1,
       });
     } else {
-
     }
-  }
+  };
 
   componentDidMount() {
     if (!this.props.data) {
@@ -65,9 +64,7 @@ class RateSequence extends Component {
     const endIndex = startIndex + PER_PAGE;
 
     const items = questions.slice(startIndex, endIndex).map((question, i) => {
-      return (
-        <Question key={i} {...question} onChange={this.onChangedAnswer} />
-      );
+      return <Question key={i} {...question} onChange={this.onChangedAnswer} />;
     });
 
     const label = currPage < numPages - 1 ? 'Próximo' : 'Concluir';
@@ -86,7 +83,9 @@ class RateSequence extends Component {
               </div>
               <div className={styles.list}>
                 {items}
-                <p className={styles.page}>{currPage + 1} / {numPages}</p>
+                <p className={styles.page}>
+                  {currPage + 1} / {numPages}
+                </p>
               </div>
             </div>
           </div>
@@ -116,7 +115,8 @@ RateSequence.defaultProps = {
     },
     {
       id: 3,
-      title: 'Qual foi o nível de envolvimento dos estudantes com as atividades?',
+      title:
+        'Qual foi o nível de envolvimento dos estudantes com as atividades?',
     },
     {
       id: 4,
@@ -128,7 +128,8 @@ RateSequence.defaultProps = {
     },
     {
       id: 6,
-      title: 'Qual foi o nível de envolvimento dos estudantes com as atividades?',
+      title:
+        'Qual foi o nível de envolvimento dos estudantes com as atividades?',
     },
     {
       id: 7,
@@ -140,7 +141,8 @@ RateSequence.defaultProps = {
     },
     {
       id: 9,
-      title: 'Qual foi o nível de envolvimento dos estudantes com as atividades?',
+      title:
+        'Qual foi o nível de envolvimento dos estudantes com as atividades?',
     },
   ],
 };
@@ -156,9 +158,7 @@ const mapDispatchToProps = dispatch => {
     load: slug => {
       dispatch(SequencesActions.loadItem(slug));
     },
-    rate: () => {
-      
-    },
+    rate: () => {},
   };
 };
 

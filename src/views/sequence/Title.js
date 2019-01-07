@@ -12,12 +12,13 @@ class Title extends Component {
 
     const link = createModalLink(`/sequencia/${slug}/salvar`);
 
-    const button = hasButton && isLogged() ? (
-      <NavLink className={styles.btnSave} to={link}>
-        <img src={iconSave} alt="Salvar" />
-        Salvar
-      </NavLink>
-    ) : null;
+    const button =
+      hasButton && isLogged() ? (
+        <NavLink className={styles.btnSave} to={link}>
+          <img src={iconSave} alt="Salvar" />
+          Salvar
+        </NavLink>
+      ) : null;
 
     return (
       <div className={styles.wrapper}>
