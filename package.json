@@ -43,6 +43,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-ga": "^1.0.0",
+    "react-router-modal": "^2.0.0-rc2",
     "react-stickynode": "^2.1.0",
     "react-tooltip": "^3.6.0",
     "react-truncate": "^2.4.0",
