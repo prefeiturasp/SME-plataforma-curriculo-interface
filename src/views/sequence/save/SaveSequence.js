@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
-import BodyActions from 'actions/BodyActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -24,8 +23,12 @@ class SaveSequence extends Component {
 
   componentDidMount() {
     ReactTooltip.show(this.ref.current);
-    this.props.load(this.props.match.params.slug);
-    this.props.loadCollections();
+    if (!this.props.data) {
+      this.props.load(this.props.match.params.slug);
+    }
+    if (!this.props.collections) {
+      this.props.loadCollections();
+    }
   }
 
   render() {
@@ -36,12 +39,11 @@ class SaveSequence extends Component {
     const { collections, data } = this.props;
 
     const items = collections.map((item, i) => {
-      return <Collection key={i} sequenceId={this.props.data.id} {...item} />;
+      return <Collection key={i} sequenceId={data.id} {...item} />;
     });
 
-    const link = createModalLink('/criar-colecao');
-    link.state.sequenceId = this.props.data.id;
-
+    const link = createModalLink(`/sequencia/${data.slug}/criar-colecao`);
+    
     const btnCreate = isLogged() ? (
       <NavLink className={styles.btnCreate} to={link}>
         <img src={iconPlus} alt="Criar coleção" />
@@ -103,7 +105,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
-      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.loadItem(slug));
     },
     loadCollections: () => {

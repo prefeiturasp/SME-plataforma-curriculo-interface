@@ -45,7 +45,9 @@ class RateSequence extends Component {
   }
 
   componentDidMount() {
-    this.props.load(this.props.match.params.slug);
+    if (!this.props.data) {
+      this.props.load(this.props.match.params.slug);
+    }
     this.setState({
       ...this.state,
       numPages: Math.ceil(this.props.questions.length / PER_PAGE),
