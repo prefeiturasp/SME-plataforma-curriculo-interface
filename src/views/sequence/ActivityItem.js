@@ -8,7 +8,7 @@ import styles from './ActivityItem.scss';
 class ActivityItem extends Component {
   render() {
     const data = this.props.data;
-    const link = `/sequencia/${this.props.sequenceSlug}/atividade/${data.slug}`;
+    const link = `/atividade/${this.props.sequenceSlug}/${data.slug}`;
     const duration = data.estimated_time || 0;
     const word = duration > 1 ? 'aulas' : 'aula';
 
