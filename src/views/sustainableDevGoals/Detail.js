@@ -33,7 +33,7 @@ class Detail extends Component {
     const style = { backgroundColor: data.color };
 
     return (
-      <FullModal isVisible={true}>
+      <FullModal>
         <section className={styles.wrapper}>
           <header className={styles.header} style={style}>
             <div className="container">
