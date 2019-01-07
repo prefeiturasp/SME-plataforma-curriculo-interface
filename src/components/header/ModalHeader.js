@@ -7,7 +7,11 @@ import styles from './ModalHeader.scss';
 
 class ModalHeader extends React.PureComponent {
   onClickedBack = () => {
-    this.props.history.goBack();
+    if (this.props.onBack) {
+      this.props.onBack();
+    } else {
+      this.props.history.goBack();
+    }
   };
 
   render() {
@@ -34,6 +38,7 @@ class ModalHeader extends React.PureComponent {
 }
 
 ModalHeader.propTypes = {
+  onBack: PropTypes.func,
   title: PropTypes.string.isRequired,
 };
 

@@ -98,6 +98,7 @@ class Sequence extends Component {
         <SequenceCharsMobile
           data={this.props.data}
           isExpanded={this.state.isCharsExpanded}
+          onBack={this.onClickedChars}
         />
         <Tooltips />
       </Page>
