@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'react-image-gallery/styles/css/image-gallery-no-icon.css';
+import 'react-router-modal/css/react-router-modal.css';
 import 'components/layout/FullModal.scss';
 import './index.scss';
 
@@ -9,6 +10,7 @@ import ReactDOM from 'react-dom';
 import Analytics from 'react-router-ga';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
+import { ModalContainer, ModalRoute } from 'react-router-modal';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
@@ -41,6 +43,28 @@ import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
 
+const store = createStore(reducers, applyMiddleware(thunk));
+
+const fullModalProps = {
+  className: 'fullModal',
+  inClassName: 'fullModalIn',
+  outClassName: 'fullModalOut',
+  backdropClassName: 'backdrop',
+  backdropInClassName: 'backdropIn',
+  backdropOutClassName: 'backdropOut',
+  outDelay: 500,
+};
+
+const modalProps = {
+  className: 'modal',
+  inClassName: 'modalIn',
+  outClassName: 'modalOut',
+  backdropClassName: 'backdrop',
+  backdropInClassName: 'backdropIn',
+  backdropOutClassName: 'backdropOut',
+  outDelay: 300,
+};
+
 class ModalSwitch extends Component {
   componentWillUpdate(nextProps) {
     const location = this.props.location;
@@ -54,13 +78,11 @@ class ModalSwitch extends Component {
 
   render() {
     const location = this.props.location;
-
     const isModal = !!(
       location.state &&
       location.state.isModal &&
       this.previousLocation !== location
     );
-
     const locationProp = isModal ? this.previousLocation : location;
 
     return (
@@ -79,42 +101,44 @@ class ModalSwitch extends Component {
             path="/sequencias/objetivos-de-aprendizagem/:oda"
             component={Sequences}
           />
-          <Route exact path="/sequencia/:slug" component={Sequence} />
+          <Route path="/sequencia/:slug" component={Sequence} />
           <Route
             exact
-            path="/sequencia/:slug1/atividade/:slug2"
+            path="/atividade/:slug1/:slug2"
             component={Activity}
           />
           <Route exact path="/curriculo" component={Curriculum} />
-          <Route exact path="/ods" component={SustainableDevGoals} />
-          <Route exact path="/matriz-de-saberes" component={KnowledgeMatrix} />
+          <Route path="/ods" component={SustainableDevGoals} />
+          <Route path="/matriz-de-saberes" component={KnowledgeMatrix} />
           <Route
             exact
             path="/objetivos-de-aprendizagem"
             component={LearningObjectives}
           />
           <Route exact path="/descobrir" component={Roadmap} />
-          <Route exact path="/perfil" component={Profile} />
-          <Route exact path="/colecao/:id" component={Collection} />
+          <Route path="/perfil" component={Profile} />
+          <Route path="/colecao/:id" component={Collection} />
         </Switch>
-        <Route exact path="/ods/:id" component={SustainableDevGoalDetail} />
-        <Route
+        <ModalRoute path="/ods/:id" parentPath="/ods" component={SustainableDevGoalDetail} {...fullModalProps} />
+        <ModalRoute
           exact
           path="/matriz-de-saberes/:index"
+          parentPath="/matriz-de-saberes"
           component={KnowledgeMatrixDetail}
+          {...fullModalProps}
         />
-        <Route exact path="/turmas" component={Classrooms} />
-        <Route exact path="/criar-colecao" component={CreateCollection} />
-        <Route exact path="/colecao/:id/editar" component={EditCollection} />
-        <Route exact path="/perfil/editar" component={EditProfile} />
-        <Route exact path="/sequencia/:slug/avaliar" component={RateSequence} />
-        <Route exact path="/sequencia/:slug/salvar" component={SaveSequence} />
+        <ModalRoute exact path="/perfil/turmas" component={Classrooms} {...modalProps} />
+        <ModalRoute exact path="/perfil/criar-colecao" component={CreateCollection} {...modalProps} />
+        <ModalRoute exact path="/perfil/editar" component={EditProfile} {...modalProps} />
+        <ModalRoute exact path="/colecao/:id/editar" component={EditCollection} {...modalProps} />
+        <ModalRoute exact path="/sequencia/:slug/criar-colecao" component={CreateCollection} {...modalProps} />
+        <ModalRoute exact path="/sequencia/:slug/avaliar" component={RateSequence} {...modalProps} />
+        <ModalRoute exact path="/sequencia/:slug/salvar" component={SaveSequence} {...modalProps} />
+        <ModalContainer />
       </Fragment>
     );
   }
 }
-
-const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
