@@ -19,10 +19,7 @@ import styles from './SaveSequence.scss';
 import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 class SaveSequence extends Component {
-  ref = React.createRef();
-
   componentDidMount() {
-    ReactTooltip.show(this.ref.current);
     if (!this.props.data) {
       this.props.load(this.props.match.params.slug);
     }
@@ -57,11 +54,15 @@ class SaveSequence extends Component {
           <ModalHeader title="Salvar sequência" />
           <div className={styles1.row}>
             <div className={styles1.col1}>
-              <BigSequencePreview sequence={data} />
+              <div
+                data-tip
+                data-for="tooltipSequenceAlreadySaved"
+              >
+                <BigSequencePreview sequence={data} />
+              </div>
             </div>
             <div className={styles1.col2}>
               <div
-                ref={this.ref}
                 className={styles1.small}
                 data-tip
                 data-for="tooltipSequenceAlreadySaved"
