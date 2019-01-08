@@ -9,22 +9,25 @@
 .title {
   color: $grey-800;
   font-weight: 600;
-  margin-bottom: 0.8125rem;
+  margin-bottom: rem(8);
 
   > button {
     color: $grey-200;
-    margin-left: 0.25rem;
+    margin-left: rem(4);
   }
+}
+
+.spacer {
+  margin-bottom: rem(30);
 }
 
 .btnAllLearningObjectives {
   color: $grey-600;
   display: block;
-  font-size: 0.9375rem;
+  font-size: rem(15);
   font-weight: 600;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2rem;
   text-align: center;
   text-decoration: underline;
 }
