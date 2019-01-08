@@ -12,11 +12,10 @@ import styles from './Search.scss';
 
 class Search extends Component {
   onClicked = () => {
-    const { filters, query, order } = this.props;
+    const { filters, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
     if (activeFilters.length > 0 || query) {
-      this.props.history.push('/sequencias');
-      this.props.search(filters, query, order);
+      this.props.history.push('/sequencias', { isSearch: true });
     } else {
       this.props.openAlert(
         'Selecione pelo menos um ano ou componente curricular para encontrar sequências de atividades.'

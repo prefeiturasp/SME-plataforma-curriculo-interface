@@ -41,6 +41,13 @@ class Sequences extends Component {
         type: 'learning_objectives',
         id: parseInt(params.oda, 10),
       });
+    } else if (
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.isSearch
+    ) {
+      const { filters, query, order } = this.props;
+      this.props.search(filters, query, order);
     } else {
       this.props.load();
     }
@@ -97,7 +104,12 @@ Sequences.propTypes = {
   isSearching: PropTypes.bool.isRequired,
   nextPage: PropTypes.string,
   totalItems: PropTypes.number,
+  search: PropTypes.func.isRequired,
+  filters: PropTypes.array,
+  order: PropTypes.string,
+  query: PropTypes.array,
   load: PropTypes.func.isRequired,
+  loadMore: PropTypes.func.isRequired,
   loadWithFilter: PropTypes.func.isRequired,
 };
 
@@ -107,6 +119,9 @@ const mapStateToProps = state => {
     isSearching: state.SequencesReducer.isSearching,
     nextPage: state.SequencesReducer.nextPage,
     totalItems: state.SequencesReducer.totalItems,
+    filters: state.FiltersReducer.filters,
+    order: state.FiltersReducer.order,
+    query: state.FiltersReducer.query,
   };
 };
 
@@ -124,6 +139,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(FiltersActions.clearFilters());
       dispatch(FiltersActions.cacheFilter(data));
       dispatch(SequencesActions.loadWithFilter(data));
+    },
+    search: (filters, query, order) => {
+      dispatch(BodyActions.showLoading());
+      dispatch(SequencesActions.search(filters, query, order));
     },
   };
 };
