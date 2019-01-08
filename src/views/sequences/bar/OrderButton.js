@@ -1,27 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Popover from '@material-ui/core/Popover';
+import MenuItem from '@material-ui/core/MenuItem';
+import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import styles from './OrderButton.scss';
 
 class OrderButton extends Component {
-  state = { anchor: null };
+  state = { order: '' };
 
-  onClicked = e => {
-    this.setState({ anchor: e.currentTarget });
+  onChanged = e => {
+    const value = e.target.value;
+    this.props.setOrder(value);
   };
 
-  onClickedOption = value => {
-    return () => {
-      this.props.setOrder(value);
-      this.setState({ anchor: null });
-    };
-  };
-
-  onClosePopover = () => {
-    this.setState({ anchor: null });
-  };
+  componentDidUpdate(prevProps) {
+    if (this.props.order !== prevProps.order) {
+      this.setState({ order: this.props.order });
+    }
+  }
 
   render() {
     const options = [
@@ -45,45 +42,26 @@ class OrderButton extends Component {
 
     const optionButtons = options.map((option, i) => {
       return (
-        <button
-          key={i}
-          className={styles.option}
-          onClick={this.onClickedOption(option)}
-        >
+        <MenuItem key={i} value={option.slug}>
           {option.label}
-        </button>
+        </MenuItem>
       );
     });
 
-    const { order } = this.props;
-    const { anchor } = this.state;
-    const hasPopover = !!anchor;
-    const classes = hasPopover
-      ? [styles.button, styles.isFocused]
-      : [styles.button];
-    const value = order ? order.label : options[0].label;
-
+    const { order } = this.state;
+    
     return (
-      <div>
-        <button className={classes.join(' ')} onClick={this.onClicked}>
-          <span className={styles.label}>Ordenar por</span>
-          <span>{value}</span>
-        </button>
-        <Popover
-          anchorEl={anchor}
-          onClose={this.onClosePopover}
-          open={hasPopover}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          transformOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
+      <div className={styles.wrapper}>
+        <TextField
+          select
+          fullWidth={true}
+          label="Ordenar por"
+          value={order}
+          variant="outlined"
+          onChange={this.onChanged}
         >
-          <div className={styles.popover}>{optionButtons}</div>
-        </Popover>
+          {optionButtons}
+        </TextField>
       </div>
     );
   }
