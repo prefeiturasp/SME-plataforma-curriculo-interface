@@ -24,7 +24,7 @@ class Filters extends Component {
       clearAllBodyScrollLocks();
     } else {
       this.props.openAlert(
-        'Selecione pelo menos um ano ou componente curricular para encontrar sequencias de atividades.'
+        'Selecione pelo menos um ano ou componente curricular para encontrar sequências de atividades.'
       );
     }
   };
