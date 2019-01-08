@@ -10,8 +10,14 @@ class SearchField extends Component {
   state = { query: '' };
 
   onChangedQuery = e => {
-    this.setState({ query: e.target.value });
+    this.props.setQuery(e.target.value);
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.query !== prevProps.query) {
+      this.setState({ query: this.props.query });
+    }
+  }
 
   render() {
     return (
@@ -29,7 +35,14 @@ class SearchField extends Component {
 }
 
 SearchField.propTypes = {
+  query: PropTypes.string,
   setQuery: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    query: state.FiltersReducer.query,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -41,6 +54,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SearchField);

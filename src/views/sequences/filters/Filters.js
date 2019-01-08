@@ -17,9 +17,10 @@ class Filters extends Component {
   ref = React.createRef();
 
   onClickedSearch = () => {
-    const activeFilters = this.props.filters.filter(item => item.isActive);
-    if (activeFilters.length > 0) {
-      this.props.search(activeFilters);
+    const { filters, query, order } = this.props;
+    const activeFilters = filters.filter(item => item.isActive);
+    if (activeFilters.length > 0 || query) {
+      this.props.search(activeFilters, query, order);
       clearAllBodyScrollLocks();
     } else {
       this.props.openAlert(
@@ -134,6 +135,8 @@ class Filters extends Component {
 Filters.propTypes = {
   filters: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
+  order: PropTypes.string,
+  query: PropTypes.string,
   load: PropTypes.func.isRequired,
   openAlert: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
@@ -144,6 +147,8 @@ const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters,
     isExpanded: state.FiltersReducer.isExpanded,
+    order: state.FiltersReducer.order,
+    query: state.FiltersReducer.query,
   };
 };
 
@@ -155,9 +160,9 @@ const mapDispatchToProps = dispatch => {
     openAlert: message => {
       dispatch(AlertActions.open(message));
     },
-    search: filters => {
+    search: (filters, query, order) => {
       dispatch(FiltersActions.search());
-      dispatch(SequencesActions.search(filters));
+      dispatch(SequencesActions.search(filters, query, order));
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());

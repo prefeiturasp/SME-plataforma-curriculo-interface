@@ -7,7 +7,7 @@ import FiltersActions from 'actions/FiltersActions';
 import styles from './OrderButton.scss';
 
 class OrderButton extends Component {
-  state = { order: '' };
+  state = { order: 'default' };
 
   onChanged = e => {
     const value = e.target.value;
@@ -21,25 +21,9 @@ class OrderButton extends Component {
   }
 
   render() {
-    const options = [
-      {
-        slug: 'best',
-        label: 'Melhores resultados',
-      },
-      {
-        slug: 'alphabetic',
-        label: 'A-Z',
-      },
-      {
-        slug: 'newer',
-        label: 'Mais recentes',
-      },
-      {
-        slug: 'older',
-        label: 'Mais antigas',
-      },
-    ];
-
+    const { order } = this.state;
+    
+    const { options } = this.props;
     const optionButtons = options.map((option, i) => {
       return (
         <MenuItem key={i} value={option.slug}>
@@ -48,8 +32,6 @@ class OrderButton extends Component {
       );
     });
 
-    const { order } = this.state;
-    
     return (
       <div className={styles.wrapper}>
         <TextField
@@ -68,8 +50,30 @@ class OrderButton extends Component {
 }
 
 OrderButton.propTypes = {
+  options: PropTypes.array.isRequired,
   order: PropTypes.string,
   setOrder: PropTypes.func.isRequired,
+};
+
+OrderButton.defaultProps = {
+  options: [
+    {
+      slug: 'default',
+      label: 'Melhores resultados',
+    },
+    {
+      slug: 'alphabetic',
+      label: 'A-Z',
+    },
+    {
+      slug: 'newest',
+      label: 'Mais recentes',
+    },
+    {
+      slug: 'oldest',
+      label: 'Mais antigas',
+    },
+  ],
 };
 
 const mapStateToProps = state => {
