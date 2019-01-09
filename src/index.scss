@@ -112,6 +112,15 @@ a:hover {
   width: 100%;
 }
 
+:global(.ql-image-wrapper) {
+  margin-bottom: rem(30);
+
+  > img {
+    margin-bottom: rem(8);
+    width: 100%;
+  }
+}
+
 :global(.ql-video-wrapper) {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
@@ -205,16 +214,17 @@ a:hover {
     color: black;
     text-decoration: underline;
   }
-}
 
-:global(.source) {
-  color: $grey-600;
-  font-size: rem(13);
-  line-height: rem(21);
+  sub {
+    color: $grey-600;
+    display: block;
+    font-size: rem(13);
+    line-height: rem(21);
 
-  > em {
-    font-style: normal;
-    text-decoration: underline;
+    > em {
+      font-style: normal;
+      text-decoration: underline;
+    }
   }
 }
 

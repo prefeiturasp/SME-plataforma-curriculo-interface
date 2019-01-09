@@ -8,9 +8,11 @@ export default function convertQuillToHtml(json) {
     if (item.insert.image) {
       item.insert.image = API_URL + item.insert.image;
 
-      if (item.attributes && item.attributes.style) {
-        item.insert.imageWithStyle = item.insert.image;
-        delete item.insert.image;
+      if (item.attributes) {
+        if (item.attributes.style || item.attributes['data-caption']) {
+          item.insert.customImage = item.insert.image;
+          delete item.insert.image;
+        }
       }
     }
   });
@@ -18,12 +20,22 @@ export default function convertQuillToHtml(json) {
   const converter = new QuillDeltaToHtmlConverter(ops);
 
   converter.renderCustomWith(function(op, context) {
-    if (op.insert.type === 'imageWithStyle') {
-      const attrs = op.attributes;
+    if (op.insert.type === 'customImage') {
       const src = op.insert.value;
-      return `<img style="${attrs.style}" width="${
-        attrs.width
-      }" src="${src}" />`;
+      const attrs = op.attributes;
+      const style = attrs.style || '';
+      const width = attrs.width || '';
+      const caption = attrs['data-caption'];
+
+      if (caption) {
+        const style1 = width ? `width: ${width}px; ${style}` : style;
+        return `<div class="ql-image-wrapper" style="${style1}">
+          <img src="${src}" />
+          <sub>${caption}</sub>
+        </div>`;
+      } else {
+        return `<img src="${src}" style="${style}" width="${width}" />`;
+      }
     } else if (op.insert.type === 'divider') {
       return '<hr />';
     } else {
