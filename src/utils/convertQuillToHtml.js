@@ -3,8 +3,7 @@ import { API_URL } from 'data/constants';
 
 export default function convertQuillToHtml(json) {
   const ops = JSON.parse(json).ops;
-  const converter = new QuillDeltaToHtmlConverter(ops);
-
+  
   ops.forEach(item => {
     if (item.insert.image) {
       item.insert.image = API_URL + item.insert.image;
