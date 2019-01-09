@@ -19,11 +19,27 @@
   }
 }
 
+.overlay {
+  display: none;
+
+  .withImage & {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+    display: block;
+    position: absolute;
+    height: rem(70);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
 .list {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   margin-left: rem(-3);
+  z-index: 2;
 }
 
 .image {
@@ -44,6 +60,7 @@
   font-size: rem(12);
   display: flex;
   justify-content: center;
+  z-index: 2;
 
   > img {
     margin-right: rem(8);
