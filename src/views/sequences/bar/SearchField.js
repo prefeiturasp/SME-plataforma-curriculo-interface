@@ -13,6 +13,10 @@ class SearchField extends Component {
     this.props.setQuery(e.target.value);
   };
 
+  componentDidMount() {
+    this.setState({ query: this.props.query });
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.query !== prevProps.query) {
       this.setState({ query: this.props.query });
