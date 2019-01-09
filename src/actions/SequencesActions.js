@@ -1,4 +1,5 @@
 import Api from 'data/Api';
+import AlertActions from './AlertActions';
 import getFiltersQueryString, { getSearchQueryString } from 'data/getFiltersQueryString';
 
 const SequencesActions = {
@@ -15,13 +16,18 @@ const SequencesActions = {
   clearSearch() {
     return { type: SequencesActions.CLEAR };
   },
-  search(filters, query, order) {
-    const queryString = getSearchQueryString(filters, query, order);
-    return Api.simpleGet(
-      `/api/sequencias?${queryString}`,
-      SequencesActions.SEARCH,
-      SequencesActions.LOADED
-    );
+  search() {
+    return (dispatch, getState) => {
+      const state = getState().FiltersReducer;
+      const { filters, order, query } = state;
+      const activeFilters = filters.filter(item => item.isActive);
+      const queryString = getSearchQueryString(activeFilters, query, order);
+
+      dispatch({ type: SequencesActions.SEARCH });
+      return Api.get(dispatch, `/api/sequencias?${queryString}`)
+        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
+        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+    };
   },
   load() {
     return Api.simpleGet(

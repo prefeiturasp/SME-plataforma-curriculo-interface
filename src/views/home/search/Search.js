@@ -5,7 +5,6 @@ import { withRouter } from 'react-router';
 import AlertActions from 'actions/AlertActions';
 import CurricularComponentField from './CurricularComponentField';
 import FiltersActions from 'actions/FiltersActions';
-import SequencesActions from 'actions/SequencesActions';
 import SearchField from './SearchField';
 import YearField from './YearField';
 import styles from './Search.scss';
@@ -54,7 +53,6 @@ Search.propTypes = {
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters,
-    order: state.FiltersReducer.order,
     query: state.FiltersReducer.query,
   };
 };
@@ -66,10 +64,6 @@ const mapDispatchToProps = dispatch => {
     },
     openAlert: message => {
       dispatch(AlertActions.open(message));
-    },
-    search: (filters, query, order) => {
-      dispatch(FiltersActions.search());
-      dispatch(SequencesActions.search(filters, query, order));
     },
   };
 };

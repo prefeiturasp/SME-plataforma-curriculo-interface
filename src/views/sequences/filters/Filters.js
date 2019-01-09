@@ -17,10 +17,10 @@ class Filters extends Component {
   ref = React.createRef();
 
   onClickedSearch = () => {
-    const { filters, query, order } = this.props;
+    const { filters, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
     if (activeFilters.length > 0 || query) {
-      this.props.search(activeFilters, query, order);
+      this.props.search();
       clearAllBodyScrollLocks();
     } else {
       this.props.openAlert(
@@ -160,9 +160,9 @@ const mapDispatchToProps = dispatch => {
     openAlert: message => {
       dispatch(AlertActions.open(message));
     },
-    search: (filters, query, order) => {
+    search: () => {
       dispatch(FiltersActions.search());
-      dispatch(SequencesActions.search(filters, query, order));
+      dispatch(SequencesActions.search());
     },
     togglePanel: () => {
       dispatch(FiltersActions.togglePanel());
