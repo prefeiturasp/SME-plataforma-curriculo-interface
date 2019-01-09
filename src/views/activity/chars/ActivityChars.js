@@ -44,15 +44,14 @@ class ActivityChars extends Component {
           <img src={environment.icon} alt={environment.label} />
           {environment.label}
         </div>
-
+        <div className={styles.spacer} />
         {learningObjectivesTitle}
         <div>{learningObjectives}</div>
-
+        <div className={styles.spacer} />
         <NavLink className={styles.btnPrint} to={linkPrint}>
           <img src={iconPrint} alt="Imprimir" />
           Imprimir
         </NavLink>
-
         <Tooltips />
       </section>
     );

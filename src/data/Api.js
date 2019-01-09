@@ -59,7 +59,9 @@ function doRequest(method, url, data) {
     options.body = body;
   }
 
-  return fetch(`${API_URL}${url}`, options)
+  const fullUrl = url.match(/http/) ? url : API_URL + url;
+
+  return fetch(fullUrl, options)
     .then(response => response)
     .catch(error => {
       throw error;

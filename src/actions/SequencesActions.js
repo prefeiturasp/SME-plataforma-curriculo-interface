@@ -1,5 +1,5 @@
 import Api from 'data/Api';
-import getFiltersQueryString from 'data/getFiltersQueryString';
+import getFiltersQueryString, { getSearchQueryString } from 'data/getFiltersQueryString';
 
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
@@ -15,8 +15,8 @@ const SequencesActions = {
   clearSearch() {
     return { type: SequencesActions.CLEAR };
   },
-  search(filters) {
-    const queryString = getFiltersQueryString(filters);
+  search(filters, query, order) {
+    const queryString = getSearchQueryString(filters, query, order);
     return Api.simpleGet(
       `/api/sequencias?${queryString}`,
       SequencesActions.SEARCH,

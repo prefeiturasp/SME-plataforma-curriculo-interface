@@ -10,7 +10,7 @@ class ActivityCharsMobile extends Component {
     return (
       <MobileModal htmlId="activityChars" isExpanded={this.props.isExpanded}>
         <ModalPage id="activityChars">
-          <ModalHeader title="Características" />
+          <ModalHeader title="Características" onBack={this.props.onBack} />
           <ActivityChars data={this.props.data} />
         </ModalPage>
       </MobileModal>
@@ -21,6 +21,7 @@ class ActivityCharsMobile extends Component {
 ActivityCharsMobile.propTypes = {
   data: PropTypes.object,
   isExpanded: PropTypes.bool,
+  onBack: PropTypes.func.isRequired,
 };
 
 export default ActivityCharsMobile;

@@ -1,6 +1,10 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
+:global(#fullModal) {
+  height: 100%;
+}
+
 :global(.fullModal) {
   background: white;
   overflow-y: scroll;

@@ -47,7 +47,7 @@ const initialState = {
   filtersExtra: [],
   isExpanded: false,
   isShowingCategory: false,
-  order: null,
+  order: 'default',
   query: null,
 };
 

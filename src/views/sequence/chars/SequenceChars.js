@@ -71,7 +71,7 @@ class SequenceChars extends Component {
       <div className={styles.wrapper}>
         <div className={styles.title}>Componentes relacionados</div>
         <div>{relatedComponents}</div>
-
+        <div className={styles.spacer} />
         <div className={styles.title}>
           Objetivos de aprendizagem
           <button data-tip data-for="tooltipLearningObjectives">
@@ -80,7 +80,7 @@ class SequenceChars extends Component {
         </div>
         <div>{learningObjectives}</div>
         {btnAllLearningObjectives}
-
+        <div className={styles.spacer} />
         <div className={styles.title}>
           Objetivos de Desenvolvimento Sustentável (ODS)
           <button data-tip data-for="tooltipDevelopmentGoals">
@@ -88,7 +88,7 @@ class SequenceChars extends Component {
           </button>
         </div>
         <div>{sustainableDevGoals}</div>
-
+        <div className={styles.spacer} />
         <div className={styles.title}>
           Matriz de saberes
           <button data-tip data-for="tooltipKnowledgeMatrices">
@@ -96,12 +96,11 @@ class SequenceChars extends Component {
           </button>
         </div>
         <div>{knowledgeMatrices}</div>
-
+        <div className={styles.spacer} />
         <NavLink className={styles.btnPrint} to={linkPrint}>
           <img src={iconPrint} alt="Imprimir" />
           Imprimir
         </NavLink>
-
         <Tooltips />
       </div>
     );

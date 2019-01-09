@@ -178,6 +178,7 @@ class Activity extends Component {
           <ActivityCharsMobile
             data={this.props.data}
             isExpanded={this.state.isCharsExpanded}
+            onBack={this.onClickedChars}
           />
           <Tooltips />
         </section>

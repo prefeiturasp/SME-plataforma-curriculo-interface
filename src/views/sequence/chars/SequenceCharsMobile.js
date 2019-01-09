@@ -10,7 +10,7 @@ class SequenceCharsMobile extends Component {
     return (
       <MobileModal htmlId="sequenceChars" isExpanded={this.props.isExpanded}>
         <ModalPage id="sequenceChars">
-          <ModalHeader title="Características" />
+          <ModalHeader title="Características" onBack={this.props.onBack} />
           <SequenceChars data={this.props.data} />
         </ModalPage>
       </MobileModal>
@@ -21,6 +21,7 @@ class SequenceCharsMobile extends Component {
 SequenceCharsMobile.propTypes = {
   data: PropTypes.object,
   isExpanded: PropTypes.bool,
+  onBack: PropTypes.func.isRequired,
 };
 
 export default SequenceCharsMobile;
