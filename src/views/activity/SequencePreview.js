@@ -10,13 +10,9 @@ import iconSaved from 'images/icons/saved.svg';
 import styles from './SequencePreview.scss';
 
 class SequencePreview extends Component {
-  state = {
-    isSaved: false,
-  };
-
   render() {
     const { isInActivity, sequence } = this.props;
-    const { isSaved } = this.state;
+    const { isSaved } = sequence;
 
     const image = sequence.image_attributes.default_url ? (
       <img

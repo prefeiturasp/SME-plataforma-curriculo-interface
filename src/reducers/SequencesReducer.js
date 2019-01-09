@@ -1,3 +1,4 @@
+import CollectionActions from 'actions/CollectionActions';
 import SequencesActions from 'actions/SequencesActions';
 
 const initialState = {
@@ -73,6 +74,15 @@ function SequencesReducer(state = initialState, action) {
             isExpanded: !item.isExpanded && item.id === action.id,
           };
         }),
+      };
+
+    case CollectionActions.SAVED_SEQUENCE:
+      return {
+        ...state,
+        currItem: {
+          ...state.currItem,
+          isSaved: true,
+        },
       };
 
     default:
