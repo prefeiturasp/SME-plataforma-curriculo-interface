@@ -66,7 +66,7 @@ class Header extends Component {
 
     const avatar = isLogged() ? (
       <button className={styles.avatar} onMouseEnter={this.onMouseEnter}>
-        <Avatar nickname="Marília" size={35} />
+        <Avatar size={35} />
         <img src={chevronDown} alt="Perfil" />
       </button>
     ) : null;
