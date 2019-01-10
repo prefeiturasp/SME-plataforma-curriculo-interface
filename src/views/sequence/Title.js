@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import AuthActions from 'actions/AuthActions';
@@ -19,7 +18,7 @@ class Title extends Component {
   };
 
   render() {
-    const { hasButton, isSaved, slug, text, title } = this.props;
+    const { hasButton, isSaved, text, title } = this.props;
 
     const icon = isSaved ? iconSaved : iconSave;
     const label = isSaved ? 'Salvo' : 'Salvar';
