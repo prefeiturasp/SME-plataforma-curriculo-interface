@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { API_URL } from 'data/constants';
-import createModalLink from 'utils/createModalLink';
+import AuthActions from 'actions/AuthActions';
 import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
 import styles from './SequencePreview.scss';
 
 class SequencePreview extends Component {
+  onClickedSave = () => {
+    if (isLogged()) {
+      this.props.history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
+    } else {
+      this.props.login();
+    }
+  };
+
   render() {
     const { isInActivity, sequence } = this.props;
     const { isSaved } = sequence;
@@ -32,14 +42,13 @@ class SequencePreview extends Component {
 
       const icon = isSaved ? iconSaved : iconSave;
       const label = isSaved ? 'Salvo' : 'Salvar';
-      const linkSave = createModalLink(`/sequencia/${sequence.slug}/salvar`);
-
-      btnSave = isLogged() ? (
-        <NavLink className={styles.btnSave} to={linkSave}>
+      
+      btnSave = (
+        <button className={styles.btnSave} onClick={this.onClickedSave}>
           <img src={icon} alt={label} />
           {label}
-        </NavLink>
-      ) : null;
+        </button>
+      );
     }
 
     return (
@@ -60,6 +69,18 @@ class SequencePreview extends Component {
 SequencePreview.propTypes = {
   isInActivity: PropTypes.bool,
   sequence: PropTypes.object.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
-export default SequencePreview;
+const mapDispatchToProps = dispatch => {
+  return {
+    login: () => {
+      dispatch(AuthActions.login());
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(withRouter(SequencePreview));

@@ -13,7 +13,6 @@ import ModalPage from 'components/layout/ModalPage';
 import SequencePreview from 'views/activity/SequencePreview';
 import SequencesActions from 'actions/SequencesActions';
 import createModalLink from 'utils/createModalLink';
-import isLogged from 'data/isLogged';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
 import styles1 from 'views/sequence/BigSequencePreview.scss';
@@ -41,12 +40,12 @@ class SaveSequence extends Component {
 
     const link = createModalLink(`/sequencia/${data.slug}/criar-colecao`);
 
-    const btnCreate = isLogged() ? (
+    const btnCreate = (
       <NavLink className={styles.btnCreate} to={link}>
         <img src={iconPlus} alt="Criar coleção" />
         Criar coleção
       </NavLink>
-    ) : null;
+    );
 
     return (
       <DesktopModal>
