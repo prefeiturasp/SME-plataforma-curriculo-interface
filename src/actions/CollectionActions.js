@@ -50,9 +50,10 @@ const CollectionActions = {
         dispatch,
         `/api/professores/${teacherId}/colecoes/${id}/sequencias/${sequenceId}`
       )
-        .then(response =>
-          dispatch({ ...response, type: CollectionActions.REMOVED_SEQUENCE })
-        )
+        .then(response => {
+          dispatch({ ...response, type: CollectionActions.REMOVED_SEQUENCE });
+          dispatch(CollectionActions.loadSequences(id));
+        })
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },

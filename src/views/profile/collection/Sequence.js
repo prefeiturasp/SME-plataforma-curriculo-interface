@@ -11,8 +11,7 @@ import styles from './Sequence.scss';
 
 class Sequence extends React.PureComponent {
   onClickedConfirm = () => {
-    this.props.removeSequence(this.props.collectionId, this.props.id);
-    this.props.loadSequences(this.props.collectionId);
+    this.props.removeSequence(this.props.collectionId, this.props.data.id);
   };
 
   onClickedDelete = () => {
