@@ -29,8 +29,6 @@ class Sequence extends React.PureComponent {
     const { data } = this.props;
     const { component, componentColor, isCompleted, slug, title } = data;
 
-    const image = API_URL + data.image_attributes.default_url;
-
     const link = `/sequencia/${slug}`;
 
     const bar = isCompleted ? (
