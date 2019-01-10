@@ -10,7 +10,6 @@ import CategoryPanel from 'views/sequences/categories/CategoryPanel';
 import CurricularComponent from 'views/sequences/objects/CurricularComponent';
 import YearButton from 'views/sequences/objects/YearButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
-import iconWarning from 'images/icons/warning.svg';
 import styles from './Filters.scss';
 
 class Filters extends Component {
@@ -101,13 +100,6 @@ class Filters extends Component {
               <h2 className={styles.h2}>Ano</h2>
               <h3 className={styles.h3}>Ciclo de Alfabetização</h3>
               <div className={styles.buttons}>{yearButtons}</div>
-              <p className={styles.warning}>
-                <img src={iconWarning} alt="Observação" />
-                <span>
-                  Em breve, estarão disponíveis sequências para todos os
-                  componentes e os ciclos do Ensino Fundamental.
-                </span>
-              </p>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
               <h2 className={styles.h2}>Componente Curricular</h2>
