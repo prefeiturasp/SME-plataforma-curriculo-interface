@@ -42,12 +42,8 @@ class EditProfile extends Component {
     reader.readAsDataURL(file);
   };
 
-  onClickedChangePhoto = e => {
-    this.onClickedAddPhoto(e);
-  };
-
   onClickedDeletePhoto = () => {
-    this.props.deletePhoto();
+    this.props.deletePhoto(this.props.id);
   };
 
   onClickedSave = () => {
@@ -59,19 +55,29 @@ class EditProfile extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    let hasChanged = false;
+    const newState = this.state;
+
     if (this.props.nickname !== prevProps.nickname) {
-      this.setState({
-        ...this.state,
-        name: this.props.name,
-        nickname: this.props.nickname,
-        photo: this.props.photo ? API_URL + this.props.photo : null,
-      });
+      hasChanged = true;
+      newState.name = this.props.name;
+      newState.nickname = this.props.nickname;
+    }
+
+    if (this.props.photo !== prevProps.photo) {
+      hasChanged = true;
+      newState.photo = this.props.photo ? API_URL + this.props.photo : null;
     }
 
     if (this.props.isUploading !== prevProps.isUploading) {
+      hasChanged = true;
+      newState.isUploading = this.props.isUploading;
+    }
+
+    if (hasChanged) {
       this.setState({
         ...this.state,
-        isUploading: this.props.isUploading,
+        newState,
       });
     }
   }
@@ -219,8 +225,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    deletePhoto: () => {
-      dispatch(ProfileActions.deletePhoto());
+    deletePhoto: id => {
+      dispatch(ProfileActions.deletePhoto(id));
     },
     load: () => {
       dispatch(ProfileActions.load());

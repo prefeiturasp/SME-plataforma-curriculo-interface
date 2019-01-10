@@ -32,11 +32,10 @@ function ProfileReducer(state = initialState, action) {
         schools: action.data.schools,
       };
 
-    case ProfileActions.LOAD_CLASSROOMS:
-    case ProfileActions.SAVE_NICKNAME:
     case ProfileActions.SAVED_NICKNAME:
       return {
         ...state,
+        nickname: action.data.nickname || '',
       };
 
     case ProfileActions.SAVE_PHOTO:
@@ -49,6 +48,12 @@ function ProfileReducer(state = initialState, action) {
       return {
         ...state,
         isUploading: false,
+      };
+
+    case ProfileActions.DELETED_PHOTO:
+      return {
+        ...state,
+        photo: null,
       };
 
     default:

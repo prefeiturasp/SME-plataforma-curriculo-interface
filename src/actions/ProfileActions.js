@@ -13,8 +13,17 @@ const ProfileActions = {
   SAVED_NICKNAME: 'ProfileActions.SAVED_NICKNAME',
   SAVED_PHOTO: 'ProfileActions.SAVED_PHOTO',
 
-  deletePhoto() {
-    return { type: ProfileActions.DELETE_PHOTO };
+  deletePhoto(id) {
+    return dispatch => {
+      return Api.delete(dispatch, `/api/professores/${id}/avatar`)
+        .then(response =>
+          dispatch({ ...response, type: ProfileActions.DELETED_PHOTO })
+        )
+        .then(response =>
+          dispatch(AlertActions.open('Foto apagada com sucesso!'))
+        )
+        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+    };
   },
   load() {
     return Api.simpleGet(
