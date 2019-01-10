@@ -97,12 +97,13 @@ a:hover {
   font-size: rem(13);
   font-weight: normal;
   line-height: rem(16);
-  max-width: 15rem;
-  padding: 0.8125rem 1.25rem;
+  max-width: rem(240);
+  min-width: rem(120);
+  padding: rem(13) rem(20);
 
   > strong {
     display: block;
-    font-size: 0.9375rem;
+    font-size: rem(15);
     font-weight: normal;
     margin-bottom: 1rem;
   }
