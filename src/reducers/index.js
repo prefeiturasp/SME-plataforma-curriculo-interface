@@ -13,6 +13,7 @@ import LearningObjectivesReducer from './LearningObjectivesReducer';
 import ProfileReducer from './ProfileReducer';
 import RoadmapReducer from './RoadmapReducer';
 import SequencesReducer from './SequencesReducer';
+import SnackbarReducer from './SnackbarReducer';
 import SustainableDevGoalsReducer from './SustainableDevGoalsReducer';
 
 export default combineReducers({
@@ -30,5 +31,6 @@ export default combineReducers({
   ProfileReducer,
   RoadmapReducer,
   SequencesReducer,
+  SnackbarReducer,
   SustainableDevGoalsReducer,
 });

@@ -63,9 +63,9 @@ class Home extends Component {
               <li className="col-md-4">
                 <img
                   src={iconSequences}
-                  alt="Buscar sequências do Ciclo de Alfabetização"
+                  alt="Buscar sequências"
                 />
-                <div>Buscar sequências do Ciclo de Alfabetização</div>
+                <div>Buscar sequências</div>
               </li>
               <li className="col-md-4">
                 <img

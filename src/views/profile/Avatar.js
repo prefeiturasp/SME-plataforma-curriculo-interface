@@ -1,25 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './Avatar.scss';
 
 class Avatar extends React.PureComponent {
   render() {
-    const contents = this.props.photo ? (
+    const { nickname, photo, size } = this.props;
+
+    const letter = nickname.length ? nickname.charAt(0).toUpperCase() : '';
+
+    const contents = photo ? (
       <img
         className={styles.image}
-        src={this.props.photo}
-        alt={this.props.nickname}
+        src={photo}
+        alt={nickname}
       />
     ) : (
       <div
         className={styles.letter}
         style={{
-          fontSize: this.props.size * 0.3,
+          fontSize: size * 0.3,
         }}
       >
-        {this.props.nickname.length
-          ? this.props.nickname.charAt(0).toUpperCase()
-          : ''}
+        {letter}
       </div>
     );
 
@@ -43,4 +46,10 @@ Avatar.propTypes = {
   size: PropTypes.number.isRequired,
 };
 
-export default Avatar;
+const mapStateToProps = state => {
+  return {
+    nickname: state.ProfileReducer.nickname,
+  }
+};
+
+export default connect(mapStateToProps)(Avatar);

@@ -42,6 +42,7 @@ class Cover extends Component {
     return (
       <div className={classes.join(' ')}>
         {image}
+        <div className={styles.overlay} />
         <div className={styles.list}>
           <Chip data={{ name: sequence.year }} />
           <Chip data={sequence.main_curricular_component} />

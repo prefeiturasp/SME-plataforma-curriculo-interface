@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import BodyActions from 'actions/BodyActions';
 import FiltersActions from 'actions/FiltersActions';
+import SequencesActions from 'actions/SequencesActions';
 import iconSearch from 'images/icons/search.svg';
 import styles from './SearchField.scss';
 
@@ -12,6 +14,16 @@ class SearchField extends Component {
   onChangedQuery = e => {
     this.props.setQuery(e.target.value);
   };
+
+  onKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.props.search();
+    }
+  };
+
+  componentDidMount() {
+    this.setState({ query: this.props.query });
+  }
 
   componentDidUpdate(prevProps) {
     if (this.props.query !== prevProps.query) {
@@ -27,6 +39,7 @@ class SearchField extends Component {
           classes={{ root: styles.field }}
           label="Buscar sequência por tema"
           onChange={this.onChangedQuery}
+          onKeyPress={this.onKeyPress}
           value={this.state.query}
         />
       </div>
@@ -47,6 +60,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    search: value => {
+      dispatch(BodyActions.showLoading());
+      dispatch(SequencesActions.search());
+    },
     setQuery: value => {
       dispatch(FiltersActions.setQuery(value));
     },

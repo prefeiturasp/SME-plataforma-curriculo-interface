@@ -36,6 +36,7 @@ import Roadmap from 'views/roadmap/Roadmap';
 import SaveSequence from 'views/sequence/save/SaveSequence';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
+import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 
@@ -183,6 +184,7 @@ ReactDOM.render(
         <MuiThemeProvider theme={theme}>
           <Route component={ModalSwitch} />
           <AppLoading />
+          <Snackbar />
           <Alert />
           <Confirm />
         </MuiThemeProvider>

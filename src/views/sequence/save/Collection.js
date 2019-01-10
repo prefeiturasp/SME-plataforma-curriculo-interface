@@ -8,7 +8,8 @@ import styles from './Collection.scss';
 
 class Collection extends React.PureComponent {
   onClicked = () => {
-    this.props.saveSequence(this.props.id, this.props.sequenceId);
+    const { id, name, sequenceId } = this.props;
+    this.props.saveSequence(id, name, sequenceId);
     this.props.history.goBack();
   };
 
@@ -41,8 +42,8 @@ Collection.defaultProps = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveSequence: (id, sequenceId) => {
-      dispatch(CollectionActions.saveSequence(id, sequenceId));
+    saveSequence: (id, name, sequenceId) => {
+      dispatch(CollectionActions.saveSequence(id, name, sequenceId));
     },
   };
 };

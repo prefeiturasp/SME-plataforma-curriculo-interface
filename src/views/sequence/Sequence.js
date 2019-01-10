@@ -73,6 +73,7 @@ class Sequence extends Component {
               <Cover data={data} sequence={data} />
               <Title
                 hasButton={true}
+                isSaved={data.isSaved}
                 slug={data.slug}
                 text="Sequência de atividades"
                 title={data.title}

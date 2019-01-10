@@ -57,7 +57,7 @@ class Profile extends Component {
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <Avatar nickname={nickname} size={size} />
+              <Avatar size={size} />
               <div className={styles.name}>
                 <h2>{nickname}</h2>
                 <NavLink to={linkEdit}>Editar perfil</NavLink>

@@ -46,8 +46,7 @@ class Sequences extends Component {
       this.props.location.state &&
       this.props.location.state.isSearch
     ) {
-      const { filters, query, order } = this.props;
-      this.props.search(filters, query, order);
+      this.props.search();
     } else {
       this.props.load();
     }
@@ -73,10 +72,6 @@ class Sequences extends Component {
         <section className={styles.wrapper}>
           <div className="container">
             <h1 className={styles.h1}>Sequências de Atividades</h1>
-            <h2 className={styles.h2}>
-              <strong>{this.props.totalItems}</strong> sequências foram
-              encontradas
-            </h2>
             <Bar />
           </div>
           <hr />
@@ -85,6 +80,10 @@ class Sequences extends Component {
           </div>
           <div className={styles.list}>
             <div className={styles.results}>
+              <h2 className={styles.h2}>
+                <strong>{this.props.totalItems}</strong> sequências foram
+                encontradas
+              </h2>
               <div className="row">{items}</div>
               <div className={styles.center}>{loadingOrButton}</div>
             </div>
@@ -105,9 +104,6 @@ Sequences.propTypes = {
   nextPage: PropTypes.string,
   totalItems: PropTypes.number,
   search: PropTypes.func.isRequired,
-  filters: PropTypes.array,
-  order: PropTypes.string,
-  query: PropTypes.array,
   load: PropTypes.func.isRequired,
   loadMore: PropTypes.func.isRequired,
   loadWithFilter: PropTypes.func.isRequired,
@@ -119,9 +115,6 @@ const mapStateToProps = state => {
     isSearching: state.SequencesReducer.isSearching,
     nextPage: state.SequencesReducer.nextPage,
     totalItems: state.SequencesReducer.totalItems,
-    filters: state.FiltersReducer.filters,
-    order: state.FiltersReducer.order,
-    query: state.FiltersReducer.query,
   };
 };
 
@@ -140,9 +133,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(FiltersActions.cacheFilter(data));
       dispatch(SequencesActions.loadWithFilter(data));
     },
-    search: (filters, query, order) => {
+    search: () => {
       dispatch(BodyActions.showLoading());
-      dispatch(SequencesActions.search(filters, query, order));
+      dispatch(SequencesActions.search());
     },
   };
 };
