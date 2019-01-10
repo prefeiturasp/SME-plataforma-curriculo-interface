@@ -22,9 +22,7 @@ class SaveSequence extends Component {
     if (!this.props.data) {
       this.props.load(this.props.match.params.slug);
     }
-    if (!this.props.collections) {
-      this.props.loadCollections();
-    }
+    this.props.loadCollections();
   }
 
   render() {
