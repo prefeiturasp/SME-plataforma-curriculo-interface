@@ -64,7 +64,7 @@ class EditProfile extends Component {
         ...this.state,
         name: this.props.name,
         nickname: this.props.nickname,
-        photo: API_URL + this.props.photo,
+        photo: this.props.photo ? API_URL + this.props.photo : null,
       });
     }
 
