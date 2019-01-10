@@ -12,15 +12,6 @@ import styles from './DesktopModal.scss';
 class DesktopModal extends Component {
   target = null;
 
-  onClosed = () => {
-    this.props.history.goBack();
-  };
-
-  onClicked = e => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
   componentDidMount() {
     this.target = document.querySelector('#desktopModal');
   }
@@ -41,14 +32,12 @@ class DesktopModal extends Component {
 
   render() {
     const classes = this.props.isSmall
-      ? [styles.wrapper, styles.isSmall]
-      : [styles.wrapper];
+      ? [styles.modal, styles.isSmall]
+      : [styles.modal];
 
     return (
-      <div className={styles.overlay} onClick={this.onClosed} id="desktopModal">
-        <div className={classes.join(' ')} onClick={this.onClicked}>
-          {this.props.children}
-        </div>
+      <div id="desktopModal" className={classes.join(' ')}>
+        {this.props.children}
       </div>
     );
   }
