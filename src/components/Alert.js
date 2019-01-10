@@ -11,7 +11,7 @@ Modal.setAppElement('#root');
 
 class Alert extends Component {
   render() {
-    const { isOpened, close, message } = this.props;
+    const { close, isOpened, message } = this.props;
 
     return (
       <Modal
