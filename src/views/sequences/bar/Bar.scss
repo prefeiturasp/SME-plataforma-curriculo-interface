@@ -5,7 +5,7 @@
   align-items: flex-end;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 1.25rem;
+  padding-bottom: rem(18);
 }
 
 .spacer {
@@ -26,7 +26,7 @@
   composes: btn from global;
   margin-left: auto;
   margin-right: rem(14);
-  min-width: 9rem;
+  min-width: rem(144);
 }
 
 @media only screen and (max-width: 768px) {

@@ -2,15 +2,17 @@
 @import "~tools.scss";
 
 .h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.8125rem;
-  margin-top: 1.6875rem;
+  font-size: rem(40);
+  margin-bottom: rem(20);
+  margin-top: rem(27);
 }
 
 .h2 {
   font-weight: normal;
-  font-size: 1.125rem;
-  margin-bottom: 0.75rem;
+  font-size: rem(18);
+  line-height: rem(22);
+  margin-top: rem(12);
+  margin-bottom: rem(2);
 }
 
 .list {
@@ -19,7 +21,7 @@
 
 .results {
   composes: container from global;
-  padding: 1rem 0;
+  padding: rem(16) 0;
 }
 
 .results > ul > li {
@@ -27,7 +29,7 @@
 }
 
 .center {
-  margin-bottom: 1.5rem;
+  margin-bottom: rem(24);
   text-align: center;
 }
 
@@ -38,7 +40,7 @@
 
 @media only screen and (max-width: 768px) {
   .h1 {
-    font-size: 2.125rem;
-    margin-bottom: 0.75rem;
+    font-size: rem(34);
+    margin-bottom: rem(12);
   }
 }
