@@ -44,8 +44,7 @@ function getPromise(dispatch, func, method, url, data) {
           });
         }
       })
-      .catch(reject)
-      .finally(response => dispatch({ type: BodyActions.HIDE_LOADING }));
+      .catch(reject);
   });
 }
 
