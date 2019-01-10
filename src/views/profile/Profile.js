@@ -34,8 +34,17 @@ class Profile extends Component {
     const { data, items } = this.props;
     const { nickname } = data;
 
+    const numCollections = items.length;
+    const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
+
+    const numClassrooms = 6;
+    const wordClassrooms = numClassrooms === 1 ? 'turma' : 'turmas';
+
+    const numComponents = 3;
+    const wordComponents = numComponents === 1 ? 'componente' : 'componentes';
+
     const contents =
-      items.length > 0 ? <CollectionList items={items} /> : <EmptyList />;
+      numCollections > 0 ? <CollectionList items={items} /> : <EmptyList />;
 
     const notification = true ? (
       <Notification
@@ -69,13 +78,13 @@ class Profile extends Component {
           </div>
           <div className={styles.rowNumbers}>
             <div>
-              <em>6</em> coleções
+              <em>{numCollections}</em> {wordCollections}
             </div>
             <div>
-              <em>6</em> turmas
+              <em>{numClassrooms}</em> {wordClassrooms}
             </div>
             <div>
-              <em>3</em> componentes
+              <em>{numComponents}</em> {wordComponents}
             </div>
           </div>
           <NavLink className="btnSmall btnFullWidth" to={linkClassrooms}>
