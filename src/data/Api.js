@@ -2,6 +2,7 @@ import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
 import parse from 'parse-link-header';
 import { API_URL } from 'data/constants';
+import { history } from 'index';
 
 function getNextPage(headers) {
   if (headers.has('link')) {
@@ -17,7 +18,13 @@ function getPromise(dispatch, func, method, url, data) {
     func
       .apply(this, [method, url, data])
       .then(response => {
-        if (response.status === 204) {
+        console.log(response);
+        if (response.status === 401) { // Unauthorized
+          sessionStorage.removeItem('user');
+          history.push('/');
+          dispatch(BodyActions.hideLoading());
+          dispatch(AlertActions.open('Ocorreu um erro de autenticação. Por favor tente logar novamente.'));
+        } else if (response.status === 204) { // No content
           resolve({});
         } else {
           response

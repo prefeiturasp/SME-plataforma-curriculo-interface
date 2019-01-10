@@ -16,7 +16,7 @@ const ActivityActions = {
       });
       fetch(url).then(response => {
         response.json().then(data => {
-          dispatch({ type: BodyActions.HIDE_LOADING });
+          dispatch(BodyActions.hideLoading());
           dispatch({
             data,
             slug1,
