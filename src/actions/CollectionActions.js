@@ -1,12 +1,14 @@
+import React from 'react';
 import AlertActions from './AlertActions';
 import Api from 'data/Api';
 import CollectionsActions from './CollectionsActions';
+import SnackbarActions from './SnackbarActions';
 
 function getTeacherId() {
   return sessionStorage.getItem('teacherId');
 }
 
-function doSaveSequence(dispatch, id, sequenceId) {
+function doSaveSequence(dispatch, id, name, sequenceId) {
   dispatch({ type: CollectionActions.SAVE_SEQUENCE });
   const data = {
     'collection_activity_sequence[activity_sequence_id]': sequenceId,
@@ -19,7 +21,7 @@ function doSaveSequence(dispatch, id, sequenceId) {
   )
     .then(response => {
       dispatch({ ...response, type: CollectionActions.SAVED_SEQUENCE });
-      dispatch(AlertActions.open('Sequência salva com sucesso!'));
+      dispatch(SnackbarActions.open(<span>Salvo em <strong>{name}</strong></span>));
     })
     .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
 }
@@ -54,9 +56,9 @@ const CollectionActions = {
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
   },
-  saveSequence(id, sequenceId) {
+  saveSequence(id, name, sequenceId) {
     return dispatch => {
-      return doSaveSequence(dispatch, id, sequenceId);
+      return doSaveSequence(dispatch, id, name, sequenceId);
     };
   },
   create(name) {
@@ -81,7 +83,7 @@ const CollectionActions = {
       return Api.post(dispatch, `/api/professores/${teacherId}/colecoes`, data)
         .then(response => {
           console.warn('createAndSaveSequence', name, sequenceId, response.data.id);
-          return doSaveSequence(dispatch, response.data.id, sequenceId);
+          return doSaveSequence(dispatch, response.data.id, name, sequenceId);
         })
         .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
     };
