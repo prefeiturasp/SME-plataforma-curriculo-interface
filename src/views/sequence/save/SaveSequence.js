@@ -19,8 +19,9 @@ import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 class SaveSequence extends Component {
   componentDidMount() {
-    if (!this.props.data) {
-      this.props.load(this.props.match.params.slug);
+    const slug = this.props.match.params.slug;
+    if (!this.props.data || this.props.data.slug !== slug) {
+      this.props.load(slug);
     }
     this.props.loadCollections();
   }
