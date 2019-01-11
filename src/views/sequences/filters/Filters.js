@@ -72,10 +72,6 @@ class Filters extends Component {
         name: 'Eixo',
         slug: 'axes',
       },
-      {
-        name: 'Tipo de Atividade',
-        slug: 'activity_types',
-      },
     ];
 
     const categoryButtons = categories.map((item, i) => {
