@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
@@ -119,4 +118,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(SaveSequence));
+)(SaveSequence);

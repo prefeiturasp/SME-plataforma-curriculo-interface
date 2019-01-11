@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import AlertActions from 'actions/AlertActions';
 import CurricularComponentField from './CurricularComponentField';
 import FiltersActions from 'actions/FiltersActions';
@@ -14,7 +14,7 @@ class Search extends Component {
     const { filters, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
     if (activeFilters.length > 0 || query) {
-      this.props.history.push('/sequencias', { isSearch: true });
+      history.push('/sequencias', { isSearch: true });
     } else {
       this.props.openAlert(
         'Selecione pelo menos um ano ou componente curricular para encontrar sequências de atividades.'
@@ -47,7 +47,10 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  search: PropTypes.func.isRequired,
+  filters: PropTypes.array,
+  query: PropTypes.string,
+  load: PropTypes.func.isRequired,
+  openAlert: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -71,4 +74,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Search));
+)(Search);

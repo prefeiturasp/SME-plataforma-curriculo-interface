@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import Classroom from './Classroom';
 import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -46,7 +46,7 @@ class EditCollection extends Component {
 
   onClickedSave = () => {
     this.props.edit(this.props.match.params.id, this.state.name);
-    this.props.history.goBack();
+    history.goBack();
   };
 
   render() {
@@ -177,4 +177,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(EditCollection));
+)(EditCollection);

@@ -5,7 +5,6 @@ import {
   clearAllBodyScrollLocks,
   enableBodyScroll,
 } from 'body-scroll-lock';
-import { withRouter } from 'react-router';
 import withWidth from 'components/hoc/withWidth';
 import styles from './DesktopModal.scss';
 
@@ -47,4 +46,4 @@ DesktopModal.propTypes = {
   isSmall: PropTypes.bool,
 };
 
-export default withRouter(withWidth(DesktopModal));
+export default withWidth(DesktopModal);

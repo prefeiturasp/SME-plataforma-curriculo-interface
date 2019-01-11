@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import BodyActions from 'actions/BodyActions';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import CollectionActions from 'actions/CollectionActions';
@@ -24,12 +24,12 @@ class Collection extends Component {
   }
 
   onClickedClose = () => {
-    this.props.history.goBack();
+    history.goBack();
   };
 
   onClickedConfirm = () => {
     this.props.delete(this.props.match.params.id);
-    this.props.history.goBack();
+    history.goBack();
   };
 
   onClickedDelete = () => {
@@ -154,4 +154,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Collection));
+)(Collection);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import BodyActions from 'actions/BodyActions';
 import FullModal from 'components/layout/FullModal';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
@@ -13,7 +13,7 @@ class Detail extends Component {
   state = { isLoaded: true };
 
   onClickedClose = () => {
-    this.props.history.goBack();
+    history.goBack();
   };
 
   componentDidMount() {
@@ -99,4 +99,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Detail));
+)(Detail);

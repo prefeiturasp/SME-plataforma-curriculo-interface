@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import AuthActions from 'actions/AuthActions';
 import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
@@ -11,7 +11,7 @@ import styles from './Title.scss';
 class Title extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      this.props.history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
+      history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
     } else {
       this.props.login();
     }
@@ -61,4 +61,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(withRouter(Title));
+)(Title);
