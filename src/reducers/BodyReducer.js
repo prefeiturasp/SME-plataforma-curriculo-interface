@@ -22,7 +22,7 @@ function BodyReducer(state = initialState, action) {
     case KnowledgeMatrixActions.LOADED:
     case LearningObjectivesActions.LOADED:
     case ProfileActions.LOADED:
-    case CollectionActions.LOADED:
+    case CollectionActions.LOADED_SEQUENCES:
     case RoadmapActions.LOADED:
     case SequencesActions.LOADED:
     case SequencesActions.LOADED_ITEM:
