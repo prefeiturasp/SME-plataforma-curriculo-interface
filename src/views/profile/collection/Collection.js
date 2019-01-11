@@ -33,9 +33,15 @@ class Collection extends Component {
   };
 
   onClickedDelete = () => {
+    const { name } = this.props.data;
+    const { sequences } = this.props;
+
+    const numSequences = sequences.length;
+    const wordSequences = numSequences === 1 ? 'sequência' : 'sequências'
+
     this.props.openConfirm(
       'Excluir essa coleção e todas as suas sequências de atividades?',
-      'Sua coleção Favoritos e todas as suas 5 sequências serão excluídos permanentemente.',
+      `Sua coleção ${name} e todas as suas ${numSequences} ${wordSequences} serão excluídos permanentemente.`,
       'Excluir',
       'Cancelar',
       this.onClickedConfirm
@@ -43,28 +49,9 @@ class Collection extends Component {
   };
 
   render() {
-    const { sequences } = this.props;
-
-    const classrooms = [
-      {
-        year: '2D',
-        color: '#ff007f',
-      },
-      {
-        year: '2D',
-        color: '#66ac70',
-      },
-      {
-        year: '3A',
-        color: '#ff007f',
-      },
-      {
-        year: '1A',
-        color: '#ff7e2c',
-      },
-    ];
-
+    const { classrooms, sequences } = this.props;
     const { id, name } = this.props.data;
+    
     const word = classrooms.length > 1 ? 'turmas' : 'turma';
     const link = createModalLink(`/colecao/${id}/editar`);
 
@@ -108,11 +95,33 @@ class Collection extends Component {
 }
 
 Collection.propTypes = {
+  classrooms: PropTypes.array.isRequired,
   data: PropTypes.object.isRequired,
   delete: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
   openConfirm: PropTypes.func.isRequired,
   sequences: PropTypes.array.isRequired,
+};
+
+Collection.defaultProps = {
+  classrooms: [
+    {
+      year: '2D',
+      color: '#ff007f',
+    },
+    {
+      year: '2D',
+      color: '#66ac70',
+    },
+    {
+      year: '3A',
+      color: '#ff007f',
+    },
+    {
+      year: '1A',
+      color: '#ff7e2c',
+    },
+  ],
 };
 
 const mapStateToProps = state => {

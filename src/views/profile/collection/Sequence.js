@@ -11,8 +11,7 @@ import styles from './Sequence.scss';
 
 class Sequence extends React.PureComponent {
   onClickedConfirm = () => {
-    this.props.removeSequence(this.props.collectionId, this.props.id);
-    this.props.loadSequences(this.props.collectionId);
+    this.props.removeSequence(this.props.collectionId, this.props.data.id);
   };
 
   onClickedDelete = () => {
@@ -26,9 +25,8 @@ class Sequence extends React.PureComponent {
   };
 
   render() {
-    const { component, componentColor, isCompleted, slug, title } = this.props;
-
-    const image = API_URL + this.props.image_attributes.default_url;
+    const { data } = this.props;
+    const { component, componentColor, isCompleted, slug, title } = data;
 
     const link = `/sequencia/${slug}`;
 
@@ -42,13 +40,30 @@ class Sequence extends React.PureComponent {
       </div>
     ) : null;
 
+    const thumbnail = data.image_attributes.default_url ? (
+      <NavLink className={styles.image} to={link}>
+        <img
+          src={API_URL + data.image_attributes.default_url}
+          srcSet={`${API_URL}${data.image_attributes.thumb.url}, ${API_URL}${
+            data.image_attributes.extra_thumb.url
+          } 2x`}
+          alt=""
+        />
+      </NavLink>
+    ) : (
+      <div className={styles.initials}>
+        {data.main_curricular_component.name
+          .split(' ')
+          .map(s => s.charAt(0))
+          .join('')}
+      </div>
+    );
+
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <div className={styles.wrapper}>
           <div className={styles.item}>
-            <NavLink className={styles.image} to={link}>
-              <img src={image} alt={title} />
-            </NavLink>
+            {thumbnail}
             <div className={styles.info}>
               <NavLink className={styles.text} to={link}>
                 <h4 style={{ color: componentColor }}>{component}</h4>
@@ -68,11 +83,7 @@ class Sequence extends React.PureComponent {
 
 Sequence.propTypes = {
   collectionId: PropTypes.number.isRequired,
-  component: PropTypes.string.isRequired,
-  componentColor: PropTypes.string.isRequired,
-  isCompleted: PropTypes.bool,
-  slug: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
   openConfirm: PropTypes.func.isRequired,
   loadSequences: PropTypes.func.isRequired,
   removeSequence: PropTypes.func.isRequired,

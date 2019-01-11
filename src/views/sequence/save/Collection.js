@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import ClassroomYear from 'components/objects/ClassroomYear';
+import ClassroomYear from './ClassroomYear';
 import CollectionActions from 'actions/CollectionActions';
 import styles from './Collection.scss';
 
@@ -17,7 +17,14 @@ class Collection extends React.PureComponent {
     const { name, years } = this.props;
 
     const items = years.map((year, i) => {
-      return <ClassroomYear key={i} color={year.color} year={year.year} />;
+      return (
+        <ClassroomYear
+          key={i}
+          color={year.color}
+          year={year.year}
+          tooltip={year.school}
+        />
+      );
     });
 
     return (
@@ -37,7 +44,13 @@ Collection.propTypes = {
 };
 
 Collection.defaultProps = {
-  years: [],
+  years: [
+    {
+      color: '#ff0180',
+      year: '1A',
+      school: 'EMEF Maria da Silva'
+    }
+  ],
 };
 
 const mapDispatchToProps = dispatch => {

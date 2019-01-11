@@ -1,4 +1,3 @@
-import BodyActions from './BodyActions';
 import { API_URL } from 'data/constants';
 
 const ActivityActions = {
@@ -16,7 +15,6 @@ const ActivityActions = {
       });
       fetch(url).then(response => {
         response.json().then(data => {
-          dispatch({ type: BodyActions.HIDE_LOADING });
           dispatch({
             data,
             slug1,

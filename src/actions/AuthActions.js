@@ -1,5 +1,6 @@
 import Auth from 'j-toker';
 import { API_URL } from 'data/constants';
+import ProfileActions from 'actions/ProfileActions';
 
 const AuthActions = {
   FAILED: 'AuthActions.FAILED',
@@ -30,6 +31,7 @@ const AuthActions = {
 
           console.log('Login success:', user);
           dispatch({ type: AuthActions.LOGGED_IN });
+          dispatch(ProfileActions.load());
         })
         .fail(function(error) {
           console.error('Login failure: ' + error.errors);

@@ -8,11 +8,11 @@ import './index.scss';
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import Analytics from 'react-router-ga';
+import createBrowserHistory from 'history/createBrowserHistory';
 import thunk from 'redux-thunk';
-import { BrowserRouter } from 'react-router-dom';
 import { ModalContainer, ModalRoute } from 'react-router-modal';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router';
+import { Route, Router, Switch } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
@@ -177,9 +177,11 @@ class ModalSwitch extends Component {
   }
 }
 
+export const history = createBrowserHistory();
+
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={history}>
       <Analytics id="UA-85250794-5">
         <MuiThemeProvider theme={theme}>
           <Route component={ModalSwitch} />
@@ -189,7 +191,7 @@ ReactDOM.render(
           <Confirm />
         </MuiThemeProvider>
       </Analytics>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

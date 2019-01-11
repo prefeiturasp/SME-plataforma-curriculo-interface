@@ -121,6 +121,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .header {
+    background-position: 79% 50%;
+  }
+
   .intro,
   .sequences,
   .curriculum .discover {

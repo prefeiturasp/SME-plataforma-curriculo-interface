@@ -10,7 +10,7 @@ class SequenceList extends Component {
     const word = count > 1 ? 'sequências' : 'sequência';
     const items = this.props.items.map((item, i) => {
       return (
-        <Sequence key={i} collectionId={this.props.collectionId} {...item} />
+        <Sequence key={i} collectionId={this.props.collectionId} data={item} />
       );
     });
 

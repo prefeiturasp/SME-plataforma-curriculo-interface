@@ -9,8 +9,6 @@ import iconSearch from 'images/icons/search.svg';
 import styles from './SearchField.scss';
 
 class SearchField extends Component {
-  state = { query: '' };
-
   onChangedQuery = e => {
     this.props.setQuery(e.target.value);
   };
@@ -21,26 +19,16 @@ class SearchField extends Component {
     }
   };
 
-  componentDidMount() {
-    this.setState({ query: this.props.query });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.query !== prevProps.query) {
-      this.setState({ query: this.props.query });
-    }
-  }
-
   render() {
     return (
       <div className={styles.wrapper}>
         <img src={iconSearch} alt="Buscar" />
         <TextField
           classes={{ root: styles.field }}
+          defaultValue={this.props.query}
           label="Buscar sequência por tema"
           onChange={this.onChangedQuery}
           onKeyPress={this.onKeyPress}
-          value={this.state.query}
         />
       </div>
     );
