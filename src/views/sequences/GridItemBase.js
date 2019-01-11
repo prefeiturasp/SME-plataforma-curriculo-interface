@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
+import { history } from 'index';
 import Preview from './Preview';
+import isLogged from 'data/isLogged';
 import iconMinus from 'images/icons/minus.svg';
 import iconPlus from 'images/icons/plus1.svg';
+import iconSave1 from 'images/icons/save.svg';
+import iconSaved from 'images/icons/saved.svg';
 import styles from './GridItemBase.scss';
 
 class GridItemBase extends Component {
@@ -14,12 +18,20 @@ class GridItemBase extends Component {
     this.props.togglePreview(this.props.data.id);
   };
 
+  onClickedSave = () => {
+    if (isLogged()) {
+      history.push(`/sequencias/${this.props.data.slug}/salvar`, { isModal: true });
+    } else {
+      this.props.login();
+    }
+  };
+
   render() {
     const data = this.props.data;
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
-    const icon = data.isExpanded ? iconMinus : iconPlus;
-    const alt = data.isExpanded ? 'Esconder' : 'Expandir';
+    const iconToggler = data.isExpanded ? iconMinus : iconPlus;
+    const labelToggler = data.isExpanded ? 'Esconder' : 'Expandir';
     const isLeftAligned = (this.props.index + 1) % 4 === 0;
     const style = { color: data.main_curricular_component.color };
 
@@ -63,13 +75,18 @@ class GridItemBase extends Component {
 
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
+    const iconSave = true ? iconSave1 : iconSaved;
+    const labelSave = true ? 'Salvar' : 'Salvo';
+
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <article className={styles.wrapper} ref={this.ref}>
           <NavLink to={link}>{thumbnail}</NavLink>
+          <button className={styles.btnSave} onClick={this.onClickedSave}>
+            <img src={iconSave} alt={labelSave} />
+          </button>
           <div className={styles.component}>
             <em style={style}>{data.main_curricular_component.name}</em>
-            <span>{data.year} ano</span>
           </div>
           <div className={styles.title}>
             <NavLink to={link}>{title}</NavLink>
@@ -82,7 +99,7 @@ class GridItemBase extends Component {
             </div>
           </div>
           <div className={styles.expand} onClick={this.onClickedExpand}>
-            <img src={icon} alt={alt} />
+            <img src={iconToggler} alt={labelToggler} />
           </div>
         </article>
         <Preview
@@ -99,6 +116,7 @@ class GridItemBase extends Component {
 GridItemBase.propTypes = {
   data: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
+  login: PropTypes.func.isRequired,
   togglePreview: PropTypes.func.isRequired,
 };
 
