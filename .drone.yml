@@ -50,6 +50,7 @@ steps:
     branch:
     - devops 
     - staging-v2
+    - staging
 
 volumes:
 - name: docker
