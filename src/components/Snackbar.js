@@ -26,7 +26,7 @@ class Snackbar extends Component {
 Snackbar.propTypes = {
   close: PropTypes.func.isRequired,
   isOpened: PropTypes.bool,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.any.isRequired,
 };
 
 const mapStateToProps = state => {
