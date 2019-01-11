@@ -3,7 +3,7 @@ import { API_URL } from 'data/constants';
 
 export default function convertQuillToHtml(json) {
   const ops = JSON.parse(json).ops;
-  
+
   ops.forEach(item => {
     if (item.insert.image) {
       item.insert.image = API_URL + item.insert.image;
@@ -45,10 +45,10 @@ export default function convertQuillToHtml(json) {
 
   converter.afterRender(function(groupType, html) {
     if (groupType === 'video') {
-      html = `<div class="ql-video-wrapper">${html}</div>`
+      html = `<div class="ql-video-wrapper">${html}</div>`;
     }
-    return html
-  })
+    return html;
+  });
 
   return converter.convert();
 }
