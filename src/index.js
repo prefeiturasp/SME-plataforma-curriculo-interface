@@ -90,7 +90,7 @@ class ModalSwitch extends Component {
       <Fragment>
         <Switch location={locationProp}>
           <Route exact path="/" component={Home} />
-          <Route exact path="/sequencias" component={Sequences} />
+          <Route path="/sequencias" component={Sequences} />
           <Route exact path="/sequencias/ods/:ods" component={Sequences} />
           <Route
             exact
