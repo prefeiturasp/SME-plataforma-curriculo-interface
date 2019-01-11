@@ -12,7 +12,7 @@ import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import YearButton from './YearButton';
-import getWindowWidth from 'utils/getWindowWidth';
+import withWidth from 'components/hoc/withWidth';
 import chevronLeft from 'images/chevrons/left.svg';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import iconWarning from 'images/icons/warning.svg';
@@ -49,7 +49,7 @@ class LearningObjectives extends Component {
       this.tl.to(this.refFilters.current, 0.2, { opacity: 0, display: 'none' });
       this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
 
-      if (getWindowWidth() < 768) {
+      if (this.props.windowWidth < 768) {
         disableBodyScroll(this.target);
       }
     } else {
@@ -62,7 +62,7 @@ class LearningObjectives extends Component {
   onClickedSee = () => {
     this.props.showObjectives();
 
-    if (getWindowWidth() < 768) {
+    if (this.props.windowWidth < 768) {
       disableBodyScroll(this.target);
     }
   };
@@ -112,13 +112,12 @@ class LearningObjectives extends Component {
       return <ExpandableLearningObjective key={i} data={item} hasLink={true} />;
     });
 
-    const totalWidth = getWindowWidth();
     const classes1 =
-      this.props.isShowingObjectives || totalWidth >= 768
+      this.props.isShowingObjectives || this.props.windowWidth >= 768
         ? [styles.objectives, styles.isVisible]
         : [styles.objectives];
     const classes2 =
-      this.props.isShowingResults || totalWidth >= 768
+      this.props.isShowingResults || this.props.windowWidth >= 768
         ? [styles.results, styles.isVisible]
         : [styles.results];
 
@@ -296,4 +295,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LearningObjectives);
+)(withWidth(LearningObjectives));
