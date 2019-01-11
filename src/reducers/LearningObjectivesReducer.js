@@ -9,11 +9,6 @@ const initialState = {
 
 function LearningObjectivesReducer(state = initialState, action) {
   switch (action.type) {
-    case LearningObjectivesActions.LOAD:
-      return {
-        ...state,
-      };
-
     case LearningObjectivesActions.LOADED:
       const filters = [];
       const keys = ['years', 'curricular_components'];
