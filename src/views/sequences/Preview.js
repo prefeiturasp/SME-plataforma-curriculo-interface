@@ -35,7 +35,7 @@ class Preview extends Component {
     );
 
     const sustainableDevGoalsTitle =
-      sustainableDevGoals.length > 0 ? (
+      sustainableDevGoals.length ? (
         <div className={styles.title}>
           Objetivos de Desenvolvimento Sustentável (ODS)
           <button data-tip data-for="tooltipDevelopmentGoals">

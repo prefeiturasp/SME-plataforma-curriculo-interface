@@ -20,7 +20,7 @@ class ActivityChars extends Component {
     const environment = getEnvironmentIconAndLabel(data.environment);
 
     const learningObjectivesTitle =
-      data.learning_objectives.length > 0 ? (
+      data.learning_objectives.length ? (
         <div className={styles.title}>
           Objetivos de aprendizagem
           <button data-tip data-for="tooltipLearningObjectives">

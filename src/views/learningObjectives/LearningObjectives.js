@@ -41,7 +41,7 @@ class LearningObjectives extends Component {
 
   onClickedNext = () => {
     const activeFilters = this.props.filters.filter(item => item.isActive);
-    if (activeFilters.length > 0) {
+    if (activeFilters.length) {
       this.props.search(activeFilters);
 
       this.tl.kill();

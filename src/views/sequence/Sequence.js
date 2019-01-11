@@ -45,7 +45,7 @@ class Sequence extends Component {
       return <span />;
     }
 
-    const word = data.activities.length > 1 ? 'Atividades' : 'Atividade';
+    const word = data.activities.length === 1 ? 'Atividade' : 'Atividades';
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityItem

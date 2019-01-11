@@ -52,7 +52,7 @@ class Collection extends Component {
     const { classrooms, sequences } = this.props;
     const { id, name } = this.props.data;
     
-    const word = classrooms.length > 1 ? 'turmas' : 'turma';
+    const word = classrooms.length === 1 ? 'turma' : 'turmas';
     const link = createModalLink(`/colecao/${id}/editar`);
 
     const years = classrooms.map((year, i) => {
@@ -60,7 +60,7 @@ class Collection extends Component {
     });
 
     const contents =
-      sequences.length > 0 ? (
+      sequences.length ? (
         <SequenceList collectionId={id} items={sequences} />
       ) : (
         <EmptyList />

@@ -13,7 +13,7 @@ class Search extends Component {
   onClicked = () => {
     const { filters, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
-    if (activeFilters.length > 0 || query) {
+    if (activeFilters.length || query) {
       history.push('/sequencias', { isSearch: true });
     } else {
       this.props.openAlert(
