@@ -20,6 +20,7 @@ class Collection extends React.PureComponent {
       return (
         <ClassroomYear
           key={i}
+          index={i}
           color={year.color}
           year={year.year}
           tooltip={year.school}

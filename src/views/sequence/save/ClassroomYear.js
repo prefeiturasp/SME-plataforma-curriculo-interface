@@ -5,9 +5,9 @@ import ClassroomYear1 from 'components/objects/ClassroomYear';
 
 class ClassroomYear extends React.PureComponent {
   render() {
-    const { color, key, year, tooltip } = this.props;
+    const { color, index, tooltip, year } = this.props;
 
-    const tooltipId = `tooltipClassroomYear${key}`;
+    const tooltipId = `tooltipClassroomYear${index}`;
 
     return (
       <Fragment>
@@ -29,7 +29,8 @@ class ClassroomYear extends React.PureComponent {
 }
 
 ClassroomYear.propTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
   year: PropTypes.string.isRequired,
   tooltip: PropTypes.string.isRequired,
 };
