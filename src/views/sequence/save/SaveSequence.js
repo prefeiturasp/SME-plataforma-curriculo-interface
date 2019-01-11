@@ -37,7 +37,8 @@ class SaveSequence extends Component {
       return <Collection key={i} sequenceId={data.id} {...item} />;
     });
 
-    const link = createModalLink(`/sequencia/${data.slug}/criar-colecao`);
+    const base = this.props.location.pathname.match(/sequencias/) ? 'sequencias' : 'sequencia';
+    const link = createModalLink(`/${base}/${data.slug}/criar-colecao`);
 
     const btnCreate = (
       <NavLink className={styles.btnCreate} to={link}>
