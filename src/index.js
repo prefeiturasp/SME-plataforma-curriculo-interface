@@ -161,6 +161,12 @@ class ModalSwitch extends Component {
         />
         <ModalRoute
           exact
+          path="/sequencias/:slug/criar-colecao"
+          component={CreateCollection}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
           path="/sequencia/:slug/avaliar"
           component={RateSequence}
           {...modalProps}
@@ -168,6 +174,12 @@ class ModalSwitch extends Component {
         <ModalRoute
           exact
           path="/sequencia/:slug/salvar"
+          component={SaveSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/sequencias/:slug/salvar"
           component={SaveSequence}
           {...modalProps}
         />
