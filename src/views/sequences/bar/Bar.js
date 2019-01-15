@@ -6,7 +6,7 @@ import Chip from 'views/sequences/objects/Chip';
 import FiltersActions from 'actions/FiltersActions';
 import OrderButton from 'views/sequences/bar/OrderButton';
 import SearchField from 'views/sequences/bar/SearchField';
-import getWindowWidth from 'utils/getWindowWidth';
+import withWidth from 'components/hoc/withWidth';
 import iconFilters from 'images/icons/filters.svg';
 import styles from './Bar.scss';
 
@@ -22,7 +22,7 @@ class Bar extends Component {
   onClickedToggle = () => {
     this.props.togglePanel();
 
-    if (getWindowWidth() < 768) {
+    if (this.props.windowWidth < 768) {
       disableBodyScroll(this.target);
     }
   };
@@ -80,4 +80,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Bar);
+)(withWidth(Bar));

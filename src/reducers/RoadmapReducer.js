@@ -6,11 +6,6 @@ const initialState = {
 
 function RoadmapReducer(state = initialState, action) {
   switch (action.type) {
-    case RoadpmapActions.LOAD:
-      return {
-        ...state,
-      };
-
     case RoadpmapActions.LOADED:
       return {
         ...state,

@@ -7,17 +7,6 @@ const initialState = {
 
 function CollectionReducer(state = initialState, action) {
   switch (action.type) {
-    case CollectionActions.CREATE:
-    case CollectionActions.DELETE:
-    case CollectionActions.EDIT:
-    case CollectionActions.LOAD:
-    case CollectionActions.LOAD_SEQUENCE:
-    case CollectionActions.REMOVE_SEQUENCE:
-    case CollectionActions.SAVE_SEQUENCE:
-      return {
-        ...state,
-      };
-
     case CollectionActions.LOADED:
       return {
         ...state,

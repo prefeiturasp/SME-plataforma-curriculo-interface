@@ -85,7 +85,6 @@ Sequence.propTypes = {
   collectionId: PropTypes.number.isRequired,
   data: PropTypes.object.isRequired,
   openConfirm: PropTypes.func.isRequired,
-  loadSequences: PropTypes.func.isRequired,
   removeSequence: PropTypes.func.isRequired,
 };
 
@@ -95,9 +94,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
       );
-    },
-    loadSequences: collectionId => {
-      dispatch(CollectionActions.loadSequences(collectionId));
     },
     removeSequence: (collectionId, sequenceId) => {
       dispatch(CollectionActions.removeSequence(collectionId, sequenceId));

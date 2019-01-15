@@ -6,11 +6,6 @@ const initialState = {
 
 function CollectionsReducer(state = initialState, action) {
   switch (action.type) {
-    case CollectionsActions.LOAD:
-      return {
-        ...state,
-      };
-
     case CollectionsActions.LOADED:
       return {
         ...state,

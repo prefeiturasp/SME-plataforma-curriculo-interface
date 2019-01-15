@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import ClassroomYear from './ClassroomYear';
 import CollectionActions from 'actions/CollectionActions';
 import styles from './Collection.scss';
@@ -10,7 +10,7 @@ class Collection extends React.PureComponent {
   onClicked = () => {
     const { id, name, sequenceId } = this.props;
     this.props.saveSequence(id, name, sequenceId);
-    this.props.history.goBack();
+    history.goBack();
   };
 
   render() {
@@ -20,6 +20,7 @@ class Collection extends React.PureComponent {
       return (
         <ClassroomYear
           key={i}
+          index={i}
           color={year.color}
           year={year.year}
           tooltip={year.school}
@@ -64,4 +65,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(withRouter(Collection));
+)(Collection);

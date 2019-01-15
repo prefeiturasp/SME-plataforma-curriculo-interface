@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import Classroom from 'views/profile/collection/edit/Classroom';
 import CollectionActions from 'actions/CollectionActions';
@@ -31,10 +31,10 @@ class CreateCollection extends Component {
   onClickedSave = () => {
     if (this.state.sequenceId > 0) {
       this.props.createAndSaveSequence(this.state.name, this.state.sequenceId);
-      this.props.history.go(-2);
+      history.go(-2);
     } else {
       this.props.create(this.state.name);
-      this.props.history.goBack();
+      history.goBack();
     }
   };
 
@@ -196,4 +196,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(CreateCollection));
+)(CreateCollection);

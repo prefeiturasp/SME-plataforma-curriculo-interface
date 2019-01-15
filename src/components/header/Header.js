@@ -9,6 +9,7 @@ import Fade from '@material-ui/core/Fade';
 import LoginPopover from 'components/popovers/LoginPopover';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
+import ProfileActions from 'actions/ProfileActions';
 import ProfilePopover from 'components/popovers/ProfilePopover';
 import isLogged from 'data/isLogged';
 import chevronDown from 'images/chevrons/down.svg';
@@ -32,6 +33,12 @@ class Header extends Component {
   onMouseLeave = e => {
     this.setState({ anchor: null });
   };
+
+  componentDidMount() {
+    if (isLogged()) {
+      this.props.loadProfile();
+    }
+  }
 
   render() {
     const data = [
@@ -129,6 +136,9 @@ Header.propTypes = {
 
 const mapDispatchToProps = dispatch => {
   return {
+    loadProfile: () => {
+      dispatch(ProfileActions.load());
+    },
     showMobileMenu: () => {
       dispatch(BodyActions.showMobileMenu());
     },

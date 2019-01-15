@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import ActivityItem from './ActivityItem';
 import BodyActions from 'actions/BodyActions';
 import Notification from 'components/objects/Notification';
@@ -31,7 +31,7 @@ class Sequence extends Component {
     const link = createModalLink(
       `/sequencia/${this.props.match.params.slug}/avaliar`
     );
-    this.props.history.push(link);
+    history.push(link);
   };
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class Sequence extends Component {
       return <span />;
     }
 
-    const word = data.activities.length > 1 ? 'Atividades' : 'Atividade';
+    const word = data.activities.length === 1 ? 'Atividade' : 'Atividades';
     const activities = data.activities.map((item, i) => {
       return (
         <ActivityItem
@@ -130,4 +130,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(Sequence));
+)(Sequence);

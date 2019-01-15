@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Sticky from 'react-stickynode';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { history } from 'index';
 import { API_URL } from 'data/constants';
 import AuthActions from 'actions/AuthActions';
 import isLogged from 'data/isLogged';
@@ -14,7 +14,7 @@ import styles from './SequencePreview.scss';
 class SequencePreview extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      this.props.history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
+      history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
     } else {
       this.props.login();
     }
@@ -83,4 +83,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(withRouter(SequencePreview));
+)(SequencePreview);

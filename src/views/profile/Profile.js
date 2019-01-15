@@ -117,7 +117,8 @@ const mapDispatchToProps = dispatch => {
   return {
     load: () => {
       dispatch(BodyActions.showLoading());
-      dispatch(ProfileActions.load());
+      // no need to call ProfileActions.load()
+      // because it's already called by Header
     },
     loadClassrooms: () => {
       dispatch(ProfileActions.loadClassrooms());

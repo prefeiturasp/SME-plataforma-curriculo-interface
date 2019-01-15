@@ -6,11 +6,6 @@ const initialState = {
 
 function HomeReducer(state = initialState, action) {
   switch (action.type) {
-    case HomeActions.LOAD:
-      return {
-        ...state,
-      };
-
     case HomeActions.LOADED:
       return {
         ...state,

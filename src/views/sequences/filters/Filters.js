@@ -18,7 +18,7 @@ class Filters extends Component {
   onClickedSearch = () => {
     const { filters, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
-    if (activeFilters.length > 0 || query) {
+    if (activeFilters.length || query) {
       this.props.search();
       clearAllBodyScrollLocks();
     } else {
@@ -71,10 +71,6 @@ class Filters extends Component {
       {
         name: 'Eixo',
         slug: 'axes',
-      },
-      {
-        name: 'Tipo de Atividade',
-        slug: 'activity_types',
       },
     ];
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
@@ -19,8 +18,9 @@ import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 class SaveSequence extends Component {
   componentDidMount() {
-    if (!this.props.data) {
-      this.props.load(this.props.match.params.slug);
+    const slug = this.props.match.params.slug;
+    if (!this.props.data || this.props.data.slug !== slug) {
+      this.props.load(slug);
     }
     this.props.loadCollections();
   }
@@ -36,7 +36,8 @@ class SaveSequence extends Component {
       return <Collection key={i} sequenceId={data.id} {...item} />;
     });
 
-    const link = createModalLink(`/sequencia/${data.slug}/criar-colecao`);
+    const base = this.props.location.pathname.match(/sequencias/) ? 'sequencias' : 'sequencia';
+    const link = createModalLink(`/${base}/${data.slug}/criar-colecao`);
 
     const btnCreate = (
       <NavLink className={styles.btnCreate} to={link}>
@@ -117,4 +118,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(SaveSequence));
+)(SaveSequence);
