@@ -28,6 +28,7 @@ steps:
     branch:
     - devops 
     - staging-v2
+    - staging
   volumes:
   - name: docker
     path: /var/run/docker.sock
@@ -50,6 +51,7 @@ steps:
     branch:
     - devops 
     - staging-v2
+    - staging
 
 volumes:
 - name: docker

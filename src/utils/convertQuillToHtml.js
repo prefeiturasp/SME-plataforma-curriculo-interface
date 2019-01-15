@@ -1,22 +1,42 @@
-import QuillDeltaToHtmlConverter from 'quill-delta-to-html';
+import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 import { API_URL } from 'data/constants';
 
 export default function convertQuillToHtml(json) {
   const ops = JSON.parse(json).ops;
-  const converter = new QuillDeltaToHtmlConverter(ops);
 
-  converter.beforeRender(function(groupType, data) {
-    if (data.ops) {
-      data.ops.forEach(item  => {
-        if (item.insert.type === 'image') {
-          item.insert.value = API_URL + item.insert.value;
+  ops.forEach(item => {
+    if (item.insert.image) {
+      item.insert.image = API_URL + item.insert.image;
+
+      if (item.attributes) {
+        if (item.attributes.style || item.attributes['data-caption']) {
+          item.insert.customImage = item.insert.image;
+          delete item.insert.image;
         }
-      })
+      }
     }
   });
 
-  converter.renderCustomWith(function(customOp, contextOp) {
-    if (customOp.insert.type === 'divider') {
+  const converter = new QuillDeltaToHtmlConverter(ops);
+
+  converter.renderCustomWith(function(op, context) {
+    if (op.insert.type === 'customImage') {
+      const src = op.insert.value;
+      const attrs = op.attributes;
+      const style = attrs.style || '';
+      const width = attrs.width || '';
+      const caption = attrs['data-caption'];
+
+      if (caption) {
+        const style1 = width ? `width: ${width}px; ${style}` : style;
+        return `<div class="ql-image-wrapper" style="${style1}">
+          <img src="${src}" />
+          <sub>${caption}</sub>
+        </div>`;
+      } else {
+        return `<img src="${src}" style="${style}" width="${width}" />`;
+      }
+    } else if (op.insert.type === 'divider') {
       return '<hr />';
     } else {
       return null;
@@ -25,10 +45,10 @@ export default function convertQuillToHtml(json) {
 
   converter.afterRender(function(groupType, html) {
     if (groupType === 'video') {
-      html = `<div class="ql-video-wrapper">${html}</div>`
+      html = `<div class="ql-video-wrapper">${html}</div>`;
     }
-    return html
-  })
+    return html;
+  });
 
   return converter.convert();
 }
