@@ -3,17 +3,23 @@ import PropTypes from 'prop-types';
 import ModuleTable from './ModuleTable';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
 
-function appendChildren(children, tableId, table, ops, startIndex, endIndex) {
-  children.push(
-    <ModuleTable key={tableId} data={table} />
-  );
+function getTable(key, table) {
+  return <ModuleTable key={key} data={table} />;
+}
 
-  const otherOps = ops.slice(startIndex, endIndex);
-
-  children.push(
+function getText(key, ops, startIndex, endIndex) {
+  const textOps = ops.slice(startIndex, endIndex);
+  const lastOp = textOps[textOps.length - 1];
+  const newLineIndex = lastOp.insert.lastIndexOf('\n');
+  if (newLineIndex < lastOp.insert.length - 1) {
+    textOps.pop();
+    textOps.push({ insert: lastOp.insert.substring(0, newLineIndex) });
+  }
+  
+  return (
     <div
-      key={children.length + 1}
-      dangerouslySetInnerHTML={{__html: convertQuillToHtml(otherOps)}}
+      key={key}
+      dangerouslySetInnerHTML={{__html: convertQuillToHtml(textOps)}}
     />
   );
 }
@@ -21,13 +27,13 @@ function appendChildren(children, tableId, table, ops, startIndex, endIndex) {
 class ModuleTextWithTables extends PureComponent {
   render() {
     const ops = JSON.parse(this.props.data).ops;
-
+    
     const children = [];
     let table = [];
-    let lastTableId = null;
-    let lastIndexWithNewLine = 0;
-    let lastIndexWithTable = 0;
-    
+    let prevTableId = null;
+    let lastNewLineIndex = 0;
+    let lastTableIndex = -1;
+
     ops.forEach((item, index) => {
       if (item.attributes && item.attributes.td) {
         const ids = item.attributes.td.split('|');
@@ -35,9 +41,10 @@ class ModuleTextWithTables extends PureComponent {
         const rowId = ids[1];
         const cellId = ids[2];
 
-        if (tableId !== lastTableId) {
-          appendChildren(children, lastTableId, table, ops, lastIndexWithTable + 1, lastIndexWithNewLine + 1);
-          lastTableId = tableId;
+        if (tableId !== prevTableId) {
+          children.push(getTable(prevTableId, table));
+          children.push(getText(children.length + 1, ops, lastTableIndex + 1, lastNewLineIndex + 1));
+          prevTableId = tableId;
           table = [];
         }
 
@@ -61,18 +68,26 @@ class ModuleTextWithTables extends PureComponent {
           cell.ops.push({ insert: '\n' });
         }
 
-        const cellOps = ops.slice(lastIndexWithNewLine + 1, index);
-        cell.ops = cell.ops.concat(cellOps);
+        const cellOps = ops.slice(lastNewLineIndex + 1, index);
+        const prevOp = ops[lastNewLineIndex];
+        const newLineIndex = prevOp.insert.lastIndexOf('\n');
+        if (newLineIndex < prevOp.insert.length - 1) {
+          const part = prevOp.insert.substring(newLineIndex + 1);
+          cellOps.unshift({ insert: part });
+          prevOp.insert = prevOp.insert.substring(0, newLineIndex);
+        }
 
-        lastIndexWithTable = index;
+        cell.ops = cell.ops.concat(cellOps);
+        lastTableIndex = index;
       }
 
       if (typeof item.insert === 'string' && item.insert.match(/\n/)) {
-        lastIndexWithNewLine = index;
+        lastNewLineIndex = index;
       }
     });
 
-    appendChildren(children, lastTableId, table, ops, lastIndexWithTable + 1);
+    children.push(getTable(prevTableId, table));
+    children.push(getText(children.length + 1, ops, lastTableIndex + 1));
 
     return <Fragment>{children}</Fragment>;
   }
