@@ -11,6 +11,7 @@ import ModuleGallery from './ModuleGallery';
 import ModuleLongText from './ModuleLongText';
 import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
+import ModuleTextWithTables from './ModuleTextWithTables';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/layout/Page';
 import Cover from 'views/sequence/Cover';
@@ -107,14 +108,7 @@ class Activity extends Component {
               return <ModuleGallery key={i} images={block.images} />;
 
             default:
-              return (
-                <div
-                  key={i}
-                  dangerouslySetInnerHTML={{
-                    __html: convertQuillToHtml(block.content.body),
-                  }}
-                />
-              );
+              return <ModuleTextWithTables key={i} data={block.content.body} />
           }
         })
       : null;
