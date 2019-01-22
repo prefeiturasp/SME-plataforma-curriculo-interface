@@ -7,13 +7,14 @@ import BodyActions from 'actions/BodyActions';
 import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
+import SequenceActions from 'actions/SequenceActions';
 import SequenceChars from './chars/SequenceChars';
 import SequenceCharsMobile from './chars/SequenceCharsMobile';
 import Cover from './Cover';
 import Title from './Title';
-import SequencesActions from 'actions/SequencesActions';
 import Tooltips from 'components/Tooltips';
 import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
 import styles from './Sequence.scss';
 
 class Sequence extends Component {
@@ -35,11 +36,11 @@ class Sequence extends Component {
   };
 
   componentDidMount() {
-    this.props.loadItem(this.props.match.params.slug);
+    this.props.load(this.props.match.params.slug);
   }
 
   render() {
-    const data = this.props.data;
+    const { data, isSaved } = this.props;
 
     if (!data) {
       return <span />;
@@ -73,7 +74,7 @@ class Sequence extends Component {
               <Cover data={data} sequence={data} />
               <Title
                 hasButton={true}
-                isSaved={data.isSaved}
+                isSaved={isSaved}
                 slug={data.slug}
                 text="Sequência de atividades"
                 title={data.title}
@@ -92,7 +93,7 @@ class Sequence extends Component {
               </div>
             </div>
             <div className={styles.chars}>
-              <SequenceChars data={this.props.data} />
+              <SequenceChars data={data} />
             </div>
           </div>
         </div>
@@ -109,20 +110,25 @@ class Sequence extends Component {
 
 Sequence.propTypes = {
   data: PropTypes.object,
-  loadItem: PropTypes.func.isRequired,
+  isSaved: PropTypes.bool,
+  load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.SequencesReducer.currItem,
+    data: state.SequenceReducer.currItem,
+    isSaved: state.SequenceReducer.isSaved,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadItem: slug => {
+    load: slug => {
       dispatch(BodyActions.showLoading());
-      dispatch(SequencesActions.loadItem(slug));
+      dispatch(SequenceActions.load(slug));
+      if (isLogged()) {
+        dispatch(SequenceActions.loadCollections(slug));
+      }
     },
   };
 };

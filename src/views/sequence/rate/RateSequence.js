@@ -7,8 +7,8 @@ import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import Question from './Question';
+import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
-import SequencesActions from 'actions/SequencesActions';
 import styles from './RateSequence.scss';
 import styles1 from 'views/sequence/BigSequencePreview.scss';
 
@@ -148,14 +148,14 @@ RateSequence.defaultProps = {
 
 const mapStateToProps = state => {
   return {
-    data: state.SequencesReducer.currItem,
+    data: state.SequenceReducer.currItem,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
-      dispatch(SequencesActions.loadItem(slug));
+      dispatch(SequenceActions.load(slug));
     },
     rate: () => {},
   };

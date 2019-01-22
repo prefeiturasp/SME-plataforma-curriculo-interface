@@ -9,8 +9,8 @@ import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
+import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
-import SequencesActions from 'actions/SequencesActions';
 import createModalLink from 'utils/createModalLink';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
@@ -100,14 +100,15 @@ SaveSequence.propTypes = {
 const mapStateToProps = state => {
   return {
     collections: state.CollectionsReducer.items,
-    data: state.SequencesReducer.currItem,
+    data: state.SequenceReducer.currItem,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
-      dispatch(SequencesActions.loadItem(slug));
+      dispatch(SequenceActions.load(slug));
+      dispatch(SequenceActions.loadCollections(slug));
     },
     loadCollections: () => {
       dispatch(CollectionsActions.load());
