@@ -12,6 +12,7 @@ import KnowledgeMatrixReducer from './KnowledgeMatrixReducer';
 import LearningObjectivesReducer from './LearningObjectivesReducer';
 import ProfileReducer from './ProfileReducer';
 import RoadmapReducer from './RoadmapReducer';
+import SequenceReducer from './SequenceReducer';
 import SequencesReducer from './SequencesReducer';
 import SnackbarReducer from './SnackbarReducer';
 import SustainableDevGoalsReducer from './SustainableDevGoalsReducer';
@@ -30,6 +31,7 @@ export default combineReducers({
   LearningObjectivesReducer,
   ProfileReducer,
   RoadmapReducer,
+  SequenceReducer,
   SequencesReducer,
   SnackbarReducer,
   SustainableDevGoalsReducer,

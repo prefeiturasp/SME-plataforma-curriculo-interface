@@ -1,10 +1,8 @@
-import CollectionActions from 'actions/CollectionActions';
 import SequencesActions from 'actions/SequencesActions';
 
 const initialState = {
   items: [],
   isSearching: false,
-  currItem: null,
   nextPage: null,
   totalItems: 0,
 };
@@ -18,20 +16,12 @@ function SequencesReducer(state = initialState, action) {
       return {
         ...state,
         items: [],
-        currItem: null,
         isSearching: true,
-      };
-
-    case SequencesActions.LOAD_ITEM:
-      return {
-        ...state,
-        currItem: null,
       };
 
     case SequencesActions.LOAD_MORE:
       return {
         ...state,
-        currItem: null,
         isSearching: true,
       };
 
@@ -42,12 +32,6 @@ function SequencesReducer(state = initialState, action) {
         isSearching: false,
         nextPage: action.nextPage,
         totalItems: action.totalItems,
-      };
-
-    case SequencesActions.LOADED_ITEM:
-      return {
-        ...state,
-        currItem: action.data,
       };
 
     case SequencesActions.LOADED_MORE:
@@ -61,7 +45,6 @@ function SequencesReducer(state = initialState, action) {
     case SequencesActions.SEARCH:
       return {
         ...state,
-        currItem: null,
         isSearching: true,
       };
 
@@ -74,15 +57,6 @@ function SequencesReducer(state = initialState, action) {
             isExpanded: !item.isExpanded && item.id === action.id,
           };
         }),
-      };
-
-    case CollectionActions.SAVED_SEQUENCE:
-      return {
-        ...state,
-        currItem: {
-          ...state.currItem,
-          isSaved: true,
-        },
       };
 
     default:

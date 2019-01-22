@@ -5,10 +5,8 @@ import getFiltersQueryString, { getSearchQueryString } from 'data/getFiltersQuer
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
   LOAD: 'SequencesActions.LOAD',
-  LOAD_ITEM: 'SequencesActions.LOAD_ITEM',
   LOAD_MORE: 'SequencesActions.LOAD_MORE',
   LOADED: 'SequencesActions.LOADED',
-  LOADED_ITEM: 'SequencesActions.LOADED_ITEM',
   LOADED_MORE: 'SequencesActions.LOADED_MORE',
   SEARCH: 'SequencesActions.SEARCH',
   TOGGLE_PREVIEW: 'SequencesActions.TOGGLE_PREVIEW',
@@ -34,13 +32,6 @@ const SequencesActions = {
       '/api/sequencias',
       SequencesActions.LOAD,
       SequencesActions.LOADED
-    );
-  },
-  loadItem(slug) {
-    return Api.simpleGet(
-      `/api/sequencias/${slug}`,
-      SequencesActions.LOAD_ITEM,
-      SequencesActions.LOADED_ITEM
     );
   },
   loadMore(page) {
