@@ -167,6 +167,12 @@ class ModalSwitch extends Component {
         />
         <ModalRoute
           exact
+          path="/sequencia/:slug/avaliacao"
+          component={RateSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
           path="/sequencia/:slug/avaliar"
           component={RateSequence}
           {...modalProps}
