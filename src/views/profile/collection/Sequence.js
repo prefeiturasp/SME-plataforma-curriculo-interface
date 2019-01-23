@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { API_URL } from 'data/constants';
 import CollectionActions from 'actions/CollectionActions';
 import ConfirmActions from 'actions/ConfirmActions';
+import createModalLink from 'utils/createModalLink';
 import iconCheck from 'images/icons/check.png';
 import iconDelete from 'images/icons/delete.svg';
 import styles from './Sequence.scss';
@@ -26,19 +27,28 @@ class Sequence extends React.PureComponent {
 
   render() {
     const { data } = this.props;
-    const { component, componentColor, isCompleted, slug, title } = data;
+    const { component, componentColor, performeds_status, slug, title } = data;
+    const { evaluated, performed } = performeds_status;
 
     const link = `/sequencia/${slug}`;
 
-    const bar = isCompleted ? (
-      <div className={styles.bar}>
-        <span>
-          <img src={iconCheck} alt="Sequência realizada" />
-          Sequência realizada
-        </span>
-        <button>Avaliar</button>
-      </div>
-    ) : null;
+    let bar = null;
+    if (performed) {
+      const label = evaluated ? 'Ver avaliação' : 'Avaliar';
+      const route = evaluated ? 'avaliacao' : 'avaliar';
+      const link = createModalLink(`/sequencia/${slug}/${route}`);
+      const btn = <NavLink to={link}>{label}</NavLink>;
+      
+      bar = (
+        <div className={styles.bar}>
+          <span>
+            <img src={iconCheck} alt="Sequência realizada" />
+            Sequência realizada
+          </span>
+          {btn}
+        </div>
+      );
+    }
 
     const thumbnail = data.image_attributes.default_url ? (
       <NavLink className={styles.image} to={link}>

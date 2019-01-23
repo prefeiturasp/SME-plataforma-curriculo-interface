@@ -178,7 +178,7 @@ CreateCollection.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    sequence: state.SequencesReducer.currItem,
+    sequence: state.SequenceReducer.currItem,
   };
 };
 

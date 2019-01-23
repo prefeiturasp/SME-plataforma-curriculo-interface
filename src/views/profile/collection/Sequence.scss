@@ -93,7 +93,7 @@
     }
   }
 
-  > button {
+  > a {
     font-weight: bold;
     padding: rem(10);
     text-transform: uppercase;
@@ -130,7 +130,15 @@
   }
 
   .bar {
-    height: rem(40);
     margin-top: auto;
+
+    > span {
+      align-items: center;
+      display: flex;
+    }
+
+    > a {
+      text-align: right;
+    }
   }
 }

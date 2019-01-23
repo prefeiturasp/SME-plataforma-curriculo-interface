@@ -5,11 +5,11 @@ import getFiltersQueryString, { getSearchQueryString } from 'data/getFiltersQuer
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
   LOAD: 'SequencesActions.LOAD',
-  LOAD_ITEM: 'SequencesActions.LOAD_ITEM',
   LOAD_MORE: 'SequencesActions.LOAD_MORE',
+  LOAD_PERFORMED: 'SequencesActions.LOAD_PERFORMED',
   LOADED: 'SequencesActions.LOADED',
-  LOADED_ITEM: 'SequencesActions.LOADED_ITEM',
   LOADED_MORE: 'SequencesActions.LOADED_MORE',
+  LOADED_PERFORMED: 'SequencesActions.LOADED_PERFORMED',
   SEARCH: 'SequencesActions.SEARCH',
   TOGGLE_PREVIEW: 'SequencesActions.TOGGLE_PREVIEW',
 
@@ -26,7 +26,7 @@ const SequencesActions = {
       dispatch({ type: SequencesActions.SEARCH });
       return Api.get(dispatch, `/api/sequencias?${queryString}`)
         .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   load() {
@@ -36,18 +36,18 @@ const SequencesActions = {
       SequencesActions.LOADED
     );
   },
-  loadItem(slug) {
-    return Api.simpleGet(
-      `/api/sequencias/${slug}`,
-      SequencesActions.LOAD_ITEM,
-      SequencesActions.LOADED_ITEM
-    );
-  },
   loadMore(page) {
     return Api.simpleGet(
       page,
       SequencesActions.LOAD_MORE,
       SequencesActions.LOADED_MORE
+    );
+  },
+  loadPerformed() {
+    return Api.simpleGet(
+      '/api/sequencias_realizadas',
+      SequencesActions.LOAD_PERFORMED,
+      SequencesActions.LOADED_PERFORMED
     );
   },
   loadWithFilter(filter) {

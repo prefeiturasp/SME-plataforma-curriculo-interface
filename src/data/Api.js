@@ -13,10 +13,10 @@ function getNextPage(headers) {
   return null;
 }
 
-function getPromise(dispatch, func, method, url, data) {
+function getPromise(dispatch, func, method, url, data, isJson) {
   return new Promise((resolve, reject) => {
     func
-      .apply(this, [method, url, data])
+      .apply(this, [method, url, data, isJson])
       .then(response => {
         if (response.status === 401) { // Unauthorized
           sessionStorage.removeItem('user');
@@ -33,7 +33,11 @@ function getPromise(dispatch, func, method, url, data) {
                 const totalItems = headers.has('total')
                   ? headers.get('total')
                   : 0;
-                resolve({ data, headers, nextPage, totalItems });
+                if (data.errors) {
+                  reject(data.errors.message);
+                } else {
+                  resolve({ data, headers, nextPage, totalItems });
+                }
               } catch(e) {
                 console.error('error', e);
                 reject(e);
@@ -48,7 +52,7 @@ function getPromise(dispatch, func, method, url, data) {
   });
 }
 
-function doRequest(method, url, data) {
+function doRequest(method, url, data, isJson) {
   const options = { method };
   const user = sessionStorage.getItem('user');
 
@@ -57,11 +61,16 @@ function doRequest(method, url, data) {
   }
 
   if (data) {
-    const body = new FormData();
-    for (const key in data) {
-      body.append(key, data[key]);
+    if (isJson) {
+      options.headers['Content-Type'] = 'application/json';
+      options.body = JSON.stringify(data);
+    } else {
+      const body = new FormData();
+      for (const key in data) {
+        body.append(key, data[key]);
+      }
+      options.body = body;
     }
-    options.body = body;
   }
 
   const fullUrl = url.match(/http/) ? url : API_URL + url;
@@ -82,7 +91,7 @@ class Api {
 
       return Api.get(dispatch, url)
         .then(response => dispatch({ ...response, type: onSuccess }))
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   }
 
@@ -90,16 +99,16 @@ class Api {
     return getPromise(dispatch, doRequest, 'GET', url);
   }
 
-  static put(dispatch, url, data) {
-    return getPromise(dispatch, doRequest, 'PUT', url, data);
+  static put(dispatch, url, data, isJson) {
+    return getPromise(dispatch, doRequest, 'PUT', url, data, isJson);
   }
 
-  static post(dispatch, url, data) {
-    return getPromise(dispatch, doRequest, 'POST', url, data);
+  static post(dispatch, url, data, isJson) {
+    return getPromise(dispatch, doRequest, 'POST', url, data, isJson);
   }
 
-  static delete(dispatch, url, data) {
-    return getPromise(dispatch, doRequest, 'DELETE', url, data);
+  static delete(dispatch, url, data, isJson) {
+    return getPromise(dispatch, doRequest, 'DELETE', url, data, isJson);
   }
 }
 

@@ -9,8 +9,8 @@ import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
+import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
-import SequencesActions from 'actions/SequencesActions';
 import createModalLink from 'utils/createModalLink';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
@@ -30,7 +30,7 @@ class SaveSequence extends Component {
       return <span />;
     }
 
-    const { collections, data } = this.props;
+    const { collections, data, inCollections, isSaved } = this.props;
 
     const items = collections.map((item, i) => {
       return <Collection key={i} sequenceId={data.id} {...item} />;
@@ -45,6 +45,23 @@ class SaveSequence extends Component {
         Criar coleção
       </NavLink>
     );
+
+    let tooltip = null;
+    if (isSaved) {
+      const names = inCollections.map(item => item.name).join(', ');
+
+      tooltip = (
+        <ReactTooltip
+          place="bottom"
+          type="dark"
+          effect="solid"
+          id="tooltipSequenceAlreadySaved"
+          className="tooltip"
+        >
+          Você já salvou esta sequência em {names}.
+        </ReactTooltip>
+      );
+    }
 
     return (
       <DesktopModal>
@@ -73,15 +90,7 @@ class SaveSequence extends Component {
                 {items}
               </div>
               <div className={styles.footer}>{btnCreate}</div>
-              <ReactTooltip
-                place="bottom"
-                type="dark"
-                effect="solid"
-                id="tooltipSequenceAlreadySaved"
-                className="tooltip"
-              >
-                Você já salvou esta sequência em Ciências Naturais 1o ano.
-              </ReactTooltip>
+              {tooltip}
             </div>
           </div>
         </ModalPage>
@@ -100,14 +109,17 @@ SaveSequence.propTypes = {
 const mapStateToProps = state => {
   return {
     collections: state.CollectionsReducer.items,
-    data: state.SequencesReducer.currItem,
+    data: state.SequenceReducer.currItem,
+    inCollections: state.SequenceReducer.collections,
+    isSaved: state.SequenceReducer.isSaved,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
-      dispatch(SequencesActions.loadItem(slug));
+      dispatch(SequenceActions.load(slug));
+      dispatch(SequenceActions.loadCollections(slug));
     },
     loadCollections: () => {
       dispatch(CollectionsActions.load());

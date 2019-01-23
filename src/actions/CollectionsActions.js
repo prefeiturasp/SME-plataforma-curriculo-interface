@@ -10,7 +10,6 @@ const CollectionsActions = {
   LOADED: 'CollectionsActions.LOADED',
 
   load() {
-    // return { type: 'NOTHING' };
     return dispatch => {
       dispatch({ type: CollectionsActions.LOAD });
       const teacherId = getTeacherId();
@@ -18,7 +17,7 @@ const CollectionsActions = {
         .then(response =>
           dispatch({ ...response, type: CollectionsActions.LOADED })
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
 };
