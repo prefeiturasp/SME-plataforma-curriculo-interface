@@ -3,10 +3,7 @@ import AlertActions from './AlertActions';
 import Api from 'data/Api';
 import CollectionsActions from './CollectionsActions';
 import SnackbarActions from './SnackbarActions';
-
-function getTeacherId() {
-  return sessionStorage.getItem('teacherId');
-}
+import getTeacherId from 'data/getTeacherId';
 
 function doSaveSequence(dispatch, id, name, sequenceId) {
   dispatch({ type: CollectionActions.SAVE_SEQUENCE });
