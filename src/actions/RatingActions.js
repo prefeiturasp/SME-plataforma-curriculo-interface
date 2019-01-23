@@ -29,7 +29,7 @@ const RatingActions = {
         }
       };
       
-      return Api.post(dispatch, `/api/sequencias/${slug}/avaliacao`, data)
+      return Api.post(dispatch, `/api/sequencias/${slug}/avaliacao`, data, true)
         .then(response =>
           dispatch({ ...response, type: RatingActions.SAVED })
         )
