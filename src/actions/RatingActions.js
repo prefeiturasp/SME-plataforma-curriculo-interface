@@ -36,7 +36,7 @@ const RatingActions = {
         .then(response =>
           dispatch(AlertActions.open('Avaliação salva com sucesso!'))
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   }
 };

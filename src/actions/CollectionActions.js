@@ -20,7 +20,7 @@ function doSaveSequence(dispatch, id, name, sequenceId) {
       dispatch({ ...response, type: CollectionActions.SAVED_SEQUENCE });
       dispatch(SnackbarActions.open(<span>Salvo em <strong>{name}</strong></span>));
     })
-    .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+    .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
 }
 
 const CollectionActions = {
@@ -51,7 +51,7 @@ const CollectionActions = {
           dispatch({ ...response, type: CollectionActions.REMOVED_SEQUENCE });
           dispatch(CollectionActions.loadSequences(id));
         })
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   saveSequence(id, name, sequenceId) {
@@ -70,7 +70,7 @@ const CollectionActions = {
           dispatch(AlertActions.open('Coleção criada com sucesso!'));
           dispatch(CollectionsActions.load());
         })
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   createAndSaveSequence(name, sequenceId) {
@@ -83,7 +83,7 @@ const CollectionActions = {
           console.warn('createAndSaveSequence', name, sequenceId, response.data.id);
           return doSaveSequence(dispatch, response.data.id, name, sequenceId);
         })
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   delete(id) {
@@ -99,7 +99,7 @@ const CollectionActions = {
           dispatch(AlertActions.open('Coleção excluída com sucesso!'));
           dispatch(CollectionsActions.load());
         })
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   edit(id, name) {
@@ -117,7 +117,7 @@ const CollectionActions = {
           dispatch(AlertActions.open('Coleção salva com sucesso!'));
           dispatch(CollectionActions.load(id));
         })
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   load(id) {
@@ -128,7 +128,7 @@ const CollectionActions = {
         .then(response =>
           dispatch({ ...response, type: CollectionActions.LOADED })
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   loadSequences(id) {
@@ -142,7 +142,7 @@ const CollectionActions = {
         .then(response =>
           dispatch({ ...response, type: CollectionActions.LOADED_SEQUENCES })
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
 };

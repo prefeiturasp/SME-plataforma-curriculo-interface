@@ -33,7 +33,11 @@ function getPromise(dispatch, func, method, url, data, isJson) {
                 const totalItems = headers.has('total')
                   ? headers.get('total')
                   : 0;
-                resolve({ data, headers, nextPage, totalItems });
+                if (data.errors) {
+                  reject(data.errors.message);
+                } else {
+                  resolve({ data, headers, nextPage, totalItems });
+                }
               } catch(e) {
                 console.error('error', e);
                 reject(e);
@@ -87,7 +91,7 @@ class Api {
 
       return Api.get(dispatch, url)
         .then(response => dispatch({ ...response, type: onSuccess }))
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   }
 

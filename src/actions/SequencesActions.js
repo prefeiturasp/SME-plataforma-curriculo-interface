@@ -26,7 +26,7 @@ const SequencesActions = {
       dispatch({ type: SequencesActions.SEARCH });
       return Api.get(dispatch, `/api/sequencias?${queryString}`)
         .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro.')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   load() {

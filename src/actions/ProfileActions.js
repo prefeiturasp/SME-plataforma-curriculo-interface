@@ -22,7 +22,7 @@ const ProfileActions = {
         .then(response =>
           dispatch(AlertActions.open('Foto apagada com sucesso!'))
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   load() {
@@ -51,7 +51,7 @@ const ProfileActions = {
         .then(response =>
           dispatch(AlertActions.open('Perfil salvo com sucesso!'))
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
   savePhoto(id, photo) {
@@ -65,7 +65,7 @@ const ProfileActions = {
         .then(response =>
           dispatch(AlertActions.open('Foto salva com sucesso!'))
         )
-        .catch(error => dispatch(AlertActions.open('Ocorreu um erro!')));
+        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
     };
   },
 };
