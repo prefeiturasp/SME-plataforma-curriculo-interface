@@ -17,7 +17,7 @@ class Question extends React.PureComponent {
   };
 
   render() {
-    const { title } = this.props;
+    const { description } = this.props;
 
     const stars = [1, 2, 3, 4, 5].map(i => {
       const icon = i <= this.state.value ? iconStarActive : iconStar;
@@ -30,7 +30,7 @@ class Question extends React.PureComponent {
 
     return (
       <div className={styles.wrapper}>
-        <p>{title}</p>
+        <p>{description}</p>
         <div className={styles.stars}>{stars}</div>
       </div>
     );
@@ -40,7 +40,7 @@ class Question extends React.PureComponent {
 Question.propTypes = {
   onChange: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default Question;
