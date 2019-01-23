@@ -8,6 +8,7 @@ import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
 import SequenceActions from 'actions/SequenceActions';
+import SequencesActions from 'actions/SequencesActions';
 import SequenceChars from './chars/SequenceChars';
 import SequenceCharsMobile from './chars/SequenceCharsMobile';
 import Cover from './Cover';
@@ -40,11 +41,21 @@ class Sequence extends Component {
   }
 
   render() {
-    const { data, isSaved } = this.props;
+    const { data, isSaved, performed } = this.props;
 
     if (!data) {
       return <span />;
     }
+
+    const isPerformed = performed.find(item => item.activity_sequence_id === data.id);
+    const notification = isPerformed || true
+      ? <Notification
+          text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
+          labelNo="Agora não"
+          labelYes="Avaliar sequência"
+          onClickedYes={this.onClickedRate}
+        />
+      : null;
 
     const word = data.activities.length === 1 ? 'Atividade' : 'Atividades';
     const activities = data.activities.map((item, i) => {
@@ -62,12 +73,7 @@ class Sequence extends Component {
 
     return (
       <Page>
-        <Notification
-          text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
-          labelNo="Agora não"
-          labelYes="Avaliar sequência"
-          onClickedYes={this.onClickedRate}
-        />
+        {notification}
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-8">
@@ -111,6 +117,7 @@ class Sequence extends Component {
 Sequence.propTypes = {
   data: PropTypes.object,
   isSaved: PropTypes.bool,
+  performed: PropTypes.array,
   load: PropTypes.func.isRequired,
 };
 
@@ -118,6 +125,7 @@ const mapStateToProps = state => {
   return {
     data: state.SequenceReducer.currItem,
     isSaved: state.SequenceReducer.isSaved,
+    performed: state.SequencesReducer.performed,
   };
 };
 
@@ -128,6 +136,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(SequenceActions.load(slug));
       if (isLogged()) {
         dispatch(SequenceActions.loadCollections(slug));
+        dispatch(SequencesActions.loadPerformed());
       }
     },
   };
