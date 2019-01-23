@@ -2,6 +2,7 @@ import SequencesActions from 'actions/SequencesActions';
 
 const initialState = {
   items: [],
+  performed: [],
   isSearching: false,
   nextPage: null,
   totalItems: 0,
@@ -40,6 +41,12 @@ function SequencesReducer(state = initialState, action) {
         items: state.items.concat(action.data),
         isSearching: false,
         nextPage: action.nextPage,
+      };
+
+    case SequencesActions.LOADED_PERFORMED:
+      return {
+        ...state,
+        performed: action.data,
       };
 
     case SequencesActions.SEARCH:
