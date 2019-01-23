@@ -10,7 +10,6 @@ const CollectionsActions = {
   LOADED: 'CollectionsActions.LOADED',
 
   load() {
-    // return { type: 'NOTHING' };
     return dispatch => {
       dispatch({ type: CollectionsActions.LOAD });
       const teacherId = getTeacherId();
