@@ -6,40 +6,19 @@ import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
-import Question from './Question';
+import Question from 'views/sequence/rate/Question';
 import RatingActions from 'actions/RatingActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
-import styles from './RateSequence.scss';
+import styles from 'views/sequence/rate/RateSequence.scss';
 import styles1 from 'views/sequence/BigSequencePreview.scss';
 
-class RateSequence extends Component {
+class Rating extends Component {
   state = {
     answers: {},
-    currPage: 0,
-    numPages: 1,
-  };
-
-  onChangedAnswer = (id, value) => {
-    const newAnswers = Object.assign({}, this.state.answers);
-    newAnswers[id] = value;
-
-    this.setState({
-      ...this.state,
-      answers: newAnswers,
-    });
   };
 
   onClickedNext = () => {
-    // const { currPage, numPages } = this.state;
-    // if (currPage < numPages - 1) {
-    //   this.setState({
-    //     ...this.state,
-    //     currPage: currPage + 1,
-    //   });
-    // } else {
-    this.props.save(this.props.match.params.slug, this.state.answers);
-    // }
   };
 
   componentDidMount() {
@@ -50,11 +29,6 @@ class RateSequence extends Component {
     if (!this.props.questions.length) {
       this.props.loadQuestions();
     }
-
-    // this.setState({
-    //   ...this.state,
-    //   numPages: Math.ceil(this.props.questions.length / PER_PAGE),
-    // });
   }
 
   render() {
@@ -63,24 +37,22 @@ class RateSequence extends Component {
     }
 
     const { data, questions } = this.props;
-    const { currPage, numPages } = this.state;
     
     const items = questions.map((question, i) => {
-      return <Question key={i} {...question} onChange={this.onChangedAnswer} />;
+      return (
+        <Question
+          key={i}
+          value={i}
+          isDisabled
+          {...question}
+        />
+      );
     });
-
-    const label = currPage < numPages - 1 ? 'Próximo' : 'Concluir';
-
-    const pagination = numPages > 1
-      ? <p className={styles.page}>
-          {currPage + 1} / {numPages}
-        </p>
-      : null;
 
     return (
       <DesktopModal>
         <ModalPage>
-          <ModalHeader title="Avaliar sequência" />
+          <ModalHeader title="Avaliação da sequência" />
           <div className={styles1.row}>
             <div className={styles1.col1}>
               <BigSequencePreview sequence={data} />
@@ -91,22 +63,20 @@ class RateSequence extends Component {
               </div>
               <div className={styles.list}>
                 {items}
-                {pagination}
               </div>
             </div>
           </div>
-          <ModalFooter label={label} onClick={this.onClickedNext} />
+          <ModalFooter label="Fechar" onClick={this.onClickedClose} />
         </ModalPage>
       </DesktopModal>
     );
   }
 }
 
-RateSequence.propTypes = {
+Rating.propTypes = {
   data: PropTypes.object,
   questions: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
-  save: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -124,13 +94,10 @@ const mapDispatchToProps = dispatch => {
     loadQuestions: () => {
       dispatch(RatingActions.load());
     },
-    save: (slug, answers) => {
-      dispatch(RatingActions.save(slug, answers));
-    },
   };
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RateSequence);
+)(Rating);

@@ -16,13 +16,20 @@ class Question extends React.PureComponent {
     };
   };
 
+  componentDidMount() {
+    if (this.props.value) {
+      this.setState({ value: this.props.value });
+    }
+  }
+
   render() {
-    const { description } = this.props;
+    const { description, isDisabled } = this.props;
 
     const stars = [1, 2, 3, 4, 5].map(i => {
       const icon = i <= this.state.value ? iconStarActive : iconStar;
+      const onClick = isDisabled ? null : this.onClickedStar(i);
       return (
-        <button key={i} onClick={this.onClickedStar(i)}>
+        <button key={i} onClick={onClick}>
           <img src={icon} alt={i} />
         </button>
       );
@@ -41,6 +48,12 @@ Question.propTypes = {
   onChange: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool,
+  value: PropTypes.number,
+};
+
+Question.defaultProps = {
+  isDisabled: false,
 };
 
 export default Question;
