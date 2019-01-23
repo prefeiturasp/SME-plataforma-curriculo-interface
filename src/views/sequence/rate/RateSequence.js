@@ -7,6 +7,7 @@ import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import Question from './Question';
+import RatingActions from 'actions/RatingActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
 import styles from './RateSequence.scss';
@@ -32,24 +33,30 @@ class RateSequence extends Component {
   };
 
   onClickedNext = () => {
-    const { currPage, numPages } = this.state;
-    if (currPage < numPages - 1) {
-      this.setState({
-        ...this.state,
-        currPage: currPage + 1,
-      });
-    } else {
-    }
+    // const { currPage, numPages } = this.state;
+    // if (currPage < numPages - 1) {
+    //   this.setState({
+    //     ...this.state,
+    //     currPage: currPage + 1,
+    //   });
+    // } else {
+    this.props.save(this.props.match.params.slug, this.state.answers);
+    // }
   };
 
   componentDidMount() {
     if (!this.props.data) {
       this.props.load(this.props.match.params.slug);
     }
-    this.setState({
-      ...this.state,
-      numPages: Math.ceil(this.props.questions.length / PER_PAGE),
-    });
+
+    if (!this.props.questions.length) {
+      this.props.loadQuestions();
+    }
+
+    // this.setState({
+    //   ...this.state,
+    //   numPages: Math.ceil(this.props.questions.length / PER_PAGE),
+    // });
   }
 
   render() {
@@ -59,14 +66,18 @@ class RateSequence extends Component {
 
     const { data, questions } = this.props;
     const { currPage, numPages } = this.state;
-    const startIndex = currPage * PER_PAGE;
-    const endIndex = startIndex + PER_PAGE;
-
-    const items = questions.slice(startIndex, endIndex).map((question, i) => {
+    
+    const items = questions.map((question, i) => {
       return <Question key={i} {...question} onChange={this.onChangedAnswer} />;
     });
 
     const label = currPage < numPages - 1 ? 'Próximo' : 'Concluir';
+
+    const pagination = numPages > 1
+      ? <p className={styles.page}>
+          {currPage + 1} / {numPages}
+        </p>
+      : null;
 
     return (
       <DesktopModal>
@@ -82,9 +93,7 @@ class RateSequence extends Component {
               </div>
               <div className={styles.list}>
                 {items}
-                <p className={styles.page}>
-                  {currPage + 1} / {numPages}
-                </p>
+                {pagination}
               </div>
             </div>
           </div>
@@ -99,56 +108,13 @@ RateSequence.propTypes = {
   data: PropTypes.object,
   questions: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
-  rate: PropTypes.func.isRequired,
-};
-
-RateSequence.defaultProps = {
-  questions: [
-    {
-      id: 1,
-      title: 'Como você avalia a qualidade do conteúdo?',
-    },
-    {
-      id: 2,
-      title: 'E a metodologia aplicada?',
-    },
-    {
-      id: 3,
-      title:
-        'Qual foi o nível de envolvimento dos estudantes com as atividades?',
-    },
-    {
-      id: 4,
-      title: 'Como você avalia a qualidade do conteúdo?',
-    },
-    {
-      id: 5,
-      title: 'E a metodologia aplicada?',
-    },
-    {
-      id: 6,
-      title:
-        'Qual foi o nível de envolvimento dos estudantes com as atividades?',
-    },
-    {
-      id: 7,
-      title: 'Como você avalia a qualidade do conteúdo?',
-    },
-    {
-      id: 8,
-      title: 'E a metodologia aplicada?',
-    },
-    {
-      id: 9,
-      title:
-        'Qual foi o nível de envolvimento dos estudantes com as atividades?',
-    },
-  ],
+  save: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     data: state.SequenceReducer.currItem,
+    questions: state.RatingReducer.items,
   };
 };
 
@@ -157,7 +123,12 @@ const mapDispatchToProps = dispatch => {
     load: slug => {
       dispatch(SequenceActions.load(slug));
     },
-    rate: () => {},
+    loadQuestions: () => {
+      dispatch(RatingActions.load());
+    },
+    save: (slug, answers) => {
+      dispatch(RatingActions.save(slug, answers));
+    },
   };
 };
 
