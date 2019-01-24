@@ -30,6 +30,7 @@ import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
+import Login from 'views/login/Login';
 import Profile from 'views/profile/Profile';
 import RateSequence from 'views/sequence/rate/RateSequence';
 import Rating from 'views/sequence/rating/Rating';
@@ -152,6 +153,12 @@ class ModalSwitch extends Component {
           exact
           path="/colecao/:id/editar"
           component={EditCollection}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/login"
+          component={Login}
           {...modalProps}
         />
         <ModalRoute
