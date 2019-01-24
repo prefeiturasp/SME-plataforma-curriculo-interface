@@ -14,7 +14,7 @@ import styles from './SequencePreview.scss';
 class SequencePreview extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
+      history.push(`/sequencia/${this.props.sequence.slug}/salvar`, { isModal: true });
     } else {
       this.props.login();
     }
