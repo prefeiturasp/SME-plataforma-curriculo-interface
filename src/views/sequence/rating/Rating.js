@@ -18,8 +18,7 @@ class Rating extends Component {
     answers: {},
   };
 
-  onClickedNext = () => {
-  };
+  onClickedNext = () => {};
 
   componentDidMount() {
     if (!this.props.data) {
@@ -37,16 +36,9 @@ class Rating extends Component {
     }
 
     const { data, questions } = this.props;
-    
+
     const items = questions.map((question, i) => {
-      return (
-        <Question
-          key={i}
-          value={i}
-          isDisabled
-          {...question}
-        />
-      );
+      return <Question key={i} value={i} isDisabled {...question} />;
     });
 
     return (
@@ -61,9 +53,7 @@ class Rating extends Component {
               <div className={styles1.small}>
                 <SequencePreview sequence={data} />
               </div>
-              <div className={styles.list}>
-                {items}
-              </div>
+              <div className={styles.list}>{items}</div>
             </div>
           </div>
           <ModalFooter label="Fechar" onClick={this.onClickedClose} />

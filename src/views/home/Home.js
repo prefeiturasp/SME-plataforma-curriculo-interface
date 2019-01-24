@@ -61,10 +61,7 @@ class Home extends Component {
                 <div>Conhecer e explorar o Currículo da Cidade</div>
               </li>
               <li className="col-md-4">
-                <img
-                  src={iconSequences}
-                  alt="Buscar sequências"
-                />
+                <img src={iconSequences} alt="Buscar sequências" />
                 <div>Buscar sequências</div>
               </li>
               <li className="col-md-4">

@@ -40,20 +40,21 @@ class ModuleTable extends Component {
         const cells = row.cells.map((cell, j) => {
           return (
             <TableCell key={j}>
-              <div dangerouslySetInnerHTML={{__html: convertQuillToHtml(cell.ops)}} />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: convertQuillToHtml(cell.ops),
+                }}
+              />
             </TableCell>
           );
         });
 
-        return (
-          <TableRow key={i}>
-            {cells}
-          </TableRow>
-        );
+        return <TableRow key={i}>{cells}</TableRow>;
       });
 
-    const pagination = this.props.data.length > rowsPerPage
-      ? <TablePagination
+    const pagination =
+      this.props.data.length > rowsPerPage ? (
+        <TablePagination
           component="div"
           count={this.props.data.length}
           labelDisplayedRows={this.getLabelDisplayedRows}
@@ -70,7 +71,7 @@ class ModuleTable extends Component {
             'aria-label': 'Próxima',
           }}
         />
-      : null;
+      ) : null;
 
     return (
       <div className={styles.wrapper}>

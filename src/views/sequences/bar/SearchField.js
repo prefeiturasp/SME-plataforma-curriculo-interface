@@ -39,10 +39,7 @@ class SearchField extends Component {
             onKeyPress={this.onKeyPress}
             endAdornment={
               <InputAdornment position="end">
-                <IconButton
-                  aria-label="Buscar"
-                  onClick={this.onSubmit}
-                >
+                <IconButton aria-label="Buscar" onClick={this.onSubmit}>
                   <Search />
                 </IconButton>
               </InputAdornment>

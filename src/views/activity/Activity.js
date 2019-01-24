@@ -108,7 +108,7 @@ class Activity extends Component {
               return <ModuleGallery key={i} images={block.images} />;
 
             default:
-              return <ModuleTextWithTables key={i} data={block.content.body} />
+              return <ModuleTextWithTables key={i} data={block.content.body} />;
           }
         })
       : null;

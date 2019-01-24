@@ -29,14 +29,14 @@ class Login extends Component {
       ...this.state,
       hasEdited: true,
       username: e.target.value,
-    })
+    });
   };
 
   onChangedPassword = e => {
     this.setState({
       ...this.state,
       password: e.target.value,
-    })
+    });
   };
 
   onClickedShowPassword = e => {
@@ -61,7 +61,10 @@ class Login extends Component {
             <header className={styles.header}>
               <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
               <h1>Faça login no Currículo</h1>
-              <p>Digite os seus dados de acesso da Secretaria de Educação da Prefeitura de São Paulo</p>
+              <p>
+                Digite os seus dados de acesso da Secretaria de Educação da
+                Prefeitura de São Paulo
+              </p>
             </header>
             <TextField
               error={isInvalid}
@@ -86,7 +89,11 @@ class Login extends Component {
                       aria-label="Exibir senha"
                       onClick={this.onClickedShowPassword}
                     >
-                      {this.state.isShowingPassword ? <Visibility /> : <VisibilityOff />}
+                      {this.state.isShowingPassword ? (
+                        <Visibility />
+                      ) : (
+                        <VisibilityOff />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -107,9 +114,7 @@ Login.propTypes = {
 };
 
 const mapStateToProps = state => {
-  return {
-    
-  };
+  return {};
 };
 
 const mapDispatchToProps = dispatch => {

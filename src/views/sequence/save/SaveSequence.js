@@ -36,7 +36,9 @@ class SaveSequence extends Component {
       return <Collection key={i} sequenceId={data.id} {...item} />;
     });
 
-    const base = this.props.location.pathname.match(/sequencias/) ? 'sequencias' : 'sequencia';
+    const base = this.props.location.pathname.match(/sequencias/)
+      ? 'sequencias'
+      : 'sequencia';
     const link = createModalLink(`/${base}/${data.slug}/criar-colecao`);
 
     const btnCreate = (
@@ -69,10 +71,7 @@ class SaveSequence extends Component {
           <ModalHeader title="Salvar sequência" />
           <div className={styles1.row}>
             <div className={styles1.col1}>
-              <div
-                data-tip
-                data-for="tooltipSequenceAlreadySaved"
-              >
+              <div data-tip data-for="tooltipSequenceAlreadySaved">
                 <BigSequencePreview sequence={data} />
               </div>
             </div>

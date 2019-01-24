@@ -49,8 +49,8 @@ Collection.defaultProps = {
     {
       color: '#ff0180',
       year: '1A',
-      school: 'EMEF Maria da Silva'
-    }
+      school: 'EMEF Maria da Silva',
+    },
   ],
 };
 

@@ -20,7 +20,9 @@ class GridItemBase extends Component {
 
   onClickedSave = () => {
     if (isLogged()) {
-      history.push(`/sequencias/${this.props.data.slug}/salvar`, { isModal: true });
+      history.push(`/sequencias/${this.props.data.slug}/salvar`, {
+        isModal: true,
+      });
     } else {
       this.props.login();
     }

@@ -14,7 +14,9 @@ import styles from './SequencePreview.scss';
 class SequencePreview extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      history.push(`/sequencia/${this.props.sequence.slug}/salvar`, { isModal: true });
+      history.push(`/sequencia/${this.props.sequence.slug}/salvar`, {
+        isModal: true,
+      });
     } else {
       this.props.login();
     }
@@ -42,7 +44,7 @@ class SequencePreview extends Component {
 
       const icon = isSaved ? iconSaved : iconSave;
       const label = isSaved ? 'Salvo' : 'Salvar';
-      
+
       btnSave = (
         <button className={styles.btnSave} onClick={this.onClickedSave}>
           <img src={icon} alt={label} />

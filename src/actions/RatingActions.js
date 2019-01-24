@@ -6,7 +6,7 @@ const RatingActions = {
   LOAD: 'RatingActions.LOAD',
   LOADED: 'RatingActions.LOADED',
   SAVED: 'RatingActions.SAVED',
-  
+
   load(slug) {
     return Api.simpleGet(
       `/api/avaliacao_criterios`,
@@ -26,19 +26,19 @@ const RatingActions = {
         activity_sequence_rating: {
           teacher_id: getTeacherId(),
           ratings,
-        }
+        },
       };
-      
+
       return Api.post(dispatch, `/api/sequencias/${slug}/avaliacao`, data, true)
-        .then(response =>
-          dispatch({ ...response, type: RatingActions.SAVED })
-        )
+        .then(response => dispatch({ ...response, type: RatingActions.SAVED }))
         .then(response =>
           dispatch(AlertActions.open('Avaliação salva com sucesso!'))
         )
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
-  }
+  },
 };
 
 export default RatingActions;

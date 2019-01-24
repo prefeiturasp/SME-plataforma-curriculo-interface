@@ -10,11 +10,7 @@ class Avatar extends React.PureComponent {
     const letter = nickname.length ? nickname.charAt(0).toUpperCase() : '';
 
     const contents = photo ? (
-      <img
-        className={styles.image}
-        src={photo}
-        alt={nickname}
-      />
+      <img className={styles.image} src={photo} alt={nickname} />
     ) : (
       <div
         className={styles.letter}
@@ -49,7 +45,7 @@ Avatar.propTypes = {
 const mapStateToProps = state => {
   return {
     nickname: state.ProfileReducer.nickname,
-  }
+  };
 };
 
 export default connect(mapStateToProps)(Avatar);
