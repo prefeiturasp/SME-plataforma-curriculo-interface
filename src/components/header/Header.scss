@@ -58,17 +58,17 @@
 }
 
 .logoImage {
-  background-image: url(./images/logo.svg);
+  background-image: url(images/logo.svg);
   margin-right: 0.8125rem;
   width: rem(33);
   height: rem(55);
 
   :global(.isHome) & {
-    background-image: url(./images/logoWhite.svg);
+    background-image: url(images/logoWhite.svg);
   }
 
   :global(.headroom--pinned) & {
-    background-image: url(./images/logo.svg);
+    background-image: url(images/logo.svg);
   }
 }
 
