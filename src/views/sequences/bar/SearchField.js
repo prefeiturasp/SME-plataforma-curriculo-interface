@@ -6,7 +6,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Search from '@material-ui/icons/Search';
-import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import FiltersActions from 'actions/FiltersActions';
