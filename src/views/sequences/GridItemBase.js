@@ -27,7 +27,7 @@ class GridItemBase extends Component {
   };
 
   render() {
-    const data = this.props.data;
+    const { data, isSaved } = this.props;
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
     const iconToggler = data.isExpanded ? iconMinus : iconPlus;
@@ -75,8 +75,8 @@ class GridItemBase extends Component {
 
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
-    const iconSave = true ? iconSave1 : iconSaved;
-    const labelSave = true ? 'Salvar' : 'Salvo';
+    const iconSave = isSaved ? iconSaved : iconSave1;
+    const labelSave = isSaved ? 'Salvo' : 'Salvar';
 
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -116,6 +116,7 @@ class GridItemBase extends Component {
 GridItemBase.propTypes = {
   data: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
+  isSaved: PropTypes.bool,
   login: PropTypes.func.isRequired,
   togglePreview: PropTypes.func.isRequired,
 };
