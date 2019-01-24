@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -83,7 +83,7 @@ class Login extends Component {
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
-                      aria-label="Toggle password visibility"
+                      aria-label="Exibir senha"
                       onClick={this.onClickedShowPassword}
                     >
                       {this.state.isShowingPassword ? <Visibility /> : <VisibilityOff />}
