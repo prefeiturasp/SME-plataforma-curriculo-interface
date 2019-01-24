@@ -17,7 +17,8 @@
     overflow: hidden;
     
     &.isSmall {
-      min-width: rem(540);
+      min-width: auto;
+      width: rem(540);
     }
   }
 }
