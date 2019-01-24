@@ -9,7 +9,15 @@ import styles from './CollectionList.scss';
 class CollectionList extends Component {
   render() {
     const items = this.props.items.map((item, i) => {
-      return <Collection key={i} {...item} />;
+      return (
+        <Collection
+          key={i}
+          id={item.id}
+          name={item.name}
+          numClassrooms={item.number_of_classes}
+          numSequences={item.number_of_activity_sequences}
+        />
+      );
     });
 
     const link = createModalLink('/perfil/criar-colecao');
