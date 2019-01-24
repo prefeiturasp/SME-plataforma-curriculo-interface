@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Search from '@material-ui/icons/Search';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
-import iconSearch from 'images/icons/search.svg';
 import styles from './SearchField.scss';
 
 class SearchField extends Component {
@@ -19,17 +24,32 @@ class SearchField extends Component {
     }
   };
 
+  onSubmit = () => {
+    this.props.search();
+  };
+
   render() {
     return (
       <div className={styles.wrapper}>
-        <img src={iconSearch} alt="Buscar" />
-        <TextField
-          classes={{ root: styles.field }}
-          defaultValue={this.props.query}
-          label="Buscar sequência por tema"
-          onChange={this.onChangedQuery}
-          onKeyPress={this.onKeyPress}
-        />
+        <FormControl>
+          <InputLabel htmlFor="query">Buscar sequência por tema</InputLabel>
+          <Input
+            id="password"
+            defaultValue={this.props.query}
+            onChange={this.onChangedQuery}
+            onKeyPress={this.onKeyPress}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Buscar"
+                  onClick={this.onSubmit}
+                >
+                  <Search />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
       </div>
     );
   }
