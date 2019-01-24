@@ -47,7 +47,7 @@ class Sequence extends Component {
       return <span />;
     }
 
-    const isPerformed = performed.find(item => item.activity_sequence_id === data.id);
+    const isPerformed = !!performed.find(item => item.activity_sequence_id === data.id);
     const notification = isPerformed
       ? <Notification
           text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
