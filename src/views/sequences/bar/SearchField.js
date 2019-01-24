@@ -31,7 +31,7 @@ class SearchField extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <FormControl>
+        <FormControl fullWidth={true}>
           <InputLabel htmlFor="query">Buscar sequência por tema</InputLabel>
           <Input
             id="password"
