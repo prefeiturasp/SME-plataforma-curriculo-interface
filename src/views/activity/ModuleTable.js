@@ -75,9 +75,11 @@ class ModuleTable extends Component {
 
     return (
       <div className={styles.wrapper}>
-        <Table>
-          <TableBody>{tableRows}</TableBody>
-        </Table>
+        <div className={styles.table}>
+          <Table>
+            <TableBody>{tableRows}</TableBody>
+          </Table>
+        </div>
         {pagination}
       </div>
     );
