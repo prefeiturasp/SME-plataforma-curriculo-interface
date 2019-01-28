@@ -65,11 +65,8 @@ const FiltersActions = {
           item => item.isActive && isYearOrComponent(item.type)
         );
         const queryString = getFiltersQueryString(filters);
-        Api.simpleGet(
-          `/api/filtros?${queryString}`,
-          null,
-          FiltersActions.LOADED_EXTRA
-        );
+        return Api.get(dispatch, `/api/filtros?${queryString}`)
+          .then(response => dispatch({ ...response, type: FiltersActions.LOADED_EXTRA }));
       }
     };
   },
@@ -92,18 +89,12 @@ const FiltersActions = {
         item => item.isActive && isYearOrComponent(item.type)
       );
       queryString = getFiltersQueryString(filters);
-      Api.simpleGet(
-        `/api/filtros?${queryString}`,
-        null,
-        FiltersActions.LOADED_EXTRA
-      );
+      return Api.get(dispatch, `/api/filtros?${queryString}`)
+        .then(response => dispatch({ ...response, type: FiltersActions.LOADED_EXTRA }));
     };
   },
   togglePanel() {
     return { type: FiltersActions.TOGGLE_PANEL };
-  },
-  search() {
-    return { type: FiltersActions.SEARCH };
   },
   setOrder(order) {
     return { type: FiltersActions.SET_ORDER, order };
