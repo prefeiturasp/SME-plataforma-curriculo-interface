@@ -1,6 +1,8 @@
 import Api from 'data/Api';
 import AlertActions from './AlertActions';
-import getFiltersQueryString, { getSearchQueryString } from 'data/getFiltersQueryString';
+import getFiltersQueryString, {
+  getSearchQueryString,
+} from 'data/getFiltersQueryString';
 
 const SequencesActions = {
   CLEAR: 'SequencesActions.CLEAR',
@@ -25,8 +27,12 @@ const SequencesActions = {
 
       dispatch({ type: SequencesActions.SEARCH });
       return Api.get(dispatch, `/api/sequencias?${queryString}`)
-        .then(response => dispatch({ ...response, type: SequencesActions.LOADED }))
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .then(response =>
+          dispatch({ ...response, type: SequencesActions.LOADED })
+        )
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   load() {

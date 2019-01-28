@@ -38,7 +38,7 @@ class Sequence extends React.PureComponent {
       const route = evaluated ? 'avaliacao' : 'avaliar';
       const link = createModalLink(`/sequencia/${slug}/${route}`);
       const btn = <NavLink to={link}>{label}</NavLink>;
-      
+
       bar = (
         <div className={styles.bar}>
           <span>

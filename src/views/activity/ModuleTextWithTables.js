@@ -15,11 +15,11 @@ function getText(key, ops, startIndex, endIndex) {
     textOps.pop();
     textOps.push({ insert: lastOp.insert.substring(0, newLineIndex) });
   }
-  
+
   return (
     <div
       key={key}
-      dangerouslySetInnerHTML={{__html: convertQuillToHtml(textOps)}}
+      dangerouslySetInnerHTML={{ __html: convertQuillToHtml(textOps) }}
     />
   );
 }
@@ -27,7 +27,7 @@ function getText(key, ops, startIndex, endIndex) {
 class ModuleTextWithTables extends PureComponent {
   render() {
     const ops = JSON.parse(this.props.data).ops;
-    
+
     const children = [];
     let table = [];
     let prevTableId = null;
@@ -43,7 +43,14 @@ class ModuleTextWithTables extends PureComponent {
 
         if (tableId !== prevTableId) {
           children.push(getTable(prevTableId, table));
-          children.push(getText(children.length + 1, ops, lastTableIndex + 1, lastNewLineIndex + 1));
+          children.push(
+            getText(
+              children.length + 1,
+              ops,
+              lastTableIndex + 1,
+              lastNewLineIndex + 1
+            )
+          );
           prevTableId = tableId;
           table = [];
         }

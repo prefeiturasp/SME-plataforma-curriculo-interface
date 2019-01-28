@@ -18,7 +18,13 @@ function doSaveSequence(dispatch, id, name, sequenceId) {
   )
     .then(response => {
       dispatch({ ...response, type: CollectionActions.SAVED_SEQUENCE });
-      dispatch(SnackbarActions.open(<span>Salvo em <strong>{name}</strong></span>));
+      dispatch(
+        SnackbarActions.open(
+          <span>
+            Salvo em <strong>{name}</strong>
+          </span>
+        )
+      );
     })
     .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
 }
@@ -51,7 +57,9 @@ const CollectionActions = {
           dispatch({ ...response, type: CollectionActions.REMOVED_SEQUENCE });
           dispatch(CollectionActions.loadSequences(id));
         })
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   saveSequence(id, name, sequenceId) {
@@ -70,7 +78,9 @@ const CollectionActions = {
           dispatch(AlertActions.open('Coleção criada com sucesso!'));
           dispatch(CollectionsActions.load());
         })
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   createAndSaveSequence(name, sequenceId) {
@@ -80,10 +90,17 @@ const CollectionActions = {
       const teacherId = getTeacherId();
       return Api.post(dispatch, `/api/professores/${teacherId}/colecoes`, data)
         .then(response => {
-          console.warn('createAndSaveSequence', name, sequenceId, response.data.id);
+          console.warn(
+            'createAndSaveSequence',
+            name,
+            sequenceId,
+            response.data.id
+          );
           return doSaveSequence(dispatch, response.data.id, name, sequenceId);
         })
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   delete(id) {
@@ -99,7 +116,9 @@ const CollectionActions = {
           dispatch(AlertActions.open('Coleção excluída com sucesso!'));
           dispatch(CollectionsActions.load());
         })
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   edit(id, name) {
@@ -117,7 +136,9 @@ const CollectionActions = {
           dispatch(AlertActions.open('Coleção salva com sucesso!'));
           dispatch(CollectionActions.load(id));
         })
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   load(id) {
@@ -128,7 +149,9 @@ const CollectionActions = {
         .then(response =>
           dispatch({ ...response, type: CollectionActions.LOADED })
         )
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   loadSequences(id) {
@@ -142,7 +165,9 @@ const CollectionActions = {
         .then(response =>
           dispatch({ ...response, type: CollectionActions.LOADED_SEQUENCES })
         )
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
 };

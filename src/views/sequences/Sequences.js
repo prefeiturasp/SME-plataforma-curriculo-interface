@@ -53,20 +53,22 @@ class Sequences extends Component {
   }
 
   render() {
-    const items = this.props.data.map((item, i) => {
+    const { data, isSearching, nextPage, totalItems } = this.props;
+
+    const items = data.map((item, i) => {
       return <GridItem key={i} index={i} data={item} />;
     });
 
     let contents = <ResultsNotFound />;
 
-    if (this.props.data.length) {
-      const button = this.props.nextPage ? (
+    if (data.length) {
+      const button = nextPage ? (
         <button className={styles.load} onClick={this.onClickedLoadMore}>
           Carregar mais
         </button>
       ) : null;
 
-      const loadingOrButton = this.props.isSearching ? <Loading /> : button;
+      const loadingOrButton = isSearching ? <Loading /> : button;
 
       contents = (
         <section className={styles.wrapper}>
@@ -81,8 +83,7 @@ class Sequences extends Component {
           <div className={styles.list}>
             <div className={styles.results}>
               <h2 className={styles.h2}>
-                <strong>{this.props.totalItems}</strong> sequências foram
-                encontradas
+                <strong>{totalItems}</strong> sequências foram encontradas
               </h2>
               <div className="row">{items}</div>
               <div className={styles.center}>{loadingOrButton}</div>
@@ -90,7 +91,7 @@ class Sequences extends Component {
           </div>
         </section>
       );
-    } else if (this.props.isSearching) {
+    } else if (isSearching) {
       contents = <ResultsLoading height={this.state.windowHeight} />;
     }
 

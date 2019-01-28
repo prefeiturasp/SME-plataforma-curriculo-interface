@@ -37,7 +37,7 @@ class Collection extends Component {
     const { sequences } = this.props;
 
     const numSequences = sequences.length;
-    const wordSequences = numSequences === 1 ? 'sequência' : 'sequências'
+    const wordSequences = numSequences === 1 ? 'sequência' : 'sequências';
 
     this.props.openConfirm(
       'Excluir essa coleção e todas as suas sequências de atividades?',
@@ -51,7 +51,7 @@ class Collection extends Component {
   render() {
     const { classrooms, sequences } = this.props;
     const { id, name } = this.props.data;
-    
+
     const word = classrooms.length === 1 ? 'turma' : 'turmas';
     const link = createModalLink(`/colecao/${id}/editar`);
 
@@ -59,12 +59,11 @@ class Collection extends Component {
       return <ClassroomYear key={i} year={year.year} color={year.color} />;
     });
 
-    const contents =
-      sequences.length ? (
-        <SequenceList collectionId={id} items={sequences} />
-      ) : (
-        <EmptyList />
-      );
+    const contents = sequences.length ? (
+      <SequenceList collectionId={id} items={sequences} />
+    ) : (
+      <EmptyList />
+    );
 
     return (
       <Page>

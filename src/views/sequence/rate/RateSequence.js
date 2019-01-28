@@ -64,18 +64,19 @@ class RateSequence extends Component {
 
     const { data, questions } = this.props;
     const { currPage, numPages } = this.state;
-    
+
     const items = questions.map((question, i) => {
       return <Question key={i} {...question} onChange={this.onChangedAnswer} />;
     });
 
     const label = currPage < numPages - 1 ? 'Próximo' : 'Concluir';
 
-    const pagination = numPages > 1
-      ? <p className={styles.page}>
+    const pagination =
+      numPages > 1 ? (
+        <p className={styles.page}>
           {currPage + 1} / {numPages}
         </p>
-      : null;
+      ) : null;
 
     return (
       <DesktopModal>

@@ -17,7 +17,9 @@ const CollectionsActions = {
         .then(response =>
           dispatch({ ...response, type: CollectionsActions.LOADED })
         )
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
 };

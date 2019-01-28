@@ -18,11 +18,16 @@ function getPromise(dispatch, func, method, url, data, isJson) {
     func
       .apply(this, [method, url, data, isJson])
       .then(response => {
-        if (response.status === 401) { // Unauthorized
+        if (response.status === 401) {
+          // Unauthorized
           sessionStorage.removeItem('user');
           history.push('/');
           dispatch(BodyActions.hideLoading());
-          dispatch(AlertActions.open('Ocorreu um erro de autenticação. Por favor tente logar novamente.'));
+          dispatch(
+            AlertActions.open(
+              'Ocorreu um erro de autenticação. Por favor tente logar novamente.'
+            )
+          );
         } else {
           response.text().then(text => {
             if (text.length) {
@@ -38,7 +43,7 @@ function getPromise(dispatch, func, method, url, data, isJson) {
                 } else {
                   resolve({ data, headers, nextPage, totalItems });
                 }
-              } catch(e) {
+              } catch (e) {
                 console.error('error', e);
                 reject(e);
               }
@@ -91,7 +96,9 @@ class Api {
 
       return Api.get(dispatch, url)
         .then(response => dispatch({ ...response, type: onSuccess }))
-        .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   }
 

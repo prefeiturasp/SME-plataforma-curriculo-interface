@@ -22,7 +22,7 @@ class OrderButton extends Component {
 
   render() {
     const { order } = this.state;
-    
+
     const { options } = this.props;
     const optionButtons = options.map((option, i) => {
       return (

@@ -19,15 +19,14 @@ class ActivityChars extends Component {
 
     const environment = getEnvironmentIconAndLabel(data.environment);
 
-    const learningObjectivesTitle =
-      data.learning_objectives.length ? (
-        <div className={styles.title}>
-          Objetivos de aprendizagem
-          <button data-tip data-for="tooltipLearningObjectives">
-            <img src={iconHelp} alt="Ajuda" />
-          </button>
-        </div>
-      ) : null;
+    const learningObjectivesTitle = data.learning_objectives.length ? (
+      <div className={styles.title}>
+        Objetivos de aprendizagem
+        <button data-tip data-for="tooltipLearningObjectives">
+          <img src={iconHelp} alt="Ajuda" />
+        </button>
+      </div>
+    ) : null;
 
     const learningObjectives = data.learning_objectives.map((item, i) => {
       return (
