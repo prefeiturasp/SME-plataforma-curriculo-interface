@@ -21,7 +21,8 @@
 
 .results {
   composes: container from global;
-  padding: rem(16) 0;
+  padding-top: rem(16);
+  padding-bottom: rem(16);
 }
 
 .results > ul > li {
