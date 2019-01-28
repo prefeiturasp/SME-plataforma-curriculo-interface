@@ -115,6 +115,8 @@ a:hover {
 
 :global(.ql-image-wrapper) {
   margin-bottom: rem(30);
+  max-width: 100%;
+  width: 100% !important;
 
   > img {
     margin-bottom: rem(8);
