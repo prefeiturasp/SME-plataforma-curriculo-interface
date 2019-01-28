@@ -21,12 +21,14 @@
   color: $grey-600;
   font-size: rem(12);
   font-weight: 600;
-  margin: rem(3);
+  margin-right: rem(6);
+  margin-bottom: rem(6);
   padding: rem(3) rem(12);
 
   @include mq("tablet-landscape") {
     font-size: rem(15);
-    margin: rem(4);
+    margin-right: rem(8);
+    margin-bottom: rem(8);
     padding: rem(6) rem(16);
   }
 }
