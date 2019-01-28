@@ -41,7 +41,7 @@
 }
 
 .info {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-grow: 10;
   padding: rem(10) rem(15);
@@ -55,7 +55,6 @@
   }
 
   > button {
-    align-self: center;
     margin-left: auto;
   }
 }
@@ -116,13 +115,6 @@
   .initials {
     width: auto;
     height: rem(160);
-  }
-
-  .info {
-    > button {
-      align-self: flex-start;
-      margin-top: rem(16);
-    }
   }
 
   .text {
