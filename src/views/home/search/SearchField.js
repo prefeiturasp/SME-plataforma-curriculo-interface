@@ -9,6 +9,12 @@ class ThemeField extends Component {
     this.props.setQuery(e.currentTarget.value);
   };
 
+  onKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.props.onSubmit();
+    }
+  };
+
   render() {
     return (
       <div className={styles.wrapper}>
@@ -17,6 +23,7 @@ class ThemeField extends Component {
           placeholder="Buscar sequência por tema"
           type="text"
           onChange={this.onChanged}
+          onKeyPress={this.onKeyPress}
         />
       </div>
     );
@@ -24,6 +31,7 @@ class ThemeField extends Component {
 }
 
 ThemeField.propTypes = {
+  onSubmit: PropTypes.func,
   setQuery: PropTypes.func.isRequired,
 };
 

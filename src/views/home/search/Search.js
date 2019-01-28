@@ -10,7 +10,7 @@ import YearField from './YearField';
 import styles from './Search.scss';
 
 class Search extends Component {
-  onClicked = () => {
+  onSubmit = () => {
     const { filters, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
     if (activeFilters.length || query) {
@@ -31,14 +31,14 @@ class Search extends Component {
       <div className={styles.wrapper}>
         <p>Encontre sequências de atividades para a sala de aula</p>
         <div className={styles.box}>
-          <SearchField />
+          <SearchField onSubmit={this.onSubmit} />
           <YearField />
           <CurricularComponentField />
-          <button className={styles.btn1} onClick={this.onClicked}>
+          <button className={styles.btn1} onClick={this.onSubmit}>
             Buscar
           </button>
         </div>
-        <button className={styles.btn2} onClick={this.onClicked}>
+        <button className={styles.btn2} onClick={this.onSubmit}>
           Buscar
         </button>
       </div>
