@@ -40,6 +40,7 @@ class SaveSequence extends Component {
       ? 'sequencias'
       : 'sequencia';
     const link = createModalLink(`/${base}/${data.slug}/criar-colecao`);
+    link.state.sequenceId = data.id;
 
     const btnCreate = (
       <NavLink className={styles.btnCreate} to={link}>

@@ -40,13 +40,13 @@ class CreateCollection extends Component {
 
   componentDidMount() {
     if (
-      this.props.match &&
-      this.props.match.params &&
-      this.props.match.params.slug
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.sequenceId
     ) {
       this.setState({
         ...this.state,
-        sequenceId: this.props.match.params.slug,
+        sequenceId: this.props.location.state.sequenceId,
       });
     }
   }
