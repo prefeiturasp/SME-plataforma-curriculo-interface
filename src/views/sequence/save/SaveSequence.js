@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
@@ -14,7 +14,6 @@ import SequencePreview from 'views/activity/SequencePreview';
 import createModalLink from 'utils/createModalLink';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './SaveSequence.scss';
-import styles1 from 'views/sequence/BigSequencePreview.scss';
 
 class SaveSequence extends Component {
   componentDidMount() {
@@ -49,40 +48,23 @@ class SaveSequence extends Component {
       </NavLink>
     );
 
-    let tooltip = null;
-    if (isSaved) {
-      const names = inCollections.map(item => item.name).join(', ');
+    const names = inCollections.map(item => item.name).join(', ');
 
-      tooltip = (
-        <ReactTooltip
-          place="bottom"
-          type="dark"
-          effect="solid"
-          id="tooltipSequenceAlreadySaved"
-          className="tooltip"
-        >
-          Você já salvou esta sequência em {names}.
-        </ReactTooltip>
-      );
-    }
+    const savedText = isSaved ? <p className={styles.saved}>Você já salvou esta sequência em {names}.</p> : null;
 
     return (
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="Salvar sequência" />
-          <div className={styles1.row}>
-            <div className={styles1.col1}>
-              <div data-tip data-for="tooltipSequenceAlreadySaved">
-                <BigSequencePreview sequence={data} />
-              </div>
+          <div className={styles.row}>
+            <div className={styles.col1}>
+              <BigSequencePreview sequence={data} />
+              {savedText}
             </div>
-            <div className={styles1.col2}>
-              <div
-                className={styles1.small}
-                data-tip
-                data-for="tooltipSequenceAlreadySaved"
-              >
+            <div className={styles.col2}>
+              <div className={styles.small}>
                 <SequencePreview sequence={data} />
+                {savedText}
                 <hr />
               </div>
               <div className={styles.list}>
@@ -90,7 +72,6 @@ class SaveSequence extends Component {
                 {items}
               </div>
               <div className={styles.footer}>{btnCreate}</div>
-              {tooltip}
             </div>
           </div>
         </ModalPage>
