@@ -23,9 +23,8 @@ class SequencePreview extends Component {
   };
 
   render() {
-    const { isInActivity, sequence } = this.props;
-    const { isSaved } = sequence;
-
+    const { isInActivity, isSaved, sequence } = this.props;
+    
     const image = sequence.image_attributes.default_url ? (
       <img
         className={styles.image}
@@ -70,6 +69,7 @@ class SequencePreview extends Component {
 
 SequencePreview.propTypes = {
   isInActivity: PropTypes.bool,
+  isSaved: PropTypes.bool,
   sequence: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
 };
