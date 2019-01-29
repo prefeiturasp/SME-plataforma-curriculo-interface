@@ -12,7 +12,7 @@ import styles from './Sequence.scss';
 
 class Sequence extends React.PureComponent {
   onClickedConfirm = () => {
-    this.props.removeSequence(this.props.collectionId, this.props.data.id);
+    this.props.removeSequence(this.props.collectionId, this.props.id);
   };
 
   onClickedDelete = () => {
@@ -26,16 +26,14 @@ class Sequence extends React.PureComponent {
   };
 
   render() {
-    const { data } = this.props;
-    const { component, componentColor, performeds_status, slug, title } = data;
-    const { evaluated, performed } = performeds_status;
-
+    const { component, image, hasEvaluated, hasPerformed, slug, title } = this.props;
+    
     const link = `/sequencia/${slug}`;
 
     let bar = null;
-    if (performed) {
-      const label = evaluated ? 'Ver avaliação' : 'Avaliar';
-      const route = evaluated ? 'avaliacao' : 'avaliar';
+    if (hasPerformed) {
+      const label = hasEvaluated ? 'Ver avaliação' : 'Avaliar';
+      const route = hasEvaluated ? 'avaliacao' : 'avaliar';
       const link = createModalLink(`/sequencia/${slug}/${route}`);
       const btn = <NavLink to={link}>{label}</NavLink>;
 
@@ -50,19 +48,19 @@ class Sequence extends React.PureComponent {
       );
     }
 
-    const thumbnail = data.image_attributes.default_url ? (
+    const thumbnail = image.default_url ? (
       <NavLink className={styles.image} to={link}>
         <img
-          src={API_URL + data.image_attributes.default_url}
-          srcSet={`${API_URL}${data.image_attributes.thumb.url}, ${API_URL}${
-            data.image_attributes.extra_thumb.url
+          src={API_URL + image.default_url}
+          srcSet={`${API_URL}${image.thumb.url}, ${API_URL}${
+            image.extra_thumb.url
           } 2x`}
           alt=""
         />
       </NavLink>
     ) : (
       <div className={styles.initials}>
-        {data.main_curricular_component.name
+        {component.name
           .split(' ')
           .map(s => s.charAt(0))
           .join('')}
@@ -76,7 +74,7 @@ class Sequence extends React.PureComponent {
             {thumbnail}
             <div className={styles.info}>
               <NavLink className={styles.text} to={link}>
-                <h4 style={{ color: componentColor }}>{component}</h4>
+                <h4 style={{ color: component.color }}>{component.name}</h4>
                 <h3>{title}</h3>
               </NavLink>
               <button onClick={this.onClickedDelete}>
@@ -93,7 +91,13 @@ class Sequence extends React.PureComponent {
 
 Sequence.propTypes = {
   collectionId: PropTypes.number.isRequired,
-  data: PropTypes.object.isRequired,
+  id: PropTypes.number.isRequired,
+  component: PropTypes.object.isRequired,
+  hasEvaluated: PropTypes.bool,
+  hasPerformed: PropTypes.bool,
+  image: PropTypes.object.isRequired,
+  slug: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   openConfirm: PropTypes.func.isRequired,
   removeSequence: PropTypes.func.isRequired,
 };
