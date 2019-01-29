@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tooltip from '@material-ui/core/Tooltip';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
