@@ -138,14 +138,14 @@ class Activity extends Component {
     return (
       <Page>
         <section className={styles.wrapper}>
+          <SequencePreview
+            isInActivity
+            isSaved={isSaved}
+            sequence={sequence}
+          />
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-lg-8">
-                <SequencePreview
-                  isInActivity
-                  isSaved={isSaved}
-                  sequence={sequence}
-                />
                 <Cover data={data} sequence={sequence} />
                 <Title
                   slug={sequence.slug}

@@ -33,7 +33,8 @@ class SequencePreview extends Component {
       />
     ) : null;
 
-    let btnSave = null;
+    let btnSave1 = null;
+    let btnSave2 = null;
     let title = <h1>{sequence.title}</h1>;
 
     if (isInActivity) {
@@ -42,12 +43,20 @@ class SequencePreview extends Component {
       title = <NavLink to={linkSequence}>{title}</NavLink>;
 
       const icon = isSaved ? iconSaved : iconSave;
-      const label = isSaved ? 'Salvo' : 'Salvar';
+      const label1 = isSaved ? 'Salvo' : 'Salvar';
+      const label2 = isSaved ? 'Sequência salva' : 'Salvar sequência';
 
-      btnSave = (
-        <button className={styles.btnSave} onClick={this.onClickedSave}>
-          <img src={icon} alt={label} />
-          {label}
+      btnSave1 = (
+        <button className={styles.btnSave1} onClick={this.onClickedSave}>
+          <img src={icon} alt={label1} />
+          {label1}
+        </button>
+      );
+
+      btnSave2 = (
+        <button className={styles.btnSave2} onClick={this.onClickedSave}>
+          <img src={icon} alt={label2} />
+          {label2}
         </button>
       );
     }
@@ -55,12 +64,15 @@ class SequencePreview extends Component {
     return (
       <Sticky>
         <div className={styles.wrapper}>
-          {image}
-          <div>
-            <p>Sequência de atividades</p>
-            {title}
+          <div className={styles.container}>
+            {image}
+            <div className={styles.info}>
+              <p>Sequência de atividades</p>
+              {title}
+            </div>
+            {btnSave1}
+            {btnSave2}
           </div>
-          {btnSave}
         </div>
       </Sticky>
     );
