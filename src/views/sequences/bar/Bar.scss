@@ -29,7 +29,7 @@
   min-width: rem(144);
 }
 
-@media only screen and (max-width: 768px) {
+@include mq("tablet-portrait", max) {
   .wrapper,
   .row {
     align-items: flex-start;
