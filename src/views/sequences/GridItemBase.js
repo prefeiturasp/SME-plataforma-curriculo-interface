@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Element, scroller } from "react-scroll";
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import { history } from 'index';
 import Preview from './Preview';
 import isLogged from 'data/isLogged';
+import withWidth from 'components/hoc/withWidth';
 import iconMinus from 'images/icons/minus.svg';
 import iconPlus from 'images/icons/plus1.svg';
 import iconSave1 from 'images/icons/save.svg';
@@ -16,6 +18,17 @@ class GridItemBase extends Component {
 
   onClickedExpand = () => {
     this.props.togglePreview(this.props.data.id);
+
+    if (this.props.windowWidth < 768) {
+      setTimeout(this.onClickedExpand1, 500);
+    }
+  };
+
+  onClickedExpand1 = () => {
+    scroller.scrollTo(this.props.data.slug, {
+      duration: 300,
+      smooth: true,
+    });
   };
 
   onClickedSave = () => {
@@ -82,6 +95,7 @@ class GridItemBase extends Component {
 
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
+        <Element name={data.slug}></Element>
         <article className={styles.wrapper} ref={this.ref}>
           <NavLink to={link}>{thumbnail}</NavLink>
           <button className={styles.btnSave} onClick={this.onClickedSave}>
@@ -123,4 +137,4 @@ GridItemBase.propTypes = {
   togglePreview: PropTypes.func.isRequired,
 };
 
-export default GridItemBase;
+export default withWidth(GridItemBase);
