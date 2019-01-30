@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Sticky from 'react-stickynode';
+import Headroom from 'react-headroom';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from 'index';
@@ -62,7 +62,7 @@ class SequencePreview extends Component {
     }
 
     return (
-      <Sticky>
+      <Headroom disableInlineStyles>
         <div className={styles.wrapper}>
           <div className={styles.container}>
             {image}
@@ -74,7 +74,7 @@ class SequencePreview extends Component {
             {btnSave2}
           </div>
         </div>
-      </Sticky>
+      </Headroom>
     );
   }
 }

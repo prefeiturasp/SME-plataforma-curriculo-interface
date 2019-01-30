@@ -11,6 +11,34 @@
 
 .wrapper {
   background: white;
+
+  :global(.headroom) & {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  :global(.headroom--unfixed) & {
+    position: relative;
+    transform: translateY(0);
+  }
+
+  :global(.headroom--scrolled) & {
+    background-color: white;
+    border-bottom: 1px solid $grey-200;
+    z-index: 110;
+    transition: transform 200ms ease-in-out;
+  }
+
+  :global(.headroom--unpinned) & {
+    position: fixed;
+    transform: translateY(0);
+  }
+
+  :global(.headroom--pinned) & {
+    position: fixed !important;
+    transform: translateY(72px);
+  }
   
   @include mq("tablet-landscape") {
     border-bottom: 1px solid $grey-200;
