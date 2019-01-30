@@ -21,7 +21,7 @@
     width: auto;
   }
 
-  @include mq("tablet-landscape") {
+  @include mq("tablet-portrait") {
     flex-direction: row;
     max-height: 9rem;
   }
