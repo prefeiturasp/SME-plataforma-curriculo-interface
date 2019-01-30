@@ -6,6 +6,7 @@ import ActivityActions from 'actions/ActivityActions';
 import ActivityChars from './chars/ActivityChars';
 import ActivityCharsMobile from './chars/ActivityCharsMobile';
 import BodyActions from 'actions/BodyActions';
+import Cover from 'views/sequence/Cover';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
 import ModuleLongText from './ModuleLongText';
@@ -14,11 +15,12 @@ import ModuleStudent from './ModuleStudent';
 import ModuleTextWithTables from './ModuleTextWithTables';
 import ModuleTeacher from './ModuleTeacher';
 import Page from 'components/layout/Page';
-import Cover from 'views/sequence/Cover';
+import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from './SequencePreview';
 import Title from 'views/sequence/Title';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
+import isLogged from 'data/isLogged';
 import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';
 import styles from 'views/sequence/Sequence.scss';
@@ -53,7 +55,7 @@ class Activity extends Component {
       return <span />;
     }
 
-    const data = this.props.data;
+    const { data, isSaved } = this.props;
     const sequence = data.activity_sequence;
 
     const contentBlocks = data.content_blocks
@@ -136,10 +138,14 @@ class Activity extends Component {
     return (
       <Page>
         <section className={styles.wrapper}>
+          <SequencePreview
+            isInActivity
+            isSaved={isSaved}
+            sequence={sequence}
+          />
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-lg-8">
-                <SequencePreview sequence={sequence} isInActivity />
                 <Cover data={data} sequence={sequence} />
                 <Title
                   slug={sequence.slug}
@@ -183,6 +189,7 @@ class Activity extends Component {
 
 Activity.propTypes = {
   data: PropTypes.object,
+  isSaved: PropTypes.bool,
   load: PropTypes.func.isRequired,
 };
 
@@ -197,6 +204,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     data: state.ActivityReducer[slug],
+    isSaved: state.SequenceReducer.isSaved,
   };
 };
 
@@ -205,6 +213,9 @@ const mapDispatchToProps = dispatch => {
     load: (slug1, slug2) => {
       dispatch(BodyActions.showLoading());
       dispatch(ActivityActions.load(slug1, slug2));
+      if (isLogged()) {
+        dispatch(SequenceActions.loadCollections(slug1));
+      }
     },
   };
 };

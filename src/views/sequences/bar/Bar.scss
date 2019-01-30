@@ -29,13 +29,20 @@
   min-width: rem(144);
 }
 
-@media only screen and (max-width: 768px) {
-  .wrapper {
+@include mq("tablet-portrait", max) {
+  .wrapper,
+  .row {
     align-items: flex-start;
     flex-direction: column;
   }
 
   .list {
+    margin-bottom: rem(24);
+  }
+
+  .button {
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: rem(24);
   }
 }

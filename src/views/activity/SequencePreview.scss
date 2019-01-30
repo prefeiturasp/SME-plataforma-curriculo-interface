@@ -10,19 +10,61 @@
 }
 
 .wrapper {
-  align-items: center;
   background: white;
+
+  :global(.headroom) & {
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  :global(.headroom--unfixed) & {
+    position: relative;
+    transform: translateY(0);
+  }
+
+  :global(.headroom--scrolled) & {
+    background-color: white;
+    border-bottom: 1px solid $grey-200;
+    z-index: 110;
+    transition: transform 200ms ease-in-out;
+  }
+
+  :global(.headroom--unpinned) & {
+    position: fixed;
+    transform: translateY(0);
+  }
+
+  :global(.headroom--pinned) & {
+    position: fixed !important;
+    transform: translateY(72px);
+  }
+  
+  @include mq("tablet-landscape") {
+    border-bottom: 1px solid $grey-200;
+  }
+}
+
+.container {
+  composes: container from global;
+  align-items: center;
   display: flex;
   justify-content: flex-start;
-  padding: rem(15);
+  padding-top: rem(15);
+  padding-bottom: rem(15);
 
-  div {
-    padding: rem(10);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: calc(100% - 80px - 48px);
+  @include mq("tablet-landscape") {
+    padding-top: rem(8);
+    padding-bottom: rem(8);
   }
+}
+
+.info {
+  padding: rem(10);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 80px - 48px);
 
   p {
     color: $grey-500;
@@ -40,6 +82,19 @@
     color: black;
     text-decoration: none;
   }
+
+  @include mq("tablet-landscape") {
+    width: auto;
+  
+    p {
+      font-size: rem(13);
+      margin-bottom: rem(2);
+    }
+
+    h1 {
+      font-size: rem(21);
+    }
+  }
 }
 
 .image {
@@ -48,7 +103,7 @@
   height: rem(42);
 }
 
-.btnSave {
+.btnSave1 {
   align-items: center;
   color: $grey-600;
   display: flex;
@@ -60,5 +115,19 @@
 
   > img {
     margin-bottom: rem(4);
+  }
+
+  @include mq("tablet-landscape") {
+    display: none;
+  }
+}
+
+.btnSave2 {
+  composes: btn from global;
+  display: none;
+
+  @include mq("tablet-landscape") {
+    display: block;
+    margin-left: auto;
   }
 }

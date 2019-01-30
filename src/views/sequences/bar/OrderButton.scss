@@ -2,9 +2,5 @@
 @import "~tools.scss";
 
 .wrapper {
-  min-width: rem(130);
-
-  @include mq("tablet-landscape") {
-    min-width: rem(205);
-  }
+  min-width: rem(205);
 }

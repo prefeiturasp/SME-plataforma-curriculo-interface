@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import AlertActions from 'actions/AlertActions';
@@ -10,10 +11,23 @@ import styles from './Alert.scss';
 Modal.setAppElement('#root');
 
 class Alert extends Component {
+  componentDidMount() {
+    this.target = document.querySelector('#alert');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpened && !prevProps.isOpened) {
+      disableBodyScroll(this.target);
+    } else if (!this.props.isOpened && prevProps.isOpened) {
+      enableBodyScroll(this.target);
+    }
+  }
+
   render() {
     const { close, isOpened, message } = this.props;
 
     return (
+      <div id="alert">
       <Modal
         className={styles.alert}
         overlayClassName={styles.overlay}
@@ -32,6 +46,7 @@ class Alert extends Component {
           OK
         </button>
       </Modal>
+      </div>
     );
   }
 }
