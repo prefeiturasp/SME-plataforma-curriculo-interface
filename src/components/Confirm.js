@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import ConfirmActions from 'actions/ConfirmActions';
@@ -15,10 +16,23 @@ class Confirm extends Component {
     this.props.close();
   };
 
+  componentDidMount() {
+    this.target = document.querySelector('#confirm');
+  }
+  
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpened && !prevProps.isOpened) {
+      disableBodyScroll(this.target);
+    } else if (!this.props.isOpened && prevProps.isOpened) {
+      enableBodyScroll(this.target);
+    }
+  }
+
   render() {
     const { isOpened, close, labelYes, labelNo, message, title } = this.props;
 
     return (
+      <div id="confirm">
       <Modal
         className={styles1.confirm}
         overlayClassName={styles.overlay}
@@ -40,6 +54,7 @@ class Confirm extends Component {
           {labelNo}
         </button>
       </Modal>
+      </div>
     );
   }
 }

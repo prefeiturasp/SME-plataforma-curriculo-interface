@@ -11,7 +11,7 @@ class MobileModal extends React.PureComponent {
   target = null;
 
   componentDidMount() {
-    this.target = document.querySelector(this.props.htmlId);
+    this.target = document.querySelector(`#${this.props.htmlId}`);
   }
 
   componentDidUpdate(prevProps) {
