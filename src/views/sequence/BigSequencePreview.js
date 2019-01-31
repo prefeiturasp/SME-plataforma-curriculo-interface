@@ -7,7 +7,7 @@ class BigSequencePreview extends Component {
   render() {
     const { sequence } = this.props;
 
-    const image = sequence.image_attributes.default_url ? (
+    const image = sequence.image_attributes && sequence.image_attributes.default_url ? (
       <img
         className={styles.image}
         src={API_URL + sequence.image_attributes.default_url}
