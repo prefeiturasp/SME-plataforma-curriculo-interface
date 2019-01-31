@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { history } from 'index';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
@@ -13,7 +14,9 @@ import styles from 'views/sequence/rate/RateSequence.scss';
 import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 class Rating extends Component {
-  onClickedNext = () => {};
+  onClickedClose = () => {
+    history.goBack();
+  };
 
   componentDidMount() {
     if (!this.props.data) {
@@ -30,8 +33,8 @@ class Rating extends Component {
 
     const { data, ratings } = this.props;
 
-    const items = ratings.map((question, i) => {
-      return <Question key={i} value={i} isDisabled {...question} />;
+    const items = ratings.map((rating, i) => {
+      return <Question key={i} value={i} isDisabled {...rating} />;
     });
 
     return (
@@ -62,10 +65,30 @@ Rating.propTypes = {
   load: PropTypes.func.isRequired,
 };
 
+Rating.defaultProps = {
+  ratings: [
+    {
+      "rating_id": 1,
+      "description": "Como você avalia a qualidade do conteúdo?",
+      "score": 5
+    },
+    {
+      "rating_id": 2,
+      "description": "E a metodologia aplicada?",
+      "score": 2
+    },
+    {
+      "rating_id": 3,
+      "description": "Qual foi o nível de envolvimento dos estudantes com as Atividades?",
+      "score": 3
+    },
+  ],
+};
+
 const mapStateToProps = state => {
   return {
     data: state.SequenceReducer.currItem,
-    ratings: state.SequenceReducer.ratings,
+    // ratings: state.SequenceReducer.ratings,
   };
 };
 
@@ -75,7 +98,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(SequenceActions.load(slug));
     },
     loadRatings: slug => {
-      dispatch(SequenceActions.loadRatings(slug));
+      // dispatch(SequenceActions.loadRatings(slug));
     },
   };
 };

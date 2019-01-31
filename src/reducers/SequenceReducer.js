@@ -2,6 +2,16 @@ import CollectionActions from 'actions/CollectionActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencesActions from 'actions/SequencesActions';
 
+function compare(a, b) {
+  if (a.rating_id < b.rating_id) {
+    return -1;
+  }
+  if (a.rating_id > b.rating_id) {
+    return 1;
+  }
+  return 0;
+}
+
 const initialState = {
   currItem: null,
   collections: [],
@@ -45,7 +55,7 @@ function SequenceReducer(state = initialState, action) {
     case SequenceActions.LOADED_RATINGS:
       return {
         ...state,
-        ratings: action.data,
+        ratings: action.data.sort(compare),
       };
 
     case CollectionActions.SAVED_SEQUENCE:
