@@ -50,14 +50,15 @@ class Sequence extends Component {
     const isPerformed = !!performed.find(
       item => item.activity_sequence_id === data.id
     );
-    const notification = true || isPerformed ? (
-      <Notification
-        text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
-        labelNo="Agora não"
-        labelYes="Avaliar sequência"
-        onClickedYes={this.onClickedRate}
-      />
-    ) : null;
+    const notification =
+      true || isPerformed ? (
+        <Notification
+          text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
+          labelNo="Agora não"
+          labelYes="Avaliar sequência"
+          onClickedYes={this.onClickedRate}
+        />
+      ) : null;
 
     const word = data.activities.length === 1 ? 'Atividade' : 'Atividades';
     const activities = data.activities.map((item, i) => {

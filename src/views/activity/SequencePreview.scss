@@ -39,7 +39,7 @@
     position: fixed !important;
     transform: translateY(72px);
   }
-  
+
   @include mq("tablet-landscape") {
     border-bottom: 1px solid $grey-200;
   }
@@ -86,7 +86,7 @@
 
   @include mq("tablet-landscape") {
     width: auto;
-  
+
     p {
       font-size: rem(13);
       margin-bottom: rem(2);

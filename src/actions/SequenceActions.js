@@ -28,7 +28,7 @@ const SequenceActions = {
       SequenceActions.LOAD_RATINGS,
       SequenceActions.LOADED_RATINGS
     );
-  }
+  },
 };
 
 export default SequenceActions;

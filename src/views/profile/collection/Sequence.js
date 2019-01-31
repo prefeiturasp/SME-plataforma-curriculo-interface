@@ -26,8 +26,15 @@ class Sequence extends React.PureComponent {
   };
 
   render() {
-    const { component, image, hasEvaluated, hasPerformed, slug, title } = this.props;
-    
+    const {
+      component,
+      image,
+      hasEvaluated,
+      hasPerformed,
+      slug,
+      title,
+    } = this.props;
+
     const link = `/sequencia/${slug}`;
 
     let bar = null;

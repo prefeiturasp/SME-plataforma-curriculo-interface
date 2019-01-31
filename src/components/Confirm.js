@@ -19,7 +19,7 @@ class Confirm extends Component {
   componentDidMount() {
     this.target = document.querySelector('#confirm');
   }
-  
+
   componentDidUpdate(prevProps) {
     if (this.props.isOpened && !prevProps.isOpened) {
       disableBodyScroll(this.target);

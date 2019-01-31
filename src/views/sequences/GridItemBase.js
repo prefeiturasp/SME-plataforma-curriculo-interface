@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Element, scroller } from "react-scroll";
+import { Element, scroller } from 'react-scroll';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import { history } from 'index';
@@ -96,7 +96,7 @@ class GridItemBase extends Component {
 
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-        <Element name={data.slug}></Element>
+        <Element name={data.slug} />
         <article className={styles.wrapper} ref={this.ref}>
           <NavLink to={link}>{thumbnail}</NavLink>
           <button className={styles.btnSave} onClick={this.onClickedSave}>

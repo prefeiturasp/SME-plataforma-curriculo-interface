@@ -65,8 +65,9 @@ const FiltersActions = {
           item => item.isActive && isYearOrComponent(item.type)
         );
         const queryString = getFiltersQueryString(filters);
-        return Api.get(dispatch, `/api/filtros?${queryString}`)
-          .then(response => dispatch({ ...response, type: FiltersActions.LOADED_EXTRA }));
+        return Api.get(dispatch, `/api/filtros?${queryString}`).then(response =>
+          dispatch({ ...response, type: FiltersActions.LOADED_EXTRA })
+        );
       }
     };
   },
@@ -89,8 +90,9 @@ const FiltersActions = {
         item => item.isActive && isYearOrComponent(item.type)
       );
       queryString = getFiltersQueryString(filters);
-      return Api.get(dispatch, `/api/filtros?${queryString}`)
-        .then(response => dispatch({ ...response, type: FiltersActions.LOADED_EXTRA }));
+      return Api.get(dispatch, `/api/filtros?${queryString}`).then(response =>
+        dispatch({ ...response, type: FiltersActions.LOADED_EXTRA })
+      );
     };
   },
   togglePanel() {
