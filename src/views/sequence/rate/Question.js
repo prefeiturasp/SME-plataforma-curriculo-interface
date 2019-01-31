@@ -17,8 +17,8 @@ class Question extends React.PureComponent {
   };
 
   componentDidMount() {
-    if (this.props.value) {
-      this.setState({ value: this.props.value });
+    if (this.props.score) {
+      this.setState({ value: this.props.score });
     }
   }
 

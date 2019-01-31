@@ -7,17 +7,12 @@ import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import Question from 'views/sequence/rate/Question';
-import RatingActions from 'actions/RatingActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
 import styles from 'views/sequence/rate/RateSequence.scss';
-import styles1 from 'views/sequence/BigSequencePreview.scss';
+import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 class Rating extends Component {
-  state = {
-    answers: {},
-  };
-
   onClickedNext = () => {};
 
   componentDidMount() {
@@ -25,9 +20,7 @@ class Rating extends Component {
       this.props.load(this.props.match.params.slug);
     }
 
-    if (!this.props.questions.length) {
-      this.props.loadQuestions();
-    }
+    this.props.loadRatings(this.props.match.params.slug);
   }
 
   render() {
@@ -35,9 +28,9 @@ class Rating extends Component {
       return <span />;
     }
 
-    const { data, questions } = this.props;
+    const { data, ratings } = this.props;
 
-    const items = questions.map((question, i) => {
+    const items = ratings.map((question, i) => {
       return <Question key={i} value={i} isDisabled {...question} />;
     });
 
@@ -65,14 +58,14 @@ class Rating extends Component {
 
 Rating.propTypes = {
   data: PropTypes.object,
-  questions: PropTypes.array.isRequired,
+  ratings: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     data: state.SequenceReducer.currItem,
-    questions: state.RatingReducer.items,
+    ratings: state.SequenceReducer.ratings,
   };
 };
 
@@ -81,8 +74,8 @@ const mapDispatchToProps = dispatch => {
     load: slug => {
       dispatch(SequenceActions.load(slug));
     },
-    loadQuestions: () => {
-      dispatch(RatingActions.load());
+    loadRatings: slug => {
+      dispatch(SequenceActions.loadRatings(slug));
     },
   };
 };
