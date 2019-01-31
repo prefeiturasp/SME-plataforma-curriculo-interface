@@ -1,4 +1,5 @@
 import Api from 'data/Api';
+import getTeacherId from 'data/getTeacherId';
 
 const SequenceActions = {
   LOAD: 'SequenceActions.LOAD',
@@ -20,6 +21,14 @@ const SequenceActions = {
       SequenceActions.LOADED_COLLECTIONS
     );
   },
+  loadRatings(slug) {
+    const teacherId = getTeacherId();
+    return Api.simpleGet(
+      `api/professores/${teacherId}/sequencias_realizadas/${slug}/avaliacoes`,
+      SequenceActions.LOAD_RATINGS,
+      SequenceActions.LOADED_RATINGS
+    );
+  }
 };
 
 export default SequenceActions;
