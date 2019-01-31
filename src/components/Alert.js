@@ -28,24 +28,24 @@ class Alert extends Component {
 
     return (
       <div id="alert">
-      <Modal
-        className={styles.alert}
-        overlayClassName={styles.overlay}
-        isOpen={isOpened}
-        onRequestClose={close}
-        shouldCloseOnOverlayClick={true}
-      >
-        <button className={styles.btnClose} onClick={close}>
-          <img src={iconClose} alt="Fechar" />
-        </button>
-        <p>
-          <img src={iconWarningBig} alt="Atenção" />
-          <span>{message}</span>
-        </p>
-        <button className={styles.btnOk} onClick={close}>
-          OK
-        </button>
-      </Modal>
+        <Modal
+          className={styles.alert}
+          overlayClassName={styles.overlay}
+          isOpen={isOpened}
+          onRequestClose={close}
+          shouldCloseOnOverlayClick={true}
+        >
+          <button className={styles.btnClose} onClick={close}>
+            <img src={iconClose} alt="Fechar" />
+          </button>
+          <p>
+            <img src={iconWarningBig} alt="Atenção" />
+            <span>{message}</span>
+          </p>
+          <button className={styles.btnOk} onClick={close}>
+            OK
+          </button>
+        </Modal>
       </div>
     );
   }

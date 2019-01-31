@@ -33,27 +33,27 @@ class Confirm extends Component {
 
     return (
       <div id="confirm">
-      <Modal
-        className={styles1.confirm}
-        overlayClassName={styles.overlay}
-        isOpen={isOpened}
-        onRequestClose={close}
-        shouldCloseOnOverlayClick={true}
-      >
-        <button className={styles.btnClose} onClick={close}>
-          <img src={iconClose} alt="Fechar" />
-        </button>
-        <p>
-          <strong>{title}</strong>
-        </p>
-        <p>{message}</p>
-        <button className={styles1.btnYes} onClick={this.onClickedYes}>
-          {labelYes}
-        </button>
-        <button className={styles1.btnNo} onClick={close}>
-          {labelNo}
-        </button>
-      </Modal>
+        <Modal
+          className={styles1.confirm}
+          overlayClassName={styles.overlay}
+          isOpen={isOpened}
+          onRequestClose={close}
+          shouldCloseOnOverlayClick={true}
+        >
+          <button className={styles.btnClose} onClick={close}>
+            <img src={iconClose} alt="Fechar" />
+          </button>
+          <p>
+            <strong>{title}</strong>
+          </p>
+          <p>{message}</p>
+          <button className={styles1.btnYes} onClick={this.onClickedYes}>
+            {labelYes}
+          </button>
+          <button className={styles1.btnNo} onClick={close}>
+            {labelNo}
+          </button>
+        </Modal>
       </div>
     );
   }
