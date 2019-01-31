@@ -50,7 +50,7 @@ class Sequence extends Component {
     const isPerformed = !!performed.find(
       item => item.activity_sequence_id === data.id
     );
-    const notification = isPerformed ? (
+    const notification = true || isPerformed ? (
       <Notification
         text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
         labelNo="Agora não"
