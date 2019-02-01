@@ -39,7 +39,7 @@
   padding: rem(20) rem(21);
   position: static;
   visibility: visible;
-  
+
   @include mq("tablet-landscape") {
     margin-left: 0;
     margin-top: rem(8);
@@ -49,7 +49,7 @@
 .list {
   flex-shrink: 10;
   overflow-y: scroll;
-  
+
   > p {
     color: $grey-600;
     font-size: rem(13);

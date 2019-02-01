@@ -10,9 +10,10 @@ import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
+import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
 import styles from 'views/profile/collection/edit/EditCollection.scss';
-import styles1 from 'views/sequence/BigSequencePreview.scss';
+import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 class CreateCollection extends Component {
   state = {
@@ -49,67 +50,20 @@ class CreateCollection extends Component {
         sequenceId: this.props.location.state.sequenceId,
       });
     }
+
+    const slug = this.props.match.params.slug;
+    if (!this.props.sequence || this.props.sequence.slug !== slug) {
+      this.props.load(slug);
+    }
   }
 
   render() {
-    const classrooms = [
-      {
-        color: '#70b279',
-        level: 'EJA',
-        name: '[2018] Ciências Naturais',
-        school: 'EMEF Maria da Silva',
-        year: '1A',
-      },
-      {
-        color: '#70b279',
-        level: 'EF',
-        name: '[2018] Ciências Naturais',
-        school: 'EMEF João de Deus',
-        year: '2D',
-      },
-      {
-        color: '#70b279',
-        level: 'EJA',
-        name: '[2018] História',
-        school: 'EMEF Maria da Silva',
-        year: '1A',
-      },
-      {
-        color: '#70b279',
-        level: 'EF',
-        name: '[2018] Matemática',
-        school: 'EMEF João de Deus',
-        year: '2D',
-      },
-      {
-        color: '#70b279',
-        level: 'EF',
-        name: '[2018] Matemática',
-        school: 'EMEF João de Deus',
-        year: '3A',
-      },
-      {
-        color: '#70b279',
-        level: 'EJA',
-        name: '[2018] Matemática',
-        school: 'EMEF Maria da Silva',
-        year: '3A',
-      },
-      {
-        color: '#70b279',
-        level: 'EJA',
-        name: '[2017] Ciências Naturais',
-        school: 'EMEF Maria da Silva',
-        year: '1A',
-      },
-      {
-        color: '#70b279',
-        level: 'EF',
-        name: '[2017] Ciências Naturais',
-        school: 'EMEF João de Deus',
-        year: '2D',
-      },
-    ];
+    const { classrooms, sequence } = this.props;
+    const { hasEdited, name, sequenceId } = this.state;
+
+    if (!sequence) {
+      return <span />;
+    }
 
     const items = classrooms.map((classroom, i) => {
       return (
@@ -124,17 +78,17 @@ class CreateCollection extends Component {
       );
     });
 
-    const bigSequencePreview = this.state.sequenceId ? (
-      <BigSequencePreview sequence={this.props.sequence} />
+    const bigSequencePreview = sequenceId ? (
+      <BigSequencePreview sequence={sequence} />
     ) : null;
 
-    const sequencePreview = this.state.sequenceId ? (
-      <SequencePreview sequence={this.props.sequence} />
+    const sequencePreview = sequenceId ? (
+      <SequencePreview sequence={sequence} />
     ) : null;
 
-    const hr = this.state.sequenceId ? <hr /> : null;
+    const hr = sequenceId ? <hr /> : null;
 
-    const isInvalid = this.state.hasEdited && this.state.name.length <= 0;
+    const isInvalid = hasEdited && name.length <= 0;
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
@@ -156,7 +110,7 @@ class CreateCollection extends Component {
                   inputRef={input => (input ? input.focus() : null)}
                   label="Nome da coleção"
                   onChange={this.onChangedName}
-                  value={this.state.name}
+                  value={name}
                 />
               </header>
               <div className={styles.list}>
@@ -173,7 +127,69 @@ class CreateCollection extends Component {
 }
 
 CreateCollection.propTypes = {
+  classrooms: PropTypes.array.isRequired,
   create: PropTypes.func.isRequired,
+};
+
+CreateCollection.defaultProps = {
+  classrooms: [
+    {
+      color: '#70b279',
+      level: 'EJA',
+      name: '[2018] Ciências Naturais',
+      school: 'EMEF Maria da Silva',
+      year: '1A',
+    },
+    {
+      color: '#70b279',
+      level: 'EF',
+      name: '[2018] Ciências Naturais',
+      school: 'EMEF João de Deus',
+      year: '2D',
+    },
+    {
+      color: '#70b279',
+      level: 'EJA',
+      name: '[2018] História',
+      school: 'EMEF Maria da Silva',
+      year: '1A',
+    },
+    {
+      color: '#70b279',
+      level: 'EF',
+      name: '[2018] Matemática',
+      school: 'EMEF João de Deus',
+      year: '2D',
+    },
+    {
+      color: '#70b279',
+      level: 'EF',
+      name: '[2018] Matemática',
+      school: 'EMEF João de Deus',
+      year: '3A',
+    },
+    {
+      color: '#70b279',
+      level: 'EJA',
+      name: '[2018] Matemática',
+      school: 'EMEF Maria da Silva',
+      year: '3A',
+    },
+    {
+      color: '#70b279',
+      level: 'EJA',
+      name: '[2017] Ciências Naturais',
+      school: 'EMEF Maria da Silva',
+      year: '1A',
+    },
+    {
+      color: '#70b279',
+      level: 'EF',
+      name: '[2017] Ciências Naturais',
+      school: 'EMEF João de Deus',
+      year: '2D',
+    },
+  ],
 };
 
 const mapStateToProps = state => {
@@ -189,6 +205,9 @@ const mapDispatchToProps = dispatch => {
     },
     createAndSaveSequence: (name, sequenceId) => {
       dispatch(CollectionActions.createAndSaveSequence(name, sequenceId));
+    },
+    load: slug => {
+      dispatch(SequenceActions.load(slug));
     },
   };
 };

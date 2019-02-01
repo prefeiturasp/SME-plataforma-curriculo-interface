@@ -26,14 +26,21 @@ class Sequence extends React.PureComponent {
   };
 
   render() {
-    const { component, image, hasEvaluated, hasPerformed, slug, title } = this.props;
-    
+    const {
+      component,
+      image,
+      hasEvaluated,
+      hasPerformed,
+      slug,
+      title,
+    } = this.props;
+
     const link = `/sequencia/${slug}`;
 
     let bar = null;
-    if (hasPerformed) {
-      const label = hasEvaluated ? 'Ver avaliação' : 'Avaliar';
-      const route = hasEvaluated ? 'avaliacao' : 'avaliar';
+    if (true || hasPerformed) {
+      const label = true || hasEvaluated ? 'Ver avaliação' : 'Avaliar';
+      const route = true || hasEvaluated ? 'avaliacao' : 'avaliar';
       const link = createModalLink(`/sequencia/${slug}/${route}`);
       const btn = <NavLink to={link}>{label}</NavLink>;
 

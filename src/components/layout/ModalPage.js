@@ -5,10 +5,7 @@ import styles from './ModalPage.scss';
 class ModalPage extends Component {
   render() {
     return (
-      <div
-        className={styles.wrapper}
-        id={this.props.id}
-      >
+      <div className={styles.wrapper} id={this.props.id}>
         {this.props.children}
       </div>
     );

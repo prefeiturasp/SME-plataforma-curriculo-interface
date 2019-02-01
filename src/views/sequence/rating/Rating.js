@@ -1,33 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { history } from 'index';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import Question from 'views/sequence/rate/Question';
-import RatingActions from 'actions/RatingActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
 import styles from 'views/sequence/rate/RateSequence.scss';
-import styles1 from 'views/sequence/BigSequencePreview.scss';
+import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 class Rating extends Component {
-  state = {
-    answers: {},
+  onClickedClose = () => {
+    history.goBack();
   };
-
-  onClickedNext = () => {};
 
   componentDidMount() {
     if (!this.props.data) {
       this.props.load(this.props.match.params.slug);
     }
 
-    if (!this.props.questions.length) {
-      this.props.loadQuestions();
-    }
+    this.props.loadRatings(this.props.match.params.slug);
   }
 
   render() {
@@ -35,10 +31,10 @@ class Rating extends Component {
       return <span />;
     }
 
-    const { data, questions } = this.props;
+    const { data, ratings } = this.props;
 
-    const items = questions.map((question, i) => {
-      return <Question key={i} value={i} isDisabled {...question} />;
+    const items = ratings.map((rating, i) => {
+      return <Question key={i} value={i} isDisabled {...rating} />;
     });
 
     return (
@@ -65,14 +61,35 @@ class Rating extends Component {
 
 Rating.propTypes = {
   data: PropTypes.object,
-  questions: PropTypes.array.isRequired,
+  ratings: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
+};
+
+Rating.defaultProps = {
+  ratings: [
+    {
+      rating_id: 1,
+      description: 'Como você avalia a qualidade do conteúdo?',
+      score: 5,
+    },
+    {
+      rating_id: 2,
+      description: 'E a metodologia aplicada?',
+      score: 2,
+    },
+    {
+      rating_id: 3,
+      description:
+        'Qual foi o nível de envolvimento dos estudantes com as Atividades?',
+      score: 3,
+    },
+  ],
 };
 
 const mapStateToProps = state => {
   return {
     data: state.SequenceReducer.currItem,
-    questions: state.RatingReducer.items,
+    // ratings: state.SequenceReducer.ratings,
   };
 };
 
@@ -81,8 +98,8 @@ const mapDispatchToProps = dispatch => {
     load: slug => {
       dispatch(SequenceActions.load(slug));
     },
-    loadQuestions: () => {
-      dispatch(RatingActions.load());
+    loadRatings: slug => {
+      // dispatch(SequenceActions.loadRatings(slug));
     },
   };
 };

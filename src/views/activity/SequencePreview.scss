@@ -39,7 +39,7 @@
     position: fixed !important;
     transform: translateY(72px);
   }
-  
+
   @include mq("tablet-landscape") {
     border-bottom: 1px solid $grey-200;
   }
@@ -50,6 +50,7 @@
   align-items: center;
   display: flex;
   justify-content: flex-start;
+  max-width: none;
   padding-top: rem(15);
   padding-bottom: rem(15);
 
@@ -85,7 +86,7 @@
 
   @include mq("tablet-landscape") {
     width: auto;
-  
+
     p {
       font-size: rem(13);
       margin-bottom: rem(2);

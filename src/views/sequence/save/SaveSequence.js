@@ -49,7 +49,9 @@ class SaveSequence extends Component {
 
     const names = inCollections.map(item => item.name).join(', ');
 
-    const savedText = isSaved ? <p className={styles.saved}>Você já salvou esta sequência em {names}.</p> : null;
+    const savedText = isSaved ? (
+      <p className={styles.saved}>Você já salvou esta sequência em {names}.</p>
+    ) : null;
 
     return (
       <DesktopModal>

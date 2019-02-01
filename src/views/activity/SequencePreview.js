@@ -24,7 +24,7 @@ class SequencePreview extends Component {
 
   render() {
     const { isInActivity, isSaved, sequence } = this.props;
-    
+
     const image = sequence.image_attributes.default_url ? (
       <img
         className={styles.image}

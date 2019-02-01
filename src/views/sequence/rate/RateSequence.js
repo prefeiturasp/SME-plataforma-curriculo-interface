@@ -11,7 +11,7 @@ import RatingActions from 'actions/RatingActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
 import styles from './RateSequence.scss';
-import styles1 from 'views/sequence/BigSequencePreview.scss';
+import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 class RateSequence extends Component {
   state = {

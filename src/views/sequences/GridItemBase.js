@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Element, scroller } from "react-scroll";
+import { Element, scroller } from 'react-scroll';
 import { NavLink } from 'react-router-dom';
 import { API_URL } from 'data/constants';
 import { history } from 'index';
@@ -42,7 +42,7 @@ class GridItemBase extends Component {
   };
 
   render() {
-    const { data, isSaved } = this.props;
+    const { data } = this.props;
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
     const height = this.ref.current ? this.ref.current.clientHeight : 0;
     const iconToggler = data.isExpanded ? iconMinus : iconPlus;
@@ -90,12 +90,13 @@ class GridItemBase extends Component {
 
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
+    const isSaved = data.already_saved_in_collection;
     const iconSave = isSaved ? iconSaved : iconSave1;
     const labelSave = isSaved ? 'Salvo' : 'Salvar';
 
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-        <Element name={data.slug}></Element>
+        <Element name={data.slug} />
         <article className={styles.wrapper} ref={this.ref}>
           <NavLink to={link}>{thumbnail}</NavLink>
           <button className={styles.btnSave} onClick={this.onClickedSave}>
