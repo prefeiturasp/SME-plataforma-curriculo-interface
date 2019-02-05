@@ -90,7 +90,7 @@ class GridItemBase extends Component {
 
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
-    const isSaved = data.already_saved_in_collection;
+    const isSaved = data.already_saved_in_collection || data.isSaved;
     const iconSave = isSaved ? iconSaved : iconSave1;
     const labelSave = isSaved ? 'Salvo' : 'Salvar';
 
