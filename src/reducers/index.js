@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import ActivityReducer from './ActivityReducer';
 import AlertReducer from './AlertReducer';
-import AuthReducer from './AuthReducer';
 import BodyReducer from './BodyReducer';
 import CollectionReducer from './CollectionReducer';
 import CollectionsReducer from './CollectionsReducer';
@@ -21,7 +20,6 @@ import SustainableDevGoalsReducer from './SustainableDevGoalsReducer';
 export default combineReducers({
   ActivityReducer,
   AlertReducer,
-  AuthReducer,
   BodyReducer,
   CollectionReducer,
   CollectionsReducer,

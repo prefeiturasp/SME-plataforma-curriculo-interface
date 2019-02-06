@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AuthActions from 'actions/AuthActions';
 import BodyActions from 'actions/BodyActions';
+import LoginActions from 'actions/LoginActions';
 import MobileModal from 'components/layout/MobileModal';
+import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './MobileMenu.scss';
 
@@ -15,17 +17,9 @@ class MobileMenu extends React.PureComponent {
     this.props.hideMobileMenu();
   };
 
-  onClickedLogin = () => {
-    this.props.login();
-  };
-
   onClickedLogout = () => {
     this.props.logout();
   };
-
-  componentDidMount() {
-    this.props.setup();
-  }
 
   render() {
     const data = [
@@ -80,7 +74,9 @@ class MobileMenu extends React.PureComponent {
       );
     });
 
-    const buttons = this.props.hasLogged ? (
+    const link = createModalLink('/login');
+
+    const buttons = isLogged() ? (
       <div>
         <NavLink
           to="/perfil"
@@ -99,9 +95,9 @@ class MobileMenu extends React.PureComponent {
           Salve sequências de atividades.
           <br />E acesse em qualquer lugar.
         </h3>
-        <button className={styles.btnLogin} onClick={this.onClickedLogin}>
+        <NavLink className={styles.btnLogin} to={link}>
           Login
-        </button>
+        </NavLink>
         <p className={styles.obs}>
           Esta funcionalidade é exclusiva para professores da{' '}
           <a
@@ -132,17 +128,13 @@ class MobileMenu extends React.PureComponent {
 }
 
 MobileMenu.propTypes = {
-  hasLogged: PropTypes.bool,
   hasMobileMenu: PropTypes.bool,
   hideMobileMenu: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  setup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    hasLogged: state.AuthReducer.hasLogged,
     hasMobileMenu: state.BodyReducer.hasMobileMenu,
   };
 };
@@ -152,14 +144,8 @@ const mapDispatchToProps = dispatch => {
     hideMobileMenu: () => {
       dispatch(BodyActions.hideMobileMenu());
     },
-    login: () => {
-      dispatch(AuthActions.login());
-    },
     logout: () => {
-      dispatch(AuthActions.logout());
-    },
-    setup: () => {
-      dispatch(AuthActions.setup());
+      dispatch(LoginActions.logout());
     },
   };
 };

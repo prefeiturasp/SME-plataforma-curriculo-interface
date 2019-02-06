@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AuthActions from 'actions/AuthActions';
+import LoginActions from 'actions/LoginActions';
 import styles from './ProfilePopover.scss';
 
 class ProfilePopover extends React.PureComponent {
@@ -32,7 +32,7 @@ ProfilePopover.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => {
-      dispatch(AuthActions.logout());
+      dispatch(LoginActions.logout());
     },
   };
 };

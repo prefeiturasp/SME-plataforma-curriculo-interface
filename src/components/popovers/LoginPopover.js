@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import AuthActions from 'actions/AuthActions';
+import { NavLink } from 'react-router-dom';
+import createModalLink from 'utils/createModalLink';
 import styles from 'components/MobileMenu.scss';
 
 class LoginPopover extends React.PureComponent {
-  onClickedLogin = () => {
-    this.props.login();
-  };
-
   render() {
+    const link = createModalLink('/login');
+
     return (
       <div className={styles.popover} onMouseLeave={this.props.onMouseLeave}>
         <div className={styles.login}>
@@ -17,9 +15,9 @@ class LoginPopover extends React.PureComponent {
             Salve sequências de atividades.
             <br />E acesse em qualquer lugar.
           </h3>
-          <button className={styles.btnLogin} onClick={this.onClickedLogin}>
+          <NavLink className={styles.btnLogin} to={link}>
             Login
-          </button>
+          </NavLink>
           <p className={styles.obs}>
             Esta funcionalidade é exclusiva para professores da{' '}
             <a
@@ -38,19 +36,7 @@ class LoginPopover extends React.PureComponent {
 }
 
 LoginPopover.propTypes = {
-  login: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: () => {
-      dispatch(AuthActions.login());
-    },
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(LoginPopover);
+export default LoginPopover;
