@@ -4,6 +4,7 @@ import ProfileActions from 'actions/ProfileActions';
 
 const LoginActions = {
   LOGIN: 'LoginActions.LOGIN',
+  LOGOUT: 'LoginActions.LOGOUT',
   LOGGED_IN: 'LoginActions.LOGGED_IN',
   LOGGED_OUT: 'LoginActions.LOGGED_OUT',
 
@@ -39,7 +40,11 @@ const LoginActions = {
   },
   logout() {
     sessionStorage.removeItem('user');
-    return { type: LoginActions.LOGGED_OUT };
+    return Api.simpleGet(
+      '/api/logout',
+      LoginActions.LOGOUT,
+      LoginActions.LOGGED_OUT
+    );
   },
 };
 
