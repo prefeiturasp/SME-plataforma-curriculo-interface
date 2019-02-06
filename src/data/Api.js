@@ -18,40 +18,37 @@ function getPromise(dispatch, func, method, url, data, isJson) {
     func
       .apply(this, [method, url, data, isJson])
       .then(response => {
-        if (response.status === 401) {
-          // Unauthorized
-          sessionStorage.removeItem('user');
-          history.push('/');
-          dispatch(BodyActions.hideLoading());
-          dispatch(
-            AlertActions.open(
-              'Ocorreu um erro de autenticação. Por favor tente logar novamente.'
-            )
-          );
-        } else {
-          response.text().then(text => {
-            if (text.length) {
-              try {
-                const data = JSON.parse(text);
-                const { headers } = response;
-                const nextPage = getNextPage(headers);
-                const totalItems = headers.has('total')
-                  ? headers.get('total')
-                  : 0;
-                if (data.errors) {
-                  reject(data.errors.message);
-                } else {
-                  resolve({ data, headers, nextPage, totalItems });
-                }
-              } catch (e) {
-                console.error('error', e);
-                reject(e);
+        response.text().then(text => {
+          if (response.status === 401) {
+            // Unauthorized
+            sessionStorage.removeItem('user');
+            history.push('/');
+            dispatch(BodyActions.hideLoading());
+          }
+
+          if (text.length) {
+            try {
+              const data = JSON.parse(text);
+              const { headers } = response;
+              const nextPage = getNextPage(headers);
+              const totalItems = headers.has('total')
+                ? headers.get('total')
+                : 0;
+              if (data.error) {
+                reject(data.error);
+              } else if (data.errors) {
+                reject(data.errors.message);
+              } else {
+                resolve({ data, headers, nextPage, totalItems });
               }
-            } else {
-              resolve({});
+            } catch (e) {
+              console.error('error', e);
+              reject(e);
             }
-          });
-        }
+          } else {
+            resolve({});
+          }
+        })
       })
       .catch(reject);
   });
