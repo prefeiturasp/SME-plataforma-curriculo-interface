@@ -37,7 +37,7 @@ class GridItemBase extends Component {
         isModal: true,
       });
     } else {
-      this.props.login();
+      history.push(`/login`, { isModal: true });
     }
   };
 
@@ -134,7 +134,6 @@ GridItemBase.propTypes = {
   data: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isSaved: PropTypes.bool,
-  login: PropTypes.func.isRequired,
   togglePreview: PropTypes.func.isRequired,
 };
 
