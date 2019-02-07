@@ -1,3 +1,4 @@
+import CollectionActions from 'actions/CollectionActions';
 import SequencesActions from 'actions/SequencesActions';
 
 const initialState = {
@@ -62,6 +63,17 @@ function SequencesReducer(state = initialState, action) {
           return {
             ...item,
             isExpanded: !item.isExpanded && item.id === action.id,
+          };
+        }),
+      };
+
+    case CollectionActions.SAVED_SEQUENCE:
+      return {
+        ...state,
+        items: state.items.map(item => {
+          return {
+            ...item,
+            isSaved: item.id === action.sequenceId,
           };
         }),
       };

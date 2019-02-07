@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { history } from 'index';
-import AuthActions from 'actions/AuthActions';
 import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
@@ -13,7 +11,7 @@ class Title extends Component {
     if (isLogged()) {
       history.push(`/sequencia/${this.props.slug}/salvar`, { isModal: true });
     } else {
-      this.props.login();
+      history.push(`/login`, { isModal: true });
     }
   };
 
@@ -47,18 +45,6 @@ Title.propTypes = {
   slug: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: () => {
-      dispatch(AuthActions.login());
-    },
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Title);
+export default Title;

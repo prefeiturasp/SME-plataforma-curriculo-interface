@@ -17,7 +17,7 @@ function doSaveSequence(dispatch, id, name, sequenceId) {
     data
   )
     .then(response => {
-      dispatch({ ...response, type: CollectionActions.SAVED_SEQUENCE });
+      dispatch({ ...response, sequenceId, type: CollectionActions.SAVED_SEQUENCE });
       dispatch(
         SnackbarActions.open(
           <span>

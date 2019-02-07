@@ -37,7 +37,7 @@ class GridItemBase extends Component {
         isModal: true,
       });
     } else {
-      this.props.login();
+      history.push(`/login`, { isModal: true });
     }
   };
 
@@ -90,7 +90,7 @@ class GridItemBase extends Component {
 
     const word2 = data.number_of_activities > 1 ? 'Atividades' : 'Atividade';
 
-    const isSaved = data.already_saved_in_collection;
+    const isSaved = data.already_saved_in_collection || data.isSaved;
     const iconSave = isSaved ? iconSaved : iconSave1;
     const labelSave = isSaved ? 'Salvo' : 'Salvar';
 
@@ -134,7 +134,6 @@ GridItemBase.propTypes = {
   data: PropTypes.object.isRequired,
   index: PropTypes.number.isRequired,
   isSaved: PropTypes.bool,
-  login: PropTypes.func.isRequired,
   togglePreview: PropTypes.func.isRequired,
 };
 

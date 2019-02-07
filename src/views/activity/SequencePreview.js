@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Headroom from 'react-headroom';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { history } from 'index';
 import { API_URL } from 'data/constants';
-import AuthActions from 'actions/AuthActions';
 import isLogged from 'data/isLogged';
 import iconSave from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
@@ -18,7 +16,7 @@ class SequencePreview extends Component {
         isModal: true,
       });
     } else {
-      this.props.login();
+      history.push(`/login`, { isModal: true });
     }
   };
 
@@ -83,18 +81,6 @@ SequencePreview.propTypes = {
   isInActivity: PropTypes.bool,
   isSaved: PropTypes.bool,
   sequence: PropTypes.object.isRequired,
-  login: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: () => {
-      dispatch(AuthActions.login());
-    },
-  };
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SequencePreview);
+export default SequencePreview;

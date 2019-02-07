@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -18,7 +19,8 @@ import styles from './Login.scss';
 
 class Login extends Component {
   state = {
-    hasEdited: false,
+    hasEditedUsername: false,
+    hasEditedPassword: false,
     isShowingPassword: false,
     username: '',
     password: '',
@@ -27,7 +29,7 @@ class Login extends Component {
   onChangedUsername = e => {
     this.setState({
       ...this.state,
-      hasEdited: true,
+      hasEditedUsername: true,
       username: e.target.value,
     });
   };
@@ -35,6 +37,7 @@ class Login extends Component {
   onChangedPassword = e => {
     this.setState({
       ...this.state,
+      hasEditedPassword: true,
       password: e.target.value,
     });
   };
@@ -47,12 +50,22 @@ class Login extends Component {
   };
 
   onClickedEnter = () => {
-    this.props.login(this.state.username, this.state.password);
+    if (this.state.username.length && this.state.password.length) {
+      this.props.login(this.state.username, this.state.password);
+    } else {
+      this.setState({
+        ...this.state,
+        hasEditedUsername: true,
+        hasEditedPassword: true,
+      });
+    }
   };
 
   render() {
-    const isInvalid = this.state.hasEdited && this.state.username.length <= 0;
-    const message = isInvalid ? 'Campo obrigatório' : '';
+    const isInvalidUsername = this.state.hasEditedUsername && this.state.username.length <= 0;
+    const isInvalidPassword = this.state.hasEditedPassword && this.state.password.length <= 0;
+    const messageUsername = isInvalidUsername ? 'Campo obrigatório' : '';
+    const messagePassword = isInvalidPassword ? <FormHelperText error={true}>Campo obrigatório</FormHelperText> : '';
 
     return (
       <DesktopModal isSmall>
@@ -67,9 +80,9 @@ class Login extends Component {
               </p>
             </header>
             <TextField
-              error={isInvalid}
+              error={isInvalidUsername}
               fullWidth={true}
-              helperText={message}
+              helperText={messageUsername}
               inputRef={input => (input ? input.focus() : null)}
               label="Nome do usuário"
               onChange={this.onChangedUsername}
@@ -77,8 +90,14 @@ class Login extends Component {
             />
             <div className={styles.spacer} />
             <FormControl fullWidth={true}>
-              <InputLabel htmlFor="password">Senha</InputLabel>
+              <InputLabel
+                error={isInvalidPassword}
+                htmlFor="password"
+              >
+                Senha
+              </InputLabel>
               <Input
+                error={isInvalidPassword}
                 id="password"
                 type={this.state.isShowingPassword ? 'text' : 'password'}
                 value={this.state.password}
@@ -98,6 +117,7 @@ class Login extends Component {
                   </InputAdornment>
                 }
               />
+              {messagePassword}
             </FormControl>
             <div className={styles.spacer} />
             <button className={styles.btnForgot}>Esqueceu a senha?</button>
