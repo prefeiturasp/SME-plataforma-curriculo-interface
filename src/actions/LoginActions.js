@@ -19,15 +19,14 @@ const LoginActions = {
 
       return Api.post(dispatch, `/api/login`, data)
         .then(response => {
+          console.log(response, response.headers.get('Authorization'));
+          for (let pair of response.headers.entries()) {
+            console.log(pair[0]+ ': '+ pair[1]);
+          }
+
           sessionStorage.setItem(
-            'user',
-            JSON.stringify({
-              'access-token': response['access-token'],
-              client: response.client,
-              uid: response.uid,
-              expiry: response.expiry,
-              'token-type': 'Bearer',
-            })
+            'accessToken',
+            response.headers.get('Authorization'),
           );
 
           dispatch({ type: LoginActions.LOGGED_IN });
@@ -39,7 +38,7 @@ const LoginActions = {
     };
   },
   logout() {
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('accessToken');
     return Api.simpleGet(
       '/api/logout',
       LoginActions.LOGOUT,

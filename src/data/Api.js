@@ -21,7 +21,7 @@ function getPromise(dispatch, func, method, url, data, isJson) {
         response.text().then(text => {
           if (response.status === 401) {
             // Unauthorized
-            sessionStorage.removeItem('user');
+            sessionStorage.removeItem('accessToken');
             history.push('/');
             dispatch(BodyActions.hideLoading());
           }
@@ -56,10 +56,10 @@ function getPromise(dispatch, func, method, url, data, isJson) {
 
 function doRequest(method, url, data, isJson) {
   const options = { method };
-  const user = sessionStorage.getItem('user');
+  const accessToken = sessionStorage.getItem('accessToken');
 
-  if (user) {
-    options.headers = JSON.parse(user);
+  if (accessToken) {
+    options.headers = { Authorization: accessToken };
   }
 
   if (data) {
