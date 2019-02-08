@@ -18,6 +18,7 @@ import logo from 'images/logo.svg';
 import styles from './Login.scss';
 
 class Login extends Component {
+  ref = React.createRef();
   state = {
     hasEditedUsername: false,
     hasEditedPassword: false,
@@ -61,6 +62,18 @@ class Login extends Component {
     }
   };
 
+  onKeyPressUsername = e => {
+    if (e.key === 'Enter') {
+      this.ref.current.focus();
+    }
+  };
+
+  onKeyPressPassword = e => {
+    if (e.key === 'Enter') {
+      this.onClickedEnter();
+    }
+  };
+
   render() {
     const isInvalidUsername = this.state.hasEditedUsername && this.state.username.length <= 0;
     const isInvalidPassword = this.state.hasEditedPassword && this.state.password.length <= 0;
@@ -86,6 +99,7 @@ class Login extends Component {
               inputRef={input => (input ? input.focus() : null)}
               label="Nome do usuário"
               onChange={this.onChangedUsername}
+              onKeyPress={this.onKeyPressUsername}
               value={this.state.username}
             />
             <div className={styles.spacer} />
@@ -99,9 +113,11 @@ class Login extends Component {
               <Input
                 error={isInvalidPassword}
                 id="password"
+                inputRef={this.ref}
                 type={this.state.isShowingPassword ? 'text' : 'password'}
                 value={this.state.password}
                 onChange={this.onChangedPassword}
+                onKeyPress={this.onKeyPressPassword}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
