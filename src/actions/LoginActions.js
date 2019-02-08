@@ -1,6 +1,7 @@
 import Api from 'data/Api';
 import AlertActions from 'actions/AlertActions';
 import ProfileActions from 'actions/ProfileActions';
+import { history } from 'index';
 
 const LoginActions = {
   LOGIN: 'LoginActions.LOGIN',
@@ -20,16 +21,11 @@ const LoginActions = {
       return Api.post(dispatch, `/api/login`, data)
         .then(response => {
           sessionStorage.setItem(
-            'user',
-            JSON.stringify({
-              'access-token': response['access-token'],
-              client: response.client,
-              uid: response.uid,
-              expiry: response.expiry,
-              'token-type': 'Bearer',
-            })
+            'accessToken',
+            response.headers.get('Authorization'),
           );
 
+          history.goBack();
           dispatch({ type: LoginActions.LOGGED_IN });
           dispatch(ProfileActions.load());
         })
@@ -39,12 +35,19 @@ const LoginActions = {
     };
   },
   logout() {
-    sessionStorage.removeItem('user');
-    return Api.simpleGet(
-      '/api/logout',
-      LoginActions.LOGOUT,
-      LoginActions.LOGGED_OUT
-    );
+    return dispatch => {
+      sessionStorage.removeItem('accessToken');
+      dispatch({ type: LoginActions.LOGOUT });
+
+      return Api.get(dispatch, '/api/logout')
+        .then(response => {
+          dispatch({ type: LoginActions.LOGGED_OUT });
+
+          if (history.location.pathname.match(/perfil|colecao/)) {
+            history.push('/');
+          }
+        });
+    };
   },
 };
 

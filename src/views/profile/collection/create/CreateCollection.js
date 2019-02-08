@@ -60,11 +60,7 @@ class CreateCollection extends Component {
   render() {
     const { classrooms, sequence } = this.props;
     const { hasEdited, name, sequenceId } = this.state;
-
-    if (!sequence) {
-      return <span />;
-    }
-
+    
     const items = classrooms.map((classroom, i) => {
       return (
         <Classroom
@@ -79,7 +75,9 @@ class CreateCollection extends Component {
     });
 
     const bigSequencePreview = sequenceId ? (
-      <BigSequencePreview sequence={sequence} />
+      <div className={styles1.col1}>
+        <BigSequencePreview sequence={sequence} />
+      </div>
     ) : null;
 
     const sequencePreview = sequenceId ? (
@@ -96,7 +94,7 @@ class CreateCollection extends Component {
         <ModalPage>
           <ModalHeader title="Criar coleção" />
           <div className={styles1.row}>
-            <div className={styles1.col1}>{bigSequencePreview}</div>
+            {bigSequencePreview}
             <div className={styles1.col2}>
               <div className={styles1.small}>
                 {sequencePreview}

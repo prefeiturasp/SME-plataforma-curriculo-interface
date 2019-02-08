@@ -73,7 +73,7 @@ function SequencesReducer(state = initialState, action) {
         items: state.items.map(item => {
           return {
             ...item,
-            isSaved: item.id === action.sequenceId,
+            isSaved: item.id === action.sequenceId || item.isSaved,
           };
         }),
       };

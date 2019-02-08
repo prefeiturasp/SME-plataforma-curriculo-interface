@@ -37,10 +37,10 @@ class Profile extends Component {
     const numCollections = items.length;
     const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
 
-    const numClassrooms = 6;
+    const numClassrooms = data.numClasses;
     const wordClassrooms = numClassrooms === 1 ? 'turma' : 'turmas';
 
-    const numComponents = 3;
+    const numComponents = data.numComponents;
     const wordComponents = numComponents === 1 ? 'componente' : 'componentes';
 
     const contents =
