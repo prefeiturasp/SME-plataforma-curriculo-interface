@@ -131,7 +131,14 @@ class Header extends Component {
 }
 
 Header.propTypes = {
+  data: PropTypes.object.isRequired,
   showMobileMenu: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => {
+  return {
+    data: state.ProfileReducer,
+  };
 };
 
 const mapDispatchToProps = dispatch => {
@@ -146,6 +153,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Header);
