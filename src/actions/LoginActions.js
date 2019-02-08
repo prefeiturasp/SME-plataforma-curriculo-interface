@@ -1,6 +1,7 @@
 import Api from 'data/Api';
 import AlertActions from 'actions/AlertActions';
 import ProfileActions from 'actions/ProfileActions';
+import { history } from 'index';
 
 const LoginActions = {
   LOGIN: 'LoginActions.LOGIN',
@@ -19,16 +20,12 @@ const LoginActions = {
 
       return Api.post(dispatch, `/api/login`, data)
         .then(response => {
-          console.log(response, response.headers.get('Authorization'));
-          for (let pair of response.headers.entries()) {
-            console.log(pair[0]+ ': '+ pair[1]);
-          }
-
           sessionStorage.setItem(
             'accessToken',
             response.headers.get('Authorization'),
           );
 
+          history.goBack();
           dispatch({ type: LoginActions.LOGGED_IN });
           dispatch(ProfileActions.load());
         })
@@ -38,12 +35,19 @@ const LoginActions = {
     };
   },
   logout() {
-    sessionStorage.removeItem('accessToken');
-    return Api.simpleGet(
-      '/api/logout',
-      LoginActions.LOGOUT,
-      LoginActions.LOGGED_OUT
-    );
+    return dispatch => {
+      sessionStorage.removeItem('accessToken');
+      dispatch({ type: LoginActions.LOGOUT });
+
+      return Api.get(dispatch, '/api/logout')
+        .then(response => {
+          dispatch({ type: LoginActions.LOGGED_OUT });
+
+          if (history.location.pathname.match(/perfil|colecao/)) {
+            history.push('/');
+          }
+        });
+    };
   },
 };
 

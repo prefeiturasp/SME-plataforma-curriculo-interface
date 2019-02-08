@@ -24,6 +24,10 @@ function ProfileReducer(state = initialState, action) {
         name: name || '',
         nickname: teacher.nickname || '',
         photo: teacher.avatar_attributes.default_url,
+        numClasses: teacher.number_of_classes,
+        numCollections: teacher.number_of_collections,
+        numComponents: teacher.number_of_components,
+        numNotEvaluatedSequences: teacher.number_of_sequences_not_evaluated,
       };
 
     case ProfileActions.LOADED_CLASSROOMS:
