@@ -34,7 +34,7 @@ class Profile extends Component {
     const { data, items } = this.props;
     const { nickname } = data;
 
-    const numCollections = data.numCollections;
+    const numCollections = items.length;
     const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
 
     const numClassrooms = data.numClasses;
