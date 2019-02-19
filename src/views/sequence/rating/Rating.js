@@ -66,24 +66,7 @@ Rating.propTypes = {
 };
 
 Rating.defaultProps = {
-  ratings: [
-    {
-      rating_id: 1,
-      description: 'Como você avalia a qualidade do conteúdo?',
-      score: 5,
-    },
-    {
-      rating_id: 2,
-      description: 'E a metodologia aplicada?',
-      score: 2,
-    },
-    {
-      rating_id: 3,
-      description:
-        'Qual foi o nível de envolvimento dos estudantes com as Atividades?',
-      score: 3,
-    },
-  ],
+  ratings: [],
 };
 
 const mapStateToProps = state => {

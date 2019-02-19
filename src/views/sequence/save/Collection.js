@@ -45,13 +45,7 @@ Collection.propTypes = {
 };
 
 Collection.defaultProps = {
-  years: [
-    {
-      color: '#ff0180',
-      year: '1A',
-      school: 'EMEF Maria da Silva',
-    },
-  ],
+  years: [],
 };
 
 const mapDispatchToProps = dispatch => {
