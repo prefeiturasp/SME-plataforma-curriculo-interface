@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { API_URL } from 'data/constants';
 import CollectionActions from 'actions/CollectionActions';
 import ConfirmActions from 'actions/ConfirmActions';
-import createModalLink from 'utils/createModalLink';
-import iconCheck from 'images/icons/check.png';
 import iconDelete from 'images/icons/delete.svg';
 import styles from './Sequence.scss';
 
@@ -29,31 +27,11 @@ class Sequence extends React.PureComponent {
     const {
       component,
       image,
-      hasEvaluated,
-      hasPerformed,
       slug,
       title,
     } = this.props;
 
     const link = `/sequencia/${slug}`;
-
-    let bar = null;
-    if (true || hasPerformed) {
-      const label = true || hasEvaluated ? 'Ver avaliação' : 'Avaliar';
-      const route = true || hasEvaluated ? 'avaliacao' : 'avaliar';
-      const link = createModalLink(`/sequencia/${slug}/${route}`);
-      const btn = <NavLink to={link}>{label}</NavLink>;
-
-      bar = (
-        <div className={styles.bar}>
-          <span>
-            <img src={iconCheck} alt="Sequência realizada" />
-            Sequência realizada
-          </span>
-          {btn}
-        </div>
-      );
-    }
 
     const thumbnail = image.default_url ? (
       <NavLink className={styles.image} to={link}>
@@ -89,7 +67,6 @@ class Sequence extends React.PureComponent {
               </button>
             </div>
           </div>
-          {bar}
         </div>
       </div>
     );
@@ -100,8 +77,6 @@ Sequence.propTypes = {
   collectionId: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,
   component: PropTypes.object.isRequired,
-  hasEvaluated: PropTypes.bool,
-  hasPerformed: PropTypes.bool,
   image: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
