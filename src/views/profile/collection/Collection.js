@@ -103,24 +103,7 @@ Collection.propTypes = {
 };
 
 Collection.defaultProps = {
-  classrooms: [
-    {
-      year: '2D',
-      color: '#ff007f',
-    },
-    {
-      year: '2D',
-      color: '#66ac70',
-    },
-    {
-      year: '3A',
-      color: '#ff007f',
-    },
-    {
-      year: '1A',
-      color: '#ff7e2c',
-    },
-  ],
+  classrooms: [],
 };
 
 const mapStateToProps = state => {

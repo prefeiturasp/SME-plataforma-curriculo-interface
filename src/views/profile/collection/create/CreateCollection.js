@@ -130,64 +130,7 @@ CreateCollection.propTypes = {
 };
 
 CreateCollection.defaultProps = {
-  classrooms: [
-    {
-      color: '#70b279',
-      level: 'EJA',
-      name: '[2018] Ciências Naturais',
-      school: 'EMEF Maria da Silva',
-      year: '1A',
-    },
-    {
-      color: '#70b279',
-      level: 'EF',
-      name: '[2018] Ciências Naturais',
-      school: 'EMEF João de Deus',
-      year: '2D',
-    },
-    {
-      color: '#70b279',
-      level: 'EJA',
-      name: '[2018] História',
-      school: 'EMEF Maria da Silva',
-      year: '1A',
-    },
-    {
-      color: '#70b279',
-      level: 'EF',
-      name: '[2018] Matemática',
-      school: 'EMEF João de Deus',
-      year: '2D',
-    },
-    {
-      color: '#70b279',
-      level: 'EF',
-      name: '[2018] Matemática',
-      school: 'EMEF João de Deus',
-      year: '3A',
-    },
-    {
-      color: '#70b279',
-      level: 'EJA',
-      name: '[2018] Matemática',
-      school: 'EMEF Maria da Silva',
-      year: '3A',
-    },
-    {
-      color: '#70b279',
-      level: 'EJA',
-      name: '[2017] Ciências Naturais',
-      school: 'EMEF Maria da Silva',
-      year: '1A',
-    },
-    {
-      color: '#70b279',
-      level: 'EF',
-      name: '[2017] Ciências Naturais',
-      school: 'EMEF João de Deus',
-      year: '2D',
-    },
-  ],
+  classrooms: [],
 };
 
 const mapStateToProps = state => {
