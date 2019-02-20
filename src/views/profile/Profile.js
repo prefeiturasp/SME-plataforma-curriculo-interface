@@ -7,12 +7,10 @@ import BodyActions from 'actions/BodyActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import CollectionList from './collections/CollectionList';
 import EmptyList from './collections/EmptyList';
-import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ProfileActions from 'actions/ProfileActions';
 import createModalLink from 'utils/createModalLink';
 import withWidth from 'components/hoc/withWidth';
-import chevronRight from 'images/chevrons/right.svg';
 import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
@@ -46,23 +44,12 @@ class Profile extends Component {
     const contents =
       numCollections > 0 ? <CollectionList items={items} /> : <EmptyList />;
 
-    const notification = true ? (
-      <Notification
-        text="Você completou 3 sequências de atividades recentemente. Avalie agora e nos ajude a construir novos conteúdos."
-        labelNo="Agora não"
-        labelYes="Avaliar sequência"
-        onClickedYes={this.onClickedRate}
-      />
-    ) : null;
-
     const size = this.props.windowWidth < 768 ? 60 : 80;
 
     const linkEdit = createModalLink('/perfil/editar');
-    const linkClassrooms = createModalLink('/perfil/turmas');
-
+    
     return (
       <Page>
-        {notification}
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
@@ -87,10 +74,6 @@ class Profile extends Component {
               <em>{numComponents}</em> {wordComponents}
             </div>
           </div>
-          <NavLink className="btnSmall btnFullWidth" to={linkClassrooms}>
-            Ver minhas turmas
-            <img src={chevronRight} alt="" />
-          </NavLink>
         </header>
         {contents}
       </Page>
