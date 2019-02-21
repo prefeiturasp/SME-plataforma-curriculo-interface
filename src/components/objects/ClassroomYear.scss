@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   align-items: center;
@@ -11,7 +11,8 @@
   font-size: rem(11);
   font-weight: bold;
   line-height: rem(18);
-  margin: rem(1);
+  margin-right: rem(2);
+  margin-bottom: rem(2);
   width: rem(34);
   height: rem(34);
 }

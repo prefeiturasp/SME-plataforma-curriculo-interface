@@ -1,0 +1,39 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  border-bottom: 1px solid $grey-200;
+  color: $grey-600;
+  display: flex;
+  font-size: rem(13);
+  justify-content: flex-start;
+  line-height: rem(18);
+  padding-top: rem(16);
+  padding-bottom: rem(16);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.info {
+  margin-left: rem(20);
+}
+
+.name {
+  margin-bottom: rem(8);
+}
+
+.list {
+  margin: 0;
+}
+
+@include mq("tablet-landscape") {
+  .info {
+    align-items: center;
+    display: flex;
+    flex-grow: 10;
+    justify-content: space-between;
+  }
+}

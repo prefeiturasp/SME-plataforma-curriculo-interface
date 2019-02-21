@@ -1,8 +1,7 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .list {
-  flex: 1;
   overflow-y: scroll;
   padding: rem(16);
 }

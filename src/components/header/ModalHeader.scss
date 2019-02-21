@@ -1,0 +1,44 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  margin-bottom: rem(16);
+  padding: rem(15);
+  position: relative;
+  text-align: center;
+
+  h1 {
+    color: black;
+    font-size: rem(28);
+    line-height: rem(36);
+    margin: 0;
+  }
+}
+
+.btnBack {
+  position: absolute;
+  left: rem(15);
+  top: rem(21);
+}
+
+.btnClose {
+  display: none;
+  position: absolute;
+  right: rem(15);
+  top: rem(21);
+}
+
+@include mq("tablet-landscape") {
+  .wrapper {
+    border-bottom: 1px solid $grey-200;
+    margin-bottom: 0;
+  }
+
+  .btnBack {
+    display: none;
+  }
+
+  .btnClose {
+    display: block;
+  }
+}

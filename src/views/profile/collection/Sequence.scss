@@ -1,0 +1,136 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  background: white;
+  border-radius: rem(4);
+  font-size: rem(13);
+  line-height: rem(18);
+  margin-bottom: rem(10);
+}
+
+.item {
+  align-items: stretch;
+  background: white;
+  display: flex;
+}
+
+.image,
+.initials {
+  flex-shrink: 0;
+  width: rem(100);
+  height: rem(100%);
+}
+
+.image {
+  > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.initials {
+  align-items: center;
+  background: $grey-300;
+  color: $grey-600;
+  display: flex;
+  font-size: 5rem;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.info {
+  align-items: center;
+  display: flex;
+  flex-grow: 10;
+  padding: rem(10) rem(15);
+
+  > a {
+    color: black;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  > button {
+    margin-left: auto;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  justify-content: center;
+
+  > h3 {
+    font-size: rem(14);
+    line-height: rem(19);
+    margin: 0;
+  }
+
+  > h4 {
+    font-size: inherit;
+    font-weight: 600;
+    line-height: inherit;
+    margin: 0;
+  }
+}
+
+.bar {
+  border-top: 1px solid $grey-200;
+  display: flex;
+  justify-content: space-between;
+
+  > span {
+    padding: rem(10);
+
+    > img {
+      margin-right: rem(10);
+    }
+  }
+
+  > a {
+    font-weight: bold;
+    padding: rem(10);
+    text-transform: uppercase;
+  }
+}
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: rem(275);
+    margin-bottom: rem(34);
+  }
+
+  .item {
+    flex-direction: column;
+  }
+
+  .image,
+  .initials {
+    width: auto;
+    height: rem(160);
+  }
+
+  .text {
+    margin-right: rem(16);
+  }
+
+  .bar {
+    margin-top: auto;
+
+    > span {
+      align-items: center;
+      display: flex;
+    }
+
+    > a {
+      text-align: right;
+    }
+  }
+}

@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loading from './Loading';
-import styles from './AppLoading.css';
+import styles from './AppLoading.scss';
 
 class AppLoading extends React.PureComponent {
   render() {
-    const classes = this.props.isVisible ? [styles.wrapper, styles.isVisible] : [styles.wrapper];
+    const classes = this.props.isVisible
+      ? [styles.wrapper, styles.isVisible]
+      : [styles.wrapper];
 
     return (
       <div className={classes.join(' ')}>

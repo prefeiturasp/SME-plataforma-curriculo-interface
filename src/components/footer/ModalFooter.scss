@@ -1,0 +1,19 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  background: white;
+  border-top: 1px solid $grey-200;
+  display: flex;
+  justify-content: center;
+  min-height: rem(75);
+  padding: rem(12);
+  position: relative;
+}
+
+.button {
+  composes: btn from global;
+  font-size: rem(15);
+  line-height: 1;
+  padding: rem(18) rem(26);
+}

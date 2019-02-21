@@ -1,0 +1,28 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  color: $grey-600;
+  display: flex;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5625rem;
+  padding: 0;
+  text-align: left;
+}
+
+.wrapper:hover {
+  text-decoration: underline;
+}
+
+.wrapper > img {
+  margin-left: 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    justify-content: space-between;
+    width: 100%;
+  }
+}

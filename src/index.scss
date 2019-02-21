@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 * {
   box-sizing: border-box;
@@ -17,7 +17,7 @@ button,
 input,
 select,
 textarea {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 1.2;
 }
 
@@ -46,49 +46,64 @@ hr {
   margin: 0;
 }
 
+a {
+  color: $grey-600;
+}
+
 a:hover {
   color: black;
   text-decoration: none;
 }
 
 :global(.btn),
-:global(.btnBig),
+:global(.btnSmall),
 :global(.btnFullWidth) {
-  border: 1px solid $grey-200;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: rem(4);
   color: black;
-  display: flex;
+  display: inline-flex;
   font-size: rem(12);
   font-weight: bold;
   justify-content: center;
+  line-height: rem(16);
   padding: rem(14) rem(16);
   text-transform: uppercase;
 
-  > i,
   > img {
-    margin-right: 0.5rem;
+    padding-left: rem(8);
+    padding-right: rem(8);
+  }
+
+  @include mq("tablet-landscape") {
+    font-size: rem(15);
+    line-height: rem(20);
+    padding: rem(18) rem(26);
   }
 }
 
-:global(.btnBig) {
-  font-size: rem(15);
-  padding: rem(18) rem(26);
+:global(.btnSmall) {
+  font-size: rem(12) !important;
+  line-height: rem(16) !important;
+  padding: rem(15) rem(26) !important;
 }
 
 :global(.btnFullWidth) {
+  display: flex;
   width: 100%;
 }
 
 :global(.tooltip) {
-  font-size: 0.8125rem;
+  font-size: rem(13);
   font-weight: normal;
-  line-height: 1.15;
-  max-width: 15rem;
-  padding: 0.8125rem 1.25rem;
+  line-height: rem(16);
+  max-width: rem(240);
+  min-width: rem(120);
+  padding: rem(13) rem(20);
 
   > strong {
     display: block;
-    font-size: 0.9375rem;
+    font-size: rem(15);
     font-weight: normal;
     margin-bottom: 1rem;
   }
@@ -100,6 +115,8 @@ a:hover {
 
 :global(.ql-image-wrapper) {
   margin-bottom: rem(30);
+  max-width: 100%;
+  width: 100% !important;
 
   > img {
     margin-bottom: rem(8);
@@ -126,24 +143,33 @@ a:hover {
   font-size: rem(16);
   line-height: rem(21);
 
-  h1 { font-size: 1.875rem; margin-bottom: 2rem; }
-  h2 { font-size: 1.3125rem; }
-  h3 { font-size: 1.125rem; }
-  
+  h1 {
+    font-size: 1.875rem;
+    margin-bottom: 2rem;
+  }
+  h2 {
+    font-size: 1.3125rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+  }
+
   h4 {
     font-size: rem(16);
     line-height: rem(36);
     margin-bottom: rem(8);
   }
 
-  hr { margin: 2rem 0; }
+  hr {
+    margin: 2rem 0;
+  }
 
   blockquote {
     background-color: #e0e0e0;
     border-radius: 0.25rem;
     font-style: italic;
-    margin-top: 2.1875rem; 
-    margin-bottom: 2.1875rem; 
+    margin-top: 2.1875rem;
+    margin-bottom: 2.1875rem;
     padding: 1.25rem;
   }
 
@@ -163,26 +189,26 @@ a:hover {
 
     > li {
       counter-increment: ol-counter;
-    } 
+    }
   }
 
   ul > li:before {
     color: $grey-600;
-    content: '\2022';
+    content: "\2022";
     display: inline-block;
     margin-right: rem(18);
     text-indent: 0;
   }
-  
+
   ol > li:before {
     content: counter(ol-counter) ". ";
     display: inline-block;
     margin-right: rem(11);
     text-indent: 0;
   }
-  
+
   br {
-    content: '';
+    content: "";
     display: block;
     margin-bottom: 1.5rem;
   }
@@ -202,5 +228,87 @@ a:hover {
       font-style: normal;
       text-decoration: underline;
     }
+  }
+
+  table {
+    br,
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include mq("tablet-landscape", max) {
+  :global(.modal) {
+    background-color: white;
+    border-radius: rem(4);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    z-index: 120;
+  }
+
+  :global(.modalIn) {
+    transition: left 0.3s ease-in-out;
+    left: 0;
+  }
+
+  :global(.modalOut) {
+    transition: left 0.3s ease-in-out;
+    left: 100%;
+  }
+}
+
+@include mq("tablet-landscape") {
+  :global(.react-router-modal__wrapper) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 130;
+  }
+
+  :global(.modal) {
+    background-color: white;
+    border-radius: rem(4);
+    opacity: 0;
+    position: relative;
+  }
+
+  :global(.modalIn) {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+  }
+
+  :global(.modalOut) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+
+  :global(.backdrop) {
+    background-color: black;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  :global(.backdropIn) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0.5;
+  }
+
+  :global(.backdropOut) {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
   }
 }
