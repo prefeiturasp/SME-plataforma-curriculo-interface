@@ -1,5 +1,5 @@
-@import "~variables.scss";
-@import "~tools.scss";
+@import '~variables.scss';
+@import '~tools.scss';
 
 .wrapper {
   background-color: #e9ebf3;
@@ -15,6 +15,7 @@
 
   > ul,
   > ol {
+    
     > li {
       margin-bottom: rem(16);
     }

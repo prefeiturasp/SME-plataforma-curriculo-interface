@@ -4,13 +4,10 @@ import GridItemBase from './GridItemBase';
 
 const mapDispatchToProps = dispatch => {
   return {
-    togglePreview: id => {
+    togglePreview: (id) => {
       dispatch(SequencesActions.togglePreview(id));
     },
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(GridItemBase);
+export default connect(null, mapDispatchToProps)(GridItemBase);

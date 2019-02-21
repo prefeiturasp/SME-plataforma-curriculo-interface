@@ -1,5 +1,175 @@
-@import "~variables.scss";
-@import "~tools.scss";
+@import '~variables.scss';
+@import '~tools.scss';
+
+.wrapper {
+  
+}
+
+:global(.sticky-inner-wrapper) {
+  z-index: 100;
+
+  :global(.active) & {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.sequence {
+  align-items: center;
+  background: white;
+  display: flex;
+  justify-content: flex-start;
+  padding: rem(15);
+
+  div {
+    padding: rem(10);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(100% - 80px - 48px);
+  }
+
+  p {
+    color: $grey-500;
+    font-size: rem(11);
+    margin: 0;
+  }
+
+  h1 {
+    display: inline-block;
+    font-size: rem(16);
+    margin: 0;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+.sequenceImage {
+  object-fit: cover;
+  width: rem(60);
+  height: rem(42);
+}
+
+.header {
+  p {
+    color: $grey-500;
+    font-size: rem(15);
+    margin-bottom: rem(4);
+  }
+
+  h1 {
+    font-size: rem(24);
+    line-height: rem(33);
+    margin-bottom: rem(12);
+  }
+}
+
+.banner {
+  margin-bottom: rem(12);
+  position: relative;
+  width: 100%;
+  height: rem(190);
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    position: absolute;
+    left: rem(15);
+    bottom: rem(14);
+  }
+}
+
+.image {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.duration {
+  align-items: center;
+  color: $grey-200;
+  font-size: rem(12);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: rem(17);
+  bottom: rem(13);
+
+  > img {
+    margin-right: rem(8);
+  }
+
+  > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > em {
+      color: white;
+      font-size: rem(14);
+      font-style: normal;
+    }
+  }
+}
+
+.info {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-left: rem(15);
+  padding-right: rem(15);
+}
+
+.btnSave {
+  align-items: center;
+  color: $grey-600;
+  display: flex;
+  flex-direction: column;
+  font-size: rem(12);
+  justify-content: center;
+  position: absolute;
+  right: rem(15);
+  
+  > img {
+    margin-bottom: rem(4);
+  }
+}
+
+.btnInfo {
+  composes: btn from global;
+  justify-content: center;
+  margin: 0 rem(15) rem(40) rem(15);
+}
+
+.btnPrint {
+  composes: btn from global;
+  display: none;
+}
+
+.title {
+  color: $grey-200;
+  font-weight: 600;
+  margin-bottom: 0.8125rem;
+
+  > button {
+    color: $grey-200;
+    margin-left: 0.25rem;
+  }
+}
+
+.description {
+  composes: col-md-8 from global;
+  composes: offset-md-2 from global;
+  composes: quill-text from global;
+  margin-left: 0;
+  margin-right: 0;
+}
 
 .arrows {
   composes: container from global;
@@ -9,21 +179,22 @@
 
 .next,
 .prev {
-  color: $grey-600;
+  color: #6a6a6a;
   font-size: 0.9375rem;
   font-weight: 600;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
 
-  > img {
-    border: 1px solid $grey-200;
-    border-radius: 3rem;
-    line-height: 3rem;
-    padding: 0.9375rem;
-    width: 3rem;
-    height: 3rem;
-    text-align: center;
-  }
+.next > img,
+.prev > img {
+  border: 1px solid #e0e0e0;
+  border-radius: 3rem;
+  line-height: 3rem;
+  padding: 0.9375rem;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
 }
 
 .next > img {
@@ -46,6 +217,16 @@
 }
 
 @include mq("tablet-portrait") {
+  .btnPrint {
+    display: flex;
+  }
+
+  .description {
+    margin-top: 2.1875rem;
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
+
   .next,
   .prev {
     font-size: 1.125rem;

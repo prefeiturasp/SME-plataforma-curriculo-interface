@@ -8,7 +8,10 @@ class ModuleLongText extends React.PureComponent {
     return (
       <div className={styles.wrapper}>
         <h4>{this.props.title}</h4>
-        <ReadMore lines={15} children={this.props.text} />
+        <ReadMore
+          lines={15}
+          children={this.props.text}
+        />
       </div>
     );
   }

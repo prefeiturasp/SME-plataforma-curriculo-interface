@@ -1,0 +1,27 @@
+.wrapper,
+.wrapper a {
+  align-items: center;
+  display: flex;
+  color: #6a6a6a;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper a:hover {
+  text-decoration: none;
+}
+
+.wrapper a:hover div:last-child {
+  text-decoration: underline;
+}
+
+.wrapper div:first-child {
+  border-radius: 2rem;
+  border: 1px solid #e0e0e0;
+  line-height: 1.8rem;
+  margin-right: 0.5rem;
+  text-align: center;
+  min-width: 2rem;
+  height: 2rem;
+}

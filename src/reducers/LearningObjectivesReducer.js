@@ -8,10 +8,18 @@ const initialState = {
 };
 
 function LearningObjectivesReducer(state = initialState, action) {
-  switch (action.type) {
+  switch(action.type) {
+    case LearningObjectivesActions.LOAD:
+      return {
+        ...state,
+      };
+
     case LearningObjectivesActions.LOADED:
       const filters = [];
-      const keys = ['years', 'curricular_components'];
+      const keys = [
+        'years',
+        'curricular_components',
+      ];
 
       keys.forEach(key => {
         const list = action.data[key];
@@ -44,7 +52,7 @@ function LearningObjectivesReducer(state = initialState, action) {
         ...state,
         results: [],
       };
-
+    
     case LearningObjectivesActions.LOADED_RESULTS:
       return {
         ...state,
@@ -57,16 +65,13 @@ function LearningObjectivesReducer(state = initialState, action) {
         ...state,
         isShowingResults: false,
       };
-
+      
     case LearningObjectivesActions.TOGGLE_FILTER:
       return {
         ...state,
         filters: state.filters.map(item => {
           const name1 = item.name || item.title || item.description;
-          const name2 =
-            action.filter.name ||
-            action.filter.title ||
-            action.filter.description;
+          const name2 = action.filter.name || action.filter.title || action.filter.description;
           if (item.type === action.filter.type && name1 === name2) {
             return {
               ...item,
@@ -75,12 +80,12 @@ function LearningObjectivesReducer(state = initialState, action) {
           } else {
             return item;
           }
-        }),
+        })
       };
 
     default:
       return state;
-  }
+  }  
 }
 
 export default LearningObjectivesReducer;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loading from 'components/loading/Loading';
-import styles from './ResultsLoading.scss';
+import styles from './ResultsLoading.css';
 
 class ResultsLoading extends Component {
   render() {

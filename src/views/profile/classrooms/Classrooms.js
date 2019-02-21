@@ -1,38 +1,132 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import DesktopModal from 'components/layout/DesktopModal';
-import ModalPage from 'components/layout/ModalPage';
-import School from './School';
-import ModalHeader from 'components/header/ModalHeader';
+import ModalPage from 'components/ModalPage';
+import SchoolItem from './SchoolItem';
+import SimpleHeader from 'components/SimpleHeader';
 import styles from './Classrooms.scss';
 
 class Classrooms extends Component {
   render() {
-    const { schools } = this.props;
+    const schools = [
+      {
+        name: 'EMEF João de Deus',
+        classrooms: [
+          {
+            year: '2D',
+            name: '2o ano D',
+            level: 'EF',
+            components: [
+              {
+                color: '#66ac70',
+                name: 'Ciências Naturais',
+              },
+              {
+                color: '#ff007d',
+                name: 'Matemática',
+              },
+            ],
+          },
+          {
+            year: '3A',
+            name: '3o ano A',
+            level: 'EJA',
+            components: [
+              {
+                color: '#ff007d',
+                name: 'Matemática',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'EMEF Maria da Silva',
+        classrooms: [
+          {
+            year: '1A',
+            name: '1o ano A',
+            level: 'EF',
+            components: [
+              {
+                color: '#66ac70',
+                name: 'Ciências Naturais',
+              },
+              {
+                color: '#ff7e2c',
+                name: 'História',
+              },
+            ],
+          },
+          {
+            year: '3A',
+            name: '3o ano A',
+            level: 'EJA',
+            components: [
+              {
+                color: '#ff007d',
+                name: 'Matemática',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        name: 'EMEF Maria da Silva',
+        classrooms: [
+          {
+            year: '1A',
+            name: '1o ano A',
+            level: 'EF',
+            components: [
+              {
+                color: '#66ac70',
+                name: 'Ciências Naturais',
+              },
+              {
+                color: '#ff7e2c',
+                name: 'História',
+              },
+            ],
+          },
+          {
+            year: '3A',
+            name: '3o ano A',
+            level: 'EJA',
+            components: [
+              {
+                color: '#ff007d',
+                name: 'Matemática',
+              },
+            ],
+          },
+        ],
+      },
+    ];
 
     const items = schools.map((school, i) => {
       return (
-        <School key={i} name={school.name} classrooms={school.classrooms} />
+        <SchoolItem
+          key={i}
+          name={school.name}
+          classrooms={school.classrooms}
+        />
       );
     });
 
     return (
-      <DesktopModal>
-        <ModalPage>
-          <ModalHeader title="Minhas turmas" />
-          <div className={styles.list}>{items}</div>
-        </ModalPage>
-      </DesktopModal>
+      <ModalPage>
+        <SimpleHeader
+          back={true}
+          title="Minhas turmas"
+        />
+        <div className={styles.list}>
+          {items}
+        </div>
+      </ModalPage>
     );
   }
 }
 
 Classrooms.propTypes = {
-  schools: PropTypes.array.isRequired,
-};
-
-Classrooms.defaultProps = {
-  schools: [],
 };
 
 export default Classrooms;

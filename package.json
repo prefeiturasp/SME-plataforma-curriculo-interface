@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.6.0",
-    "@material-ui/icons": "^3.0.2",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -19,6 +18,13 @@
     "css-loader": "0.28.7",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "eslint": "4.10.0",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-flowtype": "2.39.1",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-react": "7.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
@@ -35,6 +41,8 @@
     "quill-delta-to-html": "^0.10.6",
     "raf": "3.4.0",
     "react": "^16.3.2",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-animate-height": "^2.0.7",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
     "react-headroom": "^2.2.2",
@@ -44,8 +52,6 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-ga": "^1.0.0",
-    "react-router-modal": "^2.0.0-rc2",
-    "react-scroll": "^1.7.10",
     "react-stickynode": "^2.1.0",
     "react-tooltip": "^3.6.0",
     "react-truncate": "^2.4.0",
@@ -63,9 +69,7 @@
   "scripts": {
     "start": "PORT=5000 node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
-    "prettier-js": "./node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"src/**/*.js\"",
-    "prettier-css": "./node_modules/.bin/prettier --write \"src/**/*.scss\""
+    "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -110,15 +114,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "eslint": "^5.10.0",
-    "eslint-config-react-app": "^3.0.5",
-    "eslint-loader": "^2.1.1",
-    "eslint-plugin-flowtype": "^3.2.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1",
     "node-sass": "^4.10.0",
-    "prettier": "1.15.3",
     "sass-loader": "^7.1.0"
   }
 }

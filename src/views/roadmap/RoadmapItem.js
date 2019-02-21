@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import iconClockBig from 'images/icons/clockBig.svg';
-import iconPublished from 'images/icons/published.svg';
-import styles from './RoadmapItem.scss';
+import iconClockBig from 'images/icon/clockBig.svg';
+import iconPublished from 'images/icon/published.svg';
+import styles from './RoadmapItem.css';
 
 class RoadmapItem extends Component {
   render() {
     const isToRight = this.props.index % 2 === 0;
 
-    const classes = isToRight
-      ? [styles.wrapper, styles.isToRight]
-      : [styles.wrapper];
+    const classes = isToRight ? [styles.wrapper, styles.isToRight] : [styles.wrapper];
 
     const isPublished = this.props.data.status === 'Executado';
     const icon = isPublished ? iconPublished : iconClockBig;
     const alt = isPublished ? 'Publicado' : 'Em breve';
     const soon = !isPublished ? null : (
-      <div className={styles.soon}>{this.props.data.status}</div>
+      <div className={styles.soon}>
+        {this.props.data.status}
+      </div>
     );
 
     return (
-      <div className={classes.join(' ')}>
+      <li className={classes.join(' ')}>
         <div className={styles.middle}>
           <div className={styles.line} />
           <img src={icon} alt={alt} />
@@ -30,7 +30,7 @@ class RoadmapItem extends Component {
           <h2>{this.props.data.title}</h2>
           <p>{this.props.data.description}</p>
         </div>
-      </div>
+      </li>
     );
   }
 }

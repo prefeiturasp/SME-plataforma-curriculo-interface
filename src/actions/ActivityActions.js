@@ -1,9 +1,10 @@
+import BodyActions from './BodyActions';
 import { API_URL } from 'data/constants';
 
 const ActivityActions = {
   LOAD: 'ActivityActions.LOAD',
   LOADED: 'ActivityActions.LOADED',
-
+  
   load(slug1, slug2) {
     const url = `${API_URL}/api/sequencias/${slug1}/atividades/${slug2}`;
 
@@ -13,16 +14,18 @@ const ActivityActions = {
         slug2,
         type: ActivityActions.LOAD,
       });
-      fetch(url).then(response => {
-        response.json().then(data => {
-          dispatch({
-            data,
-            slug1,
-            slug2,
-            type: ActivityActions.LOADED,
-          });
+      fetch(url)
+        .then(response => {
+          response.json().then(data => {
+            dispatch({ type: BodyActions.HIDE_LOADING });
+            dispatch({
+              data,
+              slug1,
+              slug2,
+              type: ActivityActions.LOADED,
+            });
+          })
         });
-      });
     };
   },
 };

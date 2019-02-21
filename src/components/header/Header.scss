@@ -1,12 +1,11 @@
-@import "~variables.scss";
-@import "~tools.scss";
+@import '~variables.scss';
+@import '~tools.scss';
 
 .wrapper {
   align-items: center;
   border-bottom: 1px solid $grey-200;
   color: $grey-800;
   display: flex;
-  height: rem(72);
   justify-content: space-between;
   padding: 0.5rem 0.9375rem;
   position: relative;
@@ -59,17 +58,17 @@
 }
 
 .logoImage {
-  background-image: url(images/logo.svg);
+  background-image: url(./images/logo.svg);
   margin-right: 0.8125rem;
   width: rem(33);
   height: rem(55);
 
   :global(.isHome) & {
-    background-image: url(images/logoWhite.svg);
+    background-image: url(./images/logoWhite.svg);
   }
 
   :global(.headroom--pinned) & {
-    background-image: url(images/logo.svg);
+    background-image: url(./images/logo.svg);
   }
 }
 
@@ -77,14 +76,8 @@
   display: none;
 }
 
-.mobile {
-  align-items: center;
-  display: flex;
-}
-
 .toggler {
   background-image: url(./images/menu.svg);
-  margin-left: rem(20);
   width: rem(40);
   height: rem(21);
 
@@ -97,22 +90,9 @@
   }
 }
 
-.avatar {
-  align-items: center;
-  display: flex;
-
-  > img {
-    display: none;
-    margin-left: rem(8);
-    opacity: 0.7;
-    width: rem(12);
-  }
-}
-
 :global(.isHome) {
   .wrapper,
   .menu > a,
-  .menu > button,
   .logo {
     color: white;
   }
@@ -125,7 +105,6 @@
 :global(.headroom--pinned) {
   .wrapper,
   .menu > a,
-  .menu > button,
   .logo {
     color: $grey-800;
   }
@@ -137,31 +116,19 @@
   }
 
   .menu {
-    align-items: center;
-    display: flex;
+    display: block;
 
-    > a,
-    > button {
+    > a {
       color: black;
-      font-size: rem(15);
+      font-size: 0.9375rem;
       font-weight: bold;
-      padding: 0 rem(15);
+      padding: 0 0.9375rem;
       text-transform: uppercase;
     }
-
-    > div {
-      margin: 0 rem(15);
-    }
   }
 
-  .mobile {
+  .toggler {
     display: none;
-  }
-
-  .avatar {
-    > img {
-      display: inline;
-    }
   }
 }
 
@@ -173,7 +140,7 @@
   }
 
   .menu,
-  .mobile {
+  .toggler {
     display: none;
   }
 }

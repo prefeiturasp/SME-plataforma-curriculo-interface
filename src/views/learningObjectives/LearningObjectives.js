@@ -5,25 +5,25 @@ import { connect } from 'react-redux';
 import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import AlertActions from 'actions/AlertActions';
 import BodyActions from 'actions/BodyActions';
-import Chip from 'components/objects/Chip';
-import CurricularComponent from './CurricularComponent';
-import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
+import CurricularComponentButton from './CurricularComponentButton';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
 import Loading from 'components/loading/Loading';
-import Page from 'components/layout/Page';
+import Page from 'components/Page';
 import YearButton from './YearButton';
-import withWidth from 'components/hoc/withWidth';
-import chevronLeft from 'images/chevrons/left.svg';
-import iconCloseBig from 'images/icons/closeBig.svg';
-import iconWarning from 'images/icons/warning.svg';
-import styles from './LearningObjectives.scss';
+import getWindowWidth from 'utils/getWindowWidth';
+import chevronLeft from 'images/chevron/left.svg';
+import iconCloseBig from 'images/icon/closeBig.svg';
+import iconWarning from 'images/icon/warning.svg';
+import styles from './LearningObjectives.css';
 
 class LearningObjectives extends Component {
   refFilters = React.createRef();
   refLoading = React.createRef();
   refResults = React.createRef();
   tl = new TimelineLite();
-  target = null;
+  target= null;
 
   onClickedBack = () => {
     this.props.hideResults();
@@ -32,40 +32,38 @@ class LearningObjectives extends Component {
     this.tl.clear();
     this.tl.to(this.refResults.current, 0.2, { opacity: 0, display: 'none' });
     this.tl.to(this.refFilters.current, 0.2, { opacity: 1, display: 'block' });
-  };
+  }
 
   onClickedClose = () => {
     clearAllBodyScrollLocks();
     this.props.hideObjectives();
-  };
+  }
 
   onClickedNext = () => {
     const activeFilters = this.props.filters.filter(item => item.isActive);
-    if (activeFilters.length) {
+    if (activeFilters.length > 0) {
       this.props.search(activeFilters);
-
+      
       this.tl.kill();
       this.tl.clear();
       this.tl.to(this.refFilters.current, 0.2, { opacity: 0, display: 'none' });
       this.tl.to(this.refLoading.current, 0.2, { opacity: 1, display: 'flex' });
-
-      if (this.props.windowWidth < 768) {
+      
+      if (getWindowWidth() < 768) {
         disableBodyScroll(this.target);
       }
     } else {
-      this.props.showAlert(
-        'Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.'
-      );
+      this.props.showAlert('Selecione pelo menos um ano ou componente curricular para encontrar objetivos de aprendizagem.');
     }
-  };
+  }
 
   onClickedSee = () => {
     this.props.showObjectives();
-
-    if (this.props.windowWidth < 768) {
+    
+    if (getWindowWidth() < 768) {
       disableBodyScroll(this.target);
     }
-  };
+  }
 
   componentDidMount() {
     this.props.load();
@@ -78,10 +76,7 @@ class LearningObjectives extends Component {
       this.tl.clear();
       this.tl.to(this.refFilters.current, 0.1, { opacity: 0, display: 'none' });
       this.tl.to(this.refLoading.current, 0.2, { opacity: 0, display: 'none' });
-      this.tl.to(this.refResults.current, 0.2, {
-        opacity: 1,
-        display: 'block',
-      });
+      this.tl.to(this.refResults.current, 0.2, { opacity: 1, display: 'block' });
     }
   }
 
@@ -93,154 +88,143 @@ class LearningObjectives extends Component {
     const yearButtons = this.props.filters
       .filter(item => item.type === 'years')
       .map((item, i) => {
-        return <YearButton key={i} data={item} />;
+        return (
+          <YearButton key={i} data={item} />
+        );
       });
 
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
-        return <CurricularComponent key={i} data={item} />;
+        return (
+          <CurricularComponentButton key={i} data={item} />
+        );
       });
 
     const selectedFiltersButtons = this.props.filters
       .filter(item => item.isActive)
       .map((item, i) => {
-        return <Chip key={i} data={item} />;
+        return (
+          <GenericItem key={i} data={item} />
+        );
       });
 
-    const learningObjectivesItems = this.props.results.map((item, i) => {
-      return <ExpandableLearningObjective key={i} data={item} hasLink={true} />;
-    });
+    const learningObjectivesItems = this.props.results
+      .map((item, i) => {
+        return (
+          <ExpandableLearningObjectiveItem key={i} data={item} hasLink={true} />
+        );
+      });
 
-    const classes1 =
-      this.props.isShowingObjectives || this.props.windowWidth >= 768
-        ? [styles.objectives, styles.isVisible]
-        : [styles.objectives];
-    const classes2 =
-      this.props.isShowingResults || this.props.windowWidth >= 768
-        ? [styles.results, styles.isVisible]
-        : [styles.results];
-
+    const totalWidth = getWindowWidth();
+    const classes1 = this.props.isShowingObjectives || totalWidth >= 768 ? [styles.objectives, styles.isVisible] : [styles.objectives];
+    const classes2 = this.props.isShowingResults || totalWidth >= 768 ? [styles.results, styles.isVisible] : [styles.results];
+    
     return (
       <Page>
-        <section className={styles.wrapper} id="learningObjectives">
-          <header className={styles.header}>
+      <section className={styles.wrapper} id="learningObjectives">
+        <header className={styles.header}>
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <h1>Objetivos de Aprendizagem e Desenvolvimento</h1>
+              <p>O Currículo da Cidade optou por utilizar a terminologia Objetivos de Aprendizagem e Desenvolvimento para designar o conjunto de saberes que os estudantes da Rede Municipal de Ensino devem desenvolver ao longo do Ensino Fundamental. No Currículo da Cidade, os objetivos de aprendizagem e desenvolvimento orientam-se pela Educação Integral a partir da matriz de saberes e indicam o que os estudantes devem alcançar a cada ano como resultado das experiências de ensino e de aprendizagem intencionalmente previstas para esse fim.</p>
+            </div>
+          </div>
+        </header>
+        <hr />
+        <div className={styles.example}>
+          <div className="row">
+            <div className="col-md-8 offset-md-2">
+              <h2>No Currículo da Cidade, os objetivos de aprendizagem e desenvolvimento estão identificados por uma sigla:</h2>
+              <div className={styles.code}>
+                <span className={styles.code1}>E</span>
+                <span className={styles.code1}>F</span>
+                <span className={styles.code2}>0</span>
+                <span className={styles.code2}>X</span>
+                <span className={styles.code3}>C</span>
+                <span className={styles.code4}>X</span>
+                <span className={styles.code4}>X</span>
+              </div>
+              <p>
+                <strong>EF</strong> Ensino Fundamental;<br />
+                <strong>0X</strong> Ano de Escolaridade;<br />
+                <strong>CXX</strong> Componente curricular Ciências Naturais seguido da sequência de objetivos de aprendizagem e desenvolvimento desse componente.
+              </p>
+              <button className={styles.btnObjectives} onClick={this.onClickedSee}>
+                Ver os objetivos relacionados
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div className={classes1.join(' ')}>
+          <div className={styles.objectivesTitle1}>
+            <div className="col-md-8 offset-md-2">
+              <h2>Conheça os objetivos</h2>
+            </div>
+          </div>
+          <div ref={this.refFilters}>
+            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
             <div className="row">
-              <div className="col-md-8 offset-md-2">
-                <h1>Objetivos de Aprendizagem e Desenvolvimento</h1>
-                <p>
-                  O Currículo da Cidade optou por utilizar a terminologia
-                  Objetivos de Aprendizagem e Desenvolvimento para designar o
-                  conjunto de saberes que os estudantes da Rede Municipal de
-                  Ensino devem desenvolver ao longo do Ensino Fundamental. No
-                  Currículo da Cidade, os objetivos de aprendizagem e
-                  desenvolvimento orientam-se pela Educação Integral a partir da
-                  matriz de saberes e indicam o que os estudantes devem alcançar
-                  a cada ano como resultado das experiências de ensino e de
-                  aprendizagem intencionalmente previstas para esse fim.
-                </p>
+              <div className="col-md-4 offset-md-2">
+                <div className={styles.pickYear}>
+                  <h3>Escolha o ano</h3>
+                  <h4>Ciclo de alfabetização</h4>
+                  <ul className={styles.buttons}>
+                    {yearButtons}
+                  </ul>
+                  <p className={styles.warning}>
+                    <img src={iconWarning} alt="Observação" />
+                    <span>Em breve, estão disponíveis sequências para todos os os ciclos do Ensino Fundamental.</span>
+                  </p>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className={styles.pickCurricularComponent}>
+                  <h3>Escolha o Componente Curricular</h3>
+                  <ul className={styles.buttons}>
+                    {componentButtons}
+                  </ul>
+                </div>
               </div>
             </div>
-          </header>
-          <hr />
-          <div className={styles.example}>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <h2>
-                  No Currículo da Cidade, os objetivos de aprendizagem e
-                  desenvolvimento estão identificados por uma sigla:
-                </h2>
-                <div className={styles.code}>
-                  <span className={styles.code1}>E</span>
-                  <span className={styles.code1}>F</span>
-                  <span className={styles.code2}>0</span>
-                  <span className={styles.code2}>X</span>
-                  <span className={styles.code3}>C</span>
-                  <span className={styles.code4}>X</span>
-                  <span className={styles.code4}>X</span>
-                </div>
-                <p>
-                  <strong>EF</strong> Ensino Fundamental;
-                  <br />
-                  <strong>0X</strong> Ano de Escolaridade;
-                  <br />
-                  <strong>CXX</strong> Componente curricular Ciências Naturais
-                  seguido da sequência de objetivos de aprendizagem e
-                  desenvolvimento desse componente.
-                </p>
-                <button
-                  className={styles.btnObjectives}
-                  onClick={this.onClickedSee}
-                >
-                  Ver os objetivos relacionados
+                <button className={styles.next} onClick={this.onClickedNext}>
+                  Avançar
                 </button>
               </div>
             </div>
+            <button className={styles.close} onClick={this.onClickedClose}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
           </div>
-          <hr />
-          <div className={classes1.join(' ')}>
-            <div className={styles.objectivesTitle1}>
+          <div ref={this.refLoading} className={styles.loading}>
+            <Loading />
+          </div>
+          <div ref={this.refResults} className={classes2.join(' ')}>
+            <h2 className={styles.objectivesTitle2}>Objetivos</h2>
+            <div className="row">
               <div className="col-md-8 offset-md-2">
-                <h2>Conheça os objetivos</h2>
+                <button className={styles.back} onClick={this.onClickedBack}>
+                  <img src={chevronLeft} alt="Voltar" />
+                  Voltar
+                </button>
+                <p>Ano e componente(s) selecionado(s):</p>
+                <ul>
+                  {selectedFiltersButtons}
+                </ul>
+                <ul>
+                  {learningObjectivesItems}
+                </ul>
               </div>
             </div>
-            <div ref={this.refFilters}>
-              <h2 className={styles.objectivesTitle2}>Objetivos</h2>
-              <div className="row">
-                <div className="col-md-4 offset-md-2">
-                  <div className={styles.pickYear}>
-                    <h3>Escolha o ano</h3>
-                    <h4>Ciclo de alfabetização</h4>
-                    <div className={styles.buttons}>{yearButtons}</div>
-                    <p className={styles.warning}>
-                      <img src={iconWarning} alt="Observação" />
-                      <span>
-                        Em breve, estão disponíveis sequências para todos os os
-                        ciclos do Ensino Fundamental.
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className={styles.pickCurricularComponent}>
-                    <h3>Escolha o Componente Curricular</h3>
-                    <div className={styles.buttons}>{componentButtons}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-8 offset-md-2">
-                  <button className={styles.next} onClick={this.onClickedNext}>
-                    Avançar
-                  </button>
-                </div>
-              </div>
-              <button className={styles.close} onClick={this.onClickedClose}>
-                <img src={iconCloseBig} alt="Fechar" />
-              </button>
-            </div>
-            <div ref={this.refLoading} className={styles.loading}>
-              <Loading />
-            </div>
-            <div ref={this.refResults} className={classes2.join(' ')}>
-              <h2 className={styles.objectivesTitle2}>Objetivos</h2>
-              <div className="row">
-                <div className="col-md-8 offset-md-2">
-                  <button className={styles.back} onClick={this.onClickedBack}>
-                    <img src={chevronLeft} alt="Voltar" />
-                    Voltar
-                  </button>
-                  <p>Ano e componente(s) selecionado(s):</p>
-                  <div>{selectedFiltersButtons}</div>
-                  <div>{learningObjectivesItems}</div>
-                </div>
-              </div>
-              <button className={styles.close} onClick={this.onClickedBack}>
-                <img src={iconCloseBig} alt="Fechar" />
-              </button>
-            </div>
+            <button className={styles.close} onClick={this.onClickedBack}>
+              <img src={iconCloseBig} alt="Fechar" />
+            </button>
           </div>
-        </section>
+        </div>
+      </section>
       </Page>
     );
   }
@@ -280,10 +264,10 @@ const mapDispatchToProps = dispatch => {
     hideResults: () => {
       dispatch(LearningObjectivesActions.hideResults());
     },
-    openAlert: message => {
+    openAlert: (message) => {
       dispatch(AlertActions.open(message));
     },
-    search: filters => {
+    search: (filters) => {
       dispatch(LearningObjectivesActions.search(filters));
     },
     showObjectives: () => {
@@ -292,7 +276,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withWidth(LearningObjectives));
+export default connect(mapStateToProps, mapDispatchToProps)(LearningObjectives);

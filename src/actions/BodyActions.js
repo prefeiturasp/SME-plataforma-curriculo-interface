@@ -3,7 +3,7 @@ const BodyActions = {
   SHOW_LOADING: 'BodyActions.SHOW_LOADING',
   HIDE_MOBILE_MENU: 'BodyActions.HIDE_MOBILE_MENU',
   SHOW_MOBILE_MENU: 'BodyActions.SHOW_MOBILE_MENU',
-
+  
   hideLoading() {
     return { type: BodyActions.HIDE_LOADING };
   },

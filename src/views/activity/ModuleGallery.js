@@ -11,22 +11,22 @@ class ModuleGallery extends Component {
     isFading: false,
   };
 
-  onSlide = index => {
+  onSlide = (index) => {
     this.setState({
       ...this.state,
       isFading: true,
     });
     setTimeout(this.onSlide1, 400, index);
-  };
+  }
 
-  onSlide1 = index => {
+  onSlide1 = (index) => {
     this.setState({
       index,
       isFading: false,
     });
-  };
+  }
 
-  renderItem = item => {
+  renderItem = (item) => {
     return (
       <img
         className={styles.item}
@@ -34,7 +34,7 @@ class ModuleGallery extends Component {
         alt={item.originalAlt || item.description}
       />
     );
-  };
+  }
 
   renderLeftNav = (onClick, disabled) => {
     return (
@@ -45,7 +45,7 @@ class ModuleGallery extends Component {
         onClick={onClick}
       />
     );
-  };
+  }
 
   renderRightNav = (onClick, disabled) => {
     return (
@@ -56,7 +56,7 @@ class ModuleGallery extends Component {
         onClick={onClick}
       />
     );
-  };
+  }
 
   render() {
     const items = this.props.images.map(image => {
@@ -67,15 +67,13 @@ class ModuleGallery extends Component {
     });
 
     const { isFading, index } = this.state;
-    const classes = isFading
-      ? [styles.description, styles.isFading]
-      : [styles.description];
+    const classes = isFading ? [styles.description, styles.isFading] : [styles.description];
     const description = items[index].description;
 
     return (
       <div className={styles.wrapper}>
         <ImageGallery
-          ref={ref => (this.gallery = ref)}
+          ref={ref => this.gallery = ref}
           items={items}
           onSlide={this.onSlide}
           renderItem={this.renderItem}
@@ -86,7 +84,9 @@ class ModuleGallery extends Component {
           showThumbnails={false}
           slideDuration={300}
         />
-        <div className={[classes.join(' ')]}>{description}</div>
+        <div className={[classes.join(' ')]}>
+          {description}
+        </div>
       </div>
     );
   }

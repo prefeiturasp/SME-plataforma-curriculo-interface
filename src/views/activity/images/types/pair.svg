@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="15px" viewBox="0 0 28 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>group icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 13 0 13 4 0 4"></polygon>
+    </defs>
+    <g id="Telas" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="SME-Atividades-1" transform="translate(-1100.000000, -268.000000)">
+            <g id="detalhe" transform="translate(1019.000000, 238.000000)">
+                <g id="group-icon" transform="translate(81.000000, 30.000000)">
+                    <path d="M12,5.00023124 C12,7.76118022 9.76128376,10 7,10 C4.23871624,10 2,7.76118022 2,5.00023124 C2,2.2383573 4.23871624,0 7,0 C9.76128376,0 12,2.2383573 12,5.00023124 Z" id="Fill-8" fill="#000000"></path>
+                    <path d="M8.44044048,11 L4.55955952,11 C2.0369869,11 0,12.787234 0,15 L13,15 C13,12.787234 10.9630131,11 8.44044048,11" id="Fill-10" fill="#000000"></path>
+                    <path d="M21,0 C23.7617462,0 26,2.2383573 26,5.00023124 C26,7.76118022 23.7617462,10 21,10 C18.2387162,10 16,7.76118022 16,5.00023124 C16,2.2383573 18.2387162,0 21,0" id="Fill-12" fill="#000000"></path>
+                    <g id="Group-16" transform="translate(15.000000, 11.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Clip-15"></g>
+                        <path d="M8.53496583,0 L4.5587016,0 C2.03686667,0 0,1.78723404 0,4 L12.9966738,4 C13.0936674,1.78723404 11.0568008,0 8.53496583,0" id="Fill-14" fill="#000000" mask="url(#mask-2)"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

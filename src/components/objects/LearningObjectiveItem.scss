@@ -1,9 +1,0 @@
-@import "~variables.scss";
-@import "~tools.scss";
-
-.wrapper {
-  @include pill;
-  border: 1px solid $grey-200;
-  min-width: rem(96);
-  text-align: center;
-}

@@ -1,43 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from 'data/constants';
 import ActivityActions from 'actions/ActivityActions';
-import ActivityChars from './chars/ActivityChars';
-import ActivityCharsMobile from './chars/ActivityCharsMobile';
 import BodyActions from 'actions/BodyActions';
-import Cover from 'views/sequence/Cover';
+import ExpandableLearningObjectiveItem from 'components/objects/ExpandableLearningObjectiveItem';
+import GenericItem from 'components/objects/GenericItem';
 import ModuleExercise from './ModuleExercise';
 import ModuleGallery from './ModuleGallery';
 import ModuleLongText from './ModuleLongText';
 import ModuleQuestion from './ModuleQuestion';
 import ModuleStudent from './ModuleStudent';
-import ModuleTextWithTables from './ModuleTextWithTables';
 import ModuleTeacher from './ModuleTeacher';
-import Page from 'components/layout/Page';
-import SequenceActions from 'actions/SequenceActions';
-import SequencePreview from './SequencePreview';
-import Title from 'views/sequence/Title';
-import Tooltips from 'components/Tooltips';
+import Page from 'components/Page';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import isLogged from 'data/isLogged';
-import arrowLeft from 'images/arrows/left.svg';
-import arrowRight from 'images/arrows/right.svg';
-import styles from 'views/sequence/Sequence.scss';
-import styles1 from './Activity.scss';
+import getActivityTypeIcon from './getActivityTypeIcon';
+import getWindowWidth from 'utils/getWindowWidth';
+import arrowLeft from 'images/arrow/left.svg';
+import arrowRight from 'images/arrow/right.svg';
+import iconClock from 'images/icon/clock.svg';
+import iconHelp from 'images/icon/help.svg';
+import iconPrint from 'images/icon/print.svg';
+import styles from './Activity.css';
 
 class Activity extends Component {
-  state = {
-    isCharsExpanded: false,
-  };
+  state = { isShowingAllLearningObjectives: false };
 
-  onClickedChars = () => {
-    this.setState({
-      isCharsExpanded: !this.state.isCharsExpanded,
-    });
-  };
+  onClickedAllLearningObjectives = () => {
+    this.setState({ isShowingAllLearningObjectives: true });
+  }
+
+  onResized = () => {
+    const totalWidth = getWindowWidth();
+    this.setState({ totalWidth });
+  }
+
+  componentWillMount() {
+    this.onResized();
+  }
 
   componentDidMount() {
+    window.addEventListener('resize', this.onResized);
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
   }
@@ -50,17 +55,89 @@ class Activity extends Component {
     }
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResized);
+  }
+
   render() {
     if (this.props.data == null) {
       return <span />;
     }
 
-    const { data, isSaved } = this.props;
+    const data = this.props.data;
     const sequence = data.activity_sequence;
+
+    const filters = [
+      <GenericItem key={0} data={{name: sequence.year}} />,
+      <GenericItem key={1} data={sequence.main_curricular_component} />,
+    ];
+
+    let duration = null;
+    if (data.estimated_time) {
+      const word = data.estimated_time > 1 ? 'aulas' : 'aula';
+      const durationText = `${data.estimated_time} ${word}`;
+      duration = (
+        <div className={styles.duration}>
+          <img src={iconClock} alt="Número de aulas" />
+          <strong>{durationText}</strong>
+          (Tempo estimado)
+        </div>
+      )
+    }
+
+    const learningObjectivesTitle = data.learning_objectives.length > 0 ? (
+      <div className={styles.title}>
+        Objetivos de aprendizagem
+        <button data-tip data-for="tooltipLearningObjectives">
+          <img src={iconHelp} alt="Ajuda" />
+        </button>
+      </div>
+    ) : null;
+
+    const learningObjectivesList = this.state.isShowingAllLearningObjectives ? data.learning_objectives : data.learning_objectives.slice(0, 3);
+
+    const learningObjectives = learningObjectivesList.map((item, i) => {
+      return (
+        <ExpandableLearningObjectiveItem key={i} data={item} isExpanded={i === 0} />
+      );
+    });
+
+    const btnAllLearningObjectives = learningObjectivesList.length === data.learning_objectives.length ? null : (
+      <button className={styles.btnAllLearningObjectives} onClick={this.onClickedAllLearningObjectives.bind(this)}>
+        Ver Todos os Objetivos
+      </button>
+    );
+
+    const iconsItems = data.activity_types.map((item, i) => {
+      const icon = getActivityTypeIcon(item.name);
+      return (
+        <li key={i}>
+          <img src={icon} alt={item.name} />
+          <div>{item.name}</div>
+        </li>
+      );
+    });
+    const icons = (
+      <ul className={styles.icons}>
+        {iconsItems}
+      </ul>
+    );
+    const icons1 = this.state.totalWidth < 992 ? null : icons;
+    const icons2 = this.state.totalWidth < 992 ? icons : null;
+
+    const cover = data.image_attributes.default_url ? (
+      <div className="container">
+        <img
+          className={styles.cover}
+          src={API_URL + data.image_attributes.default_url}
+          srcSet={`${API_URL}${data.image_attributes.large.url}, ${API_URL}${data.image_attributes.extra_large.url} 2x`}
+          alt={data.title} />
+      </div>
+    ) : null;
 
     const contentBlocks = data.content_blocks
       ? data.content_blocks.map((block, i) => {
-          switch (block.type) {
+          switch(block.type) {
             case 'to_teacher':
               return (
                 <ModuleTeacher
@@ -107,29 +184,38 @@ class Activity extends Component {
               );
 
             case 'gallery':
-              return <ModuleGallery key={i} images={block.images} />;
+              return (
+                <ModuleGallery
+                  key={i}
+                  images={block.images}
+                />
+              );
 
             default:
-              return <ModuleTextWithTables key={i} data={block.content.body} />;
+              return (
+                <div
+                  key={i}
+                  dangerouslySetInnerHTML={{__html: convertQuillToHtml(block.content.body)}}
+                />
+              );
           }
         })
       : null;
 
-    const linkPrev = `/atividade/${sequence.slug}/${data.last_activity}`;
-    const linkNext = `/atividade/${sequence.slug}/${data.next_activity}`;
-    const linkSequence = `/sequencia/${sequence.slug}`;
+    const linkPrint = `/imprimir/sequencia/${sequence.slug}/atividade/${this.props.match.params.slug2}`;
+    const linkPrev = `/sequencia/${sequence.slug}/atividade/${data.last_activity}`;
+    const linkNext = `/sequencia/${sequence.slug}/atividade/${data.next_activity}`;
+    const link = `/sequencia/${sequence.slug}`;
 
     const arrowPrev = data.last_activity ? (
-      <NavLink className={styles1.prev} to={linkPrev}>
+      <NavLink className={styles.prev} to={linkPrev}>
         <img src={arrowLeft} alt="Seta" />
         Atividade {data.sequence - 1}
       </NavLink>
-    ) : (
-      <span />
-    );
+    ) : <span />;
 
     const arrowNext = data.next_activity ? (
-      <NavLink className={styles1.next} to={linkNext}>
+      <NavLink className={styles.next} to={linkNext}>
         Atividade {data.sequence + 1}
         <img src={arrowRight} alt="Seta" />
       </NavLink>
@@ -137,47 +223,68 @@ class Activity extends Component {
 
     return (
       <Page>
-        <section className={styles.wrapper}>
-          <SequencePreview isInActivity isSaved={isSaved} sequence={sequence} />
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12 col-lg-8">
-                <Cover data={data} sequence={sequence} />
-                <Title
-                  slug={sequence.slug}
-                  text={`Atividade ${data.sequence}`}
-                  title={data.title}
-                />
-                <button
-                  className={styles.btnChars}
-                  onClick={this.onClickedChars}
-                >
-                  Ver características
-                </button>
-                <div className={styles.description}>{contentBlocks}</div>
-              </div>
-              <div className={styles.chars}>
-                <ActivityChars data={this.props.data} />
-              </div>
+      <section className={styles.wrapper}>
+        <div className={styles.header}>
+          <div>
+            <h3>Atividade {data.sequence}</h3>
+            <h1>{data.title}</h1>
+            <h2>Sequência didática: {sequence.title}</h2>
+          </div>
+          <NavLink className="btn" to={linkPrint}>
+            <img src={iconPrint} alt="Imprimir" />
+            Imprimir
+          </NavLink>
+        </div>
+        <div className={styles.infos}>
+          <div className="row">
+            <div className="col-sm-12 col-md-6 col-lg-3">
+              <ul>
+                {filters}
+              </ul>
+              {duration}
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-6">
+              {learningObjectivesTitle}
+              <ul>
+                {learningObjectives}
+              </ul>
+              {btnAllLearningObjectives}
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-2 offset-lg-1">
+              {icons1}
             </div>
           </div>
-          <hr />
-          <div className={styles1.arrows}>
-            {arrowPrev}
-            {arrowNext}
+        </div>
+        {cover}
+        {icons2}
+        <hr />
+        <div className="container">
+          <div className="row">
+            <div className={styles.description}>
+              {contentBlocks}
+            </div>
           </div>
-          <div className={styles1.footer}>
-            <NavLink className={styles1.back} to={linkSequence}>
-              Voltar para a sequência
-            </NavLink>
-          </div>
-          <ActivityCharsMobile
-            data={this.props.data}
-            isExpanded={this.state.isCharsExpanded}
-            onBack={this.onClickedChars}
-          />
-          <Tooltips />
-        </section>
+        </div>
+        <hr />
+        <div className={styles.arrows}>
+          {arrowPrev}
+          {arrowNext}
+        </div>
+        <div className={styles.footer}>
+          <NavLink className={styles.back} to={link}>
+            Voltar para a sequência
+          </NavLink>
+        </div>
+        <ReactTooltip
+          place="bottom"
+          type="dark"
+          effect="solid"
+          id="tooltipLearningObjectives"
+          className="tooltip">
+          <strong>O que são os objetivos de aprendizagem?</strong>
+          <p>O desenvolvimento que procura satisfazer as necessidades da geração atual, sem comprometer a capacidades das gerações futuras de satisfazerem as suas próprias necessidades.</p>
+        </ReactTooltip>
+      </section>
       </Page>
     );
   }
@@ -185,7 +292,6 @@ class Activity extends Component {
 
 Activity.propTypes = {
   data: PropTypes.object,
-  isSaved: PropTypes.bool,
   load: PropTypes.func.isRequired,
 };
 
@@ -200,7 +306,6 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     data: state.ActivityReducer[slug],
-    isSaved: state.SequenceReducer.isSaved,
   };
 };
 
@@ -209,14 +314,8 @@ const mapDispatchToProps = dispatch => {
     load: (slug1, slug2) => {
       dispatch(BodyActions.showLoading());
       dispatch(ActivityActions.load(slug1, slug2));
-      if (isLogged()) {
-        dispatch(SequenceActions.loadCollections(slug1));
-      }
     },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Activity);
+export default connect(mapStateToProps, mapDispatchToProps)(Activity);

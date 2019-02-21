@@ -1,53 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
-import { history } from 'index';
-import Classroom from './Classroom';
-import CollectionActions from 'actions/CollectionActions';
-import DesktopModal from 'components/layout/DesktopModal';
-import ModalPage from 'components/layout/ModalPage';
-import ModalFooter from 'components/footer/ModalFooter';
-import ModalHeader from 'components/header/ModalHeader';
+import ClassroomItem from './ClassroomItem';
+import ModalPage from 'components/ModalPage';
+import SimpleFooter from 'components/SimpleFooter';
+import SimpleHeader from 'components/SimpleHeader';
 import styles from './EditCollection.scss';
 
 class EditCollection extends Component {
   state = {
-    hasEdited: false,
-    name: '',
+    name: 'Favoritos',
   };
 
-  componentDidMount() {
-    if (this.props.data.name) {
-      this.setState({
-        ...this.state,
-        name: this.props.data.name,
-      });
-    } else {
-      this.props.load(this.props.match.params.id);
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.data.name !== this.props.data.name) {
-      this.setState({
-        ...this.state,
-        name: this.props.data.name,
-      });
-    }
-  }
-
-  onChangedName = e => {
+  onChangedName = (e) => {
     this.setState({
-      hasEdited: true,
       name: e.target.value,
     });
-  };
+  }
 
   onClickedSave = () => {
-    this.props.edit(this.props.match.params.id, this.state.name);
-    history.goBack();
-  };
+
+  }
 
   render() {
     const classrooms = [
@@ -111,7 +83,7 @@ class EditCollection extends Component {
 
     const items = classrooms.map((classroom, i) => {
       return (
-        <Classroom
+        <ClassroomItem
           key={i}
           color={classroom.color}
           level={classroom.level}
@@ -122,59 +94,39 @@ class EditCollection extends Component {
       );
     });
 
-    const isInvalid = this.state.hasEdited && this.state.name.length <= 0;
+    const isInvalid = this.state.name.length <= 0;
     const message = isInvalid ? 'Campo obrigatório' : '';
 
     return (
-      <DesktopModal>
-        <ModalPage>
-          <ModalHeader title="Editar coleção" />
-          <header className={styles.header}>
-            <TextField
-              error={isInvalid}
-              fullWidth={true}
-              helperText={message}
-              inputRef={input => (input ? input.focus() : null)}
-              label="Nome da coleção"
-              onChange={this.onChangedName}
-              value={this.state.name}
-            />
-          </header>
-          <div className={styles.list}>
-            <h3>Selecionar turmas (opcional)</h3>
-            {items}
-          </div>
-          <ModalFooter label="Salvar alterações" onClick={this.onClickedSave} />
-        </ModalPage>
-      </DesktopModal>
+      <ModalPage>
+        <SimpleHeader
+          back={true}
+          title="Editar coleção"
+        />
+        <header className={styles.header}>
+          <TextField
+            error={isInvalid}
+            fullWidth={true}
+            helperText={message}
+            label="Nome da coleção"
+            onChange={this.onChangedName}
+            value={this.state.name}
+          />
+        </header>
+        <div className={styles.list}>
+          <h3>Selecionar turmas (opcional)</h3>
+          {items}
+        </div>
+        <SimpleFooter
+          label="Salvar alterações"
+          onClick={this.onClickedSave}
+        />
+      </ModalPage>
     );
   }
 }
 
 EditCollection.propTypes = {
-  data: PropTypes.object.isRequired,
-  edit: PropTypes.func.isRequired,
-  load: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
-  return {
-    data: state.CollectionReducer.data,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    edit: (id, name) => {
-      dispatch(CollectionActions.edit(id, name));
-    },
-    load: id => {
-      dispatch(CollectionActions.load(id));
-    },
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditCollection);
+export default EditCollection;

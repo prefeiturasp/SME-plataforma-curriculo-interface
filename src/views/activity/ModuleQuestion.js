@@ -7,10 +7,14 @@ class ModuleQuestion extends React.PureComponent {
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>
-          <div className={styles.number}>{this.props.number}</div>
-          <h4>{this.props.title}</h4>
+          <div className={styles.number}>
+            {this.props.number}
+          </div>
+          <h4>
+            {this.props.title}
+          </h4>
         </div>
-        <div dangerouslySetInnerHTML={{ __html: this.props.text }} />
+        <div dangerouslySetInnerHTML={{__html: this.props.text}} />
       </div>
     );
   }

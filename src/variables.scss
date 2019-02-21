@@ -2,20 +2,17 @@ $breakpoints: (
   "mobile": 375px,
   "mobile-large": 540px,
   "tablet-portrait": 768px,
-  "tablet-landscape": 992px,
-  "desktop": 1200px,
-  "tv": 1920px
+  "tablet-landscape": 1024px,
+  "desktop": 1280px,
+  "tv": 1920px,
 );
 
 $color-blue: #2f3e81;
-$color-cerulean: #01add2;
-$color-turquoise: #3bd2da;
-$color-turquoise-medium: #4dd1db;
+$color-turquoise: #4dd1db;
 
 $grey-050: #f6f6f6;
 $grey-100: #ededed;
 $grey-200: #e0e0e0;
-$grey-300: #cccccc;
 $grey-500: #808080;
 $grey-600: #6a6a6a;
 $grey-700: #3a3a3a;

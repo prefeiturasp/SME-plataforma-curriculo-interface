@@ -4,21 +4,21 @@ import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
-import Bar from './bar/Bar';
-import Filters from './filters/Filters';
+import FilterBar from './filters/FilterBar';
+import FilterPanel from './filters/FilterPanel';
 import GridItem from './GridItem';
 import Loading from 'components/loading/Loading';
-import Page from 'components/layout/Page';
+import Page from 'components/Page';
 import ResultsLoading from './ResultsLoading';
 import ResultsNotFound from './ResultsNotFound';
-import styles from './Sequences.scss';
+import styles from './Sequences.css';
 
 class Sequences extends Component {
   state = { windowHeight: 1000 };
 
   onClickedLoadMore = () => {
     this.props.loadMore(this.props.nextPage);
-  };
+  }
 
   componentDidMount() {
     this.setState({
@@ -31,71 +31,78 @@ class Sequences extends Component {
         type: 'sustainable_development_goals',
         id: parseInt(params.ods, 10),
       });
-    } else if (params.mds) {
+    }
+    else if (params.mds) {
       this.props.loadWithFilter({
         type: 'knowledge_matrices',
         id: parseInt(params.mds, 10),
       });
-    } else if (params.oda) {
+    }
+    else if (params.oda) {
       this.props.loadWithFilter({
         type: 'learning_objectives',
         id: parseInt(params.oda, 10),
       });
-    } else if (
-      this.props.location &&
-      this.props.location.state &&
-      this.props.location.state.isSearch
-    ) {
-      this.props.search();
-    } else {
+    }
+    else {
       this.props.load();
     }
   }
 
   render() {
-    const { data, isSearching, nextPage, totalItems } = this.props;
-
-    const items = data.map((item, i) => {
-      return <GridItem key={i} index={i} data={item} />;
+    const items = this.props.data.map((item, i) => {
+      return (
+        <GridItem
+          key={i}
+          index={i}
+          data={item} />
+      );
     });
 
-    let contents = <ResultsNotFound />;
-
-    if (data.length) {
-      const button = nextPage ? (
+    if (this.props.data.length) {
+      const button = this.props.nextPage ? (
         <button className={styles.load} onClick={this.onClickedLoadMore}>
           Carregar mais
         </button>
       ) : null;
 
-      const loadingOrButton = isSearching ? <Loading /> : button;
+      const loadingOrButton = this.props.isSearching ? <Loading /> : button;
 
-      contents = (
+      return (
+        <Page>
         <section className={styles.wrapper}>
           <div className="container">
-            <h1 className={styles.h1}>Sequências de Atividades</h1>
-            <Bar />
+            <h1>Sequências de Atividades</h1>
+            <h2><strong>{this.props.totalItems}</strong> sequências foram encontradas</h2>
+            <FilterBar />
           </div>
           <hr />
           <div className="container">
-            <Filters />
+            <FilterPanel />
           </div>
           <div className={styles.list}>
             <div className={styles.results}>
-              <h2 className={styles.h2}>
-                <strong>{totalItems}</strong> sequências foram encontradas
-              </h2>
-              <div className="row">{items}</div>
-              <div className={styles.center}>{loadingOrButton}</div>
+              <ul className="row">
+                {items}
+              </ul>
+              <div className={styles.center}>
+                {loadingOrButton}
+              </div>
             </div>
           </div>
         </section>
+        </Page>
       );
-    } else if (isSearching) {
-      contents = <ResultsLoading height={this.state.windowHeight} />;
     }
-
-    return <Page>{contents}</Page>;
+    else if (this.props.isSearching) {
+      return (
+        <ResultsLoading height={this.state.windowHeight} />
+      );
+    }
+    
+    return (
+      <ResultsNotFound />
+    );
   }
 }
 
@@ -104,9 +111,7 @@ Sequences.propTypes = {
   isSearching: PropTypes.bool.isRequired,
   nextPage: PropTypes.string,
   totalItems: PropTypes.number,
-  search: PropTypes.func.isRequired,
   load: PropTypes.func.isRequired,
-  loadMore: PropTypes.func.isRequired,
   loadWithFilter: PropTypes.func.isRequired,
 };
 
@@ -126,22 +131,15 @@ const mapDispatchToProps = dispatch => {
       dispatch(FiltersActions.clearFilters());
       dispatch(SequencesActions.load());
     },
-    loadMore: page => {
+    loadMore: (page) => {
       dispatch(SequencesActions.loadMore(page));
     },
-    loadWithFilter: data => {
+    loadWithFilter: (data) => {
       dispatch(FiltersActions.clearFilters());
       dispatch(FiltersActions.cacheFilter(data));
       dispatch(SequencesActions.loadWithFilter(data));
-    },
-    search: () => {
-      dispatch(BodyActions.showLoading());
-      dispatch(SequencesActions.search());
-    },
+    }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Sequences);
+export default connect(mapStateToProps, mapDispatchToProps)(Sequences);

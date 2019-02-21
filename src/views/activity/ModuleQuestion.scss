@@ -1,5 +1,5 @@
-@import "~variables.scss";
-@import "~tools.scss";
+@import '~variables.scss';
+@import '~tools.scss';
 
 .wrapper {
   margin-bottom: rem(30);
@@ -13,7 +13,7 @@
     font-weight: normal;
     line-height: inherit;
     margin: 0;
-  }
+  }  
 }
 
 .number {
