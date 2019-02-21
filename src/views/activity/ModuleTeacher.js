@@ -7,7 +7,7 @@ class ModuleTeacher extends React.PureComponent {
     return (
       <div className={styles.wrapper}>
         <h4>Professor(a):</h4>
-        <div dangerouslySetInnerHTML={{__html: this.props.text}} />
+        <div dangerouslySetInnerHTML={{ __html: this.props.text }} />
       </div>
     );
   }

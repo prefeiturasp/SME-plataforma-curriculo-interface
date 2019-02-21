@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import BodyActions from 'actions/BodyActions';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
-import KnowledgeMatrixButton from './KnowledgeMatrixButton';
-import Page from 'components/Page';
-import styles from './KnowledgeMatrix.css';
+import Button from './Button';
+import Page from 'components/layout/Page';
+import styles from './KnowledgeMatrix.scss';
 
 class KnowledgeMatrix extends Component {
   componentDidMount() {
@@ -14,34 +14,38 @@ class KnowledgeMatrix extends Component {
 
   render() {
     const items = this.props.data.map((item, i) => {
-      return (
-        <KnowledgeMatrixButton key={i} data={item} />
-      );
+      return <Button key={i} data={item} />;
     });
 
     return (
       <Page>
-      <section className={styles.wrapper}>
-        <header className={styles.header}>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <h1>Matriz de Saberes</h1>
-              <p>A Matriz de Saberes tem como propósito:</p>
-              <p>Formar cidadão éticos, responsáveis e solidários que fortaleçam uma sociedade mais inclusiva, de mocrática, próspera e sustável.</p>
-              <p>A Matriz de Saberes indica o que crianças, adolescentes e jovens devem aprender e desenvolver ao longo dos seus anos de escolaridade.</p>
+        <section className={styles.wrapper}>
+          <header className={styles.header}>
+            <div className="row">
+              <div className="col-md-8 offset-md-2">
+                <h1>Matriz de Saberes</h1>
+                <p>A Matriz de Saberes tem como propósito:</p>
+                <p>
+                  Formar cidadão éticos, responsáveis e solidários que
+                  fortaleçam uma sociedade mais inclusiva, de mocrática,
+                  próspera e sustável.
+                </p>
+                <p>
+                  A Matriz de Saberes indica o que crianças, adolescentes e
+                  jovens devem aprender e desenvolver ao longo dos seus anos de
+                  escolaridade.
+                </p>
+              </div>
             </div>
+          </header>
+          <hr />
+          <div className="container">
+            <div className="row">
+              <h2 className="col-md-8 offset-md-2">Conheça a matriz</h2>
+            </div>
+            <div className="row">{items}</div>
           </div>
-        </header>
-        <hr />
-        <div className="container">
-          <div className="row">
-            <h2 className="col-md-8 offset-md-2">Conheça a matriz</h2>
-          </div>
-          <ul className={styles.list}>
-            {items}
-          </ul>
-        </div>
-      </section>
+        </section>
       </Page>
     );
   }
@@ -67,4 +71,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(KnowledgeMatrix);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(KnowledgeMatrix);

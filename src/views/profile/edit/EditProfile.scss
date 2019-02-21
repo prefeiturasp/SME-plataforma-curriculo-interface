@@ -1,9 +1,15 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .wrapper {
   padding: rem(15);
   padding-bottom: rem(72);
+}
+
+.contents {
+  margin-left: auto;
+  margin-right: auto;
+  width: rem(350);
 }
 
 .center {
@@ -34,7 +40,7 @@
 
 .letter {
   align-items: center;
-  background-color: #3bd2da;
+  background-color: $color-turquoise;
   color: white;
   display: flex;
   font-size: rem(34);
@@ -56,7 +62,7 @@
   font-size: rem(15);
   font-weight: bold;
   text-transform: lowercase;
-  
+
   > label,
   > button {
     background: none;
@@ -84,14 +90,16 @@
   z-index: -1;
 }
 
-.field {
-  margin-bottom: rem(40);
+.field + .field {
+  margin-top: rem(40);
 }
 
 .obs {
   color: $grey-600;
   font-size: rem(13);
   line-height: rem(24);
+  margin-top: rem(12);
+  margin-bottom: rem(26);
 
   > a {
     color: inherit;

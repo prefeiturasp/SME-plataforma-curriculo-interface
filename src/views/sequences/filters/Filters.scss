@@ -1,0 +1,108 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+
+  > div {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    padding-top: rem(30);
+    padding-bottom: rem(30);
+  }
+}
+
+.header {
+  display: none;
+
+  > h1 {
+    color: black;
+    font-size: rem(28);
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.h2 {
+  color: $grey-800;
+  font-size: rem(21);
+  line-height: rem(24);
+  margin: 0;
+  margin-bottom: rem(22);
+}
+
+.h3 {
+  color: black;
+  font-size: rem(18);
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: rem(16);
+}
+
+.row {
+  composes: row from global;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: rem(28);
+}
+
+.categories {
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: rem(20);
+  top: rem(20);
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    height: auto !important;
+    z-index: 70;
+    transition: left 0.3s ease-in-out;
+
+    > div {
+      align-items: stretch;
+      height: 100%;
+      padding: 0;
+    }
+  }
+
+  .header {
+    display: block;
+    padding: rem(16);
+  }
+
+  .row {
+    flex-grow: 10;
+    flex-shrink: 10;
+    overflow-y: auto;
+    padding: rem(8) rem(16);
+  }
+
+  .footer {
+    align-items: center;
+    background: white;
+    border-top: 1px solid $grey-200;
+    display: flex;
+    justify-content: center;
+    padding: rem(12);
+  }
+
+  .isExpanded {
+    left: 0;
+  }
+}

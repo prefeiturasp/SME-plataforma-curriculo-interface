@@ -1,5 +1,5 @@
-@import '~variables.scss';
-@import '~tools.scss';
+@import "~variables.scss";
+@import "~tools.scss";
 
 .buttons {
   display: flex;
@@ -14,7 +14,7 @@
   margin-left: auto;
 }
 
-.header {
+.info {
   color: $grey-600;
   font-size: rem(13);
   line-height: rem(18);
@@ -35,4 +35,23 @@
 .years {
   display: flex;
   margin-left: rem(-1);
+}
+
+@include mq("tablet-portrait") {
+  .header {
+    composes: container from global;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .btnClose {
+    display: none;
+  }
+
+  .info {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

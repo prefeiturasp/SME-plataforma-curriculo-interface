@@ -1,0 +1,135 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  border-bottom: 1px solid $grey-200;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(13) 0;
+  position: relative;
+
+  &.withImage {
+    align-items: flex-end;
+    border-bottom: 0;
+    height: rem(190);
+    margin-left: 0;
+    margin-right: 0;
+    padding: rem(13) rem(16);
+  }
+}
+
+.overlay {
+  display: none;
+
+  .withImage & {
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
+    display: block;
+    position: absolute;
+    height: rem(70);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-left: rem(-3);
+  z-index: 2;
+}
+
+.image {
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.duration {
+  align-items: center;
+  color: $grey-600;
+  font-size: rem(12);
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+
+  > img {
+    margin-right: rem(8);
+  }
+
+  > div {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > em {
+      color: black;
+      font-size: rem(14);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    > span {
+      display: none;
+    }
+  }
+
+  .withImage & {
+    color: $grey-200;
+
+    > div {
+      > em {
+        color: white;
+      }
+    }
+  }
+}
+
+@include mq("tablet-landscape") {
+  .wrapper {
+    &.withImage {
+      height: rem(374);
+    }
+  }
+
+  .duration {
+    color: black;
+    font-size: rem(18);
+    font-weight: 600;
+    line-height: rem(24);
+
+    > div {
+      display: block;
+
+      > em {
+        font-size: inherit;
+      }
+
+      > span {
+        color: $grey-600;
+        display: inline;
+        font-weight: normal;
+      }
+    }
+
+    .withImage & {
+      color: white;
+
+      > div {
+        > span {
+          color: $grey-200;
+        }
+      }
+    }
+  }
+}

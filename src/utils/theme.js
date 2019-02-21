@@ -4,14 +4,28 @@ const theme = createMuiTheme({
   overrides: {
     MuiFormHelperText: {
       root: {
-        bottom: '-18px',
+        bottom: -18,
         position: 'absolute',
       },
     },
     MuiInput: {
       input: {
         fontWeight: 'bold',
-      }
+      },
+    },
+    MuiOutlinedInput: {
+      root: {
+        '&$focused $notchedOutline': {
+          borderColor: '#3bd2da',
+          borderWidth: 1,
+        },
+      },
+    },
+    MuiSelect: {
+      select: {
+        fontSize: 15,
+        fontWeight: 'bold',
+      },
     },
   },
   palette: {

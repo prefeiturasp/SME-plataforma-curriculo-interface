@@ -1,0 +1,120 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  background: white;
+  position: absolute;
+  width: 100%;
+  left: 100%;
+  top: 0;
+  transition: left 0.3s ease-in-out;
+}
+
+.h2 {
+  color: black;
+  font-weight: 600;
+  font-size: rem(18);
+  line-height: rem(22);
+  margin-bottom: rem(12);
+
+  > button {
+    color: $grey-200;
+    margin-left: rem(4);
+  }
+}
+
+.list {
+  height: rem(140);
+  overflow-y: auto;
+}
+
+.images {
+  > button {
+    display: inline-block;
+    margin-right: rem(6);
+    margin-bottom: rem(6);
+  }
+}
+
+.header,
+.footer {
+  display: none;
+}
+
+.header {
+  > h1 {
+    color: black;
+    font-size: rem(28);
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.backArrow {
+  position: absolute;
+  left: rem(16);
+  top: rem(22);
+}
+
+.back {
+  color: $grey-600;
+  font-size: rem(18);
+  font-weight: 600;
+
+  > img {
+    margin-right: rem(8);
+  }
+}
+
+.isShowing {
+  left: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    z-index: 90;
+  }
+
+  .header {
+    display: block;
+    padding: rem(16);
+  }
+
+  .h2 {
+    margin: 0;
+    padding: rem(8) rem(16);
+  }
+
+  .images,
+  .list {
+    flex-grow: 10;
+    flex-shrink: 10;
+    height: auto;
+    overflow-y: auto;
+    padding: rem(8) rem(16);
+  }
+
+  .footer {
+    align-items: center;
+    background: white;
+    border-top: 1px solid $grey-200;
+    display: flex;
+    justify-content: center;
+    padding: rem(12);
+  }
+
+  .back {
+    display: none;
+  }
+
+  .isShowing {
+    left: 0;
+  }
+}

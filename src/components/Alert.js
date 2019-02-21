@@ -1,51 +1,52 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import AlertActions from 'actions/AlertActions';
-import iconClose from 'images/icon/close.svg';
-import iconWarningBig from 'images/icon/warningBig.svg';
+import iconClose from 'images/icons/close.svg';
+import iconWarningBig from 'images/icons/warningBig.svg';
 import styles from './Alert.scss';
 
 Modal.setAppElement('#root');
 
 class Alert extends Component {
+  componentDidMount() {
+    this.target = document.querySelector('#alert');
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.isOpened && !prevProps.isOpened) {
+      disableBodyScroll(this.target);
+    } else if (!this.props.isOpened && prevProps.isOpened) {
+      enableBodyScroll(this.target);
+    }
+  }
+
   render() {
-    const { isOpened, close, message } = this.props;
-    
+    const { close, isOpened, message } = this.props;
+
     return (
-      <Modal
-        className={styles.alert}
-        overlayClassName={styles.overlay}
-        isOpen={isOpened}
-        onRequestClose={close}
-        shouldCloseOnOverlayClick={true}
-      >
-        <button
-          className={styles.close}
-          onClick={close}
+      <div id="alert">
+        <Modal
+          className={styles.alert}
+          overlayClassName={styles.overlay}
+          isOpen={isOpened}
+          onRequestClose={close}
+          shouldCloseOnOverlayClick={true}
         >
-          <img
-            src={iconClose}
-            alt="Fechar"
-          />
-        </button>
-        <p>
-          <img
-            src={iconWarningBig}
-            alt="Atenção"
-          />
-          <span>
-            {message}
-          </span>
-        </p>
-        <button
-          className={styles.ok}
-          onClick={close}
-        >
-          OK
-        </button>
-      </Modal>
+          <button className={styles.btnClose} onClick={close}>
+            <img src={iconClose} alt="Fechar" />
+          </button>
+          <p>
+            <img src={iconWarningBig} alt="Atenção" />
+            <span>{message}</span>
+          </p>
+          <button className={styles.btnOk} onClick={close}>
+            OK
+          </button>
+        </Modal>
+      </div>
     );
   }
 }
@@ -71,4 +72,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Alert);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Alert);

@@ -1,0 +1,68 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+:global(#fullModal) {
+  height: 100%;
+}
+
+:global(.fullModal) {
+  background: white;
+  overflow-y: scroll;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 25%;
+  bottom: 100%;
+  z-index: 110;
+}
+
+:global(.fullModalIn) {
+  bottom: 100%;
+  animation: animMaskIn 0.5s ease-in-out forwards;
+
+  :global(.fullModalHeader) {
+    opacity: 0;
+    animation: animOpacity 0.5s 0.25s ease-in-out forwards;
+  }
+
+  :global(.fullModalContents) {
+    opacity: 0;
+    animation: animOpacity 0.5s 0.5s ease-in-out forwards;
+  }
+}
+
+:global(.fullModalOut) {
+  bottom: 0;
+  animation: animMaskOut 0.5s ease-in-out forwards;
+}
+
+@keyframes animMaskIn {
+  from {
+    top: 25%;
+    bottom: 100%;
+  }
+  to {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+@keyframes animMaskOut {
+  from {
+    top: 0;
+    bottom: 0;
+  }
+  to {
+    top: 25%;
+    bottom: 100%;
+  }
+}
+
+@keyframes animOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

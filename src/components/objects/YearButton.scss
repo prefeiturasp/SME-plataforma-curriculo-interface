@@ -1,0 +1,26 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  border: 1px solid $grey-200;
+  border-radius: rem(4);
+  color: $grey-600;
+  display: inline-flex;
+  font-size: rem(21);
+  justify-content: center;
+  margin-right: rem(5);
+  margin-bottom: rem(5);
+  width: rem(45);
+  height: rem(45);
+
+  &:hover {
+    border-color: $grey-600;
+  }
+
+  &.isActive {
+    background-color: $grey-200;
+    border-color: $grey-200;
+    font-weight: 600;
+  }
+}

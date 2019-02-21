@@ -1,132 +1,79 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import CollectionsList from './collections/CollectionsList';
-import CollectionsNone from './collections/CollectionsNone';
-import Notification from './Notification';
-import Page from 'components/Page';
-import ProfileImage from './ProfileImage';
-import iconEdit from 'images/icon/edit.svg';
+import { connect } from 'react-redux';
+import Avatar from './Avatar';
+import BodyActions from 'actions/BodyActions';
+import CollectionsActions from 'actions/CollectionsActions';
+import CollectionList from './collections/CollectionList';
+import EmptyList from './collections/EmptyList';
+import Page from 'components/layout/Page';
+import ProfileActions from 'actions/ProfileActions';
+import createModalLink from 'utils/createModalLink';
+import withWidth from 'components/hoc/withWidth';
+import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
+  onClickedRate = () => {};
+
+  componentDidMount() {
+    this.props.load();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.data.id && this.props.data.id) {
+      this.props.loadClassrooms();
+      this.props.loadCollections();
+    }
+  }
+
   render() {
-    const collections = [
-      {
-        id: 1,
-        title: '[2018] EF 1A Matemática (1)',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#ff0784',
-            year: '1A',
-          }
-        ],
-      },
-      {
-        id: 2,
-        title: '[2018] EF 1A Matemática (2)',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#ff0784',
-            year: '1A',
-          }
-        ],
-      },
-      {
-        id: 3,
-        title: '[2018] EF 1A Ciências Naturais',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#66ac70',
-            year: '1A',
-          }
-        ],
-      },
-      {
-        id: 4,
-        title: '[2018] EF 1A História',
-        sequences: 2,
-        classrooms: 1,
-        years: [
-          {
-            color: '#66ac70',
-            year: '1A',
-          }
-        ],
-      },
-      {
-        id: 5,
-        title: 'Planeta',
-        sequences: 5,
-        classrooms: 0,
-        years: [],
-      },
-      {
-        id: 6,
-        title: 'Água',
-        sequences: 0,
-        classrooms: 3,
-          years: [
-          {
-            color: '#66ac70',
-            year: '1A',
-          },
-          {
-            color: '#ff0784',
-            year: '1A',
-          }
-        ],
-      },
-    ];
+    const { data, items } = this.props;
+    const { nickname } = data;
 
-    const contents = collections.length > 0
-      ? <CollectionsList items={collections} />
-      : <CollectionsNone />;
+    const numCollections = items.length;
+    const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
 
-    const notification = true
-      ? <Notification />
-      : null;
+    const numClassrooms = data.numClasses;
+    const wordClassrooms = numClassrooms === 1 ? 'turma' : 'turmas';
 
+    const numComponents = data.numComponents;
+    const wordComponents = numComponents === 1 ? 'componente' : 'componentes';
+
+    const contents =
+      numCollections > 0 ? <CollectionList items={items} /> : <EmptyList />;
+
+    const size = this.props.windowWidth < 768 ? 60 : 80;
+
+    const linkEdit = createModalLink('/perfil/editar');
+    
     return (
       <Page>
-        {notification}
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
-              <ProfileImage
-                nickname="Marília"
-                size={60}
-              />
-              <h2>
-                Marília
-              </h2>
+              <Avatar size={size} />
+              <div className={styles.name}>
+                <h2>{nickname}</h2>
+                <NavLink to={linkEdit}>Editar perfil</NavLink>
+              </div>
             </div>
-            <NavLink to="/perfil/editar">
+            <NavLink to={linkEdit}>
               <img src={iconEdit} alt="Editar perfil" />
             </NavLink>
           </div>
           <div className={styles.rowNumbers}>
             <div>
-              <em>6</em> coleções
+              <em>{numCollections}</em> {wordCollections}
             </div>
             <div>
-              <em>6</em> turmas
+              <em>{numClassrooms}</em> {wordClassrooms}
             </div>
             <div>
-              <em>3</em> componentes
+              <em>{numComponents}</em> {wordComponents}
             </div>
           </div>
-          <NavLink
-            className="btnFullWidth"
-            to="/turmas"
-          >
-            Ver minhas turmas
-          </NavLink>
         </header>
         {contents}
       </Page>
@@ -135,6 +82,37 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
+  data: PropTypes.object.isRequired,
+  items: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+  loadClassrooms: PropTypes.func.isRequired,
+  loadCollections: PropTypes.func.isRequired,
 };
 
-export default Profile;
+const mapStateToProps = state => {
+  return {
+    data: state.ProfileReducer,
+    items: state.CollectionsReducer.items,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    load: () => {
+      dispatch(BodyActions.showLoading());
+      // no need to call ProfileActions.load()
+      // because it's already called by Header
+    },
+    loadClassrooms: () => {
+      dispatch(ProfileActions.loadClassrooms());
+    },
+    loadCollections: () => {
+      dispatch(CollectionsActions.load());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withWidth(Profile));

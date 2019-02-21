@@ -2,46 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-import AuthActions from 'actions/AuthActions';
 import BodyActions from 'actions/BodyActions';
-import iconCloseBig from 'images/icon/closeBig.svg';
+import LoginActions from 'actions/LoginActions';
+import MobileModal from 'components/layout/MobileModal';
+import createModalLink from 'utils/createModalLink';
+import isLogged from 'data/isLogged';
+import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './MobileMenu.scss';
 
 class MobileMenu extends React.PureComponent {
   target = null;
 
   onClickedClose = () => {
-    enableBodyScroll(this.target);
     this.props.hideMobileMenu();
-  }
-
-  onClickedLogin = () => {
-    this.props.login();
-  }
+  };
 
   onClickedLogout = () => {
     this.props.logout();
-  }
-  
-  componentDidMount() {
-    this.target = document.querySelector('#mobileMenu');
-    this.props.setup();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.hasMobileMenu && !prevProps.hasMobileMenu) {
-      disableBodyScroll(this.target);
-    }
-  }
-
-  componentWillUnmount() {
-    clearAllBodyScrollLocks();
-  }
+  };
 
   render() {
-    const classes = this.props.hasMobileMenu ? [styles.wrapper, styles.isExpanded] : [styles.wrapper];
-
     const data = [
       {
         to: '/',
@@ -87,66 +67,74 @@ class MobileMenu extends React.PureComponent {
           key={i}
           to={item.to}
           className={klass}
-          onClick={this.onClickedClose}>
+          onClick={this.onClickedClose}
+        >
           {item.label}
         </NavLink>
       );
     });
 
-    const buttons = this.props.hasLogged
-      ? <div>
-          <NavLink
-            to="perfil"
-            className={styles.btn}
-            onClick={this.onClickedClose}
+    const link = createModalLink('/login');
+
+    const buttons = isLogged() ? (
+      <div>
+        <NavLink
+          to="/perfil"
+          className={styles.btn}
+          onClick={this.onClickedClose}
+        >
+          Meu perfil
+        </NavLink>
+        <button className={styles.btn} onClick={this.onClickedLogout}>
+          Sair
+        </button>
+      </div>
+    ) : (
+      <div className={styles.login}>
+        <h3>
+          Salve sequências de atividades.
+          <br />E acesse em qualquer lugar.
+        </h3>
+        <NavLink className={styles.btnLogin} to={link}>
+          Login
+        </NavLink>
+        <p className={styles.obs}>
+          Esta funcionalidade é exclusiva para professores da{' '}
+          <a
+            href="https://sme.prefeitura.sp.gov.br/"
+            target="_blank"
+            rel="noreferrer noopener"
           >
-            Meu perfil
-          </NavLink>
-          <button
-            className={styles.btn}
-            onClick={this.onClickedLogout}
-          >
-            Sair
-          </button>
-        </div>
-      : <div className={styles.login}>
-          <h3>
-            Salve sequências de atividades.
-            <br/>
-            E acesse em qualquer lugar.
-          </h3>
-          <button
-            className={styles.btnLogin}
-            onClick={this.onClickedLogin}
-          >
-            Login
-          </button>
-          <p className={styles.obs}>Esta funcionalidade é exclusiva para professores da <a href="https://sme.prefeitura.sp.gov.br/" target="_blank" rel="noreferrer noopener">Secretaria Municipal de Educação</a> da Prefeitura de São Paulo.</p>
-        </div>;
+            Secretaria Municipal de Educação
+          </a>{' '}
+          da Prefeitura de São Paulo.
+        </p>
+      </div>
+    );
 
     return (
-      <nav className={classes.join(' ')} id="mobileMenu">
-        {links}
-        <button className={styles.close} onClick={this.onClickedClose}>
-          <img src={iconCloseBig} alt="Fechar" />
-        </button>
-      </nav>
+      <MobileModal htmlId="mobileMenu" isExpanded={this.props.hasMobileMenu}>
+        <nav className={styles.wrapper} id="mobileMenu">
+          {links}
+          <hr />
+          {buttons}
+          <button className={styles.close} onClick={this.onClickedClose}>
+            <img src={iconCloseBig} alt="Fechar" />
+          </button>
+        </nav>
+      </MobileModal>
     );
   }
 }
 
 MobileMenu.propTypes = {
-  hasLogged: PropTypes.bool,
   hasMobileMenu: PropTypes.bool,
   hideMobileMenu: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  setup: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    hasLogged: state.AuthReducer.hasLogged,
     hasMobileMenu: state.BodyReducer.hasMobileMenu,
   };
 };
@@ -156,16 +144,13 @@ const mapDispatchToProps = dispatch => {
     hideMobileMenu: () => {
       dispatch(BodyActions.hideMobileMenu());
     },
-    login: () => {
-      dispatch(AuthActions.login());
-    },
     logout: () => {
-      dispatch(AuthActions.logout());
-    },
-    setup: () => {
-      dispatch(AuthActions.setup());
+      dispatch(LoginActions.logout());
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MobileMenu);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MobileMenu);

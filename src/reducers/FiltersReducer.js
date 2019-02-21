@@ -47,6 +47,8 @@ const initialState = {
   filtersExtra: [],
   isExpanded: false,
   isShowingCategory: false,
+  order: 'default',
+  query: '',
 };
 
 function FiltersReducer(state = initialState, action) {
@@ -123,7 +125,19 @@ function FiltersReducer(state = initialState, action) {
         ...state,
         isExpanded: false,
       };
-      
+
+    case FiltersActions.SET_ORDER:
+      return {
+        ...state,
+        order: action.order,
+      };
+
+    case FiltersActions.SET_QUERY:
+      return {
+        ...state,
+        query: action.query,
+      };
+
     default:
       return state;
   }
