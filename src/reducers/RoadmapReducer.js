@@ -1,4 +1,4 @@
-import RoadpmapActions from 'actions/RoadmapActions';
+import RoadmapActions from 'actions/RoadmapActions';
 
 const initialState = {
   items: [],
@@ -6,15 +6,10 @@ const initialState = {
 
 function RoadmapReducer(state = initialState, action) {
   switch (action.type) {
-    case RoadpmapActions.LOAD:
+    case RoadmapActions.LOADED:
       return {
         ...state,
-      };
-
-    case RoadpmapActions.LOADED:
-      return {
-        ...state,
-        items: action.data
+        items: action.data,
       };
 
     default:

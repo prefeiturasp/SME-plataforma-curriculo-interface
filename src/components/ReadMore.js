@@ -15,7 +15,7 @@ class ReadMore extends React.PureComponent {
         truncated,
       });
     }
-  }
+  };
 
   toggleLines = e => {
     e.preventDefault();
@@ -23,7 +23,7 @@ class ReadMore extends React.PureComponent {
     this.setState({
       expanded: !this.state.expanded,
     });
-  }
+  };
 
   render() {
     const { children, more, less, lines } = this.props;
@@ -33,18 +33,18 @@ class ReadMore extends React.PureComponent {
       <div className={styles.text}>
         <Truncate
           lines={!expanded && lines}
-          ellipsis={(
+          ellipsis={
             <span>
               ...
-              <br/>
+              <br />
               <button className={styles.toggler} onClick={this.toggleLines}>
                 {more}
               </button>
             </span>
-          )}
+          }
           onTruncate={this.handleTruncate}
         >
-          <div dangerouslySetInnerHTML={{__html: children}} />
+          <div dangerouslySetInnerHTML={{ __html: children }} />
         </Truncate>
         {!truncated && expanded && (
           <span>
@@ -58,17 +58,17 @@ class ReadMore extends React.PureComponent {
   }
 }
 
-ReadMore.defaultProps = {
-  lines: 3,
-  more: 'Mostrar mais',
-  less: 'Mostrar menos'
-};
-
 ReadMore.propTypes = {
   children: PropTypes.string.isRequired,
   lines: PropTypes.number,
   less: PropTypes.string,
-  more: PropTypes.string
+  more: PropTypes.string,
+};
+
+ReadMore.defaultProps = {
+  lines: 3,
+  more: 'Mostrar mais',
+  less: 'Mostrar menos',
 };
 
 export default ReadMore;

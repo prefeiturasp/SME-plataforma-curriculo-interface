@@ -18,29 +18,37 @@ const FiltersActions = {
   TOGGLE_FILTER: 'FiltersActions.TOGGLE_FILTER',
   TOGGLE_PANEL: 'FiltersActions.TOGGLE_PANEL',
   SEARCH: 'FiltersActions.SEARCH',
-  
+  SET_ORDER: 'FiltersActions.SET_ORDER',
+  SET_QUERY: 'FiltersActions.SET_QUERY',
+
   load() {
-    return Api.simpleGet('/api/filtros', FiltersActions.LOAD, FiltersActions.LOADED);
+    return Api.simpleGet(
+      '/api/filtros',
+      FiltersActions.LOAD,
+      FiltersActions.LOADED
+    );
   },
   hideCategory() {
     return { type: FiltersActions.HIDE_CATEGORY };
   },
   showCategory(category) {
     return (dispatch, getState) => {
-      const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
+      const filters = getState().FiltersReducer.filters.filter(
+        item => item.isActive && isYearOrComponent(item.type)
+      );
 
       if (
-        (
-          category.slug === 'axes' ||
-          category.slug === 'learning_objectives'
-        ) &&
+        (category.slug === 'axes' || category.slug === 'learning_objectives') &&
         filters.length <= 0
       ) {
-        dispatch({ type: AlertActions.OPEN, message: 'Selecione um ano ou componente curricular.'});
+        dispatch({
+          type: AlertActions.OPEN,
+          message: 'Selecione um ano ou componente curricular.',
+        });
       } else {
         dispatch({ type: FiltersActions.SHOW_CATEGORY, category });
       }
-    }
+    };
   },
   clearFilters() {
     return { type: FiltersActions.CLEAR_FILTERS };
@@ -53,31 +61,48 @@ const FiltersActions = {
       dispatch({ type: FiltersActions.TOGGLE_FILTER, filter });
 
       if (isYearOrComponent(filter.type)) {
-        const filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
+        const filters = getState().FiltersReducer.filters.filter(
+          item => item.isActive && isYearOrComponent(item.type)
+        );
         const queryString = getFiltersQueryString(filters);
-        Api.simpleGet(`/api/filtros?${queryString}`, null, FiltersActions.LOADED_EXTRA);
+        return Api.get(dispatch, `/api/filtros?${queryString}`).then(response =>
+          dispatch({ ...response, type: FiltersActions.LOADED_EXTRA })
+        );
       }
-    }
+    };
   },
   toggleFilterAndSearch(filter) {
     return (dispatch, getState) => {
-      dispatch({ type: FiltersActions.TOGGLE_FILTER, filter })
-      dispatch({ type: SequencesActions.SEARCH })
-      
-      let filters = getState().FiltersReducer.filters.filter(item => item.isActive);
+      dispatch({ type: FiltersActions.TOGGLE_FILTER, filter });
+      dispatch({ type: SequencesActions.SEARCH });
+
+      let filters = getState().FiltersReducer.filters.filter(
+        item => item.isActive
+      );
       let queryString = getFiltersQueryString(filters);
-      Api.simpleGet(`/api/sequencias?${queryString}`, null, SequencesActions.LOADED);
-      
-      filters = getState().FiltersReducer.filters.filter(item => item.isActive && isYearOrComponent(item.type));
+      Api.simpleGet(
+        `/api/sequencias?${queryString}`,
+        null,
+        SequencesActions.LOADED
+      );
+
+      filters = getState().FiltersReducer.filters.filter(
+        item => item.isActive && isYearOrComponent(item.type)
+      );
       queryString = getFiltersQueryString(filters);
-      Api.simpleGet(`/api/filtros?${queryString}`, null, FiltersActions.LOADED_EXTRA);
-    }
+      return Api.get(dispatch, `/api/filtros?${queryString}`).then(response =>
+        dispatch({ ...response, type: FiltersActions.LOADED_EXTRA })
+      );
+    };
   },
   togglePanel() {
     return { type: FiltersActions.TOGGLE_PANEL };
   },
-  search() {
-    return { type: FiltersActions.SEARCH };
+  setOrder(order) {
+    return { type: FiltersActions.SET_ORDER, order };
+  },
+  setQuery(query) {
+    return { type: FiltersActions.SET_QUERY, query };
   },
 };
 

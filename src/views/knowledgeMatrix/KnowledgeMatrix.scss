@@ -1,0 +1,45 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.header {
+  composes: container from global;
+  font-size: 1.125rem;
+  padding-top: 2.25rem;
+  padding-bottom: 2.4375rem;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  line-height: 2.25rem;
+  margin-bottom: 1.1875rem;
+  text-align: center;
+}
+
+.header p {
+  margin-bottom: 0;
+}
+
+.wrapper h2 {
+  font-size: 1.875rem;
+  margin-top: 2.1875rem;
+  margin-bottom: 1.5625rem;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    font-size: 1rem;
+    padding-top: 1.75rem;
+    padding-bottom: 1.875rem;
+  }
+
+  .header h1 {
+    font-size: 2.125rem;
+  }
+
+  .wrapper h2 {
+    font-size: 1.3125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}

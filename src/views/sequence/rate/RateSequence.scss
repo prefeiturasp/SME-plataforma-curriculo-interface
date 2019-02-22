@@ -1,0 +1,16 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.list {
+  border-top: 1px solid $grey-200;
+  flex-shrink: 10;
+  overflow-y: scroll;
+  padding: rem(15);
+}
+
+.page {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+  text-align: center;
+}

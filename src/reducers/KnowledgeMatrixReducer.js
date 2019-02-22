@@ -6,11 +6,6 @@ const initialState = {
 
 function KnowledgeMatrixReducer(state = initialState, action) {
   switch (action.type) {
-    case KnowledgeMatrixActions.LOAD:
-      return {
-        ...state,
-      };
-
     case KnowledgeMatrixActions.LOADED:
       return {
         ...state,

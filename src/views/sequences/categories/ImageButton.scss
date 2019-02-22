@@ -1,0 +1,27 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  margin-bottom: 0.5625rem;
+  padding: 0;
+  filter: none;
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+}
+
+.wrapper img {
+  width: 3.375rem;
+  height: 3.375rem;
+}
+
+.isActive {
+  filter: none;
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  -o-filter: grayscale(0%);
+}

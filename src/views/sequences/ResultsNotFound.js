@@ -3,24 +3,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FiltersActions from 'actions/FiltersActions';
 import SequencesActions from 'actions/SequencesActions';
-import styles from './ResultsNotFound.css';
+import styles from './ResultsNotFound.scss';
 
 class ResultsNotFound extends Component {
   onClicked = () => {
     this.props.clearSearch();
-  }
+  };
 
   render() {
     return (
-      <div className="container">
-        <div className={styles.wrapper}>
-          <div className="col-md-6 offset-md-3">
-            <p>A sequência que você procura não foi encontrada. Mas você pode procurar por outras sequências usando filtros diferentes.</p>
-            <button className="btn" onClick={this.onClicked}>
-              Fazer nova busca
-            </button>
-          </div>
-        </div>
+      <div className={styles.wrapper}>
+        <p>
+          A sequência que você procura não foi encontrada. Mas você pode
+          procurar por outras sequências usando filtros diferentes.
+        </p>
+        <button className="btn" onClick={this.onClicked}>
+          Fazer nova busca
+        </button>
       </div>
     );
   }
@@ -39,4 +38,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(ResultsNotFound);
+export default connect(
+  null,
+  mapDispatchToProps
+)(ResultsNotFound);
