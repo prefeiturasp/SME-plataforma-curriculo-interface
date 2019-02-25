@@ -1,8 +1,8 @@
 import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 import { API_URL } from 'data/constants';
 
-export default function convertQuillToHtml(json) {
-  const ops = JSON.parse(json).ops;
+export default function convertQuillToHtml(data) {
+  const ops = typeof data === 'string' ? JSON.parse(data).ops : data;
 
   ops.forEach(item => {
     if (item.insert.image) {
