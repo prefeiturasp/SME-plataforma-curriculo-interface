@@ -3,6 +3,7 @@
 
 .btnChars {
   composes: btnFullWidth from global;
+  composes: d-print-none from global;
   margin-bottom: rem(40);
 }
 
@@ -41,6 +42,7 @@
 .chars {
   composes: col-sm-12 from global;
   composes: col-lg-4 from global;
+  composes: d-print-block from global;
   background-color: $grey-050;
   display: none;
 }

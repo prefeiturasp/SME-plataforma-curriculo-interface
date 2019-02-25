@@ -132,3 +132,9 @@
     margin-left: auto;
   }
 }
+
+@media only print {
+  .wrapper {
+    position: static !important;
+  }
+}
