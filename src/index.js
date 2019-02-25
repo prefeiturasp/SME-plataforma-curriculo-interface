@@ -44,6 +44,8 @@ import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
 
+export const history = createBrowserHistory();
+
 const store = createStore(reducers, applyMiddleware(thunk));
 
 const fullModalProps = {
@@ -54,6 +56,7 @@ const fullModalProps = {
   backdropInClassName: 'backdropIn',
   backdropOutClassName: 'backdropOut',
   outDelay: 500,
+  onBackdropClick: history.goBack
 };
 
 const modalProps = {
@@ -64,6 +67,7 @@ const modalProps = {
   backdropInClassName: 'backdropIn',
   backdropOutClassName: 'backdropOut',
   outDelay: 300,
+  onBackdropClick: history.goBack
 };
 
 class ModalSwitch extends Component {
@@ -183,8 +187,6 @@ class ModalSwitch extends Component {
     );
   }
 }
-
-export const history = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
