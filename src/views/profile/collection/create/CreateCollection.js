@@ -4,7 +4,6 @@ import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { history } from 'index';
 import BigSequencePreview from 'views/sequence/BigSequencePreview';
-import Classroom from 'views/profile/collection/edit/Classroom';
 import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
@@ -58,22 +57,9 @@ class CreateCollection extends Component {
   }
 
   render() {
-    const { classrooms, sequence } = this.props;
+    const { sequence } = this.props;
     const { hasEdited, name, sequenceId } = this.state;
     
-    const items = classrooms.map((classroom, i) => {
-      return (
-        <Classroom
-          key={i}
-          color={classroom.color}
-          level={classroom.level}
-          name={classroom.name}
-          school={classroom.school}
-          year={classroom.year}
-        />
-      );
-    });
-
     const bigSequencePreview = sequenceId ? (
       <div className={styles1.col1}>
         <BigSequencePreview sequence={sequence} />
@@ -111,10 +97,6 @@ class CreateCollection extends Component {
                   value={name}
                 />
               </header>
-              <div className={styles.list}>
-                <h3>Selecionar turmas (opcional)</h3>
-                {items}
-              </div>
             </div>
           </div>
           <ModalFooter label="Criar" onClick={this.onClickedSave} />
