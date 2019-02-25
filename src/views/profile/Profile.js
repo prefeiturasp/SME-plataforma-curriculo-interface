@@ -35,12 +35,6 @@ class Profile extends Component {
     const numCollections = items.length;
     const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
 
-    const numClassrooms = data.numClasses;
-    const wordClassrooms = numClassrooms === 1 ? 'turma' : 'turmas';
-
-    const numComponents = data.numComponents;
-    const wordComponents = numComponents === 1 ? 'componente' : 'componentes';
-
     const contents =
       numCollections > 0 ? <CollectionList items={items} /> : <EmptyList />;
 
@@ -66,12 +60,6 @@ class Profile extends Component {
           <div className={styles.rowNumbers}>
             <div>
               <em>{numCollections}</em> {wordCollections}
-            </div>
-            <div>
-              <em>{numClassrooms}</em> {wordClassrooms}
-            </div>
-            <div>
-              <em>{numComponents}</em> {wordComponents}
             </div>
           </div>
         </header>
