@@ -106,8 +106,10 @@ class ModalSwitch extends Component {
             path="/sequencias/objetivos-de-aprendizagem/:oda"
             component={Sequences}
           />
-          <Route path="/sequencia/:slug" component={Sequence} />
-          <Route exact path="/atividade/:slug1/:slug2" component={Activity} />
+          <Route path="/sequencia/:slug" component={Sequence} key={1} />
+          <Route path="/imprimir/sequencia/:slug" component={Sequence} key={2} />
+          <Route exact path="/atividade/:slug1/:slug2" component={Activity} key={1} />
+          <Route exact path="/imprimir/atividade/:slug1/:slug2" component={Activity} key={2} />
           <Route exact path="/curriculo" component={Curriculum} />
           <Route path="/ods" component={SustainableDevGoals} />
           <Route path="/matriz-de-saberes" component={KnowledgeMatrix} />
