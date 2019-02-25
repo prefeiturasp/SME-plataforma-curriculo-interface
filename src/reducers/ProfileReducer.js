@@ -15,13 +15,13 @@ function ProfileReducer(state = initialState, action) {
       return initialState;
 
     case ProfileActions.LOADED:
-      const { name, teacher } = action.data;
+      const { teacher } = action.data;
       sessionStorage.setItem('teacherId', teacher.id);
 
       return {
         ...state,
         id: teacher.id,
-        name: name || '',
+        name: teacher.name || '',
         nickname: teacher.nickname || '',
         photo: teacher.avatar_attributes.default_url,
         numClasses: teacher.number_of_classes,
