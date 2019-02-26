@@ -58,6 +58,8 @@ Cria um `build` otimizado para produção na pasta `build`.
 1. Configurar as variáveis de ambiente APP_ENV e APP_ROOT
 
 ` export APP_ENV=production `
+
+
 ` export APP_ROOT=diretorio raiz da aplicação `
 
 2. Criar/Editar os arquivos .env.api, .env.elasticsearch, .env.interface e .env.postgresql
