@@ -14,7 +14,7 @@ class ActivityChars extends Component {
   }
 
   render() {
-    const data = this.props.data;
+    const { data, isPrint } = this.props;
 
     if (!data) {
       return <span />;
@@ -37,6 +37,13 @@ class ActivityChars extends Component {
       );
     });
 
+    const btnPrint = isPrint
+      ? null
+      : <button className={styles.btnPrint} onClick={this.onClickedPrint}>
+          <img src={iconPrint} alt="Imprimir" />
+          Imprimir
+        </button>;
+
     return (
       <section className={styles.wrapper}>
         <div className={styles.title}>Ambiente</div>
@@ -48,10 +55,7 @@ class ActivityChars extends Component {
         {learningObjectivesTitle}
         <div>{learningObjectives}</div>
         <div className={styles.spacer} />
-        <button className={styles.btnPrint} onClick={this.onClickedPrint}>
-          <img src={iconPrint} alt="Imprimir" />
-          Imprimir
-        </button>
+        {btnPrint}
         <Tooltips />
       </section>
     );
@@ -60,6 +64,7 @@ class ActivityChars extends Component {
 
 ActivityChars.propTypes = {
   data: PropTypes.object,
+  isPrint: PropTypes.bool,
 };
 
 export default ActivityChars;

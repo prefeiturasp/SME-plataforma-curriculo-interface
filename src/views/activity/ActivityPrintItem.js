@@ -13,7 +13,7 @@ import ModuleTextWithTables from './ModuleTextWithTables';
 import ModuleTeacher from './ModuleTeacher';
 import Title from 'views/sequence/Title';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import styles from 'views/sequence/Sequence.scss';
+import styles from './ActivityPrintItem.scss';
 
 class ActivityPrintItem extends Component {
   componentDidMount() {
@@ -87,23 +87,14 @@ class ActivityPrintItem extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-lg-8">
-              <Cover data={data} sequence={sequence} />
-              <Title
-                slug={sequence.slug}
-                text={`Atividade ${data.sequence}`}
-                title={data.title}
-              />
-              <div className={styles.description}>{contentBlocks}</div>
-            </div>
-            <div className={styles.chars}>
-              <ActivityChars data={this.props.data} />
-            </div>
-          </div>
-        </div>
-        <hr />
+        <Cover data={data} sequence={sequence} />
+        <Title
+          slug={sequence.slug}
+          text={`Atividade ${data.sequence}`}
+          title={data.title}
+        />
+        <div className={styles.description}>{contentBlocks}</div>
+        <ActivityChars data={this.props.data} isPrint={true} />
       </section>
     );
   }
