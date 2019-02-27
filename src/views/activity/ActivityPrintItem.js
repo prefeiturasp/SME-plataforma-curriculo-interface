@@ -93,8 +93,8 @@ class ActivityPrintItem extends Component {
           text={`Atividade ${data.sequence}`}
           title={data.title}
         />
-        <div className={styles.description}>{contentBlocks}</div>
         <ActivityChars data={this.props.data} isPrint={true} />
+        <div className={styles.description}>{contentBlocks}</div>
       </section>
     );
   }
