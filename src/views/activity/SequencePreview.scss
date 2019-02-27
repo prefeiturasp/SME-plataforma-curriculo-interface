@@ -50,7 +50,6 @@
   align-items: center;
   display: flex;
   justify-content: flex-start;
-  max-width: none;
   padding-top: rem(15);
   padding-bottom: rem(15);
 
@@ -130,5 +129,11 @@
   @include mq("tablet-landscape") {
     display: block;
     margin-left: auto;
+  }
+}
+
+@media only print {
+  .wrapper {
+    position: static !important;
   }
 }

@@ -59,3 +59,10 @@
   opacity: 0.7;
   width: rem(14);
 }
+
+@media only print {
+  .description {
+    height: auto !important;
+    white-space: normal;
+  }
+}
