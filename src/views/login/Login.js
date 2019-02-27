@@ -22,6 +22,7 @@ class Login extends Component {
   state = {
     hasEditedUsername: false,
     hasEditedPassword: false,
+    isLoading: false,
     isShowingPassword: false,
     username: '',
     password: '',
@@ -53,6 +54,10 @@ class Login extends Component {
   onClickedEnter = () => {
     if (this.state.username.length && this.state.password.length) {
       this.props.login(this.state.username, this.state.password);
+      this.setState({
+        ...this.state,
+        isLoading: true,
+      })
     } else {
       this.setState({
         ...this.state,
@@ -75,8 +80,9 @@ class Login extends Component {
   };
 
   render() {
-    const isInvalidUsername = this.state.hasEditedUsername && this.state.username.length <= 0;
-    const isInvalidPassword = this.state.hasEditedPassword && this.state.password.length <= 0;
+    const { hasEditedUsername, hasEditedPassword, isLoading, isShowingPassword, username, password } = this.state;
+    const isInvalidUsername = hasEditedUsername && username.length <= 0;
+    const isInvalidPassword = hasEditedPassword && password.length <= 0;
     const messageUsername = isInvalidUsername ? 'Campo obrigatório' : '';
     const messagePassword = isInvalidPassword ? <FormHelperText error={true}>Campo obrigatório</FormHelperText> : '';
 
@@ -100,7 +106,7 @@ class Login extends Component {
               label="Nome do usuário"
               onChange={this.onChangedUsername}
               onKeyPress={this.onKeyPressUsername}
-              value={this.state.username}
+              value={username}
             />
             <div className={styles.spacer} />
             <FormControl fullWidth={true}>
@@ -114,8 +120,8 @@ class Login extends Component {
                 error={isInvalidPassword}
                 id="password"
                 inputRef={this.ref}
-                type={this.state.isShowingPassword ? 'text' : 'password'}
-                value={this.state.password}
+                type={isShowingPassword ? 'text' : 'password'}
+                value={password}
                 onChange={this.onChangedPassword}
                 onKeyPress={this.onKeyPressPassword}
                 endAdornment={
@@ -124,7 +130,7 @@ class Login extends Component {
                       aria-label="Exibir senha"
                       onClick={this.onClickedShowPassword}
                     >
-                      {this.state.isShowingPassword ? (
+                      {isShowingPassword ? (
                         <Visibility />
                       ) : (
                         <VisibilityOff />
@@ -138,7 +144,7 @@ class Login extends Component {
             <div className={styles.spacer} />
             <button className={styles.btnForgot}>Esqueceu a senha?</button>
           </div>
-          <ModalFooter label="Entrar" onClick={this.onClickedEnter} />
+          <ModalFooter label="Entrar" onClick={this.onClickedEnter} isLoading={isLoading} />
         </ModalPage>
       </DesktopModal>
     );
