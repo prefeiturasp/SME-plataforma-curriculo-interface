@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { history } from 'index';
 import Chip from 'components/objects/Chip';
 import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import KnowledgeMatrixItem from 'components/objects/KnowledgeMatrixItem';
@@ -17,8 +17,16 @@ class SequenceChars extends Component {
     this.setState({ isShowingAllLearningObjectives: true });
   };
 
+  onClickedPrint = () => {
+    if (this.props.isPrint) {
+      window.print();
+    } else {
+      history.push(`/imprimir/sequencia/${this.props.data.slug}`);
+    }
+  };
+
   render() {
-    const data = this.props.data;
+    const { data } = this.props;
 
     if (!data) {
       return <span />;
@@ -65,8 +73,6 @@ class SequenceChars extends Component {
       }
     );
 
-    const linkPrint = `/imprimir/sequencia/xxx`;
-
     return (
       <div className={styles.wrapper}>
         <div className={styles.title}>Componentes relacionados</div>
@@ -97,10 +103,10 @@ class SequenceChars extends Component {
         </div>
         <div>{knowledgeMatrices}</div>
         <div className={styles.spacer} />
-        <NavLink className={styles.btnPrint} to={linkPrint}>
+        <button className={styles.btnPrint} onClick={this.onClickedPrint}>
           <img src={iconPrint} alt="Imprimir" />
           Imprimir
-        </NavLink>
+        </button>
         <Tooltips />
       </div>
     );
@@ -109,6 +115,7 @@ class SequenceChars extends Component {
 
 SequenceChars.propTypes = {
   data: PropTypes.object,
+  isPrint: PropTypes.bool,
 };
 
 export default SequenceChars;

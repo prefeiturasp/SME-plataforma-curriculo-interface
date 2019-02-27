@@ -40,6 +40,10 @@ class Activity extends Component {
   componentDidMount() {
     const params = this.props.match.params;
     this.props.load(params.slug1, params.slug2);
+
+    if (this.props.location.pathname.match(/imprimir/)) {
+      window.print();
+    }
   }
 
   componentDidUpdate(prevProps) {

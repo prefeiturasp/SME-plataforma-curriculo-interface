@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ActivityItem from './ActivityItem';
+import ActivityPrintItem from 'views/activity/ActivityPrintItem';
 import BodyActions from 'actions/BodyActions';
 import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
@@ -18,6 +19,7 @@ import styles from './Sequence.scss';
 class Sequence extends Component {
   state = {
     isCharsExpanded: false,
+    isPrint: false,
   };
 
   onClickedChars = () => {
@@ -28,10 +30,25 @@ class Sequence extends Component {
 
   componentDidMount() {
     this.props.load(this.props.match.params.slug);
+
+    if (this.props.location.pathname.match(/imprimir/)) {
+      this.setState({
+        ...this.state,
+        isPrint: true
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(this.state.isPrint, !prevProps.data, this.props.data);
+    if (this.state.isPrint && !prevProps.data && this.props.data) {
+      setTimeout(window.print, 2000);
+    }
   }
 
   render() {
     const { data, isSaved } = this.props;
+    const { isPrint } = this.state;
 
     if (!data) {
       return <span />;
@@ -39,14 +56,25 @@ class Sequence extends Component {
 
     const word = data.activities.length === 1 ? 'Atividade' : 'Atividades';
     const activities = data.activities.map((item, i) => {
-      return (
-        <ActivityItem
-          key={i}
-          data={item}
-          index={i + 1}
-          sequenceSlug={data.slug}
-        />
-      );
+      return isPrint
+        ? (
+            <ActivityPrintItem
+              key={i}
+              data={item}
+              index={i + 1}
+              sequenceSlug={data.slug}
+              slug1={data.slug}
+              slug2={item.slug}
+            />
+          )
+        : (
+            <ActivityItem
+              key={i}
+              data={item}
+              index={i+ 1}
+              sequenceSlug={data.slug}
+            />
+          );
     });
 
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
@@ -78,7 +106,7 @@ class Sequence extends Component {
               </div>
             </div>
             <div className={styles.chars}>
-              <SequenceChars data={data} />
+              <SequenceChars data={data} isPrint={isPrint} />
             </div>
           </div>
         </div>

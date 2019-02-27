@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import ExpandableLearningObjective from 'components/objects/ExpandableLearningObjective';
 import Tooltips from 'components/Tooltips';
 import getEnvironmentIconAndLabel from './getEnvironmentIconAndLabel';
@@ -10,6 +9,10 @@ import styles from 'views/sequence/chars/SequenceChars.scss';
 import styles1 from './ActivityChars.scss';
 
 class ActivityChars extends Component {
+  onClickedPrint = () => {
+    window.print();
+  }
+
   render() {
     const data = this.props.data;
 
@@ -34,8 +37,6 @@ class ActivityChars extends Component {
       );
     });
 
-    const linkPrint = `/imprimir/sequencia/xxx/atividade/yyy`;
-
     return (
       <section className={styles.wrapper}>
         <div className={styles.title}>Ambiente</div>
@@ -47,10 +48,10 @@ class ActivityChars extends Component {
         {learningObjectivesTitle}
         <div>{learningObjectives}</div>
         <div className={styles.spacer} />
-        <NavLink className={styles.btnPrint} to={linkPrint}>
+        <button className={styles.btnPrint} onClick={this.onClickedPrint}>
           <img src={iconPrint} alt="Imprimir" />
           Imprimir
-        </NavLink>
+        </button>
         <Tooltips />
       </section>
     );
