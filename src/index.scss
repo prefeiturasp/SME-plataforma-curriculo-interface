@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-y: auto !important;
+  padding-right: 0 !important;
+}
+
 html,
 body,
 :global(#root) {
