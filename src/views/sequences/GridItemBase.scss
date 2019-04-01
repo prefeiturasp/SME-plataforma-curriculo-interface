@@ -27,7 +27,7 @@
   background: $grey-300;
   color: $grey-600;
   display: flex;
-  font-size: 5rem;
+  font-size: rem(80);
   font-weight: 600;
   justify-content: center;
 }
@@ -36,7 +36,7 @@
   color: $grey-600;
   font-size: 0.9375rem;
   font-weight: 600;
-  margin: 1rem 1.5625rem 0.625rem 1.5625rem;
+  margin: rem(16) rem(15) rem(10) rem(15);
 
   > em {
     font-style: normal;
@@ -51,11 +51,11 @@
 
 .title {
   color: $grey-800;
-  font-size: 1.3125rem;
+  font-size: rem(21);
   font-weight: bold;
-  height: 3.15rem;
+  height: rem(50);
   line-height: 1.2;
-  margin: 0 1.5625rem 1rem 1.5625rem;
+  margin: 0 rem(15) rem(15) rem(15);
   overflow: hidden;
 
   a {
@@ -66,18 +66,18 @@
 .infos {
   border-top: 1px solid $grey-200;
   display: flex;
-  padding: 0.75rem 1.5625rem;
+  padding: rem(12) rem(15);
   justify-content: space-between;
 }
 
 .number {
-  font-size: 1.1875rem;
+  font-size: rem(19);
   font-weight: 600;
 }
 
 .label {
   color: $grey-600;
-  font-size: 0.875rem;
+  font-size: rem(14);
 }
 
 .expand {
@@ -86,7 +86,7 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  padding: 0.5rem;
+  padding: rem(8);
 }
 
 @include mq("tablet-portrait") {
