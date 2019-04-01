@@ -33,7 +33,7 @@ class SearchField extends Component {
         <FormControl fullWidth={true}>
           <InputLabel htmlFor="query">Buscar sequência por tema</InputLabel>
           <Input
-            id="password"
+            id="query"
             defaultValue={this.props.query}
             onChange={this.onChangedQuery}
             onKeyPress={this.onKeyPress}

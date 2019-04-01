@@ -6,7 +6,7 @@ import styles from './Collection.scss';
 
 class Collection extends React.PureComponent {
   render() {
-    const { id, name, numClassrooms, numSequences, years } = this.props;
+    const { id, name, numSequences, years } = this.props;
     const link = `/colecao/${id}`;
     const word1 = numSequences === 1 ? 'sequência' : 'sequências';
     

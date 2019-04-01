@@ -18,13 +18,13 @@ class ActivityItem extends Component {
         srcSet={`${API_URL}${data.image_attributes.small.url}, ${API_URL}${
           data.image_attributes.extra_small.url
         } 2x`}
-        alt={data.name}
+        alt={data.title}
       />
     ) : null;
 
     return (
       <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-        <NavLink to={link} className={styles.wrapper}>
+        <NavLink to={link} className={styles.wrapper} aria-label={data.title}>
           <div className={styles.image}>
             {image}
             <div>{this.props.index}</div>

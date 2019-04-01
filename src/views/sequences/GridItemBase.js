@@ -98,7 +98,7 @@ class GridItemBase extends Component {
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <Element name={data.slug} />
         <article className={styles.wrapper} ref={this.ref}>
-          <NavLink to={link}>{thumbnail}</NavLink>
+          <NavLink to={link} aria-label={title}>{thumbnail}</NavLink>
           <button className={styles.btnSave} onClick={this.onClickedSave}>
             <img src={iconSave} alt={labelSave} />
           </button>

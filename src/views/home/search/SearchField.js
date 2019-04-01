@@ -17,7 +17,7 @@ class ThemeField extends Component {
 
   render() {
     return (
-      <div className={styles.wrapper}>
+      <label className={styles.wrapper}>
         <input
           className={styles.field}
           placeholder="Buscar sequência por tema"
@@ -25,7 +25,7 @@ class ThemeField extends Component {
           onChange={this.onChanged}
           onKeyPress={this.onKeyPress}
         />
-      </div>
+      </label>
     );
   }
 }
