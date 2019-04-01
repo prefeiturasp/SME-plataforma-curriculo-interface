@@ -80,7 +80,7 @@ class Home extends Component {
                   <h2>Veja alguns exemplos de Sequências de Atividades</h2>
                 </div>
               </div>
-              <ul className="row">{sequences}</ul>
+              <div className="row">{sequences}</div>
               <NavLink to="/sequencias" className={styles.button}>
                 Ver outras sequências
               </NavLink>
