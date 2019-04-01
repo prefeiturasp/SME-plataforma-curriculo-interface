@@ -98,6 +98,9 @@ const FiltersActions = {
   togglePanel() {
     return { type: FiltersActions.TOGGLE_PANEL };
   },
+  search() {
+    return { type: FiltersActions.SEARCH };
+  },
   setOrder(order) {
     return { type: FiltersActions.SET_ORDER, order };
   },
