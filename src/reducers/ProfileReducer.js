@@ -1,7 +1,9 @@
+import LoginActions from 'actions/LoginActions';
 import ProfileActions from 'actions/ProfileActions';
 
 const initialState = {
   id: 0,
+  isLogged: false,
   isUploading: false,
   name: '',
   nickname: '',
@@ -11,6 +13,18 @@ const initialState = {
 
 function ProfileReducer(state = initialState, action) {
   switch (action.type) {
+    case LoginActions.LOGGED_IN:
+      return {
+        ...state,
+        isLogged: true,
+      };
+
+    case LoginActions.LOGGED_OUT:
+      return {
+        ...state,
+        isLogged: false,
+      };
+
     case ProfileActions.LOAD:
       return initialState;
 

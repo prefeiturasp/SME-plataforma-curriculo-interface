@@ -3,6 +3,9 @@ import AlertActions from 'actions/AlertActions';
 import { history } from 'index';
 
 const LoginActions = {
+  LOGGED_IN: 'LoginActions.LOGGED_IN',
+  LOGGED_OUT: 'LoginActions.LOGGED_OUT',
+
   login(username, password) {
     return dispatch => {
       const data = {
@@ -18,6 +21,7 @@ const LoginActions = {
           );
 
           history.push('/perfil');
+          dispatch({ type: LoginActions.LOGGED_IN });
         })
         .catch(error =>
           dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
@@ -28,6 +32,7 @@ const LoginActions = {
     return dispatch => {
       Api.get(dispatch, '/api/logout');
       sessionStorage.removeItem('accessToken');
+      dispatch({ type: LoginActions.LOGGED_OUT });
 
       if (history.location.pathname.match(/perfil|colecao/)) {
         history.push('/');
