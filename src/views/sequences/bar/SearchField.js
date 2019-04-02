@@ -34,7 +34,7 @@ class SearchField extends Component {
           <InputLabel htmlFor="query">Buscar sequência por tema</InputLabel>
           <Input
             id="query"
-            defaultValue={this.props.query}
+            value={this.props.query}
             onChange={this.onChangedQuery}
             onKeyPress={this.onKeyPress}
             endAdornment={
