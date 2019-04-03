@@ -87,6 +87,12 @@ a:hover {
   }
 }
 
+:global(.btnBig) {
+  font-size: rem(15);
+  line-height: rem(20);
+  padding: rem(18) rem(26);
+}
+
 :global(.btnSmall) {
   font-size: rem(12) !important;
   line-height: rem(16) !important;

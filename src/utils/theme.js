@@ -27,6 +27,13 @@ const theme = createMuiTheme({
         fontWeight: 'bold',
       },
     },
+    MuiTab: {
+      label: {
+        color: '#6a6a6a',
+        fontSize: 12,
+        fontWeight: 'bold',
+      }
+    },
   },
   palette: {
     primary: {
