@@ -1,0 +1,43 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.tabs {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
+  height: 0;
+  margin-bottom: rem(32);
+}
+
+.callToAction {
+  color: $grey-600;
+  font-size: rem(15);
+  margin-bottom: rem(36);
+
+  > h2 {
+    color: black;
+    font-size: rem(18);
+    font-weight: 600;
+    margin-bottom: rem(12);
+  }
+
+  > p {
+    margin-bottom: rem(32);
+  }
+}
+
+.numResults {
+  color: $grey-800;
+  font-size: rem(15);
+  font-weight: 600;
+  margin-bottom: rem(24);
+}
+
+.center {
+  margin-top: rem(15);
+  margin-bottom: rem(60);
+  text-align: center;
+}
+
+.btnLoadMore {
+  composes: btn from global;
+  composes: btnBig from global;
+}

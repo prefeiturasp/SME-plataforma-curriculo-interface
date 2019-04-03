@@ -1,0 +1,46 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  border-bottom: 1px solid $grey-200;
+  display: block;
+  padding-top: rem(18);
+  padding-bottom: rem(18);
+
+  &:first-child {
+    border-top: 1px solid $grey-200;
+  }
+}
+
+.info {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: rem(10);
+}
+
+.avatar {
+  background-color: $grey-600;
+  border-radius: 50%;
+  margin-right: rem(10);
+  width: rem(50);
+  height: rem(50);
+}
+
+.name {
+  color: black;
+  font-size: rem(15);
+  font-weight: 600;
+  margin-bottom: rem(5);
+}
+
+.date {
+  color: $grey-600;
+  font-size: rem(13);
+}
+
+.text {
+  color: black;
+  font-size: rem(15);
+  margin-bottom: 0;
+}
