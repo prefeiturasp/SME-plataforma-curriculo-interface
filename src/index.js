@@ -19,6 +19,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
+import Challenge from 'views/challenge/Challenge';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Collection from 'views/profile/collection/Collection';
 import Confirm from 'components/Confirm';
@@ -121,6 +122,7 @@ class ModalSwitch extends Component {
           <Route exact path="/descobrir" component={Roadmap} />
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
+          <Route path="/desafio/:slug" component={Challenge} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
