@@ -1,0 +1,31 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  background: white;
+  border-top: 1px solid $grey-200;
+  display: flex;
+  justify-content: space-between;
+  min-height: rem(75);
+  padding: rem(12);
+  position: relative;
+}
+
+.btnAction,
+.btnCancel {
+  composes: btn from global;
+  font-size: rem(15);
+  height: rem(54);
+  line-height: 1;
+  padding: rem(15) rem(26);
+
+  > img {
+    padding: 0;
+  }
+}
+
+.btnCancel {
+  border-color: transparent;
+  padding-left: rem(5);
+  padding-right: rem(5);
+}

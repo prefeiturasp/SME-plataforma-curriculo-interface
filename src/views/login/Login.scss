@@ -6,6 +6,12 @@
   padding: rem(15);
 }
 
+.btnClose {
+  position: absolute;
+  right: rem(15);
+  top: rem(21);
+}
+
 .header {
   align-items: center;
   color: $grey-600;
