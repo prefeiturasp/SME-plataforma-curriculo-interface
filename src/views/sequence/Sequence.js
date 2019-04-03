@@ -111,7 +111,7 @@ class Sequence extends Component {
           </div>
         </div>
         <SequenceCharsMobile
-          data={this.props.data}
+          data={data}
           isExpanded={this.state.isCharsExpanded}
           onBack={this.onClickedChars}
         />
