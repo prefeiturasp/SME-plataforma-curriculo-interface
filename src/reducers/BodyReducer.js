@@ -1,5 +1,7 @@
 import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
+import ChallengeActions from 'actions/ChallengeActions';
+import ChallengesActions from 'actions/ChallengesActions';
 import CollectionActions from 'actions/CollectionActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import HomeActions from 'actions/HomeActions';
@@ -19,6 +21,8 @@ function BodyReducer(state = initialState, action) {
   switch (action.type) {
     case ActivityActions.LOADED:
     case BodyActions.HIDE_LOADING:
+    case ChallengeActions.LOADED:
+    case ChallengesActions.LOADED:
     case CollectionActions.LOADED_SEQUENCES:
     case CollectionsActions.LOADED:
     case HomeActions.LOADED:
