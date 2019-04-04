@@ -12,8 +12,9 @@ import ChallengesActions from 'actions/ChallengesActions';
 import ChallengeChars from './chars/ChallengeChars';
 import ChallengeCharsMobile from './chars/ChallengeCharsMobile';
 import Cover from './Cover';
+import Loading from 'components/loading/Loading';
 import ResultItem from './ResultItem';
-import Title from 'views/sequence/Title';
+import Title from './Title';
 import Tooltips from 'components/Tooltips';
 import isLogged from 'data/isLogged';
 import styles from 'views/sequence/Sequence.scss';
@@ -76,18 +77,12 @@ class Challenge extends Component {
   }
 
   render() {
-    const { data, results, isSaved } = this.props;
+    const { data, results, isLoading, isSaved } = this.props;
     const { currTab, isPrint } = this.state;
 
     if (!data) {
       return <span />;
     }
-
-    const styles2 = theme => ({
-      indicator: {
-        backgroundColor: '#008080',
-      },
-    });
 
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
     const link = `/desafio/${data.slug}/enviar`;
@@ -102,6 +97,15 @@ class Challenge extends Component {
       );
     });
 
+    const hasNextPage = true
+    const button = hasNextPage ? (
+      <button className={styles1.btnLoadMore} onClick={this.onClickedLoadMore}>
+        Ver mais resultados
+      </button>
+    ) : null;
+
+    const loadingOrButton = isLoading ? <Loading /> : button;
+
     return (
       <Page>
         <div className="container">
@@ -112,7 +116,7 @@ class Challenge extends Component {
                 hasButton={true}
                 isSaved={isSaved}
                 slug={data.slug}
-                text="Desafio em andamento até 05/06/2018"
+                deadline={data.deadline}
                 title={data.title}
               />
             </div>
@@ -120,10 +124,6 @@ class Challenge extends Component {
         </div>
         <Tabs
           className={styles1.tabs}
-          classes={{
-            indicator: styles2.indicator,
-          }}
-          indicatorColor="primary"
           value={currTab}
           variant="fullWidth"
           onChange={this.onChangedTab}
@@ -163,11 +163,7 @@ class Challenge extends Component {
                   </div>
                   <h3 className={styles1.numResults}>{results.length} {wordResults}</h3>
                   <div>{resultItems}</div>
-                  <div className={styles1.center}>
-                    <button className={styles1.btnLoadMore} onClick={this.onClickedLoadMore}>
-                      Ver mais resultados
-                    </button>
-                  </div>
+                  <div className={styles1.center}>{loadingOrButton}</div>
                 </div>
               </SwipeableViews>
             </div>
@@ -190,6 +186,7 @@ class Challenge extends Component {
 Challenge.propTypes = {
   data: PropTypes.object,
   results: PropTypes.array,
+  isLoading: PropTypes.bool,
   isSaved: PropTypes.bool,
   load: PropTypes.func.isRequired,
   loadMore: PropTypes.func.isRequired,
@@ -199,6 +196,7 @@ const mapStateToProps = state => {
   return {
     data: state.ChallengeReducer.currItem,
     results: state.ChallengeReducer.results,
+    isLoading: state.ChallengeReducer.isLoading,
     isSaved: state.ChallengeReducer.isSaved,
   };
 };

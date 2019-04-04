@@ -4,6 +4,11 @@ import Chip from 'components/objects/Chip';
 import styles from 'views/sequence/Cover.scss';
 import { API_URL } from 'data/constants';
 
+const component = {
+  color: '#008080',
+  name: 'Tecnologias de Aprendizado',
+};
+
 class Cover extends Component {
   render() {
     const { data } = this.props;
@@ -28,7 +33,7 @@ class Cover extends Component {
         {image}
         <div className={styles.overlay} />
         <div className={styles.list}>
-          <Chip data={data.main_curricular_component} />
+          <Chip data={component} />
         </div>
       </div>
     );
