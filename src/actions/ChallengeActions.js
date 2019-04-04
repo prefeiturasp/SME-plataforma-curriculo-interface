@@ -2,16 +2,13 @@ const data = {
   id: 1,
   slug: 'projeto-sinais-luminosos-na-aviacao',
   title: 'Projeto Sinais Luminosos na Aviação',
+  deadline: '05/06/2018',
   presentation_text: '',
   image_attributes: {
     default_url: '',
     large: {
       url: '',
     },
-  },
-  main_curricular_component: {
-    color: '#008080',
-    name: 'Tecnologias de Aprendizado',
   },
   curricular_components: [],
   knowledge_matrices: [

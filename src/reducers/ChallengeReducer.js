@@ -3,6 +3,7 @@ import ChallengeActions from 'actions/ChallengeActions';
 const initialState = {
   currItem: null,
   results: [],
+  isLoadingResults: false,
   isSaved: false,
 };
 
@@ -14,9 +15,16 @@ function ChallengeReducer(state = initialState, action) {
         currItem: action.data,
       };
 
+    case ChallengeActions.LOAD_RESULTS:
+      return {
+        ...state,
+        isLoadingResults: true,
+      };
+
     case ChallengeActions.LOADED_RESULTS:
       return {
         ...state,
+        isLoadingResults: false,
         results: state.results.concat(action.data),
       };
 
