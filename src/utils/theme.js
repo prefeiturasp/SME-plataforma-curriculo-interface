@@ -28,11 +28,19 @@ const theme = createMuiTheme({
       },
     },
     MuiTab: {
-      label: {
+      root: {
         color: '#6a6a6a',
         fontSize: 12,
         fontWeight: 'bold',
-      }
+        '&$selected': {
+          color: '#008080',
+        },
+      },
+    },
+    MuiPrivateTabIndicator: {
+      colorSecondary: {
+        backgroundColor: '#008080',
+      },
     },
   },
   palette: {
