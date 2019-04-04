@@ -7,9 +7,9 @@ import styles from './ResultItem.scss';
 
 class ResultItem extends Component {
   render() {
-    const { data } = this.props;
-    const link = `/resultado/${data.id}`;
-    const icon = data.hasAttachments ? <img src={iconClip} alt="Anexos" className={styles.icon} /> : null;
+    const { data, slug } = this.props;
+    const link = `/desafio/${slug}/resultado/${data.id}`;
+    const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles.icon} /> : null;
     
     return (
       <NavLink to={link} className={styles.wrapper} aria-label={data.author.name}>
@@ -35,6 +35,7 @@ class ResultItem extends Component {
 
 ResultItem.propTypes = {
   data: PropTypes.object.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 export default ResultItem;

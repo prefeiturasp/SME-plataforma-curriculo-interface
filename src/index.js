@@ -33,6 +33,7 @@ import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
 import Profile from 'views/profile/Profile';
+import Result from 'views/result/Result';
 import Roadmap from 'views/roadmap/Roadmap';
 import SaveSequence from 'views/sequence/save/SaveSequence';
 import Sequence from 'views/sequence/Sequence';
@@ -184,6 +185,12 @@ class ModalSwitch extends Component {
           exact
           path="/sequencias/:slug/salvar"
           component={SaveSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/resultado/:id"
+          component={Result}
           {...modalProps}
         />
         <ModalContainer />

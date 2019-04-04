@@ -43,6 +43,7 @@ const data = {
 const results = [
   {
     id: 1,
+    next: 2,
     author: {
       name: 'Lucas',
       image: null,
@@ -50,10 +51,23 @@ const results = [
     year: '1o ano',
     time: '30 min atrás',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu porttitor nisl. Nulla facilisi. Sed ornare gravida arcu, sed facilisis liberodiam eros',
-    hasAttachments: true,
+    attachments: [
+      {
+        fileName: 'Apresentação.pdf',
+        size: '10 MB',
+        url: 'apresentacao.pdf',
+      },
+      {
+        fileName: 'Projeto.pdf',
+        size: '20 MB',
+        url: 'projeto.pdf',
+      },
+    ],
   },
   {
     id: 2,
+    previous: 1,
+    next: 3,
     author: {
       name: 'Marina Silva',
       image: 'picture.jpg',
@@ -61,10 +75,22 @@ const results = [
     year: '1o ano',
     time: '1 dia atrás',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu porttitor nisl. Nulla facilisi. Sed ornare gravida arcu, sed facilisis liberodiam eros',
-    hasAttachments: true,
+    attachments: [
+      {
+        fileName: 'Apresentação.pdf',
+        size: '10 MB',
+        url: 'apresentacao.pdf',
+      },
+      {
+        fileName: 'Projeto.pdf',
+        size: '20 MB',
+        url: 'projeto.pdf',
+      },
+    ],
   },
   {
     id: 3,
+    previous: 2,
     author: {
       name: 'Flávio Souza',
       image: null,
@@ -72,7 +98,7 @@ const results = [
     year: '1o ano',
     time: '22/03/2019',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu porttitor nisl. Nulla facilisi. Sed ornare gravida arcu, sed facilisis liberodiam eros',
-    hasAttachments: false,
+    attachments: [],
   },
 ];
 

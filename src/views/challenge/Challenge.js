@@ -107,6 +107,7 @@ class Challenge extends Component {
         <ResultItem
           key={i}
           data={item}
+          slug={data.slug}
         />
       );
     });
@@ -219,7 +220,7 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
   data: PropTypes.object,
-  results: PropTypes.array,
+  results: PropTypes.array.isRequired,
   isLoading: PropTypes.bool,
   isSaved: PropTypes.bool,
   load: PropTypes.func.isRequired,
