@@ -1,0 +1,78 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: rem(12) 0;
+}
+
+.title {
+  > p {
+    color: $grey-600;
+    font-size: rem(15);
+    line-height: rem(21);
+    margin-bottom: rem(4);
+
+    > strong {
+      font-weight: 600;
+    }
+  }
+
+  > h1 {
+    font-size: rem(24);
+    line-height: rem(33);
+    margin: 0;
+  }
+}
+
+.btnSave1 {
+  align-items: center;
+  color: $grey-600;
+  display: flex;
+  flex-direction: column;
+  font-size: rem(12);
+  justify-content: center;
+  margin-left: auto;
+  min-width: rem(36);
+
+  > img {
+    margin-bottom: rem(4);
+  }
+
+  @include mq("tablet-landscape") {
+    display: none;
+  }
+}
+
+.btnSave2 {
+  composes: btn from global;
+  display: none;
+
+  @include mq("tablet-landscape") {
+    display: block;
+    margin-left: auto;
+    margin-right: rem(-15);
+  }
+}
+
+@include mq("tablet-landscape") {
+  .wrapper {
+    padding: rem(16) 0 rem(44) 0;
+  }
+
+  .title {
+    margin-right: rem(32);
+
+    > p {
+      font-size: rem(18);
+      line-height: rem(24);
+    }
+
+    > h1 {
+      font-size: rem(40);
+      line-height: rem(48);
+    }
+  }
+}
