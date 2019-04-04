@@ -99,6 +99,7 @@ function FiltersReducer(state = initialState, action) {
         cachedFilter: null,
         filters: state.filters.map(clearFilter),
         filtersExtra: state.filtersExtra.map(clearFilter),
+        query: '',
       };
 
     case FiltersActions.CACHE_FILTER:

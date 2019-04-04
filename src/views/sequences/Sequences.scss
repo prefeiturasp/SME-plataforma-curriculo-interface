@@ -1,6 +1,12 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 10;
+}
+
 .h1 {
   font-size: rem(40);
   margin-bottom: rem(20);

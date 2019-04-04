@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import Collection from './Collection';
+import Challenge from './Challenge';
 import createModalLink from 'utils/createModalLink';
-import iconPlus from 'images/icons/plus.svg';
-import styles from './CollectionList.scss';
+import styles from 'views/profile/collections/CollectionList.scss';
 
-class CollectionList extends Component {
+class ChallengeList extends Component {
   render() {
     const items = this.props.items.map((item, i) => {
       return (
-        <Collection
+        <Challenge
           key={i}
           id={item.id}
-          name={item.name}
-          numClassrooms={item.number_of_classes || 0}
-          numSequences={item.number_of_activity_sequences}
+          component={item.main_curricular_component}
+          hasPerformed={item.performeds_status.performed}
+          image={item.image_attributes}
+          slug={item.slug}
+          title={item.title}
         />
       );
     });
@@ -26,17 +27,12 @@ class CollectionList extends Component {
       <section className={styles.wrapper}>
         <div className="container">
           <div className={styles.rowTitle}>
-            <h3>Coleções</h3>
-            <NavLink className="btnSmall" to={link}>
-              Criar coleção
-              <img src={iconPlus} alt="Criar coleção" />
-            </NavLink>
+            <h3>{items.length} desafios salvos</h3>
           </div>
           <div className="row">{items}</div>
           <div className={styles.rowBelow}>
             <NavLink className="btnFullWidth" to={link}>
-              Criar uma nova coleção
-              <img src={iconPlus} alt="Criar coleção" />
+              Buscar mais desafios
             </NavLink>
           </div>
         </div>
@@ -45,8 +41,8 @@ class CollectionList extends Component {
   }
 }
 
-CollectionList.propTypes = {
+ChallengeList.propTypes = {
   items: PropTypes.array.isRequired,
 };
 
-export default CollectionList;
+export default ChallengeList;

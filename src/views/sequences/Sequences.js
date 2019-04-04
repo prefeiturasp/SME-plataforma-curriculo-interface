@@ -71,6 +71,22 @@ class Sequences extends Component {
       const loadingOrButton = isSearching ? <Loading /> : button;
 
       contents = (
+        <div className={styles.list}>
+          <div className={styles.results}>
+            <h2 className={styles.h2}>
+              <strong>{totalItems}</strong> sequências foram encontradas
+            </h2>
+            <div className="row">{items}</div>
+            <div className={styles.center}>{loadingOrButton}</div>
+          </div>
+        </div>
+      );
+    } else if (isSearching) {
+      contents = <ResultsLoading height={this.state.windowHeight} />;
+    }
+
+    return (
+      <Page>
         <section className={styles.wrapper}>
           <div className="container">
             <h1 className={styles.h1}>Sequências de Atividades</h1>
@@ -80,22 +96,10 @@ class Sequences extends Component {
           <div className="container">
             <Filters />
           </div>
-          <div className={styles.list}>
-            <div className={styles.results}>
-              <h2 className={styles.h2}>
-                <strong>{totalItems}</strong> sequências foram encontradas
-              </h2>
-              <div className="row">{items}</div>
-              <div className={styles.center}>{loadingOrButton}</div>
-            </div>
-          </div>
+          {contents}
         </section>
-      );
-    } else if (isSearching) {
-      contents = <ResultsLoading height={this.state.windowHeight} />;
-    }
-
-    return <Page>{contents}</Page>;
+      </Page>
+    );
   }
 }
 
@@ -135,7 +139,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(SequencesActions.loadWithFilter(data));
     },
     search: () => {
-      dispatch(BodyActions.showLoading());
       dispatch(SequencesActions.search());
     },
   };
