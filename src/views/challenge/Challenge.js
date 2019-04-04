@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Collapse from '@material-ui/core/Collapse';
 import SwipeableViews from 'react-swipeable-views';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
@@ -17,13 +18,15 @@ import ResultItem from './ResultItem';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
 import isLogged from 'data/isLogged';
-import styles from 'views/sequence/Sequence.scss';
-import styles1 from './Challenge.scss';
+import chevronDown from 'images/chevrons/down.svg';
+import chevronUp from 'images/chevrons/up.svg';
+import styles from './Challenge.scss';
 
 class Challenge extends Component {
   state = {
     currTab: 0,
     isCharsExpanded: false,
+    isMaterialsExpanded: true,
     isPrint: false,
   };
 
@@ -42,6 +45,13 @@ class Challenge extends Component {
 
   onClickedLoadMore = () => {
     this.props.loadMore(this.props.match.params.slug);
+  };
+
+  onClickedMaterials = () => {
+    this.setState({
+      ...this.state,
+      isMaterialsExpanded: !this.state.isMaterialsExpanded,
+    });
   };
 
   onClickedResults = () => {
@@ -78,16 +88,20 @@ class Challenge extends Component {
 
   render() {
     const { data, results, isLoading, isSaved } = this.props;
-    const { currTab, isPrint } = this.state;
+    const { currTab, isMaterialsExpanded, isPrint } = this.state;
 
     if (!data) {
       return <span />;
     }
 
-    const description = data.presentation_text.replace(/\r\n/g, '<br>');
-    const link = `/desafio/${data.slug}/enviar`;
-    const wordResults = results.length === 1 ? 'resultado' : 'resultados';
+    const chevron = isMaterialsExpanded ? chevronUp : chevronDown;
+    const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
 
+    const description = data.presentation_text.replace(/\r\n/g, '<br>');
+
+    const link = `/desafio/${data.slug}/enviar`;
+
+    const wordResults = results.length === 1 ? 'resultado' : 'resultados';
     const resultItems = results.map((item, i) => {
       return (
         <ResultItem
@@ -99,7 +113,7 @@ class Challenge extends Component {
 
     const hasNextPage = true
     const button = hasNextPage ? (
-      <button className={styles1.btnLoadMore} onClick={this.onClickedLoadMore}>
+      <button className={styles.btnLoadMore} onClick={this.onClickedLoadMore}>
         Ver mais resultados
       </button>
     ) : null;
@@ -123,7 +137,7 @@ class Challenge extends Component {
           </div>
         </div>
         <Tabs
-          className={styles1.tabs}
+          className={styles.tabs}
           value={currTab}
           variant="fullWidth"
           onChange={this.onChangedTab}
@@ -142,28 +156,48 @@ class Challenge extends Component {
                   <button className={styles.btnChars} onClick={this.onClickedChars}>
                     Ver características
                   </button>
+                  <div className={styles.category}>
+                    <h3 className={styles.categoryName}>Categoria</h3>
+                    <div className={styles.categoryValue}>Projeto</div>
+                  </div>
+                  <div className={styles.materials}>
+                    <div className={styles.btnMaterials} onClick={this.onClickedMaterials}>
+                      <h3 className={styles.categoryName}>Recursos didáticos utilizados</h3>
+                      <img src={chevron} alt={label} />
+                    </div>
+                    <Collapse in={this.state.isMaterialsExpanded}>
+                      <ul>
+                        <li>Arduino</li>
+                        <li>Servo</li>
+                        <li>Sensor linear</li>
+                      </ul>
+                    </Collapse>
+                  </div>
                   <div className={styles.description}>
                     {description}
                   </div>
-                  <NavLink to={link} className="btnFullWidth">
-                    Enviar resultado
-                  </NavLink>
-                  <br />
-                  <button className="btnFullWidth" onClick={this.onClickedResults}>
-                    Ou visualize outros resultados
-                  </button>
+                  <div className={styles.callToAction}>
+                    <h2>Sua turma participou deste desafio?</h2>
+                    <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
+                    <NavLink to={link} className="btnFullWidth">
+                      Enviar resultado
+                    </NavLink>
+                    <button className={styles.btnOrSeeOtherResults} onClick={this.onClickedResults}>
+                      Ou&nbsp;<strong>visualize outros resultados</strong>
+                    </button>
+                  </div>
                 </div>
                 <div>
-                  <div className={styles1.callToAction}>
+                  <div className={styles.callToAction}>
                     <h2>Sua turma participou deste desafio?</h2>
                     <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
                     <NavLink to={link} className="btnFullWidth">
                       Enviar resultado
                     </NavLink>
                   </div>
-                  <h3 className={styles1.numResults}>{results.length} {wordResults}</h3>
+                  <h3 className={styles.numResults}>{results.length} {wordResults}</h3>
                   <div>{resultItems}</div>
-                  <div className={styles1.center}>{loadingOrButton}</div>
+                  <div className={styles.center}>{loadingOrButton}</div>
                 </div>
               </SwipeableViews>
             </div>

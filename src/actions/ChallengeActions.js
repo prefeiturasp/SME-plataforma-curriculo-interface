@@ -3,7 +3,7 @@ const data = {
   slug: 'projeto-sinais-luminosos-na-aviacao',
   title: 'Projeto Sinais Luminosos na Aviação',
   deadline: '05/06/2018',
-  presentation_text: '',
+  presentation_text: 'Sinais luminosos são muito importantes na aviação, sobretudo quando os aviões voam à noite.\nIncorpore LEDs ao seu simulador e programe-os para que o avião emita sinais de luz.',
   image_attributes: {
     default_url: '',
     large: {
