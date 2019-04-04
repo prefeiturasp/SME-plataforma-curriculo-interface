@@ -16,7 +16,7 @@ class Title extends Component {
   };
 
   render() {
-    const { hasButton, isSaved, deadline, title } = this.props;
+    const { deadline, isSaved, title } = this.props;
 
     let btnSave1 = null;
     let btnSave2 = null;
@@ -51,9 +51,8 @@ class Title extends Component {
 }
 
 Title.propTypes = {
-  hasButton: PropTypes.bool,
-  slug: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

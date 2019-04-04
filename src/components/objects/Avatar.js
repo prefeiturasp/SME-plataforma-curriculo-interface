@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { API_URL } from 'data/constants';
 import styles from './Avatar.scss';
 
