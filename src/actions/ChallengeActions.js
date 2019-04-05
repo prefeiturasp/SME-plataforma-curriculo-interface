@@ -3,7 +3,7 @@ const data = {
   slug: 'projeto-sinais-luminosos-na-aviacao',
   title: 'Projeto Sinais Luminosos na Aviação',
   deadline: '05/06/2018',
-  presentation_text: 'Sinais luminosos são muito importantes na aviação, sobretudo quando os aviões voam à noite.\nIncorpore LEDs ao seu simulador e programe-os para que o avião emita sinais de luz.',
+  text: '{"ops":[{"insert":"Sinais luminosos são muito importantes na aviação, sobretudo quando os aviões voam à noite. Incorpore LEDs ao seu simulador e programe-os para que o avião emita sinais de luz."}]}',
   image_attributes: {
     default_url: '',
     large: {
@@ -51,11 +51,21 @@ const results = [
     year: '1o ano',
     time: '30 min atrás',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu porttitor nisl. Nulla facilisi. Sed ornare gravida arcu, sed facilisis liberodiam eros',
+    images: [
+    ],
+    videos: [
+      'https://www.youtube.com/watch?v=iAncnIdt2vw',
+    ],
     attachments: [
       {
         fileName: 'Apresentação.pdf',
         size: '10 MB',
         url: 'apresentacao.pdf',
+      },
+      {
+        fileName: 'Projeto.pdf',
+        size: '20 MB',
+        url: 'projeto.pdf',
       },
       {
         fileName: 'Projeto.pdf',
@@ -75,6 +85,11 @@ const results = [
     year: '1o ano',
     time: '1 dia atrás',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu porttitor nisl. Nulla facilisi. Sed ornare gravida arcu, sed facilisis liberodiam eros',
+    images: [
+    ],
+    videos: [
+      'https://www.youtube.com/watch?v=iAncnIdt2vw',
+    ],
     attachments: [
       {
         fileName: 'Apresentação.pdf',
@@ -98,6 +113,8 @@ const results = [
     year: '1o ano',
     time: '22/03/2019',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu porttitor nisl. Nulla facilisi. Sed ornare gravida arcu, sed facilisis liberodiam eros',
+    images: [],
+    videos: [],
     attachments: [],
   },
 ];

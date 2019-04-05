@@ -17,6 +17,7 @@ import Loading from 'components/loading/Loading';
 import ResultItem from './ResultItem';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
 import isLogged from 'data/isLogged';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
@@ -97,7 +98,7 @@ class Challenge extends Component {
     const chevron = isMaterialsExpanded ? chevronUp : chevronDown;
     const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
 
-    const description = data.presentation_text.replace(/\r\n/g, '<br>');
+    const description = convertQuillToHtml(data.text);
 
     const link = `/desafio/${data.slug}/enviar`;
 
@@ -174,9 +175,10 @@ class Challenge extends Component {
                       </ul>
                     </Collapse>
                   </div>
-                  <div className={styles.description}>
-                    {description}
-                  </div>
+                  <div
+                    className={styles.description}
+                    dangerouslySetInnerHTML={{__html: description}}
+                  />
                   <div className={styles.callToAction}>
                     <h2>Sua turma participou deste desafio?</h2>
                     <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>

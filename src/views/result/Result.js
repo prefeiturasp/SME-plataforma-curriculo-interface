@@ -9,6 +9,7 @@ import ChallengeActions from 'actions/ChallengeActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
+import ModuleGallery from 'views/activity/ModuleGallery';
 import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';
 import iconClip from 'images/icons/clip.svg';
@@ -33,7 +34,25 @@ class Result extends Component {
       return <span />;
     }
 
-    const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles.icon} /> : null;
+    const gallery = data.images.length ? <ModuleGallery images={data.images} /> : null;
+    const videos = data.videos.map(item  => {
+      const index = item.indexOf('v=') + 2;
+      const id = item.substring(index);
+      return (
+        <iframe
+          key={id}
+          className={styles.video}
+          width="100%"
+          height="315"
+          src={`https://www.youtube.com/embed/${id}`}
+          frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      );
+    });
+
+    const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
     const attachments = data.attachments.map((item, i) => {
       return (
         <AttachmentItem
@@ -67,35 +86,45 @@ class Result extends Component {
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="&nbsp;" />
-          <div className={styles.row}>
-            <h2>Detalhes do Resultado</h2>
-            <div className={styles1.info}>
-              <div className={styles1.avatar}>
-                <Avatar
-                  nickname={data.author.name}
-                  photo={data.author.photo}
-                  size={50}
-                />
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12 col-lg-8">
+                <h2 className={styles.title}>Detalhes do Resultado</h2>
+                <div className={styles1.info}>
+                  <div className={styles1.avatar}>
+                    <Avatar
+                      nickname={data.author.name}
+                      photo={data.author.photo}
+                      size={50}
+                    />
+                  </div>
+                  <div>
+                    <div className={styles1.name}>{data.author.name}</div>
+                    <div className={styles1.date}>{data.year} &middot; {data.time}</div>
+                  </div>
+                  {icon}
+                </div>
+                <div className={styles.text}>{data.text}</div>
               </div>
-              <div>
-                <div className={styles1.name}>{data.author.name}</div>
-                <div className={styles1.date}>{data.year} &middot; {data.time}</div>
-              </div>
-              {icon}
             </div>
-            <div className={styles1.text}>{data.text}</div>
-            <div className={styles.attachments}>
+          </div>
+          <hr />
+          <div className={styles.attachments}>
+            <div className="row">
+              {gallery}
+              {videos}
               {attachments}
             </div>
-            <div className={styles2.arrows}>
-              {arrowPrev}
-              {arrowNext}
-            </div>
-            <div className={styles2.footer}>
-              <NavLink className={styles2.back} to={linkResults}>
-                Voltar para resultados
-              </NavLink>
-            </div>
+          </div>
+          <hr />
+          <div className={styles2.arrows}>
+            {arrowPrev}
+            {arrowNext}
+          </div>
+          <div className={styles2.footer}>
+            <NavLink className={styles2.back} to={linkResults}>
+              Voltar para resultados
+            </NavLink>
           </div>
         </ModalPage>
       </DesktopModal>

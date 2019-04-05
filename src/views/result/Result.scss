@@ -3,3 +3,23 @@
 
 .wrapper {
 }
+
+.title {
+  color: black;
+  font-size: rem(21);
+  margin-bottom: rem(18);
+}
+
+.text {
+  margin-bottom: rem(18);
+}
+
+.attachments {
+  composes: container from global;
+  padding-top: rem(24);
+  padding-bottom: rem(32);
+}
+
+.video {
+  margin-bottom: rem(20);
+}
