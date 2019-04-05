@@ -1,0 +1,39 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  composes: col-6 from global;
+  align-items: center;
+  color: $grey-600;
+  display: flex;
+  flex-direction: row;
+  font-size: rem(13);
+  padding-top: rem(8);
+  padding-bottom: rem(8);
+}
+
+.icon {
+  align-items: center;
+  background: $grey-200;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  margin-right: rem(8);
+  width: rem(36);
+  height: rem(36);
+
+  > svg {
+    fill: white;
+  }
+}
+
+.name {
+  color: black;
+  font-size: rem(13);
+  font-weight: 600;
+  margin-bottom: rem(1);
+}
+
+.size {
+
+}

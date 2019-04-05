@@ -19,6 +19,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
+import Challenge from 'views/challenge/Challenge';
 import Classrooms from 'views/profile/classrooms/Classrooms';
 import Collection from 'views/profile/collection/Collection';
 import Confirm from 'components/Confirm';
@@ -32,6 +33,7 @@ import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
 import Profile from 'views/profile/Profile';
+import Result from 'views/result/Result';
 import Roadmap from 'views/roadmap/Roadmap';
 import SaveSequence from 'views/sequence/save/SaveSequence';
 import Sequence from 'views/sequence/Sequence';
@@ -121,6 +123,7 @@ class ModalSwitch extends Component {
           <Route exact path="/descobrir" component={Roadmap} />
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
+          <Route path="/desafio/:slug" component={Challenge} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
@@ -182,6 +185,12 @@ class ModalSwitch extends Component {
           exact
           path="/sequencias/:slug/salvar"
           component={SaveSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/resultado/:id"
+          component={Result}
           {...modalProps}
         />
         <ModalContainer />

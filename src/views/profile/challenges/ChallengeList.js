@@ -21,13 +21,14 @@ class ChallengeList extends Component {
       );
     });
 
+    const word = items.length === 1 ? 'desafio salvo' : 'desafios salvos';
     const link = createModalLink('/perfil/criar-colecao');
 
     return (
       <section className={styles.wrapper}>
         <div className="container">
           <div className={styles.rowTitle}>
-            <h3>{items.length} desafios salvos</h3>
+            <h3>{items.length} {word}</h3>
           </div>
           <div className="row">{items}</div>
           <div className={styles.rowBelow}>

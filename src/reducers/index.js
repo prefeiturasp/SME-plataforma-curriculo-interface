@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import ActivityReducer from './ActivityReducer';
 import AlertReducer from './AlertReducer';
 import BodyReducer from './BodyReducer';
+import ChallengeReducer from './ChallengeReducer';
 import ChallengesReducer from './ChallengesReducer';
 import CollectionReducer from './CollectionReducer';
 import CollectionsReducer from './CollectionsReducer';
@@ -21,6 +22,7 @@ export default combineReducers({
   ActivityReducer,
   AlertReducer,
   BodyReducer,
+  ChallengeReducer,
   ChallengesReducer,
   CollectionReducer,
   CollectionsReducer,

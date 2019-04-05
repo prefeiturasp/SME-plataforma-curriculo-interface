@@ -2,6 +2,7 @@ import ChallengesActions from 'actions/ChallengesActions';
 
 const initialState = {
   items: [],
+  performed: [],
 };
 
 function ChallengesReducer(state = initialState, action) {
@@ -10,6 +11,12 @@ function ChallengesReducer(state = initialState, action) {
       return {
         ...state,
         items: action.data,
+      };
+
+    case ChallengesActions.LOADED_PERFORMED:
+      return {
+        ...state,
+        performed: action.data,
       };
 
     default:
