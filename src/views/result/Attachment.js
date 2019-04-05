@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import iconClip from 'images/icons/clip.svg';
-import styles from './AttachmentItem.scss';
+import styles from './Attachment.scss';
 
-class AttachmentItem extends Component {
+class Attachment extends Component {
   render() {
     const { data } = this.props;
     
@@ -22,8 +22,8 @@ class AttachmentItem extends Component {
   }
 }
 
-AttachmentItem.propTypes = {
+Attachment.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default AttachmentItem;
+export default Attachment;
