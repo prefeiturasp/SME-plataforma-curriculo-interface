@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import AttachmentItem from './AttachmentItem';
+import Attachment from './Attachment';
 import Avatar from 'components/objects/Avatar';
 import BodyActions from 'actions/BodyActions';
 import ChallengeActions from 'actions/ChallengeActions';
@@ -14,7 +14,7 @@ import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';
 import iconClip from 'images/icons/clip.svg';
 import styles from './Result.scss';
-import styles1 from 'views/challenge/ResultItem.scss';
+import styles1 from 'views/challenge/Result.scss';
 import styles2 from 'views/activity/Activity.scss';
 
 class Result extends Component {
@@ -41,6 +41,7 @@ class Result extends Component {
       return (
         <iframe
           key={id}
+          title={id}
           className={styles.video}
           width="100%"
           height="315"
@@ -55,7 +56,7 @@ class Result extends Component {
     const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
     const attachments = data.attachments.map((item, i) => {
       return (
-        <AttachmentItem
+        <Attachment
           key={i}
           data={item}
         />
