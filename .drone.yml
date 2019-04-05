@@ -47,7 +47,7 @@ steps:
   when:
     branch:
     - devops 
-    - staging-v2
+    - staging-v3
     - staging
 
 
