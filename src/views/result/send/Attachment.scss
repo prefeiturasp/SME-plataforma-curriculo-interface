@@ -1,0 +1,50 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  margin-bottom: rem(10);
+}
+
+.icon,
+.image {
+  border-radius: rem(4);
+  margin-right: rem(14);
+  width: rem(50);
+  height: rem(50);
+}
+
+.icon {
+  align-items: center;
+  background-color: $grey-200;
+  display: flex;
+  justify-content: center;
+
+  img {
+    height: rem(20);
+    width: auto;
+  }
+}
+
+.image {
+  object-fit: cover;
+}
+
+.name {
+  color: $grey-800;
+  font-size: rem(15);
+  font-weight: 600;
+  line-height: rem(18);
+  margin-bottom: rem(4);
+}
+
+.size {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+}
+
+.buttons {
+  margin-left: auto;
+}

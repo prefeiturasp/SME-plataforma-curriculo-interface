@@ -27,6 +27,10 @@ textarea {
   line-height: 1.2;
 }
 
+input[type=file] {
+  display: none;
+}
+
 ul,
 ol,
 li {
@@ -68,6 +72,7 @@ a:hover {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: rem(4);
   color: black;
+  cursor: pointer;
   display: inline-flex;
   font-size: rem(12);
   font-weight: bold;

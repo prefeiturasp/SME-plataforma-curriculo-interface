@@ -5,6 +5,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import Attachment from './Attachment';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from './ChallengePreview';
 import Classroom from 'views/profile/collection/edit/Classroom';
@@ -30,11 +31,12 @@ const CustomCheckbox = withStyles({
 
 class SendResult extends Component {
   state = {
-    description: '',
     hasChecked: false,
+    description: '',
     videos: [
       { url: '' },
     ],
+    attachments: [],
   };
 
   onChangedCheckbox = e => {
@@ -55,12 +57,12 @@ class SendResult extends Component {
 
   onChangedVideo = index => {
     return e => {
-      const newVideos = this.state.videos.concat();
-      newVideos[index] = { url: e.target.value };
+      const videos = this.state.videos.concat();
+      videos[index] = { url: e.target.value };
 
       this.setState({
         ...this.state,
-        videos: newVideos,
+        videos,
       });
     }
   };
@@ -74,8 +76,23 @@ class SendResult extends Component {
     });
   };
 
-  onClickedSelectFile = e => {
+  onClickedDeleteFile = index => {
+    return e => {
+      const attachments = this.state.attachments.concat();
+      attachments.splice(index, 1);
 
+      this.setState({
+        ...this.state,
+        attachments,
+      });
+    };
+  };
+
+  onClickedSelectFile = e => {
+    this.setState({
+      ...this.state,
+      attachments: this.state.attachments.concat(Array.from(e.target.files)),
+    })
   };
 
   onClickedSend = () => {
@@ -95,11 +112,12 @@ class SendResult extends Component {
     }
 
     const { challenge, classrooms } = this.props;
-    const { description, hasChecked, videos } = this.state;
+    const { attachments, description, hasChecked, videos } = this.state;
 
+    console.log(attachments);
     const counter = `${description.length} / ${MAX_CHARS}`;
 
-    const videoFields = videos.map((item, i) => {
+    const videoItems = videos.map((item, i) => {
       const number = i > 0 ? i + 1 : '';
       const label = `Vídeo ${number} (opcional)`;
       return (
@@ -113,6 +131,16 @@ class SendResult extends Component {
           />
           <div className={styles.videoHint}>Cole o link do vídeo hospedado no Youtube ou Vimeo</div>
         </div>
+      );
+    });
+
+    const attachmentItems = attachments.map((item, i) => {
+      return (
+        <Attachment
+          key={i}
+          data={item}
+          onDelete={this.onClickedDeleteFile(i)}
+        />
       );
     });
 
@@ -156,19 +184,20 @@ class SendResult extends Component {
                   />
                   <div className={styles.counter}>{counter}</div>
                   
-                  <div>{videoFields}</div>
+                  <div>{videoItems}</div>
                   <button className={styles.btnAddVideo} onClick={this.onClickedAddVideo}>
                     <img src={iconPlus} alt="Adicionar mais um vídeo" />
                     Adicionar mais um vídeo
                   </button>
                   
                   <label className={styles.label}>Outros anexos (opcional)</label>
-                  <div className={styles.files}></div>
-                  <button className="btnFullWidth" onClick={this.onClickedSelectFile}>
+                  <div className={styles.attachments}>{attachmentItems}</div>
+                  <label className="btnFullWidth">
                     Selecionar arquivo
                     <img src={iconClip} alt="Selecionar arquivo" />
-                  </button>
-                  <p className={styles.filesHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
+                    <input type="file" onChange={this.onClickedSelectFile} />
+                  </label>
+                  <p className={styles.attachmentHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
 
                   <label className={styles.label}>Selecionar turmas (opcional)</label>
                   <div className={styles.classrooms}>{classroomItems}</div>
