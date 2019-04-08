@@ -36,6 +36,7 @@ import Profile from 'views/profile/Profile';
 import Result from 'views/result/Result';
 import Roadmap from 'views/roadmap/Roadmap';
 import SaveSequence from 'views/sequence/save/SaveSequence';
+import SendResult from 'views/result/send/SendResult';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
 import Snackbar from 'components/Snackbar';
@@ -185,6 +186,12 @@ class ModalSwitch extends Component {
           exact
           path="/sequencias/:slug/salvar"
           component={SaveSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/enviar"
+          component={SendResult}
           {...modalProps}
         />
         <ModalRoute

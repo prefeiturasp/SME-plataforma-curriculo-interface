@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'components/objects/Avatar';
 import iconClip from 'images/icons/clip.svg';
-import styles from './ResultItem.scss';
+import styles from './Result.scss';
 
-class ResultItem extends Component {
+class Result extends Component {
   render() {
     const { data, slug } = this.props;
     const link = `/desafio/${slug}/resultado/${data.id}`;
@@ -33,9 +33,9 @@ class ResultItem extends Component {
   }
 }
 
-ResultItem.propTypes = {
+Result.propTypes = {
   data: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
 };
 
-export default ResultItem;
+export default Result;

@@ -14,7 +14,7 @@ import ChallengeChars from './chars/ChallengeChars';
 import ChallengeCharsMobile from './chars/ChallengeCharsMobile';
 import Cover from './Cover';
 import Loading from 'components/loading/Loading';
-import ResultItem from './ResultItem';
+import Result from './Result';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
@@ -81,7 +81,6 @@ class Challenge extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.state.isPrint, !prevProps.data, this.props.data);
     if (this.state.isPrint && !prevProps.data && this.props.data) {
       setTimeout(window.print, 2000);
     }
@@ -103,9 +102,9 @@ class Challenge extends Component {
     const link = `/desafio/${data.slug}/enviar`;
 
     const wordResults = results.length === 1 ? 'resultado' : 'resultados';
-    const resultItems = results.map((item, i) => {
+    const Results = results.map((item, i) => {
       return (
-        <ResultItem
+        <Result
           key={i}
           data={item}
           slug={data.slug}
@@ -199,7 +198,7 @@ class Challenge extends Component {
                     </NavLink>
                   </div>
                   <h3 className={styles.numResults}>{results.length} {wordResults}</h3>
-                  <div>{resultItems}</div>
+                  <div>{Results}</div>
                   <div className={styles.center}>{loadingOrButton}</div>
                 </div>
               </SwipeableViews>
