@@ -121,3 +121,20 @@
   background-color: $grey-050;
   display: none;
 }
+
+@include mq("tablet-landscape") {
+  .btnChars {
+    display: none;
+  }
+
+  .description {
+    font-size: rem(18);
+    line-height: rem(24);
+  }
+
+  .chars {
+    display: block;
+    padding-top: rem(20);
+    padding-bottom: rem(20);
+  }
+}

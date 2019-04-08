@@ -12,8 +12,11 @@ import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
+import iconClip from 'images/icons/clip.svg';
 import iconPlus from 'images/icons/plus.svg';
 import styles from './SendResult.scss';
+
+const MAX_CHARS = 3000;
 
 const CustomCheckbox = withStyles({
   root: {
@@ -29,7 +32,9 @@ class SendResult extends Component {
   state = {
     description: '',
     hasChecked: false,
-    videos: [],
+    videos: [
+      { url: '' },
+    ],
   };
 
   onChangedCheckbox = e => {
@@ -39,10 +44,19 @@ class SendResult extends Component {
     });
   };
 
+  onChangedDescription = e => {
+    if (e.target.value.length <= MAX_CHARS) {
+      this.setState({
+        ...this.state,
+        description: e.target.value,
+      });
+    }
+  };
+
   onChangedVideo = index => {
-    return function(e) {
+    return e => {
       const newVideos = this.state.videos.concat();
-      newVideos[index] = e.target.value;
+      newVideos[index] = { url: e.target.value };
 
       this.setState({
         ...this.state,
@@ -54,8 +68,14 @@ class SendResult extends Component {
   onClickedAddVideo = () => {
     this.setState({
       ...this.state,
-      videos: this.state.videos.concat({}),
+      videos: this.state.videos.concat({
+        url: '',
+      }),
     });
+  };
+
+  onClickedSelectFile = e => {
+
   };
 
   onClickedSend = () => {
@@ -77,15 +97,21 @@ class SendResult extends Component {
     const { challenge, classrooms } = this.props;
     const { description, hasChecked, videos } = this.state;
 
+    const counter = `${description.length} / ${MAX_CHARS}`;
+
     const videoFields = videos.map((item, i) => {
+      const number = i > 0 ? i + 1 : '';
+      const label = `Vídeo ${number} (opcional)`;
       return (
-        <div>
+        <div key={i}>
           <TextField
-            key={i}
-            value={item}
+            value={item.url}
+            fullWidth={true}
+            label={label}
+            placeholder="http://"
             onChange={this.onChangedVideo(i)}
           />
-          <p>Cole o link do vídeo hospedado no Youtube ou Vimeo</p>
+          <div className={styles.videoHint}>Cole o link do vídeo hospedado no Youtube ou Vimeo</div>
         </div>
       );
     });
@@ -107,45 +133,57 @@ class SendResult extends Component {
       <DesktopModal>
         <ModalPage>
           <ModalHeader title="Enviar resultado" />
-          <ChallengePreview challenge={challenge} />
-          <hr />
-          <div className="container">
-            <div className="row">
-              <h2>Nos conte sobre as abordagens e desdobramentos na construção do projeto.</h2>
-              <p>Além de texto, você pode incluir links para vídeos, posts em outras plataformas ou redes sociais.</p>
+          <div className={styles.contents}>
+            <ChallengePreview challenge={challenge} />
+            <div className={styles.instructions}>
+              <div className="row">
+                <div className="col-12">
+                  <h2>Nos conte sobre as abordagens e desdobramentos na construção do projeto.</h2>
+                  <p>Além de texto, você pode incluir links para vídeos, posts em outras plataformas ou redes sociais.</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <hr />
-          <div className="container">
-            <div className="row">
-              <TextField
-                fullWidth={true}
-                label="Descrição"
-                onChange={this.onChangedDescription}
-                value={description}
-              />
-              
-              {videoFields}
-              <button onClick={this.onClickedAddVideo}>
-                <img src={iconPlus} alt="Adicionar mais um vídeo" />
-                Adicionar mais um vídeo
-              </button>
-              
-              <label>Outros anexos (opcional)</label>
-              <p>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
-
-              <label>Selecionar turmas (opcional)</label>
-              {classroomItems}
-
-              <FormControlLabel
-                control={
-                  <CustomCheckbox
-                    checked={hasChecked}
-                    onChange={this.onChangedCheckbox}
+            <div className={styles.form}>
+              <div className="row">
+                <div className="col-12">
+                  <TextField
+                    fullWidth={true}
+                    multiline={true}
+                    label="Descrição"
+                    placeholder="Digite aqui"
+                    onChange={this.onChangedDescription}
+                    value={description}
                   />
-                }
-                label="Declaro ter autorização de uso de imagem de todo conteúdo cadastrado neste desafio."
-              />
+                  <div className={styles.counter}>{counter}</div>
+                  
+                  <div>{videoFields}</div>
+                  <button className={styles.btnAddVideo} onClick={this.onClickedAddVideo}>
+                    <img src={iconPlus} alt="Adicionar mais um vídeo" />
+                    Adicionar mais um vídeo
+                  </button>
+                  
+                  <label className={styles.label}>Outros anexos (opcional)</label>
+                  <div className={styles.files}></div>
+                  <button className="btnFullWidth" onClick={this.onClickedSelectFile}>
+                    Selecionar arquivo
+                    <img src={iconClip} alt="Selecionar arquivo" />
+                  </button>
+                  <p className={styles.filesHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
+
+                  <label className={styles.label}>Selecionar turmas (opcional)</label>
+                  <div className={styles.classrooms}>{classroomItems}</div>
+
+                  <FormControlLabel
+                    control={
+                      <CustomCheckbox
+                        checked={hasChecked}
+                        onChange={this.onChangedCheckbox}
+                      />
+                    }
+                    label="Declaro ter autorização de uso de imagem de todo conteúdo cadastrado neste desafio."
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <ModalFooter label="Enviar" onClick={this.onClickedSend} />

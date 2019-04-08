@@ -42,6 +42,13 @@ const theme = createMuiTheme({
         backgroundColor: '#008080',
       },
     },
+    MuiFormControlLabel: {
+      label: {
+        fontSize: 13,
+        fontWeight: 600,
+        lineHeight: '18px',
+      },
+    },
   },
   palette: {
     primary: {

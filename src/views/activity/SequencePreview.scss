@@ -59,7 +59,8 @@
   }
 }
 
-.info {
+.info,
+.info1 {
   padding: rem(10);
   padding-left: 0;
   overflow: hidden;
@@ -98,7 +99,12 @@
   }
 }
 
+.info1 {
+  width: calc(100% - 80px);
+}
+
 .image {
+  background-color: $grey-300;
   margin-right: rem(10);
   object-fit: cover;
   width: rem(60);

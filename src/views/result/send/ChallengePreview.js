@@ -19,7 +19,7 @@ class ChallengePreview extends Component {
       <div className={styles.wrapper}>
         <div className={styles.container}>
           {image}
-          <div className={styles.info}>
+          <div className={styles.info1}>
             <p>Desafio</p>
             <h1>{challenge.title}</h1>
           </div>
