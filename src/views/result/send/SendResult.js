@@ -5,19 +5,24 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import AlertActions from 'actions/AlertActions';
 import Attachment from './Attachment';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from './ChallengePreview';
 import Classroom from 'views/profile/collection/edit/Classroom';
+import ConfirmActions from 'actions/ConfirmActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
+import formatFileSize from 'utils/formatFileSize';
 import iconClip from 'images/icons/clip.svg';
 import iconPlus from 'images/icons/plus.svg';
 import styles from './SendResult.scss';
 
 const MAX_CHARS = 3000;
+const MAX_SIZE = 10 * 1024 * 1024;
+const MAX_SIZE_FORMATTED = formatFileSize(MAX_SIZE);
 
 const CustomCheckbox = withStyles({
   root: {
@@ -89,13 +94,32 @@ class SendResult extends Component {
   };
 
   onClickedSelectFile = e => {
+    const files = Array.from(e.target.files);
+    const acceptedFiles = files.filter(file => file.size <= MAX_SIZE );
+
+    if (acceptedFiles.length < files.length) {
+      this.props.openAlert(`O tamanho do arquivo que você está tentando enviar excede o limite de ${MAX_SIZE_FORMATTED}`);
+    }
+
     this.setState({
       ...this.state,
-      attachments: this.state.attachments.concat(Array.from(e.target.files)),
-    })
+      attachments: this.state.attachments.concat(acceptedFiles),
+    });
   };
 
   onClickedSend = () => {
+    if (this.state.attachments.length <= 0) {
+      this.props.openConfirm(
+        'Deseja continuar sem anexo?',
+        'Ocorreu uma falha e não foi possível salvar todos os anexos.',
+        'Continuar sem anexo',
+        'Tentar novamente',
+        this.onClickedContinue
+      );
+    }
+  };
+
+  onClickedContinue = () => {
 
   };
 
@@ -195,7 +219,7 @@ class SendResult extends Component {
                   <label className="btnFullWidth">
                     Selecionar arquivo
                     <img src={iconClip} alt="Selecionar arquivo" />
-                    <input type="file" onChange={this.onClickedSelectFile} />
+                    <input type="file" multiple onChange={this.onClickedSelectFile} />
                   </label>
                   <p className={styles.attachmentHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
 
@@ -225,6 +249,9 @@ class SendResult extends Component {
 SendResult.propTypes = {
   challenge: PropTypes.object,
   classrooms: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
+  openAlert: PropTypes.func.isRequired,
+  openConfirm: PropTypes.func.isRequired,
 };
 
 SendResult.defaultProps = {
@@ -254,6 +281,14 @@ const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
       dispatch(ChallengeActions.loadResults(slug));
+    },
+    openAlert: message => {
+      dispatch(AlertActions.open(message));
+    },
+    openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
+      dispatch(
+        ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
+      );
     },
   };
 };

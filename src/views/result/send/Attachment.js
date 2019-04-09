@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConfirmActions from 'actions/ConfirmActions';
+import formatFileSize from 'utils/formatFileSize';
 import iconClip from 'images/icons/clip.svg';
 import iconDelete from 'images/icons/delete.svg';
 import styles from './Attachment.scss';
-
-const ONE_MEGABYTE = 1024 * 1024;
 
 class Attachment extends React.PureComponent {
   state = {
@@ -74,16 +73,14 @@ class Attachment extends React.PureComponent {
       </div>
     );
 
-    const readableSize = size > ONE_MEGABYTE ? size / ONE_MEGABYTE : size / 1024;
-    const roundedSize = Math.round(readableSize);
-    const unit = size > ONE_MEGABYTE ? 'MB' : 'KB';
+    const formattedSize = formatFileSize(size);
 
     return (
       <div className={styles.wrapper}>
         {thumbnail}
         <div className={styles.info}>
           <div className={styles.name}>{name}</div>
-          <div className={styles.size}>{roundedSize} {unit}</div>
+          <div className={styles.size}>{formattedSize}</div>
         </div>
         <div className={styles.buttons}>
           <button onClick={this.onClickedDelete}>
