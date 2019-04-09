@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Challenge from './Challenge';
 import createModalLink from 'utils/createModalLink';
 import styles from 'views/profile/collections/CollectionList.scss';
+import styles1 from './ChallengeList.scss';
 
 class ChallengeList extends Component {
   render() {
@@ -21,19 +22,30 @@ class ChallengeList extends Component {
       );
     });
 
+    const message = items.length ? null : (
+      <div className={styles1.message}>Salve desafios para acessá-los mais tarde.</div>
+    );
+
     const word = items.length === 1 ? 'desafio salvo' : 'desafios salvos';
     const link = createModalLink('/perfil/criar-colecao');
+    const btnLabel = items.length ? 'Buscar mais desafios' : 'Buscar desafios';
 
     return (
       <section className={styles.wrapper}>
         <div className="container">
           <div className={styles.rowTitle}>
             <h3>{items.length} {word}</h3>
+            <NavLink className="btnSmall" to={link}>
+              {btnLabel}
+            </NavLink>
           </div>
-          <div className="row">{items}</div>
+          <div className="row">
+            {items}
+            {message}
+          </div>
           <div className={styles.rowBelow}>
             <NavLink className="btnFullWidth" to={link}>
-              Buscar mais desafios
+              {btnLabel}
             </NavLink>
           </div>
         </div>
