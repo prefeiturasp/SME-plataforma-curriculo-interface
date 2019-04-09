@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { history } from 'index';
 import Avatar from './Avatar';
 import BodyActions from 'actions/BodyActions';
 import ChallengesActions from 'actions/ChallengesActions';
@@ -9,6 +10,7 @@ import ChallengeList from './challenges/ChallengeList';
 import CollectionsActions from 'actions/CollectionsActions';
 import CollectionList from './collections/CollectionList';
 import EmptyList from './collections/EmptyList';
+import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ProfileActions from 'actions/ProfileActions';
 import createModalLink from 'utils/createModalLink';
@@ -17,7 +19,9 @@ import iconEdit from 'images/icons/edit.svg';
 import styles from './Profile.scss';
 
 class Profile extends Component {
-  onClickedRate = () => {};
+  onClickedChallenge = () => {
+    history.push('/desafio/projeto-sinais-luminosos-na-aviacao');
+  };
 
   componentDidMount() {
     this.props.load();
@@ -35,13 +39,21 @@ class Profile extends Component {
     const { data, challenges, collections } = this.props;
     const { nickname } = data;
 
+    const notification = true ? (
+      <Notification
+        text="O novo desafio Projeto Sinais Luminosos na Aviação está disponível na plataforma. Acesse agora e saiba mais detalhes de como participar."
+        labelNo="Agora não"
+        labelYes="Visualizar desafio"
+        onClickedYes={this.onClickedChallenge}
+      />
+    ) : null;
+
     const numCollections = collections.length;
     const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
     const collectionList =
       numCollections > 0 ? <CollectionList items={collections} /> : <EmptyList />;
 
-    const challengeList =
-      challenges.length > 0 ? <ChallengeList items={challenges} /> : null;
+    const challengeList = <ChallengeList items={challenges} />;
 
     const size = this.props.windowWidth < 768 ? 60 : 80;
 
@@ -49,6 +61,7 @@ class Profile extends Component {
     
     return (
       <Page>
+        {notification}
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>
