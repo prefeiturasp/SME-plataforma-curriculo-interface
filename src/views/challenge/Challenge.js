@@ -130,8 +130,9 @@ class Challenge extends Component {
               <Title
                 hasButton={true}
                 isSaved={isSaved}
-                slug={data.slug}
                 deadline={data.deadline}
+                id={data.id}
+                slug={data.slug}
                 title={data.title}
               />
               <div className={styles.tabs}>
