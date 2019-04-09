@@ -57,7 +57,7 @@ class Challenge extends React.PureComponent {
 
     let bar = null;
     if (hasPerformed) {
-      const link = createModalLink(`/desafio/${slug}/resultado`);
+      const link = createModalLink(`/desafio/${slug}/resultado/1`);
       
       bar = (
         <div className={styles.bar}>
@@ -65,7 +65,7 @@ class Challenge extends React.PureComponent {
             <img src={iconCheck} alt="Desafio realizado" />
             Desafio realizado
           </span>
-          <NavLink to={link}>Veu meu resultado</NavLink>
+          <NavLink to={link}>Ver meu resultado</NavLink>
         </div>
       );
     }
