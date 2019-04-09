@@ -255,7 +255,7 @@ a:hover {
   }
 }
 
-@include mq("tablet-landscape", max) {
+@include mq("tablet-portrait", max) {
   :global(.modal) {
     background-color: white;
     border-radius: rem(4);
@@ -279,7 +279,7 @@ a:hover {
   }
 }
 
-@include mq("tablet-landscape") {
+@include mq("tablet-portrait") {
   :global(.react-router-modal__wrapper) {
     align-items: center;
     display: flex;

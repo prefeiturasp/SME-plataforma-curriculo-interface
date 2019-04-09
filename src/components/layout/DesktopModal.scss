@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-@include mq("tablet-landscape") {
+@include mq("tablet-portrait") {
   .modal {
     border-radius: rem(4);
     display: flex;
@@ -15,6 +15,10 @@
     max-height: 80vh;
     min-width: rem(730);
     overflow: hidden;
+
+    &.isFixed {
+      width: rem(730);
+    }
 
     &.isSmall {
       min-width: auto;

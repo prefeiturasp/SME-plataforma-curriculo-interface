@@ -10,6 +10,7 @@ import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import ModuleGallery from 'views/activity/ModuleGallery';
+import withWidth from 'components/hoc/withWidth';
 import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';
 import iconClip from 'images/icons/clip.svg';
@@ -23,7 +24,7 @@ class Result extends Component {
   }
 
   render() {
-    const { results } = this.props;
+    const { results, windowWidth } = this.props;
     const { id, slug } = this.props.match.params;
     
     const data = results.find(item => {
@@ -33,6 +34,8 @@ class Result extends Component {
     if (!data) {
       return <span />;
     }
+
+    const modalTitle = windowWidth > 768 ? 'Detalhes do Resultado' : '';
 
     const gallery = data.images.length ? <ModuleGallery images={data.images} /> : null;
     const videos = data.videos.map(item  => {
@@ -84,48 +87,50 @@ class Result extends Component {
     ) : null;
 
     return (
-      <DesktopModal>
+      <DesktopModal isFixed>
         <ModalPage>
-          <ModalHeader title="&nbsp;" />
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12 col-lg-8">
-                <h2 className={styles.title}>Detalhes do Resultado</h2>
-                <div className={styles1.info}>
-                  <div className={styles1.avatar}>
-                    <Avatar
-                      nickname={data.author.name}
-                      photo={data.author.photo}
-                      size={50}
-                    />
+          <ModalHeader title={modalTitle} />
+          <div className={styles.wrapper}>
+            <div className="container">
+              <div className="row">
+                <div className="col-sm-12 col-lg-10 offset-lg-1">
+                  <h2 className={styles.title}>Detalhes do Resultado</h2>
+                  <div className={styles1.info}>
+                    <div className={styles1.avatar}>
+                      <Avatar
+                        nickname={data.author.name}
+                        photo={data.author.photo}
+                        size={50}
+                      />
+                    </div>
+                    <div>
+                      <div className={styles1.name}>{data.author.name}</div>
+                      <div className={styles1.date}>{data.year} &middot; {data.time}</div>
+                    </div>
+                    {icon}
                   </div>
-                  <div>
-                    <div className={styles1.name}>{data.author.name}</div>
-                    <div className={styles1.date}>{data.year} &middot; {data.time}</div>
+                  <div className={styles.text}>{data.text}</div>
+                  <hr />
+                  <div className={styles.attachments}>
+                    {gallery}
+                    {videos}
+                    <div className="row">
+                      {attachments}
+                    </div>
                   </div>
-                  {icon}
                 </div>
-                <div className={styles.text}>{data.text}</div>
               </div>
             </div>
-          </div>
-          <hr />
-          <div className={styles.attachments}>
-            <div className="row">
-              {gallery}
-              {videos}
-              {attachments}
+            <hr />
+            <div className={styles2.arrows}>
+              {arrowPrev}
+              {arrowNext}
             </div>
-          </div>
-          <hr />
-          <div className={styles2.arrows}>
-            {arrowPrev}
-            {arrowNext}
-          </div>
-          <div className={styles2.footer}>
-            <NavLink className={styles2.back} to={linkResults}>
-              Voltar para resultados
-            </NavLink>
+            <div className={styles2.footer}>
+              <NavLink className={styles2.back} to={linkResults}>
+                Voltar para resultados
+              </NavLink>
+            </div>
           </div>
         </ModalPage>
       </DesktopModal>
@@ -155,4 +160,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Result);
+)(withWidth(Result));
