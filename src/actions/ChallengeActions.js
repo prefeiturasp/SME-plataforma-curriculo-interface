@@ -1,3 +1,5 @@
+import SnackbarActions from 'actions/SnackbarActions';
+
 const data = {
   id: 1,
   slug: 'projeto-sinais-luminosos-na-aviacao',
@@ -129,6 +131,8 @@ const ChallengeActions = {
   LOAD_RESULTS: 'ChallengeActions.LOAD_RESULTS',
   LOADED: 'ChallengeActions.LOADED',
   LOADED_RESULTS: 'ChallengeActions.LOADED_RESULTS',
+  SAVE: 'ChallengeActions.SAVE',
+  SAVED: 'ChallengeActions.SAVED',
   
   delete(id) {
     return dispatch => {
@@ -165,7 +169,17 @@ const ChallengeActions = {
         dispatch({ data: results, type: ChallengeActions.LOADED_RESULTS });
       }, 1000);
     };
-  }
+  },
+  save(id) {
+    return dispatch => {
+      dispatch({ type: ChallengeActions.SAVE });
+
+      setTimeout(() => {
+        dispatch({ type: ChallengeActions.SAVED });
+        dispatch(SnackbarActions.open('Desafio salvo'));
+      }, 1000);
+    };
+  },
 };
 
 export default ChallengeActions;
