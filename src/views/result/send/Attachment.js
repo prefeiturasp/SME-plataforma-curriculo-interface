@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { API_URL } from 'data/constants';
 import ConfirmActions from 'actions/ConfirmActions';
 import iconClip from 'images/icons/clip.svg';
 import iconDelete from 'images/icons/delete.svg';
@@ -61,9 +60,8 @@ class Attachment extends React.PureComponent {
   render() {
     const { data } = this.props;
     const { image } = this.state;
-    const { name, size, type } = data;
+    const { name, size } = data;
 
-    console.log(image);
     const thumbnail = image !== null ? (
       <img
         className={styles.image}
@@ -72,7 +70,7 @@ class Attachment extends React.PureComponent {
       />
     ) : (
       <div className={styles.icon}>
-        <img src={iconClip} />
+        <img src={iconClip} alt={name} />
       </div>
     );
 

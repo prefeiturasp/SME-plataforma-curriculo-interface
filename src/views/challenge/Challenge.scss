@@ -8,9 +8,24 @@
 }
 
 .tabs {
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.18);
-  height: 0;
-  margin-bottom: rem(32);
+  margin-left: rem(-15);
+  margin-right: rem(-15);
+  padding-bottom: rem(24);
+  overflow: hidden;
+
+  > div {
+    border-bottom: 1px solid $grey-200;
+    box-shadow: 0 0 rem(24) rgba(0, 0, 0, 0.25);
+  }
+
+  @include mq("tablet-landscape") {
+    margin-left: 0;
+    margin-right: 0;
+
+    > div {
+      box-shadow: none;
+    }
+  }
 }
 
 .category,
@@ -72,27 +87,46 @@
 .callToAction {
   color: $grey-600;
   font-size: rem(15);
+  line-height: rem(20);
   margin-bottom: rem(36);
 
-  > h2 {
+  h2 {
     color: black;
     font-size: rem(18);
+    line-height: rem(21);
     margin-bottom: rem(12);
   }
 
-  > p {
+  p {
     margin-bottom: rem(32);
+  }
+
+  @include mq("tablet-landscape") {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 
+.btnSendResult {
+  composes: btnSmall from global;
+  composes: btnFullWidth from global;
+}
+
 .btnOrSeeOtherResults {
+  composes: btnSmall from global;
   composes: btnFullWidth from global;
   border-color: transparent;
   color: $grey-600;
   margin-top: rem(4);
 
-  > strong {
+  strong {
     color: black;
+  }
+
+  @include mq("tablet-landscape") {
+    padding-left: rem(8) !important;
+    padding-right: rem(8) !important;
   }
 }
 
@@ -136,5 +170,13 @@
     display: block;
     padding-top: rem(20);
     padding-bottom: rem(20);
+  }
+
+  .callText {
+    width: 60%;
+  }
+
+  .callButtons {
+    width: 35%;
   }
 }

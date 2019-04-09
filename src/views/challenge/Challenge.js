@@ -134,21 +134,16 @@ class Challenge extends Component {
                 deadline={data.deadline}
                 title={data.title}
               />
-            </div>
-          </div>
-        </div>
-        <Tabs
-          className={styles.tabs}
-          value={currTab}
-          variant="fullWidth"
-          onChange={this.onChangedTab}
-        >
-          <Tab label="Sobre" />
-          <Tab label="Resultados" />
-        </Tabs>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-lg-8">
+              <div className={styles.tabs}>
+                <Tabs
+                  value={currTab}
+                  variant="fullWidth"
+                  onChange={this.onChangedTab}
+                >
+                  <Tab label="Sobre" />
+                  <Tab label="Resultados" />
+                </Tabs>
+              </div>
               <SwipeableViews
                 index={currTab}
                 onChangeIndex={this.onSwiped}
@@ -179,23 +174,33 @@ class Challenge extends Component {
                     dangerouslySetInnerHTML={{__html: description}}
                   />
                   <div className={styles.callToAction}>
-                    <h2>Sua turma participou deste desafio?</h2>
-                    <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
-                    <NavLink to={link} className="btnFullWidth">
-                      Enviar resultado
-                    </NavLink>
-                    <button className={styles.btnOrSeeOtherResults} onClick={this.onClickedResults}>
-                      Ou&nbsp;<strong>visualize outros resultados</strong>
-                    </button>
+                    <div className={styles.callText}>
+                      <h2>Sua turma participou deste desafio?</h2>
+                      <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
+                    </div>
+                    <div className={styles.callButtons}>
+                      <NavLink to={link} className={styles.btnSendResult}>
+                        Enviar resultado
+                      </NavLink>
+                      <button className={styles.btnOrSeeOtherResults} onClick={this.onClickedResults}>
+                        <span>
+                          Ou&nbsp;<strong>visualize outros resultados</strong>
+                        </span>
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <div>
                   <div className={styles.callToAction}>
-                    <h2>Sua turma participou deste desafio?</h2>
-                    <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
-                    <NavLink to={link} className="btnFullWidth">
-                      Enviar resultado
-                    </NavLink>
+                    <div className={styles.callText}>
+                      <h2>Sua turma participou deste desafio?</h2>
+                      <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
+                    </div>
+                    <div className={styles.callButtons}>
+                      <NavLink to={link} className={styles.btnSendResult}>
+                        Enviar resultado
+                      </NavLink>
+                    </div>
                   </div>
                   <h3 className={styles.numResults}>{results.length} {wordResults}</h3>
                   <div>{Results}</div>
