@@ -6,7 +6,6 @@
 }
 
 body {
-  overflow-y: auto !important;
   padding-right: 0 !important;
 }
 
@@ -102,7 +101,7 @@ a:hover {
 :global(.btnSmall) {
   font-size: rem(12) !important;
   line-height: rem(16) !important;
-  padding: rem(15) rem(26) !important;
+  padding: rem(12) rem(26);
 }
 
 :global(.btnFullWidth) {
