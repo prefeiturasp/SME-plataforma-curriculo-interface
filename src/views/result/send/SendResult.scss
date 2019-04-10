@@ -4,10 +4,10 @@
 .wrapper {
 }
 
-.contents {
+.row {
   display: flex;
   flex: 1;
-  flex-direction: column;
+  flex-direction: row;
   overflow-y: auto;
 }
 
@@ -30,6 +30,12 @@
 
   p {
     margin-bottom: 0;
+  }
+
+  @include mq("tablet-portrait") {
+    border: 0;
+    margin-top: rem(20);
+    padding: 0;
   }
 }
 
@@ -55,12 +61,24 @@
 }
 
 .btnAddVideo {
-  composes: btn from global;
+  composes: btnSmall from global;
   border: 0;
   padding-left: 0;
 
   > img {
     padding-left: 0;
+  }
+}
+
+.btnAddFile {
+  composes: btnFullWidth from global;
+  composes: btnSmall from global;
+
+  @include mq("tablet-portrait") {
+    display: inline-flex;
+    padding-left: rem(90);
+    padding-right: rem(90);
+    width: auto;
   }
 }
 

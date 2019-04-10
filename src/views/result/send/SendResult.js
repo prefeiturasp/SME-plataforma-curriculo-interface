@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import AlertActions from 'actions/AlertActions';
 import Attachment from './Attachment';
+import BigPreview from 'views/sequence/BigPreview';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from './ChallengePreview';
 import Classroom from 'views/profile/collection/edit/Classroom';
@@ -19,6 +20,7 @@ import formatFileSize from 'utils/formatFileSize';
 import iconClip from 'images/icons/clip.svg';
 import iconPlus from 'images/icons/plus.svg';
 import styles from './SendResult.scss';
+import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 const MAX_CHARS = 3000;
 const MAX_SIZE = 10 * 1024 * 1024;
@@ -138,7 +140,6 @@ class SendResult extends Component {
     const { challenge, classrooms } = this.props;
     const { attachments, description, hasChecked, videos } = this.state;
 
-    console.log(attachments);
     const counter = `${description.length} / ${MAX_CHARS}`;
 
     const videoItems = videos.map((item, i) => {
@@ -182,60 +183,63 @@ class SendResult extends Component {
     });
 
     return (
-      <DesktopModal>
+      <DesktopModal isFixed>
         <ModalPage>
           <ModalHeader title="Enviar resultado" />
-          <div className={styles.contents}>
-            <ChallengePreview challenge={challenge} />
-            <div className={styles.instructions}>
-              <div className="row">
-                <div className="col-12">
+          <div className={styles.row}>
+            <div className={styles1.col1}>
+              <BigPreview data={challenge} label="Desafio" />
+              <div className={styles.instructions}>
+                <h2>Nos conte sobre as abordagens e desdobramentos na construção do projeto.</h2>
+                <p>Além de texto, você pode incluir links para vídeos, posts em outras plataformas ou redes sociais.</p>
+              </div>
+            </div>
+            <div className={styles1.col2}>
+              <div className={styles1.small}>
+                <ChallengePreview challenge={challenge} />
+                <div className={styles.instructions}>
                   <h2>Nos conte sobre as abordagens e desdobramentos na construção do projeto.</h2>
                   <p>Além de texto, você pode incluir links para vídeos, posts em outras plataformas ou redes sociais.</p>
                 </div>
               </div>
-            </div>
-            <div className={styles.form}>
-              <div className="row">
-                <div className="col-12">
-                  <TextField
-                    fullWidth={true}
-                    multiline={true}
-                    label="Descrição"
-                    placeholder="Digite aqui"
-                    onChange={this.onChangedDescription}
-                    value={description}
-                  />
-                  <div className={styles.counter}>{counter}</div>
-                  
-                  <div>{videoItems}</div>
-                  <button className={styles.btnAddVideo} onClick={this.onClickedAddVideo}>
-                    <img src={iconPlus} alt="Adicionar mais um vídeo" />
-                    Adicionar mais um vídeo
-                  </button>
-                  
-                  <label className={styles.label}>Outros anexos (opcional)</label>
-                  <div className={styles.attachments}>{attachmentItems}</div>
-                  <label className="btnFullWidth">
-                    Selecionar arquivo
-                    <img src={iconClip} alt="Selecionar arquivo" />
-                    <input type="file" multiple onChange={this.onClickedSelectFile} />
-                  </label>
-                  <p className={styles.attachmentHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
+              <div className={styles.form}>
+                <TextField
+                  fullWidth={true}
+                  multiline={true}
+                  label="Descrição"
+                  placeholder="Digite aqui"
+                  onChange={this.onChangedDescription}
+                  value={description}
+                />
+                <div className={styles.counter}>{counter}</div>
+                
+                <div>{videoItems}</div>
+                <button className={styles.btnAddVideo} onClick={this.onClickedAddVideo}>
+                  <img src={iconPlus} alt="Adicionar mais um vídeo" />
+                  Adicionar mais um vídeo
+                </button>
+                
+                <label className={styles.label}>Outros anexos (opcional)</label>
+                <div className={styles.attachments}>{attachmentItems}</div>
+                <label className={styles.btnAddFile}>
+                  Selecionar arquivo
+                  <img src={iconClip} alt="Selecionar arquivo" />
+                  <input type="file" multiple onChange={this.onClickedSelectFile} />
+                </label>
+                <p className={styles.attachmentHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
 
-                  <label className={styles.label}>Selecionar turmas (opcional)</label>
-                  <div className={styles.classrooms}>{classroomItems}</div>
+                <label className={styles.label}>Selecionar turmas (opcional)</label>
+                <div className={styles.classrooms}>{classroomItems}</div>
 
-                  <FormControlLabel
-                    control={
-                      <CustomCheckbox
-                        checked={hasChecked}
-                        onChange={this.onChangedCheckbox}
-                      />
-                    }
-                    label="Declaro ter autorização de uso de imagem de todo conteúdo cadastrado neste desafio."
-                  />
-                </div>
+                <FormControlLabel
+                  control={
+                    <CustomCheckbox
+                      checked={hasChecked}
+                      onChange={this.onChangedCheckbox}
+                    />
+                  }
+                  label="Declaro ter autorização de uso de imagem de todo conteúdo cadastrado neste desafio."
+                />
               </div>
             </div>
           </div>
