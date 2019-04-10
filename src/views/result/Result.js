@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { history } from 'index';
 import Attachment from './Attachment';
 import Avatar from 'components/objects/Avatar';
-import BodyActions from 'actions/BodyActions';
 import ChallengeActions from 'actions/ChallengeActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';

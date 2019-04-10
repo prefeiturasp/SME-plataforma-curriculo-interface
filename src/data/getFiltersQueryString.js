@@ -59,16 +59,16 @@ export function getSearchQueryString(filters, query, order) {
     let sort;
 
     switch (order) {
-      case 'alphabetic':
-        orderBy = 'title';
-        sort = 'asc';
-        break;
       case 'newest':
         orderBy = 'created_at';
         sort = 'desc';
         break;
       case 'oldest':
         orderBy = 'created_at';
+        sort = 'asc';
+        break;
+      default:
+        orderBy = 'title';
         sort = 'asc';
         break;
     }
