@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import BigPreview from 'views/sequence/BigPreview';
+import BigPreview from 'components/objects/BigPreview';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';

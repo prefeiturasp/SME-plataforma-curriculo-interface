@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import AlertActions from 'actions/AlertActions';
 import Attachment from './Attachment';
-import BigPreview from 'views/sequence/BigPreview';
+import BigPreview from 'components/objects/BigPreview';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from './ChallengePreview';
 import Classroom from 'views/profile/collection/edit/Classroom';

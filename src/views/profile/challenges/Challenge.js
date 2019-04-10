@@ -8,7 +8,7 @@ import ConfirmActions from 'actions/ConfirmActions';
 import createModalLink from 'utils/createModalLink';
 import iconCheck from 'images/icons/check.png';
 import iconDelete from 'images/icons/delete.svg';
-import styles from 'views/profile/collection/Sequence.scss';
+import styles from 'views/collection/Sequence.scss';
 
 class Challenge extends React.PureComponent {
   onClickedConfirm = () => {
