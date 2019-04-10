@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { history } from 'index';
-import BigSequencePreview from 'views/sequence/BigSequencePreview';
+import BigPreview from 'views/sequence/BigPreview';
 import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
@@ -60,9 +60,9 @@ class CreateCollection extends Component {
     const { sequence } = this.props;
     const { hasEdited, name, sequenceId } = this.state;
     
-    const bigSequencePreview = sequenceId ? (
+    const bigPreview = sequenceId ? (
       <div className={styles1.col1}>
-        <BigSequencePreview sequence={sequence} />
+        <BigPreview data={sequence} />
       </div>
     ) : null;
 
@@ -80,7 +80,7 @@ class CreateCollection extends Component {
         <ModalPage>
           <ModalHeader title="Criar coleção" />
           <div className={styles1.row}>
-            {bigSequencePreview}
+            {bigPreview}
             <div className={styles1.col2}>
               <div className={styles1.small}>
                 {sequencePreview}
