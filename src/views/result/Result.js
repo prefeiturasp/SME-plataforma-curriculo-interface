@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { history } from 'index';
 import Attachment from './Attachment';
 import Avatar from 'components/objects/Avatar';
 import BodyActions from 'actions/BodyActions';
@@ -19,6 +20,26 @@ import styles1 from 'views/challenge/Result.scss';
 import styles2 from 'views/activity/Activity.scss';
 
 class Result extends Component {
+  onClickedPrev = () => {
+    const { results } = this.props;
+    const { id, slug } = this.props.match.params;
+    const data = results.find(item => {
+      return item.id === parseInt(id);
+    });
+    const linkPrev = `/desafio/${slug}/resultado/${data.previous}`;
+    history.replace(linkPrev);
+  };
+
+  onClickedNext = () => {
+    const { results } = this.props;
+    const { id, slug } = this.props.match.params;
+    const data = results.find(item => {
+      return item.id === parseInt(id);
+    });
+    const linkNext = `/desafio/${slug}/resultado/${data.next}`;
+    history.replace(linkNext);
+  };
+
   componentDidMount() {
     this.props.load(this.props.match.params.slug);
   }
@@ -66,24 +87,22 @@ class Result extends Component {
       )
     });
 
-    const linkPrev = `/desafio/${slug}/resultado/${data.previous}`;
-    const linkNext = `/desafio/${slug}/resultado/${data.next}`;
     const linkResults = `/desafio/${slug}`;
 
     const arrowPrev = data.previous ? (
-      <NavLink className={styles2.prev} to={linkPrev}>
+      <button className={styles2.prev} onClick={this.onClickedPrev}>
         <img src={arrowLeft} alt="Seta" />
         Anterior
-      </NavLink>
+      </button>
     ) : (
       <span />
     );
 
     const arrowNext = data.next ? (
-      <NavLink className={styles2.next} to={linkNext}>
+      <button className={styles2.next} onClick={this.onClickedNext}>
         Próximo
         <img src={arrowRight} alt="Seta" />
-      </NavLink>
+      </button>
     ) : null;
 
     return (
@@ -151,7 +170,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
-      dispatch(BodyActions.showLoading());
       dispatch(ChallengeActions.loadResults(slug));
     },
   };
