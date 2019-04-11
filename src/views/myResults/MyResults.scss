@@ -1,0 +1,9 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.row {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  overflow-y: auto;
+}
