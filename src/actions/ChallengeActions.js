@@ -7,12 +7,13 @@ const data = {
   deadline: '05/06/2018',
   text: '{"ops":[{"insert":"Sinais luminosos são muito importantes na aviação, sobretudo quando os aviões voam à noite. Incorpore LEDs ao seu simulador e programe-os para que o avião emita sinais de luz."}]}',
   image_attributes: {
-    default_url: '/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1FFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9d454a9fd4be789a2c668831f1a6dd321bb949b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/Captura%20de%20Tela%202019-01-10%20a%CC%80s%2019.09.15.png',
+    default_url: "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/matemtica1.jpg",
+    default_size: "large",
     large: {
-      url: '/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1FFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9d454a9fd4be789a2c668831f1a6dd321bb949b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/Captura%20de%20Tela%202019-01-10%20a%CC%80s%2019.09.15.png',
+      "url": "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/matemtica1.jpg"
     },
     extra_large: {
-      url: '/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1FFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9d454a9fd4be789a2c668831f1a6dd321bb949b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lPTWpJeU1IZ3hNVE0yQmpvR1JWUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b2e76300f3ece138312bfa40e84cc5186f236c92/Captura%20de%20Tela%202019-01-10%20a%CC%80s%2019.09.15.png',
+      "url": "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lPTWpJeU1IZ3hNVE0yQmpvR1JWUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b2e76300f3ece138312bfa40e84cc5186f236c92/matemtica1.jpg"
     },
   },
   curricular_components: [],
