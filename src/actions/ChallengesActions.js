@@ -15,7 +15,7 @@ const data = [
     },
     main_curricular_component: {
       color: '#008080',
-      name: 'Tecnologias de Aprendizado',
+      name: 'Tecnologias de Aprendizagem',
     },
     performeds_status: {
       performed: false,
@@ -28,7 +28,7 @@ const data = [
     image_attributes: {},
     main_curricular_component: {
       color: '#008080',
-      name: 'Tecnologias de Aprendizado',
+      name: 'Tecnologias de Aprendizagem',
     },
     performeds_status: {
       performed: true,
