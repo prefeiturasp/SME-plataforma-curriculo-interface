@@ -13,6 +13,7 @@ import SequenceCharsMobile from './chars/SequenceCharsMobile';
 import Cover from './Cover';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
+import convertQuillToHtml from 'utils/convertQuillToHtml';
 import isLogged from 'data/isLogged';
 import styles from './Sequence.scss';
 
@@ -78,6 +79,12 @@ class Sequence extends Component {
     });
 
     const description = data.presentation_text.replace(/\r\n/g, '<br>');
+    const references = data.books ? (
+      <div className={styles.references}>
+        <h3>Referências</h3>
+        <div dangerouslySetInnerHTML={{ __html: convertQuillToHtml(data.books) }} />
+      </div>
+    ) : null;
 
     return (
       <Page>
@@ -98,6 +105,7 @@ class Sequence extends Component {
               <div className={styles.description}>
                 <ReadMore lines={15} children={description} />
               </div>
+              {references}
               <div className={styles.activities}>
                 <h3>
                   {data.activities.length} {word}
