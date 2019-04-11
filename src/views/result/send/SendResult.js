@@ -10,7 +10,7 @@ import Attachment from './Attachment';
 import BigPreview from 'components/objects/BigPreview';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from './ChallengePreview';
-import Classroom from 'views/profile/collection/edit/Classroom';
+import Classroom from 'views/collection/edit/Classroom';
 import ConfirmActions from 'actions/ConfirmActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
