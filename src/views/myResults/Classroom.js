@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from 'index';
 import ClassroomYear from 'components/objects/ClassroomYear';
-import createModalLink from 'utils/createModalLink';
 import iconEdit from 'images/icons/edit.svg';
 import styles from './Classroom.scss';
 

@@ -13,7 +13,6 @@ import ChallengePreview from './ChallengePreview';
 import Classroom from 'views/collection/edit/Classroom';
 import ConfirmActions from 'actions/ConfirmActions';
 import DesktopModal from 'components/layout/DesktopModal';
-import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import formatFileSize from 'utils/formatFileSize';

@@ -6,7 +6,6 @@ import BigPreview from 'components/objects/BigPreview';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from 'views/result/send/ChallengePreview';
 import DesktopModal from 'components/layout/DesktopModal';
-import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import School from './School';
