@@ -9,7 +9,7 @@ import ChallengeActions from 'actions/ChallengeActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
-import ModuleGallery from 'views/activity/ModuleGallery';
+import ModuleGallery from 'views/modules/ModuleGallery';
 import withWidth from 'components/hoc/withWidth';
 import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';

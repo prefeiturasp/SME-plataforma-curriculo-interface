@@ -20,7 +20,7 @@ import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
 import Challenge from 'views/challenge/Challenge';
-import Classrooms from 'views/profile/classrooms/Classrooms';
+import Classrooms from 'views/classrooms/Classrooms';
 import Collection from 'views/collection/Collection';
 import Confirm from 'components/Confirm';
 import CreateCollection from 'views/collection/create/CreateCollection';
