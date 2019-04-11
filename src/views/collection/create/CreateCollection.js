@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
 import { history } from 'index';
-import BigSequencePreview from 'views/sequence/BigSequencePreview';
+import BigPreview from 'components/objects/BigPreview';
 import CollectionActions from 'actions/CollectionActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalPage from 'components/layout/ModalPage';
@@ -11,7 +11,7 @@ import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from 'views/activity/SequencePreview';
-import styles from 'views/profile/collection/edit/EditCollection.scss';
+import styles from 'views/collection/edit/EditCollection.scss';
 import styles1 from 'views/sequence/save/SaveSequence.scss';
 
 class CreateCollection extends Component {
@@ -60,9 +60,9 @@ class CreateCollection extends Component {
     const { sequence } = this.props;
     const { hasEdited, name, sequenceId } = this.state;
     
-    const bigSequencePreview = sequenceId ? (
+    const bigPreview = sequenceId ? (
       <div className={styles1.col1}>
-        <BigSequencePreview sequence={sequence} />
+        <BigPreview data={sequence} />
       </div>
     ) : null;
 
@@ -80,7 +80,7 @@ class CreateCollection extends Component {
         <ModalPage>
           <ModalHeader title="Criar coleção" />
           <div className={styles1.row}>
-            {bigSequencePreview}
+            {bigPreview}
             <div className={styles1.col2}>
               <div className={styles1.small}>
                 {sequencePreview}

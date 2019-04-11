@@ -8,7 +8,7 @@ import ConfirmActions from 'actions/ConfirmActions';
 import createModalLink from 'utils/createModalLink';
 import iconCheck from 'images/icons/check.png';
 import iconDelete from 'images/icons/delete.svg';
-import styles from 'views/profile/collection/Sequence.scss';
+import styles from 'views/collection/Sequence.scss';
 
 class Challenge extends React.PureComponent {
   onClickedConfirm = () => {
@@ -57,7 +57,7 @@ class Challenge extends React.PureComponent {
 
     let bar = null;
     if (hasPerformed) {
-      const link = createModalLink(`/desafio/${slug}/resultado`);
+      const link = createModalLink(`/desafio/${slug}/resultado/1`);
       
       bar = (
         <div className={styles.bar}>
@@ -65,7 +65,7 @@ class Challenge extends React.PureComponent {
             <img src={iconCheck} alt="Desafio realizado" />
             Desafio realizado
           </span>
-          <NavLink to={link}>Veu meu resultado</NavLink>
+          <NavLink to={link}>Ver meu resultado</NavLink>
         </div>
       );
     }

@@ -2,7 +2,7 @@
 @import "~tools.scss";
 
 .wrapper {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
   padding: rem(12) 0;
@@ -35,6 +35,7 @@
   font-size: rem(12);
   justify-content: center;
   margin-left: auto;
+  margin-top: rem(4);
   min-width: rem(36);
 
   > img {
@@ -53,7 +54,6 @@
   @include mq("tablet-landscape") {
     display: block;
     margin-left: auto;
-    margin-right: rem(-15);
   }
 }
 

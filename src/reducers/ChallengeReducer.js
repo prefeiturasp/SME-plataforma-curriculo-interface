@@ -28,6 +28,12 @@ function ChallengeReducer(state = initialState, action) {
         results: state.results.concat(action.data),
       };
 
+    case ChallengeActions.SAVED:
+      return {
+        ...state,
+        isSaved: true,
+      };
+
     default:
       return state;
   }
