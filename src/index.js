@@ -32,6 +32,7 @@ import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
+import MyResults from 'views/myResults/MyResults';
 import Profile from 'views/profile/Profile';
 import Result from 'views/result/Result';
 import Roadmap from 'views/roadmap/Roadmap';
@@ -192,6 +193,12 @@ class ModalSwitch extends Component {
           exact
           path="/desafio/:slug/enviar"
           component={SendResult}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/meus-resultados"
+          component={MyResults}
           {...modalProps}
         />
         <ModalRoute
