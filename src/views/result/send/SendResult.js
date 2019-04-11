@@ -18,7 +18,7 @@ import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import formatFileSize from 'utils/formatFileSize';
 import iconClip from 'images/icons/clip.svg';
-import iconPlus from 'images/icons/plus.svg';
+import iconPlus from 'images/icons/plus1.svg';
 import styles from './SendResult.scss';
 import styles1 from 'views/sequence/save/SaveSequence.scss';
 
@@ -186,7 +186,7 @@ class SendResult extends Component {
       <DesktopModal isFixed>
         <ModalPage>
           <ModalHeader title="Enviar resultado" />
-          <div className={styles.row}>
+          <div className={styles1.row}>
             <div className={styles1.col1}>
               <BigPreview data={challenge} label="Desafio" />
               <div className={styles.instructions}>
@@ -241,9 +241,14 @@ class SendResult extends Component {
                   label="Declaro ter autorização de uso de imagem de todo conteúdo cadastrado neste desafio."
                 />
               </div>
+              <div className={styles1.footer}>
+                <button className={styles1.btn} onClick={this.onClickedSend}>
+                  <img src={iconPlus} alt="Enviar" />
+                  Enviar
+                </button>
+              </div>
             </div>
           </div>
-          <ModalFooter label="Enviar" onClick={this.onClickedSend} />
         </ModalPage>
       </DesktopModal>
     );

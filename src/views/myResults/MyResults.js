@@ -10,6 +10,7 @@ import ModalFooter from 'components/footer/ModalFooter';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
 import School from './School';
+import iconPlus from 'images/icons/plus1.svg';
 import styles from './MyResults.scss';
 import styles1 from 'views/sequence/save/SaveSequence.scss';
 
@@ -38,10 +39,10 @@ class MyResults extends Component {
     });
 
     return (
-      <DesktopModal>
+      <DesktopModal isFixed>
         <ModalPage>
           <ModalHeader title="Resultado" />
-          <div className={styles.row}>
+          <div className={styles1.row}>
             <div className={styles1.col1}>
               <BigPreview data={challenge} label="Desafio" />
             </div>
@@ -51,9 +52,14 @@ class MyResults extends Component {
                 <hr />
               </div>
               <div className={styles.list}>{items}</div>
+              <div className={styles1.footer}>
+                <button className={styles1.btn} onClick={this.onClickedAddResult}>
+                  <img src={iconPlus} alt="Adicionar resultado" />
+                  Adicionar resultado
+                </button>
+              </div>
             </div>
           </div>
-          <ModalFooter label="Adicionar resultado" onClick={this.onClickedAddResult} />
         </ModalPage>
       </DesktopModal>
     );

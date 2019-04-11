@@ -41,7 +41,7 @@ class SaveSequence extends Component {
     link.state.sequenceId = data.id;
 
     const btnCreate = (
-      <NavLink className={styles.btnCreate} to={link}>
+      <NavLink className={styles.btn} to={link}>
         <img src={iconPlus} alt="Criar coleção" />
         Criar coleção
       </NavLink>
