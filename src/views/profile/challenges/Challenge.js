@@ -40,10 +40,7 @@ class Challenge extends React.PureComponent {
       <NavLink className={styles.image} to={link}>
         <img
           src={API_URL + image.default_url}
-          srcSet={`${API_URL}${image.thumb.url}, ${API_URL}${
-            image.extra_thumb.url
-          } 2x`}
-          alt=""
+          alt={title}
         />
       </NavLink>
     ) : (
