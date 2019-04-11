@@ -7,3 +7,9 @@
   flex-direction: row;
   overflow-y: auto;
 }
+
+.list {
+  composes: container from global;
+  padding-top: rem(15);
+  padding-bottom: rem(15);
+}

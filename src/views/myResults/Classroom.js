@@ -6,7 +6,7 @@ import { history } from 'index';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import createModalLink from 'utils/createModalLink';
 import iconEdit from 'images/icons/edit.svg';
-import styles from 'views/classrooms/Classroom.scss';
+import styles from './Classroom.scss';
 
 class Classroom extends React.PureComponent {
   onClickedEdit = () => {
@@ -20,13 +20,11 @@ class Classroom extends React.PureComponent {
       <div className={styles.wrapper}>
         <ClassroomYear size={50} year={year} />
         <div className={styles.info}>
-          <div className={styles.name}>
-            {name} | {level}
-          </div>
-          <button onClick={this.onClickedEdit}>
-            <img src={iconEdit} alt="Editar resultado" />
-          </button>
+          {name} | {level}
         </div>
+        <button className={styles.btnEdit} onClick={this.onClickedEdit}>
+          <img src={iconEdit} alt="Editar resultado" />
+        </button>
       </div>
     );
   }
