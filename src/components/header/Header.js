@@ -43,20 +43,16 @@ class Header extends Component {
   render() {
     const data = [
       {
-        to: '/',
-        label: 'Home',
-      },
-      {
         to: '/sequencias',
         label: 'Sequências de Atividades',
       },
       {
-        to: '/curriculo',
-        label: 'Currículo da Cidade',
+        to: '/tecnologias',
+        label: 'Tecnologias para Aprendizagem',
       },
       {
-        to: '/descobrir',
-        label: 'O que vem por aí',
+        to: '/curriculo',
+        label: 'Entenda o Currículo',
       },
     ];
 
