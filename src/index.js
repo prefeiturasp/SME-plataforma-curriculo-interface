@@ -20,7 +20,7 @@ import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AppLoading from 'components/loading/AppLoading';
 import Challenge from 'views/challenge/Challenge';
-import Classrooms from 'views/profile/classrooms/Classrooms';
+import Classrooms from 'views/classrooms/Classrooms';
 import Collection from 'views/collection/Collection';
 import Confirm from 'components/Confirm';
 import CreateCollection from 'views/collection/create/CreateCollection';
@@ -32,6 +32,7 @@ import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
+import MyResults from 'views/myResults/MyResults';
 import Profile from 'views/profile/Profile';
 import Result from 'views/result/Result';
 import Roadmap from 'views/roadmap/Roadmap';
@@ -42,6 +43,7 @@ import Sequences from 'views/sequences/Sequences';
 import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
+import Technologies from 'views/technologies/Technologies';
 
 import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
@@ -125,6 +127,7 @@ class ModalSwitch extends Component {
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
           <Route path="/desafio/:slug" component={Challenge} />
+          <Route path="/tecnologias" component={Technologies} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
@@ -192,6 +195,12 @@ class ModalSwitch extends Component {
           exact
           path="/desafio/:slug/enviar"
           component={SendResult}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/meus-resultados"
+          component={MyResults}
           {...modalProps}
         />
         <ModalRoute

@@ -21,8 +21,15 @@
 .description {
   composes: quill-text from global;
   font-size: rem(16);
-  line-height: rem(21);
+  line-height: rem(24);
   margin-bottom: rem(48);
+}
+
+.references {
+  composes: quill-text from global;
+  font-size: rem(16);
+  line-height: rem(21);
+  margin-top: rem(18);
 }
 
 .books br {

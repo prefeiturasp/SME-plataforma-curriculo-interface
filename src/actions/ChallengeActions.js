@@ -7,12 +7,13 @@ const data = {
   deadline: '05/06/2018',
   text: '{"ops":[{"insert":"Sinais luminosos são muito importantes na aviação, sobretudo quando os aviões voam à noite. Incorpore LEDs ao seu simulador e programe-os para que o avião emita sinais de luz."}]}',
   image_attributes: {
-    default_url: '/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1FFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9d454a9fd4be789a2c668831f1a6dd321bb949b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/Captura%20de%20Tela%202019-01-10%20a%CC%80s%2019.09.15.png',
+    default_url: "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/matemtica1.jpg",
+    default_size: "large",
     large: {
-      url: '/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1FFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9d454a9fd4be789a2c668831f1a6dd321bb949b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/Captura%20de%20Tela%202019-01-10%20a%CC%80s%2019.09.15.png',
+      "url": "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/matemtica1.jpg"
     },
     extra_large: {
-      url: '/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBc1FFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--a9d454a9fd4be789a2c668831f1a6dd321bb949b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lPTWpJeU1IZ3hNVE0yQmpvR1JWUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b2e76300f3ece138312bfa40e84cc5186f236c92/Captura%20de%20Tela%202019-01-10%20a%CC%80s%2019.09.15.png',
+      "url": "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lPTWpJeU1IZ3hNVE0yQmpvR1JWUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b2e76300f3ece138312bfa40e84cc5186f236c92/matemtica1.jpg"
     },
   },
   curricular_components: [],
@@ -36,8 +37,8 @@ const data = {
     {"code":"EF01M34","description":"Participar de jogos e brincadeiras tradicionais que explorem contagens, cálculos rápidos, movimentos etc., realizando adivinhações, decifrando charadas, levantando hipóteses e testando-as.","color":"#ff0080"}
   ],
   sustainable_development_goals: [
-    {"id":4,"name":"Educação de Qualidade","icon_url":"/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUFFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0143ca8d47398934452224a7252d1aa6df72ce8d/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRRMGVERTBOQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--c2a23a1df67cdb0e9fc69933337459a5f713165d/obj4.jpg","sub_icon_url":"/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdUVFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--7eb163629f75e8f01adbd76664153fa90ff44f30/sub_icon4.png"},
-    {"id":11,"name":"Cidades e comunidades sustentáveis","icon_url":"/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdTRFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b2ae3a39c9e3ef12cf077fff49cf1a7d7c62d115/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRRMGVERTBOQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--c2a23a1df67cdb0e9fc69933337459a5f713165d/obj11.jpg","sub_icon_url":"/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdThFIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--be710dc8a8c472297679b1d6dcd0d9d98171e94b/sub_icon11.png"}
+    {"id":4,"name":"Educação de Qualidade","icon_url":"/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b1da3e64f98e58acef7718eb64741ae4fc0514f8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRRMGVERTBOQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--c2a23a1df67cdb0e9fc69933337459a5f713165d/obj4.jpg","sub_icon_url":"/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c0123fd5df13dd39a8abfa35699419dcfc1ed517/sub_icon4.png"},
+    {"id":5,"name":"Igualdade de Genêro","icon_url":"/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8ada6614082bfab8c0ca938ab2d5a33352d77169/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRRMGVERTBOQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--c2a23a1df67cdb0e9fc69933337459a5f713165d/obj5.jpg","sub_icon_url":"/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b2935e56da6d32b81c3d76008a56947e268361bc/sub_icon5.png"}
   ],
   axis: [
     { name: "Letramento digital" },

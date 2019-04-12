@@ -86,17 +86,19 @@ class CreateCollection extends Component {
                 {sequencePreview}
                 {hr}
               </div>
-              <header className={styles.header}>
-                <TextField
-                  error={isInvalid}
-                  fullWidth={true}
-                  helperText={message}
-                  inputRef={input => (input ? input.focus() : null)}
-                  label="Nome da coleção"
-                  onChange={this.onChangedName}
-                  value={name}
-                />
-              </header>
+              <div className={styles1.list}>
+                <header className={styles.header}>
+                  <TextField
+                    error={isInvalid}
+                    fullWidth={true}
+                    helperText={message}
+                    inputRef={input => (input ? input.focus() : null)}
+                    label="Nome da coleção"
+                    onChange={this.onChangedName}
+                    value={name}
+                  />
+                </header>
+              </div>
             </div>
           </div>
           <ModalFooter label="Criar" onClick={this.onClickedSave} />

@@ -6,7 +6,7 @@ import { API_URL } from 'data/constants';
 
 const component = {
   color: '#008080',
-  name: 'Tecnologias de Aprendizado',
+  name: 'Tecnologias de Aprendizagem',
 };
 
 class Cover extends Component {

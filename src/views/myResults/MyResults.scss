@@ -1,0 +1,10 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.list {
+  composes: container from global;
+  flex: 1 1 rem(380);
+  overflow-y: auto;
+  padding-top: rem(15);
+  padding-bottom: rem(15);
+}
