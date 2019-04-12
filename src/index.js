@@ -43,6 +43,7 @@ import Sequences from 'views/sequences/Sequences';
 import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
+import Technologies from 'views/technologies/Technologies';
 
 import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
@@ -126,6 +127,7 @@ class ModalSwitch extends Component {
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
           <Route path="/desafio/:slug" component={Challenge} />
+          <Route path="/tecnologias" component={Technologies} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
