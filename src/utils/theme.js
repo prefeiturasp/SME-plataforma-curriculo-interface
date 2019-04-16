@@ -12,6 +12,9 @@ const theme = createMuiTheme({
       input: {
         fontWeight: 'bold',
       },
+      inputMultiline: {
+        padding: '2px 0',
+      },
     },
     MuiOutlinedInput: {
       root: {
