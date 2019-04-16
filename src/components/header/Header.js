@@ -40,6 +40,12 @@ class Header extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.isLogged !== this.props.isLogged) {
+      this.setState({ anchor: null });
+    }
+  }
+
   render() {
     const data = [
       {
@@ -76,11 +82,14 @@ class Header extends Component {
 
     const btnLogin = <button onMouseEnter={this.onMouseEnter}>Login</button>;
 
-    const popoverContents = isLogged() ? (
-      <ProfilePopover onMouseLeave={this.onMouseLeave} />
-    ) : (
-      <LoginPopover onMouseLeave={this.onMouseLeave} />
-    );
+    let popoverContents = null;
+    if (hasPopover) {
+      popoverContents = isLogged() ? (
+        <ProfilePopover onMouseLeave={this.onMouseLeave} />
+      ) : (
+        <LoginPopover onMouseLeave={this.onMouseLeave} />
+      );
+    }
 
     const popover = (
       <Popper
@@ -127,13 +136,13 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  data: PropTypes.object.isRequired,
+  isLogged: PropTypes.bool,
   showMobileMenu: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.ProfileReducer,
+    isLogged: state.ProfileReducer.isLogged,
   };
 };
 
