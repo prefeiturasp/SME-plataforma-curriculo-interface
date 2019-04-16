@@ -27,7 +27,7 @@ class ChallengeList extends Component {
     );
 
     const word = items.length === 1 ? 'desafio salvo' : 'desafios salvos';
-    const link = createModalLink('/perfil/criar-colecao');
+    const link = createModalLink('/tecnologias');
     const btnLabel = items.length ? 'Buscar mais desafios' : 'Buscar desafios';
 
     return (
