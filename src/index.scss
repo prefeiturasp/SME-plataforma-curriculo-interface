@@ -6,6 +6,8 @@
 }
 
 body {
+  margin-right: calc(100% - 100vw);
+  overflow-x: hidden;
   padding-right: 0 !important;
 }
 
