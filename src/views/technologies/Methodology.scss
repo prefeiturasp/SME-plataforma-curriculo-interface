@@ -1,0 +1,55 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  composes: col-sm-12 from global;
+  composes: col-md-4 from global;
+  composes: col-lg-3 from global;
+  margin-bottom: rem(20);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.box {
+  background-color: white;
+  border-radius: rem(4);
+  box-shadow: 0 rem(5) rem(20) rgba(0, 0, 0, 0.1);
+  color: black;
+  display: block;
+  font-size: rem(16);
+  line-height: rem(21);
+  overflow-x: hidden;
+  padding: rem(40) rem(15) rem(36) rem(15);
+
+  > img {
+    height: rem(166);
+    margin-bottom: rem(28);
+  }
+
+  > h3 {
+    font-size: rem(18);
+    font-weight: 600;
+    margin-bottom: rem(22);
+  }
+
+  > p {
+    margin-bottom: rem(30);
+  }
+}
+
+.btn {
+  align-items: center;
+  border: 1px solid $grey-200;
+  border-radius: rem(48);
+  display: inline-flex;
+  justify-content: center;
+  width: rem(48);
+  height: rem(48);
+
+  > img {
+    opacity: 0.6;
+    width: rem(18);
+  }
+}
