@@ -202,8 +202,24 @@
     max-width: rem(380);
   }
 
+  .methodologies {
+    background-color: transparent;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      background-color: $color-green;
+      width: 100%;
+      height: rem(600);
+      position: absolute;
+      top: 0;
+      z-index: -1;
+    }
+  }
+
   .objectives {
-    padding-top: rem(60);
+    padding-top: rem(30);
     
     h2 {
       margin-bottom: rem(16);
