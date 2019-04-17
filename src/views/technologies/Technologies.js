@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { Element, scroller } from 'react-scroll';
 import Challenge from './Challenge';
 import Methodology from './Methodology';
 import Page from 'components/layout/Page';
@@ -15,6 +16,17 @@ import iconTechnologies1 from './images/technologies.svg';
 import styles from './Technologies.scss';
 
 class Technologies extends Component {
+  onClickedChallenges = () => {
+    scroller.scrollTo('desafios', {
+      duration: 300,
+      smooth: true,
+    });
+  };
+
+  onClickedLoadChallenges = () => {
+    
+  };
+
   render() {
     const { methodologies, challenges } = this.props;
     
@@ -94,14 +106,15 @@ class Technologies extends Component {
         </div>
         <section className={styles.challenges}>
           <div className="container">
+            <Element name="desafios" />
             <h2>Desafios</h2>
             <div className="row">
               {challengeItems}
             </div>
             <div className={styles.center}>
-              <NavLink className={styles.btnChallenges} to="#">
+              <button className={styles.btnChallenges} onClick={this.onClickedLoadChallenges}>
                 Ver desafios encerrados
-              </NavLink>
+              </button>
             </div>
           </div>
         </section>
