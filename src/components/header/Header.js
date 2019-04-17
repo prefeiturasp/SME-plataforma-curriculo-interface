@@ -53,7 +53,7 @@ class Header extends Component {
         label: 'Sequências de Atividades',
       },
       {
-        to: '/tecnologias',
+        to: '/tecnologias-para-aprendizagem',
         label: 'Tecnologias para Aprendizagem',
       },
       {

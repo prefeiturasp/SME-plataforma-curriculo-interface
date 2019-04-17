@@ -32,10 +32,11 @@ import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
+import Methodology from 'views/methodology/Methodology';
+import MethodologyProject from 'views/methodology/MethodologyProject';
 import MyResults from 'views/myResults/MyResults';
 import Profile from 'views/profile/Profile';
 import Result from 'views/result/Result';
-import Roadmap from 'views/roadmap/Roadmap';
 import SaveSequence from 'views/sequence/save/SaveSequence';
 import SendResult from 'views/result/send/SendResult';
 import Sequence from 'views/sequence/Sequence';
@@ -123,11 +124,14 @@ class ModalSwitch extends Component {
             path="/objetivos-de-aprendizagem"
             component={LearningObjectives}
           />
-          <Route exact path="/descobrir" component={Roadmap} />
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
           <Route path="/desafio/:slug" component={Challenge} />
-          <Route path="/tecnologias" component={Technologies} />
+          <Route path="/tecnologias-para-aprendizagem" component={Technologies} />
+          <Route path="/metodologia/projeto" component={MethodologyProject} />
+          <Route path="/metodologia/investigacao" component={Methodology} />
+          <Route path="/metodologia/jogos" component={Methodology} />
+          <Route path="/metodologia/fazer-e-refazer" component={Methodology} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
