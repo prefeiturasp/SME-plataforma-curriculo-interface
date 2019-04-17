@@ -5,12 +5,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin-right: calc(100% - 100vw);
-  overflow-x: hidden;
-  padding-right: 0 !important;
-}
-
 html,
 body,
 :global(#root) {
@@ -328,5 +322,13 @@ a:hover {
   :global(.backdropOut) {
     transition: opacity 0.3s ease-in-out;
     opacity: 0;
+  }
+}
+
+@include mq("tablet-portrait") {
+  body {
+    margin-right: calc(100% - 100vw);
+    overflow-x: hidden;
+    padding-right: 0 !important;
   }
 }
