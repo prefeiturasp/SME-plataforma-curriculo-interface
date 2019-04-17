@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Page from 'components/layout/Page';
 import iconClip from 'images/icons/clip.svg';
 import imgCurriculum from 'views/curriculum/curriculum.jpg';
@@ -41,7 +40,7 @@ class Methodology extends Component {
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <p>Acesse mais informações sobre esta metodologia.</p>
-              <a className="btn" href="#">
+              <a className="btn" href="arquivo.pdf">
                 Baixar arquivo
                 <img src={iconClip} alt="Baixar arquivo" />
               </a>

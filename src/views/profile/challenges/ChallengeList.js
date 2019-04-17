@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import Challenge from './Challenge';
-import createModalLink from 'utils/createModalLink';
 import styles from 'views/profile/collections/CollectionList.scss';
 import styles1 from './ChallengeList.scss';
 

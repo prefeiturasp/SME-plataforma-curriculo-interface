@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { API_URL } from 'data/constants';
 import { history } from 'index';
 import isLogged from 'data/isLogged';
-import arrowRight from 'images/arrows/right.svg';
 import iconSave1 from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
 import styles from './Challenge.scss';
