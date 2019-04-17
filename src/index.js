@@ -128,10 +128,10 @@ class ModalSwitch extends Component {
           <Route path="/colecao/:id" component={Collection} />
           <Route path="/desafio/:slug" component={Challenge} />
           <Route path="/tecnologias-para-aprendizagem" component={Technologies} />
-          <Route path="/metodologia/projeto" component={MethodologyProject} />
-          <Route path="/metodologia/investigacao" component={Methodology} />
-          <Route path="/metodologia/jogos" component={Methodology} />
-          <Route path="/metodologia/fazer-e-refazer" component={Methodology} />
+          <Route exact path="/metodologia/projeto" component={MethodologyProject} />
+          <Route exact path="/metodologia/investigacao" component={Methodology} />
+          <Route exact path="/metodologia/jogos" component={Methodology} />
+          <Route exact path="/metodologia/fazer-e-refazer" component={Methodology} />
         </Switch>
         <ModalRoute
           path="/ods/:id"

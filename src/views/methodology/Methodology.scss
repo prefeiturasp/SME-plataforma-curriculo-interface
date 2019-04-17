@@ -2,4 +2,63 @@
 @import "~tools.scss";
 
 .header {
+  background-color: $color-green;
+  color: white;
+  font-size: rem(21);
+  font-weight: 600;
+  line-height: rem(24);
+  padding-top: rem(24);
+  padding-bottom: rem(54);
+  text-align: center;
+
+  h1 {
+    font-size: rem(34);
+    line-height: rem(34);
+    margin-bottom: rem(24);
+  }
+
+  p {
+    margin-bottom: rem(52);
+  }
+}
+
+.illustration {
+  height: rem(214);
+  margin-bottom: rem(34);
+}
+
+.contents,
+.quote {
+  composes: container from global;
+  font-size: rem(18);
+  line-height: rem(24);
+}
+
+.contents {
+  padding-top: rem(30);
+  padding-bottom: rem(30);
+  
+  img {
+    width: 100%;
+  }
+}
+
+.quote {
+  font-weight: 600;
+  padding-top: rem(80);
+  padding-bottom: rem(80);
+  text-align: center;
+}
+
+.download {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+  padding-top: rem(30);
+  padding-bottom: rem(60);
+  text-align: center;
+
+  p {
+    margin-bottom: rem(20);
+  }
 }
