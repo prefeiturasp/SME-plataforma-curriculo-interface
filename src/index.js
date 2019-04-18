@@ -33,7 +33,6 @@ import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
 import Methodology from 'views/methodology/Methodology';
-import MethodologyProject from 'views/methodology/MethodologyProject';
 import MyResults from 'views/myResults/MyResults';
 import Profile from 'views/profile/Profile';
 import Result from 'views/result/Result';
@@ -128,10 +127,7 @@ class ModalSwitch extends Component {
           <Route path="/colecao/:id" component={Collection} />
           <Route path="/desafio/:slug" component={Challenge} />
           <Route path="/tecnologias-para-aprendizagem" component={Technologies} />
-          <Route exact path="/metodologia/projeto" component={MethodologyProject} />
-          <Route exact path="/metodologia/investigacao" component={Methodology} />
-          <Route exact path="/metodologia/jogos" component={Methodology} />
-          <Route exact path="/metodologia/fazer-e-refazer" component={Methodology} />
+          <Route exact path="/metodologia/:slug" component={Methodology} />
         </Switch>
         <ModalRoute
           path="/ods/:id"

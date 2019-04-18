@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Challenge from 'views/technologies/Challenge';
+import Contents from './Contents';
+import OtherMethodology from './OtherMethodology';
 import Page from 'components/layout/Page';
+import ProjectContents from './ProjectContents';
 import arrowDownGreen from 'images/arrows/downGreen.svg';
-import iconClip from 'images/icons/clip.svg';
-import iconInvestigation from 'views/technologies/images/investigacao.svg';
-import imgCurriculum from 'views/curriculum/curriculum.jpg';
+import iconDoAndRedo from 'images/illustrations/do-and-redo.svg';
+import iconGames from 'images/illustrations/games.svg';
+import iconInvestigation from 'images/illustrations/investigation.svg';
+import iconProject from 'images/illustrations/project.svg';
 import styles from './Methodology.scss';
 import styles1 from 'views/technologies/Technologies.scss';
 
 class Methodology extends Component {
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.slug !== this.props.match.params.slug) {
+      window.scrollTo(0, 0);
+    }
+  }
+
   render() {
-    const { challenges } = this.props;
+    const { methodologies, challenges } = this.props;
+    const slug = this.props.match.params.slug;
+
+    const data = methodologies.find(item => item.slug === slug);
+    const { image, title } = data;
+
+    const contents = slug === 'projeto' ? <ProjectContents /> : <Contents slug={slug} />;
+
+    const others = methodologies.filter(item => item.slug !== slug);
+    const otherItems = others.map((item, i) => {
+      return <OtherMethodology key={i} data={item} />;
+    });
 
     const challengeItems = challenges.map((item, i) => {
       return <Challenge key={i} />;
@@ -23,44 +44,20 @@ class Methodology extends Component {
           <div className="container">
             <div className="row">
               <div className="col-sm-12 col-md-8 offset-md-2">
-                <img src={iconInvestigation} alt="Investigação" className={styles.illustration} />
-                <h1>Investigação</h1>
+                <img src={image} alt={title} className={styles.image} />
+                <h1>{title}</h1>
                 <p>Entenda como alcançar uma aprendizagem significativa ao utilizar este método como base</p>
                 <img src={arrowDownGreen} alt="Ver mais" />
               </div>
             </div>
           </div>
         </header>
-        <div className={styles.contents}>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus bibendum sed. Proin a dui tortor.</p>
-              <p>Cras lorem turpis, rhoncus eu elit ut, sollicitudin laoreet sapien. In et libero malesuada, placerat risus vel, tristique nibh. Integer orci magna, vehicula sed ullamcorper vitae, venenatis semper purus.</p>
-              <p>Curabitur iaculis lacinia condimentum. Pellentesque rhoncus, erat et imperdiet consequat, libero mi egestas dolor, nec dignissim metus arcu sed arcu. Nunc nec enim in nisi iaculis consequat quis sed turpis.</p>
-              <p>Mauris facilisis pharetra lacus. Proin quam lacus, iaculis dictum lobortis quis, tincidunt et felis. Morbi pulvinar vulputate leo, in iaculis purus interdum ac. Aliquam bibendum nisi sed euismod fringilla. Vivamus mollis ullamcorper auctor. In hac habitasse platea dictumst. Nam id lectus fermentum leo aliquet tempus eget a metus. Ut sed ligula tincidunt turpis laoreet convallis et a quam. Suspendisse nec molestie massa, sit amet euismod elit. Maecenas eleifend ex a orci euismod congue.</p>
-              <img src={imgCurriculum} alt="" />
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className={styles.quote}>
-          <div className="row">
-            <div className="col-md-8 offset-md-2">
-              <p>Cras lorem turpis, rhoncus eu elit ut, sollicitudin laoreet sapien. In et libero malesuada, placerat risus vel, tristique nibh. Integer orci magna, vehicula sed ullamcorper vitae, venenatis semper purus. Aenean semper quam, in porta metus bibendum sed. Proin a dui tortor.</p>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className={styles.download}>
-          <p>Acesse mais informações sobre esta metodologia.</p>
-          <a className="btnSmall" href="arquivo.pdf">
-            Baixar arquivo
-            <img src={iconClip} alt="Baixar arquivo" />
-          </a>
-        </div>
+        {contents}
         <section className={styles.others}>
           <div className="container">
+            <h2>Outras metodologias</h2>
             <div className="row">
+              {otherItems}
             </div>
           </div>
         </section>
@@ -83,10 +80,37 @@ class Methodology extends Component {
 }
 
 Methodology.propTypes = {
+  methodologies: PropTypes.array.isRequired,
   challenges: PropTypes.array.isRequired,
 };
 
 Methodology.defaultProps = {
+  methodologies: [
+    {
+      image: iconProject,
+      slug: 'projeto',
+      title: 'Projeto',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
+    },
+    {
+      image: iconInvestigation,
+      slug: 'investigacao',
+      title: 'Investigação',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
+    },
+    {
+      image: iconGames,
+      slug: 'jogos',
+      title: 'Jogos',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
+    },
+    {
+      image: iconDoAndRedo,
+      slug: 'fazer-e-refazer',
+      title: 'Fazer e refazer',
+      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
+    },
+  ],
   challenges: [
     {},
     {},

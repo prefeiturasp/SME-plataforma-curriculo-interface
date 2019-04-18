@@ -22,43 +22,20 @@
   }
 }
 
-.illustration {
+.image {
   height: rem(214);
   margin-bottom: rem(34);
 }
 
-.contents,
-.quote {
-  composes: container from global;
-  font-size: rem(18);
-  line-height: rem(24);
-}
-
-.contents {
-  padding-top: rem(30);
-  padding-bottom: rem(30);
-  
-  img {
-    width: 100%;
-  }
-}
-
-.quote {
-  font-weight: 600;
-  padding-top: rem(80);
-  padding-bottom: rem(80);
-  text-align: center;
-}
-
-.download {
-  color: $grey-600;
-  font-size: rem(13);
-  line-height: rem(18);
-  padding-top: rem(30);
-  padding-bottom: rem(60);
+.others {
+  background-color: $color-green;
+  color: white;
+  padding-top: rem(64);
+  padding-bottom: rem(72);
   text-align: center;
 
-  p {
-    margin-bottom: rem(20);
+  h2 {
+    font-size: rem(28);
+    margin-bottom: rem(40);
   }
 }
