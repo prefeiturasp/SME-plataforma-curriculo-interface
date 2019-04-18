@@ -34,7 +34,7 @@ class MobileMenu extends React.PureComponent {
         isSub: false,
       },
       {
-        to: '/tecnologias',
+        to: '/tecnologias-para-aprendizagem',
         label: 'Tecnologias para Aprendizagem',
         isSub: false,
       },

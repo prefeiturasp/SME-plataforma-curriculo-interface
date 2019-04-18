@@ -1,0 +1,94 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  padding-top: rem(80);
+  padding-bottom: rem(40);
+
+  &:nth-child(even) {
+    background-color: $color-lightest-green;
+  }
+}
+
+.container {
+  composes: container from global;
+}
+
+.image {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: rem(50);
+  position: relative;
+  width: rem(165);
+
+  > div {
+    align-items: center;
+    background-color: white;
+    border-radius: rem(54);
+    box-shadow: 0 rem(2) rem(20) rgba(0, 0, 0, 0.1);
+    color: $color-green;
+    display: flex;
+    font-size: rem(34);
+    font-weight: 600;
+    justify-content: center;
+    position: absolute;
+    right: rem(10);
+    top: rem(116);
+    width: rem(54);
+    height: rem(54);
+  }
+}
+
+.text {
+  font-size: rem(16);
+  line-height: rem(21);
+
+  > h3 {
+    color: $color-green;
+    font-size: rem(34);
+    line-height: rem(36);
+    margin-bottom: rem(36);
+    text-align: center;
+  }
+
+  > p {
+    margin-bottom: 0;
+  }
+}
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    padding-top: rem(60);
+    padding-bottom: rem(74);
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .image {
+    margin-right: rem(120);
+    margin-bottom: 0;
+  }
+
+  .wrapper:nth-child(odd) {
+    .container {
+      flex-direction: row-reverse;
+    }
+
+    .image {
+      margin-left: rem(120);
+      margin-right: 0;
+    }
+  }
+
+  .text {
+    flex-shrink: 10;
+
+    > h3 {
+      margin-bottom: rem(20);
+      text-align: left;
+    }
+  }
+}

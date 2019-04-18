@@ -26,7 +26,10 @@ function ProfileReducer(state = initialState, action) {
       };
 
     case ProfileActions.LOAD:
-      return initialState;
+      return {
+        ...initialState,
+        isLogged: state.isLogged,
+      };
 
     case ProfileActions.LOADED:
       const { teacher } = action.data;

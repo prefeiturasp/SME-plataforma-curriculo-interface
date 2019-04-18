@@ -118,22 +118,6 @@ class Home extends Component {
               Quero saber mais sobre o currículo
             </NavLink>
           </div>
-          <div className={styles.discover}>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-10 offset-md-1">
-                  <p>
-                    A plataforma ainda está crescendo, veja o que vem por aí!
-                    <br />
-                    Este é só o começo.
-                  </p>
-                  <NavLink to="/descobrir" className={styles.button}>
-                    Quero descobrir
-                  </NavLink>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
       </Page>
     );

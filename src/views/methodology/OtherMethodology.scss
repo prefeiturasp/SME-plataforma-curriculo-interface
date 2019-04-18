@@ -1,0 +1,71 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  composes: col-sm-12 from global;
+  composes: col-md-4 from global;
+  margin-bottom: rem(20);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.box {
+  align-items: center;
+  background-color: white;
+  border-radius: rem(4);
+  box-shadow: 0 rem(5) rem(20) rgba(0, 0, 0, 0.1);
+  color: black;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  padding: rem(18);
+  padding-left: rem(12);
+  text-align: left;
+
+  > img {
+    margin-right: rem(15);
+    max-width: rem(110);
+  }
+}
+
+.btn {
+  align-items: center;
+  border: 1px solid $grey-200;
+  border-radius: rem(48);
+  display: inline-flex;
+  justify-content: center;
+  margin-left: auto;
+  width: rem(48);
+  height: rem(48);
+
+  > img {
+    opacity: 0.6;
+    width: rem(18);
+  }
+}
+
+@include mq("tablet-portrait") {
+  .box {
+    flex-direction: column;
+    padding: rem(40) rem(15) rem(36) rem(15);
+    text-align: center;
+
+    > img {
+      height: rem(166);
+      margin-bottom: rem(28);
+      max-width: none;
+    }
+
+    > h3 {
+      font-size: rem(18);
+      font-weight: 600;
+      margin-bottom: rem(22);
+    }
+  }
+
+  .btn {
+    margin-left: 0;
+  }
+}
