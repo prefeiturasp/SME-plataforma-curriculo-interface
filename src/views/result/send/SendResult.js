@@ -10,7 +10,6 @@ import Attachment from './Attachment';
 import BigPreview from 'components/objects/BigPreview';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from './ChallengePreview';
-import Classroom from 'views/collection/edit/Classroom';
 import ConfirmActions from 'actions/ConfirmActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
@@ -38,6 +37,7 @@ const CustomCheckbox = withStyles({
 class SendResult extends Component {
   state = {
     hasChecked: false,
+    classroom: '',
     description: '',
     videos: [
       { url: '' },
@@ -49,6 +49,13 @@ class SendResult extends Component {
     this.setState({
       ...this.state,
       hasChecked: e.target.checked,
+    });
+  };
+
+  onChangedClassroom = e => {
+    this.setState({
+      ...this.state,
+      classroom: e.target.value,
     });
   };
 
@@ -136,8 +143,8 @@ class SendResult extends Component {
       return <span />;
     }
 
-    const { challenge, classrooms } = this.props;
-    const { attachments, description, hasChecked, videos } = this.state;
+    const { challenge } = this.props;
+    const { attachments, classroom, description, hasChecked, videos } = this.state;
 
     const counter = `${description.length} / ${MAX_CHARS}`;
 
@@ -168,19 +175,6 @@ class SendResult extends Component {
       );
     });
 
-    const classroomItems = classrooms.map((item, i) => {
-      return (
-        <Classroom
-          key={i}
-          color="#008080"
-          level={item.level}
-          name={item.name}
-          school={item.school}
-          year={item.year}
-        />
-      );
-    });
-
     return (
       <DesktopModal isFixed>
         <ModalPage>
@@ -202,6 +196,14 @@ class SendResult extends Component {
                 </div>
               </div>
               <div className={styles.form}>
+                <TextField
+                  fullWidth={true}
+                  label="Nome da turma"
+                  placeholder="Digite aqui"
+                  onChange={this.onChangedClassroom}
+                  value={classroom}
+                />
+
                 <TextField
                   fullWidth={true}
                   multiline={true}
@@ -226,9 +228,6 @@ class SendResult extends Component {
                   <input type="file" multiple onChange={this.onClickedSelectFile} />
                 </label>
                 <p className={styles.attachmentHint}>Formatos: .png, .jpg, .pdf, .ppt até 10 MB</p>
-
-                <label className={styles.label}>Selecionar turmas (opcional)</label>
-                <div className={styles.classrooms}>{classroomItems}</div>
 
                 <FormControlLabel
                   control={
@@ -256,27 +255,9 @@ class SendResult extends Component {
 
 SendResult.propTypes = {
   challenge: PropTypes.object,
-  classrooms: PropTypes.array.isRequired,
   load: PropTypes.func.isRequired,
   openAlert: PropTypes.func.isRequired,
   openConfirm: PropTypes.func.isRequired,
-};
-
-SendResult.defaultProps = {
-  classrooms: [
-    {
-      level: 'EJA',
-      name: '[2018] Tecnologias para aprendizagem',
-      school: 'EMEF Maria da Silva',
-      year: '1A',
-    },
-    {
-      level: 'EF',
-      name: '[2018] Tecnologias para aprendizagem',
-      school: 'EMEF Maria da Silva',
-      year: '2D',
-    },
-  ],
 };
 
 const mapStateToProps = state => {
