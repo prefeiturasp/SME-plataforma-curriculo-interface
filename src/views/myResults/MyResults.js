@@ -5,10 +5,10 @@ import { history } from 'index';
 import BigPreview from 'components/objects/BigPreview';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengePreview from 'views/result/send/ChallengePreview';
+import Classroom from './Classroom';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalHeader from 'components/header/ModalHeader';
 import ModalPage from 'components/layout/ModalPage';
-import School from './School';
 import iconPlus from 'images/icons/plus1.svg';
 import styles from './MyResults.scss';
 import styles1 from 'views/sequence/save/SaveSequence.scss';
@@ -25,15 +25,15 @@ class MyResults extends Component {
   }
 
   render() {
-    const { challenge, schools } = this.props;
+    const { challenge, classrooms } = this.props;
 
     if (!challenge) {
       return <span />;
     }
 
-    const items = schools.map((school, i) => {
+    const items = classrooms.map((classroom, i) => {
       return (
-        <School key={i} name={school.name} classrooms={school.classrooms} />
+        <Classroom key={i} name={classroom.name} />
       );
     });
 
@@ -66,55 +66,16 @@ class MyResults extends Component {
 }
 
 MyResults.propTypes = {
-  schools: PropTypes.array.isRequired,
+  classrooms: PropTypes.array.isRequired,
 };
 
 MyResults.defaultProps = {
-  schools: [
+  classrooms: [
     {
-      name: 'EMEF João de Deus',
-      classrooms: [
-        {
-          year: '2D',
-          name: '2o ano D',
-          level: 'EF',
-        },
-        {
-          year: '3A',
-          name: '3o ano A',
-          level: 'EJA',
-        },
-      ],
+      name: '[2019] EMEF Maria da Silva 1A',
     },
     {
-      name: 'EMEF Maria da Silva',
-      classrooms: [
-        {
-          year: '1A',
-          name: '1o ano A',
-          level: 'EF',
-        },
-        {
-          year: '3A',
-          name: '3o ano A',
-          level: 'EJA',
-        },
-      ],
-    },
-    {
-      name: 'EMEF Maria da Silva',
-      classrooms: [
-        {
-          year: '1A',
-          name: '1o ano A',
-          level: 'EF',
-        },
-        {
-          year: '3A',
-          name: '3o ano A',
-          level: 'EJA',
-        },
-      ],
+      name: '[2019] EMEF Maria da Silva 2B',
     },
   ],
 };
