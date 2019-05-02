@@ -1,50 +1,5 @@
+import Api from 'data/Api';
 import SnackbarActions from 'actions/SnackbarActions';
-
-const data = {
-  id: 1,
-  slug: 'projeto-sinais-luminosos-na-aviacao',
-  title: 'Projeto Sinais Luminosos na Aviação',
-  deadline: '05/06/2018',
-  text: '{"ops":[{"insert":"Sinais luminosos são muito importantes na aviação, sobretudo quando os aviões voam à noite. Incorpore LEDs ao seu simulador e programe-os para que o avião emita sinais de luz."}]}',
-  image_attributes: {
-    default_url: "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/matemtica1.jpg",
-    default_size: "large",
-    large: {
-      "url": "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lOTVRFeE1IZzFOamdHT2daRlZBPT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--03c892762abee13c4bd67eb85ca4b9d0f265bfab/matemtica1.jpg"
-    },
-    extra_large: {
-      "url": "/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBMUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--58fdbb10f6ed953969dc099e7f636fd6bd9078ad/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lPTWpJeU1IZ3hNVE0yQmpvR1JWUT0iLCJleHAiOm51bGwsInB1ciI6InZhcmlhdGlvbiJ9fQ==--b2e76300f3ece138312bfa40e84cc5186f236c92/matemtica1.jpg"
-    },
-  },
-  curricular_components: [],
-  knowledge_matrices: [
-    {"sequence":1,"title":"Pensamento Científico, Crítico e Criativo"},
-    {"sequence":2,"title":"Resolução de Problemas"},
-    {"sequence":3,"title":"Comunicação"},
-    {"sequence":5,"title":"Autonomia e Determinação"},
-    {"sequence":9,"title":"Repertório Cultural"}
-  ],
-  learning_objectives: [
-    {"code":"EF01M01","description":"Reconhecer a utilização de números no seu contexto diário como indicador de quantidade, ordem, medida e código.","color":"#ff0080"},
-    {"code":"EF01M02","description":"Formular hipóteses sobre a leitura e escrita numérica, incluindo números familiares e frequentes.","color":"#ff0080"},{"code":"EF01M03","description":"Contar a quantidade de objetos de coleções (fixas ou móveis) e apresentar o resultado por registros verbais e/ou simbólicos e/ou registros numéricos.","color":"#ff0080"},
-    {"code":"EF01M04","description":"Realizar recitações orais (de um em um, de dois em dois) em escala ascendente (do menor para o maior) e descendente (do maior para o menor)","color":"#ff0080"},
-    {"code":"EF01M05","description":"Comparar números naturais. ","color":"#ff0080"},
-    {"code":"EF01M09","description":"Explorar fatos fundamentais da adição e subtração para a constituição de um repertório a ser utilizado na solução de problemas e nos procedimentos de cálculo (mental ou escrito).","color":"#ff0080"},
-    {"code":"EF01M13","description":"Solucionar problemas do campo aditivo (composição), utilizando diferentes estratégias pessoais de representação.","color":"#ff0080"},
-    {"code":"EF01M16","description":"Identificar, oralmente, pontos de referência para indicar sua localização na sala de aula, usando terminologia própria (direita, esquerda, frente e atrás).","color":"#ff0080"},
-    {"code":"EF01M17","description":"Indicar oralmente a posição onde se encontra na sala de aula, utilizando termos que se referem à posição (direita, esquerda, em cima e embaixo), e representa-la por meio de desenhos.","color":"#ff0080"},
-    {"code":"EF01M27","description":"Coletar dados de um acontecimento, organizá-los e representá-los em tabelas simples.","color":"#ff0080"},
-    {"code":"EF01M34","description":"Participar de jogos e brincadeiras tradicionais que explorem contagens, cálculos rápidos, movimentos etc., realizando adivinhações, decifrando charadas, levantando hipóteses e testando-as.","color":"#ff0080"}
-  ],
-  sustainable_development_goals: [
-    {"id":4,"name":"Educação de Qualidade","icon_url":"/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b1da3e64f98e58acef7718eb64741ae4fc0514f8/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRRMGVERTBOQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--c2a23a1df67cdb0e9fc69933337459a5f713165d/obj4.jpg","sub_icon_url":"/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c0123fd5df13dd39a8abfa35699419dcfc1ed517/sub_icon4.png"},
-    {"id":5,"name":"Igualdade de Genêro","icon_url":"/rails/active_storage/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--8ada6614082bfab8c0ca938ab2d5a33352d77169/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdCam9MY21WemFYcGxTU0lNTVRRMGVERTBOQVk2QmtWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--c2a23a1df67cdb0e9fc69933337459a5f713165d/obj5.jpg","sub_icon_url":"/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b2935e56da6d32b81c3d76008a56947e268361bc/sub_icon5.png"}
-  ],
-  axis: [
-    { name: "Letramento digital" },
-    { name: "TIC" }
-  ],
-};
 
 const results = [
   {
@@ -129,8 +84,10 @@ const ChallengeActions = {
   DELETE: 'ChallengesActions.DELETE',
   DELETED: 'ChallengesActions.DELETED',
   LOAD: 'ChallengeActions.LOAD',
+  LOAD_MORE_RESULTS: 'ChallengeActions.LOAD_MORE_RESULTS',
   LOAD_RESULTS: 'ChallengeActions.LOAD_RESULTS',
   LOADED: 'ChallengeActions.LOADED',
+  LOADED_MORE_RESULTS: 'ChallengeActions.LOADED_MORE_RESULTS',
   LOADED_RESULTS: 'ChallengeActions.LOADED_RESULTS',
   SAVE: 'ChallengeActions.SAVE',
   SAVED: 'ChallengeActions.SAVED',
@@ -145,20 +102,18 @@ const ChallengeActions = {
     };
   },
   load(slug) {
-    return dispatch => {
-      dispatch({ type: ChallengeActions.LOAD });
-
-      setTimeout(() => {
-        dispatch({ data, type: ChallengeActions.LOADED });
-      }, 1000);
-    };
+    return Api.simpleGet(
+      `/api/desafios/${slug}`,
+      ChallengeActions.LOAD,
+      ChallengeActions.LOADED
+    );
   },
-  loadMoreResults(slug) {
+  loadMoreResults(page) {
     return dispatch => {
-      dispatch({ type: ChallengeActions.LOAD_RESULTS });
+      dispatch({ type: ChallengeActions.LOAD_MORE_RESULTS });
 
       setTimeout(() => {
-        dispatch({ data: results, type: ChallengeActions.LOADED_RESULTS });
+        dispatch({ data: results, type: ChallengeActions.LOADED_MORE_RESULTS });
       }, 1000);
     };
   },
