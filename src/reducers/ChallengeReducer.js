@@ -5,6 +5,8 @@ const initialState = {
   results: [],
   isLoadingResults: false,
   isSaved: false,
+  nextPage: null,
+  totalItems: 0,
 };
 
 function ChallengeReducer(state = initialState, action) {
@@ -26,6 +28,8 @@ function ChallengeReducer(state = initialState, action) {
         ...state,
         isLoadingResults: false,
         results: state.results.concat(action.data),
+        nextPage: action.nextPage,
+        totalItems: action.totalItems,
       };
 
     case ChallengeActions.SAVED:

@@ -10,7 +10,6 @@ import ChallengeList from './challenges/ChallengeList';
 import CollectionsActions from 'actions/CollectionsActions';
 import CollectionList from './collections/CollectionList';
 import EmptyList from './collections/EmptyList';
-import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ProfileActions from 'actions/ProfileActions';
 import createModalLink from 'utils/createModalLink';
@@ -39,15 +38,6 @@ class Profile extends Component {
     const { data, challenges, collections } = this.props;
     const { nickname } = data;
 
-    const notification = true ? (
-      <Notification
-        text="O novo desafio Projeto Sinais Luminosos na Aviação está disponível na plataforma. Acesse agora e saiba mais detalhes de como participar."
-        labelNo="Agora não"
-        labelYes="Visualizar desafio"
-        onClickedYes={this.onClickedChallenge}
-      />
-    ) : null;
-
     const numCollections = collections.length;
     const wordCollections = numCollections === 1 ? 'coleção' : 'coleções';
     const collectionList =
@@ -61,7 +51,6 @@ class Profile extends Component {
     
     return (
       <Page>
-        {notification}
         <header className={styles.header}>
           <div className={styles.rowName}>
             <div className={styles.photoAndName}>

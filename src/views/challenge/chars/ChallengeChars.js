@@ -43,9 +43,10 @@ class ChallengeChars extends Component {
       return <Chip key={i} data={item} isOutlined={true} />;
     });
 
-    const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {
-      return <KnowledgeMatrixItem key={i} data={item} isLink={true} />;
-    });
+    const knowledgeMatrices = [];
+    // const knowledgeMatrices = data.knowledge_matrices.map((item, i) => {
+    //   return <KnowledgeMatrixItem key={i} data={item} isLink={true} />;
+    // });
 
     const learningObjectivesList = this.state.isShowingAllLearningObjectives
       ? data.learning_objectives
@@ -68,17 +69,19 @@ class ChallengeChars extends Component {
         </button>
       );
 
-    const sustainableDevGoals = data.sustainable_development_goals.map(
-      (item, i) => {
-        return <SustainableDevGoalItem key={i} data={item} isLink={true} />;
-      }
-    );
+    const sustainableDevGoals = [];
+    // const sustainableDevGoals = data.sustainable_development_goals.map(
+    //   (item, i) => {
+    //     return <SustainableDevGoalItem key={i} data={item} isLink={true} />;
+    //   }
+    // );
 
-    const axes = data.axis.map(
-      (item, i) => {
-        return <AxisItem key={i} data={item} />;
-      }
-    );
+    const axes = [];
+    // const axes = data.axis.map(
+    //   (item, i) => {
+    //     return <AxisItem key={i} data={item} />;
+    //   }
+    // );
 
     return (
       <div className={styles.wrapper}>

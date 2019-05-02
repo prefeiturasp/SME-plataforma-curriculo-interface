@@ -12,6 +12,21 @@
 
 .container {
   composes: container from global;
+
+  font-size: rem(16);
+  line-height: rem(21);
+
+  h3 {
+    color: $color-green;
+    font-size: rem(34);
+    line-height: rem(36);
+    margin-bottom: rem(36);
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .image {
@@ -39,23 +54,6 @@
   }
 }
 
-.text {
-  font-size: rem(16);
-  line-height: rem(21);
-
-  > h3 {
-    color: $color-green;
-    font-size: rem(34);
-    line-height: rem(36);
-    margin-bottom: rem(36);
-    text-align: center;
-  }
-
-  > p {
-    margin-bottom: 0;
-  }
-}
-
 @include mq("tablet-portrait") {
   .wrapper {
     padding-top: rem(60);
@@ -63,32 +61,44 @@
   }
 
   .container {
-    display: flex;
-    flex-direction: row;
+    position: relative;
+
+    h3 {
+      margin-bottom: rem(20);
+      text-align: left;
+    }
   }
 
   .image {
-    margin-right: rem(120);
     margin-bottom: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .wrapper:nth-child(even) {
+    .container {
+      h3,
+      p {
+        margin-left: rem(285);
+      }
+    }
+
+    .image {
+      left: 0;
+    }
   }
 
   .wrapper:nth-child(odd) {
     .container {
-      flex-direction: row-reverse;
+      h3,
+      p {
+        margin-right: rem(285);
+      }
     }
 
     .image {
-      margin-left: rem(120);
-      margin-right: 0;
-    }
-  }
-
-  .text {
-    flex-shrink: 10;
-
-    > h3 {
-      margin-bottom: rem(20);
-      text-align: left;
+      right: 0;
     }
   }
 }

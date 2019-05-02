@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { history } from 'index';
-import ClassroomYear from 'components/objects/ClassroomYear';
 import iconEdit from 'images/icons/edit.svg';
 import styles from './Classroom.scss';
 
@@ -12,13 +11,12 @@ class Classroom extends React.PureComponent {
   };
 
   render() {
-    const { level, name, year } = this.props;
+    const { name } = this.props;
 
     return (
       <div className={styles.wrapper}>
-        <ClassroomYear size={50} year={year} />
         <div className={styles.info}>
-          {name} | {level}
+          {name}
         </div>
         <button className={styles.btnEdit} onClick={this.onClickedEdit}>
           <img src={iconEdit} alt="Editar resultado" />
@@ -30,9 +28,7 @@ class Classroom extends React.PureComponent {
 
 Classroom.propTypes = {
   challenge: PropTypes.object.isRequired,
-  level: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
