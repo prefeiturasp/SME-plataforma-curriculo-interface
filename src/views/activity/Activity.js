@@ -12,7 +12,6 @@ import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from './SequencePreview';
 import Title from 'views/sequence/Title';
 import Tooltips from 'components/Tooltips';
-import convertQuillToHtml from 'utils/convertQuillToHtml';
 import getContentBlocks from 'utils/getContentBlocks';
 import isLogged from 'data/isLogged';
 import arrowLeft from 'images/arrows/left.svg';

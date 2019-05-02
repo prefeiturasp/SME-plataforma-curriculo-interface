@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ModuleExercise from 'views/modules/ModuleExercise';
 import ModuleGallery from 'views/modules/ModuleGallery';
 import ModuleLongText from 'views/modules/ModuleLongText';
