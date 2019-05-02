@@ -14,6 +14,7 @@ import ChallengeChars from './chars/ChallengeChars';
 import ChallengeCharsMobile from './chars/ChallengeCharsMobile';
 import Cover from './Cover';
 import Loading from 'components/loading/Loading';
+import ModuleTextWithTables from 'views/modules/ModuleTextWithTables';
 import Result from './Result';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
@@ -22,6 +23,25 @@ import isLogged from 'data/isLogged';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
 import styles from './Challenge.scss';
+
+const getCategory = slug => {
+  switch (slug) {
+    case 'do_and_redo':
+      return 'Fazer e refazer';
+
+    case 'games':
+      return 'Jogos';
+
+    case 'investigation':
+      return 'Investigação';
+
+    case 'project':
+      return 'Projeto';
+
+    default:
+      return slug;
+  }
+}
 
 class Challenge extends Component {
   state = {
@@ -45,7 +65,7 @@ class Challenge extends Component {
   };
 
   onClickedLoadMore = () => {
-    this.props.loadMore(this.props.match.params.slug);
+    this.props.loadMore(this.props.nextPage);
   };
 
   onClickedMaterials = () => {
@@ -87,7 +107,7 @@ class Challenge extends Component {
   }
 
   render() {
-    const { data, results, isLoading, isSaved } = this.props;
+    const { data, results, nextPage, totalItems, isLoading, isSaved } = this.props;
     const { currTab, isMaterialsExpanded, isPrint } = this.state;
 
     if (!data) {
@@ -97,12 +117,18 @@ class Challenge extends Component {
     const chevron = isMaterialsExpanded ? chevronUp : chevronDown;
     const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
 
-    const description = convertQuillToHtml(data.text);
+    const category = getCategory(data.category);
+
+    const contentBlocks = data.content_blocks
+      ? data.content_blocks.map((block, i) => {
+          return <ModuleTextWithTables key={i} data={block.content.body} />;
+        })
+      : null;
 
     const link = `/desafio/${data.slug}/enviar`;
 
-    const wordResults = results.length === 1 ? 'resultado' : 'resultados';
-    const Results = results.map((item, i) => {
+    const wordResults = totalItems === 1 ? 'resultado' : 'resultados';
+    const resultItems = results.map((item, i) => {
       return (
         <Result
           key={i}
@@ -112,8 +138,7 @@ class Challenge extends Component {
       );
     });
 
-    const hasNextPage = true
-    const button = hasNextPage ? (
+    const button = nextPage ? (
       <button className={styles.btnLoadMore} onClick={this.onClickedLoadMore}>
         Ver mais resultados
       </button>
@@ -155,7 +180,7 @@ class Challenge extends Component {
                   </button>
                   <div className={styles.category}>
                     <h3 className={styles.categoryName}>Categoria</h3>
-                    <div className={styles.categoryValue}>Projeto</div>
+                    <div className={styles.categoryValue}>{category}</div>
                   </div>
                   <div className={styles.materials}>
                     <div className={styles.btnMaterials} onClick={this.onClickedMaterials}>
@@ -170,10 +195,7 @@ class Challenge extends Component {
                       </ul>
                     </Collapse>
                   </div>
-                  <div
-                    className={styles.description}
-                    dangerouslySetInnerHTML={{__html: description}}
-                  />
+                  {contentBlocks}
                   <div className={styles.callToAction}>
                     <div className={styles.callText}>
                       <h2>Sua turma participou deste desafio?</h2>
@@ -203,8 +225,8 @@ class Challenge extends Component {
                       </NavLink>
                     </div>
                   </div>
-                  <h3 className={styles.numResults}>{results.length} {wordResults}</h3>
-                  <div>{Results}</div>
+                  <h3 className={styles.numResults}>{totalItems} {wordResults}</h3>
+                  <div>{resultItems}</div>
                   <div className={styles.center}>{loadingOrButton}</div>
                 </div>
               </SwipeableViews>
@@ -228,6 +250,8 @@ class Challenge extends Component {
 Challenge.propTypes = {
   data: PropTypes.object,
   results: PropTypes.array.isRequired,
+  nextPage: PropTypes.string,
+  totalItems: PropTypes.number,
   isLoading: PropTypes.bool,
   isSaved: PropTypes.bool,
   load: PropTypes.func.isRequired,
@@ -238,6 +262,8 @@ const mapStateToProps = state => {
   return {
     data: state.ChallengeReducer.currItem,
     results: state.ChallengeReducer.results,
+    nextPage: state.ChallengeReducer.nextPage,
+    totalItems: state.ChallengeReducer.totalItems,
     isLoading: state.ChallengeReducer.isLoading,
     isSaved: state.ChallengeReducer.isSaved,
   };
@@ -253,8 +279,8 @@ const mapDispatchToProps = dispatch => {
         dispatch(ChallengesActions.loadPerformed());
       }
     },
-    loadMore: slug => {
-      dispatch(ChallengeActions.loadMoreResults(slug));
+    loadMore: page => {
+      dispatch(ChallengeActions.loadMoreResults(page));
     },
   };
 };

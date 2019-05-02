@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { Element, scroller } from 'react-scroll';
+import { connect } from 'react-redux';
 import Challenge from './Challenge';
+import ChallengesActions from 'actions/ChallengesActions';
 import Methodology from './Methodology';
 import Page from 'components/layout/Page';
+import isLogged from 'data/isLogged';
 import iconDoAndRedo from 'images/illustrations/do-and-redo.svg';
 import iconGames from 'images/illustrations/games.svg';
 import iconInvestigation from 'images/illustrations/investigation.svg';
@@ -16,6 +19,10 @@ import iconTechnologies1 from './images/technologies.svg';
 import styles from './Technologies.scss';
 
 class Technologies extends Component {
+  state = {
+    hasLoadedFinishedChallenges: false,
+  };
+
   onClickedChallenges = () => {
     scroller.scrollTo('desafios', {
       duration: 300,
@@ -23,9 +30,14 @@ class Technologies extends Component {
     });
   };
 
-  onClickedLoadChallenges = () => {
-    
+  onClickedFinishedChallenges = () => {
+    this.props.loadFinished();
+    this.setState({ hasLoadedFinishedChallenges: true });
   };
+
+  componentDidMount() {
+    this.props.loadOngoing();
+  }
 
   render() {
     const { methodologies, challenges } = this.props;
@@ -35,8 +47,16 @@ class Technologies extends Component {
     });
 
     const challengeItems = challenges.map((item, i) => {
-      return <Challenge key={i} />;
+      return <Challenge key={i} data={item} />;
     });
+
+    const btnFinishedChallenges = this.state.hasLoadedFinishedChallenges ? null : (
+      <div className={styles.center}>
+        <button className={styles.btnChallenges} onClick={this.onClickedFinishedChallenges}>
+          Ver desafios encerrados
+        </button>
+      </div>
+    );
 
     return (
       <Page>
@@ -111,11 +131,7 @@ class Technologies extends Component {
             <div className="row">
               {challengeItems}
             </div>
-            <div className={styles.center}>
-              <button className={styles.btnChallenges} onClick={this.onClickedLoadChallenges}>
-                Ver desafios encerrados
-              </button>
-            </div>
+            {btnFinishedChallenges}
           </div>
         </section>
       </Page>
@@ -126,6 +142,7 @@ class Technologies extends Component {
 Technologies.propTypes = {
   methodologies: PropTypes.array.isRequired,
   challenges: PropTypes.array.isRequired,
+  load: PropTypes.func.isRequired,
 };
 
 Technologies.defaultProps = {
@@ -155,11 +172,29 @@ Technologies.defaultProps = {
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
     },
   ],
-  challenges: [
-    {},
-    {},
-    {},
-  ],
 };
 
-export default Technologies;
+const mapStateToProps = state => {
+  return {
+    challenges: state.ChallengesReducer.items,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadOngoing: () => {
+      dispatch(ChallengesActions.loadOngoing());
+      if (isLogged()) {
+        dispatch(ChallengesActions.loadPerformed());
+      }
+    },
+    loadFinished: () => {
+      dispatch(ChallengesActions.loadFinished());
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Technologies);

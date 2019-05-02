@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { history } from 'index';
+import { API_URL } from 'data/constants';
 import isLogged from 'data/isLogged';
 import iconSave1 from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
@@ -25,8 +26,7 @@ class Challenge extends Component {
     const thumbnail = data.image_attributes.default_url ? (
       <div className={styles.image}>
         <img
-          src={data.image_attributes.default_url}
-          srcSet={`${data.image_attributes.thumb.url}, ${data.image_attributes.extra_thumb.url} 2x`}
+          src={API_URL + data.image_attributes.default_url}
           alt=""
         />
       </div>
@@ -59,22 +59,6 @@ class Challenge extends Component {
 
 Challenge.propTypes = {
   data: PropTypes.object.isRequired,
-};
-
-Challenge.defaultProps = {
-  data: {
-    slug: 'projeto-sinais-luminosos-na-aviacao',
-    title: 'Projeto Sinais Luminosos na Aviação',
-    image_attributes: {
-      default_url: 'https://placeimg.com/640/480/nature',
-      thumb: {
-        url: 'https://placeimg.com/320/240/nature',
-      },
-      extra_thumb: {
-        url: 'https://placeimg.com/640/480/nature',
-      },
-    },
-  },
 };
 
 export default Challenge;
