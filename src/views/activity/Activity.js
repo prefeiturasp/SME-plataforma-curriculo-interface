@@ -7,19 +7,13 @@ import ActivityChars from './chars/ActivityChars';
 import ActivityCharsMobile from './chars/ActivityCharsMobile';
 import BodyActions from 'actions/BodyActions';
 import Cover from 'views/sequence/Cover';
-import ModuleExercise from 'views/modules/ModuleExercise';
-import ModuleGallery from 'views/modules/ModuleGallery';
-import ModuleLongText from 'views/modules/ModuleLongText';
-import ModuleQuestion from 'views/modules/ModuleQuestion';
-import ModuleStudent from 'views/modules/ModuleStudent';
-import ModuleTextWithTables from 'views/modules/ModuleTextWithTables';
-import ModuleTeacher from 'views/modules/ModuleTeacher';
 import Page from 'components/layout/Page';
 import SequenceActions from 'actions/SequenceActions';
 import SequencePreview from './SequencePreview';
 import Title from 'views/sequence/Title';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
+import getContentBlocks from 'utils/getContentBlocks';
 import isLogged from 'data/isLogged';
 import arrowLeft from 'images/arrows/left.svg';
 import arrowRight from 'images/arrows/right.svg';
@@ -63,60 +57,7 @@ class Activity extends Component {
     const sequence = data.activity_sequence;
 
     const contentBlocks = data.content_blocks
-      ? data.content_blocks.map((block, i) => {
-          switch (block.type) {
-            case 'to_teacher':
-              return (
-                <ModuleTeacher
-                  key={i}
-                  text={convertQuillToHtml(block.content.body)}
-                />
-              );
-
-            case 'to_student':
-              return (
-                <ModuleStudent
-                  key={i}
-                  text={convertQuillToHtml(block.content.body)}
-                />
-              );
-
-            case 'question':
-              return (
-                <ModuleQuestion
-                  key={i}
-                  number={block.content.number}
-                  title={block.content.title}
-                  text={convertQuillToHtml(block.content.body)}
-                />
-              );
-
-            case 'predefined_exercise':
-              return (
-                <ModuleExercise
-                  key={i}
-                  icon={block.content.icon_url}
-                  title={block.content.title}
-                  text={convertQuillToHtml(block.content.body)}
-                />
-              );
-
-            case 'long_text':
-              return (
-                <ModuleLongText
-                  key={i}
-                  title={block.content.title}
-                  text={convertQuillToHtml(block.content.body)}
-                />
-              );
-
-            case 'gallery':
-              return <ModuleGallery key={i} images={block.images} />;
-
-            default:
-              return <ModuleTextWithTables key={i} data={block.content.body} />;
-          }
-        })
+      ? getContentBlocks(data.content_blocks)
       : null;
 
     const linkPrev = `/atividade/${sequence.slug}/${data.last_activity}`;

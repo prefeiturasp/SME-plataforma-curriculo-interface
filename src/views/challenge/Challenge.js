@@ -19,29 +19,12 @@ import Result from './Result';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
+import getCategoryLabel from './getCategoryLabel';
+import getContentBlocks from 'utils/getContentBlocks';
 import isLogged from 'data/isLogged';
 import chevronDown from 'images/chevrons/down.svg';
 import chevronUp from 'images/chevrons/up.svg';
 import styles from './Challenge.scss';
-
-const getCategory = slug => {
-  switch (slug) {
-    case 'do_and_redo':
-      return 'Fazer e refazer';
-
-    case 'games':
-      return 'Jogos';
-
-    case 'investigation':
-      return 'Investigação';
-
-    case 'project':
-      return 'Projeto';
-
-    default:
-      return slug;
-  }
-}
 
 class Challenge extends Component {
   state = {
@@ -117,12 +100,10 @@ class Challenge extends Component {
     const chevron = isMaterialsExpanded ? chevronUp : chevronDown;
     const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
 
-    const category = getCategory(data.category);
+    const category = getCategoryLabel(data.category);
 
     const contentBlocks = data.content_blocks
-      ? data.content_blocks.map((block, i) => {
-          return <ModuleTextWithTables key={i} data={block.content.body} />;
-        })
+      ? getContentBlocks(data.content_blocks)
       : null;
 
     const link = `/desafio/${data.slug}/enviar`;
