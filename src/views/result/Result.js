@@ -20,8 +20,8 @@ import styles2 from 'views/activity/Activity.scss';
 
 class Result extends Component {
   onClickedPrev = () => {
-    const { results } = this.props;
-    const { id, slug } = this.props.match.params;
+    const { match, results } = this.props;
+    const { id, slug } = match.params;
     const data = results.find(item => {
       return item.id === parseInt(id);
     });
@@ -40,25 +40,22 @@ class Result extends Component {
   };
 
   componentDidMount() {
-    this.props.load(this.props.match.params.slug);
+    const { id, slug } = this.props.match.params;
+    this.props.load(slug, id);
   }
 
   render() {
-    const { results, windowWidth } = this.props;
-    const { id, slug } = this.props.match.params;
+    const { currResult, windowWidth } = this.props;
+    const { slug } = this.props.match.params;
     
-    const data = results.find(item => {
-      return item.id === parseInt(id);
-    });
-
-    if (!data) {
+    if (!currResult) {
       return <span />;
     }
 
     const modalTitle = windowWidth > 768 ? 'Detalhes do Resultado' : '';
 
-    const gallery = data.images.length ? <ModuleGallery images={data.images} /> : null;
-    const videos = data.videos.map(item  => {
+    const gallery = false ? <ModuleGallery images={currResult.images} /> : null;
+    const videos = currResult.links.map(item  => {
       const index = item.indexOf('v=') + 2;
       const id = item.substring(index);
       return (
@@ -76,8 +73,8 @@ class Result extends Component {
       );
     });
 
-    const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
-    const attachments = data.attachments.map((item, i) => {
+    const icon = false ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
+    const attachments = [].map((item, i) => {
       return (
         <Attachment
           key={i}
@@ -88,7 +85,7 @@ class Result extends Component {
 
     const linkResults = `/desafio/${slug}`;
 
-    const arrowPrev = data.previous ? (
+    const arrowPrev = currResult.previous ? (
       <button className={styles2.prev} onClick={this.onClickedPrev}>
         <img src={arrowLeft} alt="Seta" />
         Anterior
@@ -97,7 +94,7 @@ class Result extends Component {
       <span />
     );
 
-    const arrowNext = data.next ? (
+    const arrowNext = currResult.next ? (
       <button className={styles2.next} onClick={this.onClickedNext}>
         Próximo
         <img src={arrowRight} alt="Seta" />
@@ -116,18 +113,18 @@ class Result extends Component {
                   <div className={styles1.info}>
                     <div className={styles1.avatar}>
                       <Avatar
-                        nickname={data.author.name}
-                        photo={data.author.photo}
+                        nickname={currResult.teacher.name}
+                        photo={currResult.teacher.avatar_attributes.default_url}
                         size={50}
                       />
                     </div>
                     <div>
-                      <div className={styles1.name}>{data.author.name}</div>
-                      <div className={styles1.date}>{data.year} &middot; {data.time}</div>
+                      <div className={styles1.name}>{currResult.teacher.name}</div>
+                      <div className={styles1.date}>{currResult.class_name} &middot; {currResult.created_at}</div>
                     </div>
                     {icon}
                   </div>
-                  <div className={styles.text}>{data.text}</div>
+                  <div className={styles.text}>{currResult.description}</div>
                   <hr />
                   <div className={styles.attachments}>
                     {gallery}
@@ -157,19 +154,19 @@ class Result extends Component {
 }
 
 Result.propTypes = {
-  results: PropTypes.array.isRequired,
+  currResult: PropTypes.object,
 };
 
 const mapStateToProps = state => {
   return {
-    results: state.ChallengeReducer.results,
+    currResult: state.ChallengeReducer.currResult,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: slug => {
-      dispatch(ChallengeActions.loadResults(slug));
+    load: (slug, resultId) => {
+      dispatch(ChallengeActions.loadResult(slug, resultId));
     },
   };
 };

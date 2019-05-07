@@ -156,7 +156,7 @@ class Challenge extends Component {
               <Title
                 hasButton={true}
                 isSaved={isSaved}
-                deadline={data.deadline}
+                deadline={data.finish_at}
                 id={data.id}
                 slug={data.slug}
                 title={data.title}
@@ -263,7 +263,7 @@ const mapDispatchToProps = dispatch => {
     load: slug => {
       dispatch(BodyActions.showLoading());
       dispatch(ChallengeActions.load(slug));
-      //dispatch(ChallengeActions.loadResults(slug));
+      dispatch(ChallengeActions.loadResults(slug));
       if (isLogged()) {
         dispatch(ChallengesActions.loadPerformed());
       }
