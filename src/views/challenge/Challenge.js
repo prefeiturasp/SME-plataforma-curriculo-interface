@@ -95,11 +95,33 @@ class Challenge extends Component {
       return <span />;
     }
 
-    const chevron = isMaterialsExpanded ? chevronUp : chevronDown;
-    const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
-
     const category = getCategoryLabel(data.category);
 
+    let materials = null;
+    if (data.list) {
+      const chevron = isMaterialsExpanded ? chevronUp : chevronDown;
+      const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
+      const items = data.list.items.map((item, i) => {
+        return (
+          <li>{item}</li>
+        );
+      });
+
+      materials = (
+        <div className={styles.materials}>
+          <div className={styles.btnMaterials} onClick={this.onClickedMaterials}>
+            <h3 className={styles.categoryName}>{data.list.title}</h3>
+            <img src={chevron} alt={label} />
+          </div>
+          <Collapse in={this.state.isMaterialsExpanded}>
+            <ul>
+              {items}
+            </ul>
+          </Collapse>
+        </div>
+      );
+    }
+    
     const contentBlocks = data.content_blocks
       ? getContentBlocks(data.content_blocks)
       : null;
@@ -161,19 +183,7 @@ class Challenge extends Component {
                     <h3 className={styles.categoryName}>Categoria</h3>
                     <div className={styles.categoryValue}>{category}</div>
                   </div>
-                  <div className={styles.materials}>
-                    <div className={styles.btnMaterials} onClick={this.onClickedMaterials}>
-                      <h3 className={styles.categoryName}>Recursos didáticos utilizados</h3>
-                      <img src={chevron} alt={label} />
-                    </div>
-                    <Collapse in={this.state.isMaterialsExpanded}>
-                      <ul>
-                        <li>Arduino</li>
-                        <li>Servo</li>
-                        <li>Sensor linear</li>
-                      </ul>
-                    </Collapse>
-                  </div>
+                  {materials}
                   {contentBlocks}
                   <div className={styles.callToAction}>
                     <div className={styles.callText}>
@@ -253,7 +263,7 @@ const mapDispatchToProps = dispatch => {
     load: slug => {
       dispatch(BodyActions.showLoading());
       dispatch(ChallengeActions.load(slug));
-      dispatch(ChallengeActions.loadResults(slug));
+      //dispatch(ChallengeActions.loadResults(slug));
       if (isLogged()) {
         dispatch(ChallengesActions.loadPerformed());
       }

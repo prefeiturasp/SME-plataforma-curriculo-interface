@@ -12,22 +12,22 @@ class Result extends Component {
     const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles.icon} /> : null;
     
     return (
-      <NavLink to={link} className={styles.wrapper} aria-label={data.author.name}>
+      <NavLink to={link} className={styles.wrapper} aria-label={data.teacher.name}>
         <div className={styles.info}>
           <div className={styles.avatar}>
             <Avatar
-              nickname={data.author.name}
-              photo={data.author.photo}
+              nickname={data.teacher.name}
+              photo={data.teacher.avatar_attributes.default_url}
               size={50}
             />
           </div>
           <div>
-            <div className={styles.name}>{data.author.name}</div>
-            <div className={styles.date}>{data.year} &middot; {data.time}</div>
+            <div className={styles.name}>{data.teacher.name}</div>
+            <div className={styles.date}>{data.class_name} &middot; {data.created_at}</div>
           </div>
           {icon}
         </div>
-        <p className={styles.text}>{data.text}</p>
+        <p className={styles.text}>{data.description}</p>
       </NavLink>
     );
   }
