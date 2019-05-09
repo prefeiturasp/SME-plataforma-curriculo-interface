@@ -74,7 +74,7 @@ class Result extends Component {
     });
 
     const icon = false ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
-    const attachments = [].map((item, i) => {
+    const attachments = currResult.documents.map((item, i) => {
       return (
         <Attachment
           key={i}
