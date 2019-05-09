@@ -142,7 +142,8 @@ class Technologies extends Component {
 Technologies.propTypes = {
   methodologies: PropTypes.array.isRequired,
   challenges: PropTypes.array.isRequired,
-  load: PropTypes.func.isRequired,
+  loadOngoing: PropTypes.func.isRequired,
+  loadFinished: PropTypes.func.isRequired,
 };
 
 Technologies.defaultProps = {

@@ -103,7 +103,7 @@ class Challenge extends Component {
       const label = isMaterialsExpanded ? 'Ocultar' : 'Exibir';
       const items = data.list.items.map((item, i) => {
         return (
-          <li>{item}</li>
+          <li key={i}>{item}</li>
         );
       });
 
