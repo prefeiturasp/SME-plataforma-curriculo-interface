@@ -124,11 +124,19 @@ class SendResult extends Component {
         'Tentar novamente',
         this.onClickedContinue
       );
+    } else {
+      this.onClickedContinue();
     }
   };
 
   onClickedContinue = () => {
-
+    this.props.sendResult(
+      this.props.match.params.slug,
+      this.state.classroom,
+      this.state.description,
+      this.state.videos,
+      this.state.attachments
+    );
   };
 
   componentDidMount() {
@@ -270,6 +278,9 @@ const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
       dispatch(ChallengeActions.loadResults(slug));
+    },
+    sendResult: (slug, classroom, description, videos, attachments) => {
+      dispatch(ChallengeActions.sendResult(slug, classroom, description, videos, attachments));
     },
     openAlert: message => {
       dispatch(AlertActions.open(message));

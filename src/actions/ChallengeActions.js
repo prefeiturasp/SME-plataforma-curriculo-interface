@@ -1,5 +1,7 @@
 import Api from 'data/Api';
+import AlertActions from 'actions/AlertActions';
 import SnackbarActions from 'actions/SnackbarActions';
+import getTeacherId from 'data/getTeacherId';
 
 const ChallengeActions = {
   DELETE: 'ChallengesActions.DELETE',
@@ -14,6 +16,8 @@ const ChallengeActions = {
   LOADED_RESULTS: 'ChallengeActions.LOADED_RESULTS',
   SAVE: 'ChallengeActions.SAVE',
   SAVED: 'ChallengeActions.SAVED',
+  SEND_RESULT: 'ChallengeActions.SEND_RESULT',
+  SENT_RESULT: 'ChallengeActions.SENT_RESULT',
   
   delete(id) {
     return dispatch => {
@@ -60,6 +64,29 @@ const ChallengeActions = {
         dispatch({ type: ChallengeActions.SAVED });
         dispatch(SnackbarActions.open('Desafio salvo'));
       }, 1000);
+    };
+  },
+  sendResult(slug, classroom, description, links, files) {
+    return dispatch => {
+      dispatch({ type: ChallengeActions.SEND_RESULT });
+      const teacherId = getTeacherId();
+      const data = {
+        'result[class_name]': classroom,
+        'result[description]': description,
+        'result[links_attributes]': links,
+        'result[archives]': files,
+        'result[teacher_id]': teacherId,
+      };
+      return Api.post(dispatch, `/api/desafios/${slug}/resultados`, data)
+        .then(response =>
+          dispatch({ ...response, type: ChallengeActions.SENT_RESULT })
+        )
+        .then(response =>
+          dispatch(SnackbarActions.open('Desafio salvo'))
+        )
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
 };
