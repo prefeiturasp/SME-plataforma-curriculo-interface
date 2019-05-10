@@ -73,8 +73,8 @@ const ChallengeActions = {
       const data = {
         'result[class_name]': classroom,
         'result[description]': description,
-        'result[links_attributes]': links,
-        'result[archives]': files,
+        'result[links_attributes][][link]': links,
+        'result[archives][]': files,
         'result[teacher_id]': teacherId,
       };
       return Api.post(dispatch, `/api/desafios/${slug}/resultados`, data)

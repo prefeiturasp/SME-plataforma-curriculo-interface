@@ -130,11 +130,15 @@ class SendResult extends Component {
   };
 
   onClickedContinue = () => {
+    const videos = this.state.videos
+      .filter(item => item.url.length > 0)
+      .map(item => item.url );
+
     this.props.sendResult(
       this.props.match.params.slug,
       this.state.classroom,
       this.state.description,
-      this.state.videos,
+      videos,
       this.state.attachments
     );
   };
