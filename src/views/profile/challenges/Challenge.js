@@ -96,7 +96,6 @@ class Challenge extends React.PureComponent {
 
 Challenge.propTypes = {
   id: PropTypes.number.isRequired,
-  component: PropTypes.object.isRequired,
   hasPerformed: PropTypes.bool,
   image: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
