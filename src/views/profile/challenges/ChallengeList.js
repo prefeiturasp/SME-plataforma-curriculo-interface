@@ -13,7 +13,7 @@ class ChallengeList extends Component {
           key={i}
           id={item.id}
           component={item.main_curricular_component}
-          hasPerformed={item.performeds_status.performed}
+          hasPerformed={false}
           image={item.image_attributes}
           slug={item.slug}
           title={item.title}

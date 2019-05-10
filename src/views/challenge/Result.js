@@ -19,7 +19,7 @@ class Result extends Component {
           <div className={styles.avatar}>
             <Avatar
               nickname={data.teacher.name}
-              photo={data.teacher.avatar_attributes.default_url}
+              photo={data.teacher.avatar_attributes && data.teacher.avatar_attributes.default_url}
               size={50}
             />
           </div>

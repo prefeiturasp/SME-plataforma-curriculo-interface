@@ -27,12 +27,16 @@ class Challenge extends React.PureComponent {
 
   render() {
     const {
-      component,
       image,
       hasPerformed,
       slug,
       title,
     } = this.props;
+
+    const component = {
+      color: '#008080',
+      name: 'Tecnologias para Aprendizagem',
+    }
 
     const link = `/desafio/${slug}`;
 
