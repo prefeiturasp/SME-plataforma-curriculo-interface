@@ -20,24 +20,28 @@ import styles2 from 'views/activity/Activity.scss';
 
 class Result extends Component {
   onClickedPrev = () => {
-    const { match, results } = this.props;
-    const { id, slug } = match.params;
-    const data = results.find(item => {
-      return item.id === parseInt(id);
-    });
-    const linkPrev = `/desafio/${slug}/resultado/${data.previous}`;
+    const { currResult, match } = this.props;
+    const { slug } = match.params;
+    const prevId = currResult.prev.substring(currResult.prev.lastIndexOf('/') + 1);
+    const linkPrev = `/desafio/${slug}/resultado/${prevId}`;
     history.replace(linkPrev);
   };
 
   onClickedNext = () => {
-    const { results } = this.props;
-    const { id, slug } = this.props.match.params;
-    const data = results.find(item => {
-      return item.id === parseInt(id);
-    });
-    const linkNext = `/desafio/${slug}/resultado/${data.next}`;
+    const { currResult, match } = this.props;
+    const { slug } = match.params;
+    const nextId = currResult.next.substring(currResult.next.lastIndexOf('/') + 1);
+    const linkNext = `/desafio/${slug}/resultado/${nextId}`;
     history.replace(linkNext);
   };
+
+  componentDidUpdate(prevProps) {
+    const params = this.props.match.params;
+    const prevParams = prevProps.match.params;
+    if (params.id !== prevParams.id || params.slug !== prevParams.slug) {
+      this.props.load(params.slug, params.id);
+    }
+  }
 
   componentDidMount() {
     const { id, slug } = this.props.match.params;
@@ -85,7 +89,7 @@ class Result extends Component {
 
     const linkResults = `/desafio/${slug}`;
 
-    const arrowPrev = currResult.previous ? (
+    const arrowPrev = currResult.prev ? (
       <button className={styles2.prev} onClick={this.onClickedPrev}>
         <img src={arrowLeft} alt="Seta" />
         Anterior
