@@ -58,7 +58,7 @@ class Result extends Component {
 
     const modalTitle = windowWidth > 768 ? 'Detalhes do Resultado' : '';
 
-    const gallery = false ? <ModuleGallery images={currResult.images} /> : null;
+    const gallery = currResult.images.length ? <ModuleGallery images={currResult.images} /> : null;
     const videos = currResult.links.map(item  => {
       const index = item.indexOf('v=') + 2;
       const id = item.substring(index);
