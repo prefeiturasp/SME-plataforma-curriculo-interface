@@ -45,11 +45,18 @@ import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 import Technologies from 'views/technologies/Technologies';
 
+import moment from 'moment';
 import reducers from 'reducers';
 import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
 
 export const history = createBrowserHistory();
+
+moment.updateLocale('pt-br', {
+  relativeTime : {
+    past : '%s atrás',
+  },
+});
 
 const store = createStore(reducers, applyMiddleware(thunk));
 

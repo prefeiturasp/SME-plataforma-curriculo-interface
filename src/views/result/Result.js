@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import 'moment/locale/pt-br';
+import 'moment-timezone';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from 'index';
@@ -57,6 +60,16 @@ class Result extends Component {
     }
 
     const modalTitle = windowWidth > 768 ? 'Detalhes do Resultado' : '';
+
+    const friendlyDate = (
+      <Moment
+        fromNow={true}
+        locale="pt-br"
+        tz="America/Sao_Paulo"
+      >
+        {currResult.created_at}
+      </Moment>
+    );
 
     const gallery = currResult.images.length ? <ModuleGallery images={currResult.images} /> : null;
     const videos = currResult.links.map(item  => {
@@ -124,7 +137,7 @@ class Result extends Component {
                     </div>
                     <div>
                       <div className={styles1.name}>{currResult.teacher.name}</div>
-                      <div className={styles1.date}>{currResult.class_name} &middot; {currResult.created_at}</div>
+                      <div className={styles1.date}>{currResult.class_name} &middot; {friendlyDate}</div>
                     </div>
                     {icon}
                   </div>

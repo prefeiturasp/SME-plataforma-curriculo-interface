@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import 'moment/locale/pt-br';
+import 'moment-timezone';
 import Truncate from 'react-truncate';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'components/objects/Avatar';
@@ -12,6 +15,16 @@ class Result extends Component {
     
     const link = `/desafio/${slug}/resultado/${data.id}`;
     const icon = data.has_archive ? <img src={iconClip} alt="Anexos" className={styles.icon} /> : null;
+
+    const friendlyDate = (
+      <Moment
+        fromNow={true}
+        locale="pt-br"
+        tz="America/Sao_Paulo"
+      >
+        {data.created_at}
+      </Moment>
+    );
     
     return (
       <NavLink to={link} className={styles.wrapper} aria-label={data.teacher.name}>
@@ -25,7 +38,7 @@ class Result extends Component {
           </div>
           <div>
             <div className={styles.name}>{data.teacher.name}</div>
-            <div className={styles.date}>{data.class_name} &middot; {data.created_at}</div>
+            <div className={styles.date}>{data.class_name} &middot; {friendlyDate}</div>
           </div>
           {icon}
         </div>
