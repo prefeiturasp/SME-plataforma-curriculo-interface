@@ -187,6 +187,10 @@ class SendResult extends Component {
       );
     });
 
+    const isValid = this.state.hasChecked &&
+      this.state.classroom.length &&
+      this.state.description.length;
+
     return (
       <DesktopModal isFixed>
         <ModalPage>
@@ -252,7 +256,7 @@ class SendResult extends Component {
                 />
               </div>
               <div className={styles1.footer}>
-                <button className={styles1.btn} onClick={this.onClickedSend}>
+                <button className={styles1.btn} disabled={!isValid} onClick={this.onClickedSend}>
                   <img src={iconPlus} alt="Enviar" />
                   Enviar
                 </button>
