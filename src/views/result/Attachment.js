@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { API_URL } from 'data/constants';
 import iconClip from 'images/icons/clip.svg';
 import styles from './Attachment.scss';
 
@@ -9,15 +9,15 @@ class Attachment extends Component {
     const { data } = this.props;
     
     return (
-      <NavLink to={data.url} className={styles.wrapper} aria-label={data.fileName}>
+      <a href={API_URL + data.url} className={styles.wrapper} aria-label={data.name} target="_blank">
         <div className={styles.icon}>
           <img src={iconClip} alt="Anexo" />
         </div>
         <div>
-          <div className={styles.name}>Projeto.pdf</div>
+          <div className={styles.name}>{data.name}</div>
           <div className={styles.size}>10 MB</div>
         </div>
-      </NavLink>
+      </a>
     );
   }
 }
