@@ -78,12 +78,11 @@ const ChallengeActions = {
         'result[teacher_id]': teacherId,
       };
       return Api.post(dispatch, `/api/desafios/${slug}/resultados`, data)
-        .then(response =>
-          dispatch({ ...response, type: ChallengeActions.SENT_RESULT })
-        )
-        .then(response =>
-          dispatch(SnackbarActions.open('Desafio salvo'))
-        )
+        .then(response => {
+          dispatch({ ...response, type: ChallengeActions.SENT_RESULT });
+          dispatch(SnackbarActions.open('Desafio salvo'));
+          dispatch(ChallengeActions.loadResults(slug));
+        })
         .catch(error =>
           dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
         );
