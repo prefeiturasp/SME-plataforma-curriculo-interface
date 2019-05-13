@@ -22,6 +22,7 @@ function ChallengeReducer(state = initialState, action) {
       return {
         ...state,
         isLoadingResults: true,
+        results: [],
       };
 
     case ChallengeActions.LOADED_RESULT:
