@@ -6,7 +6,7 @@ class AxisItem extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        {this.props.data.name}
+        {this.props.data.name || this.props.data.description}
       </div>
     );
   }
