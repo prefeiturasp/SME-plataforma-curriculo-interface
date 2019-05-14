@@ -5,8 +5,9 @@ import styles from './Avatar.scss';
 
 class Avatar extends React.PureComponent {
   render() {
-    const { nickname, photo, size } = this.props;
+    const { photo, size } = this.props;
 
+    const nickname = this.props.nickname || '';
     const letter = nickname.length ? nickname.charAt(0).toUpperCase() : '';
 
     const contents = photo ? (

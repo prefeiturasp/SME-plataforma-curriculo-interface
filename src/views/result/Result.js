@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
+import 'moment/locale/pt-br';
+import 'moment-timezone';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from 'index';
@@ -20,45 +23,56 @@ import styles2 from 'views/activity/Activity.scss';
 
 class Result extends Component {
   onClickedPrev = () => {
-    const { results } = this.props;
-    const { id, slug } = this.props.match.params;
-    const data = results.find(item => {
-      return item.id === parseInt(id);
-    });
-    const linkPrev = `/desafio/${slug}/resultado/${data.previous}`;
+    const { currResult, match } = this.props;
+    const { slug } = match.params;
+    const prevId = currResult.prev.substring(currResult.prev.lastIndexOf('/') + 1);
+    const linkPrev = `/desafio/${slug}/resultado/${prevId}`;
     history.replace(linkPrev);
   };
 
   onClickedNext = () => {
-    const { results } = this.props;
-    const { id, slug } = this.props.match.params;
-    const data = results.find(item => {
-      return item.id === parseInt(id);
-    });
-    const linkNext = `/desafio/${slug}/resultado/${data.next}`;
+    const { currResult, match } = this.props;
+    const { slug } = match.params;
+    const nextId = currResult.next.substring(currResult.next.lastIndexOf('/') + 1);
+    const linkNext = `/desafio/${slug}/resultado/${nextId}`;
     history.replace(linkNext);
   };
 
+  componentDidUpdate(prevProps) {
+    const params = this.props.match.params;
+    const prevParams = prevProps.match.params;
+    if (params.id !== prevParams.id || params.slug !== prevParams.slug) {
+      this.props.load(params.slug, params.id);
+    }
+  }
+
   componentDidMount() {
-    this.props.load(this.props.match.params.slug);
+    const { id, slug } = this.props.match.params;
+    this.props.load(slug, id);
   }
 
   render() {
-    const { results, windowWidth } = this.props;
-    const { id, slug } = this.props.match.params;
+    const { currResult, windowWidth } = this.props;
+    const { slug } = this.props.match.params;
     
-    const data = results.find(item => {
-      return item.id === parseInt(id);
-    });
-
-    if (!data) {
+    if (!currResult) {
       return <span />;
     }
 
     const modalTitle = windowWidth > 768 ? 'Detalhes do Resultado' : '';
 
-    const gallery = data.images.length ? <ModuleGallery images={data.images} /> : null;
-    const videos = data.videos.map(item  => {
+    const friendlyDate = (
+      <Moment
+        fromNow={true}
+        locale="pt-br"
+        tz="America/Sao_Paulo"
+      >
+        {currResult.created_at}
+      </Moment>
+    );
+
+    const gallery = currResult.images.length ? <ModuleGallery images={currResult.images} /> : null;
+    const videos = currResult.links.map(item  => {
       const index = item.indexOf('v=') + 2;
       const id = item.substring(index);
       return (
@@ -76,8 +90,8 @@ class Result extends Component {
       );
     });
 
-    const icon = data.attachments.length ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
-    const attachments = data.attachments.map((item, i) => {
+    const icon = false ? <img src={iconClip} alt="Anexos" className={styles1.icon} /> : null;
+    const attachments = currResult.documents.map((item, i) => {
       return (
         <Attachment
           key={i}
@@ -88,7 +102,7 @@ class Result extends Component {
 
     const linkResults = `/desafio/${slug}`;
 
-    const arrowPrev = data.previous ? (
+    const arrowPrev = currResult.prev ? (
       <button className={styles2.prev} onClick={this.onClickedPrev}>
         <img src={arrowLeft} alt="Seta" />
         Anterior
@@ -97,7 +111,7 @@ class Result extends Component {
       <span />
     );
 
-    const arrowNext = data.next ? (
+    const arrowNext = currResult.next ? (
       <button className={styles2.next} onClick={this.onClickedNext}>
         Próximo
         <img src={arrowRight} alt="Seta" />
@@ -116,18 +130,18 @@ class Result extends Component {
                   <div className={styles1.info}>
                     <div className={styles1.avatar}>
                       <Avatar
-                        nickname={data.author.name}
-                        photo={data.author.photo}
+                        nickname={currResult.teacher.name}
+                        photo={currResult.teacher.avatar_attributes.default_url}
                         size={50}
                       />
                     </div>
                     <div>
-                      <div className={styles1.name}>{data.author.name}</div>
-                      <div className={styles1.date}>{data.year} &middot; {data.time}</div>
+                      <div className={styles1.name}>{currResult.teacher.name}</div>
+                      <div className={styles1.date}>{currResult.class_name} &middot; {friendlyDate}</div>
                     </div>
                     {icon}
                   </div>
-                  <div className={styles.text}>{data.text}</div>
+                  <div className={styles.text}>{currResult.description}</div>
                   <hr />
                   <div className={styles.attachments}>
                     {gallery}
@@ -157,19 +171,19 @@ class Result extends Component {
 }
 
 Result.propTypes = {
-  results: PropTypes.array.isRequired,
+  currResult: PropTypes.object,
 };
 
 const mapStateToProps = state => {
   return {
-    results: state.ChallengeReducer.results,
+    currResult: state.ChallengeReducer.currResult,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: slug => {
-      dispatch(ChallengeActions.loadResults(slug));
+    load: (slug, resultId) => {
+      dispatch(ChallengeActions.loadResult(slug, resultId));
     },
   };
 };

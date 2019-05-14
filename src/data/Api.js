@@ -69,7 +69,12 @@ function doRequest(method, url, data, isJson) {
     } else {
       const body = new FormData();
       for (const key in data) {
-        body.append(key, data[key]);
+        const value = data[key];
+        if (Array.isArray(value)) {
+          value.forEach(item => body.append(key, item));
+        } else {
+          body.append(key, value);
+        }
       }
       options.body = body;
     }

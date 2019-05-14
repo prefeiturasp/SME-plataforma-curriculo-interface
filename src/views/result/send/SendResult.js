@@ -124,11 +124,23 @@ class SendResult extends Component {
         'Tentar novamente',
         this.onClickedContinue
       );
+    } else {
+      this.onClickedContinue();
     }
   };
 
   onClickedContinue = () => {
+    const videos = this.state.videos
+      .filter(item => item.url.length > 0)
+      .map(item => item.url );
 
+    this.props.sendResult(
+      this.props.match.params.slug,
+      this.state.classroom,
+      this.state.description,
+      videos,
+      this.state.attachments
+    );
   };
 
   componentDidMount() {
@@ -174,6 +186,10 @@ class SendResult extends Component {
         />
       );
     });
+
+    const isValid = this.state.hasChecked &&
+      this.state.classroom.length &&
+      this.state.description.length;
 
     return (
       <DesktopModal isFixed>
@@ -240,7 +256,7 @@ class SendResult extends Component {
                 />
               </div>
               <div className={styles1.footer}>
-                <button className={styles1.btn} onClick={this.onClickedSend}>
+                <button className={styles1.btn} disabled={!isValid} onClick={this.onClickedSend}>
                   <img src={iconPlus} alt="Enviar" />
                   Enviar
                 </button>
@@ -270,6 +286,9 @@ const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
       dispatch(ChallengeActions.loadResults(slug));
+    },
+    sendResult: (slug, classroom, description, videos, attachments) => {
+      dispatch(ChallengeActions.sendResult(slug, classroom, description, videos, attachments));
     },
     openAlert: message => {
       dispatch(AlertActions.open(message));
