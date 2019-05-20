@@ -5,13 +5,10 @@ import { Element, scroller } from 'react-scroll';
 import { connect } from 'react-redux';
 import Challenge from './Challenge';
 import ChallengesActions from 'actions/ChallengesActions';
+import MethodologiesActions from 'actions/MethodologiesActions';
 import Methodology from './Methodology';
 import Page from 'components/layout/Page';
 import isLogged from 'data/isLogged';
-import iconDoAndRedo from 'images/illustrations/do-and-redo.svg';
-import iconGames from 'images/illustrations/games.svg';
-import iconInvestigation from 'images/illustrations/investigation.svg';
-import iconProject from 'images/illustrations/project.svg';
 import iconLiteracy from './images/literacy.png';
 import iconProgramming from './images/programming.png';
 import iconTechnologies from './images/technologies.png';
@@ -37,6 +34,7 @@ class Technologies extends Component {
 
   componentDidMount() {
     this.props.loadOngoing();
+    this.props.loadMethodologies();
   }
 
   render() {
@@ -146,38 +144,10 @@ Technologies.propTypes = {
   loadFinished: PropTypes.func.isRequired,
 };
 
-Technologies.defaultProps = {
-  methodologies: [
-    {
-      image: iconProject,
-      slug: 'projeto',
-      title: 'Projeto',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
-    },
-    {
-      image: iconInvestigation,
-      slug: 'investigacao',
-      title: 'Investigação',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
-    },
-    {
-      image: iconGames,
-      slug: 'jogos',
-      title: 'Jogos',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
-    },
-    {
-      image: iconDoAndRedo,
-      slug: 'fazer-e-refazer',
-      title: 'Fazer e refazer',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet. Maecenas quis fringilla nibh. Vestibulum consectetur, odio eget faucibus faucibus, tellus enim scelerisque odio, nec aliquam nibh ipsum sit amet tellus. Aenean semper faucibus quam, in porta metus.',
-    },
-  ],
-};
-
 const mapStateToProps = state => {
   return {
     challenges: state.ChallengesReducer.items,
+    methodologies: state.MethodologiesReducer.items,
   };
 };
 
@@ -191,6 +161,9 @@ const mapDispatchToProps = dispatch => {
     },
     loadFinished: () => {
       dispatch(ChallengesActions.loadFinished());
+    },
+    loadMethodologies: () => {
+      dispatch(MethodologiesActions.load());
     },
   };
 };

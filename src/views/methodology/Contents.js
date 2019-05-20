@@ -1,11 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { API_URL } from 'data/constants';
 import iconClip from 'images/icons/clip.svg';
 import imgCurriculum from 'views/curriculum/curriculum.jpg';
 import styles from './Contents.scss';
 
 class Contents extends Component {
   render() {
+    const { data } = this.props;
+    const { document } = data;
+
     return (
       <Fragment>
         <div className={styles.contents}>
@@ -30,7 +35,7 @@ class Contents extends Component {
         <hr />
         <div className={styles.download}>
           <p>Acesse mais informações sobre esta metodologia.</p>
-          <a className="btnSmall" href="arquivo.pdf">
+          <a className="btnSmall" href={API_URL + document.url}>
             Baixar arquivo
             <img src={iconClip} alt="Baixar arquivo" />
           </a>
@@ -41,7 +46,13 @@ class Contents extends Component {
 }
 
 Contents.propTypes = {
-  slug: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
-export default Contents;
+const mapStateToProps = state => {
+  return {
+    data: state.MethodologiesReducer.currItem,
+  };
+};
+
+export default connect(mapStateToProps)(Contents);

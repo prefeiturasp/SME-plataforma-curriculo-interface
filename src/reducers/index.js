@@ -11,6 +11,7 @@ import FiltersReducer from './FiltersReducer';
 import HomeReducer from './HomeReducer';
 import KnowledgeMatrixReducer from './KnowledgeMatrixReducer';
 import LearningObjectivesReducer from './LearningObjectivesReducer';
+import MethodologiesReducer from './MethodologiesReducer';
 import ProfileReducer from './ProfileReducer';
 import RoadmapReducer from './RoadmapReducer';
 import SequenceReducer from './SequenceReducer';
@@ -31,6 +32,7 @@ export default combineReducers({
   HomeReducer,
   KnowledgeMatrixReducer,
   LearningObjectivesReducer,
+  MethodologiesReducer,
   ProfileReducer,
   RoadmapReducer,
   SequenceReducer,

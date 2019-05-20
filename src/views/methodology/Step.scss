@@ -34,7 +34,11 @@
   margin-right: auto;
   margin-bottom: rem(50);
   position: relative;
-  width: rem(165);
+  width: rem(170);
+
+  > img {
+    width: 100%;
+  }
 
   > div {
     align-items: center;
