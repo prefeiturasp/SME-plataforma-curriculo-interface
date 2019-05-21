@@ -14,6 +14,8 @@ export default function convertQuillToHtml(data) {
           delete item.insert.image;
         }
       }
+    } else if (item.insert.formula) {
+      item.insert.formula = `$$${item.insert.formula}$$`;
     }
   });
 
