@@ -7,8 +7,10 @@
   composes: col-lg-3 from global;
   margin-bottom: rem(20);
 
-  &:last-child {
-    margin-bottom: 0;
+  @include mq("tablet-landscape", max) {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -19,6 +21,7 @@
   color: black;
   display: block;
   font-size: rem(16);
+  height: 100%;
   line-height: rem(21);
   overflow-x: hidden;
   padding: rem(40) rem(15) rem(36) rem(15);
