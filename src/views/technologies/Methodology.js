@@ -19,7 +19,7 @@ class Methodology extends Component {
             alt={title}
           />
           <h3>{title}</h3>
-          <p>description</p>
+          <p>{description}</p>
           <div className={styles.btn}>
             <img src={arrowRight} alt={title} />
           </div>

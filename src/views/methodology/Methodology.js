@@ -44,7 +44,7 @@ class Methodology extends Component {
       return <span />;
     }
 
-    const { slug, title } = data;
+    const { slug, title, description } = data;
 
     const contents = slug === 'projeto' ? <ProjectContents /> : <Contents slug={slug} />;
 
@@ -73,7 +73,7 @@ class Methodology extends Component {
               <div className="col-sm-12 col-md-8 offset-md-2">
                 <img src={API_URL + data.image_attributes.default_url} alt={title} className={styles.image} />
                 <h1>{title}</h1>
-                <p>Entenda como alcançar uma aprendizagem significativa ao utilizar este método como base</p>
+                <p>{description}</p>
                 <img src={arrowDownGreen} alt="Ver mais" />
               </div>
             </div>
