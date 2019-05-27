@@ -5,7 +5,6 @@ import SwipeableViews from 'react-swipeable-views';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { history } from 'index';
 import BodyActions from 'actions/BodyActions';
 import Page from 'components/layout/Page';
