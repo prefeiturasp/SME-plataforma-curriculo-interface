@@ -56,3 +56,15 @@
     width: rem(18);
   }
 }
+
+@include mq("tablet-portrait") {
+  .box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btn {
+    margin-top: auto;
+  }
+}
