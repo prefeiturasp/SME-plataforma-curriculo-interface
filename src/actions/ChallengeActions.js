@@ -2,6 +2,7 @@ import Api from 'data/Api';
 import AlertActions from 'actions/AlertActions';
 import SnackbarActions from 'actions/SnackbarActions';
 import getTeacherId from 'data/getTeacherId';
+import { history } from 'index';
 
 const ChallengeActions = {
   DELETE: 'ChallengesActions.DELETE',
@@ -79,6 +80,7 @@ const ChallengeActions = {
       };
       return Api.post(dispatch, `/api/desafios/${slug}/resultados`, data)
         .then(response => {
+          history.goBack();
           dispatch({ ...response, type: ChallengeActions.SENT_RESULT });
           dispatch(SnackbarActions.open('Desafio salvo'));
           dispatch(ChallengeActions.loadResults(slug));
