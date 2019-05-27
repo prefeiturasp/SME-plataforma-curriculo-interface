@@ -27,6 +27,7 @@
 
 .headerContainer {
   composes: container from global;
+  overflow: hidden;
 }
 
 .headerRow {
