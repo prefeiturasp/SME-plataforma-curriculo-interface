@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { history } from 'index';
 import BodyActions from 'actions/BodyActions';
 import Page from 'components/layout/Page';
 import ChallengeActions from 'actions/ChallengeActions';
@@ -61,6 +62,14 @@ class Challenge extends Component {
       ...this.state,
       currTab: 1,
     });
+  };
+
+  onClickedSendResult = () => {
+    if (isLogged()) {
+      history.push(`/desafio/${this.props.match.params.slug}/enviar`, { isModal: true });
+    } else {
+      history.push(`/login`, { isModal: true });
+    }
   };
 
   onSwiped = index => {
@@ -126,8 +135,6 @@ class Challenge extends Component {
       ? getContentBlocks(data.content_blocks)
       : null;
 
-    const link = `/desafio/${data.slug}/enviar`;
-
     const wordResults = totalItems === 1 ? 'resultado' : 'resultados';
     const resultItems = results.map((item, i) => {
       return (
@@ -191,9 +198,9 @@ class Challenge extends Component {
                       <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
                     </div>
                     <div className={styles.callButtons}>
-                      <NavLink to={link} className={styles.btnSendResult}>
+                      <button className={styles.btnSendResult} onClick={this.onClickedSendResult}>
                         Enviar resultado
-                      </NavLink>
+                      </button>
                       <button className={styles.btnOrSeeOtherResults} onClick={this.onClickedResults}>
                         <span>
                           Ou&nbsp;<strong>visualize outros resultados</strong>
@@ -209,9 +216,9 @@ class Challenge extends Component {
                       <p>Compartilhe conosco como foi o processo e resultado final do projeto executado.</p>
                     </div>
                     <div className={styles.callButtons}>
-                      <NavLink to={link} className={styles.btnSendResult}>
+                      <button className={styles.btnSendResult} onClick={this.onClickedSendResult}>
                         Enviar resultado
-                      </NavLink>
+                      </button>
                     </div>
                   </div>
                   <h3 className={styles.numResults}>{totalItems} {wordResults}</h3>
