@@ -13,6 +13,7 @@ import KnowledgeMatrixReducer from './KnowledgeMatrixReducer';
 import LearningObjectivesReducer from './LearningObjectivesReducer';
 import MethodologiesReducer from './MethodologiesReducer';
 import ProfileReducer from './ProfileReducer';
+import RatingReducer from './RatingReducer';
 import RoadmapReducer from './RoadmapReducer';
 import SequenceReducer from './SequenceReducer';
 import SequencesReducer from './SequencesReducer';
@@ -34,6 +35,7 @@ export default combineReducers({
   LearningObjectivesReducer,
   MethodologiesReducer,
   ProfileReducer,
+  RatingReducer,
   RoadmapReducer,
   SequenceReducer,
   SequencesReducer,
