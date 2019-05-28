@@ -10,7 +10,7 @@ import styles from './Title.scss';
 
 class Title extends Component {
   onClickedSave = () => {
-    if (true || isLogged()) {
+    if (isLogged()) {
       this.props.saveChallenge(this.props.id);
     } else {
       history.push(`/login`, { isModal: true });
