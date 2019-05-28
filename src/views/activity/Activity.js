@@ -37,6 +37,8 @@ class Activity extends Component {
     if (this.props.location.pathname.match(/imprimir/)) {
       window.print();
     }
+
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub]);
   }
 
   componentDidUpdate(prevProps) {

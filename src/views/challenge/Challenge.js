@@ -87,6 +87,8 @@ class Challenge extends Component {
         isPrint: true
       });
     }
+
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub]);
   }
 
   componentDidUpdate(prevProps) {
