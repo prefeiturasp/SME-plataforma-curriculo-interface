@@ -1,27 +1,21 @@
 import Api from 'data/Api';
-
-const performed = [
-  {
-    id: 1,
-  },
-];
+import getTeacherId from 'data/getTeacherId';
 
 const ChallengesActions = {
   LOAD_FINISHED: 'ChallengesActions.LOAD_FINISHED',
   LOAD_ONGOING: 'ChallengesActions.LOAD_ONGOING',
-  LOAD_PERFORMED: 'ChallengesActions.LOAD_PERFORMED',
+  LOAD_SAVED: 'ChallengesActions.LOAD_SAVED',
   LOADED_FINISHED: 'ChallengesActions.LOADED_FINISHED',
   LOADED_ONGOING: 'ChallengesActions.LOADED_ONGOING',
-  LOADED_PERFORMED: 'ChallengesActions.LOADED_PERFORMED',
+  LOADED_SAVED: 'ChallengesActions.LOADED_SAVED',
 
-  loadPerformed() {
-    return dispatch => {
-      dispatch({ type: ChallengesActions.LOAD_PERFORMED });
-
-      setTimeout(() => {
-        dispatch({ data: performed, type: ChallengesActions.LOADED_PERFORMED });
-      }, 1000);
-    };
+  loadSaved() {
+    const teacherId = getTeacherId();
+    return Api.simpleGet(
+      `/api/professores/${teacherId}/favoritos`,
+      ChallengesActions.LOAD_SAVED,
+      ChallengesActions.LOADED_SAVED
+    );
   },
   loadFinished() {
     return Api.simpleGet(
