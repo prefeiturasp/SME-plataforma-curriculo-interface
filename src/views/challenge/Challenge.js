@@ -98,8 +98,9 @@ class Challenge extends Component {
   }
 
   render() {
-    const { data, results, nextPage, totalItems, isLoading, isSaved } = this.props;
+    const { data, results, nextPage, totalItems, isLoading } = this.props;
     const { currTab, isMaterialsExpanded, isPrint } = this.state;
+    const isSaved = false;
 
     if (!data) {
       return <span />;
@@ -250,9 +251,6 @@ Challenge.propTypes = {
   nextPage: PropTypes.string,
   totalItems: PropTypes.number,
   isLoading: PropTypes.bool,
-  isSaved: PropTypes.bool,
-  load: PropTypes.func.isRequired,
-  loadMore: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -262,7 +260,7 @@ const mapStateToProps = state => {
     nextPage: state.ChallengeReducer.nextPage,
     totalItems: state.ChallengeReducer.totalItems,
     isLoading: state.ChallengeReducer.isLoading,
-    isSaved: state.ChallengeReducer.isSaved,
+    saved: state.ChallengesReducer.saved,
   };
 };
 
@@ -273,7 +271,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(ChallengeActions.load(slug));
       dispatch(ChallengeActions.loadResults(slug));
       if (isLogged()) {
-        dispatch(ChallengesActions.loadPerformed());
+        dispatch(ChallengesActions.loadSaved());
       }
     },
     loadMore: page => {

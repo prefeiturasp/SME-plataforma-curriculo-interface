@@ -11,7 +11,7 @@ import styles from './Title.scss';
 class Title extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      this.props.saveChallenge(this.props.id);
+      this.props.save(this.props.id);
     } else {
       history.push(`/login`, { isModal: true });
     }
@@ -59,7 +59,10 @@ Title.propTypes = {
 
 const mapDispatchToProps = dispatch => {
   return {
-    saveChallenge: id => {
+    delete: id => {
+      dispatch(ChallengeActions.delete(id));
+    },
+    save: id => {
       dispatch(ChallengeActions.save(id));
     },
   };
