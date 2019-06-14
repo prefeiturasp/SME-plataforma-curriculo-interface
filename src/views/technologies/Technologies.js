@@ -154,7 +154,7 @@ const mapDispatchToProps = dispatch => {
     loadOngoing: () => {
       dispatch(ChallengesActions.loadOngoing());
       if (isLogged()) {
-        dispatch(ChallengesActions.loadPerformed());
+        dispatch(ChallengesActions.loadSaved());
       }
     },
     loadFinished: () => {
