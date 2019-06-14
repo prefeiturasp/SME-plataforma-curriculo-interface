@@ -32,7 +32,7 @@ class Challenge extends React.PureComponent {
       slug,
       title,
     } = this.props;
-
+    
     const component = {
       color: '#008080',
       name: 'Tecnologias para Aprendizagem',
@@ -40,7 +40,7 @@ class Challenge extends React.PureComponent {
 
     const link = `/desafio/${slug}`;
 
-    const thumbnail = image.default_url ? (
+    const thumbnail = image && image.default_url ? (
       <NavLink className={styles.image} to={link}>
         <img
           src={API_URL + image.default_url}
