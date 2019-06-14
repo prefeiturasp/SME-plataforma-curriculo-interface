@@ -38,12 +38,13 @@ class Avatar extends React.PureComponent {
 }
 
 Avatar.propTypes = {
-  nickname: PropTypes.string.isRequired,
+  nickname: PropTypes.string,
   photo: PropTypes.string,
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
 };
 
 Avatar.defaultProps = {
+  nickname: '',
   size: 35,
 };
 

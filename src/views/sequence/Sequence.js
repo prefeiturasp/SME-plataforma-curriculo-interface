@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { history } from 'index';
 import ActivityItem from './ActivityItem';
 import ActivityPrintItem from 'views/activity/ActivityPrintItem';
 import BodyActions from 'actions/BodyActions';
+import Notification from 'components/objects/Notification';
 import Page from 'components/layout/Page';
 import ReadMore from 'components/ReadMore';
 import SequenceActions from 'actions/SequenceActions';
@@ -14,6 +16,7 @@ import Cover from './Cover';
 import Title from './Title';
 import Tooltips from 'components/Tooltips';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
+import createModalLink from 'utils/createModalLink';
 import isLogged from 'data/isLogged';
 import styles from './Sequence.scss';
 
@@ -29,6 +32,13 @@ class Sequence extends Component {
     });
   };
 
+  onClickedRate = () => {
+    const link = createModalLink(
+      `/sequencia/${this.props.match.params.slug}/avaliar`
+    );
+    history.push(link);
+  };
+
   componentDidMount() {
     this.props.load(this.props.match.params.slug);
 
@@ -38,6 +48,8 @@ class Sequence extends Component {
         isPrint: true
       });
     }
+
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub]);
   }
 
   componentDidUpdate(prevProps) {
@@ -48,12 +60,25 @@ class Sequence extends Component {
   }
 
   render() {
-    const { data, isSaved } = this.props;
+    const { data, isSaved, performed } = this.props;
     const { isPrint } = this.state;
 
     if (!data) {
       return <span />;
     }
+
+    const isPerformed = !!performed.find(
+      item => item.activity_sequence_id === data.id
+    );
+    const notification =
+      true || isPerformed ? (
+        <Notification
+          text="Você completou esta sequência. Avalie agora e nos ajude a construir novos conteúdos."
+          labelNo="Agora não"
+          labelYes="Avaliar sequência"
+          onClickedYes={this.onClickedRate}
+        />
+      ) : null;
 
     const word = data.activities.length === 1 ? 'Atividade' : 'Atividades';
     const activities = data.activities.map((item, i) => {
@@ -88,6 +113,7 @@ class Sequence extends Component {
 
     return (
       <Page>
+        {notification}
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-8">
@@ -133,12 +159,14 @@ Sequence.propTypes = {
   data: PropTypes.object,
   isSaved: PropTypes.bool,
   load: PropTypes.func.isRequired,
+  performed: PropTypes.array,
 };
 
 const mapStateToProps = state => {
   return {
     data: state.SequenceReducer.currItem,
     isSaved: state.SequenceReducer.isSaved,
+    performed: state.SequencesReducer.performed,
   };
 };
 

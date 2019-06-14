@@ -140,8 +140,6 @@ class Technologies extends Component {
 Technologies.propTypes = {
   methodologies: PropTypes.array.isRequired,
   challenges: PropTypes.array.isRequired,
-  loadOngoing: PropTypes.func.isRequired,
-  loadFinished: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -156,7 +154,7 @@ const mapDispatchToProps = dispatch => {
     loadOngoing: () => {
       dispatch(ChallengesActions.loadOngoing());
       if (isLogged()) {
-        dispatch(ChallengesActions.loadPerformed());
+        dispatch(ChallengesActions.loadSaved());
       }
     },
     loadFinished: () => {

@@ -2,7 +2,7 @@ import ChallengesActions from 'actions/ChallengesActions';
 
 const initialState = {
   items: [],
-  performed: [],
+  saved: [],
 };
 
 function ChallengesReducer(state = initialState, action) {
@@ -16,19 +16,34 @@ function ChallengesReducer(state = initialState, action) {
     case ChallengesActions.LOADED_ONGOING:
       return {
         ...state,
-        items: action.data,
+        items: action.data.map(item => {
+          return {
+            ...item,
+            isSaved: !!state.saved.find(o => o === item.id),
+          }
+        }),
       };
 
     case ChallengesActions.LOADED_FINISHED:
       return {
         ...state,
-        items: state.items.concat(action.data),
+        items: state.items.concat(action.data.map(item => {
+          return {
+            ...item,
+            isSaved: !!state.saved.find(o => o === item.id),
+          }
+        })),
       };
 
-    case ChallengesActions.LOADED_PERFORMED:
+    case ChallengesActions.LOADED_SAVED:
       return {
-        ...state,
-        performed: action.data,
+        items: state.items.map(item => {
+          return {
+            ...item,
+            isSaved: !!action.data.challenges.find(o => o === item.id),
+          };
+        }),
+        saved: action.data.challenges,
       };
 
     default:

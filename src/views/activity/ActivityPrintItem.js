@@ -18,6 +18,7 @@ import styles from './ActivityPrintItem.scss';
 class ActivityPrintItem extends Component {
   componentDidMount() {
     this.props.load(this.props.slug1, this.props.slug2);
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub]);
   }
 
   render() {

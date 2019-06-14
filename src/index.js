@@ -35,6 +35,8 @@ import Login from 'views/login/Login';
 import Methodology from 'views/methodology/Methodology';
 import MyResults from 'views/myResults/MyResults';
 import Profile from 'views/profile/Profile';
+import RateSequence from 'views/sequence/rate/RateSequence';
+import Rating from 'views/sequence/rating/Rating';
 import Result from 'views/result/Result';
 import SaveSequence from 'views/sequence/save/SaveSequence';
 import SendResult from 'views/result/send/SendResult';
@@ -174,6 +176,18 @@ class ModalSwitch extends Component {
           {...modalProps}
         />
         <ModalRoute exact path="/login" component={Login} {...modalProps} />
+        <ModalRoute
+          exact
+          path="/sequencia/:slug/avaliacao"
+          component={Rating}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/sequencia/:slug/avaliar"
+          component={RateSequence}
+          {...modalProps}
+        />
         <ModalRoute
           exact
           path="/sequencia/:slug/criar-colecao"

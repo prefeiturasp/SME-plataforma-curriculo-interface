@@ -89,7 +89,7 @@ Profile.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    challenges: state.ChallengesReducer.items, 
+    challenges: state.ChallengesReducer.items.filter(item => item.isSaved),
     collections: state.CollectionsReducer.items,
     data: state.ProfileReducer,
   };
@@ -103,7 +103,7 @@ const mapDispatchToProps = dispatch => {
       // because it's already called by Header
     },
     loadChallenges: () => {
-      dispatch(ChallengesActions.loadOngoing());
+      dispatch(ChallengesActions.loadAll());
     },
     loadClassrooms: () => {
       dispatch(ProfileActions.loadClassrooms());

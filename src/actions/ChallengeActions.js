@@ -1,11 +1,13 @@
 import Api from 'data/Api';
 import AlertActions from 'actions/AlertActions';
+import ChallengesActions from 'actions/ChallengesActions';
 import SnackbarActions from 'actions/SnackbarActions';
 import getTeacherId from 'data/getTeacherId';
+import { history } from 'index';
 
 const ChallengeActions = {
-  DELETE: 'ChallengesActions.DELETE',
-  DELETED: 'ChallengesActions.DELETED',
+  DELETE: 'ChallengeActions.DELETE',
+  DELETED: 'ChallengeActions.DELETED',
   LOAD: 'ChallengeActions.LOAD',
   LOAD_MORE_RESULTS: 'ChallengeActions.LOAD_MORE_RESULTS',
   LOAD_RESULT: 'ChallengeActions.LOAD_RESULT',
@@ -22,10 +24,16 @@ const ChallengeActions = {
   delete(id) {
     return dispatch => {
       dispatch({ type: ChallengeActions.DELETE });
-
-      setTimeout(() => {
-        dispatch({ type: ChallengeActions.DELETED });
-      }, 1000);
+      const teacherId = getTeacherId();
+      return Api.delete(dispatch, `/api/professores/${teacherId}/favoritos/${id}`)
+        .then(response => {
+          dispatch({ ...response, type: ChallengeActions.DELETED });
+          dispatch(SnackbarActions.open('Desafio removido'));
+          dispatch(ChallengesActions.loadSaved());
+        })
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   load(slug) {
@@ -59,11 +67,19 @@ const ChallengeActions = {
   save(id) {
     return dispatch => {
       dispatch({ type: ChallengeActions.SAVE });
-
-      setTimeout(() => {
-        dispatch({ type: ChallengeActions.SAVED });
-        dispatch(SnackbarActions.open('Desafio salvo'));
-      }, 1000);
+      const teacherId = getTeacherId();
+      const data = {
+        'favourite[challenge]': id,
+      };
+      return Api.post(dispatch, `/api/professores/${teacherId}/favoritos`, data)
+        .then(response => {
+          dispatch({ ...response, type: ChallengeActions.SAVED });
+          dispatch(SnackbarActions.open('Desafio salvo'));
+          dispatch(ChallengesActions.loadSaved());
+        })
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
     };
   },
   sendResult(slug, classroom, description, links, files) {
@@ -79,6 +95,7 @@ const ChallengeActions = {
       };
       return Api.post(dispatch, `/api/desafios/${slug}/resultados`, data)
         .then(response => {
+          history.goBack();
           dispatch({ ...response, type: ChallengeActions.SENT_RESULT });
           dispatch(SnackbarActions.open('Desafio salvo'));
           dispatch(ChallengeActions.loadResults(slug));

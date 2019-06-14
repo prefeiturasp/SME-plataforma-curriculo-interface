@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { history } from 'index';
 import { API_URL } from 'data/constants';
+import ChallengeActions from 'actions/ChallengeActions';
 import isLogged from 'data/isLogged';
 import iconSave1 from 'images/icons/save.svg';
 import iconSaved from 'images/icons/saved.svg';
@@ -11,7 +13,12 @@ import styles from './Challenge.scss';
 class Challenge extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      
+      const { id, isSaved } = this.props.data;
+      if (isSaved) {
+        this.props.delete(id);
+      } else {
+        this.props.save(id);
+      }
     } else {
       history.push(`/login`, { isModal: true });
     }
@@ -19,7 +26,7 @@ class Challenge extends Component {
 
   render() {
     const { data } = this.props;
-    const { slug, title } = data;
+    const { isSaved, slug, title } = data;
     
     const link = `/desafio/${slug}`;
 
@@ -34,7 +41,6 @@ class Challenge extends Component {
       <div className={styles.initials}>TpA</div>
     );
 
-    const isSaved = data.already_saved_in_collection || data.isSaved;
     const iconSave = isSaved ? iconSaved : iconSave1;
     const labelSave = isSaved ? 'Salvo' : 'Salvar';
 
@@ -61,4 +67,18 @@ Challenge.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export default Challenge;
+const mapDispatchToProps = dispatch => {
+  return {
+    delete: id => {
+      dispatch(ChallengeActions.delete(id));
+    },
+    save: id => {
+      dispatch(ChallengeActions.save(id));
+    },
+  }
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Challenge);

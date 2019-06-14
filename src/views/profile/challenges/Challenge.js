@@ -12,7 +12,7 @@ import styles from 'views/collection/Sequence.scss';
 
 class Challenge extends React.PureComponent {
   onClickedConfirm = () => {
-    this.props.removeChallenge(this.props.id);
+    this.props.delete(this.props.id);
   };
 
   onClickedDelete = () => {
@@ -32,7 +32,7 @@ class Challenge extends React.PureComponent {
       slug,
       title,
     } = this.props;
-
+    
     const component = {
       color: '#008080',
       name: 'Tecnologias para Aprendizagem',
@@ -40,7 +40,7 @@ class Challenge extends React.PureComponent {
 
     const link = `/desafio/${slug}`;
 
-    const thumbnail = image.default_url ? (
+    const thumbnail = image && image.default_url ? (
       <NavLink className={styles.image} to={link}>
         <img
           src={API_URL + image.default_url}
@@ -100,19 +100,19 @@ Challenge.propTypes = {
   image: PropTypes.object.isRequired,
   slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  delete: PropTypes.func.isRequired,
   openConfirm: PropTypes.func.isRequired,
-  removeChallenge: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    delete: id => {
+      dispatch(ChallengeActions.delete(id));
+    },
     openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
       dispatch(
         ConfirmActions.open(title, message, labelYes, labelNo, onConfirm)
       );
-    },
-    removeChallenge: id => {
-      dispatch(ChallengeActions.delete(id));
     },
   };
 };
