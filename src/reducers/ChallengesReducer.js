@@ -16,13 +16,23 @@ function ChallengesReducer(state = initialState, action) {
     case ChallengesActions.LOADED_ONGOING:
       return {
         ...state,
-        items: action.data,
+        items: action.data.map(item => {
+          return {
+            ...item,
+            isSaved: !!state.saved.find(o => o === item.id),
+          }
+        }),
       };
 
     case ChallengesActions.LOADED_FINISHED:
       return {
         ...state,
-        items: state.items.concat(action.data),
+        items: state.items.concat(action.data.map(item => {
+          return {
+            ...item,
+            isSaved: !!state.saved.find(o => o === item.id),
+          }
+        })),
       };
 
     case ChallengesActions.LOADED_SAVED:
@@ -30,10 +40,10 @@ function ChallengesReducer(state = initialState, action) {
         items: state.items.map(item => {
           return {
             ...item,
-            isSaved: action.data.filter(o => o.id === item.id),
+            isSaved: !!action.data.challenges.find(o => o === item.id),
           };
         }),
-        saved: action.data,
+        saved: action.data.challenges,
       };
 
     default:

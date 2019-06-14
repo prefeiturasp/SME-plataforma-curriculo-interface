@@ -13,7 +13,12 @@ import styles from './Challenge.scss';
 class Challenge extends Component {
   onClickedSave = () => {
     if (isLogged()) {
-      this.props.save(this.props.data.id);
+      const { id, isSaved } = this.props.data;
+      if (isSaved) {
+        this.props.delete(id);
+      } else {
+        this.props.save(id);
+      }
     } else {
       history.push(`/login`, { isModal: true });
     }
@@ -21,7 +26,7 @@ class Challenge extends Component {
 
   render() {
     const { data } = this.props;
-    const { slug, title } = data;
+    const { isSaved, slug, title } = data;
     
     const link = `/desafio/${slug}`;
 
@@ -36,7 +41,6 @@ class Challenge extends Component {
       <div className={styles.initials}>TpA</div>
     );
 
-    const isSaved = data.already_saved_in_collection || data.isSaved;
     const iconSave = isSaved ? iconSaved : iconSave1;
     const labelSave = isSaved ? 'Salvo' : 'Salvar';
 
