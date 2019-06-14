@@ -103,7 +103,7 @@ const mapDispatchToProps = dispatch => {
       // because it's already called by Header
     },
     loadChallenges: () => {
-      dispatch(ChallengesActions.loadSaved());
+      dispatch(ChallengesActions.loadAll());
     },
     loadClassrooms: () => {
       dispatch(ProfileActions.loadClassrooms());

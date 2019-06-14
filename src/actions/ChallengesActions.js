@@ -9,6 +9,17 @@ const ChallengesActions = {
   LOADED_ONGOING: 'ChallengesActions.LOADED_ONGOING',
   LOADED_SAVED: 'ChallengesActions.LOADED_SAVED',
 
+  loadAll() {
+    return dispatch => {
+      const teacherId = getTeacherId();
+      return Api.get(dispatch, '/api/desafios/andamento')
+        .then(response => dispatch({ ...response, type: ChallengesActions.LOADED_ONGOING }))
+        .then(finished => Api.get(dispatch, '/api/desafios/finalizados'))
+        .then(response => dispatch({ ...response, type: ChallengesActions.LOADED_FINISHED }))
+        .then(saved => Api.get(dispatch, `/api/professores/${teacherId}/favoritos`))
+        .then(response => dispatch({ ...response, type: ChallengesActions.LOADED_SAVED }));
+    };
+  },
   loadSaved() {
     const teacherId = getTeacherId();
     return Api.simpleGet(
