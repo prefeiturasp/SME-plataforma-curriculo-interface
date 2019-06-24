@@ -212,7 +212,8 @@
       display: block;
       background-color: $color-green;
       width: 100%;
-      height: rem(600);
+      height: 100%;
+      max-height: rem(600);
       position: absolute;
       top: 0;
       z-index: -1;
