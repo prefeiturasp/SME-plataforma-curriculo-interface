@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { Element, scroller } from 'react-scroll';
 import { connect } from 'react-redux';
 import Challenge from './Challenge';
@@ -116,9 +115,6 @@ class Technologies extends Component {
             <div className="col-md-8 offset-md-2">
               <h2>Objetivos de Aprendizagem</h2>
               <p>No Currículo da Cidade, os objetivos de aprendizagem e desenvolvimento orientam-se pela Educação Integral a partir da matriz de saberes e indicam o que os estudantes devem alcançar a cada ano como resultado das experiências de ensino e de aprendizagem intencionalmente previstas para esse fim.</p>
-              <NavLink className="btn" to="/objetivos-de-aprendizagem">
-                Explore e encontre sequências
-              </NavLink>
             </div>
           </div>
         </div>
