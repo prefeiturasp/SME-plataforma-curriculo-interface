@@ -62,7 +62,6 @@ class Technologies extends Component {
             <div className={styles.headerRow}>
               <div className={styles.headerCol1}>
                 <h1>Tecnologias para Aprendizagem</h1>
-                <p>Lorem ipsum dolor sit amet consectetur</p>
                 <button className="btn" onClick={this.onClickedChallenges}>
                   Ver desafios
                 </button>
@@ -77,7 +76,11 @@ class Technologies extends Component {
           <div className="row">
             <div className="col-md-8 offset-md-2">
               <h2>O que é?</h2>
-              <p>A orientação metodológica apresentada toma por base a concretização da “espiral de aprendizagem”, explicitada no Currículo da Cidade de Tecnologias para Aprendizagem, que destaca, como um dos grandes ganhos propiciados pela adoção das tecnologias digitais para aprendizagem, a possibilidade desses ciclos de ações encadeadas serem enriquecidos, ampliados e aprofundados a partir de estratégias pedagógicas específicas mediadas por tecnologias de informação e comunicação.</p>
+              <p>
+                O Currículo da Cidade aborda as concepções e os objetivos de aprendizagem e desenvolvimento para o uso das tecnologias a favor da aprendizagem. Nessa perspectiva, intentamos que os estudantes não apenas saibam utilizar as tecnologias, mas que entendam como podem utilizá-las para interagir, conectar-se com o outro, participar e formar redes, colaborar, agir, responsabilizar-se, construir e ressignificar conhecimentos a partir delas, na perspectiva de sujeito integral em todas as suas dimensões, que conhece, investiga e expressa o mundo.
+                <br/>
+                As Orientações Didáticas abordam metodologias e estratégias didáticas, que se comprometem com a compreensão, apropriação, participação e ressignificação dos processos. Os princípios de equidade, inclusão e educação integral, norteadores das diretrizes curriculares, estarão presentes nos objetivos e nas metodologias propostas.
+              </p>
             </div>
           </div>
         </div>
