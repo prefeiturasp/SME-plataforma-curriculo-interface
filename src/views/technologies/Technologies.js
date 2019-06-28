@@ -107,7 +107,6 @@ class Technologies extends Component {
         <div className={styles.methodologies}>
           <div className="container">
             <h2>Metodologias</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam varius rutrum odio in laoreet.</p>
             <div className="row">
               {methodologyItems}
             </div>
