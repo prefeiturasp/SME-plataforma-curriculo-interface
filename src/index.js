@@ -49,7 +49,7 @@ import Technologies from 'views/technologies/Technologies';
 
 import moment from 'moment';
 import reducers from 'reducers';
-import registerServiceWorker from 'utils/registerServiceWorker';
+// import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
 
 export const history = createBrowserHistory();
@@ -253,4 +253,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker();
+// registerServiceWorker();
