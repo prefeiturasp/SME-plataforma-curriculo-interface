@@ -56,6 +56,7 @@
     "react-dom": "^16.8.3",
     "react-headroom": "^2.2.2",
     "react-image-gallery": "^0.8.12",
+    "react-items-carousel": "^2.8.0",
     "react-modal": "^3.4.4",
     "react-redux": "^6.0.1",
     "react-router": "^4.2.0",
