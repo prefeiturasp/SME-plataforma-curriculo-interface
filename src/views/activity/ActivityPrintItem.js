@@ -4,20 +4,21 @@ import { connect } from 'react-redux';
 import ActivityActions from 'actions/ActivityActions';
 import ActivityChars from './chars/ActivityChars';
 import Cover from 'views/sequence/Cover';
-import ModuleExercise from './ModuleExercise';
-import ModuleGallery from './ModuleGallery';
-import ModuleLongText from './ModuleLongText';
-import ModuleQuestion from './ModuleQuestion';
-import ModuleStudent from './ModuleStudent';
-import ModuleTextWithTables from './ModuleTextWithTables';
-import ModuleTeacher from './ModuleTeacher';
+import ModuleExercise from 'views/modules/ModuleExercise';
+import ModuleGallery from 'views/modules/ModuleGallery';
+import ModuleLongText from 'views/modules/ModuleLongText';
+import ModuleQuestion from 'views/modules/ModuleQuestion';
+import ModuleStudent from 'views/modules/ModuleStudent';
+import ModuleTextWithTables from 'views/modules/ModuleTextWithTables';
+import ModuleTeacher from 'views/modules/ModuleTeacher';
 import Title from 'views/sequence/Title';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
-import styles from 'views/sequence/Sequence.scss';
+import styles from './ActivityPrintItem.scss';
 
 class ActivityPrintItem extends Component {
   componentDidMount() {
     this.props.load(this.props.slug1, this.props.slug2);
+    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub]);
   }
 
   render() {
@@ -87,23 +88,14 @@ class ActivityPrintItem extends Component {
 
     return (
       <section className={styles.wrapper}>
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-12 col-lg-8">
-              <Cover data={data} sequence={sequence} />
-              <Title
-                slug={sequence.slug}
-                text={`Atividade ${data.sequence}`}
-                title={data.title}
-              />
-              <div className={styles.description}>{contentBlocks}</div>
-            </div>
-            <div className={styles.chars}>
-              <ActivityChars data={this.props.data} />
-            </div>
-          </div>
-        </div>
-        <hr />
+        <Cover data={data} sequence={sequence} />
+        <Title
+          slug={sequence.slug}
+          text={`Atividade ${data.sequence}`}
+          title={data.title}
+        />
+        <ActivityChars data={this.props.data} isPrint={true} />
+        <div className={styles.description}>{contentBlocks}</div>
       </section>
     );
   }

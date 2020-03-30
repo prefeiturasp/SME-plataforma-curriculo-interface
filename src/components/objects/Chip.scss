@@ -3,7 +3,7 @@
 
 .wrapper {
   @include pill;
-  background-color: $grey-200;
+  background-color: $grey-100;
   display: inline-block;
 
   &.isColored {

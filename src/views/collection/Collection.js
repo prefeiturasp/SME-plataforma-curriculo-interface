@@ -52,7 +52,6 @@ class Collection extends Component {
     const { data, classrooms, sequences } = this.props;
     const { id, name } = data;
     
-    const word = data.number_of_classes === 1 ? 'turma' : 'turmas';
     const link = createModalLink(`/colecao/${id}/editar`);
 
     const years = classrooms.map((year, i) => {
@@ -81,9 +80,6 @@ class Collection extends Component {
           </div>
           <header className={styles.info}>
             <h2>{name}</h2>
-            <p>
-              {data.number_of_classes} {word}
-            </p>
             <div className={styles.years}>{years}</div>
           </header>
         </div>

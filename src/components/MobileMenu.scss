@@ -53,10 +53,13 @@
 
 .btnLogin {
   composes: btn from global;
-  background-color: $color-turquoise-medium;
+  background-color: $color-turquoise;
   border: 0;
-  color: white;
+  color: black;
+  font-size: rem(15);
   margin-bottom: rem(14);
+  padding-left: rem(46);
+  padding-right: rem(46);
 }
 
 .obs {

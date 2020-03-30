@@ -1,0 +1,59 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.contents,
+.quote {
+  composes: container from global;
+  font-size: rem(18);
+  line-height: rem(22);
+}
+
+.contents {
+  padding-top: rem(22);
+  padding-bottom: rem(28);
+  
+  img {
+    width: 100%;
+  }
+}
+
+.quote {
+  font-weight: 600;
+  padding-top: rem(24);
+  padding-bottom: rem(28);
+  text-align: center;
+}
+
+.download {
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+  padding-top: rem(30);
+  padding-bottom: rem(40);
+  text-align: center;
+
+  p {
+    margin-bottom: rem(20);
+  }
+}
+
+@include mq("tablet-portrait") {
+  .contents,
+  .quote {
+    line-height: rem(24);
+  }
+
+  .contents {
+    padding-top: rem(30);
+    padding-bottom: rem(30);
+  }
+
+  .quote {
+    padding-top: rem(80);
+    padding-bottom: rem(80);
+  }
+
+  .download {
+    padding-bottom: rem(60);
+  }
+}

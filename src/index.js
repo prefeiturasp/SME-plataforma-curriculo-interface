@@ -20,32 +20,46 @@ import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AnswerBooks from 'views/answerBooks/AnswerBooks';
 import AppLoading from 'components/loading/AppLoading';
-import Classrooms from 'views/profile/classrooms/Classrooms';
-import Collection from 'views/profile/collection/Collection';
+import Challenge from 'views/challenge/Challenge';
+import Classrooms from 'views/classrooms/Classrooms';
+import Collection from 'views/collection/Collection';
 import Confirm from 'components/Confirm';
-import CreateCollection from 'views/profile/collection/create/CreateCollection';
+import CreateCollection from 'views/collection/create/CreateCollection';
 import Curriculum from 'views/curriculum/Curriculum';
-import EditCollection from 'views/profile/collection/edit/EditCollection';
+import EditCollection from 'views/collection/edit/EditCollection';
 import EditProfile from 'views/profile/edit/EditProfile';
 import Home from 'views/home/Home';
 import LearningObjectives from 'views/learningObjectives/LearningObjectives';
 import KnowledgeMatrix from 'views/knowledgeMatrix/KnowledgeMatrix';
 import KnowledgeMatrixDetail from 'views/knowledgeMatrix/Detail';
 import Login from 'views/login/Login';
+import Methodology from 'views/methodology/Methodology';
+import MyResults from 'views/myResults/MyResults';
 import Profile from 'views/profile/Profile';
-import Roadmap from 'views/roadmap/Roadmap';
+import RateSequence from 'views/sequence/rate/RateSequence';
+import Rating from 'views/sequence/rating/Rating';
+import Result from 'views/result/Result';
 import SaveSequence from 'views/sequence/save/SaveSequence';
+import SendResult from 'views/result/send/SendResult';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
 import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
+import Technologies from 'views/technologies/Technologies';
 
+import moment from 'moment';
 import reducers from 'reducers';
-import registerServiceWorker from 'utils/registerServiceWorker';
+// import registerServiceWorker from 'utils/registerServiceWorker';
 import theme from 'utils/theme';
 
 export const history = createBrowserHistory();
+
+moment.updateLocale('pt-br', {
+  relativeTime : {
+    past : '%s atrás',
+  },
+});
 
 const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -120,9 +134,11 @@ class ModalSwitch extends Component {
             path="/objetivos-de-aprendizagem"
             component={LearningObjectives}
           />
-          <Route exact path="/descobrir" component={Roadmap} />
           <Route path="/perfil" component={Profile} />
           <Route path="/colecao/:id" component={Collection} />
+          <Route path="/desafio/:slug" component={Challenge} />
+          <Route path="/tecnologias-para-aprendizagem" component={Technologies} />
+          <Route exact path="/metodologia/:slug" component={Methodology} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
@@ -164,6 +180,18 @@ class ModalSwitch extends Component {
         <ModalRoute exact path="/login" component={Login} {...modalProps} />
         <ModalRoute
           exact
+          path="/sequencia/:slug/avaliacao"
+          component={Rating}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/sequencia/:slug/avaliar"
+          component={RateSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
           path="/sequencia/:slug/criar-colecao"
           component={CreateCollection}
           {...modalProps}
@@ -184,6 +212,24 @@ class ModalSwitch extends Component {
           exact
           path="/sequencias/:slug/salvar"
           component={SaveSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/enviar"
+          component={SendResult}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/meus-resultados"
+          component={MyResults}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/desafio/:slug/resultado/:id"
+          component={Result}
           {...modalProps}
         />
         <ModalContainer />
@@ -209,4 +255,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-registerServiceWorker();
+// registerServiceWorker();

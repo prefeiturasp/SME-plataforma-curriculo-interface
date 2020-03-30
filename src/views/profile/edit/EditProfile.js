@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import { connect } from 'react-redux';
+import { API_URL } from 'data/constants';
 import AlertActions from 'actions/AlertActions';
 import DesktopModal from 'components/layout/DesktopModal';
 import ProfileActions from 'actions/ProfileActions';
 import ModalPage from 'components/layout/ModalPage';
-import ModalFooter from 'components/footer/ModalFooter';
+import ModalFooterWithCancel from 'components/footer/ModalFooterWithCancel';
 import ModalHeader from 'components/header/ModalHeader';
 import styles from './EditProfile.scss';
-import { API_URL } from 'data/constants';
 
 class EditProfile extends Component {
   state = {
@@ -193,7 +193,11 @@ class EditProfile extends Component {
               .
             </p>
           </div>
-          <ModalFooter label="Salvar" onClick={this.onClickedSave} />
+          <ModalFooterWithCancel
+            labelAction="Salvar"
+            labelCancel="Cancelar"
+            onClickAction={this.onClickedSave}
+          />
         </ModalPage>
       </DesktopModal>
     );

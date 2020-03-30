@@ -1,0 +1,11 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: center;
+  color: $grey-600;
+  display: flex;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: rem(16);
+}

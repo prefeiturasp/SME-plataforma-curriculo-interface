@@ -1,0 +1,11 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.message {
+  composes: col-12 from global;
+  color: $grey-600;
+  font-size: rem(13);
+  line-height: rem(18);
+  margin-bottom: rem(16);
+  text-align: center;
+}

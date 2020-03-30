@@ -60,9 +60,11 @@ class ModuleGallery extends Component {
 
   render() {
     const items = this.props.images.map(image => {
+      const attrs = image.file_attributes || image.archives_attributes;
+      const description = image.subtitle || '';
       return {
-        original: API_URL + image.file_attributes.default_url,
-        description: image.subtitle,
+        original: API_URL + attrs.default_url,
+        description: description,
       };
     });
 

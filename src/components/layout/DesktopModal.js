@@ -30,19 +30,27 @@ class DesktopModal extends Component {
   }
 
   render() {
-    const classes = this.props.isSmall
-      ? [styles.modal, styles.isSmall]
-      : [styles.modal];
+    const { children, isFixed, isSmall } = this.props;
+    const classes = [styles.modal];
+    
+    if (isFixed) {
+      classes.push(styles.isFixed);
+    }
+
+    if (isSmall) {
+      classes.push(styles.isSmall);
+    }
 
     return (
       <div id="desktopModal" className={classes.join(' ')}>
-        {this.props.children}
+        {children}
       </div>
     );
   }
 }
 
 DesktopModal.propTypes = {
+  isFixed: PropTypes.bool,
   isSmall: PropTypes.bool,
 };
 
