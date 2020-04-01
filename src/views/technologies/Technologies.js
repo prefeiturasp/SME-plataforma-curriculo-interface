@@ -38,7 +38,7 @@ class Technologies extends Component {
 
   render() {
     const { methodologies, challenges } = this.props;
-    
+
     const methodologyItems = methodologies.map((item, i) => {
       return <Methodology key={i} data={item} />;
     });
@@ -152,7 +152,7 @@ const mapDispatchToProps = dispatch => {
     loadOngoing: () => {
       dispatch(ChallengesActions.loadOngoing());
       if (isLogged()) {
-        dispatch(ChallengesActions.loadSaved());
+      //   dispatch(ChallengesActions.loadSaved());
       }
     },
     loadFinished: () => {

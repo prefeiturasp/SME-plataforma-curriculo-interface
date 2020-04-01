@@ -22,6 +22,7 @@ const ChallengesActions = {
   },
   loadSaved() {
     const teacherId = getTeacherId();
+    console.log(teacherId);
     return Api.simpleGet(
       `/api/professores/${teacherId}/favoritos`,
       ChallengesActions.LOAD_SAVED,

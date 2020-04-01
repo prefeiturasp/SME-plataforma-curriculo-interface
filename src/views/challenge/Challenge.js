@@ -271,7 +271,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(ChallengeActions.load(slug));
       dispatch(ChallengeActions.loadResults(slug));
       if (isLogged()) {
-        dispatch(ChallengesActions.loadSaved());
+        // dispatch(ChallengesActions.loadSaved());
       }
     },
     loadMore: page => {
