@@ -5,6 +5,7 @@ import downloadIcon from 'images/icons/download.svg';
 import ItemsCarousel from 'react-items-carousel';
 import React, {Component} from 'react';
 import styles from './CarouselContent.scss';
+import { API_URL } from 'data/constants';
 
 class CarouselContent extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class CarouselContent extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    fetch("http://localhost/api/answer_books?level=" + this.props.level)
+    fetch(API_URL + "/api/answer_books?level=" + this.props.level)
       .then(response => response.json())
       .then(data => this.setState({ books: data }))
   }
