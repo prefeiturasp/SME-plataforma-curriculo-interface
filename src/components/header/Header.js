@@ -73,6 +73,12 @@ class Header extends Component {
       );
     });
 
+    const answerBooksLink = isLogged() ? (
+      <NavLink to='/cadernos-respostas' onClick={this.onClickedClose}>
+        Cadernos dos Professores
+      </NavLink>
+    ) : null;
+
     const avatar = isLogged() ? (
       <button className={styles.avatar} onMouseEnter={this.onMouseEnter}>
         <Avatar size={35} />
@@ -119,6 +125,7 @@ class Header extends Component {
           </NavLink>
           <nav className={styles.menu}>
             {links}
+            {answerBooksLink}
             {avatar || btnLogin}
           </nav>
           <div className={styles.mobile}>
