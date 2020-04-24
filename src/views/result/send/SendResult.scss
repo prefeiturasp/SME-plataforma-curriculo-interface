@@ -1,0 +1,88 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.instructions {
+  composes: container from global;
+  border-top: 1px solid $grey-200;
+  border-bottom: 1px solid $grey-200;
+  color: black;
+  font-size: rem(15);
+  line-height: rem(22);
+  padding-top: rem(18);
+  padding-bottom: rem(22);
+
+  h2 {
+    color: $grey-800;
+    font-size: rem(16);
+    line-height: rem(24);
+    margin-bottom: rem(5);
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+
+  @include mq("tablet-portrait") {
+    border: 0;
+    margin-top: rem(20);
+    padding: 0;
+  }
+}
+
+.form {
+  composes: container from global;
+  color: $grey-600;
+  flex: 1 1 rem(380);
+  font-size: rem(13);
+  line-height: rem(18);
+  overflow-y: auto;
+  padding-top: rem(20);
+  padding-bottom: rem(50);
+}
+
+.counter {
+  margin-top: rem(4);
+  margin-bottom: rem(26);
+  text-align: right;
+}
+
+.label {
+  display: block;
+  margin-top: rem(40);
+  margin-bottom: rem(10);
+}
+
+.btnAddVideo {
+  composes: btnSmall from global;
+  border: 0;
+  padding-left: 0;
+
+  > img {
+    padding-left: 0;
+  }
+}
+
+.btnAddFile {
+  composes: btnFullWidth from global;
+  composes: btnSmall from global;
+
+  @include mq("tablet-portrait") {
+    display: inline-flex;
+    padding-left: rem(90);
+    padding-right: rem(90);
+    width: auto;
+  }
+}
+
+.videoHint {
+  margin-top: rem(4);
+  margin-bottom: rem(16);
+}
+
+.attachmentsHint {
+  margin-top: rem(4);
+}
+
+.classrooms {
+  margin-bottom: rem(35);
+}

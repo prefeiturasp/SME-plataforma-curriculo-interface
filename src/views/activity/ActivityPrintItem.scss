@@ -1,0 +1,13 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  composes: container from global;
+}
+
+.description {
+  composes: quill-text from global;
+  font-size: rem(16);
+  line-height: rem(21);
+  margin-bottom: rem(48);
+}

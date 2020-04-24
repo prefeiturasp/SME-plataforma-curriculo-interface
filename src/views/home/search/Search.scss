@@ -11,9 +11,9 @@
 .btn1,
 .btn2 {
   composes: btn from global;
-  background-color: $color-turquoise-medium;
+  background-color: $color-turquoise;
   border: 0;
-  color: white;
+  color: black;
   font-size: rem(15);
 }
 

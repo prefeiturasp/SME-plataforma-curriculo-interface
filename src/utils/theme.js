@@ -12,6 +12,9 @@ const theme = createMuiTheme({
       input: {
         fontWeight: 'bold',
       },
+      inputMultiline: {
+        padding: '2px 0',
+      },
     },
     MuiOutlinedInput: {
       root: {
@@ -25,6 +28,28 @@ const theme = createMuiTheme({
       select: {
         fontSize: 15,
         fontWeight: 'bold',
+      },
+    },
+    MuiTab: {
+      root: {
+        color: '#6a6a6a',
+        fontSize: 12,
+        fontWeight: 'bold',
+        '&$selected': {
+          color: '#008080',
+        },
+      },
+    },
+    MuiPrivateTabIndicator: {
+      colorSecondary: {
+        backgroundColor: '#008080',
+      },
+    },
+    MuiFormControlLabel: {
+      label: {
+        fontSize: 13,
+        fontWeight: 600,
+        lineHeight: '18px',
       },
     },
   },

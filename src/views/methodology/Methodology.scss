@@ -1,0 +1,66 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.header {
+  background-color: $color-green;
+  color: white;
+  font-size: rem(18);
+  font-weight: 600;
+  line-height: rem(24);
+  padding-top: rem(42);
+  padding-bottom: rem(54);
+  text-align: center;
+
+  h1 {
+    font-size: rem(28);
+    line-height: rem(34);
+    margin-bottom: rem(24);
+  }
+
+  p {
+    margin-bottom: rem(38);
+  }
+}
+
+.image {
+  height: rem(182);
+  margin-bottom: rem(42);
+}
+
+.others {
+  background-color: $color-green;
+  color: white;
+  padding-top: rem(64);
+  padding-bottom: rem(38);
+  text-align: center;
+
+  h2 {
+    font-size: rem(28);
+    margin-bottom: rem(40);
+  }
+}
+
+@include mq("tablet-portrait") {
+  .header {
+    font-size: rem(21);
+    padding-top: rem(24);
+
+    h1 {
+      font-size: rem(34);
+    }
+
+    p {
+      margin-bottom: rem(52);
+    }
+  }
+
+  .image {
+    height: rem(214);
+    margin-bottom: rem(34);
+  }
+
+  .others {
+    padding-top: rem(60);
+    padding-bottom: rem(72);
+  }
+}

@@ -40,23 +40,25 @@ class Header extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.isLogged !== this.props.isLogged) {
+      this.setState({ anchor: null });
+    }
+  }
+
   render() {
     const data = [
-      {
-        to: '/',
-        label: 'Home',
-      },
       {
         to: '/sequencias',
         label: 'Sequências de Atividades',
       },
       {
-        to: '/curriculo',
-        label: 'Currículo da Cidade',
+        to: '/tecnologias-para-aprendizagem',
+        label: 'Tecnologias para Aprendizagem',
       },
       {
-        to: '/descobrir',
-        label: 'O que vem por aí',
+        to: '/curriculo',
+        label: 'Entenda o Currículo',
       },
     ];
 
@@ -71,6 +73,12 @@ class Header extends Component {
       );
     });
 
+    const answerBooksLink = isLogged() ? (
+      <NavLink to='/cadernos-respostas' onClick={this.onClickedClose}>
+        Cadernos dos Professores
+      </NavLink>
+    ) : null;
+
     const avatar = isLogged() ? (
       <button className={styles.avatar} onMouseEnter={this.onMouseEnter}>
         <Avatar size={35} />
@@ -80,11 +88,14 @@ class Header extends Component {
 
     const btnLogin = <button onMouseEnter={this.onMouseEnter}>Login</button>;
 
-    const popoverContents = isLogged() ? (
-      <ProfilePopover onMouseLeave={this.onMouseLeave} />
-    ) : (
-      <LoginPopover onMouseLeave={this.onMouseLeave} />
-    );
+    let popoverContents = null;
+    if (hasPopover) {
+      popoverContents = isLogged() ? (
+        <ProfilePopover onMouseLeave={this.onMouseLeave} />
+      ) : (
+        <LoginPopover onMouseLeave={this.onMouseLeave} />
+      );
+    }
 
     const popover = (
       <Popper
@@ -114,6 +125,7 @@ class Header extends Component {
           </NavLink>
           <nav className={styles.menu}>
             {links}
+            {answerBooksLink}
             {avatar || btnLogin}
           </nav>
           <div className={styles.mobile}>
@@ -131,13 +143,13 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  data: PropTypes.object.isRequired,
+  isLogged: PropTypes.bool,
   showMobileMenu: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
-    data: state.ProfileReducer,
+    isLogged: state.ProfileReducer.isLogged,
   };
 };
 

@@ -1,0 +1,182 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.btnChars {
+  composes: btnFullWidth from global;
+  composes: d-print-none from global;
+  margin-bottom: rem(16);
+}
+
+.tabs {
+  margin-left: rem(-15);
+  margin-right: rem(-15);
+  padding-bottom: rem(24);
+  overflow: hidden;
+
+  > div {
+    border-bottom: 1px solid $grey-200;
+    box-shadow: 0 0 rem(24) rgba(0, 0, 0, 0.25);
+  }
+
+  @include mq("tablet-landscape") {
+    margin-left: 0;
+    margin-right: 0;
+
+    > div {
+      box-shadow: none;
+    }
+  }
+}
+
+.category,
+.materials {
+  border-bottom: 1px solid $grey-200;
+  font-size: rem(15);
+  padding-top: rem(18);
+  padding-bottom: rem(18);
+}
+
+.category {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.categoryName {
+  color: $grey-800;
+  font-size: rem(15);
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.categoryValue {
+  color: $grey-600;
+}
+
+.materials {
+  margin-bottom: rem(32);
+
+  ul {
+    margin-top: rem(18);
+    margin-bottom: 0;
+
+    > li:before {
+      color: $grey-600;
+      content: "\2022";
+      display: inline-block;
+      margin-right: rem(18);
+      text-indent: 0;
+    }
+  }
+}
+
+.btnMaterials {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.description {
+  composes: quill-text from global;
+  border-bottom: 1px solid $grey-200;
+  margin-bottom: rem(32);
+  padding-bottom: rem(32);
+}
+
+.callToAction {
+  color: $grey-600;
+  font-size: rem(15);
+  line-height: rem(20);
+  margin-bottom: rem(36);
+
+  h2 {
+    color: black;
+    font-size: rem(18);
+    line-height: rem(21);
+    margin-bottom: rem(12);
+  }
+
+  p {
+    margin-bottom: rem(32);
+  }
+
+  @include mq("tablet-landscape") {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.btnSendResult {
+  composes: btnSmall from global;
+  composes: btnFullWidth from global;
+}
+
+.btnOrSeeOtherResults {
+  composes: btnSmall from global;
+  composes: btnFullWidth from global;
+  border-color: transparent;
+  color: $grey-600;
+  margin-top: rem(4);
+
+  strong {
+    color: black;
+  }
+
+  @include mq("tablet-landscape") {
+    padding-left: rem(8) !important;
+    padding-right: rem(8) !important;
+  }
+}
+
+.numResults {
+  color: $grey-800;
+  font-size: rem(15);
+  font-weight: 600;
+  margin-bottom: rem(24);
+}
+
+.center {
+  margin-top: rem(15);
+  margin-bottom: rem(60);
+  text-align: center;
+}
+
+.btnLoadMore {
+  composes: btn from global;
+  composes: btnBig from global;
+}
+
+.chars {
+  composes: col-sm-12 from global;
+  composes: col-lg-4 from global;
+  composes: d-print-block from global;
+  background-color: $grey-050;
+  display: none;
+}
+
+@include mq("tablet-landscape") {
+  .btnChars {
+    display: none;
+  }
+
+  .description {
+    font-size: rem(18);
+    line-height: rem(24);
+  }
+
+  .chars {
+    display: block;
+    padding-top: rem(20);
+    padding-bottom: rem(20);
+  }
+
+  .callText {
+    width: 60%;
+  }
+
+  .callButtons {
+    width: 35%;
+  }
+}

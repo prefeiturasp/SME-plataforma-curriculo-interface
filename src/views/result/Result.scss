@@ -1,0 +1,36 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  flex: 1;
+  overflow-y: auto;
+
+  @include mq("tablet-portrait") {
+    padding-top: rem(18);
+  }
+}
+
+.title {
+  color: black;
+  font-size: rem(21);
+  margin-bottom: rem(18);
+
+  @include mq("tablet-portrait") {
+    display: none;
+  }
+}
+
+.text {
+  font-size: rem(15);
+  line-height: rem(21);
+  margin-bottom: rem(18);
+}
+
+.attachments {
+  padding-top: rem(24);
+  padding-bottom: rem(32);
+}
+
+.video {
+  margin-bottom: rem(20);
+}

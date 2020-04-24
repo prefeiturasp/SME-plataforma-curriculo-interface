@@ -2,6 +2,7 @@
 @import "~tools.scss";
 
 .wrapper {
+  display: block;
   margin-bottom: rem(10);
 
   &:last-child {

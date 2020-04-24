@@ -10,10 +10,12 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { connect } from 'react-redux';
+import { history } from 'index';
 import DesktopModal from 'components/layout/DesktopModal';
 import ModalFooter from 'components/footer/ModalFooter';
 import ModalPage from 'components/layout/ModalPage';
 import LoginActions from 'actions/LoginActions';
+import iconClose from 'images/icons/closeBig.svg';
 import logo from 'images/logo.svg';
 import styles from './Login.scss';
 
@@ -42,6 +44,10 @@ class Login extends Component {
       hasEditedPassword: true,
       password: e.target.value,
     });
+  };
+
+  onClickedClose = () => {
+    history.goBack();
   };
 
   onClickedShowPassword = e => {
@@ -90,6 +96,9 @@ class Login extends Component {
       <DesktopModal isSmall>
         <ModalPage>
           <div className={styles.wrapper}>
+            <button className={styles.btnClose} onClick={this.onClickedClose}>
+              <img src={iconClose} alt="Fechar" />
+            </button>
             <header className={styles.header}>
               <img src={logo} alt="Currículo Digital da Cidade de São Paulo" />
               <h1>Faça login no Currículo</h1>

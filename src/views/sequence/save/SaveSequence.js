@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import BigSequencePreview from 'views/sequence/BigSequencePreview';
+import BigPreview from 'components/objects/BigPreview';
 import CollectionsActions from 'actions/CollectionsActions';
 import Collection from './Collection';
 import DesktopModal from 'components/layout/DesktopModal';
@@ -41,7 +41,7 @@ class SaveSequence extends Component {
     link.state.sequenceId = data.id;
 
     const btnCreate = (
-      <NavLink className={styles.btnCreate} to={link}>
+      <NavLink className={styles.btn} to={link}>
         <img src={iconPlus} alt="Criar coleção" />
         Criar coleção
       </NavLink>
@@ -59,7 +59,7 @@ class SaveSequence extends Component {
           <ModalHeader title="Salvar sequência" />
           <div className={styles.row}>
             <div className={styles.col1}>
-              <BigSequencePreview sequence={data} />
+              <BigPreview data={data} />
               {savedText}
             </div>
             <div className={styles.col2}>

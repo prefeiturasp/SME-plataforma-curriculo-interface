@@ -35,7 +35,7 @@
   background: $grey-300;
   color: $grey-600;
   display: flex;
-  font-size: 5rem;
+  font-size: rem(24);
   font-weight: 600;
   justify-content: center;
 }
@@ -83,9 +83,10 @@
   border-top: 1px solid $grey-200;
   display: flex;
   justify-content: space-between;
+  line-height: 1;
 
   > span {
-    padding: rem(10);
+    padding: rem(5) rem(10);
 
     > img {
       margin-right: rem(10);
@@ -93,8 +94,9 @@
   }
 
   > a {
+    color: black;
     font-weight: bold;
-    padding: rem(10);
+    padding: rem(5) rem(10);
     text-transform: uppercase;
   }
 }
@@ -115,6 +117,10 @@
   .initials {
     width: auto;
     height: rem(160);
+  }
+
+  .initials {
+    font-size: rem(60);
   }
 
   .text {

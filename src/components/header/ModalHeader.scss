@@ -12,6 +12,7 @@
     font-size: rem(28);
     line-height: rem(36);
     margin: 0;
+    min-height: rem(36);
   }
 }
 
@@ -28,7 +29,7 @@
   top: rem(21);
 }
 
-@include mq("tablet-landscape") {
+@include mq("tablet-portrait") {
   .wrapper {
     border-bottom: 1px solid $grey-200;
     margin-bottom: 0;

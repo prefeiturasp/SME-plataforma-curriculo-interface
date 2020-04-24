@@ -1,11 +1,6 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
-.wrapper {
-  overflow-y: scroll;
-  padding: rem(15);
-}
-
 .title {
   color: $grey-800;
   font-weight: 600;
@@ -37,7 +32,14 @@
   display: none;
 }
 
-@include mq("tablet-landscape") {
+@include mq("tablet-portrait", max) {
+  .wrapper {
+    overflow-y: scroll;
+    padding: rem(16);  
+  }
+}
+
+@include mq("tablet-portrait") {
   .btnAllLearningObjectives {
     margin-bottom: 0;
   }

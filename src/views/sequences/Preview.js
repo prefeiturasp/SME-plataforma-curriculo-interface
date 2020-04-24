@@ -12,13 +12,15 @@ import styles from './Preview.scss';
 
 class Preview extends Component {
   render() {
-    const knowledgeMatrices = this.props.data.knowledge_matrices.map(
+    const { data, isLeftAligned, windowWidth } = this.props;
+
+    const knowledgeMatrices = data.knowledge_matrices.map(
       (item, i) => {
         return <KnowledgeMatrixItem key={i} data={item} />;
       }
     );
 
-    const learningObjectives = this.props.data.learning_objectives.map(
+    const learningObjectives = data.learning_objectives.map(
       (item, i) => {
         return (
           <div key={i}>
@@ -28,53 +30,55 @@ class Preview extends Component {
       }
     );
 
-    const sustainableDevGoals = this.props.data.sustainable_development_goals.map(
+    const sustainableDevGoals = data.sustainable_development_goals.map(
       (item, i) => {
         return <SustainableDevGoalItem key={i} data={item} />;
       }
     );
 
+    const salt = data.id;
+
     const sustainableDevGoalsTitle = sustainableDevGoals.length ? (
       <div className={styles.title}>
         Objetivos de Desenvolvimento Sustentável (ODS)
-        <button data-tip data-for="tooltipDevelopmentGoals">
+        <button data-tip data-for={`tooltipDevelopmentGoals-${salt}`}>
           <img src={iconHelp} alt="Ajuda" />
         </button>
       </div>
     ) : null;
 
-    const link = `/sequencia/${this.props.data.slug}`;
-
+    const link = `/sequencia/${data.slug}`;
+    
     const contents = (
       <Fragment>
         <div className={styles.scroll}>
           <div className={styles.title}>
             Matriz de Saberes
-            <button data-tip data-for="tooltipKnowledgeMatrices">
+            <button data-tip data-for={`tooltipKnowledgeMatrices-${salt}`}>
               <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
           <div>{knowledgeMatrices}</div>
           <div className={styles.title}>
             Objetivos de Aprendizagem
-            <button data-tip data-for="tooltipLearningObjectives">
+            <button data-tip data-for={`tooltipLearningObjectives-${salt}`}>
               <img src={iconHelp} alt="Ajuda" />
             </button>
           </div>
           <div className={styles.objectives}>{learningObjectives}</div>
           {sustainableDevGoalsTitle}
           <div>{sustainableDevGoals}</div>
-          <Tooltips />
         </div>
         <div className={styles.access}>
           <NavLink to={link}>Acessar</NavLink>
         </div>
+        <Tooltips salt={salt} />
       </Fragment>
     );
 
-    if (this.props.windowWidth < 768) {
+    if (windowWidth < 768) {
       return (
-        <Collapse in={this.props.data.isExpanded}>
+        <Collapse in={data.isExpanded}>
           <div className={styles.wrapper}>{contents}</div>
         </Collapse>
       );
@@ -83,7 +87,7 @@ class Preview extends Component {
       const width = this.props.width + 30;
 
       const styleMask = {
-        width: this.props.data.isExpanded ? width : 0,
+        width: data.isExpanded ? width : 0,
         height,
       };
 
@@ -94,8 +98,8 @@ class Preview extends Component {
 
       const classes = [
         styles.mask,
-        this.props.data.isExpanded ? styles.isExpanded : '',
-        this.props.isLeftAligned ? styles.isLeftAligned : '',
+        data.isExpanded ? styles.isExpanded : '',
+        isLeftAligned ? styles.isLeftAligned : '',
       ];
 
       return (

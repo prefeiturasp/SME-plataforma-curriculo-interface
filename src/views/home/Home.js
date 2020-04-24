@@ -80,7 +80,7 @@ class Home extends Component {
                   <h2>Veja alguns exemplos de Sequências de Atividades</h2>
                 </div>
               </div>
-              <ul className="row">{sequences}</ul>
+              <div className="row">{sequences}</div>
               <NavLink to="/sequencias" className={styles.button}>
                 Ver outras sequências
               </NavLink>
@@ -117,22 +117,6 @@ class Home extends Component {
             <NavLink to="/curriculo" className={styles.button}>
               Quero saber mais sobre o currículo
             </NavLink>
-          </div>
-          <div className={styles.discover}>
-            <div className="container">
-              <div className="row">
-                <div className="col-md-10 offset-md-1">
-                  <p>
-                    A plataforma ainda está crescendo, veja o que vem por aí!
-                    <br />
-                    Este é só o começo.
-                  </p>
-                  <NavLink to="/descobrir" className={styles.button}>
-                    Quero descobrir
-                  </NavLink>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </Page>

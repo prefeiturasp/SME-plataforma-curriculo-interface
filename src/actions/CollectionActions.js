@@ -4,6 +4,7 @@ import Api from 'data/Api';
 import CollectionsActions from './CollectionsActions';
 import SnackbarActions from './SnackbarActions';
 import getTeacherId from 'data/getTeacherId';
+import { history } from 'index';
 
 function doSaveSequence(dispatch, id, name, sequenceId) {
   dispatch({ type: CollectionActions.SAVE_SEQUENCE });
@@ -75,8 +76,7 @@ const CollectionActions = {
       return Api.post(dispatch, `/api/professores/${teacherId}/colecoes`, data)
         .then(response => {
           dispatch({ ...response, type: CollectionActions.CREATED });
-          dispatch(AlertActions.open('Coleção criada com sucesso!'));
-          dispatch(CollectionsActions.load());
+          history.push(`/colecao/${response.data.id}`);
         })
         .catch(error =>
           dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))

@@ -34,6 +34,11 @@ class MobileMenu extends React.PureComponent {
         isSub: false,
       },
       {
+        to: '/tecnologias-para-aprendizagem',
+        label: 'Tecnologias para Aprendizagem',
+        isSub: false,
+      },
+      {
         to: '/curriculo',
         label: 'Currículo da Cidade',
         isSub: false,
@@ -52,11 +57,6 @@ class MobileMenu extends React.PureComponent {
         to: '/objetivos-de-aprendizagem',
         label: 'Objetivos de Aprendizagem',
         isSub: true,
-      },
-      {
-        to: '/descobrir',
-        label: 'O que vem por aí',
-        isSub: false,
       },
     ];
 

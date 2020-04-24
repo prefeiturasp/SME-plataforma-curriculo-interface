@@ -14,11 +14,13 @@ class CollectionList extends Component {
           key={i}
           id={item.id}
           name={item.name}
-          numClassrooms={item.number_of_classes}
+          numClassrooms={item.number_of_classes || 0}
           numSequences={item.number_of_activity_sequences}
         />
       );
     });
+
+    const word = items.length === 1 ? 'coleção' : 'coleções';
 
     const link = createModalLink('/perfil/criar-colecao');
 
@@ -26,7 +28,7 @@ class CollectionList extends Component {
       <section className={styles.wrapper}>
         <div className="container">
           <div className={styles.rowTitle}>
-            <h3>Coleções</h3>
+            <h3>{items.length} {word}</h3>
             <NavLink className="btnSmall" to={link}>
               Criar coleção
               <img src={iconPlus} alt="Criar coleção" />
