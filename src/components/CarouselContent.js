@@ -20,7 +20,7 @@ class CarouselContent extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    fetch(API_URL + "/api/answer_books?level=" + this.props.level)
+    fetch(API_URL + "/api/answer_books?segment_name=" + this.props.segmentName)
       .then(response => response.json())
       .then(data => this.setState({ books: data }))
   }
