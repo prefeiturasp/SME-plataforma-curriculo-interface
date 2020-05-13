@@ -55,6 +55,7 @@
     "react": "^16.8.3",
     "react-app-polyfill": "^0.2.1",
     "react-dev-utils": "^7.0.3",
+    "react-device-detect": "^1.12.1",
     "react-dom": "^16.8.3",
     "react-headroom": "^2.2.2",
     "react-image-gallery": "^0.8.12",

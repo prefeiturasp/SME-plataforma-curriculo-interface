@@ -22,43 +22,88 @@ class MobileMenu extends React.PureComponent {
   };
 
   render() {
-    const data = [
-      {
-        to: '/',
-        label: 'Home',
-        isSub: false,
-      },
-      {
-        to: '/sequencias',
-        label: 'Sequências de Atividades',
-        isSub: false,
-      },
-      {
-        to: '/tecnologias-para-aprendizagem',
-        label: 'Tecnologias para Aprendizagem',
-        isSub: false,
-      },
-      {
-        to: '/curriculo',
-        label: 'Currículo da Cidade',
-        isSub: false,
-      },
-      {
-        to: '/ods',
-        label: 'Objetivos de Desenvolvimento Sustentável',
-        isSub: true,
-      },
-      {
-        to: '/matriz-de-saberes',
-        label: 'Matriz de Saberes',
-        isSub: true,
-      },
-      {
-        to: '/objetivos-de-aprendizagem',
-        label: 'Objetivos de Aprendizagem',
-        isSub: true,
-      },
-    ];
+    const data = isLogged() ? (
+      [
+        {
+          to: '/',
+          label: 'Home',
+          isSub: false,
+        },
+        {
+          to: '/sequencias',
+          label: 'Sequências de Atividades',
+          isSub: false,
+        },
+        {
+          to: '/tecnologias-para-aprendizagem',
+          label: 'Tecnologias para Aprendizagem',
+          isSub: false,
+        },
+        {
+          to: '/curriculo',
+          label: 'Currículo da Cidade',
+          isSub: false,
+        },
+        {
+          to: '/cadernos-respostas',
+          label: 'Cadernos dos Professores',
+          isSub: false,
+        },
+        {
+          to: '/ods',
+          label: 'Objetivos de Desenvolvimento Sustentável',
+          isSub: true,
+        },
+        {
+          to: '/matriz-de-saberes',
+          label: 'Matriz de Saberes',
+          isSub: true,
+        },
+        {
+          to: '/objetivos-de-aprendizagem',
+          label: 'Objetivos de Aprendizagem',
+          isSub: true,
+        },
+      ]
+    ) : (
+      [
+        {
+          to: '/',
+          label: 'Home',
+          isSub: false,
+        },
+        {
+          to: '/sequencias',
+          label: 'Sequências de Atividades',
+          isSub: false,
+        },
+        {
+          to: '/tecnologias-para-aprendizagem',
+          label: 'Tecnologias para Aprendizagem',
+          isSub: false,
+        },
+        {
+          to: '/curriculo',
+          label: 'Currículo da Cidade',
+          isSub: false,
+        },
+        {
+          to: '/ods',
+          label: 'Objetivos de Desenvolvimento Sustentável',
+          isSub: true,
+        },
+        {
+          to: '/matriz-de-saberes',
+          label: 'Matriz de Saberes',
+          isSub: true,
+        },
+        {
+          to: '/objetivos-de-aprendizagem',
+          label: 'Objetivos de Aprendizagem',
+          isSub: true,
+        },
+      ]
+    );
 
     const links = data.map((item, i) => {
       const klass = item.isSub ? styles.btnSmall : styles.btn;
