@@ -6,6 +6,20 @@ import ItemsCarousel from 'react-items-carousel';
 import React, {Component} from 'react';
 import styles from './CarouselContent.scss';
 import { API_URL } from 'data/constants';
+import {isMobile} from 'react-device-detect';
+
+
+function checkDevice() {
+  return isMobile ? (true) : (false);
+}
+
+function totalCards() {
+  if(checkDevice()){
+    return 1;
+  }else {
+    return 5;
+  }
+}
 
 class CarouselContent extends Component {
   constructor(props) {
@@ -17,6 +31,7 @@ class CarouselContent extends Component {
       activeItemIndex: 0
     };
   }
+
 
   componentDidMount() {
     this.setState({ isLoading: true });
@@ -32,13 +47,13 @@ class CarouselContent extends Component {
           <p>{this.state.isLoading}</p>
           <h2 className={styles.carouselTitle}>{this.props.title}</h2>
           <ItemsCarousel
-            infiniteLoop={true}
+            infiniteLoop={!checkDevice()}
             gutter={12}
             activePosition={'center'}
             chevronWidth={60}
             disableSwipe={false}
             alwaysShowChevrons={false}
-            numberOfCards={5}
+            numberOfCards={totalCards()}
             slidesToScroll={1}
             outsideChevron={true}
             showSlither={false}
