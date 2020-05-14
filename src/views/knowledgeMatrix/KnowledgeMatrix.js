@@ -26,9 +26,9 @@ class KnowledgeMatrix extends Component {
                 <h1>Matriz de Saberes</h1>
                 <p>A Matriz de Saberes tem como propósito:</p>
                 <p>
-                  Formar cidadão éticos, responsáveis e solidários que
-                  fortaleçam uma sociedade mais inclusiva, de mocrática,
-                  próspera e sustável.
+                  Formar cidadãos éticos, responsáveis e solidários que
+                  fortaleçam uma sociedade mais inclusiva, democrática,
+                  próspera e sustentável.
                 </p>
                 <p>
                   A Matriz de Saberes indica o que crianças, adolescentes e
