@@ -8,7 +8,8 @@ import SequencesActions from 'actions/SequencesActions';
 import Category from 'views/sequences/categories/Category';
 import CategoryPanel from 'views/sequences/categories/CategoryPanel';
 import CurricularComponent from 'views/sequences/objects/CurricularComponent';
-import YearButton from 'views/sequences/objects/YearButton';
+import SegmentButton from 'views/sequences/objects/SegmentButton';
+import StageButton from 'views/sequences/objects/StageButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './Filters.scss';
 
@@ -16,14 +17,15 @@ class Filters extends Component {
   ref = React.createRef();
 
   onClickedSearch = () => {
-    const { filters, query } = this.props;
+    const { filters, filtersExtra, query } = this.props;
     const activeFilters = filters.filter(item => item.isActive);
-    if (activeFilters.length || query) {
+    const activeFiltersExtra = filtersExtra.filter(item => item.isActive);
+    if (activeFilters.length || query || activeFiltersExtra.length) {
       this.props.search();
       clearAllBodyScrollLocks();
     } else {
       this.props.openAlert(
-        'Selecione pelo menos um ano ou componente curricular para encontrar sequências de atividades.'
+        'Selecione pelo menos uma etapa ou componente curricular para encontrar sequências de atividades.'
       );
     }
   };
@@ -43,11 +45,17 @@ class Filters extends Component {
         ? { height: `${this.ref.current.clientHeight}px` }
         : {};
 
-    const yearButtons = this.props.filters
-      .filter(item => item.type === 'years')
+    const segmentButtons = this.props.filters
+      .filter(item => item.type === 'segments')
       .map((item, i) => {
-        return <YearButton key={i} data={item} />;
+        return <SegmentButton key={i} data={item} />;
       });
+
+    const stageButtons = this.props.filters
+      .filter(item => item.type === 'stages')
+      .map((item, i) => {
+        return <StageButton key={i} data={item} />
+      })
 
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
@@ -93,9 +101,14 @@ class Filters extends Component {
           </header>
           <div className={styles.row}>
             <div className="col-sm-12 col-md-6 col-lg-3">
-              <h2 className={styles.h2}>Ano</h2>
-              <h3 className={styles.h3}>Ciclo de Alfabetização</h3>
-              <div className={styles.buttons}>{yearButtons}</div>
+              <h2 className={styles.h2}>Segmento</h2>
+              <div className={styles.buttons}>{segmentButtons}</div>
+              <h2 className={styles.h2}>Etapa</h2>
+              {
+                stageButtons.length > 0
+                  ? <div className={styles.buttons}>{stageButtons}</div>
+                  : <p>Selecione um seguimento</p>
+              }
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
               <h2 className={styles.h2}>Componente Curricular</h2>
@@ -122,6 +135,7 @@ class Filters extends Component {
 
 Filters.propTypes = {
   filters: PropTypes.array.isRequired,
+  filtersExtra: PropTypes.array.isRequired,
   isExpanded: PropTypes.bool,
   order: PropTypes.string,
   query: PropTypes.string,
@@ -134,6 +148,7 @@ Filters.propTypes = {
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters,
+    filtersExtra: state.FiltersReducer.filters,
     isExpanded: state.FiltersReducer.isExpanded,
     order: state.FiltersReducer.order,
     query: state.FiltersReducer.query,
