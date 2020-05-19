@@ -1,5 +1,11 @@
 function getFilterName(type) {
   switch (type) {
+    case 'segments':
+      return 'segment_id';
+
+    case 'stages':
+      return 'stage_id';
+
     case 'years':
       return 'years';
 
@@ -38,17 +44,31 @@ export default function getFiltersQueryString(filters) {
   const params = filters.map(filter => {
     const name = getFilterName(filter.type);
     const value = getFilterValue(filter);
-    return `${name}[]=${value}`;
+    if ((filter.type === 'segments') || (filter.type === 'stages')) {
+      return `${name}=${value}`;
+    } else {
+      return `${name}[]=${value}`;
+    }
   });
   return params.join('&');
 }
 
-export function getSearchQueryString(filters, query, order) {
-  const params = filters.map(filter => {
+export function getSearchQueryString(filters, filtersExtra, query, order) {
+  let params = filters.map(filter => {
     const name = getFilterName(filter.type);
     const value = getFilterValue(filter);
     return `${name}[]=${value}`;
   });
+
+  const paramsExtra = filtersExtra.map(filter => {
+    const name = getFilterName(filter.type);
+    const value = getFilterValue(filter);
+    return `${name}[]=${value}`;
+  });
+
+  if (paramsExtra.length) {
+    params = params.concat(paramsExtra);
+  }
 
   if (query) {
     params.push(`q=${query}`);
