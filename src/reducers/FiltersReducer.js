@@ -98,7 +98,6 @@ function FiltersReducer(state = initialState, action) {
         filters: processFilters(action.data, state, [
           'segments',
           'stages',
-          'years',
           'curricular_components',
           'sustainable_development_goals',
           'knowledge_matrices',
@@ -112,7 +111,6 @@ function FiltersReducer(state = initialState, action) {
         filters: processStages(action.data, state, [
           'segments',
           'stages',
-          'years',
           'curricular_components',
           'sustainable_development_goals',
           'knowledge_matrices',

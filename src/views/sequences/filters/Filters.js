@@ -148,7 +148,7 @@ Filters.propTypes = {
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters,
-    filtersExtra: state.FiltersReducer.filters,
+    filtersExtra: state.FiltersReducer.filtersExtra,
     isExpanded: state.FiltersReducer.isExpanded,
     order: state.FiltersReducer.order,
     query: state.FiltersReducer.query,

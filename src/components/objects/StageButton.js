@@ -9,15 +9,15 @@ class StageButton extends Component {
 
   render() {
     const { data } = this.props;
-    const { id, isActive, name } = data;
+    const { id, isActive, name, color } = data;
 
     const classes = isActive
       ? [styles.wrapper, styles.isActive]
       : [styles.wrapper];
     const style = isActive
       ? {
-          backgroundColor: "#7e39a4",
-          borderColor: "#7e39a4",
+          backgroundColor: color,
+          borderColor: color,
         }
       : {};
 

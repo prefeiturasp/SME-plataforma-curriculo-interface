@@ -6,18 +6,20 @@ import AlertActions from 'actions/AlertActions';
 import CurricularComponentField from './CurricularComponentField';
 import FiltersActions from 'actions/FiltersActions';
 import SearchField from './SearchField';
-import YearField from './YearField';
+import SegmentField from './SegmentField';
+import StageField from './StageField';
 import styles from './Search.scss';
 
 class Search extends Component {
   onSubmit = () => {
-    const { filters, query } = this.props;
-    const activeFilters = filters.filter(item => item.isActive);
+    const { filters, filtersExtra, query } = this.props;
+    let activeFilters = filters.filter(item => item.isActive);
+    activeFilters = activeFilters.concat(filtersExtra.filter(item => item.isActive));
     if (activeFilters.length || query) {
       history.push('/sequencias', { isSearch: true });
     } else {
       this.props.openAlert(
-        'Selecione pelo menos um ano ou componente curricular para encontrar sequências de atividades.'
+        'Selecione pelo menos um segmento ou componente curricular para encontrar sequências de atividades.'
       );
     }
   };
@@ -32,7 +34,8 @@ class Search extends Component {
         <p>Encontre sequências de atividades para a sala de aula</p>
         <div className={styles.box}>
           <SearchField onSubmit={this.onSubmit} />
-          <YearField />
+          <SegmentField />
+          <StageField />
           <CurricularComponentField />
           <button className={styles.btn1} onClick={this.onSubmit}>
             Buscar
@@ -48,6 +51,7 @@ class Search extends Component {
 
 Search.propTypes = {
   filters: PropTypes.array,
+  filtersExtra: PropTypes.array,
   query: PropTypes.string,
   load: PropTypes.func.isRequired,
   openAlert: PropTypes.func.isRequired,
@@ -56,6 +60,7 @@ Search.propTypes = {
 const mapStateToProps = state => {
   return {
     filters: state.FiltersReducer.filters,
+    filtersExtra: state.FiltersReducer.filters,
     query: state.FiltersReducer.query,
   };
 };

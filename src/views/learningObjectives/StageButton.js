@@ -4,8 +4,8 @@ import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleFilter: data => {
-      dispatch(LearningObjectivesActions.toggleFilter(data));
+    toggleFilterAndSearch: data => {
+      dispatch(LearningObjectivesActions.toggleFilterAndSearch(data));
     },
   };
 };

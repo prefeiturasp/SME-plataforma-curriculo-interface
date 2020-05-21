@@ -11,7 +11,8 @@ import ExpandableLearningObjective from 'components/objects/ExpandableLearningOb
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
-import YearButton from './YearButton';
+import SegmentButton from './SegmentButton';
+import StageButton from './StageButton';
 import withWidth from 'components/hoc/withWidth';
 import chevronLeft from 'images/chevrons/left.svg';
 import iconCloseBig from 'images/icons/closeBig.svg';
@@ -90,10 +91,16 @@ class LearningObjectives extends Component {
   }
 
   render() {
-    const yearButtons = this.props.filters
-      .filter(item => item.type === 'years')
+    const segmentButtons = this.props.filters
+      .filter(item => item.type === 'segments')
       .map((item, i) => {
-        return <YearButton key={i} data={item} />;
+        return <SegmentButton key={i} data={item} />;
+      });
+
+    const stageButtons = this.props.filters
+      .filter(item => item.type === 'stages')
+      .map((item, i) => {
+        return <StageButton key={i} data={item} />;
       });
 
     const componentButtons = this.props.filters
@@ -189,9 +196,12 @@ class LearningObjectives extends Component {
               <div className="row">
                 <div className="col-md-4 offset-md-2">
                   <div className={styles.pickYear}>
-                    <h3>Escolha o ano</h3>
-                    <h4>Ciclo de alfabetização</h4>
-                    <div className={styles.buttons}>{yearButtons}</div>
+                    <h3>Escolha o Segmento</h3>
+                    <div className={styles.buttons}>{segmentButtons}</div>
+                  </div>
+                  <div className={styles.pickYear}>
+                    <h3>Escolha a Etapa</h3>
+                    <div className={styles.buttons}>{stageButtons}</div>
                     <p className={styles.warning}>
                       <img src={iconWarning} alt="Observação" />
                       <span>
@@ -230,7 +240,7 @@ class LearningObjectives extends Component {
                     <img src={chevronLeft} alt="Voltar" />
                     Voltar
                   </button>
-                  <p>Ano e componente(s) selecionado(s):</p>
+                  <p>Segmento, ano e componente(s) selecionado(s):</p>
                   <div>{selectedFiltersButtons}</div>
                   <div>{learningObjectivesItems}</div>
                 </div>
