@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Page from 'components/layout/Page';
 import Home from 'views/home/Home';
 import styles from './AnswerBooks.scss';
-import CarouselContent from 'components/CarouselContent';
+import StageContent from 'components/StageContent';
 import { API_URL } from 'data/constants';
 
 class AnswerBooks extends Component {
@@ -48,7 +48,7 @@ class AnswerBooks extends Component {
         {this.state.segments.map((segment, index) => {
           return(
             <div key={index.toString()}>
-              <CarouselContent title={segment['name'].toUpperCase()} segmentName={segment['name']}></CarouselContent>
+              <StageContent segment={segment}></StageContent>
               <br></br>
             </div>
           );
