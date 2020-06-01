@@ -8,7 +8,6 @@ import SequencesActions from 'actions/SequencesActions';
 import Category from 'views/sequences/categories/Category';
 import CategoryPanel from 'views/sequences/categories/CategoryPanel';
 import CurricularComponent from 'views/sequences/objects/CurricularComponent';
-import YearButton from 'views/sequences/objects/YearButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './Filters.scss';
 
@@ -42,12 +41,6 @@ class Filters extends Component {
       this.props.isExpanded && this.ref.current
         ? { height: `${this.ref.current.clientHeight}px` }
         : {};
-
-    const yearButtons = this.props.filters
-      .filter(item => item.type === 'years')
-      .map((item, i) => {
-        return <YearButton key={i} data={item} />;
-      });
 
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
@@ -95,7 +88,6 @@ class Filters extends Component {
             <div className="col-sm-12 col-md-6 col-lg-3">
               <h2 className={styles.h2}>Ano</h2>
               <h3 className={styles.h3}>Ciclo de Alfabetização</h3>
-              <div className={styles.buttons}>{yearButtons}</div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-4">
               <h2 className={styles.h2}>Componente Curricular</h2>
