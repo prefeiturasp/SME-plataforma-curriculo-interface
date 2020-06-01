@@ -6,7 +6,6 @@ import AlertActions from 'actions/AlertActions';
 import CurricularComponentField from './CurricularComponentField';
 import FiltersActions from 'actions/FiltersActions';
 import SearchField from './SearchField';
-import YearField from './YearField';
 import styles from './Search.scss';
 
 class Search extends Component {
@@ -32,7 +31,6 @@ class Search extends Component {
         <p>Encontre sequências de atividades para a sala de aula</p>
         <div className={styles.box}>
           <SearchField onSubmit={this.onSubmit} />
-          <YearField />
           <CurricularComponentField />
           <button className={styles.btn1} onClick={this.onSubmit}>
             Buscar
