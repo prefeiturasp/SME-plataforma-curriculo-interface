@@ -6,12 +6,16 @@ import styles from './AnswerBooks.scss';
 import StageContent from 'components/StageContent';
 import { API_URL } from 'data/constants';
 
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
+
 class AnswerBooks extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      segments: [],
+      books: [],
       isLoading: false,
       activeItemIndex: 0
     };
@@ -19,12 +23,15 @@ class AnswerBooks extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    fetch(API_URL + "/api/v1/segments")
+    fetch(API_URL + "/api/answer_books")
       .then(response => response.json())
-      .then(data => this.setState({ segments: data }))
+      .then(data => this.setState({ books: data }))
   }
 
+
+
   render() {
+    const segments = this.state.books.map(book => book.segment).filter(onlyUnique);
     const contents = (
       <div className="container">
         <h1 className={styles.title}>Currículo da cidade</h1>
@@ -45,11 +52,11 @@ class AnswerBooks extends Component {
           </div>
           <br></br>
         </div>
-        {this.state.segments.map((segment, index) => {
-          return(
-            <div key={index.toString()}>
-              <StageContent segment={segment}></StageContent>
-              <br></br>
+        {segments.map((segment, index) => {
+          return (
+            <div key={index} >
+              <h1 className={styles.segmentName}>{segment}</h1>
+              <StageContent segment={segment} books={this.state.books}></StageContent>
             </div>
           );
         })}

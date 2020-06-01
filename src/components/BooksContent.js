@@ -25,73 +25,67 @@ class BooksContent extends Component {
     super(props);
 
     this.state = {
-      books: [],
       isLoading: false,
       activeItemIndex: 0
     };
   }
 
-
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    fetch(API_URL + "/api/answer_books?stage_id=" + this.props.stage['id'])
-      .then(response => response.json())
-      .then(data => this.setState({ books: data }))
-
-  }
-
   render() {
-    if(this.state.books.length) {
+    const books = this.props.books.filter((book) => {
+      if (this.props.year == book.year) {
+        return book
+      }
+    })
+    if(books.length) {
       return (
         <div>
-          <h1 className={styles.carouselTitle}>{this.props.segment_name}</h1>
-          <div className="container">
-            <h4>{this.props.stage['name']}</h4>
-            <ItemsCarousel
-            infiniteLoop={!checkDevice()}
-            gutter={12}
-            activePosition={'center'}
-            chevronWidth={60}
-            disableSwipe={false}
-            alwaysShowChevrons={false}
-            numberOfCards={totalCards()}
-            slidesToScroll={1}
-            outsideChevron={true}
-            showSlither={false}
-            firstAndLastGutter={false}
-            activeItemIndex={this.state.activeItemIndex}
-            requestToChangeActive={value => this.setState({ activeItemIndex: value })}
-            rightChevron={
-              <button>
-              <img alt="" src={chevronRight}/>
-              </button>
-            }
-            leftChevron={
-              <button>
-              <img alt="" src={chevronLeft}/>
-              </button>
-            }
-            >
-            {this.state.books.map((book, index) => {
-              return(
-                <div className={styles.bookWraper} key={index.toString()}>
+          <ItemsCarousel
+          infiniteLoop={!checkDevice()}
+          gutter={12}
+          activePosition={'center'}
+          chevronWidth={60}
+          disableSwipe={false}
+          alwaysShowChevrons={false}
+          numberOfCards={totalCards()}
+          slidesToScroll={1}
+          outsideChevron={true}
+          showSlither={false}
+          firstAndLastGutter={false}
+          activeItemIndex={this.state.activeItemIndex}
+          requestToChangeActive={value => this.setState({ activeItemIndex: value })}
+          rightChevron={
+            <button>
+            <img alt="" src={chevronRight}/>
+            </button>
+          }
+          leftChevron={
+            <button>
+            <img alt="" src={chevronLeft}/>
+            </button>
+          }
+          >
+          {books.map((book, index) => {
+            return(
+              <div className={styles.bookWraper} key={index.toString()}>
                 <img className={styles.bookImage} alt="" src={book["cover_image"]}></img>
-                <h4 className={styles.componentName}>{book["curricular_component"]}</h4>
+                <p className={styles.name}>{book["name"]}</p>
                 <hr className={styles.line}></hr>
-                <label className={styles.year}>{book["year"]}</label>
                 <a href={book["book_file"]}>
-                  <img className={styles.file} alt="" src={downloadIcon}/>
+                  <div>
+                    <label className={styles.componentName}>{book["curricular_component"]}</label>
+                    <img className={styles.file} alt="" src={downloadIcon}/>
+                  </div>
                 </a>
-                </div>
-              );
-            })}
-            </ItemsCarousel>
-          </div>
+              </div>
+            );
+          })}
+          </ItemsCarousel>
         </div>
       );
     } else {
       return(
-        <div></div>
+        <div>
+        </div>
       );
     }
   };

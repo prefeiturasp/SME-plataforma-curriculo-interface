@@ -1,34 +1,32 @@
 import { connect } from 'react-redux';
 import React, {Component} from 'react';
-import BooksContent from './BooksContent';
+import YearContent from './YearContent';
+import styles from './StageContent.scss'
 import { API_URL } from 'data/constants';
+
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 
 class StageContent extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      stages: [],
-      isLoading: false,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ isLoading: true });
-    fetch(API_URL + "/api/v1/stages?segment_id=" + this.props.segment['id'])
-      .then(response => response.json())
-      .then(data => this.setState({ stages: data }))
-
   }
 
   render() {
+    const stages = this.props.books.map((book) => {
+      if (this.props.segment === book.segment) {
+        return book.stage;
+      }
+    }).filter(onlyUnique);
+
     return(
-      <div>
-        <h1></h1>
-        {this.state.stages.map(stage => {
-          return (
-            <div>
-              <BooksContent segment_name={this.props.segment['name']} stage={stage}></BooksContent>
+      <div className="container">
+        {stages.map((stage, index) => {
+          return(
+            <div key={index} >
+              <h3 className={styles.stageName}>{stage}</h3>
+              <YearContent stage={stage} books={this.props.books}></YearContent>
             </div>
           );
         })}

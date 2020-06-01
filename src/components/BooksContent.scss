@@ -1,15 +1,6 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
-.carouselTitle {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 32px;
-  color: #42474A;
-  padding: 10px 0px;
-}
-
 .carouselBook {
   width: 100%;
   padding: 0 40px;
@@ -39,14 +30,17 @@
   line-height: 20px;
 }
 
-.year {
+.name {
   font-style: normal;
   font-weight: normal;
   margin-top: 5px;
-  font-size: 20px;
+  font-size: 12px;
   line-height: 18px;
+  color: #444444;
+}
 
-  color: #42474A;
+label:hover{
+  cursor: pointer !important;
 }
 
 .file {
