@@ -21,9 +21,10 @@ const SequencesActions = {
   search() {
     return (dispatch, getState) => {
       const state = getState().FiltersReducer;
-      const { filters, order, query } = state;
+      const { filters, filtersExtra, order, query } = state;
       const activeFilters = filters.filter(item => item.isActive);
-      const queryString = getSearchQueryString(activeFilters, query, order);
+      const activeFiltersExtra = filtersExtra.filter(item => item.isActive);
+      const queryString = getSearchQueryString(activeFilters, activeFiltersExtra, query, order);
 
       dispatch({ type: SequencesActions.SEARCH });
       return Api.get(dispatch, `/api/sequencias?${queryString}`)

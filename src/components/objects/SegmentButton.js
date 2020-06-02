@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './YearButton.scss';
+import styles from './SegmentButton.scss';
 
-class YearButton extends Component {
-  onClicked = () => {
-    this.props.toggleFilterAndSearch(this.props.data);
+class SegmentButton extends Component {
+  onClicked = async () => {
+    await this.props.toggleSegments(this.props.data);
+    await this.props.getStages(this.props.data);
   };
 
   render() {
@@ -33,9 +34,10 @@ class YearButton extends Component {
   }
 }
 
-YearButton.propTypes = {
+SegmentButton.propTypes = {
   data: PropTypes.object.isRequired,
-  toggleFilterAndSearch: PropTypes.func.isRequired,
+  toggleSegments: PropTypes.func.isRequired,
+  getStages: PropTypes.func.isRequired,
 };
 
-export default YearButton;
+export default SegmentButton;

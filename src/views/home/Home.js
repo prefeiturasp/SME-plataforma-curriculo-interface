@@ -36,7 +36,7 @@ class Home extends Component {
           <header className={styles.header}>
             <div className="container">
               <div className="row">
-                <div className="col-md-10 offset-md-1">
+                <div className="col-md-12">
                   <Search />
                 </div>
               </div>

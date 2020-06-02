@@ -17,15 +17,13 @@ class ThemeField extends Component {
 
   render() {
     return (
-      <label className={styles.wrapper}>
-        <input
-          className={styles.field}
-          placeholder="Buscar sequência por tema"
-          type="text"
-          onChange={this.onChanged}
-          onKeyPress={this.onKeyPress}
-        />
-      </label>
+      <input
+        className={styles.field}
+        placeholder="Buscar sequência por tema"
+        type="text"
+        onChange={this.onChanged}
+        onKeyPress={this.onKeyPress}
+      />
     );
   }
 }

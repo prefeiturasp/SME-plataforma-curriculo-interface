@@ -7,6 +7,40 @@ function clearFilter(item) {
   };
 }
 
+function clearSegment(data) {
+  return function(item) {
+    if (item === data){
+      return {
+        ...item,
+        isActive: false,
+      }
+    }else {
+      return item;
+    }
+  };
+}
+
+function processStages(data, state, keys) {
+  const result = [];
+
+  keys.forEach(key => {
+    const list = data[key];
+    if (list) {
+      list.forEach(item => {
+        let isActive = false
+        state.filters.forEach(entry => {
+          if (entry.id === item.id && entry.isActive && key === entry.type) {
+            isActive = true
+          }
+        })
+        result.push({ ...item, isActive, type: key });
+      });
+    }
+  });
+
+  return result;
+}
+
 function processFilters(data, state, keys) {
   const result = [];
 
@@ -62,6 +96,36 @@ function FiltersReducer(state = initialState, action) {
       return {
         ...state,
         filters: processFilters(action.data, state, [
+          'segments',
+          'stages',
+          'years',
+          'curricular_components',
+          'sustainable_development_goals',
+          'knowledge_matrices',
+          'activity_types',
+        ]),
+      };
+
+    case FiltersActions.LOADED_STAGES:
+      return {
+        ...state,
+        filters: processStages(action.data, state, [
+          'segments',
+          'stages',
+          'years',
+          'curricular_components',
+          'sustainable_development_goals',
+          'knowledge_matrices',
+          'activity_types',
+        ]),
+      };
+
+    case FiltersActions.LOADED_YEARS:
+      return {
+        ...state,
+        filters: processStages(action.data, state, [
+          'segments',
+          'stages',
           'years',
           'curricular_components',
           'sustainable_development_goals',
@@ -100,6 +164,18 @@ function FiltersReducer(state = initialState, action) {
         filters: state.filters.map(clearFilter),
         filtersExtra: state.filtersExtra.map(clearFilter),
         query: '',
+      };
+
+    case FiltersActions.TOGGLE_SEGMENTS:
+      return {
+        ...state,
+        filters: state.filters.map(clearSegment(action.filterToRemove)),
+      };
+
+    case FiltersActions.TOGGLE_STAGES:
+      return {
+        ...state,
+        filters: state.filters.map(clearSegment(action.filterToRemove)),
       };
 
     case FiltersActions.CACHE_FILTER:

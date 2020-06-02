@@ -1,15 +1,6 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
-.wrapper {
-  display: block;
-  margin-bottom: rem(10);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
 .field {
   background-color: white;
   border: 1px solid transparent;
@@ -24,6 +15,7 @@
   padding: rem(8) rem(15);
   text-align: left;
   width: 100%;
+  margin-bottom: rem(5);
 
   &:focus,
   &.isFocused {
@@ -56,21 +48,4 @@
   font-weight: bold;
   margin-top: rem(16);
   text-transform: uppercase;
-}
-
-@include mq("tablet-landscape") {
-  .wrapper {
-    margin-bottom: 0;
-    width: rem(205);
-  }
-
-  .popover {
-    width: rem(325) !important;
-  }
-}
-
-@include mq("desktop") {
-  .wrapper {
-    width: rem(250);
-  }
 }
