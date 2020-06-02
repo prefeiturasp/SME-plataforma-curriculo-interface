@@ -4,8 +4,11 @@ import LearningObjectivesActions from 'actions/LearningObjectivesActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleFilterAndSearch: data => {
-      dispatch(LearningObjectivesActions.toggleFilterAndSearch(data));
+    toggleStages: data => {
+      dispatch(LearningObjectivesActions.toggleStages(data))
+    },
+    getYears: data => {
+      dispatch(LearningObjectivesActions.getYears(data))
     },
   };
 };

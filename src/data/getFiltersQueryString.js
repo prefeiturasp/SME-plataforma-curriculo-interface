@@ -7,7 +7,7 @@ function getFilterName(type) {
       return 'stage_id';
 
     case 'years':
-      return 'years';
+      return 'year_ids';
 
     case 'curricular_components':
       return 'curricular_component_slugs';

@@ -98,6 +98,7 @@ function FiltersReducer(state = initialState, action) {
         filters: processFilters(action.data, state, [
           'segments',
           'stages',
+          'years',
           'curricular_components',
           'sustainable_development_goals',
           'knowledge_matrices',
@@ -111,6 +112,21 @@ function FiltersReducer(state = initialState, action) {
         filters: processStages(action.data, state, [
           'segments',
           'stages',
+          'years',
+          'curricular_components',
+          'sustainable_development_goals',
+          'knowledge_matrices',
+          'activity_types',
+        ]),
+      };
+
+    case FiltersActions.LOADED_YEARS:
+      return {
+        ...state,
+        filters: processStages(action.data, state, [
+          'segments',
+          'stages',
+          'years',
           'curricular_components',
           'sustainable_development_goals',
           'knowledge_matrices',
@@ -151,6 +167,12 @@ function FiltersReducer(state = initialState, action) {
       };
 
     case FiltersActions.TOGGLE_SEGMENTS:
+      return {
+        ...state,
+        filters: state.filters.map(clearSegment(action.filterToRemove)),
+      };
+
+    case FiltersActions.TOGGLE_STAGES:
       return {
         ...state,
         filters: state.filters.map(clearSegment(action.filterToRemove)),

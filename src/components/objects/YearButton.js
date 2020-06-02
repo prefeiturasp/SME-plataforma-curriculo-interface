@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './StageButton.scss';
+import styles from './YearButton.scss';
 
-class StageButton extends Component {
-  onClicked = async () => {
-    await this.props.toggleStages(this.props.data);
-    await this.props.getYears(this.props.data);
+class YearButton extends Component {
+  onClicked = () => {
+    this.props.toggleFilterAndSearch(this.props.data);
   };
 
   render() {
@@ -34,10 +33,9 @@ class StageButton extends Component {
   }
 }
 
-StageButton.propTypes = {
+YearButton.propTypes = {
   data: PropTypes.object.isRequired,
-  toggleStages: PropTypes.func.isRequired,
-  getYears: PropTypes.func.isRequired,
+  toggleFilterAndSearch: PropTypes.func.isRequired,
 };
 
-export default StageButton;
+export default YearButton;
