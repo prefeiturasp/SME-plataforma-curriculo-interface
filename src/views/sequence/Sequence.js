@@ -49,7 +49,6 @@ class Sequence extends Component {
       });
     }
 
-    window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub]);
   }
 
   componentDidUpdate(prevProps) {
@@ -67,9 +66,10 @@ class Sequence extends Component {
       return <span />;
     }
 
-    const isPerformed = !!performed.find(
+    const isPerformed = !!this.props.performed.find(
       item => item.activity_sequence_id === data.id
     );
+
     const notification =
       isPerformed ? (
         <Notification

@@ -10,6 +10,7 @@ import CategoryPanel from 'views/sequences/categories/CategoryPanel';
 import CurricularComponent from 'views/sequences/objects/CurricularComponent';
 import SegmentButton from 'views/sequences/objects/SegmentButton';
 import StageButton from 'views/sequences/objects/StageButton';
+import YearButton from 'views/sequences/objects/YearButton';
 import iconCloseBig from 'images/icons/closeBig.svg';
 import styles from './Filters.scss';
 
@@ -57,6 +58,13 @@ class Filters extends Component {
         return <StageButton key={i} data={item} />
       })
 
+    const yearButtons = this.props.filters
+      .filter(item => item.type === 'years')
+      .map((item, i) => {
+        return <YearButton key={i} data={item} />
+      })
+
+
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
       .map((item, i) => {
@@ -100,7 +108,7 @@ class Filters extends Component {
             <h1>Filtros</h1>
           </header>
           <div className={styles.row}>
-            <div className="col-sm-12 col-md-6 col-lg-3">
+            <div className="col-sm-12 col-md-6 col-lg-6">
               <h2 className={styles.h2}>Segmento</h2>
               <div className={styles.buttons}>{segmentButtons}</div>
               <h2 className={styles.h2}>Etapa</h2>
@@ -109,12 +117,16 @@ class Filters extends Component {
                   ? <div className={styles.buttons}>{stageButtons}</div>
                   : <p>Selecione um seguimento</p>
               }
+              <h2 className={styles.h2}>Ano</h2>
+              {
+                yearButtons.length > 0
+                  ? <div className={styles.buttons}>{yearButtons}</div>
+                  : <p>Selecione uma etapa</p>
+              }
             </div>
-            <div className="col-sm-12 col-md-6 col-lg-4">
+            <div className="col-sm-12 col-md-6 col-lg-6">
               <h2 className={styles.h2}>Componente Curricular</h2>
               <div className={styles.buttons}>{componentButtons}</div>
-            </div>
-            <div className="col-sm-12 col-md-12 col-lg-5">
               <h2 className={styles.h2}>Filtros</h2>
               <div className={styles.categories}>
                 <div>{categoryButtons}</div>

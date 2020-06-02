@@ -4,8 +4,11 @@ import FiltersActions from 'actions/FiltersActions';
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleFilterAndSearch: data => {
-      dispatch(FiltersActions.toggleFilterAndSearch(data));
+    toggleStages: data => {
+      dispatch(FiltersActions.toggleStages(data))
+    },
+    getYears: data => {
+      dispatch(FiltersActions.getYears(data))
     },
   };
 };
