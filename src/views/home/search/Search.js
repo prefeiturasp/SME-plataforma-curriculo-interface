@@ -8,6 +8,7 @@ import FiltersActions from 'actions/FiltersActions';
 import SearchField from './SearchField';
 import SegmentField from './SegmentField';
 import StageField from './StageField';
+import YearField from './YearField';
 import styles from './Search.scss';
 
 class Search extends Component {
@@ -33,17 +34,32 @@ class Search extends Component {
       <div className={styles.wrapper}>
         <p>Encontre sequências de atividades para a sala de aula</p>
         <div className={styles.box}>
-          <SearchField onSubmit={this.onSubmit} />
-          <SegmentField />
-          <StageField />
-          <CurricularComponentField />
-          <button className={styles.btn1} onClick={this.onSubmit}>
+          <div className="row">
+            <div className="col-md-4 col-sm-12">
+              <SearchField onSubmit={this.onSubmit} />
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <CurricularComponentField />
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <button className={styles.btn1} onClick={this.onSubmit}>
+                Buscar
+              </button>
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <SegmentField />
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <StageField />
+            </div>
+            <div className="col-md-4 col-sm-12">
+              <YearField />
+            </div>
+          </div>
+          <button className={styles.btn2} onClick={this.onSubmit}>
             Buscar
           </button>
         </div>
-        <button className={styles.btn2} onClick={this.onSubmit}>
-          Buscar
-        </button>
       </div>
     );
   }
