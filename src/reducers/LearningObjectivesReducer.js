@@ -45,7 +45,7 @@ function LearningObjectivesReducer(state = initialState, action) {
   switch (action.type) {
     case LearningObjectivesActions.LOADED:
       const filters = [];
-      const keys = ['segments', 'stages', 'curricular_components'];
+      const keys = ['segments', 'stages', 'years', 'curricular_components'];
 
       keys.forEach(key => {
         const list = action.data[key];
@@ -67,6 +67,18 @@ function LearningObjectivesReducer(state = initialState, action) {
         filters: processStages(action.data, state, [
           'segments',
           'stages',
+          'years',
+          'curricular_components',
+        ]),
+      };
+
+    case LearningObjectivesActions.LOADED_YEARS:
+      return {
+        ...state,
+        filters: processStages(action.data, state, [
+          'segments',
+          'stages',
+          'years',
           'curricular_components',
         ]),
       };
@@ -123,6 +135,12 @@ function LearningObjectivesReducer(state = initialState, action) {
       };
 
     case LearningObjectivesActions.TOGGLE_SEGMENTS:
+      return {
+        ...state,
+        filters: state.filters.map(clearSegment(action.filterToRemove)),
+      };
+
+    case LearningObjectivesActions.TOGGLE_STAGES:
       return {
         ...state,
         filters: state.filters.map(clearSegment(action.filterToRemove)),

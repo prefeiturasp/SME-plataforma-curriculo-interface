@@ -13,6 +13,7 @@ import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import SegmentButton from './SegmentButton';
 import StageButton from './StageButton';
+import YearButton from './YearButton';
 import withWidth from 'components/hoc/withWidth';
 import chevronLeft from 'images/chevrons/left.svg';
 import iconCloseBig from 'images/icons/closeBig.svg';
@@ -102,6 +103,12 @@ class LearningObjectives extends Component {
       .map((item, i) => {
         return <StageButton key={i} data={item} />;
       });
+
+      const yearButtons = this.props.filters
+        .filter(item => item.type === 'years')
+        .map((item, i) => {
+          return <YearButton key={i} data={item} />;
+        });
 
     const componentButtons = this.props.filters
       .filter(item => item.type === 'curricular_components')
@@ -194,7 +201,7 @@ class LearningObjectives extends Component {
             <div ref={this.refFilters}>
               <h2 className={styles.objectivesTitle2}>Objetivos</h2>
               <div className="row">
-                <div className="col-md-4 offset-md-2">
+                <div className="col-md-4 offset-md-2 col-sm-12">
                   <div className={styles.pickYear}>
                     <h3>Escolha o Segmento</h3>
                     <div className={styles.buttons}>{segmentButtons}</div>
@@ -202,6 +209,10 @@ class LearningObjectives extends Component {
                   <div className={styles.pickYear}>
                     <h3>Escolha a Etapa</h3>
                     <div className={styles.buttons}>{stageButtons}</div>
+                  </div>
+                  <div className={styles.pickYear}>
+                    <h3>Escolha o ano</h3>
+                    <div className={styles.buttons}>{yearButtons}</div>
                     <p className={styles.warning}>
                       <img src={iconWarning} alt="Observação" />
                       <span>
@@ -211,7 +222,7 @@ class LearningObjectives extends Component {
                     </p>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-sm 12">
                   <div className={styles.pickCurricularComponent}>
                     <h3>Escolha o Componente Curricular</h3>
                     <div className={styles.buttons}>{componentButtons}</div>
