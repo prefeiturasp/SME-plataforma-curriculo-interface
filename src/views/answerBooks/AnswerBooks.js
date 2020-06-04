@@ -60,7 +60,7 @@ class AnswerBooks extends Component {
         })}
       </div>
     );
-    return (sessionStorage.getItem('accessToken') ? <Page>{contents}</Page> : <Page>{contents}</Page>);
+    return (sessionStorage.getItem('accessToken') ? <Page>{contents}</Page> : <Home></Home>);
   }
 };
 export default connect()(AnswerBooks);
