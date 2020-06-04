@@ -28,10 +28,8 @@ class AnswerBooks extends Component {
       .then(data => this.setState({ books: data }))
   }
 
-
-
   render() {
-    const segments = this.state.books.map(book => book.segment).filter(onlyUnique);
+    const segments = this.state.books.map(book => book.segment).filter(onlyUnique).sort();
     const contents = (
       <div className="container">
         <h1 className={styles.title}>Currículo da cidade</h1>
@@ -62,7 +60,7 @@ class AnswerBooks extends Component {
         })}
       </div>
     );
-    return (sessionStorage.getItem('accessToken') ? <Page>{contents}</Page> : <Home></Home>);
+    return (sessionStorage.getItem('accessToken') ? <Page>{contents}</Page> : <Page>{contents}</Page>);
   }
 };
 export default connect()(AnswerBooks);

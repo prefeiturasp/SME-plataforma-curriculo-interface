@@ -5,7 +5,10 @@ import styles from './YearContent.scss'
 import { API_URL } from 'data/constants';
 
 function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
+  if (value == undefined) {
+    return false
+  }
+  return self.indexOf(value) === index;
 }
 
 class YearContent extends Component {
@@ -15,10 +18,11 @@ class YearContent extends Component {
 
   render() {
     const years = this.props.books.map((book) => {
-      if (this.props.stage == book.stage) {
+      if (this.props.stage == book.stage && this.props.segment == book.segment) {
         return book['year']
       }
     }).filter(onlyUnique).sort();
+
     return (
       <div className='container'>
         {years.map((year, index) => {
