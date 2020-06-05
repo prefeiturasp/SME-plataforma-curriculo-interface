@@ -5,6 +5,9 @@ import styles from './StageContent.scss'
 import { API_URL } from 'data/constants';
 
 function onlyUnique(value, index, self) {
+    if (value === undefined) {
+      return false
+    }
     return self.indexOf(value) === index;
 }
 
@@ -14,11 +17,11 @@ class StageContent extends Component {
   }
 
   render() {
-    const stages = this.props.books.map((book) => {
+    const stages = this.props.books.map((book, index) => {
       if (this.props.segment === book.segment) {
         return book.stage;
       }
-    }).filter(onlyUnique);
+    }).filter(onlyUnique).sort();
 
     return(
       <div className="container">
@@ -26,7 +29,7 @@ class StageContent extends Component {
           return(
             <div key={index} >
               <h3 className={styles.stageName}>{stage}</h3>
-              <YearContent stage={stage} books={this.props.books}></YearContent>
+              <YearContent stage={stage} books={this.props.books} segment={this.props.segment}></YearContent>
             </div>
           );
         })}
