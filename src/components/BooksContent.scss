@@ -23,11 +23,11 @@
 }
 
 .componentName {
-  height: 40px;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
+  margin-bottom: 0px;
 }
 
 .name {
@@ -40,8 +40,12 @@
   height: 40px;
 }
 
-label:hover{
+span:hover{
   cursor: pointer !important;
+}
+
+.downloadWrapper{
+  height: 50px;
 }
 
 .file {

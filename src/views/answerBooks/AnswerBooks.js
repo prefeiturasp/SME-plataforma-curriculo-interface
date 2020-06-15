@@ -33,7 +33,6 @@ class AnswerBooks extends Component {
     const contents = (
       <div className="container">
         <h1 className={styles.title}>Currículo da cidade</h1>
-        <br></br>
         <div className="row">
           <div className="col-8 col-offset-4">
             <p className={styles.contentText}>

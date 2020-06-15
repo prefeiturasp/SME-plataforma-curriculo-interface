@@ -71,9 +71,13 @@ class BooksContent extends Component {
                 <p className={styles.name}>{book["name"]}</p>
                 <hr className={styles.line}></hr>
                 <a href={book["book_file"]}>
-                  <div>
-                    <label className={styles.componentName}>{book["curricular_component"]}</label>
-                    <img className={styles.file} alt="" src={downloadIcon}/>
+                  <div className={"row " + styles.downloadWrapper}>
+                    <div className="col-10 pr-0 d-flex justify-content-start">
+                      <span className={"align-self-center " + styles.componentName}>{book["curricular_component"]}</span>
+                    </div>
+                    <div className="col-2 pl-0 d-flex justify-content-end">
+                      <img className={styles.file} alt="" src={downloadIcon}/>
+                    </div>
                   </div>
                 </a>
               </div>
