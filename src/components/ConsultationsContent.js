@@ -2,11 +2,15 @@ import chevronRight from 'images/chevrons/right.svg';
 import chevronLeft from 'images/chevrons/left.svg';
 import downloadIcon from 'images/icons/download.svg';
 import ItemsCarousel from 'react-items-carousel';
-import styles from './BooksContent.scss';
+import styles from './ConsultationsContent.scss';
+import { NavLink } from 'react-router-dom';
+import createModalLink from 'utils/createModalLink';
 import { connect } from 'react-redux';
 import React, {Component} from 'react';
 import { API_URL } from 'data/constants';
 import {isMobile} from 'react-device-detect';
+import iconMinus from 'images/icons/minus.svg';
+import iconPlus from 'images/icons/plus1.svg';
 
 function checkDevice() {
   return isMobile ? (true) : (false);
@@ -20,7 +24,7 @@ function totalCards() {
   }
 }
 
-class BooksContent extends Component {
+class ConsutationsContent extends Component {
   constructor(props) {
     super(props);
 
@@ -31,12 +35,14 @@ class BooksContent extends Component {
   }
 
   render() {
-    const books = this.props.books.filter((book) => {
-      if (this.props.year == book.year) {
-        return book
+
+    const linkModal = createModalLink(`/consultas-publicas/1`)
+    const consultations = this.props.consultations.filter((consultation) => {
+      if (this.props.segment == consultation.segment) {
+        return consultation
       }
     })
-    if(books.length) {
+    if(consultations.length) {
       return (
         <div>
           <ItemsCarousel
@@ -64,22 +70,17 @@ class BooksContent extends Component {
             </button>
           }
           >
-          {books.map((book, index) => {
+          {consultations.map((consultation, index) => {
             return(
-              <div className={styles.bookWraper} key={index.toString()}>
-                <img className={styles.bookImage} alt="" src={book["cover_image"]}></img>
-                <p className={styles.name}>{book["name"]}</p>
-                <hr className={styles.line}></hr>
-                <a href={book["book_file"]}>
-                  <div className={"row " + styles.downloadWrapper}>
-                    <div className="col-10 pr-0 d-flex justify-content-start">
-                      <span className={"align-self-center " + styles.componentName}>{book["curricular_component"]}</span>
-                    </div>
-                    <div className="col-2 pl-0 d-flex justify-content-end">
-                      <img className={styles.file} alt="" src={downloadIcon}/>
-                    </div>
+              <div className={styles.consultationsWraper} key={index.toString()}>
+                <img className={styles.consultationsImage} alt="" src={consultation["cover_image"]}></img>
+                <p className={styles.name}>{consultation["title"]}</p>
+                <hr className={styles.carouselDivider}/>
+                <NavLink to={linkModal}>
+                  <div className={styles.modalButton}>
+                    <img src={iconPlus}></img>
                   </div>
-                </a>
+                </NavLink>
               </div>
             );
           })}
@@ -94,4 +95,4 @@ class BooksContent extends Component {
     }
   };
 };
-export default connect()(BooksContent);
+export default connect()(ConsutationsContent);

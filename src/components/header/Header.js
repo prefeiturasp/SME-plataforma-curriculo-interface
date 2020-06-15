@@ -73,6 +73,12 @@ class Header extends Component {
       );
     });
 
+    const ConsultationLink = isLogged() ? (
+      <NavLink to='/consultas-publicas' onClick={this.onClickedClose}>
+        Consultas Públicas
+      </NavLink>
+    ) : null;
+
     const answerBooksLink = isLogged() ? (
       <NavLink to='/cadernos-respostas' onClick={this.onClickedClose}>
         Cadernos dos Professores
@@ -126,6 +132,7 @@ class Header extends Component {
           <nav className={styles.menu}>
             {links}
             {answerBooksLink}
+            {ConsultationLink}
             {avatar || btnLogin}
           </nav>
           <div className={styles.mobile}>

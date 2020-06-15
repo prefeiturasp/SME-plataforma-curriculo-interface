@@ -12,11 +12,14 @@
   height: 400px;
 }
 
-.bookWraper{
-  padding: 5px 10px
+.consultationsWraper {
+  padding: 0px;
+  border: solid 1px #e0e0e0;
+  margin-bottom: 10%;
+  margin-top: 10%;
 }
 
-.bookImage {
+.consultationsImage {
   width: 100%;
   height: 200px;
   margin-bottom: 5px
@@ -31,13 +34,13 @@
 }
 
 .name {
+  text-align: center;
   font-style: normal;
   font-weight: normal;
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 18px;
   line-height: 18px;
   color: #444444;
-  height: 40px;
 }
 
 span:hover{
@@ -55,4 +58,12 @@ span:hover{
 
 .line {
   margin-bottom: 10px
+}
+
+.modalButton {
+  text-align: center;
+}
+
+.carouselDivider {
+  margin-bottom: 5px;
 }
