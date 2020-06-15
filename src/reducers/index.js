@@ -7,6 +7,8 @@ import ChallengesReducer from './ChallengesReducer';
 import CollectionReducer from './CollectionReducer';
 import CollectionsReducer from './CollectionsReducer';
 import ConfirmReducer from './ConfirmReducer';
+import ConsultationsReducer from './ConsultationsReducer';
+import ConsultationReducer from './ConsultationReducer';
 import FiltersReducer from './FiltersReducer';
 import HomeReducer from './HomeReducer';
 import KnowledgeMatrixReducer from './KnowledgeMatrixReducer';
@@ -29,6 +31,8 @@ export default combineReducers({
   CollectionReducer,
   CollectionsReducer,
   ConfirmReducer,
+  ConsultationsReducer,
+  ConsultationReducer,
   FiltersReducer,
   HomeReducer,
   KnowledgeMatrixReducer,

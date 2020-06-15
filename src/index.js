@@ -24,6 +24,8 @@ import Challenge from 'views/challenge/Challenge';
 import Classrooms from 'views/classrooms/Classrooms';
 import Collection from 'views/collection/Collection';
 import Confirm from 'components/Confirm';
+import Consultations from 'views/consultations/Consultations';
+import ConsultationDetail from 'views/consultations/Detail';
 import CreateCollection from 'views/collection/create/CreateCollection';
 import Curriculum from 'views/curriculum/Curriculum';
 import EditCollection from 'views/collection/edit/EditCollection';
@@ -111,6 +113,7 @@ class ModalSwitch extends Component {
           <Route path= "/cadernos-respostas" component={AnswerBooks}/>
           <Route exact path="/" component={Home} />
           <Route path="/sequencias" component={Sequences} />
+          <Route path="/consultas-publicas" component={Consultations} />
           <Route exact path="/sequencias/ods/:ods" component={Sequences} />
           <Route
             exact
@@ -144,6 +147,12 @@ class ModalSwitch extends Component {
           path="/ods/:id"
           parentPath="/ods"
           component={SustainableDevGoalDetail}
+          {...fullModalProps}
+        />
+        <ModalRoute
+          path="/consultas-publicas/:id"
+          parentPath="/consultas-publicas"
+          component={ConsultationDetail}
           {...fullModalProps}
         />
         <ModalRoute
