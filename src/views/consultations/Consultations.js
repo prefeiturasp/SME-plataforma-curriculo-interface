@@ -26,12 +26,6 @@ class Consultations extends Component {
 
     let segments = data.map(consultation => consultation.segment).filter(onlyUnique).sort()
 
-    let contents = (
-      <div className="col-4">
-        <h1>LACOSTE</h1>
-      </div>
-    );
-
     return (
       <Page>
         <section>
