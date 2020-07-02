@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from 'index';
 import ConsultationActions from 'actions/ConsultationActions';
+import ConsultationLink from 'components/ConsultationLink';
 import FullModal from 'components/layout/FullModal';
 import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
 import styles from './Detail.scss';
@@ -54,9 +55,9 @@ class Detail extends Component {
                   );
                 })}
                 <h2>Responda os formulários para ajudar na pesquisa </h2>
-                {data.links.map((l, index) => {
+                {data.survey_forms.map((survey_form, index) => {
                   return(
-                    <a key={index.toString()} className={styles.button} href={l.link}> {l.title}</a>
+                    <a target='_blank' key={index.toString()} className={styles.button} href='/'>{survey_form.title}</a>
                   );
                 })}
               </div>
