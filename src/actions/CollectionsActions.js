@@ -2,7 +2,7 @@ import AlertActions from './AlertActions';
 import Api from 'data/Api';
 
 function getTeacherId() {
-  return sessionStorage.getItem('teacherId');
+  return localStorage.getItem('teacherId');
 }
 
 const CollectionsActions = {
