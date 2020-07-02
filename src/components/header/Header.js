@@ -57,7 +57,7 @@ class Header extends Component {
         label: 'Tecnologias para Aprendizagem',
       },
       {
-        to: '/curriculo',
+        to: '/curriculo-ensino-fundamental',
         label: 'Entenda o Currículo',
       },
     ];

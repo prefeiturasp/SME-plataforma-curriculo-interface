@@ -15,7 +15,7 @@ const LoginActions = {
 
       return Api.post(dispatch, `/api/login`, data)
         .then(response => {
-          sessionStorage.setItem(
+          localStorage.setItem(
             'accessToken',
             response.headers.get('Authorization'),
           );
@@ -31,7 +31,7 @@ const LoginActions = {
   logout() {
     return dispatch => {
       Api.get(dispatch, '/api/logout');
-      sessionStorage.removeItem('accessToken');
+      localStorage.removeItem('accessToken');
       dispatch({ type: LoginActions.LOGGED_OUT });
 
       if (history.location.pathname.match(/perfil|colecao/)) {

@@ -1,4 +1,4 @@
 export default function isLogged() {
-  const user = sessionStorage.getItem('accessToken');
+  const user = localStorage.getItem('accessToken');
   return !!user;
 }

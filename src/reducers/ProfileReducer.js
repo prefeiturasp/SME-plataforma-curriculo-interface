@@ -33,7 +33,7 @@ function ProfileReducer(state = initialState, action) {
 
     case ProfileActions.LOADED:
       const { teacher } = action.data;
-      sessionStorage.setItem('teacherId', teacher.id);
+      localStorage.setItem('teacherId', teacher.id);
 
       return {
         ...state,

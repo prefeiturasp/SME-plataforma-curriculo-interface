@@ -35,7 +35,7 @@ const ProfileActions = {
     );
   },
   loadClassrooms() {
-    const teacherId = sessionStorage.getItem('teacherId');
+    const teacherId = localStorage.getItem('teacherId');
     return Api.simpleGet(
       `/api/professores/${teacherId}`,
       ProfileActions.LOAD_CLASSROOMS,

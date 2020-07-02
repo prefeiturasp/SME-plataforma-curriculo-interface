@@ -61,11 +61,11 @@ class Activity extends Component {
       ? getContentBlocks(data.content_blocks)
       : null;
 
-    const linkPrev = `/atividade/${sequence.slug}/${data.last_activity}`;
-    const linkNext = `/atividade/${sequence.slug}/${data.next_activity}`;
+    const linkPrev = `/atividade/${sequence.slug}/${data.last_object}`;
+    const linkNext = `/atividade/${sequence.slug}/${data.next_object}`;
     const linkSequence = `/sequencia/${sequence.slug}`;
 
-    const arrowPrev = data.last_activity ? (
+    const arrowPrev = data.last_object ? (
       <NavLink className={styles1.prev} to={linkPrev}>
         <img src={arrowLeft} alt="Seta" />
         Atividade {data.sequence - 1}
@@ -74,7 +74,8 @@ class Activity extends Component {
       <span />
     );
 
-    const arrowNext = data.next_activity ? (
+    console.log(data);
+    const arrowNext = data.next_object ? (
       <NavLink className={styles1.next} to={linkNext}>
         Atividade {data.sequence + 1}
         <img src={arrowRight} alt="Seta" />
