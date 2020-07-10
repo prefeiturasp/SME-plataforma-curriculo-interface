@@ -28,6 +28,7 @@ import Consultations from 'views/consultations/Consultations';
 import ConsultationDetail from 'views/consultations/Detail';
 import CreateCollection from 'views/collection/create/CreateCollection';
 import Curriculum from 'views/curriculum/Curriculum';
+import SurveyForm from 'views/surveyForm/SurveyForm';
 import EditCollection from 'views/collection/edit/EditCollection';
 import EditProfile from 'views/profile/edit/EditProfile';
 import Home from 'views/home/Home';
@@ -130,6 +131,8 @@ class ModalSwitch extends Component {
           <Route exact path="/atividade/:slug1/:slug2" component={Activity} key={1} />
           <Route exact path="/imprimir/atividade/:slug1/:slug2" component={Activity} key={2} />
           <Route exact path="/curriculo-ensino-fundamental" component={Curriculum} />
+          <Route exact path="/curriculo-ensino-medio" component={Curriculum} />
+          <Route path="/pesquisas/:id/criar-resposta" component={SurveyForm} key={1} />
           <Route path="/ods" component={SustainableDevGoals} />
           <Route path="/matriz-de-saberes" component={KnowledgeMatrix} />
           <Route

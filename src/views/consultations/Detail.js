@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { history } from 'index';
 import ConsultationActions from 'actions/ConsultationActions';
-import ConsultationLink from 'components/ConsultationLink';
+import TeacherSurveyFormsActions from 'actions/TeacherSurveyFormsActions';
 import FullModal from 'components/layout/FullModal';
 import iconCloseBigWhite from 'images/icons/closeBigWhite.svg';
 import styles from './Detail.scss';
+import { API_URL } from 'data/constants';
 
 class Detail extends Component {
+  state = { surveyFormsStatus: [] };
+
   onClickedClose = () => {
     history.goBack();
   };
 
   componentDidMount() {
     this.props.load(this.props.match.params.id);
+    this.props.loadFinishedFormIds();
   }
 
   render() {
     const data = this.props.data;
+    const answersFinished = this.props.answersFinished ? this.props.answersFinished : [];
 
     if (!data) {
       return <span />;
@@ -57,7 +61,15 @@ class Detail extends Component {
                 <h2>Responda os formulários para ajudar na pesquisa </h2>
                 {data.survey_forms.map((survey_form, index) => {
                   return(
-                    <a target='_blank' key={index.toString()} className={styles.button} href='/'>{survey_form.title}</a>
+                    <button
+                      target='_blank'
+                      key={index.toString()}
+                      className={styles.button}
+                      onClick={() => window.open(`${API_URL}/pesquisas/${survey_form['id']}/criar-resposta`)}
+                      disabled={answersFinished.includes(survey_form.id)}
+                    >
+                      {survey_form.title}
+                    </button>
                   );
                 })}
               </div>
@@ -75,12 +87,15 @@ class Detail extends Component {
 
 Detail.propTypes = {
   data: PropTypes.object,
+  answersFinished: PropTypes.array,
   load: PropTypes.func.isRequired,
+  loadFinishedFormIds: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     data: state.ConsultationReducer.currItem,
+    answersFinished: state.TeacherSurveyFormsReducer.answersFinished,
   };
 };
 
@@ -88,6 +103,9 @@ const mapDispatchToProps = dispatch => {
   return {
     load: id => {
       dispatch(ConsultationActions.load(id));
+    },
+    loadFinishedFormIds: () => {
+      dispatch(TeacherSurveyFormsActions.loadFinishedFormIds());
     },
   };
 };

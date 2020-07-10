@@ -9,6 +9,8 @@ import CollectionsReducer from './CollectionsReducer';
 import ConfirmReducer from './ConfirmReducer';
 import ConsultationsReducer from './ConsultationsReducer';
 import ConsultationReducer from './ConsultationReducer';
+import SurveyFormReducer from './SurveyFormReducer';
+import TeacherSurveyFormsReducer from './TeacherSurveyFormsReducer';
 import FiltersReducer from './FiltersReducer';
 import HomeReducer from './HomeReducer';
 import KnowledgeMatrixReducer from './KnowledgeMatrixReducer';
@@ -41,8 +43,10 @@ export default combineReducers({
   ProfileReducer,
   RatingReducer,
   RoadmapReducer,
+  TeacherSurveyFormsReducer,
   SequenceReducer,
   SequencesReducer,
   SnackbarReducer,
+  SurveyFormReducer,
   SustainableDevGoalsReducer,
 });

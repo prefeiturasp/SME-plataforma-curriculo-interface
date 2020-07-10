@@ -1,15 +1,12 @@
 import chevronRight from 'images/chevrons/right.svg';
 import chevronLeft from 'images/chevrons/left.svg';
-import downloadIcon from 'images/icons/download.svg';
 import ItemsCarousel from 'react-items-carousel';
 import styles from './ConsultationsContent.scss';
 import { NavLink } from 'react-router-dom';
 import createModalLink from 'utils/createModalLink';
 import { connect } from 'react-redux';
 import React, {Component} from 'react';
-import { API_URL } from 'data/constants';
 import {isMobile} from 'react-device-detect';
-import iconMinus from 'images/icons/minus.svg';
 import iconPlus from 'images/icons/plus1.svg';
 
 function checkDevice() {
@@ -34,9 +31,7 @@ class ConsutationsContent extends Component {
     };
   }
 
-  render() {
-
-    const linkModal = createModalLink(`/consultas-publicas/1`)
+  render() {       
     const consultations = this.props.consultations.filter((consultation) => {
       if (this.props.segment == consultation.segment) {
         return consultation
@@ -71,16 +66,20 @@ class ConsutationsContent extends Component {
           }
           >
           {consultations.map((consultation, index) => {
+            let linkModal = createModalLink(`/consultas-publicas/${consultation.id}`);
+            
             return(
               <div className={styles.consultationsWraper} key={index.toString()}>
-                <img className={styles.consultationsImage} alt="" src={consultation["cover_image"]}></img>
-                <p className={styles.name}>{consultation["title"]}</p>
-                <hr className={styles.carouselDivider}/>
-                <NavLink to={linkModal}>
-                  <div className={styles.modalButton}>
-                    <img src={iconPlus}></img>
-                  </div>
-                </NavLink>
+                <div>
+                  <img className={styles.consultationsImage} alt="" src={consultation["cover_image"]}></img>
+                  <p className={styles.name}>{consultation["title"]}</p>
+                  <hr className={styles.carouselDivider}/>
+                  <NavLink to={linkModal}>
+                    <div className={styles.modalButton}>
+                      <img src={iconPlus}></img>
+                    </div>
+                  </NavLink>
+                </div>
               </div>
             );
           })}

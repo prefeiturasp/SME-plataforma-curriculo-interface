@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConsultationsActions from 'actions/ConsultationsActions';
 import ConsultationsContent from 'components/ConsultationsContent';
-import Loading from 'components/loading/Loading';
 import Page from 'components/layout/Page';
 import styles from './Consultations.scss';
 

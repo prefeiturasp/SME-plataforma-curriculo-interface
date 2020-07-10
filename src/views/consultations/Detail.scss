@@ -60,6 +60,11 @@
   composes: btn from global;
   display: inline-block;
   margin: 2.5rem;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
 .close {

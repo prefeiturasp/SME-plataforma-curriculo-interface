@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Avatar from 'views/profile/Avatar';
 import BodyActions from 'actions/BodyActions';
 import Fade from '@material-ui/core/Fade';
+import CurriculoPopover from 'components/popovers/CurriculoPopover';
 import LoginPopover from 'components/popovers/LoginPopover';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
@@ -56,10 +57,6 @@ class Header extends Component {
         to: '/tecnologias-para-aprendizagem',
         label: 'Tecnologias para Aprendizagem',
       },
-      {
-        to: '/curriculo-ensino-fundamental',
-        label: 'Entenda o Currículo',
-      },
     ];
 
     const { anchor } = this.state;
@@ -86,21 +83,27 @@ class Header extends Component {
     ) : null;
 
     const avatar = isLogged() ? (
-      <button className={styles.avatar} onMouseEnter={this.onMouseEnter}>
+      <button className={styles.avatar} id='avatar' onMouseEnter={this.onMouseEnter}>
         <Avatar size={35} />
         <img src={chevronDown} alt="Perfil" />
       </button>
     ) : null;
 
-    const btnLogin = <button onMouseEnter={this.onMouseEnter}>Login</button>;
+    const btnLogin = <button id='login' onMouseEnter={this.onMouseEnter}>Login</button>;
+
+    const btnCurriculos = <button id='curriculo' onMouseEnter={this.onMouseEnter}>Entenda o currículo</button>;
 
     let popoverContents = null;
     if (hasPopover) {
-      popoverContents = isLogged() ? (
-        <ProfilePopover onMouseLeave={this.onMouseLeave} />
-      ) : (
-        <LoginPopover onMouseLeave={this.onMouseLeave} />
-      );
+      if (anchor.id === "login" || anchor.id ==="avatar") {
+        popoverContents = isLogged() ? (
+          <ProfilePopover onMouseLeave={this.onMouseLeave} />
+        ) : (
+          <LoginPopover onMouseLeave={this.onMouseLeave} />
+        );
+      } else {
+        popoverContents = <CurriculoPopover onMouseLeave={this.onMouseLeave} />
+      }
     }
 
     const popover = (
@@ -133,6 +136,7 @@ class Header extends Component {
             {links}
             {answerBooksLink}
             {ConsultationLink}
+            {btnCurriculos}
             {avatar || btnLogin}
           </nav>
           <div className={styles.mobile}>
