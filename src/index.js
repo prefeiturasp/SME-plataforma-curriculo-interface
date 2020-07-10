@@ -14,8 +14,7 @@ import { ModalContainer, ModalRoute } from 'react-router-modal';
 import { Provider } from 'react-redux';
 import { Route, Router, Switch } from 'react-router';
 import { applyMiddleware, createStore } from 'redux';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AnswerBooks from 'views/answerBooks/AnswerBooks';
