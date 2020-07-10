@@ -112,10 +112,14 @@ class SurveyForm extends Component {
 
   formSubmit(event) {
     event.preventDefault();
-    if (this.validationQuestions() && this.validationFields()){
-      this.props.create(this.state.surveyFormAnswer);
+    if (this.state.surveyFormAnswer.finished) {
+      if (this.validationQuestions() && this.validationFields()){
+        this.props.create(this.state.surveyFormAnswer);
+      } else {
+        this.props.alertError('verifique os campos obrigatórios.');
+      }
     } else {
-      this.props.alertError('verifique os campos obrigatórios.');
+      this.props.create(this.state.surveyFormAnswer);
     }
   }
 
