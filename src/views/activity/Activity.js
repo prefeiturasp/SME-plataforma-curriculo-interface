@@ -74,7 +74,6 @@ class Activity extends Component {
       <span />
     );
 
-    console.log(data);
     const arrowNext = data.next_object ? (
       <NavLink className={styles1.next} to={linkNext}>
         Atividade {data.sequence + 1}
