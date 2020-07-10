@@ -37,7 +37,7 @@ class SurveyForm extends Component {
         surveyFormAnswer: nextProps.surveyFormAnswer,
       });
     }
-    
+
     if (nextProps.contentBlocks.length > 0){
       this.setState({
         errors: {
@@ -149,32 +149,32 @@ class SurveyForm extends Component {
 
 
   commentChange(e, index) {
-    let newAnsewers = JSON.parse(JSON.stringify(this.state.surveyFormAnswer.answers_attributes));
-    newAnsewers[index].comment = e.target.value;
+    let newAnswers = JSON.parse(JSON.stringify(this.state.surveyFormAnswer.answers_attributes));
+    newAnswers[index].comment = e.target.value;
 
-    let newErrosQuestion = JSON.parse(JSON.stringify(this.state.errors.question));
-    newErrosQuestion[index].comment = this.props.contentBlocks[index].content.required_comment === "true" && !e.target.value ? true : false;
+    let newErrorsQuestion = JSON.parse(JSON.stringify(this.state.errors.question));
+    newErrorsQuestion[index].comment = this.props.contentBlocks[index].content.required_comment === "true" && !e.target.value ? true : false;
 
     this.setState({
       surveyFormAnswer: {
         ...this.state.surveyFormAnswer,
-        answers_attributes: newAnsewers
+        answers_attributes: newAnswers
       },
       errors: {
         ...this.state.errors,
-        question: newErrosQuestion
+        question: newErrorsQuestion
       }
     });
   }
 
   onStarClick(nextValue, index) {
-    let newAnsewers = JSON.parse(JSON.stringify(this.state.surveyFormAnswer.answers_attributes));
-    newAnsewers[index].rating = nextValue;
+    let newAnswers = JSON.parse(JSON.stringify(this.state.surveyFormAnswer.answers_attributes));
+    newAnswers[index].rating = nextValue;
 
     this.setState({
       surveyFormAnswer: {
         ...this.state.surveyFormAnswer,
-        answers_attributes: newAnsewers
+        answers_attributes: newAnswers
       }
     });
   }
@@ -256,11 +256,11 @@ class SurveyForm extends Component {
                     {contentBlock.content.have_comment === "true" && (
                       <div>
                         <h3>Comentário:</h3>
-                        
+
                         <textarea onChange={(e) => this.commentChange(e, index)} defaultValue={this.state.surveyFormAnswer.answers_attributes[index].comment}></textarea>
                       </div>
                     )}
-                    
+
                     {this.state.errors.question.length > 0 && this.state.errors.question[index].comment && (
                       <div><p className={styles.errorMessage}>Este campo é obrigatório.</p></div>
                     )}
@@ -274,7 +274,7 @@ class SurveyForm extends Component {
                   </div>
                 );
               })}
-              
+
               <div className={"col-12 " + styles.finish}>
                 <h3 className="mx-auto">
                   Deseja finalizar esse formulário?

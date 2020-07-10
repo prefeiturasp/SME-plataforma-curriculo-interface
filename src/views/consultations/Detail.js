@@ -25,8 +25,6 @@ class Detail extends Component {
     const data = this.props.data;
     const answersFinished = this.props.answersFinished ? this.props.answersFinished : [];
 
-    console.log(answersFinished);
-
     if (!data) {
       return <span />;
     }
