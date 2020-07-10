@@ -4,6 +4,7 @@ import ModuleGallery from 'views/modules/ModuleGallery';
 import ModuleLongText from 'views/modules/ModuleLongText';
 import ModuleQuestion from 'views/modules/ModuleQuestion';
 import ModuleStudent from 'views/modules/ModuleStudent';
+import ModuleSurveyQuestion from 'views/modules/ModuleSurveyQuestion';
 import ModuleTextWithTables from 'views/modules/ModuleTextWithTables';
 import ModuleTeacher from 'views/modules/ModuleTeacher';
 import convertQuillToHtml from 'utils/convertQuillToHtml';
@@ -15,6 +16,19 @@ export default function getContentBlocks(list) {
         return (
           <ModuleTeacher
             key={i}
+            text={convertQuillToHtml(block.content.body)}
+          />
+        );
+
+      case 'survey_question':
+        return (
+          <ModuleSurveyQuestion
+            key={i}
+            haveComment={block.content.have_comment}
+            requiredComment={block.content.required_comment}
+            haveRating={block.content.have_rating}
+            requiredRating={block.content.required_rating}
+            sequence={block.content.sequence}
             text={convertQuillToHtml(block.content.body)}
           />
         );
