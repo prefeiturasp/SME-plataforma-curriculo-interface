@@ -56,3 +56,24 @@
   margin-right: 2%;
   margin-left: 2%;
 }
+
+.globalSlider {
+  width: 50%;
+  margin: 50px 0 40px;
+}
+
+.globalComment {
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  textarea {
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+
+    &:focus {
+      border-color: #000;
+    }
+  }
+}

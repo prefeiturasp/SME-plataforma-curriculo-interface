@@ -6,7 +6,7 @@ import SurveyFormActions from 'actions/SurveyFormActions';
 import TeacherSurveyFormsActions from 'actions/TeacherSurveyFormsActions';
 import styles from './SurveyForm.scss';
 import getContentBlocks from 'utils/getContentBlocks';
-import StarRatingComponent from 'react-star-rating-component';
+import Slider from '@material-ui/core/Slider';
 
 class SurveyForm extends Component {
 
@@ -91,7 +91,7 @@ class SurveyForm extends Component {
       }
     });
 
-    return errorsQuestion.filter(item => !item.rating || !item.comment).length ? true : false;
+    return errorsQuestion.filter(item => item.rating || item.comment).length ? false : true;
   }
 
   validationFields() {
@@ -112,12 +112,14 @@ class SurveyForm extends Component {
 
   formSubmit(event) {
     event.preventDefault();
-
-    if (this.validationQuestions() && this.validationFields()){
-      console.log(">>> IS VALIDATE");
-      this.props.create(this.state.surveyFormAnswer);
+    if (this.state.surveyFormAnswer.finished) {
+      if (this.validationQuestions() && this.validationFields()){
+        this.props.create(this.state.surveyFormAnswer);
+      } else {
+        this.props.alertError('verifique os campos obrigatórios.');
+      }
     } else {
-      console.log(">>> ERROR");
+      this.props.create(this.state.surveyFormAnswer);
     }
   }
 
@@ -239,12 +241,19 @@ class SurveyForm extends Component {
                       <div>
                         <h3>Avaliação:</h3>
                         {Object.keys(this.props.surveyFormAnswer).length > 0 && (
-                          <StarRatingComponent
-                            name="rate1"
-                            starCount={10}
-                            value={ this.state.surveyFormAnswer.answers_attributes[index].rating }
-                            onStarClick={(nextValue) => this.onStarClick(nextValue, index)}
+                          <div className={styles.globalSlider}>
+                            <Slider
+                              value={this.state.surveyFormAnswer.answers_attributes[index].rating}
+                              aria-labelledby="discrete-slider"
+                              valueLabelDisplay="auto"
+                              step={1}
+                              valueLabelDisplay="on"
+                              marks
+                              min={0}
+                              max={10}
+                              onChangeCommitted={(event, value) => this.onStarClick(value, index)}
                             />
+                          </div>
                         )}
 
                         {this.state.errors.question.length > 0 && this.state.errors.question[index].rating && (
@@ -254,7 +263,7 @@ class SurveyForm extends Component {
                     )}
 
                     {contentBlock.content.have_comment === "true" && (
-                      <div>
+                      <div className={styles.globalComment}>
                         <h3>Comentário:</h3>
 
                         <textarea onChange={(e) => this.commentChange(e, index)} defaultValue={this.state.surveyFormAnswer.answers_attributes[index].comment}></textarea>
@@ -311,6 +320,7 @@ SurveyForm.propTypes = {
   load: PropTypes.func.isRequired,
   new: PropTypes.func.isRequired,
   create: PropTypes.func.isRequired,
+  alertError: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -332,6 +342,9 @@ const mapDispatchToProps = dispatch => {
     },
     create: surveyFormAnswer => {
       dispatch(TeacherSurveyFormsActions.create(surveyFormAnswer));
+    },
+    alertError: error => {
+      dispatch(TeacherSurveyFormsActions.alertError(error));
     },
   };
 };

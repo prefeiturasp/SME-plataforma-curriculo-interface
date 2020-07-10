@@ -48,7 +48,12 @@ const TeacherSurveyFormsActions = {
           dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
         );
     };
-  }
+  },
+  alertError(error) {
+    return dispatch => {
+      return dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+    };
+  },
 };
 
 export default TeacherSurveyFormsActions;
