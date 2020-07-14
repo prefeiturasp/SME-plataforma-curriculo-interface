@@ -111,7 +111,6 @@ class Login extends Component {
               error={isInvalidUsername}
               fullWidth={true}
               helperText={messageUsername}
-              inputRef={input => (input ? input.focus() : null)}
               label="Nome do usuário"
               onChange={this.onChangedUsername}
               onKeyPress={this.onKeyPressUsername}
