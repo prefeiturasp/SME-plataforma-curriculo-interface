@@ -31,7 +31,8 @@ class ConsutationsContent extends Component {
     };
   }
 
-  render() {       
+  render() {
+    const dateNow = Date.now();
     const consultations = this.props.consultations.filter((consultation) => {
       if (this.props.segment == consultation.segment) {
         return consultation
@@ -67,21 +68,22 @@ class ConsutationsContent extends Component {
           >
           {consultations.map((consultation, index) => {
             let linkModal = createModalLink(`/consultas-publicas/${consultation.id}`);
-            
-            return(
-              <div className={styles.consultationsWraper} key={index.toString()}>
-                <div>
-                  <img className={styles.consultationsImage} alt="" src={consultation["cover_image"]}></img>
-                  <p className={styles.name}>{consultation["title"]}</p>
-                  <hr className={styles.carouselDivider}/>
-                  <NavLink to={linkModal}>
-                    <div className={styles.modalButton}>
-                      <img src={iconPlus}></img>
-                    </div>
-                  </NavLink>
+            if (consultation.final_date > dateNow) {
+              return(
+                <div className={styles.consultationsWraper} key={index.toString()}>
+                  <div>
+                    <img className={styles.consultationsImage} alt="" src={consultation["cover_image"]}></img>
+                    <p className={styles.name}>{consultation["title"]}</p>
+                    <hr className={styles.carouselDivider}/>
+                    <NavLink to={linkModal}>
+                      <div className={styles.modalButton}>
+                        <img src={iconPlus}></img>
+                      </div>
+                    </NavLink>
+                  </div>
                 </div>
-              </div>
-            );
+              );
+            }
           })}
           </ItemsCarousel>
         </div>
