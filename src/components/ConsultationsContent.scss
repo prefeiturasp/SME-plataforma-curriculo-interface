@@ -16,7 +16,7 @@
   padding: 0px;
   height: 100%;
   padding: 10px 0;
-  
+
   > div {
     border: solid 1px #e0e0e0;
     height: 100%;
@@ -65,6 +65,13 @@ span:hover{
 
 .line {
   margin-bottom: 10px
+}
+
+.button {
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
 }
 
 .modalButton {
