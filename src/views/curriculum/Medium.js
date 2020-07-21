@@ -89,7 +89,7 @@ class Medium extends Component {
 							<Collapse in={this.state.schools}>
 								<br></br><br></br>
 								<div>
-									<img src={schoolsImage}></img>
+									<img className={styles.image} src={schoolsImage}></img>
 								</div>
 								<br></br><br></br>
 								<p className={styles.doubleLineHeight}>
@@ -679,6 +679,8 @@ class Medium extends Component {
             </div>
           </div>
         </header>
+				<br></br>
+				<br></br>
         <hr />
         <div className={styles.slogan}>
           <div className="row">
