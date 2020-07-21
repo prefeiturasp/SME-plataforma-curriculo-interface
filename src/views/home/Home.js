@@ -114,9 +114,17 @@ class Home extends Component {
                 </NavLink>
               </li>
             </ul>
-            <NavLink to="/curriculo" className={styles.button}>
-              Quero saber mais sobre o currículo
-            </NavLink>
+            <div>
+              <NavLink to="/curriculo-ensino-fundamental" className={styles.button}>
+                Quero saber mais sobre o currículo do ensino fundamental
+              </NavLink>
+            </div>
+            <br></br><br></br>
+            <div>
+              <NavLink to="/curriculo-ensino-medio" className={styles.button}>
+                Quero saber mais sobre o currículo do ensino médio
+              </NavLink>
+            </div>
           </div>
         </section>
       </Page>
