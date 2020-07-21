@@ -4,9 +4,9 @@ import Page from 'components/layout/Page';
 import iconKnowledgeMatrix from 'images/illustrations/knowledgeMatrix.svg';
 import iconLearningObjectives from 'images/illustrations/learningObjectives.svg';
 import iconSustainableDevGoals from 'images/illustrations/sustainableDevGoals.svg';
-import styles from './Curriculum.scss';
+import styles from './Basic.scss';
 
-class Curriculum extends Component {
+class Basic extends Component {
   render() {
     return (
       <Page>
@@ -106,4 +106,4 @@ class Curriculum extends Component {
   }
 }
 
-export default Curriculum;
+export default Basic;
