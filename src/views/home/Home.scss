@@ -118,6 +118,7 @@
 .button {
   composes: btn from global;
   display: inline-block;
+  width: 55%;
 }
 
 @media only screen and (max-width: 768px) {
