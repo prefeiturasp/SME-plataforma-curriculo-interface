@@ -59,7 +59,7 @@
 .button {
   composes: btn from global;
   display: inline-block;
-  margin: 2.5rem;
+  margin: 0.5rem;
 
   &:disabled {
     opacity: 0.4;

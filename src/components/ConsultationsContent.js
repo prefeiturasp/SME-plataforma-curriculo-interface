@@ -68,7 +68,7 @@ class ConsutationsContent extends Component {
           >
           {consultations.map((consultation, index) => {
             let linkModal = createModalLink(`/consultas-publicas/${consultation.id}`);
-            if (consultation.final_date > dateNow) {
+            if (consultation.final_date > dateNow && consultation.initial_date < dateNow) {
               return(
                 <div className={styles.consultationsWraper} key={index.toString()}>
                   <div>
