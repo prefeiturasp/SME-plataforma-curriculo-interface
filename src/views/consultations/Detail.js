@@ -52,24 +52,25 @@ class Detail extends Component {
                 <h2>Esta Consulta Pública estará disponível entre as seguintes datas:</h2>
                 <h3>{data['initial_date']} ~ {data['final_date']}</h3>
                 <img className={styles.cover_image} src={data.cover_image}></img>
-                <h2>Acesse os documentos referentes a essa Consulta Pública</h2>
-                  {data.documents.map((d, index) => {
+                {(data.documents.length > 0) ? <h2>Acesse os documentos abaixo referentes a Consulta Pública</h2> : <h2></h2> }
+                {data.documents.map((d, index) => {
                   return(
                     <a target='_blank' key={index.toString()} className={styles.button} href={d}>Documento {(index + 1).toString()}</a>
                   );
                 })}
-                <h2>Responda os formulários para ajudar na pesquisa </h2>
+                {(data.survey_forms.length > 0) ? <h2>Responda os formulários abaixo</h2> : <h2></h2> }
                 {data.survey_forms.map((survey_form, index) => {
                   return(
-                    <button
-                      target='_blank'
-                      key={index.toString()}
-                      className={styles.button}
-                      onClick={() => window.open(`${API_URL}/pesquisas/${survey_form['id']}/criar-resposta`)}
-                      disabled={answersFinished.includes(survey_form.id)}
-                    >
-                      {survey_form.title}
-                    </button>
+                    <div key={index.toString()}>
+                      <button
+                        target='_blank'
+                        className={styles.button}
+                        onClick={() => window.open(`${API_URL}/pesquisas/${survey_form['id']}/criar-resposta`)}
+                        disabled={answersFinished.includes(survey_form.id)}
+                        >
+                        {survey_form.title}
+                      </button>
+                    </div>
                   );
                 })}
               </div>

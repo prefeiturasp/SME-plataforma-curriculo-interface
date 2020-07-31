@@ -288,6 +288,19 @@ class SurveyForm extends Component {
                 <h3 className="mx-auto">
                   Deseja finalizar esse formulário?
                 </h3>
+                <br></br>
+                <br></br>
+                <p>
+                  <b>
+                    Selecione "Não" caso deseje continuar a responder mais tarde. Suas respostas ficarão salvas.
+                  </b>
+                </p>
+                <p>
+                  <b>
+                    Selecione "Sim" caso já tenha terminado sua resposta. Seu formulário será enviado.
+                  </b>
+                </p>
+
                 <input id="finishedTrue" className={styles.finished} name="finished" type="radio" value={true} defaultChecked={this.state.surveyFormAnswer.finished ? true : false} onChange={this.finishedChange}></input>
                 <label htmlFor="finishedTrue">Sim</label><br></br>
                 <input id="finishedFalse" className={styles.finished} name="finished" type="radio" value={false} defaultChecked={typeof this.state.surveyFormAnswer.finished === 'boolean' && !this.state.surveyFormAnswer.finished ? true : false} onChange={this.finishedChange}></input>
