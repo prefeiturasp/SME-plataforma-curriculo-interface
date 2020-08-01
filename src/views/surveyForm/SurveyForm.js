@@ -212,19 +212,21 @@ class SurveyForm extends Component {
           </div>
           <form onSubmit={this.formSubmit}>
             <div className="row">
-              <div className={"col-12 " + styles.anonimo}>
-                <h3 className="mx-auto">
-                  Deseja responder em modo Anônimo?
-                </h3>
-                <input id="anonymousTrue"  className={styles.anonymous} name="anonymous" type="radio" value={true} defaultChecked={this.state.surveyFormAnswer.anonymous ? true : false} onChange={this.anonymousChange}></input>
-                <label htmlFor="anonymousTrue">Sim</label><br></br>
-                <input id="anonymousFalse" className={styles.anonymous} name="anonymous" type="radio" value={false} defaultChecked={typeof this.state.surveyFormAnswer.anonymous === 'boolean' && !this.state.surveyFormAnswer.anonymous ? true : false} onChange={this.anonymousChange}></input>
-                <label htmlFor="anonymousFalse">Não</label><br></br>
-
-                {this.state.errors.anonymous && (
-                  <div><p className={styles.errorMessage}>Este campo é obrigatório.</p></div>
-                )}
-              </div>
+              {
+                // <div className={"col-12 " + styles.anonimo}>
+                // <h3 className="mx-auto">
+                // Deseja responder em modo Anônimo?
+                // </h3>
+                // <input id="anonymousTrue"  className={styles.anonymous} name="anonymous" type="radio" value={true} defaultChecked={this.state.surveyFormAnswer.anonymous ? true : false} onChange={this.anonymousChange}></input>
+                // <label htmlFor="anonymousTrue">Sim</label><br></br>
+                // <input id="anonymousFalse" className={styles.anonymous} name="anonymous" type="radio" value={false} defaultChecked={typeof this.state.surveyFormAnswer.anonymous === 'boolean' && !this.state.surveyFormAnswer.anonymous ? true : false} onChange={this.anonymousChange}></input>
+                // <label htmlFor="anonymousFalse">Não</label><br></br>
+                //
+                // {this.state.errors.anonymous && (
+                // <div><p className={styles.errorMessage}>Este campo é obrigatório.</p></div>
+                // )}
+                // </div>
+              }
 
               {contentBlocks.map((contentBlock, index) => {
                 let contentBlockText = blocks[index].props.text
