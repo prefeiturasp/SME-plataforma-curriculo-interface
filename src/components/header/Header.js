@@ -72,7 +72,7 @@ class Header extends Component {
 
     const ConsultationLink = isLogged() ? (
       <NavLink to='/consultas-publicas' onClick={this.onClickedClose}>
-        Consultas Públicas
+        Consultas à Rede
       </NavLink>
     ) : null;
 

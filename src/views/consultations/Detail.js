@@ -49,16 +49,16 @@ class Detail extends Component {
           <div className={styles.contents}>
             <div className="row">
               <div className="col-md-8 offset-md-2">
-                <h2>Esta Consulta Pública estará disponível entre as seguintes datas:</h2>
+                <h2>Esta Consulta estará disponível entre as seguintes datas:</h2>
                 <h3>{data['initial_date']} ~ {data['final_date']}</h3>
                 <img className={styles.cover_image} src={data.cover_image}></img>
-                {(data.documents.length > 0) ? <h2>Acesse os documentos abaixo referentes a Consulta Pública</h2> : <h2></h2> }
+                {(data.documents.length > 0) ? <h2>Acesse os documentos abaixo referentes a Consulta:</h2> : <h2></h2> }
                 {data.documents.map((d, index) => {
                   return(
                     <a target='_blank' key={index.toString()} className={styles.button} href={d}>Documento {(index + 1).toString()}</a>
                   );
                 })}
-                {(data.survey_forms.length > 0) ? <h2>Responda os formulários abaixo</h2> : <h2></h2> }
+                {(data.survey_forms.length > 0) ? <h2>Responda os formulários abaixo:</h2> : <h2></h2> }
                 {data.survey_forms.map((survey_form, index) => {
                   return(
                     <div key={index.toString()}>
