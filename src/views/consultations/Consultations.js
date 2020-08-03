@@ -29,7 +29,7 @@ class Consultations extends Component {
       <Page>
         <section>
           <div className="container">
-            <h1>Consultas Públicas</h1>
+            <h1>Consultas à Rede</h1>
           </div>
           <hr className={styles.consultationDivider} />
           {segments.map((segment, index) => {
