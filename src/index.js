@@ -18,6 +18,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import Activity from 'views/activity/Activity';
 import Alert from 'components/Alert';
 import AnswerBooks from 'views/answerBooks/AnswerBooks';
+import ComplementBooks from 'views/complementBooks/ComplementBooks';
 import AppLoading from 'components/loading/AppLoading';
 import Challenge from 'views/challenge/Challenge';
 import Classrooms from 'views/classrooms/Classrooms';
@@ -112,6 +113,7 @@ class ModalSwitch extends Component {
       <Fragment>
         <Switch location={locationProp}>
           <Route path= "/cadernos-respostas" component={AnswerBooks}/>
+          <Route path= "/materiais-complementares" component={ComplementBooks}/>
           <Route exact path="/" component={Home} />
           <Route path="/sequencias" component={Sequences} />
           <Route path="/consultas-publicas" component={Consultations} />

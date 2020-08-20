@@ -7,6 +7,7 @@ import Avatar from 'views/profile/Avatar';
 import BodyActions from 'actions/BodyActions';
 import Fade from '@material-ui/core/Fade';
 import CurriculoPopover from 'components/popovers/CurriculoPopover';
+import BooksPopover from 'components/popovers/BooksPopover';
 import LoginPopover from 'components/popovers/LoginPopover';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
@@ -93,6 +94,9 @@ class Header extends Component {
 
     const btnCurriculos = <button id='curriculo' onMouseEnter={this.onMouseEnter}>Entenda o currículo</button>;
 
+    const btnBooks = isLogged() ? (
+      <button id='books' onMouseEnter={this.onMouseEnter}>Materiais para Professores</button>
+    ) : null;
     let popoverContents = null;
     if (hasPopover) {
       if (anchor.id === "login" || anchor.id ==="avatar") {
@@ -101,8 +105,10 @@ class Header extends Component {
         ) : (
           <LoginPopover onMouseLeave={this.onMouseLeave} />
         );
-      } else {
+      } else if (anchor.id === "curriculo") {
         popoverContents = <CurriculoPopover onMouseLeave={this.onMouseLeave} />
+      } else if (anchor.id === "books") {
+        popoverContents = <BooksPopover onMouseLeave={this.onMouseLeave} />
       }
     }
 
@@ -134,8 +140,8 @@ class Header extends Component {
           </NavLink>
           <nav className={styles.menu}>
             {links}
-            {answerBooksLink}
             {ConsultationLink}
+            {btnBooks}
             {btnCurriculos}
             {avatar || btnLogin}
           </nav>
