@@ -65,6 +65,7 @@ class Detail extends Component {
                       <button
                         target='_blank'
                         className={styles.button}
+                        style={{color: survey_form.color}}
                         onClick={() => window.open(`${API_URL}/pesquisas/${survey_form['id']}/criar-resposta`)}
                         disabled={answersFinished.includes(survey_form.id)}
                         >
