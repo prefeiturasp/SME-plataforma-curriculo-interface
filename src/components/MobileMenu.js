@@ -50,6 +50,16 @@ class MobileMenu extends React.PureComponent {
           isSub: false,
         },
         {
+          to: '/materiais-complementares',
+          label: 'Materiais Complementares',
+          isSub: false,
+        },
+        {
+          to: '/consultas-publicas',
+          label: 'Consula à Rede',
+          isSub: false,
+        },
+        {
           to: '/ods',
           label: 'Objetivos de Desenvolvimento Sustentável',
           isSub: true,
