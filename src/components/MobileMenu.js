@@ -56,7 +56,7 @@ class MobileMenu extends React.PureComponent {
         },
         {
           to: '/consultas-publicas',
-          label: 'Consula à Rede',
+          label: 'Consulta à Rede',
           isSub: false,
         },
         {
