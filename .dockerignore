@@ -1,9 +1,0 @@
-# We dont need it in docker image
-Dockerfile
-.dockerignore
-.gitignore
-README.md
-
-# Artifacts that will be built during image creation.
-build
-node_modules
