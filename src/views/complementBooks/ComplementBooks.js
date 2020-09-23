@@ -52,7 +52,7 @@ class ComplementBooks extends Component {
             <p className={styles.contentText}>
             Para baixá-los, basta clicar no botão para download
             (seta no canto inferior direito de cada imagem/arquivo).
-            Alguns arquivos, darão acesso para links com materiais exclusivos.
+            Alguns arquivos darão acesso para links com materiais exclusivos.
           </p>
           </div>
           <br></br>
