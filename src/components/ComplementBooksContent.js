@@ -82,7 +82,6 @@ class ComplementBooksContent extends Component {
                 <hr className={styles.line}></hr>
                 <ul className={styles.componentList}>
                 {book["complement_book_links"].map((link, idx) => {
-                  console.log(link["link"]);
                   return(
                     <a key={idx.toString()} target="_blank" href={link["link"]}><li className={styles.componentLink}>{"link " + (idx + 1)}</li></a>
                   );
