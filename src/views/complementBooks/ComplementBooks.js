@@ -41,19 +41,18 @@ class ComplementBooks extends Component {
     )
     const contents = (
       <div className="container">
-        <h1 className={styles.title}>Currículo da cidade</h1>
+        <h1 className={styles.title}>Materiais Complementares para RME-SP</h1>
         <div className="row">
           <div className="col-8 col-offset-4">
             <p className={styles.contentText}>
-            Desenhado por meio de um processo colaborativo, com o apoio de
-            professores da rede municipal, a plataforma
-            "Currículo Digital da Cidade de São Paulo" transforma o Currículo em
-            um material vivo e dinâmico, disponível on-line para consulta,
-            inspiração e aplicação em sala de aula.
+            Os materiais publicados nessa página foram cedidos gratuitamente
+            por parceiros e são para uso exclusivo com os estudantes das
+            Unidades Escolares da RME-SP.
             </p>
             <p className={styles.contentText}>
-            Abaixo, confira todos os documentos pedagógicos que integram o
-            Currículo da Cidade na Rede Municipal de Educação Paulistana.
+            Para baixá-los, basta clicar no botão para download
+            (seta no canto inferior direito de cada imagem/arquivo).
+            Alguns arquivos, darão acesso para links com materiais exclusivos.
           </p>
           </div>
           <br></br>

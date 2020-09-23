@@ -71,8 +71,8 @@ class ComplementBooksContent extends Component {
                 <img className={styles.bookImage} alt="" src={book["cover_image"]}></img>
                 <ul className={styles.titleList}>
                   <li><span className={styles.componentName}>{book["name"]}</span></li>
-                  <li><span className={styles.name}>{book["author"]}</span></li>
                 </ul>
+                <span className={styles.name}>Autor(a): {book["author"]}</span>
                 <hr className={styles.line}></hr>
                 <div className={styles.fileWrapper}>
                   <a href={book["book_file"]}>
@@ -82,8 +82,9 @@ class ComplementBooksContent extends Component {
                 <hr className={styles.line}></hr>
                 <ul className={styles.componentList}>
                 {book["complement_book_links"].map((link, idx) => {
+                  console.log(link["link"]);
                   return(
-                    <a key={idx.toString()} href="www.google.com"><li className={styles.componentLink}>{"link " + (idx + 1)}</li></a>
+                    <a key={idx.toString()} target="_blank" href={link["link"]}><li className={styles.componentLink}>{"link " + (idx + 1)}</li></a>
                   );
                 })}
                 </ul>
