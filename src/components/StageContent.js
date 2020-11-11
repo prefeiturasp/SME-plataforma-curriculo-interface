@@ -14,6 +14,18 @@ function onlyUnique(value, index, self) {
 class StageContent extends Component {
   constructor(props) {
     super(props);
+
+    this.state ={
+      stages: [],
+      isLoading: false
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetch(API_URL + "/api/stages")
+      .then(response => response.json())
+      .then(data => this.setState({ stages: data }))
   }
 
   render() {
@@ -23,9 +35,15 @@ class StageContent extends Component {
       }
     }).filter(onlyUnique).sort();
 
+    const stageBooks = this.state.stages.filter((stage) => {
+      if (stages.includes(stage.name)){
+        return true
+      }
+    }).map(stage => stage.name).filter(onlyUnique)
+
     return(
       <div className="container">
-        {stages.map((stage, index) => {
+        {stageBooks.map((stage, index) => {
           return(
             <div key={index} >
               <h3 className={styles.stageName}>{stage}</h3>

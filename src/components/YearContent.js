@@ -14,6 +14,18 @@ function onlyUnique(value, index, self) {
 class YearContent extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      years: [],
+      isLoading: false
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    fetch(API_URL + "/api/years")
+      .then(response => response.json())
+      .then(data => this.setState({ years: data }))
   }
 
   render() {
@@ -23,9 +35,16 @@ class YearContent extends Component {
       }
     }).filter(onlyUnique).sort();
 
+    const yearBooks = this.state.years.filter((year) => {
+      if (years.includes(year.name)){
+        return true
+      }
+    }).map(year => year.name).filter(onlyUnique)
+
+    console.log(yearBooks)
     return (
       <div className='container'>
-        {years.map((year, index) => {
+        {yearBooks.map((year, index) => {
           return (
             <div key={index}>
               <p className={styles.yearTitle}>{year}</p>
