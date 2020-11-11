@@ -16,6 +16,7 @@ class AnswerBooks extends Component {
     super(props);
     this.state = {
       books: [],
+      segments: [],
       isLoading: false,
       activeItemIndex: 0
     };
@@ -26,10 +27,21 @@ class AnswerBooks extends Component {
     fetch(API_URL + "/api/answer_books")
       .then(response => response.json())
       .then(data => this.setState({ books: data }))
+
+    fetch(API_URL + "/api/segments")
+      .then(response => response.json())
+      .then(data => this.setState({ segments: data }))
+
   }
 
   render() {
     const segments = this.state.books.map(book => book.segment).filter(onlyUnique).sort();
+    const segmentBooks = this.state.segments.filter((segment) => {
+      if (segments.includes(segment.name)){
+        return true
+      }
+    }).map(segment => segment.name)
+
     const contents = (
       <div className="container">
         <h1 className={styles.title}>Currículo da cidade</h1>
@@ -49,7 +61,7 @@ class AnswerBooks extends Component {
           </div>
           <br></br>
         </div>
-        {segments.map((segment, index) => {
+        {segmentBooks.map((segment, index) => {
           return (
             <div key={index} >
               <h1 className={styles.segmentName}>{segment}</h1>
