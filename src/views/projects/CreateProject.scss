@@ -1,0 +1,62 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+.chip {
+  color: #FFFFFF !important;
+  font-size: 1rem !important;
+  margin: 10px 10px 0px 0px;
+  font-weight: 700;
+}
+
+.selectOptions {
+  width: 100%;
+}
+
+.content {
+  margin-top: 5%;
+}
+
+.projectInformations {
+  margin-top: 2%;
+}
+
+.errorMessage{
+  color: red;
+}
+
+.submitButton{
+  background-color: #3bd2da !important;
+  border: 0 !important;
+  color: black !important;
+  font-size: 1.3rem !important;
+  width: 80%;
+}
+
+.paragraph {
+  text-align: justify;
+}
+
+.imagePrev {
+  width: 100%;
+  height: 500px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.addLinkButton {
+  width: 20%;
+  background-color: #62C75A !important;
+  border: 0 !important;
+  color: black !important;
+}
+
+.removeLinkButton {
+  width: 20%;
+  margin-left: 1% !important;
+  background-color: red !important;
+  border: 0 !important;
+  color: black !important;
+}
