@@ -20,7 +20,7 @@ class Projects extends Component {
       <div className={styles.list}>
         <div className={styles.results}>
           <h2 className={styles.h2}>
-            <strong>0</strong> projetos foram encontradas
+            <strong>0</strong> projetos foram encontrados
           </h2>
           <div className="row"></div>
           <div className={styles.center}></div>

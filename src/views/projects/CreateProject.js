@@ -258,7 +258,6 @@ class CreateProject extends Component {
           school_id: false,
         },
       });
-      console.log(this.state.project['school_id'])
     }
   }
 
@@ -479,7 +478,7 @@ class CreateProject extends Component {
             <h1>Novo Projeto TCA</h1>
             <p className={styles.paragraph}>
               Bem-vindo à página para cadastro dos Trabalhos Colaborativos
-              Autorais (TCA).  Nesse ambiente virtual, professores/orientadores
+              Autorais (TCA). Nesse ambiente virtual, professores/orientadores
               dos projetos nas Unidades Escolares irão cadastrar o
               desenvolvimento dos projetos, imagens, vídeos e demais materiais
               produzidos ao longo do processo.

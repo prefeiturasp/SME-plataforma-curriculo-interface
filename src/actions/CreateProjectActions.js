@@ -60,7 +60,6 @@ const CreateProjectActions = {
       .then(res => {
         dispatch(AlertActions.open(`Projeto salvo com sucesso.`));
         history.push(`/perfil`);
-        console.log(res.data);
       })
       .catch(err => dispatch(AlertActions.open(`Ocorreu um erro: ${err}`)));
     };
