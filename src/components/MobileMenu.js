@@ -140,6 +140,9 @@ class MobileMenu extends React.PureComponent {
         >
           Meu perfil
         </NavLink>
+        <NavLink to="/novo-projeto" className={styles.btn}>
+          Criar Projeto TCA
+        </NavLink>
         <button className={styles.btn} onClick={this.onClickedLogout}>
           Sair
         </button>
