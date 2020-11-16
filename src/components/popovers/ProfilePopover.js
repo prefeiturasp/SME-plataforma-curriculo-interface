@@ -16,6 +16,9 @@ class ProfilePopover extends React.PureComponent {
         <NavLink to="/perfil" className={styles.btn}>
           Meu perfil
         </NavLink>
+        <NavLink to="/novo-projeto" className={styles.btn}>
+          Criar Projeto TCA
+        </NavLink>
         <button className={styles.btn} onClick={this.onClickedLogout}>
           Sair
         </button>
