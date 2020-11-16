@@ -46,52 +46,10 @@ function CreateProjectReducer(state = initialState, action) {
         isLoading: false,
       }
 
-    case CreateProjectActions.LOADED_CURRICULAR_COMPONENTS:
-      return {
-        ...state,
-        curricularComponents: action.data,
-      };
-
-    case CreateProjectActions.LOADED_KNOWLEDGE_MATRICES:
-      return {
-        ...state,
-        knowledgeMatrices: action.data,
-      };
-
-    case CreateProjectActions.LOADED_STUDENT_PROTAGONISMS:
-      return {
-        ...state,
-        studentProtagonisms: action.data,
-      };
-
-    case CreateProjectActions.LOADED_SEGMENTS:
-      return {
-        ...state,
-        segments: action.data,
-      };
-
-    case CreateProjectActions.LOADED_STAGES:
-      return {
-        ...state,
-        stages: action.data,
-      };
-
-    case CreateProjectActions.LOADED_YEARS:
-      return {
-        ...state,
-        years: action.data,
-      };
-
     case CreateProjectActions.LOADED_LEARNING_OBJECTIVES:
       return {
         ...state,
         learningObjectives: action.data,
-      };
-
-    case CreateProjectActions.LOADED_DRES:
-      return {
-        ...state,
-        dres: action.data,
       };
 
     case CreateProjectActions.LOADED_SCHOOLS:
