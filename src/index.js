@@ -47,6 +47,8 @@ import SaveSequence from 'views/sequence/save/SaveSequence';
 import SendResult from 'views/result/send/SendResult';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
+import Projects from 'views/projects/Projects';
+import CreateProject from 'views/projects/CreateProject';
 import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
@@ -116,6 +118,8 @@ class ModalSwitch extends Component {
           <Route path= "/materiais-complementares" component={ComplementBooks}/>
           <Route exact path="/" component={Home} />
           <Route path="/sequencias" component={Sequences} />
+          <Route path="/projetos" component={Projects} />
+          <Route path="/novo-projeto" component={CreateProject} />
           <Route path="/consultas-publicas" component={Consultations} />
           <Route exact path="/sequencias/ods/:ods" component={Sequences} />
           <Route
@@ -187,8 +191,8 @@ class ModalSwitch extends Component {
         />
         <ModalRoute
           exact
-          path="/colecao/:id/editar"
-          component={EditCollection}
+          path="Create/colecao/:id/editar"
+          componCreateent={EditCollection}
           {...modalProps}
         />
         <ModalRoute exact path="/login" component={Login} {...modalProps} />
