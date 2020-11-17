@@ -28,7 +28,7 @@ pipeline {
                 -Dsonar.projectKey=SME-plataforma-curriculo-interface \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=http://sonar.sme.prefeitura.sp.gov.br \
-                -Dsonar.login=9b540ddb8df5c3ae87d4dfe9b41b521e41a25eec'
+                -Dsonar.login=f019456c8286fd2c5af1d861b9f3cdc97c939226'
             }
     }
 
