@@ -1,6 +1,5 @@
 import Api from 'data/Api';
 import AlertActions from './AlertActions';
-import SequencesActions from './SequencesActions';
 import getFiltersQueryString from 'data/getFiltersQueryString';
 
 function isYearOrComponent(s) {

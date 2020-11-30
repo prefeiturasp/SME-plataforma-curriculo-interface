@@ -115,7 +115,7 @@ class Filters extends Component {
               {
                 stageButtons.length > 0
                   ? <div className={styles.buttons}>{stageButtons}</div>
-                  : <p>Selecione um seguimento</p>
+                  : <p>Selecione um segmento</p>
               }
               <h2 className={styles.h2}>Ano</h2>
               {
