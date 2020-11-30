@@ -1,0 +1,51 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.title {
+  color: $grey-800;
+  font-weight: 600;
+  margin-bottom: rem(8);
+
+  > button {
+    color: $grey-200;
+    margin-left: rem(4);
+  }
+}
+
+.spacer {
+  margin-bottom: rem(30);
+}
+
+.btnAllLearningObjectives {
+  color: $grey-600;
+  display: block;
+  font-size: rem(15);
+  font-weight: 600;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.btnPrint {
+  composes: btn from global;
+  display: none;
+}
+
+@include mq("tablet-portrait", max) {
+  .wrapper {
+    overflow-y: scroll;
+    padding: rem(16);
+  }
+}
+
+@include mq("tablet-portrait") {
+  .btnAllLearningObjectives {
+    margin-bottom: 0;
+  }
+
+  .btnPrint {
+    display: flex;
+    width: 100%;
+  }
+}

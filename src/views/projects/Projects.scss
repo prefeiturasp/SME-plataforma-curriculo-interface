@@ -45,6 +45,43 @@
   margin: 0 auto;
 }
 
+.root {
+  min-width: 275;
+}
+
+.coverImage {
+  width: 100%;
+  height: 170px;
+}
+
+.itemTitle {
+  text-align: justify;
+  color: #252525;
+  font-size: 1.3125rem;
+  font-weight: bold;
+  height: 3.125rem;
+  line-height: 1.2;
+}
+
+label {
+  font-size: 0.8rem;
+  text-align: justify;
+}
+
+img {
+  max-width: 100%;
+}
+
+.expand {
+  align-items: center;
+  border-top: 1px solid $grey-200;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: rem(8);
+}
+
+
 @media only screen and (max-width: 768px) {
   .h1 {
     font-size: rem(34);

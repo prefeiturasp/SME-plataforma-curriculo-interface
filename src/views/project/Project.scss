@@ -1,0 +1,85 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.btnChars {
+  composes: btnFullWidth from global;
+  composes: d-print-none from global;
+  margin-bottom: rem(40);
+}
+
+.links {
+  color: #6a6a6a !important;
+  text-decoration: none !important;
+  background-color: transparent !important;
+  cursor: pointer;
+}
+
+.links:hover {
+  color: #494848 !important;
+  text-decoration: underline !important;
+  background-color: transparent !important;
+}
+
+.title {
+  color: $grey-800;
+  font-weight: 600;
+  margin-bottom: 0.8125rem;
+
+  > button {
+    color: $grey-200;
+    margin-left: 0.25rem;
+  }
+}
+
+.description {
+  composes: quill-text from global;
+  font-size: rem(16);
+  line-height: rem(24);
+  margin-bottom: rem(48);
+}
+
+.references {
+  composes: quill-text from global;
+  font-size: rem(16);
+  line-height: rem(21);
+  margin-top: rem(18);
+}
+
+.books br {
+  line-height: 200%;
+}
+
+.activities {
+  > h3 {
+    font-size: rem(20);
+    font-weight: 600;
+    margin-top: 1.9375rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+}
+
+.chars {
+  composes: col-sm-12 from global;
+  composes: col-lg-4 from global;
+  composes: d-print-block from global;
+  background-color: $grey-050;
+  display: none;
+}
+
+@include mq("tablet-landscape") {
+  .btnChars {
+    display: none;
+  }
+
+  .description {
+    font-size: rem(18);
+    line-height: rem(24);
+  }
+
+  .chars {
+    display: block;
+    padding-top: rem(20);
+    padding-bottom: rem(20);
+  }
+}

@@ -182,13 +182,13 @@ class EditProfile extends Component {
               />
             </div>
             <p className={styles.obs}>
-              Caso deseje alterar sua senha, acesse sua conta na{' '}
+              Caso deseje alterar sua senha, acesse sua conta no{' '}
               <a
-                href="https://sme.prefeitura.sp.gov.br/"
+                href="https://novosgp.sme.prefeitura.sp.gov.br/"
                 target="_blank"
                 rel="noreferrer noopener"
               >
-                Secretaria Municipal de Educação
+                SGP
               </a>
               .
             </p>

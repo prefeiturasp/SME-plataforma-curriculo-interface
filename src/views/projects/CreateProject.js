@@ -534,7 +534,7 @@ class CreateProject extends Component {
                 { knowledgeMatrices && (
                   <div className={`${styles.content} row`}>
                     <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                      <InputLabel id="demo-simple-select-filled-label">Selecione as Matrizes de Saberes</InputLabel>
+                      <InputLabel id="demo-simple-select-filled-label">Selecione a Matriz de Saberes</InputLabel>
                       <Select
                         className={styles.selectOptions}
                         labelId="demo-simple-select-filled-label"
@@ -986,21 +986,25 @@ class CreateProject extends Component {
                         ) : (<h5>Clique no Botão para adicionar um link.</h5>)}
                       </div>
                       <div className="col-6">
-                        <Button
-                          className={styles.addLinkButton}
-                          size="medium"
-                          onClick={() => this.addLink()}
-                          >
-                          Adicionar
-                        </Button>
-                        {this.state.project['project_links_attributes'].length > 0 && (
+                        <div className="row">
                           <Button
-                            className={styles.removeLinkButton}
+                            className={styles.addLinkButton}
                             size="medium"
-                            onClick={(e) => this.removeLink(e)}
-                          >
-                            Remover
+                            onClick={() => this.addLink()}
+                            >
+                            Adicionar
                           </Button>
+                        </div>
+                        {this.state.project['project_links_attributes'].length > 0 && (
+                          <div className="row">
+                            <Button
+                              className={styles.removeLinkButton}
+                              size="medium"
+                              onClick={(e) => this.removeLink(e)}
+                              >
+                              Remover
+                            </Button>
+                          </div>
                         )}
                       </div>
                     </div>

@@ -1,0 +1,48 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: rem(18);
+}
+
+.spacer {
+  margin-top: rem(40);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+}
+
+.button {
+  composes: btn from global;
+  margin-left: auto;
+  margin-right: rem(14);
+  min-width: rem(144);
+}
+
+@include mq("tablet-portrait", max) {
+  .wrapper,
+  .row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .list {
+    margin-bottom: rem(24);
+  }
+
+  .button {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: rem(24);
+  }
+}
