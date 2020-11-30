@@ -35,13 +35,28 @@ class MobileMenu extends React.PureComponent {
           isSub: false,
         },
         {
+          to: '/projetos',
+          label: 'Projetos do TCA',
+          isSub: false,
+        },
+        {
+          to: '/novo-projeto',
+          label: 'Cadastrar Projeto',
+          isSub: false,
+        },
+        {
           to: '/tecnologias-para-aprendizagem',
           label: 'Tecnologias para Aprendizagem',
           isSub: false,
         },
         {
-          to: '/curriculo',
-          label: 'Currículo da Cidade',
+          to: '/curriculo-ensino-fundamental',
+          label: 'Ensino Fundamental',
+          isSub: false,
+        },
+        {
+          to: '/curriculo-ensino-medio',
+          label: 'Ensino Médio',
           isSub: false,
         },
         {
@@ -88,13 +103,23 @@ class MobileMenu extends React.PureComponent {
           isSub: false,
         },
         {
+          to: '/projetos',
+          label: 'Projetos do TCA',
+          isSub: false,
+        },
+        {
           to: '/tecnologias-para-aprendizagem',
           label: 'Tecnologias para Aprendizagem',
           isSub: false,
         },
         {
-          to: '/curriculo',
-          label: 'Currículo da Cidade',
+          to: '/curriculo-ensino-fundamental',
+          label: 'Ensino Fundamental',
+          isSub: false,
+        },
+        {
+          to: '/curriculo-ensino-medio',
+          label: 'Ensino Médio',
           isSub: false,
         },
         {
@@ -159,7 +184,7 @@ class MobileMenu extends React.PureComponent {
         <p className={styles.obs}>
           Esta funcionalidade é exclusiva para professores da{' '}
           <a
-            href="https://sme.prefeitura.sp.gov.br/"
+            href="https://educacao.sme.prefeitura.sp.gov.br/"
             target="_blank"
             rel="noreferrer noopener"
           >

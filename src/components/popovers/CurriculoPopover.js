@@ -14,6 +14,9 @@ class CurriculoPopover extends React.PureComponent {
         <NavLink to="/curriculo-ensino-medio" className={styles.btn}>
           Ensino Médio
         </NavLink>
+        <NavLink to="/tecnologias-para-aprendizagem" className={styles.btn}>
+          Tecnologias Para Aprendizagem
+        </NavLink>
       </div>
     );
   }

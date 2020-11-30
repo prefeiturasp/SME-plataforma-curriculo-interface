@@ -55,8 +55,8 @@ class Header extends Component {
         label: 'Sequências de Atividades',
       },
       {
-        to: '/tecnologias-para-aprendizagem',
-        label: 'Tecnologias para Aprendizagem',
+        to: '/projetos',
+        label: 'Projetos do TCA',
       },
     ];
 

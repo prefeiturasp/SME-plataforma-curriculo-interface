@@ -21,7 +21,7 @@ class LoginPopover extends React.PureComponent {
           <p className={styles.obs}>
             Esta funcionalidade é exclusiva para professores da{' '}
             <a
-              href="https://sme.prefeitura.sp.gov.br/"
+              href="https://educacao.sme.prefeitura.sp.gov.br/"
               target="_blank"
               rel="noreferrer noopener"
             >

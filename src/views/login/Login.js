@@ -111,7 +111,7 @@ class Login extends Component {
               error={isInvalidUsername}
               fullWidth={true}
               helperText={messageUsername}
-              label="Nome do usuário"
+              label="Login (RF)"
               onChange={this.onChangedUsername}
               onKeyPress={this.onKeyPressUsername}
               value={username}
@@ -122,7 +122,7 @@ class Login extends Component {
                 error={isInvalidPassword}
                 htmlFor="password"
               >
-                Senha
+                Senha (a mesma do SGP)
               </InputLabel>
               <Input
                 error={isInvalidPassword}
@@ -150,7 +150,7 @@ class Login extends Component {
               {messagePassword}
             </FormControl>
             <div className={styles.spacer} />
-            <button className={styles.btnForgot}>Esqueceu a senha?</button>
+            <a className={styles.btnForgot} href="https://novosgp.sme.prefeitura.sp.gov.br/recuperar-senha">Esqueceu a senha?</a>
           </div>
           <ModalFooter label="Entrar" onClick={this.onClickedEnter} isLoading={isLoading} />
         </ModalPage>
