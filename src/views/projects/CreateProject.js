@@ -534,7 +534,7 @@ class CreateProject extends Component {
                 { knowledgeMatrices && (
                   <div className={`${styles.content} row`}>
                     <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-                      <InputLabel id="demo-simple-select-filled-label">Selecione as Matrizes de Saberes</InputLabel>
+                      <InputLabel id="demo-simple-select-filled-label">Selecione as Matriz de Saberes</InputLabel>
                       <Select
                         className={styles.selectOptions}
                         labelId="demo-simple-select-filled-label"
