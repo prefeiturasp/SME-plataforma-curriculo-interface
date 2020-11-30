@@ -7,6 +7,7 @@ import ProjectFiltersActions from 'actions/ProjectFiltersActions';
 import ProjectsActions from 'actions/ProjectsActions';
 import Category from 'views/projects/categories/Category';
 import CategoryPanel from 'views/projects/categories/CategoryPanel';
+import RegionalEducationBoard from 'views/projects/objects/RegionalEducationBoard';
 import CurricularComponent from 'views/projects/objects/CurricularComponent';
 import SegmentButton from 'views/projects/objects/SegmentButton';
 import StageButton from 'views/projects/objects/StageButton';
@@ -71,6 +72,12 @@ class Filters extends Component {
         return <CurricularComponent key={i} data={item} />;
       });
 
+    const regionalEducationBoardButtons = this.props.filters
+      .filter(item => item.type === 'regional_education_boards')
+      .map((item, i) => {
+        return <RegionalEducationBoard key={i} data={item} />;
+      });
+
     const categories = [
       {
         name: 'Objetivos de Desenvolvimento Sustentável',
@@ -123,6 +130,8 @@ class Filters extends Component {
                   ? <div className={styles.buttons}>{yearButtons}</div>
                   : <p>Selecione uma etapa</p>
               }
+              <h2 className={styles.h2}>Diretoria Regional de Educação</h2>
+              <div className={styles.buttons}>{regionalEducationBoardButtons}</div>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-6">
               <h2 className={styles.h2}>Componente Curricular</h2>

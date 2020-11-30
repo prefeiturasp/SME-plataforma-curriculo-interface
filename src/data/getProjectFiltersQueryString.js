@@ -24,6 +24,9 @@ function getFilterName(type) {
     case 'axes':
       return 'axis_ids';
 
+    case 'regional_education_boards':
+      return 'regional_education_board_id';
+
     case 'activity_types':
     default:
       return 'activity_type_ids';

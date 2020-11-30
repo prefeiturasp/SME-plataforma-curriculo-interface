@@ -103,6 +103,7 @@ function ProjectFiltersReducer(state = initialState, action) {
           'sustainable_development_goals',
           'knowledge_matrices',
           'activity_types',
+          'regional_education_boards',
         ]),
       };
 
@@ -117,6 +118,7 @@ function ProjectFiltersReducer(state = initialState, action) {
           'sustainable_development_goals',
           'knowledge_matrices',
           'activity_types',
+          'regional_education_boards',
         ]),
       };
 
@@ -131,6 +133,7 @@ function ProjectFiltersReducer(state = initialState, action) {
           'sustainable_development_goals',
           'knowledge_matrices',
           'activity_types',
+          'regional_education_boards',
         ]),
       };
 
