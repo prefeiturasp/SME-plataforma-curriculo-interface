@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ConsultationsActions from 'actions/ConsultationsActions';
+import BodyActions from 'actions/BodyActions';
 import ConsultationsContent from 'components/ConsultationsContent';
 import Page from 'components/layout/Page';
 import styles from './Consultations.scss';
@@ -64,6 +65,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(ConsultationsActions.load());
     },
   };

@@ -6,6 +6,7 @@ import Cover from './Cover';
 import Title from './Title';
 import Page from 'components/layout/Page';
 import ProjectActions from 'actions/ProjectActions';
+import BodyActions from 'actions/BodyActions';
 import ProjectChars from './chars/ProjectChars';
 import ReadMore from 'components/ReadMore';
 import Link from '@material-ui/core/Link';
@@ -105,6 +106,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: slug => {
+      dispatch(BodyActions.showLoading());
       dispatch(ProjectActions.load(slug));
     },
   };
