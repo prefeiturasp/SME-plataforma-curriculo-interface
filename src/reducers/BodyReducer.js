@@ -2,6 +2,7 @@ import ActivityActions from 'actions/ActivityActions';
 import BodyActions from 'actions/BodyActions';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengesActions from 'actions/ChallengesActions';
+import ConsultationsActions from 'actions/ConsultationsActions';
 import CollectionActions from 'actions/CollectionActions';
 import CollectionsActions from 'actions/CollectionsActions';
 import HomeActions from 'actions/HomeActions';
@@ -11,6 +12,7 @@ import RoadmapActions from 'actions/RoadmapActions';
 import SequenceActions from 'actions/SequenceActions';
 import SequencesActions from 'actions/SequencesActions';
 import ProjectsActions from 'actions/ProjectsActions';
+import ProjectActions from 'actions/ProjectActions';
 import SustainableDevGoalsActions from 'actions/SustainableDevGoalsActions';
 
 const initialState = {
@@ -26,6 +28,7 @@ function BodyReducer(state = initialState, action) {
     case ChallengesActions.LOADED:
     case CollectionActions.LOADED_SEQUENCES:
     case CollectionsActions.LOADED:
+    case ConsultationsActions.LOADED:
     case HomeActions.LOADED:
     case KnowledgeMatrixActions.LOADED:
     case LearningObjectivesActions.LOADED:
@@ -33,6 +36,7 @@ function BodyReducer(state = initialState, action) {
     case SequenceActions.LOADED:
     case SequencesActions.LOADED:
     case SequencesActions.LOADED_MORE:
+    case ProjectActions.LOADED:
     case ProjectsActions.LOADED:
     case ProjectsActions.LOADED_MORE:
     case SustainableDevGoalsActions.LOADED:
