@@ -32,6 +32,8 @@ const LoginActions = {
     return dispatch => {
       Api.get(dispatch, '/api/logout');
       localStorage.removeItem('accessToken');
+      localStorage.removeItem('blocked');
+      localStorage.removeItem('teacherId');
       dispatch({ type: LoginActions.LOGGED_OUT });
 
       if (history.location.pathname.match(/perfil|colecao/)) {

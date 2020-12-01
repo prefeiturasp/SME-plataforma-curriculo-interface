@@ -64,6 +64,18 @@ const CreateProjectActions = {
       .catch(err => dispatch(AlertActions.open(`Ocorreu um erro: ${err}`)));
     };
   },
+  unauthorizedUser() {
+    return dispatch => {
+      dispatch(AlertActions.open(`Você precisa efetuar login para acessar essa página.`));
+      history.push(`/`);
+    };
+  },
+  blockedUser() {
+    return dispatch => {
+      dispatch(AlertActions.open(`Você está bloquado e não pode criar projetos no momento. Entre em contato com a Secretaria Municipal de Educação.`));
+      history.push(`/`);
+    };
+  },
   alertError(error) {
     return dispatch => {
       return dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))

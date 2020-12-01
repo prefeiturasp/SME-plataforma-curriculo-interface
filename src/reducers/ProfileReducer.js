@@ -34,7 +34,8 @@ function ProfileReducer(state = initialState, action) {
     case ProfileActions.LOADED:
       const { teacher } = action.data;
       localStorage.setItem('teacherId', teacher.id);
-
+      localStorage.setItem('blocked', teacher.blocked);
+      
       return {
         ...state,
         id: teacher.id,

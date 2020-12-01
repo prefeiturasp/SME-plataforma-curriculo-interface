@@ -60,6 +60,7 @@ class CreateProject extends Component {
         summary: null,
         description: null,
       },
+      blocked: this.props.blocked,
       permission: false,
       teacherId: '',
       curricularComponents: [],
@@ -1054,13 +1055,23 @@ class CreateProject extends Component {
         </div>
     );
 
-    return (localStorage.getItem('accessToken') ? <Page>{content}</Page> : <Home></Home>);
+    if ((localStorage.getItem('accessToken')) && (this.props.blocked === 'false')) {
+      return <Page>{content}</Page>;
+    } else {
+      if (this.props.blocked === 'true') {
+        this.props.blockedUser();
+      } else {
+        this.props.unauthorizedUser();
+      }
+      return <Home></Home>;
+    }
   }
 }
 
 CreateProject.propTypes = {
   project: PropTypes.object,
   teacherId: PropTypes.string,
+  blocked: PropTypes.string,
   curricularComponents: PropTypes.array,
   knowledgeMatrices: PropTypes.array,
   studentProtagonisms: PropTypes.array,
@@ -1071,6 +1082,8 @@ CreateProject.propTypes = {
   dres: PropTypes.array,
   isLoading: PropTypes.bool,
   load: PropTypes.func.isRequired,
+  unauthorizedUser: PropTypes.func.isRequired,
+  blockedUser: PropTypes.func.isRequired,
   getLearningObjectives: PropTypes.func.isRequired,
   getSchools: PropTypes.func.isRequired,
   create: PropTypes.func.isRequired,
@@ -1079,6 +1092,7 @@ CreateProject.propTypes = {
 const mapStateToProps = state => {
   return {
     teacherId: state.CreateProjectReducer.teacherId,
+    blocked: state.CreateProjectReducer.blocked,
     curricularComponents: state.CreateProjectReducer.curricularComponents,
     knowledgeMatrices: state.CreateProjectReducer.knowledgeMatrices,
     studentProtagonisms: state.CreateProjectReducer.studentProtagonisms,
@@ -1105,6 +1119,12 @@ const mapDispatchToProps = dispatch => {
     },
     create: (project) => {
       dispatch(CreateProjectActions.create(project));
+    },
+    unauthorizedUser: () => {
+      dispatch(CreateProjectActions.unauthorizedUser());
+    },
+    blockedUser: () => {
+      dispatch(CreateProjectActions.blockedUser());
     },
   };
 };
