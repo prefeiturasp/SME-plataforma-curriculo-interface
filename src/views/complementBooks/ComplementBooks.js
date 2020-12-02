@@ -7,7 +7,6 @@ import ComplementBooksContent from 'components/ComplementBooksContent';
 import { API_URL } from 'data/constants';
 
 function onlyUnique(value, index, self) {
-    console.log(self.indexOf(value))
     return self.indexOf(value) === index;
 }
 

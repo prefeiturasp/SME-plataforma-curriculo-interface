@@ -41,7 +41,6 @@ class YearContent extends Component {
       }
     }).map(year => year.name).filter(onlyUnique)
 
-    console.log(yearBooks)
     return (
       <div className='container'>
         {yearBooks.map((year, index) => {
