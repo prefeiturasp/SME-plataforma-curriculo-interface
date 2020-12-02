@@ -67,6 +67,21 @@
   display: none;
 }
 
+.submitButton{
+  background-color: #3bd2da !important;
+  border: 0 !important;
+  color: black !important;
+  font-size: 1.3rem !important;
+}
+
+.deleteButton{
+  float: right;
+}
+
+.commentMessage {
+  text-align: center !important;
+}
+
 @include mq("tablet-landscape") {
   .btnChars {
     display: none;
