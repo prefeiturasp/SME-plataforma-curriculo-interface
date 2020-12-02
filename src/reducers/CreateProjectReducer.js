@@ -1,8 +1,10 @@
 import CreateProjectActions from 'actions/CreateProjectActions';
 import getTeacherId from 'data/getTeacherId';
 import getTeacherBlocked from 'data/getTeacherBlocked';
+import isLogged from 'data/isLogged';
 
 const initialState = {
+  isLogged: true,
   teacherId: getTeacherId(),
   blocked: getTeacherBlocked(),
   curricularComponents: [],
@@ -23,6 +25,7 @@ function CreateProjectReducer(state = initialState, action) {
         ...state,
         teacherId: getTeacherId(),
         blocked: getTeacherBlocked(),
+        isLogged: isLogged(),
         curricularComponents: [],
         knowledgeMatrices: [],
         studentProtagonisms: [],

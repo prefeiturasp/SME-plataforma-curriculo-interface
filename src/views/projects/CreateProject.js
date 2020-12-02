@@ -60,6 +60,7 @@ class CreateProject extends Component {
         summary: null,
         description: null,
       },
+      isLogged: this.props.isLogged,
       blocked: this.props.blocked,
       permission: false,
       teacherId: '',
@@ -448,7 +449,7 @@ class CreateProject extends Component {
 
 
   render() {
-    const { curricularComponents, knowledgeMatrices, studentProtagonisms, segments, stages, years, learningObjectives, dres, schools, isLoading } = this.props;
+    const { curricularComponents, knowledgeMatrices, studentProtagonisms, segments, stages, years, learningObjectives, dres, schools, isLoading, isLogged, blocked } = this.props;
     const modules = {
       toolbar: [
         [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
@@ -1055,16 +1056,17 @@ class CreateProject extends Component {
         </div>
     );
 
-    if ((localStorage.getItem('accessToken')) && (this.props.blocked === 'false')) {
+    if (isLogged && blocked !== 'true') {
       return <Page>{content}</Page>;
-    } else {
-      if (this.props.blocked === 'true') {
-        this.props.blockedUser();
-      } else {
-        this.props.unauthorizedUser();
-      }
-      return <Home></Home>;
     }
+
+    if (blocked === 'true') {
+        this.props.blockedUser();
+    } else {
+      this.props.unauthorizedUser();
+    }
+
+    return <Home></Home>;
   }
 }
 
@@ -1072,6 +1074,7 @@ CreateProject.propTypes = {
   project: PropTypes.object,
   teacherId: PropTypes.string,
   blocked: PropTypes.string,
+  isLogged: PropTypes.bool,
   curricularComponents: PropTypes.array,
   knowledgeMatrices: PropTypes.array,
   studentProtagonisms: PropTypes.array,
@@ -1093,6 +1096,7 @@ const mapStateToProps = state => {
   return {
     teacherId: state.CreateProjectReducer.teacherId,
     blocked: state.CreateProjectReducer.blocked,
+    isLogged: state.CreateProjectReducer.isLogged,
     curricularComponents: state.CreateProjectReducer.curricularComponents,
     knowledgeMatrices: state.CreateProjectReducer.knowledgeMatrices,
     studentProtagonisms: state.CreateProjectReducer.studentProtagonisms,
