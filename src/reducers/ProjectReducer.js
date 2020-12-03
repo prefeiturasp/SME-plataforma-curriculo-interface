@@ -2,6 +2,7 @@ import ProjectActions from 'actions/ProjectActions';
 
 const initialState = {
   currItem: {},
+  comments: [],
   isSearching: false,
 };
 
@@ -17,6 +18,7 @@ function ProjectReducer(state = initialState, action) {
       return {
         ...state,
         currItem: action.data,
+        comments: action.data.comments,
         isSearching: false,
       };
 
