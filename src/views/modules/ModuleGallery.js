@@ -59,6 +59,9 @@ class ModuleGallery extends Component {
   };
 
   render() {
+    if (typeof this.props.images === 'undefined') {
+      return <div></div>
+    }
     const items = this.props.images.map(image => {
       const attrs = image.file_attributes || image.archives_attributes;
       const description = image.subtitle || '';
