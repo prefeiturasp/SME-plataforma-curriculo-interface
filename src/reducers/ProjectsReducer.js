@@ -1,3 +1,4 @@
+import CollectionActions from 'actions/CollectionActions';
 import ProjectsActions from 'actions/ProjectsActions';
 
 const initialState = {
@@ -53,6 +54,17 @@ function ProjectsReducer(state = initialState, action) {
 				return {
 					...item,
 					isExpanded: !item.isExpanded && item.id === action.id,
+				};
+			}),
+		};
+
+	case CollectionActions.SAVED_PROJECT:
+		return {
+			...state,
+			items: state.items.map(item => {
+				return {
+					...item,
+					isSaved: item.id === action.projectId || item.isSaved,
 				};
 			}),
 		};

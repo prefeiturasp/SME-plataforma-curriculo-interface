@@ -86,7 +86,7 @@ class Project extends Component {
   }
 
   render() {
-    const { data, isSearching, comments } = this.props;
+    const { data, isSearching, isSaved, comments } = this.props;
     const description = data.description;
     const { isPrint } = this.state;
     const  cardsComment = comments.map((comment, index) => {
@@ -155,6 +155,9 @@ class Project extends Component {
               <Title
                 text="Projeto TCA"
                 project={data}
+                slug={data.slug}
+                isSaved={isSaved}
+                hasButton={true}
               />
               <div dangerouslySetInnerHTML={{ __html: data.description }} />
               <h3>Responsabilidades:</h3>
@@ -162,10 +165,12 @@ class Project extends Component {
               <div className="container">
                 <p>{data.regional_education_board}</p>
                 <p>Escola - {data.school}</p>
-                <p>Ano - {data.development_year}</p>
-                <p>Turma - {data.development_class}</p>
-                <p>Professor(a) - {data.teacher_name}</p>
-                <p>Alunos - {data.owners}</p>
+                <p>Ano Letivo - {data.development_year}</p>
+                {data.development_class  && (
+                  <p>Ano/Turma - {data.development_class}</p>
+                )}
+                <p>Professor(es) - {data.teacher_name}</p>
+                <p>Participante(s) - {data.owners}</p>
               </div>
               <h3>Links relacionados:</h3>
               <br></br>
@@ -236,6 +241,7 @@ class Project extends Component {
 Project.propTypes = {
   data: PropTypes.object,
   comments: PropTypes.array,
+  isSaved: PropTypes.bool,
   isSearching: PropTypes.bool.isRequired,
   load: PropTypes.func.isRequired,
 };
@@ -244,6 +250,7 @@ const mapStateToProps = state => {
   return {
     data: state.ProjectReducer.currItem,
     comments: state.ProjectReducer.comments,
+    isSaved: state.ProjectReducer.isSaved,
     isSearching: state.ProjectReducer.isSearching,
   };
 };

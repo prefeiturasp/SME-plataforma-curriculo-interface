@@ -7,9 +7,11 @@ import BodyActions from 'actions/BodyActions';
 import ClassroomYear from 'components/objects/ClassroomYear';
 import CollectionActions from 'actions/CollectionActions';
 import ConfirmActions from 'actions/ConfirmActions';
-import EmptyList from './EmptyList';
+import EmptySequenceList from './EmptySequenceList';
+import EmptyProjectList from './EmptyProjectList';
 import Page from 'components/layout/Page';
 import SequenceList from './SequenceList';
+import ProjectList from './ProjectList';
 import createModalLink from 'utils/createModalLink';
 import iconClose from 'images/icons/closeBig.svg';
 import iconEdit from 'images/icons/edit.svg';
@@ -21,6 +23,7 @@ class Collection extends Component {
     const id = this.props.match.params.id;
     this.props.load(id);
     this.props.loadSequences(id);
+    this.props.loadProjects(id);
   }
 
   onClickedClose = () => {
@@ -37,11 +40,10 @@ class Collection extends Component {
     const { sequences } = this.props;
 
     const numSequences = sequences.length;
-    const wordSequences = numSequences === 1 ? 'sequência' : 'sequências';
 
     this.props.openConfirm(
       'Excluir essa coleção e todas as suas sequências de atividades?',
-      `Sua coleção ${name} e todas as suas ${numSequences} ${wordSequences} serão excluídos permanentemente.`,
+      `Sua coleção ${name} e todas as suas sequências e projetos serão excluídos permanentemente.`,
       'Excluir',
       'Cancelar',
       this.onClickedConfirm
@@ -49,19 +51,25 @@ class Collection extends Component {
   };
 
   render() {
-    const { data, classrooms, sequences } = this.props;
+    const { data, classrooms, sequences, projects } = this.props;
     const { id, name } = data;
-    
+
     const link = createModalLink(`/colecao/${id}/editar`);
 
     const years = classrooms.map((year, i) => {
       return <ClassroomYear key={i} year={year.year} color={year.color} />;
     });
 
-    const contents = sequences.length ? (
+    const projectContents = projects.length ? (
+      <ProjectList collectionId={id} items={projects} />
+    ) : (
+      <EmptyProjectList />
+    );
+
+    const sequenceContents = sequences.length ? (
       <SequenceList collectionId={id} items={sequences} />
     ) : (
-      <EmptyList />
+      <EmptySequenceList />
     );
 
     return (
@@ -83,7 +91,8 @@ class Collection extends Component {
             <div className={styles.years}>{years}</div>
           </header>
         </div>
-        {contents}
+        {sequenceContents}
+        {projectContents}
       </Page>
     );
   }
@@ -96,6 +105,7 @@ Collection.propTypes = {
   load: PropTypes.func.isRequired,
   openConfirm: PropTypes.func.isRequired,
   sequences: PropTypes.array.isRequired,
+  projects: PropTypes.array.isRequired,
 };
 
 Collection.defaultProps = {
@@ -106,6 +116,7 @@ const mapStateToProps = state => {
   return {
     data: state.CollectionReducer.data,
     sequences: state.CollectionReducer.sequences,
+    projects: state.CollectionReducer.projects,
   };
 };
 
@@ -120,6 +131,9 @@ const mapDispatchToProps = dispatch => {
     },
     loadSequences: id => {
       dispatch(CollectionActions.loadSequences(id));
+    },
+    loadProjects: id => {
+      dispatch(CollectionActions.loadProjects(id));
     },
     openConfirm: (title, message, labelYes, labelNo, onConfirm) => {
       dispatch(

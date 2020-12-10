@@ -16,8 +16,8 @@ class EmptyList extends React.PureComponent {
               <img src={iconCollections} alt="Coleções" />
               <h3>Você ainda não possui coleções</h3>
               <p>
-                Crie uma nova coleção para salvar sequências de atividades e
-                acessá-las mais tarde.
+                Crie uma nova coleção para salvar sequências de atividades, projetos do TCA e
+                acessá-los mais tarde.
               </p>
               <NavLink className="btnSmall" to={link}>
                 Criar coleção
