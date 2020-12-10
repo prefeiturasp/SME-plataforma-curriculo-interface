@@ -44,6 +44,7 @@ import RateSequence from 'views/sequence/rate/RateSequence';
 import Rating from 'views/sequence/rating/Rating';
 import Result from 'views/result/Result';
 import SaveSequence from 'views/sequence/save/SaveSequence';
+import SaveProject from 'views/project/save/SaveProject';
 import SendResult from 'views/result/send/SendResult';
 import Sequence from 'views/sequence/Sequence';
 import Sequences from 'views/sequences/Sequences';
@@ -232,6 +233,24 @@ class ModalSwitch extends Component {
           exact
           path="/sequencias/:slug/salvar"
           component={SaveSequence}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/projetos/:slug/criar-colecao"
+          component={CreateCollection}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/projeto/:slug/salvar"
+          component={SaveProject}
+          {...modalProps}
+        />
+        <ModalRoute
+          exact
+          path="/projetos/:slug/salvar"
+          component={SaveProject}
           {...modalProps}
         />
         <ModalRoute

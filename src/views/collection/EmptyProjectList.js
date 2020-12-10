@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import iconCollection from './collection.svg';
 import styles from 'views/profile/collections/EmptyList.scss';
 
-class EmptyList extends React.PureComponent {
+class EmptyProjectList extends React.PureComponent {
   render() {
     return (
       <section className={styles.wrapper}>
@@ -11,13 +11,13 @@ class EmptyList extends React.PureComponent {
           <div className="row">
             <div className="col-md-6 offset-md-3 col-lg-4 offset-lg-4">
               <img src={iconCollection} alt="Coleção" />
-              <h3>Sua coleção está vazia</h3>
+              <h3>Sua coleção não tem projetos</h3>
               <p>
-                Salve sequências ao acessá-las clicando no ícone do marcador de
+                Salve projetos ao acessá-las clicando no ícone do marcador de
                 livro.
               </p>
-              <NavLink className="btn" to="/sequencias">
-                Buscar sequências
+              <NavLink className="btn" to="/projetos">
+                Buscar projetos
               </NavLink>
             </div>
           </div>
@@ -27,4 +27,4 @@ class EmptyList extends React.PureComponent {
   }
 }
 
-export default EmptyList;
+export default EmptyProjectList;
