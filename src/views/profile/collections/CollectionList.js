@@ -16,6 +16,7 @@ class CollectionList extends Component {
           name={item.name}
           numClassrooms={item.number_of_classes || 0}
           numSequences={item.number_of_activity_sequences}
+          numProjects={item.number_of_projects}
         />
       );
     });

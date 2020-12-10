@@ -6,10 +6,11 @@ import styles from './Collection.scss';
 
 class Collection extends React.PureComponent {
   render() {
-    const { id, name, numSequences, years } = this.props;
+    const { id, name, numSequences, years, numProjects } = this.props;
     const link = `/colecao/${id}`;
     const word1 = numSequences === 1 ? 'sequência' : 'sequências';
-    
+    const word2 = numProjects === 1 ? 'projeto' : 'projetos';
+
     const items = years.map((year, i) => {
       return <ClassroomYear key={i} color={year.color} year={year.year} />;
     });
@@ -21,6 +22,9 @@ class Collection extends React.PureComponent {
             <h4>{name}</h4>
             <p>
               {numSequences} {word1}
+            </p>
+            <p>
+              {numProjects} {word2}
             </p>
           </div>
           <div className={styles.years}>{items}</div>
