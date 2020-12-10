@@ -6,13 +6,22 @@ import { API_URL } from 'data/constants';
 
 const ProjectActions = {
   LOAD: 'ProjectActions.LOAD',
+  LOAD_COLLECTIONS: 'ProjectActions.LOAD_COLLECTIONS',
   LOADED: 'ProjectActions.LOADED',
+  LOADED_COLLECTIONS: 'ProjectActions.LOADED_COLLECTIONS',
 
   load(slug) {
     return Api.simpleGet(
       `/api/projects/${slug}`,
       ProjectActions.LOAD,
       ProjectActions.LOADED
+    );
+  },
+  loadCollections(slug) {
+    return Api.simpleGet(
+      `/api/projects/${slug}/colecoes`,
+      ProjectActions.LOAD_COLLECTIONS,
+      ProjectActions.LOADED_COLLECTIONS
     );
   },
   createComment(comment) {

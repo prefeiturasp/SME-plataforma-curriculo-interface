@@ -3,6 +3,7 @@ import CollectionActions from 'actions/CollectionActions';
 const initialState = {
   data: {},
   sequences: [],
+  projects: [],
 };
 
 function CollectionReducer(state = initialState, action) {
@@ -17,6 +18,12 @@ function CollectionReducer(state = initialState, action) {
       return {
         ...state,
         sequences: action.data,
+      };
+
+    case CollectionActions.LOADED_PROJECTS:
+      return {
+        ...state,
+        projects: action.data,
       };
 
     default:

@@ -30,6 +30,30 @@ function doSaveSequence(dispatch, id, name, sequenceId) {
     .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
 }
 
+function doSaveProject(dispatch, id, name, projectId) {
+  dispatch({ type: CollectionActions.SAVE_PROJECT });
+  const data = {
+    'collection_project[project_id]': projectId,
+  };
+  const teacherId = getTeacherId();
+  return Api.post(
+    dispatch,
+    `/api/professores/${teacherId}/colecoes/${id}/projetos`,
+    data
+  )
+    .then(response => {
+      dispatch({ ...response, projectId, type: CollectionActions.SAVED_PROJECT });
+      dispatch(
+        SnackbarActions.open(
+          <span>
+            Salvo em <strong>{name}</strong>
+          </span>
+        )
+      );
+    })
+    .catch(error => dispatch(AlertActions.open(`Ocorreu um erro: ${error}`)));
+}
+
 const CollectionActions = {
   CREATE: 'CollectionActions.CREATE',
   CREATED: 'CollectionActions.CREATED',
@@ -41,10 +65,16 @@ const CollectionActions = {
   LOADED: 'CollectionActions.LOADED',
   LOAD_SEQUENCES: 'CollectionActions.LOAD_SEQUENCES',
   LOADED_SEQUENCES: 'CollectionActions.LOADED_SEQUENCES',
+  LOAD_PROJECTS: 'CollectionActions.LOAD_PROJECTS',
+  LOADED_PROJECTS: 'CollectionActions.LOADED_PROJECTS',
   REMOVE_SEQUENCE: 'CollectionActions.REMOVE_SEQUENCE',
   REMOVED_SEQUENCE: 'CollectionActions.REMOVED_SEQUENCE',
+  REMOVE_PROJECT: 'CollectionActions.REMOVE_PROJECT',
+  REMOVED_PROJECT: 'CollectionActions.REMOVED_PROJECT',
   SAVE_SEQUENCE: 'CollectionActions.SAVE_SEQUENCE',
   SAVED_SEQUENCE: 'CollectionActions.SAVED_SEQUENCE',
+  SAVE_PROJECT: 'CollectionActions.SAVE_PROJECT',
+  SAVED_PROJECT: 'CollectionActions.SAVED_PROJECT',
 
   removeSequence(id, sequenceId) {
     return dispatch => {
@@ -66,6 +96,28 @@ const CollectionActions = {
   saveSequence(id, name, sequenceId) {
     return dispatch => {
       return doSaveSequence(dispatch, id, name, sequenceId);
+    };
+  },
+  removeProject(id, projectId) {
+    return dispatch => {
+      dispatch({ type: CollectionActions.REMOVE_PROJECT });
+      const teacherId = getTeacherId();
+      return Api.delete(
+        dispatch,
+        `/api/professores/${teacherId}/colecoes/${id}/projetos/${projectId}`
+      )
+        .then(response => {
+          dispatch({ ...response, type: CollectionActions.REMOVED_PROJECT });
+          dispatch(CollectionActions.loadProjects(id));
+        })
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
+    };
+  },
+  saveProject(id, name, projectId) {
+    return dispatch => {
+      return doSaveProject(dispatch, id, name, projectId);
     };
   },
   create(name) {
@@ -164,6 +216,22 @@ const CollectionActions = {
       )
         .then(response =>
           dispatch({ ...response, type: CollectionActions.LOADED_SEQUENCES })
+        )
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
+    };
+  },
+  loadProjects(id) {
+    return dispatch => {
+      dispatch({ type: CollectionActions.LOAD_PROJECTS });
+      const teacherId = getTeacherId();
+      return Api.get(
+        dispatch,
+        `/api/professores/${teacherId}/colecoes/${id}/projetos`
+      )
+        .then(response =>
+          dispatch({ ...response, type: CollectionActions.LOADED_PROJECTS })
         )
         .catch(error =>
           dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
