@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Chip from 'components/objects/Chip';
 import styles from './Cover.scss';
+import logoPrefecture from './images/prefecture.jpg';
 
 class Cover extends Component {
 
@@ -14,7 +15,13 @@ class Cover extends Component {
         src={project.cover_image}
         alt={project.title}
       />
-    ) : null;
+  ) : (
+      <img
+        className={styles.image}
+        src={logoPrefecture}
+        alt={project.title}
+      />
+  );
 
     const classes = image
       ? [styles.wrapper, styles.withImage]

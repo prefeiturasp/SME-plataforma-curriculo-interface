@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Element, scroller } from 'react-scroll';
 import { NavLink } from 'react-router-dom';
+import { API_URL } from 'data/constants';
+import { history } from 'index';
 import Preview from './Preview';
+import isLogged from 'data/isLogged';
 import withWidth from 'components/hoc/withWidth';
 import iconMinus from 'images/icons/minus.svg';
 import iconPlus from 'images/icons/plus1.svg';
+import iconSave1 from 'images/icons/save.svg';
+import iconSaved from 'images/icons/saved.svg';
 import styles from './GridItemBase.scss';
+import logoPrefecture from 'views/project/images/prefecture.jpg';
 
 class GridItemBase extends Component {
   ref = React.createRef();
@@ -26,6 +32,16 @@ class GridItemBase extends Component {
     });
   };
 
+  onClickedSave = () => {
+    if (isLogged()) {
+      history.push(`/projetos/${this.props.data.slug}/salvar`, {
+        isModal: true,
+      });
+    } else {
+      history.push(`/login`, { isModal: true });
+    }
+  };
+
   render() {
     const { data } = this.props;
     const width = this.ref.current ? this.ref.current.clientWidth : 0;
@@ -43,11 +59,11 @@ class GridItemBase extends Component {
         />
       </div>
     ) : (
-      <div className={styles.initials}>
-        {data.title
-          .split(' ')
-          .map(s => s.charAt(0))
-          .join('')}
+      <div className={styles.image}>
+        <img
+          src={logoPrefecture}
+          alt=""
+        />
       </div>
     );
 
@@ -57,14 +73,25 @@ class GridItemBase extends Component {
         ? data.title.substr(0, maxChars).trim() + '...'
         : data.title;
 
+    const isSaved = data.already_saved_in_collection || data.isSaved;
+    const iconSave = isSaved ? iconSaved : iconSave1;
+    const labelSave = isSaved ? 'Salvo' : 'Salvar';
+
     return (
       <div className="col-sm-12 col-md-6 col-lg-4 col-xl-3">
         <Element name={data.slug} />
         <article className={styles.wrapper} ref={this.ref}>
           <NavLink to={link} aria-label={title}>{thumbnail}</NavLink>
+          <button className={styles.btnSave} onClick={this.onClickedSave}>
+            <img src={iconSave} alt={labelSave} />
+          </button>
           <div className={styles.component}>
             {data.curricular_components.map((curricular_component, idx) => {
-              return <label key={idx} style={{marginLeft: '5px', marginRight: '5px', color: curricular_component.color}}>{curricular_component.name}</label>
+              if(idx > 2) {
+                return <label key={idx}></label>
+              } else {
+                return <label key={idx} style={{marginLeft: '5px', marginRight: '20px', color: curricular_component.color}}>{curricular_component.name}</label>
+              }
             })}
           </div>
           <div className={styles.title}>

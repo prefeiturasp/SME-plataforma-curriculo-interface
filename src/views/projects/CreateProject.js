@@ -100,6 +100,7 @@ class CreateProject extends Component {
     this.addLink = this.addLink.bind(this);
     this.removeLink = this.removeLink.bind(this);
     this.onClickedAddPhoto = this.onClickedAddPhoto.bind(this);
+    this.range = this.range.bind(this);
   }
 
   curricularComponentChange(e) {
@@ -263,6 +264,14 @@ class CreateProject extends Component {
     }
   }
 
+  range(firstYear, lastYear) {
+    var yearsData = []
+    for (var i = firstYear; i <= lastYear; i++) {
+      yearsData.push(i)
+    }
+    return yearsData;
+  }
+
   developmentYearChange(e) {
     this.setState({
       project: {
@@ -271,7 +280,7 @@ class CreateProject extends Component {
       },
       errors: {
         ...this.state.errors,
-        developmentYear: e.target.value.length ? false : true,
+        developmentYear: e.target.value ? false : true,
       },
     });
   }
@@ -473,6 +482,11 @@ class CreateProject extends Component {
     ]
 
     const hasImage = this.state.photo !== null;
+
+    const lastYear = new Date().getFullYear();
+    const firstYear = lastYear - 6;
+    const yearsData = this.range(firstYear, lastYear);
+    console.log(yearsData);
 
     const content = (
         <div className="container">
@@ -860,19 +874,34 @@ class CreateProject extends Component {
                   )}
                 </div>
                 <div className="row">
+                  { dres && (
+                    <div className={`${styles.projectInformations} col-sm-12 col-md-12 col-lg-6 col-xl-6`}>
+                      <InputLabel id="demo-simple-select-filled-label">Ano Letivo</InputLabel>
+                      <Select
+                        className={styles.selectOptions}
+                        labelId="demo-simple-select-filled-label"
+                        id="demo-simple-select-filled"
+                        value={this.state.project['developmentYear']}
+                        onChange={(e) => this.developmentYearChange(e)}
+                      >
+                        { yearsData.map((year, index)=>{
+                          return (
+                            <MenuItem
+                              key={index}
+                              value={year}
+                            >
+                              {year}
+                            </MenuItem>
+                          );
+                        })}
+                      </Select>
+                      {this.state.errors['developmentYear'] != null && this.state.errors['developmentYear'] && (
+                        <div><p className={styles.errorMessage}>Este campo é obrigatório.</p></div>
+                      )}
+                    </div>
+                  )}
                   <div className={`${styles.projectInformations} col-sm-12 col-md-12 col-lg-6 col-xl-6`}>
-                    <InputLabel id="demo-simple-select-filled-label">Ano</InputLabel>
-                    <TextField
-                      style={{width: '100%'}}
-                      onChange={(e) => this.developmentYearChange(e)}
-                    >
-                    </TextField>
-                    {this.state.errors['developmentYear'] != null && this.state.errors['developmentYear'] && (
-                      <div><p className={styles.errorMessage}>Este campo é obrigatório.</p></div>
-                    )}
-                  </div>
-                  <div className={`${styles.projectInformations} col-sm-12 col-md-12 col-lg-6 col-xl-6`}>
-                    <InputLabel id="demo-simple-select-filled-label">Turma</InputLabel>
+                    <InputLabel id="demo-simple-select-filled-label">Ano/Turma</InputLabel>
                     <TextField
                       style={{width: '100%'}}
                       onChange={(e) => this.developmentClassChange(e)}

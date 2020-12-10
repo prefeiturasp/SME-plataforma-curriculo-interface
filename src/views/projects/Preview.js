@@ -10,6 +10,13 @@ import withWidth from 'components/hoc/withWidth';
 import iconHelp from 'images/icons/help.svg';
 import styles from './Preview.scss';
 
+function onlyUnique(value, index, self) {
+    if (value === undefined) {
+      return false
+    }
+    return self.indexOf(value) === index;
+}
+
 class Preview extends Component {
   render() {
     const { data, isLeftAligned, windowWidth } = this.props;
@@ -30,11 +37,14 @@ class Preview extends Component {
       }
     );
 
-    const sustainableDevGoals = data.sustainable_development_goals.map(
-      (item, i) => {
-        return <SustainableDevGoalItem key={i} data={item} />;
-      }
-    );
+    const ods = data.sustainable_development_goals.map((item, i) => {
+      return item.name;
+    }).filter(onlyUnique);
+
+    const sustainableDevGoals = ods.map((item, i) => {
+      let sustainableDevGoal = data.sustainable_development_goals.filter((itm) => { return itm.name === item});
+      return <SustainableDevGoalItem key={i} data={sustainableDevGoal[0]} />;
+    });
 
     const salt = data.id;
 

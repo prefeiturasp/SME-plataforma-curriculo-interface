@@ -10,6 +10,14 @@ import iconHelp from 'images/icons/help.svg';
 import iconPrint from 'images/icons/print.svg';
 import styles from './ProjectChars.scss';
 
+function onlyUnique(value, index, self) {
+    if (value === undefined) {
+      return false
+    }
+    return self.indexOf(value) === index;
+}
+
+
 class ProjectChars extends Component {
     render() {
     const { data } = this.props;
@@ -35,10 +43,16 @@ class ProjectChars extends Component {
       })
     }
 
+
+
     if (this.props.data.sustainable_development_goals) {
-      sustainableDevGoals = this.props.data.sustainable_development_goals.map((sdo, i) => {
-        return <SustainableDevGoalItem key={i} data={sdo} isLink={false} />;
-      })
+      const ods = this.props.data.sustainable_development_goals.map((item, i) => {
+        return item.name;
+      }).filter(onlyUnique);
+      sustainableDevGoals = ods.map((item, i) => {
+        let sustainableDevGoal = this.props.data.sustainable_development_goals.filter((itm) => { return itm.name === item});
+        return <SustainableDevGoalItem key={i} data={sustainableDevGoal[0]} />;
+      });
     }
 
     if (this.props.data.knowledge_matrices) {
