@@ -1,6 +1,10 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
+.dre {
+  text-decoration: underline;
+}
+
 .btnChars {
   composes: btnFullWidth from global;
   composes: d-print-none from global;
