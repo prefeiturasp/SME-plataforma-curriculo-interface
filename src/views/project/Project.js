@@ -160,19 +160,20 @@ class Project extends Component {
                 hasButton={true}
               />
               <div dangerouslySetInnerHTML={{ __html: data.description }} />
-              <h3>Responsabilidades:</h3>
+              <h3>Informações</h3>
               <br></br>
               <div className="container">
-                <p>{data.regional_education_board}</p>
-                <p>Escola - {data.school}</p>
-                <p>Ano Letivo - {data.development_year}</p>
+                <p className={styles.dre}>{data.regional_education_board}</p>
+                <p><b>Unidade Escolar</b> - {data.school}</p>
+                <p><b>Ano Letivo</b> - {data.development_year}</p>
                 {data.development_class  && (
-                  <p>Ano/Turma - {data.development_class}</p>
+                  <p><b>Etapa/Ano Turma</b> - {data.development_class}</p>
                 )}
-                <p>Professor(es) - {data.teacher_name}</p>
-                <p>Participante(s) - {data.owners}</p>
+                <p><b>Professor(es)</b> - {data.teacher_name}</p>
+                <p><b>Estudante(s)</b> - {data.owners}</p>
               </div>
-              <h3>Links relacionados:</h3>
+              <br></br>
+              <h3>Links relacionados</h3>
               <br></br>
               <div className="container">
                 {data.links && (data.links.map((link, idx) => {

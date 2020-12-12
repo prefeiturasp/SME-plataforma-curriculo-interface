@@ -16,6 +16,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
+import getTeacherId from 'data/getTeacherId';
 import 'react-quill/dist/quill.snow.css';
 
 class CreateProject extends Component {
@@ -456,6 +457,16 @@ class CreateProject extends Component {
     this.props.load();
   }
 
+  componentWillReceiveProps() {
+    if (this.props.teacherId) {
+      this.setState({
+        project: {
+          ...this.state.project,
+          teacher_id: this.props.teacherId,
+        }
+      })
+    }
+  }
 
   render() {
     const { curricularComponents, knowledgeMatrices, studentProtagonisms, segments, stages, years, learningObjectives, dres, schools, isLoading, isLogged, blocked } = this.props;
@@ -484,10 +495,8 @@ class CreateProject extends Component {
     const hasImage = this.state.photo !== null;
 
     const lastYear = new Date().getFullYear();
-    const firstYear = lastYear - 6;
+    const firstYear = 2014
     const yearsData = this.range(firstYear, lastYear);
-    console.log(yearsData);
-
     const content = (
         <div className="container">
           <div>
@@ -901,7 +910,7 @@ class CreateProject extends Component {
                     </div>
                   )}
                   <div className={`${styles.projectInformations} col-sm-12 col-md-12 col-lg-6 col-xl-6`}>
-                    <InputLabel id="demo-simple-select-filled-label">Ano/Turma</InputLabel>
+                    <InputLabel id="demo-simple-select-filled-label">Etapa/Ano Turma</InputLabel>
                     <TextField
                       style={{width: '100%'}}
                       onChange={(e) => this.developmentClassChange(e)}
@@ -914,7 +923,7 @@ class CreateProject extends Component {
                 </div>
                 <div className="row">
                   <div className={`${styles.projectInformations} col-sm-12 col-md-12 col-lg-12 co-xl-12`}>
-                    <InputLabel id="demo-simple-select-filled-label">Responsáveis</InputLabel>
+                    <InputLabel id="demo-simple-select-filled-label">Estudantes</InputLabel>
                     <TextField
                       style={{width: '100%'}}
                       onChange={(e) => this.ownersChange(e)}
