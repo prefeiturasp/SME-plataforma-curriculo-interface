@@ -1,6 +1,13 @@
 @import "~variables.scss";
 @import "~tools.scss";
 
+.summary{
+  color: black;
+  font-size: rem(17) !important;
+  font-weight: 600 !important;
+  line-height: rem(23) !important;
+}
+
 .dre {
   text-decoration: underline;
 }
