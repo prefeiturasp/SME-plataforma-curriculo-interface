@@ -16,9 +16,6 @@ class Collection extends React.PureComponent {
   render() {
     const { name, years } = this.props;
 
-    console.log(name)
-    console.log(years)
-
     return (
       <button className={styles.wrapper} onClick={this.onClicked}>
         <h4 className={styles.title}>{name}</h4>

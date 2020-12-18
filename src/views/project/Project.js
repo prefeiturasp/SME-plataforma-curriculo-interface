@@ -159,7 +159,17 @@ class Project extends Component {
                 isSaved={isSaved}
                 hasButton={true}
               />
-              <div dangerouslySetInnerHTML={{ __html: data.description }} />
+              <h3>Resumo</h3>
+              <br></br>
+              <div className="container">
+                <p className={styles.summary}>{data.summary}</p>
+              </div>
+              <br></br>
+              <h3>Desenvolvimento do projeto</h3>
+              <br></br>
+              <div className='container'>
+                <div dangerouslySetInnerHTML={{ __html: data.description }} />
+              </div>
               <h3>Informações</h3>
               <br></br>
               <div className="container">
