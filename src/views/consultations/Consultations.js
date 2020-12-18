@@ -31,6 +31,14 @@ class Consultations extends Component {
         <section>
           <div className="container">
             <h1>Consultas à Rede</h1>
+            <br></br>
+            <p>
+              As consultas publicadas nesta página serão exclusivamente para
+              coletar as opiniões e pareceres dos profissionais da Rede
+              Municipal de Educação de São Paulo a respeito de publicações
+              institucionais e outras possíveis ações. Quando alguma consulta
+              estiver vigente, aparecerá uma imagem e seu respectivo título.
+            </p>
           </div>
           <hr className={styles.consultationDivider} />
           {segments.map((segment, index) => {
