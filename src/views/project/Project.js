@@ -17,11 +17,13 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import iconClose from 'images/icons/close.svg';
+import AlertActions from 'actions/AlertActions';
 
 class Project extends Component {
   state = {
     isCharsExpanded: false,
     isPrint: false,
+    isOldProject: false,
     comment: {
       teacher_id: getTeacherId(),
       project_id: '',
@@ -82,6 +84,14 @@ class Project extends Component {
         ...this.state,
         isPrint: true
       });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.data !== prevProps.data) {
+      if(this.props.data.old_project) {
+        this.props.openAlert('Alerta! Em breve esse projeto será ajustado.');
+      }
     }
   }
 
@@ -281,7 +291,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(BodyActions.showLoading());
       dispatch(ProjectActions.deleteComment(id));
       dispatch(ProjectActions.load(slug));
-    }
+    },
+    openAlert: message => {
+      dispatch(AlertActions.open(message));
+    },
   };
 };
 
