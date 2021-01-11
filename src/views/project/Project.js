@@ -89,7 +89,7 @@ class Project extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.props.data !== prevProps.data) {
-      if(this.props.data.old_project) {
+      if(this.props.data.old_project && !this.props.data.updated_by_admin) {
         this.props.openAlert('Alerta! Em breve esse projeto será ajustado.');
       }
     }
@@ -191,6 +191,8 @@ class Project extends Component {
                 )}
                 <p><b>Professor(es)</b> - {data.teacher_name}</p>
                 <p><b>Estudante(s)</b> - {data.owners}</p>
+                <p><b>Criado em:</b> - {data.owners}</p>
+                <p><b>Atualizado em:</b> - {data.owners}</p>
               </div>
               <br></br>
               <h3>Links relacionados</h3>
