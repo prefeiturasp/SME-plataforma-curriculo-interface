@@ -7,7 +7,6 @@ import Avatar from './Avatar';
 import BodyActions from 'actions/BodyActions';
 import ChallengesActions from 'actions/ChallengesActions';
 import MyProjectList from './projects/MyProjectList';
-import ProjectsActions from 'actions/ProjectsActions';
 import ChallengeList from './challenges/ChallengeList';
 import CollectionsActions from 'actions/CollectionsActions';
 import CollectionList from './collections/CollectionList';
@@ -123,7 +122,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(CollectionsActions.load());
     },
     loadMyProjects: () => {
-      dispatch(ProjectsActions.loadMyProjects());
+      dispatch(ProfileActions.loadMyProjects());
     },
   };
 };
