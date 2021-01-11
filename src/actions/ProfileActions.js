@@ -1,5 +1,6 @@
 import Api from 'data/Api';
 import AlertActions from 'actions/AlertActions';
+import ProjectsActions from 'actions/ProjectsActions';
 
 const ProfileActions = {
   DELETE_PHOTO: 'ProfileActions.DELETE_PHOTO',
@@ -40,6 +41,14 @@ const ProfileActions = {
       `/api/professores/${teacherId}`,
       ProfileActions.LOAD_CLASSROOMS,
       ProfileActions.LOADED_CLASSROOMS
+    );
+  },
+  loadMyProjects() {
+    const teacherId = localStorage.getItem('teacherId');
+    return Api.simpleGet(
+      `/api/professores/${teacherId}/meus_projetos`,
+      ProjectsActions.LOAD,
+      ProjectsActions.LOADED
     );
   },
   saveNickname(id, nickname) {

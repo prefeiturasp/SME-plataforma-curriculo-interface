@@ -12,12 +12,12 @@ import Chip from '@material-ui/core/Chip';
 import ReactQuill from 'react-quill';
 import Card from '@material-ui/core/Card';
 import Home from 'views/home/Home';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Checkbox from '@material-ui/core/Checkbox';
-import getTeacherId from 'data/getTeacherId';
 import 'react-quill/dist/quill.snow.css';
+import BodyActions from 'actions/BodyActions';
+
 
 class CreateProject extends Component {
 
@@ -890,7 +890,7 @@ class CreateProject extends Component {
                         className={styles.selectOptions}
                         labelId="demo-simple-select-filled-label"
                         id="demo-simple-select-filled"
-                        value={this.state.project['developmentYear']}
+                        value={this.state.project['development_year']}
                         onChange={(e) => this.developmentYearChange(e)}
                       >
                         { yearsData.map((year, index)=>{
@@ -1151,6 +1151,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     load: () => {
+      dispatch(BodyActions.showLoading());
       dispatch(CreateProjectActions.load());
     },
     getLearningObjectives: (curricularComponentIds, yearIds) => {

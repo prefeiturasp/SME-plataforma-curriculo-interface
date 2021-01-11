@@ -6,6 +6,7 @@ import { history } from 'index';
 import Avatar from './Avatar';
 import BodyActions from 'actions/BodyActions';
 import ChallengesActions from 'actions/ChallengesActions';
+import MyProjectList from './projects/MyProjectList';
 import ChallengeList from './challenges/ChallengeList';
 import CollectionsActions from 'actions/CollectionsActions';
 import CollectionList from './collections/CollectionList';
@@ -31,11 +32,12 @@ class Profile extends Component {
       this.props.loadChallenges();
       this.props.loadClassrooms();
       this.props.loadCollections();
+      this.props.loadMyProjects();
     }
   }
 
   render() {
-    const { data, challenges, collections } = this.props;
+    const { data, challenges, collections, projects } = this.props;
     const { nickname } = data;
 
     const numCollections = collections.length;
@@ -45,10 +47,12 @@ class Profile extends Component {
 
     const challengeList = <ChallengeList items={challenges} />;
 
+    const myProjectList = <MyProjectList items={projects} />
+
     const size = this.props.windowWidth < 768 ? 60 : 80;
 
     const linkEdit = createModalLink('/perfil/editar');
-    
+
     return (
       <Page>
         <header className={styles.header}>
@@ -71,6 +75,9 @@ class Profile extends Component {
           </div>
         </header>
         {collectionList}
+        <hr></hr>
+        {myProjectList}
+        <hr></hr>
         {challengeList}
       </Page>
     );
@@ -80,17 +87,20 @@ class Profile extends Component {
 Profile.propTypes = {
   challenges: PropTypes.array.isRequired,
   collections: PropTypes.array.isRequired,
+  projects: PropTypes.array.isRequired,
   data: PropTypes.object.isRequired,
   load: PropTypes.func.isRequired,
   loadChallenges: PropTypes.func.isRequired,
   loadClassrooms: PropTypes.func.isRequired,
   loadCollections: PropTypes.func.isRequired,
+  loadMyProjects: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     challenges: state.ChallengesReducer.items.filter(item => item.isSaved),
     collections: state.CollectionsReducer.items,
+    projects: state.ProjectsReducer.items,
     data: state.ProfileReducer,
   };
 };
@@ -110,6 +120,9 @@ const mapDispatchToProps = dispatch => {
     },
     loadCollections: () => {
       dispatch(CollectionsActions.load());
+    },
+    loadMyProjects: () => {
+      dispatch(ProfileActions.loadMyProjects());
     },
   };
 };

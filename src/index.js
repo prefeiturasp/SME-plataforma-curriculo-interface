@@ -51,6 +51,7 @@ import Sequences from 'views/sequences/Sequences';
 import Projects from 'views/projects/Projects';
 import Project from 'views/project/Project';
 import CreateProject from 'views/projects/CreateProject';
+import EditProject from 'views/projects/EditProject';
 import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
@@ -123,6 +124,7 @@ class ModalSwitch extends Component {
           <Route path="/projetos" component={Projects} />
           <Route path="/projeto/:slug" component={Project} key={1} />
           <Route path="/novo-projeto" component={CreateProject} />
+          <Route path="/editar-projeto/:slug" component={EditProject} />
           <Route path="/consultas-publicas" component={Consultations} />
           <Route exact path="/sequencias/ods/:ods" component={Sequences} />
           <Route

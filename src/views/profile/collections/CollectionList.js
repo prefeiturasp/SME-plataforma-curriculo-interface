@@ -28,6 +28,7 @@ class CollectionList extends Component {
     return (
       <section className={styles.wrapper}>
         <div className="container">
+          <h2>Minhas Coleções</h2>
           <div className={styles.rowTitle}>
             <h3>{items.length} {word}</h3>
             <NavLink className="btnSmall" to={link}>

@@ -1,0 +1,106 @@
+@import "~variables.scss";
+@import "~tools.scss";
+
+.wrapper {
+  background: white;
+  border-radius: rem(4);
+  margin-top: rem(32);
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+}
+
+.image,
+.initials {
+  width: 100%;
+  height: rem(160);
+}
+
+.image > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.initials {
+  align-items: center;
+  background: $grey-300;
+  color: $grey-600;
+  display: flex;
+  font-size: rem(80);
+  font-weight: 600;
+  justify-content: center;
+}
+
+.component {
+  color: $grey-600;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: rem(16) rem(15) rem(10) rem(15);
+  height: 40px;
+  > em {
+    font-style: normal;
+  }
+}
+
+.dates {
+  color: black;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: rem(16) rem(15) rem(10) rem(15);
+  height: 40px;
+}
+
+.btnSave {
+  position: absolute;
+  right: rem(16);
+  top: rem(180);
+}
+
+.title {
+  color: $grey-800;
+  font-size: rem(18);
+  font-weight: bold;
+  height: rem(50);
+  line-height: 1.2;
+  margin: rem(15) rem(15) rem(15) rem(15);
+  overflow: hidden;
+
+  a {
+    color: $grey-800;
+  }
+}
+
+.infos {
+  border-top: 1px solid $grey-200;
+  display: flex;
+  padding: rem(12) rem(15);
+  justify-content: space-between;
+  height: 65px;
+}
+
+.number {
+  font-size: rem(19);
+  font-weight: 600;
+}
+
+.label {
+  color: $grey-600;
+  font-size: rem(14);
+}
+
+.expand {
+  align-items: center;
+  border-top: 1px solid $grey-200;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: rem(8);
+}
+
+@include mq("tablet-portrait") {
+  .wrapper {
+    margin-top: rem(16);
+    margin-bottom: rem(16);
+  }
+}
