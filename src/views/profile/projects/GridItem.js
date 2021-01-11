@@ -53,8 +53,8 @@ class GridItem extends React.PureComponent {
             <p>{summary}</p>
           </div>
           <div className={styles.dates}>
-            <h5>Criado em: {item.created_at}</h5>
-            <h5>Atualizadoo em: {item.updated_at}</h5>
+            <h5>Criado: {item.created_at}</h5>
+            <h5>Atualizado: {item.updated_at}</h5>
           </div>
           <div className={styles.infos}>
             <NavLink to={editLink} className={`btn btnSmall btnFullWidth`}>
