@@ -67,6 +67,21 @@ class Projects extends Component {
         <section className={styles.wrapper}>
           <div className="container">
             <h1 className={styles.h1}>Projetos do TCA</h1>
+            <p>Olá! Bem-vindos à página Projetos TCA.</p>
+            <p>
+              Aqui você encontra os registros dos projetos de TCA, que foram
+              migrados da plataforma anterior, mantendo assim um registro
+              histórico, e também os novos projetos que serão cadastrados
+              pelos professores orientadores.
+            </p>
+            <p>
+              No período compreendido entre 2014 e 2019 os registros foram
+              feitos por estudantes da rede. No início do ano letivo de 2021,
+              eles e seus professores serão convidados a retomarem estes
+              registros para os ajustes necessários (de ortografia, de
+              ilustrações, de metodologia, entre outros).
+            </p>
+            <br></br>
             <Bar />
           </div>
           <hr />
