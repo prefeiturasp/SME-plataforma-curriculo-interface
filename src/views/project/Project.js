@@ -191,8 +191,8 @@ class Project extends Component {
                 )}
                 <p><b>Professor(es)</b> - {data.teacher_name}</p>
                 <p><b>Estudante(s)</b> - {data.owners}</p>
-                <p><b>Criado em:</b> - {data.owners}</p>
-                <p><b>Atualizado em:</b> - {data.owners}</p>
+                <p><b>Criado em:</b> - {data.created_at}</p>
+                <p><b>Atualizado em:</b> - {data.updated_at}</p>
               </div>
               <br></br>
               <h3>Links relacionados</h3>
