@@ -3,6 +3,7 @@ import ActivityReducer from './ActivityReducer';
 import AlertReducer from './AlertReducer';
 import BodyReducer from './BodyReducer';
 import CreateProjectReducer from './CreateProjectReducer';
+import EditProjectReducer from './EditProjectReducer';
 import ChallengeReducer from './ChallengeReducer';
 import ChallengesReducer from './ChallengesReducer';
 import CollectionReducer from './CollectionReducer';
@@ -33,6 +34,7 @@ export default combineReducers({
   AlertReducer,
   BodyReducer,
   CreateProjectReducer,
+  EditProjectReducer,
   ChallengeReducer,
   ChallengesReducer,
   CollectionReducer,
