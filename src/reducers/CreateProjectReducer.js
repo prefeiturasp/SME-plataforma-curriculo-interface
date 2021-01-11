@@ -41,7 +41,7 @@ function CreateProjectReducer(state = initialState, action) {
     case CreateProjectActions.LOADED:
       return {
         ...state,
-        curricularComponents: action.data.curricular_components,
+        curricularComponents: action.data.curricular_components.filter((cc) => cc.name !== "Trilhas de Aprendizagens"),
         knowledgeMatrices: action.data.knowledge_matrices,
         studentProtagonisms: action.data.student_protagonisms,
         segments: action.data.segments,
