@@ -30,7 +30,10 @@ class ChallengeList extends Component {
 
     return (
       <section className={styles.wrapper}>
+        <br></br>
+        <br></br>
         <div className="container">
+          <h2>Meus Desafios</h2>
           <div className={styles.rowTitle}>
             <h3>{items.length} {word}</h3>
             <NavLink className="btnSmall" to="/tecnologias-para-aprendizagem">
