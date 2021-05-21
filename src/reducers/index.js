@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import ActivityReducer from './ActivityReducer';
 import AlertReducer from './AlertReducer';
+import AnswerBooksReducer from './AnswerBooksReducer';
 import BodyReducer from './BodyReducer';
 import CreateProjectReducer from './CreateProjectReducer';
 import EditProjectReducer from './EditProjectReducer';
@@ -8,6 +9,7 @@ import ChallengeReducer from './ChallengeReducer';
 import ChallengesReducer from './ChallengesReducer';
 import CollectionReducer from './CollectionReducer';
 import CollectionsReducer from './CollectionsReducer';
+import ComplementBooksReducer from './ComplementBooksReducer';
 import ConfirmReducer from './ConfirmReducer';
 import ConsultationsReducer from './ConsultationsReducer';
 import ConsultationReducer from './ConsultationReducer';
@@ -31,6 +33,7 @@ import TeacherSurveyFormsReducer from './TeacherSurveyFormsReducer';
 
 export default combineReducers({
   ActivityReducer,
+  AnswerBooksReducer,
   AlertReducer,
   BodyReducer,
   CreateProjectReducer,
@@ -39,6 +42,7 @@ export default combineReducers({
   ChallengesReducer,
   CollectionReducer,
   CollectionsReducer,
+  ComplementBooksReducer,
   ConfirmReducer,
   ConsultationsReducer,
   ConsultationReducer,
