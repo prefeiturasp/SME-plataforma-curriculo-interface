@@ -1,10 +1,12 @@
 import ActivityActions from 'actions/ActivityActions';
+import AnswerBooksActions from 'actions/AnswerBooksActions';
 import BodyActions from 'actions/BodyActions';
 import ChallengeActions from 'actions/ChallengeActions';
 import ChallengesActions from 'actions/ChallengesActions';
 import ConsultationsActions from 'actions/ConsultationsActions';
 import CollectionActions from 'actions/CollectionActions';
 import CollectionsActions from 'actions/CollectionsActions';
+import ComplementBooksActions from 'actions/ComplementBooksActions';
 import HomeActions from 'actions/HomeActions';
 import KnowledgeMatrixActions from 'actions/KnowledgeMatrixActions';
 import LearningObjectivesActions from 'actions/LearningObjectivesActions';
@@ -25,11 +27,13 @@ const initialState = {
 function BodyReducer(state = initialState, action) {
   switch (action.type) {
     case ActivityActions.LOADED:
+    case AnswerBooksActions.LOADED:
     case BodyActions.HIDE_LOADING:
     case ChallengeActions.LOADED:
     case ChallengesActions.LOADED:
     case CollectionActions.LOADED_SEQUENCES:
     case CollectionsActions.LOADED:
+    case ComplementBooksActions.LOADED:
     case ConsultationsActions.LOADED:
     case HomeActions.LOADED:
     case KnowledgeMatrixActions.LOADED:
