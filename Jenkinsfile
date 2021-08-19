@@ -37,6 +37,7 @@ pipeline {
           when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'develop'; branch 'staging'; } } 
           steps {
             script {
+              checkout scm
               imagename1 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/curriculo-interface"
               //imagename2 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/sme-outra"
               dockerImage1 = docker.build(imagename1, "-f Dockerfile .")
