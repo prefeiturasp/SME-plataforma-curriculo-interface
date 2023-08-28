@@ -3,6 +3,7 @@ pipeline {
       branchname =  env.BRANCH_NAME.toLowerCase()
       kubeconfig = getKubeconf(env.branchname)
       registryCredential = 'jenkins_registry'
+      namespace = "${env.branchname == 'develop' ? 'curriculo-dev' : env.branchname == 'staging' ? 'sme-curriculo' : env.branchname == 'staging-r2' ? 'sme-curriculo' : 'sme-curriculo' }"
     }
   
     agent {
@@ -39,15 +40,11 @@ pipeline {
             script {
               checkout scm
               imagename1 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/curriculo-interface"
-              //imagename2 = "registry.sme.prefeitura.sp.gov.br/${env.branchname}/sme-outra"
               dockerImage1 = docker.build(imagename1, "-f Dockerfile .")
-              //dockerImage2 = docker.build(imagename2, "-f Dockerfile_outro .")
               docker.withRegistry( 'https://registry.sme.prefeitura.sp.gov.br', registryCredential ) {
               dockerImage1.push()
-              //dockerImage2.push()
               }
               sh "docker rmi $imagename1"
-              //sh "docker rmi $imagename2"
             }
           }
         }
@@ -56,13 +53,16 @@ pipeline {
             when { anyOf {  branch 'master'; branch 'main'; branch 'develop'; branch 'staging';  } }        
             steps {
                 script{
-                    if ( env.branchname == 'main' ||  env.branchname == 'master' || env.branchname == 'staging' ) {
+                    if ( env.branchname == 'main' ||  env.branchname == 'master' ) {
                         sendTelegram("🤩 [Deploy ${env.branchname}] Job Name: ${JOB_NAME} \nBuild: ${BUILD_DISPLAY_NAME} \nMe aprove! \nLog: \n${env.BUILD_URL}")
-                        timeout(time: 24, unit: "HOURS") {
-                            input message: 'Deseja realizar o deploy?', ok: 'SIM', submitter: 'rodolpho_azeredo'
+                        withCredentials([string(credentialsId: 'aprovadores_curriculo', variable: 'aprovadores')]) {
+                            timeout(time: 24, unit: "HOURS") {
+                                input message: 'Deseja realizar o deploy?', ok: 'SIM', submitter: "${aprovadores}"
+                            }
                         }
                     }
                     withCredentials([file(credentialsId: "${kubeconfig}", variable: 'config')]){
+			sh('rm -f '+"$home"+'/.kube/config')
                         sh('cp $config '+"$home"+'/.kube/config')
                         sh 'kubectl rollout restart deployment/curriculo-interface -n sme-curriculo'
                         sh('rm -f '+"$home"+'/.kube/config')
@@ -95,5 +95,5 @@ def getKubeconf(branchName) {
     if("main".equals(branchName)) { return "config_prd"; }
     else if ("master".equals(branchName)) { return "config_prd"; }
     else if ("staging".equals(branchName)) { return "config_hom"; }
-    else if ("develop".equals(branchName)) { return "config_dev"; }  
+    else if ("develop".equals(branchName)) { return "config_release"; }  
 }
