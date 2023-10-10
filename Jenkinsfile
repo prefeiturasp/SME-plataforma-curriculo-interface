@@ -66,7 +66,7 @@ pipeline {
                     withCredentials([file(credentialsId: "${kubeconfig}", variable: 'config')]){
 			sh('rm -f '+"$home"+'/.kube/config')
                         sh('cp $config '+"$home"+'/.kube/config')
-                        sh 'kubectl rollout restart deployment/curriculo-interface -n sme-curriculo'
+                        sh 'kubectl rollout restart deployment/curriculo-interface -n ${namespace}'
                         sh('rm -f '+"$home"+'/.kube/config')
                     }
                 }
