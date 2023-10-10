@@ -6,9 +6,11 @@ pipeline {
       namespace = "${env.branchname == 'develop' ? 'curriculo-dev' : env.branchname == 'staging' ? 'curriculo-hom' : env.branchname == 'staging-r2' ? 'curriculo-hom2' : 'sme-curriculo' }"
     }
   
-    agent {
-      node { label 'node-10-rc' }
-    }
+    agent { kubernetes { 
+              label 'builder'
+              defaultContainer 'builder'
+            }
+          }
 
     options {
       buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
