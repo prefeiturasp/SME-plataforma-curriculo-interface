@@ -36,7 +36,11 @@ pipeline {
         }
 
         stage('Build') {
-          agent { label 'master' }
+          agent { kubernetes { 
+              label 'builder'
+              defaultContainer 'builder'
+            }
+          }
           when { anyOf { branch 'master'; branch 'main'; branch "story/*"; branch 'develop'; branch 'staging'; } } 
           steps {
             script {
