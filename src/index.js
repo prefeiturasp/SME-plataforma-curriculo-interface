@@ -56,7 +56,7 @@ import Snackbar from 'components/Snackbar';
 import SustainableDevGoalDetail from 'views/sustainableDevGoals/Detail';
 import SustainableDevGoals from 'views/sustainableDevGoals/SustainableDevGoals';
 import Technologies from 'views/technologies/Technologies';
-
+import Redirect from 'views/redirect/Redirect';
 import moment from 'moment';
 import reducers from 'reducers';
 // import registerServiceWorker from 'utils/registerServiceWorker';
@@ -156,6 +156,7 @@ class ModalSwitch extends Component {
           <Route path="/desafio/:slug" component={Challenge} />
           <Route path="/tecnologias-para-aprendizagem" component={Technologies} />
           <Route exact path="/metodologia/:slug" component={Methodology} />
+          <Route path="/redirect" component={Redirect} />
         </Switch>
         <ModalRoute
           path="/ods/:id"
