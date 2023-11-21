@@ -28,6 +28,27 @@ const LoginActions = {
         );
     };
   },
+  tokenLogin(token) {
+    return dispatch => {
+      const data = {
+        'token': token,
+      };
+
+      return Api.post(dispatch, `/api/token_login`, data)
+        .then(response => {
+          localStorage.setItem(
+            'accessToken',
+            response.headers.get('Authorization'),
+          );
+
+          history.push('/perfil');
+          dispatch({ type: LoginActions.LOGGED_IN });
+        })
+        .catch(error =>
+          dispatch(AlertActions.open(`Ocorreu um erro: ${error}`))
+        );
+    };
+  },
   logout() {
     return dispatch => {
       Api.get(dispatch, '/api/logout');
